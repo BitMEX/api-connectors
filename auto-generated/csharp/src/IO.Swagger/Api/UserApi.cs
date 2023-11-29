@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -53,8 +53,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="referralCode"> (optional)</param>
-        /// <returns>double?</returns>
-        double? UserCheckReferralCode (string referralCode = null);
+        /// <returns>Object</returns>
+        Object UserCheckReferralCode (string referralCode = null);
 
         /// <summary>
         /// Check if a referral code is valid.
@@ -64,8 +64,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="referralCode"> (optional)</param>
-        /// <returns>ApiResponse of double?</returns>
-        ApiResponse<double?> UserCheckReferralCodeWithHttpInfo (string referralCode = null);
+        /// <returns>ApiResponse of Object</returns>
+        ApiResponse<Object> UserCheckReferralCodeWithHttpInfo (string referralCode = null);
         /// <summary>
         /// Register your communication token for mobile clients
         /// </summary>
@@ -132,6 +132,71 @@ namespace IO.Swagger.Api
         /// <returns>ApiResponse of Transaction</returns>
         ApiResponse<Transaction> UserConfirmWithdrawalWithHttpInfo (string token);
         /// <summary>
+        /// Creates a new sub-account.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountName"></param>
+        /// <returns>Object</returns>
+        Object UserCreateSubAccount (string accountName);
+
+        /// <summary>
+        /// Creates a new sub-account.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountName"></param>
+        /// <returns>ApiResponse of Object</returns>
+        ApiResponse<Object> UserCreateSubAccountWithHttpInfo (string accountName);
+        /// <summary>
+        /// Create unstaking request
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"></param>
+        /// <param name="amount"></param>
+        /// <returns>Object</returns>
+        Object UserCreateUnstakingRequests (string symbol, double? amount);
+
+        /// <summary>
+        /// Create unstaking request
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"></param>
+        /// <param name="amount"></param>
+        /// <returns>ApiResponse of Object</returns>
+        ApiResponse<Object> UserCreateUnstakingRequestsWithHttpInfo (string symbol, double? amount);
+        /// <summary>
+        /// Cancel unstaking request
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="redemptionID"></param>
+        /// <returns>Object</returns>
+        Object UserDeleteUnstakingRequests (string redemptionID);
+
+        /// <summary>
+        /// Cancel unstaking request
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="redemptionID"></param>
+        /// <returns>ApiResponse of Object</returns>
+        ApiResponse<Object> UserDeleteUnstakingRequestsWithHttpInfo (string redemptionID);
+        /// <summary>
         /// Get your user model.
         /// </summary>
         /// <remarks>
@@ -157,8 +222,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Affiliate</returns>
-        Affiliate UserGetAffiliateStatus ();
+        Affiliate UserGetAffiliateStatus (string currency = null);
 
         /// <summary>
         /// Get your current affiliate/referral status.
@@ -167,8 +233,28 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>ApiResponse of Affiliate</returns>
-        ApiResponse<Affiliate> UserGetAffiliateStatusWithHttpInfo ();
+        ApiResponse<Affiliate> UserGetAffiliateStatusWithHttpInfo (string currency = null);
+        /// <summary>
+        /// Get your account&#39;s CSA status.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>CollateralSupportAgreement</returns>
+        CollateralSupportAgreement UserGetCSA ();
+
+        /// <summary>
+        /// Get your account&#39;s CSA status.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of CollateralSupportAgreement</returns>
+        ApiResponse<CollateralSupportAgreement> UserGetCSAWithHttpInfo ();
         /// <summary>
         /// Get your account&#39;s commission status.
         /// </summary>
@@ -195,9 +281,10 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <returns>string</returns>
-        string UserGetDepositAddress (string currency = null);
+        string UserGetDepositAddress (string currency, string network);
 
         /// <summary>
         /// Get a deposit address.
@@ -206,9 +293,10 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <returns>ApiResponse of string</returns>
-        ApiResponse<string> UserGetDepositAddressWithHttpInfo (string currency = null);
+        ApiResponse<string> UserGetDepositAddressWithHttpInfo (string currency, string network);
         /// <summary>
         /// Get the execution history by day.
         /// </summary>
@@ -218,8 +306,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol"></param>
         /// <param name="timestamp"></param>
-        /// <returns>Object</returns>
-        Object UserGetExecutionHistory (string symbol, DateTime? timestamp);
+        /// <returns>List&lt;Execution&gt;</returns>
+        List<Execution> UserGetExecutionHistory (string symbol, DateTime? timestamp);
 
         /// <summary>
         /// Get the execution history by day.
@@ -230,8 +318,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol"></param>
         /// <param name="timestamp"></param>
-        /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> UserGetExecutionHistoryWithHttpInfo (string symbol, DateTime? timestamp);
+        /// <returns>ApiResponse of List&lt;Execution&gt;</returns>
+        ApiResponse<List<Execution>> UserGetExecutionHistoryWithHttpInfo (string symbol, DateTime? timestamp);
         /// <summary>
         /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
         /// </summary>
@@ -239,7 +327,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Margin</returns>
         Margin UserGetMargin (string currency = null);
 
@@ -250,7 +338,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>ApiResponse of Margin</returns>
         ApiResponse<Margin> UserGetMarginWithHttpInfo (string currency = null);
         /// <summary>
@@ -260,8 +348,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
         /// <returns>QuoteFillRatio</returns>
-        QuoteFillRatio UserGetQuoteFillRatio ();
+        QuoteFillRatio UserGetQuoteFillRatio (double? targetAccountId = null);
 
         /// <summary>
         /// Get 7 days worth of Quote Fill Ratio statistics.
@@ -270,8 +359,135 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
         /// <returns>ApiResponse of QuoteFillRatio</returns>
-        ApiResponse<QuoteFillRatio> UserGetQuoteFillRatioWithHttpInfo ();
+        ApiResponse<QuoteFillRatio> UserGetQuoteFillRatioWithHttpInfo (double? targetAccountId = null);
+        /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
+        /// <returns>QuoteValueRatio</returns>
+        QuoteValueRatio UserGetQuoteValueRatio (double? targetAccountId = null);
+
+        /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
+        /// <returns>ApiResponse of QuoteValueRatio</returns>
+        ApiResponse<QuoteValueRatio> UserGetQuoteValueRatioWithHttpInfo (double? targetAccountId = null);
+        /// <summary>
+        /// Get the current user staking amount.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>List&lt;StakingRecord&gt;</returns>
+        List<StakingRecord> UserGetStaking (string currency = null);
+
+        /// <summary>
+        /// Get the current user staking amount.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>ApiResponse of List&lt;StakingRecord&gt;</returns>
+        ApiResponse<List<StakingRecord>> UserGetStakingWithHttpInfo (string currency = null);
+        /// <summary>
+        /// List staking instruments
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"> (optional)</param>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>List&lt;XAny&gt;</returns>
+        List<XAny> UserGetStakingInstruments (string symbol = null, string currency = null);
+
+        /// <summary>
+        /// List staking instruments
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"> (optional)</param>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>ApiResponse of List&lt;XAny&gt;</returns>
+        ApiResponse<List<XAny>> UserGetStakingInstrumentsWithHttpInfo (string symbol = null, string currency = null);
+        /// <summary>
+        /// List staking tiers for a given currency
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"></param>
+        /// <returns>List&lt;XAny&gt;</returns>
+        List<XAny> UserGetStakingTiers (string currency);
+
+        /// <summary>
+        /// List staking tiers for a given currency
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"></param>
+        /// <returns>ApiResponse of List&lt;XAny&gt;</returns>
+        ApiResponse<List<XAny>> UserGetStakingTiersWithHttpInfo (string currency);
+        /// <summary>
+        /// Get your 30 days USD average trading volume
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;TradingVolume&gt;</returns>
+        List<TradingVolume> UserGetTradingVolume ();
+
+        /// <summary>
+        /// Get your 30 days USD average trading volume
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;TradingVolume&gt;</returns>
+        ApiResponse<List<TradingVolume>> UserGetTradingVolumeWithHttpInfo ();
+        /// <summary>
+        /// Get the current user unstaking requests
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="status"></param>
+        /// <returns>List&lt;StakingRecord&gt;</returns>
+        List<StakingRecord> UserGetUnstakingRequests (string status);
+
+        /// <summary>
+        /// Get the current user unstaking requests
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="status"></param>
+        /// <returns>ApiResponse of List&lt;StakingRecord&gt;</returns>
+        ApiResponse<List<StakingRecord>> UserGetUnstakingRequestsWithHttpInfo (string status);
         /// <summary>
         /// Get your current wallet information.
         /// </summary>
@@ -279,7 +495,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Wallet</returns>
         Wallet UserGetWallet (string currency = null);
 
@@ -290,7 +506,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>ApiResponse of Wallet</returns>
         ApiResponse<Wallet> UserGetWalletWithHttpInfo (string currency = null);
         /// <summary>
@@ -300,11 +516,12 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
         /// <returns>List&lt;Transaction&gt;</returns>
-        List<Transaction> UserGetWalletHistory (string currency = null, double? count = null, double? start = null);
+        List<Transaction> UserGetWalletHistory (string currency = null, double? count = null, double? start = null, double? targetAccountId = null);
 
         /// <summary>
         /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
@@ -313,11 +530,12 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
         /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
-        ApiResponse<List<Transaction>> UserGetWalletHistoryWithHttpInfo (string currency = null, double? count = null, double? start = null);
+        ApiResponse<List<Transaction>> UserGetWalletHistoryWithHttpInfo (string currency = null, double? count = null, double? start = null, double? targetAccountId = null);
         /// <summary>
         /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
         /// </summary>
@@ -325,7 +543,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>List&lt;Transaction&gt;</returns>
         List<Transaction> UserGetWalletSummary (string currency = null);
 
@@ -336,9 +554,28 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
         ApiResponse<List<Transaction>> UserGetWalletSummaryWithHttpInfo (string currency = null);
+        /// <summary>
+        /// Get the list of accounts you can transfer funds between.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;XAny&gt;</returns>
+        List<XAny> UserGetWalletTransferAccounts ();
+
+        /// <summary>
+        /// Get the list of accounts you can transfer funds between.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;XAny&gt;</returns>
+        ApiResponse<List<XAny>> UserGetWalletTransferAccountsWithHttpInfo ();
         /// <summary>
         /// Log out of BitMEX.
         /// </summary>
@@ -359,41 +596,23 @@ namespace IO.Swagger.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> UserLogoutWithHttpInfo ();
         /// <summary>
-        /// Get the minimum withdrawal fee for a currency.
-        /// </summary>
-        /// <remarks>
-        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
-        /// <returns>Object</returns>
-        Object UserMinWithdrawalFee (string currency = null);
-
-        /// <summary>
-        /// Get the minimum withdrawal fee for a currency.
-        /// </summary>
-        /// <remarks>
-        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
-        /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> UserMinWithdrawalFeeWithHttpInfo (string currency = null);
-        /// <summary>
         /// Request a withdrawal to an external wallet.
         /// </summary>
         /// <remarks>
         /// This will send a confirmation email to the email address on record.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Transaction</returns>
-        Transaction UserRequestWithdrawal (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null);
+        Transaction UserRequestWithdrawal (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
 
         /// <summary>
         /// Request a withdrawal to an external wallet.
@@ -402,14 +621,17 @@ namespace IO.Swagger.Api
         /// This will send a confirmation email to the email address on record.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>ApiResponse of Transaction</returns>
-        ApiResponse<Transaction> UserRequestWithdrawalWithHttpInfo (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null);
+        ApiResponse<Transaction> UserRequestWithdrawalWithHttpInfo (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
         /// <summary>
         /// Save user preferences.
         /// </summary>
@@ -433,6 +655,56 @@ namespace IO.Swagger.Api
         /// <param name="overwrite">If true, will overwrite all existing preferences. (optional, default to false)</param>
         /// <returns>ApiResponse of User</returns>
         ApiResponse<User> UserSavePreferencesWithHttpInfo (string prefs, bool? overwrite = null);
+        /// <summary>
+        /// Updates the sub-account name.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId"></param>
+        /// <param name="accountName"></param>
+        /// <returns>Object</returns>
+        Object UserUpdateSubAccount (double? targetAccountId, string accountName);
+
+        /// <summary>
+        /// Updates the sub-account name.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId"></param>
+        /// <param name="accountName"></param>
+        /// <returns>ApiResponse of Object</returns>
+        ApiResponse<Object> UserUpdateSubAccountWithHttpInfo (double? targetAccountId, string accountName);
+        /// <summary>
+        /// Execute a transfer to a paired account.
+        /// </summary>
+        /// <remarks>
+        /// This will send a confirmation email to the email address on record.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="amount">Amount of transfer.</param>
+        /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
+        /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
+        /// <returns>Transaction</returns>
+        Transaction UserWalletTransfer (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null);
+
+        /// <summary>
+        /// Execute a transfer to a paired account.
+        /// </summary>
+        /// <remarks>
+        /// This will send a confirmation email to the email address on record.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="amount">Amount of transfer.</param>
+        /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
+        /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
+        /// <returns>ApiResponse of Transaction</returns>
+        ApiResponse<Transaction> UserWalletTransferWithHttpInfo (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -464,8 +736,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="referralCode"> (optional)</param>
-        /// <returns>Task of double?</returns>
-        System.Threading.Tasks.Task<double?> UserCheckReferralCodeAsync (string referralCode = null);
+        /// <returns>Task of Object</returns>
+        System.Threading.Tasks.Task<Object> UserCheckReferralCodeAsync (string referralCode = null);
 
         /// <summary>
         /// Check if a referral code is valid.
@@ -475,8 +747,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="referralCode"> (optional)</param>
-        /// <returns>Task of ApiResponse (double?)</returns>
-        System.Threading.Tasks.Task<ApiResponse<double?>> UserCheckReferralCodeAsyncWithHttpInfo (string referralCode = null);
+        /// <returns>Task of ApiResponse (Object)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> UserCheckReferralCodeAsyncWithHttpInfo (string referralCode = null);
         /// <summary>
         /// Register your communication token for mobile clients
         /// </summary>
@@ -543,6 +815,71 @@ namespace IO.Swagger.Api
         /// <returns>Task of ApiResponse (Transaction)</returns>
         System.Threading.Tasks.Task<ApiResponse<Transaction>> UserConfirmWithdrawalAsyncWithHttpInfo (string token);
         /// <summary>
+        /// Creates a new sub-account.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountName"></param>
+        /// <returns>Task of Object</returns>
+        System.Threading.Tasks.Task<Object> UserCreateSubAccountAsync (string accountName);
+
+        /// <summary>
+        /// Creates a new sub-account.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountName"></param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> UserCreateSubAccountAsyncWithHttpInfo (string accountName);
+        /// <summary>
+        /// Create unstaking request
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"></param>
+        /// <param name="amount"></param>
+        /// <returns>Task of Object</returns>
+        System.Threading.Tasks.Task<Object> UserCreateUnstakingRequestsAsync (string symbol, double? amount);
+
+        /// <summary>
+        /// Create unstaking request
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"></param>
+        /// <param name="amount"></param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> UserCreateUnstakingRequestsAsyncWithHttpInfo (string symbol, double? amount);
+        /// <summary>
+        /// Cancel unstaking request
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="redemptionID"></param>
+        /// <returns>Task of Object</returns>
+        System.Threading.Tasks.Task<Object> UserDeleteUnstakingRequestsAsync (string redemptionID);
+
+        /// <summary>
+        /// Cancel unstaking request
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="redemptionID"></param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> UserDeleteUnstakingRequestsAsyncWithHttpInfo (string redemptionID);
+        /// <summary>
         /// Get your user model.
         /// </summary>
         /// <remarks>
@@ -568,8 +905,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Task of Affiliate</returns>
-        System.Threading.Tasks.Task<Affiliate> UserGetAffiliateStatusAsync ();
+        System.Threading.Tasks.Task<Affiliate> UserGetAffiliateStatusAsync (string currency = null);
 
         /// <summary>
         /// Get your current affiliate/referral status.
@@ -578,8 +916,28 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (Affiliate)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Affiliate>> UserGetAffiliateStatusAsyncWithHttpInfo ();
+        System.Threading.Tasks.Task<ApiResponse<Affiliate>> UserGetAffiliateStatusAsyncWithHttpInfo (string currency = null);
+        /// <summary>
+        /// Get your account&#39;s CSA status.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of CollateralSupportAgreement</returns>
+        System.Threading.Tasks.Task<CollateralSupportAgreement> UserGetCSAAsync ();
+
+        /// <summary>
+        /// Get your account&#39;s CSA status.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (CollateralSupportAgreement)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CollateralSupportAgreement>> UserGetCSAAsyncWithHttpInfo ();
         /// <summary>
         /// Get your account&#39;s commission status.
         /// </summary>
@@ -606,9 +964,10 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <returns>Task of string</returns>
-        System.Threading.Tasks.Task<string> UserGetDepositAddressAsync (string currency = null);
+        System.Threading.Tasks.Task<string> UserGetDepositAddressAsync (string currency, string network);
 
         /// <summary>
         /// Get a deposit address.
@@ -617,9 +976,10 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <returns>Task of ApiResponse (string)</returns>
-        System.Threading.Tasks.Task<ApiResponse<string>> UserGetDepositAddressAsyncWithHttpInfo (string currency = null);
+        System.Threading.Tasks.Task<ApiResponse<string>> UserGetDepositAddressAsyncWithHttpInfo (string currency, string network);
         /// <summary>
         /// Get the execution history by day.
         /// </summary>
@@ -629,8 +989,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol"></param>
         /// <param name="timestamp"></param>
-        /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> UserGetExecutionHistoryAsync (string symbol, DateTime? timestamp);
+        /// <returns>Task of List&lt;Execution&gt;</returns>
+        System.Threading.Tasks.Task<List<Execution>> UserGetExecutionHistoryAsync (string symbol, DateTime? timestamp);
 
         /// <summary>
         /// Get the execution history by day.
@@ -641,8 +1001,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol"></param>
         /// <param name="timestamp"></param>
-        /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UserGetExecutionHistoryAsyncWithHttpInfo (string symbol, DateTime? timestamp);
+        /// <returns>Task of ApiResponse (List&lt;Execution&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<Execution>>> UserGetExecutionHistoryAsyncWithHttpInfo (string symbol, DateTime? timestamp);
         /// <summary>
         /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
         /// </summary>
@@ -650,7 +1010,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Task of Margin</returns>
         System.Threading.Tasks.Task<Margin> UserGetMarginAsync (string currency = null);
 
@@ -661,7 +1021,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (Margin)</returns>
         System.Threading.Tasks.Task<ApiResponse<Margin>> UserGetMarginAsyncWithHttpInfo (string currency = null);
         /// <summary>
@@ -671,8 +1031,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
         /// <returns>Task of QuoteFillRatio</returns>
-        System.Threading.Tasks.Task<QuoteFillRatio> UserGetQuoteFillRatioAsync ();
+        System.Threading.Tasks.Task<QuoteFillRatio> UserGetQuoteFillRatioAsync (double? targetAccountId = null);
 
         /// <summary>
         /// Get 7 days worth of Quote Fill Ratio statistics.
@@ -681,8 +1042,135 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
         /// <returns>Task of ApiResponse (QuoteFillRatio)</returns>
-        System.Threading.Tasks.Task<ApiResponse<QuoteFillRatio>> UserGetQuoteFillRatioAsyncWithHttpInfo ();
+        System.Threading.Tasks.Task<ApiResponse<QuoteFillRatio>> UserGetQuoteFillRatioAsyncWithHttpInfo (double? targetAccountId = null);
+        /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
+        /// <returns>Task of QuoteValueRatio</returns>
+        System.Threading.Tasks.Task<QuoteValueRatio> UserGetQuoteValueRatioAsync (double? targetAccountId = null);
+
+        /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
+        /// <returns>Task of ApiResponse (QuoteValueRatio)</returns>
+        System.Threading.Tasks.Task<ApiResponse<QuoteValueRatio>> UserGetQuoteValueRatioAsyncWithHttpInfo (double? targetAccountId = null);
+        /// <summary>
+        /// Get the current user staking amount.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>Task of List&lt;StakingRecord&gt;</returns>
+        System.Threading.Tasks.Task<List<StakingRecord>> UserGetStakingAsync (string currency = null);
+
+        /// <summary>
+        /// Get the current user staking amount.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>Task of ApiResponse (List&lt;StakingRecord&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<StakingRecord>>> UserGetStakingAsyncWithHttpInfo (string currency = null);
+        /// <summary>
+        /// List staking instruments
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"> (optional)</param>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>Task of List&lt;XAny&gt;</returns>
+        System.Threading.Tasks.Task<List<XAny>> UserGetStakingInstrumentsAsync (string symbol = null, string currency = null);
+
+        /// <summary>
+        /// List staking instruments
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"> (optional)</param>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>Task of ApiResponse (List&lt;XAny&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<XAny>>> UserGetStakingInstrumentsAsyncWithHttpInfo (string symbol = null, string currency = null);
+        /// <summary>
+        /// List staking tiers for a given currency
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"></param>
+        /// <returns>Task of List&lt;XAny&gt;</returns>
+        System.Threading.Tasks.Task<List<XAny>> UserGetStakingTiersAsync (string currency);
+
+        /// <summary>
+        /// List staking tiers for a given currency
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"></param>
+        /// <returns>Task of ApiResponse (List&lt;XAny&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<XAny>>> UserGetStakingTiersAsyncWithHttpInfo (string currency);
+        /// <summary>
+        /// Get your 30 days USD average trading volume
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of List&lt;TradingVolume&gt;</returns>
+        System.Threading.Tasks.Task<List<TradingVolume>> UserGetTradingVolumeAsync ();
+
+        /// <summary>
+        /// Get your 30 days USD average trading volume
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (List&lt;TradingVolume&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<TradingVolume>>> UserGetTradingVolumeAsyncWithHttpInfo ();
+        /// <summary>
+        /// Get the current user unstaking requests
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="status"></param>
+        /// <returns>Task of List&lt;StakingRecord&gt;</returns>
+        System.Threading.Tasks.Task<List<StakingRecord>> UserGetUnstakingRequestsAsync (string status);
+
+        /// <summary>
+        /// Get the current user unstaking requests
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="status"></param>
+        /// <returns>Task of ApiResponse (List&lt;StakingRecord&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<StakingRecord>>> UserGetUnstakingRequestsAsyncWithHttpInfo (string status);
         /// <summary>
         /// Get your current wallet information.
         /// </summary>
@@ -690,7 +1178,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Task of Wallet</returns>
         System.Threading.Tasks.Task<Wallet> UserGetWalletAsync (string currency = null);
 
@@ -701,7 +1189,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (Wallet)</returns>
         System.Threading.Tasks.Task<ApiResponse<Wallet>> UserGetWalletAsyncWithHttpInfo (string currency = null);
         /// <summary>
@@ -711,11 +1199,12 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
         /// <returns>Task of List&lt;Transaction&gt;</returns>
-        System.Threading.Tasks.Task<List<Transaction>> UserGetWalletHistoryAsync (string currency = null, double? count = null, double? start = null);
+        System.Threading.Tasks.Task<List<Transaction>> UserGetWalletHistoryAsync (string currency = null, double? count = null, double? start = null, double? targetAccountId = null);
 
         /// <summary>
         /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
@@ -724,11 +1213,12 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletHistoryAsyncWithHttpInfo (string currency = null, double? count = null, double? start = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletHistoryAsyncWithHttpInfo (string currency = null, double? count = null, double? start = null, double? targetAccountId = null);
         /// <summary>
         /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
         /// </summary>
@@ -736,7 +1226,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Task of List&lt;Transaction&gt;</returns>
         System.Threading.Tasks.Task<List<Transaction>> UserGetWalletSummaryAsync (string currency = null);
 
@@ -747,9 +1237,28 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletSummaryAsyncWithHttpInfo (string currency = null);
+        /// <summary>
+        /// Get the list of accounts you can transfer funds between.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of List&lt;XAny&gt;</returns>
+        System.Threading.Tasks.Task<List<XAny>> UserGetWalletTransferAccountsAsync ();
+
+        /// <summary>
+        /// Get the list of accounts you can transfer funds between.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (List&lt;XAny&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<XAny>>> UserGetWalletTransferAccountsAsyncWithHttpInfo ();
         /// <summary>
         /// Log out of BitMEX.
         /// </summary>
@@ -770,41 +1279,23 @@ namespace IO.Swagger.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> UserLogoutAsyncWithHttpInfo ();
         /// <summary>
-        /// Get the minimum withdrawal fee for a currency.
-        /// </summary>
-        /// <remarks>
-        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
-        /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> UserMinWithdrawalFeeAsync (string currency = null);
-
-        /// <summary>
-        /// Get the minimum withdrawal fee for a currency.
-        /// </summary>
-        /// <remarks>
-        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
-        /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UserMinWithdrawalFeeAsyncWithHttpInfo (string currency = null);
-        /// <summary>
         /// Request a withdrawal to an external wallet.
         /// </summary>
         /// <remarks>
         /// This will send a confirmation email to the email address on record.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of Transaction</returns>
-        System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null);
+        System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
 
         /// <summary>
         /// Request a withdrawal to an external wallet.
@@ -813,14 +1304,17 @@ namespace IO.Swagger.Api
         /// This will send a confirmation email to the email address on record.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of ApiResponse (Transaction)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null);
+        System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
         /// <summary>
         /// Save user preferences.
         /// </summary>
@@ -844,6 +1338,56 @@ namespace IO.Swagger.Api
         /// <param name="overwrite">If true, will overwrite all existing preferences. (optional, default to false)</param>
         /// <returns>Task of ApiResponse (User)</returns>
         System.Threading.Tasks.Task<ApiResponse<User>> UserSavePreferencesAsyncWithHttpInfo (string prefs, bool? overwrite = null);
+        /// <summary>
+        /// Updates the sub-account name.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId"></param>
+        /// <param name="accountName"></param>
+        /// <returns>Task of Object</returns>
+        System.Threading.Tasks.Task<Object> UserUpdateSubAccountAsync (double? targetAccountId, string accountName);
+
+        /// <summary>
+        /// Updates the sub-account name.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId"></param>
+        /// <param name="accountName"></param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> UserUpdateSubAccountAsyncWithHttpInfo (double? targetAccountId, string accountName);
+        /// <summary>
+        /// Execute a transfer to a paired account.
+        /// </summary>
+        /// <remarks>
+        /// This will send a confirmation email to the email address on record.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="amount">Amount of transfer.</param>
+        /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
+        /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
+        /// <returns>Task of Transaction</returns>
+        System.Threading.Tasks.Task<Transaction> UserWalletTransferAsync (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null);
+
+        /// <summary>
+        /// Execute a transfer to a paired account.
+        /// </summary>
+        /// <remarks>
+        /// This will send a confirmation email to the email address on record.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="amount">Amount of transfer.</param>
+        /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
+        /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
+        /// <returns>Task of ApiResponse (Transaction)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Transaction>> UserWalletTransferAsyncWithHttpInfo (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null);
         #endregion Asynchronous Operations
     }
 
@@ -1094,10 +1638,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="referralCode"> (optional)</param>
-        /// <returns>double?</returns>
-        public double? UserCheckReferralCode (string referralCode = null)
+        /// <returns>Object</returns>
+        public Object UserCheckReferralCode (string referralCode = null)
         {
-             ApiResponse<double?> localVarResponse = UserCheckReferralCodeWithHttpInfo(referralCode);
+             ApiResponse<Object> localVarResponse = UserCheckReferralCodeWithHttpInfo(referralCode);
              return localVarResponse.Data;
         }
 
@@ -1106,8 +1650,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="referralCode"> (optional)</param>
-        /// <returns>ApiResponse of double?</returns>
-        public ApiResponse< double? > UserCheckReferralCodeWithHttpInfo (string referralCode = null)
+        /// <returns>ApiResponse of Object</returns>
+        public ApiResponse< Object > UserCheckReferralCodeWithHttpInfo (string referralCode = null)
         {
 
             var localVarPath = "/user/checkReferralCode";
@@ -1153,9 +1697,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<double?>(localVarStatusCode,
+            return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (double?) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(double?)));
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
         }
 
         /// <summary>
@@ -1163,10 +1707,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="referralCode"> (optional)</param>
-        /// <returns>Task of double?</returns>
-        public async System.Threading.Tasks.Task<double?> UserCheckReferralCodeAsync (string referralCode = null)
+        /// <returns>Task of Object</returns>
+        public async System.Threading.Tasks.Task<Object> UserCheckReferralCodeAsync (string referralCode = null)
         {
-             ApiResponse<double?> localVarResponse = await UserCheckReferralCodeAsyncWithHttpInfo(referralCode);
+             ApiResponse<Object> localVarResponse = await UserCheckReferralCodeAsyncWithHttpInfo(referralCode);
              return localVarResponse.Data;
 
         }
@@ -1176,8 +1720,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="referralCode"> (optional)</param>
-        /// <returns>Task of ApiResponse (double?)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<double?>> UserCheckReferralCodeAsyncWithHttpInfo (string referralCode = null)
+        /// <returns>Task of ApiResponse (Object)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UserCheckReferralCodeAsyncWithHttpInfo (string referralCode = null)
         {
 
             var localVarPath = "/user/checkReferralCode";
@@ -1223,9 +1767,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<double?>(localVarStatusCode,
+            return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (double?) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(double?)));
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
         }
 
         /// <summary>
@@ -1706,6 +2250,543 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
+        /// Creates a new sub-account. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountName"></param>
+        /// <returns>Object</returns>
+        public Object UserCreateSubAccount (string accountName)
+        {
+             ApiResponse<Object> localVarResponse = UserCreateSubAccountWithHttpInfo(accountName);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Creates a new sub-account. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountName"></param>
+        /// <returns>ApiResponse of Object</returns>
+        public ApiResponse< Object > UserCreateSubAccountWithHttpInfo (string accountName)
+        {
+            // verify the required parameter 'accountName' is set
+            if (accountName == null)
+                throw new ApiException(400, "Missing required parameter 'accountName' when calling UserApi->UserCreateSubAccount");
+
+            var localVarPath = "/user/addSubaccount";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (accountName != null) localVarFormParams.Add("accountName", this.Configuration.ApiClient.ParameterToString(accountName)); // form parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserCreateSubAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Creates a new sub-account. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountName"></param>
+        /// <returns>Task of Object</returns>
+        public async System.Threading.Tasks.Task<Object> UserCreateSubAccountAsync (string accountName)
+        {
+             ApiResponse<Object> localVarResponse = await UserCreateSubAccountAsyncWithHttpInfo(accountName);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Creates a new sub-account. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountName"></param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UserCreateSubAccountAsyncWithHttpInfo (string accountName)
+        {
+            // verify the required parameter 'accountName' is set
+            if (accountName == null)
+                throw new ApiException(400, "Missing required parameter 'accountName' when calling UserApi->UserCreateSubAccount");
+
+            var localVarPath = "/user/addSubaccount";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (accountName != null) localVarFormParams.Add("accountName", this.Configuration.ApiClient.ParameterToString(accountName)); // form parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserCreateSubAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Create unstaking request 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"></param>
+        /// <param name="amount"></param>
+        /// <returns>Object</returns>
+        public Object UserCreateUnstakingRequests (string symbol, double? amount)
+        {
+             ApiResponse<Object> localVarResponse = UserCreateUnstakingRequestsWithHttpInfo(symbol, amount);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create unstaking request 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"></param>
+        /// <param name="amount"></param>
+        /// <returns>ApiResponse of Object</returns>
+        public ApiResponse< Object > UserCreateUnstakingRequestsWithHttpInfo (string symbol, double? amount)
+        {
+            // verify the required parameter 'symbol' is set
+            if (symbol == null)
+                throw new ApiException(400, "Missing required parameter 'symbol' when calling UserApi->UserCreateUnstakingRequests");
+            // verify the required parameter 'amount' is set
+            if (amount == null)
+                throw new ApiException(400, "Missing required parameter 'amount' when calling UserApi->UserCreateUnstakingRequests");
+
+            var localVarPath = "/user/unstakingRequests";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
+            if (amount != null) localVarFormParams.Add("amount", this.Configuration.ApiClient.ParameterToString(amount)); // form parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserCreateUnstakingRequests", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Create unstaking request 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"></param>
+        /// <param name="amount"></param>
+        /// <returns>Task of Object</returns>
+        public async System.Threading.Tasks.Task<Object> UserCreateUnstakingRequestsAsync (string symbol, double? amount)
+        {
+             ApiResponse<Object> localVarResponse = await UserCreateUnstakingRequestsAsyncWithHttpInfo(symbol, amount);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Create unstaking request 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"></param>
+        /// <param name="amount"></param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UserCreateUnstakingRequestsAsyncWithHttpInfo (string symbol, double? amount)
+        {
+            // verify the required parameter 'symbol' is set
+            if (symbol == null)
+                throw new ApiException(400, "Missing required parameter 'symbol' when calling UserApi->UserCreateUnstakingRequests");
+            // verify the required parameter 'amount' is set
+            if (amount == null)
+                throw new ApiException(400, "Missing required parameter 'amount' when calling UserApi->UserCreateUnstakingRequests");
+
+            var localVarPath = "/user/unstakingRequests";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
+            if (amount != null) localVarFormParams.Add("amount", this.Configuration.ApiClient.ParameterToString(amount)); // form parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserCreateUnstakingRequests", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Cancel unstaking request 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="redemptionID"></param>
+        /// <returns>Object</returns>
+        public Object UserDeleteUnstakingRequests (string redemptionID)
+        {
+             ApiResponse<Object> localVarResponse = UserDeleteUnstakingRequestsWithHttpInfo(redemptionID);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Cancel unstaking request 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="redemptionID"></param>
+        /// <returns>ApiResponse of Object</returns>
+        public ApiResponse< Object > UserDeleteUnstakingRequestsWithHttpInfo (string redemptionID)
+        {
+            // verify the required parameter 'redemptionID' is set
+            if (redemptionID == null)
+                throw new ApiException(400, "Missing required parameter 'redemptionID' when calling UserApi->UserDeleteUnstakingRequests");
+
+            var localVarPath = "/user/unstakingRequests";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (redemptionID != null) localVarFormParams.Add("redemptionID", this.Configuration.ApiClient.ParameterToString(redemptionID)); // form parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserDeleteUnstakingRequests", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Cancel unstaking request 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="redemptionID"></param>
+        /// <returns>Task of Object</returns>
+        public async System.Threading.Tasks.Task<Object> UserDeleteUnstakingRequestsAsync (string redemptionID)
+        {
+             ApiResponse<Object> localVarResponse = await UserDeleteUnstakingRequestsAsyncWithHttpInfo(redemptionID);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Cancel unstaking request 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="redemptionID"></param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UserDeleteUnstakingRequestsAsyncWithHttpInfo (string redemptionID)
+        {
+            // verify the required parameter 'redemptionID' is set
+            if (redemptionID == null)
+                throw new ApiException(400, "Missing required parameter 'redemptionID' when calling UserApi->UserDeleteUnstakingRequests");
+
+            var localVarPath = "/user/unstakingRequests";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (redemptionID != null) localVarFormParams.Add("redemptionID", this.Configuration.ApiClient.ParameterToString(redemptionID)); // form parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserDeleteUnstakingRequests", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
         /// Get your user model. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1872,10 +2953,11 @@ namespace IO.Swagger.Api
         /// Get your current affiliate/referral status. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Affiliate</returns>
-        public Affiliate UserGetAffiliateStatus ()
+        public Affiliate UserGetAffiliateStatus (string currency = null)
         {
-             ApiResponse<Affiliate> localVarResponse = UserGetAffiliateStatusWithHttpInfo();
+             ApiResponse<Affiliate> localVarResponse = UserGetAffiliateStatusWithHttpInfo(currency);
              return localVarResponse.Data;
         }
 
@@ -1883,11 +2965,179 @@ namespace IO.Swagger.Api
         /// Get your current affiliate/referral status. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>ApiResponse of Affiliate</returns>
-        public ApiResponse< Affiliate > UserGetAffiliateStatusWithHttpInfo ()
+        public ApiResponse< Affiliate > UserGetAffiliateStatusWithHttpInfo (string currency = null)
         {
 
             var localVarPath = "/user/affiliateStatus";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetAffiliateStatus", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Affiliate>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Affiliate) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Affiliate)));
+        }
+
+        /// <summary>
+        /// Get your current affiliate/referral status. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
+        /// <returns>Task of Affiliate</returns>
+        public async System.Threading.Tasks.Task<Affiliate> UserGetAffiliateStatusAsync (string currency = null)
+        {
+             ApiResponse<Affiliate> localVarResponse = await UserGetAffiliateStatusAsyncWithHttpInfo(currency);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get your current affiliate/referral status. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
+        /// <returns>Task of ApiResponse (Affiliate)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Affiliate>> UserGetAffiliateStatusAsyncWithHttpInfo (string currency = null)
+        {
+
+            var localVarPath = "/user/affiliateStatus";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetAffiliateStatus", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Affiliate>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Affiliate) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Affiliate)));
+        }
+
+        /// <summary>
+        /// Get your account&#39;s CSA status. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>CollateralSupportAgreement</returns>
+        public CollateralSupportAgreement UserGetCSA ()
+        {
+             ApiResponse<CollateralSupportAgreement> localVarResponse = UserGetCSAWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get your account&#39;s CSA status. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of CollateralSupportAgreement</returns>
+        public ApiResponse< CollateralSupportAgreement > UserGetCSAWithHttpInfo ()
+        {
+
+            var localVarPath = "/user/csa";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -1940,36 +3190,36 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("UserGetAffiliateStatus", localVarResponse);
+                Exception exception = ExceptionFactory("UserGetCSA", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Affiliate>(localVarStatusCode,
+            return new ApiResponse<CollateralSupportAgreement>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Affiliate) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Affiliate)));
+                (CollateralSupportAgreement) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(CollateralSupportAgreement)));
         }
 
         /// <summary>
-        /// Get your current affiliate/referral status. 
+        /// Get your account&#39;s CSA status. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of Affiliate</returns>
-        public async System.Threading.Tasks.Task<Affiliate> UserGetAffiliateStatusAsync ()
+        /// <returns>Task of CollateralSupportAgreement</returns>
+        public async System.Threading.Tasks.Task<CollateralSupportAgreement> UserGetCSAAsync ()
         {
-             ApiResponse<Affiliate> localVarResponse = await UserGetAffiliateStatusAsyncWithHttpInfo();
+             ApiResponse<CollateralSupportAgreement> localVarResponse = await UserGetCSAAsyncWithHttpInfo();
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Get your current affiliate/referral status. 
+        /// Get your account&#39;s CSA status. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (Affiliate)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Affiliate>> UserGetAffiliateStatusAsyncWithHttpInfo ()
+        /// <returns>Task of ApiResponse (CollateralSupportAgreement)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CollateralSupportAgreement>> UserGetCSAAsyncWithHttpInfo ()
         {
 
-            var localVarPath = "/user/affiliateStatus";
+            var localVarPath = "/user/csa";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -2022,13 +3272,13 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("UserGetAffiliateStatus", localVarResponse);
+                Exception exception = ExceptionFactory("UserGetCSA", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Affiliate>(localVarStatusCode,
+            return new ApiResponse<CollateralSupportAgreement>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Affiliate) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Affiliate)));
+                (CollateralSupportAgreement) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(CollateralSupportAgreement)));
         }
 
         /// <summary>
@@ -2198,11 +3448,12 @@ namespace IO.Swagger.Api
         /// Get a deposit address. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <returns>string</returns>
-        public string UserGetDepositAddress (string currency = null)
+        public string UserGetDepositAddress (string currency, string network)
         {
-             ApiResponse<string> localVarResponse = UserGetDepositAddressWithHttpInfo(currency);
+             ApiResponse<string> localVarResponse = UserGetDepositAddressWithHttpInfo(currency, network);
              return localVarResponse.Data;
         }
 
@@ -2210,10 +3461,17 @@ namespace IO.Swagger.Api
         /// Get a deposit address. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <returns>ApiResponse of string</returns>
-        public ApiResponse< string > UserGetDepositAddressWithHttpInfo (string currency = null)
+        public ApiResponse< string > UserGetDepositAddressWithHttpInfo (string currency, string network)
         {
+            // verify the required parameter 'currency' is set
+            if (currency == null)
+                throw new ApiException(400, "Missing required parameter 'currency' when calling UserApi->UserGetDepositAddress");
+            // verify the required parameter 'network' is set
+            if (network == null)
+                throw new ApiException(400, "Missing required parameter 'network' when calling UserApi->UserGetDepositAddress");
 
             var localVarPath = "/user/depositAddress";
             var localVarPathParams = new Dictionary<String, String>();
@@ -2243,6 +3501,7 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+            if (network != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "network", network)); // query parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -2282,11 +3541,12 @@ namespace IO.Swagger.Api
         /// Get a deposit address. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <returns>Task of string</returns>
-        public async System.Threading.Tasks.Task<string> UserGetDepositAddressAsync (string currency = null)
+        public async System.Threading.Tasks.Task<string> UserGetDepositAddressAsync (string currency, string network)
         {
-             ApiResponse<string> localVarResponse = await UserGetDepositAddressAsyncWithHttpInfo(currency);
+             ApiResponse<string> localVarResponse = await UserGetDepositAddressAsyncWithHttpInfo(currency, network);
              return localVarResponse.Data;
 
         }
@@ -2295,10 +3555,17 @@ namespace IO.Swagger.Api
         /// Get a deposit address. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <returns>Task of ApiResponse (string)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<string>> UserGetDepositAddressAsyncWithHttpInfo (string currency = null)
+        public async System.Threading.Tasks.Task<ApiResponse<string>> UserGetDepositAddressAsyncWithHttpInfo (string currency, string network)
         {
+            // verify the required parameter 'currency' is set
+            if (currency == null)
+                throw new ApiException(400, "Missing required parameter 'currency' when calling UserApi->UserGetDepositAddress");
+            // verify the required parameter 'network' is set
+            if (network == null)
+                throw new ApiException(400, "Missing required parameter 'network' when calling UserApi->UserGetDepositAddress");
 
             var localVarPath = "/user/depositAddress";
             var localVarPathParams = new Dictionary<String, String>();
@@ -2328,6 +3595,7 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+            if (network != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "network", network)); // query parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -2369,10 +3637,10 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol"></param>
         /// <param name="timestamp"></param>
-        /// <returns>Object</returns>
-        public Object UserGetExecutionHistory (string symbol, DateTime? timestamp)
+        /// <returns>List&lt;Execution&gt;</returns>
+        public List<Execution> UserGetExecutionHistory (string symbol, DateTime? timestamp)
         {
-             ApiResponse<Object> localVarResponse = UserGetExecutionHistoryWithHttpInfo(symbol, timestamp);
+             ApiResponse<List<Execution>> localVarResponse = UserGetExecutionHistoryWithHttpInfo(symbol, timestamp);
              return localVarResponse.Data;
         }
 
@@ -2382,8 +3650,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol"></param>
         /// <param name="timestamp"></param>
-        /// <returns>ApiResponse of Object</returns>
-        public ApiResponse< Object > UserGetExecutionHistoryWithHttpInfo (string symbol, DateTime? timestamp)
+        /// <returns>ApiResponse of List&lt;Execution&gt;</returns>
+        public ApiResponse< List<Execution> > UserGetExecutionHistoryWithHttpInfo (string symbol, DateTime? timestamp)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)
@@ -2451,9 +3719,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<List<Execution>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+                (List<Execution>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Execution>)));
         }
 
         /// <summary>
@@ -2462,10 +3730,10 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol"></param>
         /// <param name="timestamp"></param>
-        /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> UserGetExecutionHistoryAsync (string symbol, DateTime? timestamp)
+        /// <returns>Task of List&lt;Execution&gt;</returns>
+        public async System.Threading.Tasks.Task<List<Execution>> UserGetExecutionHistoryAsync (string symbol, DateTime? timestamp)
         {
-             ApiResponse<Object> localVarResponse = await UserGetExecutionHistoryAsyncWithHttpInfo(symbol, timestamp);
+             ApiResponse<List<Execution>> localVarResponse = await UserGetExecutionHistoryAsyncWithHttpInfo(symbol, timestamp);
              return localVarResponse.Data;
 
         }
@@ -2476,8 +3744,8 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol"></param>
         /// <param name="timestamp"></param>
-        /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> UserGetExecutionHistoryAsyncWithHttpInfo (string symbol, DateTime? timestamp)
+        /// <returns>Task of ApiResponse (List&lt;Execution&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<Execution>>> UserGetExecutionHistoryAsyncWithHttpInfo (string symbol, DateTime? timestamp)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)
@@ -2545,16 +3813,16 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<List<Execution>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+                (List<Execution>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Execution>)));
         }
 
         /// <summary>
         /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Margin</returns>
         public Margin UserGetMargin (string currency = null)
         {
@@ -2566,7 +3834,7 @@ namespace IO.Swagger.Api
         /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>ApiResponse of Margin</returns>
         public ApiResponse< Margin > UserGetMarginWithHttpInfo (string currency = null)
         {
@@ -2638,7 +3906,7 @@ namespace IO.Swagger.Api
         /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Task of Margin</returns>
         public async System.Threading.Tasks.Task<Margin> UserGetMarginAsync (string currency = null)
         {
@@ -2651,7 +3919,7 @@ namespace IO.Swagger.Api
         /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (Margin)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<Margin>> UserGetMarginAsyncWithHttpInfo (string currency = null)
         {
@@ -2723,10 +3991,11 @@ namespace IO.Swagger.Api
         /// Get 7 days worth of Quote Fill Ratio statistics. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
         /// <returns>QuoteFillRatio</returns>
-        public QuoteFillRatio UserGetQuoteFillRatio ()
+        public QuoteFillRatio UserGetQuoteFillRatio (double? targetAccountId = null)
         {
-             ApiResponse<QuoteFillRatio> localVarResponse = UserGetQuoteFillRatioWithHttpInfo();
+             ApiResponse<QuoteFillRatio> localVarResponse = UserGetQuoteFillRatioWithHttpInfo(targetAccountId);
              return localVarResponse.Data;
         }
 
@@ -2734,11 +4003,837 @@ namespace IO.Swagger.Api
         /// Get 7 days worth of Quote Fill Ratio statistics. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
         /// <returns>ApiResponse of QuoteFillRatio</returns>
-        public ApiResponse< QuoteFillRatio > UserGetQuoteFillRatioWithHttpInfo ()
+        public ApiResponse< QuoteFillRatio > UserGetQuoteFillRatioWithHttpInfo (double? targetAccountId = null)
         {
 
             var localVarPath = "/user/quoteFillRatio";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (targetAccountId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "targetAccountId", targetAccountId)); // query parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetQuoteFillRatio", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<QuoteFillRatio>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (QuoteFillRatio) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(QuoteFillRatio)));
+        }
+
+        /// <summary>
+        /// Get 7 days worth of Quote Fill Ratio statistics. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
+        /// <returns>Task of QuoteFillRatio</returns>
+        public async System.Threading.Tasks.Task<QuoteFillRatio> UserGetQuoteFillRatioAsync (double? targetAccountId = null)
+        {
+             ApiResponse<QuoteFillRatio> localVarResponse = await UserGetQuoteFillRatioAsyncWithHttpInfo(targetAccountId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get 7 days worth of Quote Fill Ratio statistics. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
+        /// <returns>Task of ApiResponse (QuoteFillRatio)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<QuoteFillRatio>> UserGetQuoteFillRatioAsyncWithHttpInfo (double? targetAccountId = null)
+        {
+
+            var localVarPath = "/user/quoteFillRatio";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (targetAccountId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "targetAccountId", targetAccountId)); // query parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetQuoteFillRatio", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<QuoteFillRatio>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (QuoteFillRatio) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(QuoteFillRatio)));
+        }
+
+        /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
+        /// <returns>QuoteValueRatio</returns>
+        public QuoteValueRatio UserGetQuoteValueRatio (double? targetAccountId = null)
+        {
+             ApiResponse<QuoteValueRatio> localVarResponse = UserGetQuoteValueRatioWithHttpInfo(targetAccountId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
+        /// <returns>ApiResponse of QuoteValueRatio</returns>
+        public ApiResponse< QuoteValueRatio > UserGetQuoteValueRatioWithHttpInfo (double? targetAccountId = null)
+        {
+
+            var localVarPath = "/user/quoteValueRatio";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (targetAccountId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "targetAccountId", targetAccountId)); // query parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetQuoteValueRatio", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<QuoteValueRatio>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (QuoteValueRatio) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(QuoteValueRatio)));
+        }
+
+        /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
+        /// <returns>Task of QuoteValueRatio</returns>
+        public async System.Threading.Tasks.Task<QuoteValueRatio> UserGetQuoteValueRatioAsync (double? targetAccountId = null)
+        {
+             ApiResponse<QuoteValueRatio> localVarResponse = await UserGetQuoteValueRatioAsyncWithHttpInfo(targetAccountId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId">AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)</param>
+        /// <returns>Task of ApiResponse (QuoteValueRatio)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<QuoteValueRatio>> UserGetQuoteValueRatioAsyncWithHttpInfo (double? targetAccountId = null)
+        {
+
+            var localVarPath = "/user/quoteValueRatio";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (targetAccountId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "targetAccountId", targetAccountId)); // query parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetQuoteValueRatio", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<QuoteValueRatio>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (QuoteValueRatio) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(QuoteValueRatio)));
+        }
+
+        /// <summary>
+        /// Get the current user staking amount. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>List&lt;StakingRecord&gt;</returns>
+        public List<StakingRecord> UserGetStaking (string currency = null)
+        {
+             ApiResponse<List<StakingRecord>> localVarResponse = UserGetStakingWithHttpInfo(currency);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get the current user staking amount. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>ApiResponse of List&lt;StakingRecord&gt;</returns>
+        public ApiResponse< List<StakingRecord> > UserGetStakingWithHttpInfo (string currency = null)
+        {
+
+            var localVarPath = "/user/staking";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetStaking", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<StakingRecord>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<StakingRecord>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<StakingRecord>)));
+        }
+
+        /// <summary>
+        /// Get the current user staking amount. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>Task of List&lt;StakingRecord&gt;</returns>
+        public async System.Threading.Tasks.Task<List<StakingRecord>> UserGetStakingAsync (string currency = null)
+        {
+             ApiResponse<List<StakingRecord>> localVarResponse = await UserGetStakingAsyncWithHttpInfo(currency);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get the current user staking amount. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>Task of ApiResponse (List&lt;StakingRecord&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<StakingRecord>>> UserGetStakingAsyncWithHttpInfo (string currency = null)
+        {
+
+            var localVarPath = "/user/staking";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetStaking", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<StakingRecord>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<StakingRecord>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<StakingRecord>)));
+        }
+
+        /// <summary>
+        /// List staking instruments 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"> (optional)</param>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>List&lt;XAny&gt;</returns>
+        public List<XAny> UserGetStakingInstruments (string symbol = null, string currency = null)
+        {
+             ApiResponse<List<XAny>> localVarResponse = UserGetStakingInstrumentsWithHttpInfo(symbol, currency);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List staking instruments 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"> (optional)</param>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>ApiResponse of List&lt;XAny&gt;</returns>
+        public ApiResponse< List<XAny> > UserGetStakingInstrumentsWithHttpInfo (string symbol = null, string currency = null)
+        {
+
+            var localVarPath = "/user/staking/instruments";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (symbol != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "symbol", symbol)); // query parameter
+            if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetStakingInstruments", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<XAny>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<XAny>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<XAny>)));
+        }
+
+        /// <summary>
+        /// List staking instruments 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"> (optional)</param>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>Task of List&lt;XAny&gt;</returns>
+        public async System.Threading.Tasks.Task<List<XAny>> UserGetStakingInstrumentsAsync (string symbol = null, string currency = null)
+        {
+             ApiResponse<List<XAny>> localVarResponse = await UserGetStakingInstrumentsAsyncWithHttpInfo(symbol, currency);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// List staking instruments 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol"> (optional)</param>
+        /// <param name="currency"> (optional)</param>
+        /// <returns>Task of ApiResponse (List&lt;XAny&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<XAny>>> UserGetStakingInstrumentsAsyncWithHttpInfo (string symbol = null, string currency = null)
+        {
+
+            var localVarPath = "/user/staking/instruments";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (symbol != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "symbol", symbol)); // query parameter
+            if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetStakingInstruments", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<XAny>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<XAny>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<XAny>)));
+        }
+
+        /// <summary>
+        /// List staking tiers for a given currency 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"></param>
+        /// <returns>List&lt;XAny&gt;</returns>
+        public List<XAny> UserGetStakingTiers (string currency)
+        {
+             ApiResponse<List<XAny>> localVarResponse = UserGetStakingTiersWithHttpInfo(currency);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List staking tiers for a given currency 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"></param>
+        /// <returns>ApiResponse of List&lt;XAny&gt;</returns>
+        public ApiResponse< List<XAny> > UserGetStakingTiersWithHttpInfo (string currency)
+        {
+            // verify the required parameter 'currency' is set
+            if (currency == null)
+                throw new ApiException(400, "Missing required parameter 'currency' when calling UserApi->UserGetStakingTiers");
+
+            var localVarPath = "/user/staking/tiers";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetStakingTiers", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<XAny>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<XAny>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<XAny>)));
+        }
+
+        /// <summary>
+        /// List staking tiers for a given currency 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"></param>
+        /// <returns>Task of List&lt;XAny&gt;</returns>
+        public async System.Threading.Tasks.Task<List<XAny>> UserGetStakingTiersAsync (string currency)
+        {
+             ApiResponse<List<XAny>> localVarResponse = await UserGetStakingTiersAsyncWithHttpInfo(currency);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// List staking tiers for a given currency 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"></param>
+        /// <returns>Task of ApiResponse (List&lt;XAny&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<XAny>>> UserGetStakingTiersAsyncWithHttpInfo (string currency)
+        {
+            // verify the required parameter 'currency' is set
+            if (currency == null)
+                throw new ApiException(400, "Missing required parameter 'currency' when calling UserApi->UserGetStakingTiers");
+
+            var localVarPath = "/user/staking/tiers";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetStakingTiers", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<XAny>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<XAny>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<XAny>)));
+        }
+
+        /// <summary>
+        /// Get your 30 days USD average trading volume 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;TradingVolume&gt;</returns>
+        public List<TradingVolume> UserGetTradingVolume ()
+        {
+             ApiResponse<List<TradingVolume>> localVarResponse = UserGetTradingVolumeWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get your 30 days USD average trading volume 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;TradingVolume&gt;</returns>
+        public ApiResponse< List<TradingVolume> > UserGetTradingVolumeWithHttpInfo ()
+        {
+
+            var localVarPath = "/user/tradingVolume";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -2791,36 +4886,36 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("UserGetQuoteFillRatio", localVarResponse);
+                Exception exception = ExceptionFactory("UserGetTradingVolume", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<QuoteFillRatio>(localVarStatusCode,
+            return new ApiResponse<List<TradingVolume>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (QuoteFillRatio) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(QuoteFillRatio)));
+                (List<TradingVolume>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<TradingVolume>)));
         }
 
         /// <summary>
-        /// Get 7 days worth of Quote Fill Ratio statistics. 
+        /// Get your 30 days USD average trading volume 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of QuoteFillRatio</returns>
-        public async System.Threading.Tasks.Task<QuoteFillRatio> UserGetQuoteFillRatioAsync ()
+        /// <returns>Task of List&lt;TradingVolume&gt;</returns>
+        public async System.Threading.Tasks.Task<List<TradingVolume>> UserGetTradingVolumeAsync ()
         {
-             ApiResponse<QuoteFillRatio> localVarResponse = await UserGetQuoteFillRatioAsyncWithHttpInfo();
+             ApiResponse<List<TradingVolume>> localVarResponse = await UserGetTradingVolumeAsyncWithHttpInfo();
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Get 7 days worth of Quote Fill Ratio statistics. 
+        /// Get your 30 days USD average trading volume 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>Task of ApiResponse (QuoteFillRatio)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<QuoteFillRatio>> UserGetQuoteFillRatioAsyncWithHttpInfo ()
+        /// <returns>Task of ApiResponse (List&lt;TradingVolume&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<TradingVolume>>> UserGetTradingVolumeAsyncWithHttpInfo ()
         {
 
-            var localVarPath = "/user/quoteFillRatio";
+            var localVarPath = "/user/tradingVolume";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -2873,20 +4968,195 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("UserGetQuoteFillRatio", localVarResponse);
+                Exception exception = ExceptionFactory("UserGetTradingVolume", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<QuoteFillRatio>(localVarStatusCode,
+            return new ApiResponse<List<TradingVolume>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (QuoteFillRatio) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(QuoteFillRatio)));
+                (List<TradingVolume>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<TradingVolume>)));
+        }
+
+        /// <summary>
+        /// Get the current user unstaking requests 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="status"></param>
+        /// <returns>List&lt;StakingRecord&gt;</returns>
+        public List<StakingRecord> UserGetUnstakingRequests (string status)
+        {
+             ApiResponse<List<StakingRecord>> localVarResponse = UserGetUnstakingRequestsWithHttpInfo(status);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get the current user unstaking requests 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="status"></param>
+        /// <returns>ApiResponse of List&lt;StakingRecord&gt;</returns>
+        public ApiResponse< List<StakingRecord> > UserGetUnstakingRequestsWithHttpInfo (string status)
+        {
+            // verify the required parameter 'status' is set
+            if (status == null)
+                throw new ApiException(400, "Missing required parameter 'status' when calling UserApi->UserGetUnstakingRequests");
+
+            var localVarPath = "/user/unstakingRequests";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (status != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "status", status)); // query parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetUnstakingRequests", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<StakingRecord>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<StakingRecord>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<StakingRecord>)));
+        }
+
+        /// <summary>
+        /// Get the current user unstaking requests 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="status"></param>
+        /// <returns>Task of List&lt;StakingRecord&gt;</returns>
+        public async System.Threading.Tasks.Task<List<StakingRecord>> UserGetUnstakingRequestsAsync (string status)
+        {
+             ApiResponse<List<StakingRecord>> localVarResponse = await UserGetUnstakingRequestsAsyncWithHttpInfo(status);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get the current user unstaking requests 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="status"></param>
+        /// <returns>Task of ApiResponse (List&lt;StakingRecord&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<StakingRecord>>> UserGetUnstakingRequestsAsyncWithHttpInfo (string status)
+        {
+            // verify the required parameter 'status' is set
+            if (status == null)
+                throw new ApiException(400, "Missing required parameter 'status' when calling UserApi->UserGetUnstakingRequests");
+
+            var localVarPath = "/user/unstakingRequests";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (status != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "status", status)); // query parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetUnstakingRequests", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<StakingRecord>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<StakingRecord>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<StakingRecord>)));
         }
 
         /// <summary>
         /// Get your current wallet information. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Wallet</returns>
         public Wallet UserGetWallet (string currency = null)
         {
@@ -2898,7 +5168,7 @@ namespace IO.Swagger.Api
         /// Get your current wallet information. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>ApiResponse of Wallet</returns>
         public ApiResponse< Wallet > UserGetWalletWithHttpInfo (string currency = null)
         {
@@ -2970,7 +5240,7 @@ namespace IO.Swagger.Api
         /// Get your current wallet information. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Task of Wallet</returns>
         public async System.Threading.Tasks.Task<Wallet> UserGetWalletAsync (string currency = null)
         {
@@ -2983,7 +5253,7 @@ namespace IO.Swagger.Api
         /// Get your current wallet information. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (Wallet)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<Wallet>> UserGetWalletAsyncWithHttpInfo (string currency = null)
         {
@@ -3055,13 +5325,14 @@ namespace IO.Swagger.Api
         /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
         /// <returns>List&lt;Transaction&gt;</returns>
-        public List<Transaction> UserGetWalletHistory (string currency = null, double? count = null, double? start = null)
+        public List<Transaction> UserGetWalletHistory (string currency = null, double? count = null, double? start = null, double? targetAccountId = null)
         {
-             ApiResponse<List<Transaction>> localVarResponse = UserGetWalletHistoryWithHttpInfo(currency, count, start);
+             ApiResponse<List<Transaction>> localVarResponse = UserGetWalletHistoryWithHttpInfo(currency, count, start, targetAccountId);
              return localVarResponse.Data;
         }
 
@@ -3069,11 +5340,12 @@ namespace IO.Swagger.Api
         /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
         /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
-        public ApiResponse< List<Transaction> > UserGetWalletHistoryWithHttpInfo (string currency = null, double? count = null, double? start = null)
+        public ApiResponse< List<Transaction> > UserGetWalletHistoryWithHttpInfo (string currency = null, double? count = null, double? start = null, double? targetAccountId = null)
         {
 
             var localVarPath = "/user/walletHistory";
@@ -3106,6 +5378,7 @@ namespace IO.Swagger.Api
             if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
             if (count != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "count", count)); // query parameter
             if (start != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "start", start)); // query parameter
+            if (targetAccountId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "targetAccountId", targetAccountId)); // query parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -3145,13 +5418,14 @@ namespace IO.Swagger.Api
         /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
         /// <returns>Task of List&lt;Transaction&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Transaction>> UserGetWalletHistoryAsync (string currency = null, double? count = null, double? start = null)
+        public async System.Threading.Tasks.Task<List<Transaction>> UserGetWalletHistoryAsync (string currency = null, double? count = null, double? start = null, double? targetAccountId = null)
         {
-             ApiResponse<List<Transaction>> localVarResponse = await UserGetWalletHistoryAsyncWithHttpInfo(currency, count, start);
+             ApiResponse<List<Transaction>> localVarResponse = await UserGetWalletHistoryAsyncWithHttpInfo(currency, count, start, targetAccountId);
              return localVarResponse.Data;
 
         }
@@ -3160,11 +5434,12 @@ namespace IO.Swagger.Api
         /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletHistoryAsyncWithHttpInfo (string currency = null, double? count = null, double? start = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletHistoryAsyncWithHttpInfo (string currency = null, double? count = null, double? start = null, double? targetAccountId = null)
         {
 
             var localVarPath = "/user/walletHistory";
@@ -3197,6 +5472,7 @@ namespace IO.Swagger.Api
             if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
             if (count != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "count", count)); // query parameter
             if (start != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "start", start)); // query parameter
+            if (targetAccountId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "targetAccountId", targetAccountId)); // query parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -3236,7 +5512,7 @@ namespace IO.Swagger.Api
         /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>List&lt;Transaction&gt;</returns>
         public List<Transaction> UserGetWalletSummary (string currency = null)
         {
@@ -3248,7 +5524,7 @@ namespace IO.Swagger.Api
         /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
         public ApiResponse< List<Transaction> > UserGetWalletSummaryWithHttpInfo (string currency = null)
         {
@@ -3320,7 +5596,7 @@ namespace IO.Swagger.Api
         /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Task of List&lt;Transaction&gt;</returns>
         public async System.Threading.Tasks.Task<List<Transaction>> UserGetWalletSummaryAsync (string currency = null)
         {
@@ -3333,7 +5609,7 @@ namespace IO.Swagger.Api
         /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletSummaryAsyncWithHttpInfo (string currency = null)
         {
@@ -3399,6 +5675,169 @@ namespace IO.Swagger.Api
             return new ApiResponse<List<Transaction>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Transaction>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Transaction>)));
+        }
+
+        /// <summary>
+        /// Get the list of accounts you can transfer funds between. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;XAny&gt;</returns>
+        public List<XAny> UserGetWalletTransferAccounts ()
+        {
+             ApiResponse<List<XAny>> localVarResponse = UserGetWalletTransferAccountsWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get the list of accounts you can transfer funds between. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;XAny&gt;</returns>
+        public ApiResponse< List<XAny> > UserGetWalletTransferAccountsWithHttpInfo ()
+        {
+
+            var localVarPath = "/user/getWalletTransferAccounts";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetWalletTransferAccounts", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<XAny>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<XAny>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<XAny>)));
+        }
+
+        /// <summary>
+        /// Get the list of accounts you can transfer funds between. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of List&lt;XAny&gt;</returns>
+        public async System.Threading.Tasks.Task<List<XAny>> UserGetWalletTransferAccountsAsync ()
+        {
+             ApiResponse<List<XAny>> localVarResponse = await UserGetWalletTransferAccountsAsyncWithHttpInfo();
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get the list of accounts you can transfer funds between. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (List&lt;XAny&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<XAny>>> UserGetWalletTransferAccountsAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/user/getWalletTransferAccounts";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetWalletTransferAccounts", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<XAny>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<XAny>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<XAny>)));
         }
 
         /// <summary>
@@ -3533,158 +5972,22 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get the minimum withdrawal fee for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
-        /// <returns>Object</returns>
-        public Object UserMinWithdrawalFee (string currency = null)
-        {
-             ApiResponse<Object> localVarResponse = UserMinWithdrawalFeeWithHttpInfo(currency);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Get the minimum withdrawal fee for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
-        /// <returns>ApiResponse of Object</returns>
-        public ApiResponse< Object > UserMinWithdrawalFeeWithHttpInfo (string currency = null)
-        {
-
-            var localVarPath = "/user/minWithdrawalFee";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json",
-                "application/xml",
-                "text/xml",
-                "application/javascript",
-                "text/javascript"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UserMinWithdrawalFee", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
-        }
-
-        /// <summary>
-        /// Get the minimum withdrawal fee for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
-        /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> UserMinWithdrawalFeeAsync (string currency = null)
-        {
-             ApiResponse<Object> localVarResponse = await UserMinWithdrawalFeeAsyncWithHttpInfo(currency);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Get the minimum withdrawal fee for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
-        /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> UserMinWithdrawalFeeAsyncWithHttpInfo (string currency = null)
-        {
-
-            var localVarPath = "/user/minWithdrawalFee";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json",
-                "application/xml",
-                "text/xml",
-                "application/javascript",
-                "text/javascript"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UserMinWithdrawalFee", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
-        }
-
-        /// <summary>
         /// Request a withdrawal to an external wallet. This will send a confirmation email to the email address on record.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Transaction</returns>
-        public Transaction UserRequestWithdrawal (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null)
+        public Transaction UserRequestWithdrawal (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
-             ApiResponse<Transaction> localVarResponse = UserRequestWithdrawalWithHttpInfo(currency, amount, address, otpToken, fee, text);
+             ApiResponse<Transaction> localVarResponse = UserRequestWithdrawalWithHttpInfo(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text);
              return localVarResponse.Data;
         }
 
@@ -3692,24 +5995,27 @@ namespace IO.Swagger.Api
         /// Request a withdrawal to an external wallet. This will send a confirmation email to the email address on record.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>ApiResponse of Transaction</returns>
-        public ApiResponse< Transaction > UserRequestWithdrawalWithHttpInfo (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null)
+        public ApiResponse< Transaction > UserRequestWithdrawalWithHttpInfo (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
             // verify the required parameter 'currency' is set
             if (currency == null)
                 throw new ApiException(400, "Missing required parameter 'currency' when calling UserApi->UserRequestWithdrawal");
+            // verify the required parameter 'network' is set
+            if (network == null)
+                throw new ApiException(400, "Missing required parameter 'network' when calling UserApi->UserRequestWithdrawal");
             // verify the required parameter 'amount' is set
             if (amount == null)
                 throw new ApiException(400, "Missing required parameter 'amount' when calling UserApi->UserRequestWithdrawal");
-            // verify the required parameter 'address' is set
-            if (address == null)
-                throw new ApiException(400, "Missing required parameter 'address' when calling UserApi->UserRequestWithdrawal");
 
             var localVarPath = "/user/requestWithdrawal";
             var localVarPathParams = new Dictionary<String, String>();
@@ -3740,8 +6046,11 @@ namespace IO.Swagger.Api
 
             if (otpToken != null) localVarFormParams.Add("otpToken", this.Configuration.ApiClient.ParameterToString(otpToken)); // form parameter
             if (currency != null) localVarFormParams.Add("currency", this.Configuration.ApiClient.ParameterToString(currency)); // form parameter
+            if (network != null) localVarFormParams.Add("network", this.Configuration.ApiClient.ParameterToString(network)); // form parameter
             if (amount != null) localVarFormParams.Add("amount", this.Configuration.ApiClient.ParameterToString(amount)); // form parameter
             if (address != null) localVarFormParams.Add("address", this.Configuration.ApiClient.ParameterToString(address)); // form parameter
+            if (addressId != null) localVarFormParams.Add("addressId", this.Configuration.ApiClient.ParameterToString(addressId)); // form parameter
+            if (targetUserId != null) localVarFormParams.Add("targetUserId", this.Configuration.ApiClient.ParameterToString(targetUserId)); // form parameter
             if (fee != null) localVarFormParams.Add("fee", this.Configuration.ApiClient.ParameterToString(fee)); // form parameter
             if (text != null) localVarFormParams.Add("text", this.Configuration.ApiClient.ParameterToString(text)); // form parameter
 
@@ -3783,16 +6092,19 @@ namespace IO.Swagger.Api
         /// Request a withdrawal to an external wallet. This will send a confirmation email to the email address on record.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of Transaction</returns>
-        public async System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null)
+        public async System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
-             ApiResponse<Transaction> localVarResponse = await UserRequestWithdrawalAsyncWithHttpInfo(currency, amount, address, otpToken, fee, text);
+             ApiResponse<Transaction> localVarResponse = await UserRequestWithdrawalAsyncWithHttpInfo(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text);
              return localVarResponse.Data;
 
         }
@@ -3801,24 +6113,27 @@ namespace IO.Swagger.Api
         /// Request a withdrawal to an external wallet. This will send a confirmation email to the email address on record.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of ApiResponse (Transaction)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
             // verify the required parameter 'currency' is set
             if (currency == null)
                 throw new ApiException(400, "Missing required parameter 'currency' when calling UserApi->UserRequestWithdrawal");
+            // verify the required parameter 'network' is set
+            if (network == null)
+                throw new ApiException(400, "Missing required parameter 'network' when calling UserApi->UserRequestWithdrawal");
             // verify the required parameter 'amount' is set
             if (amount == null)
                 throw new ApiException(400, "Missing required parameter 'amount' when calling UserApi->UserRequestWithdrawal");
-            // verify the required parameter 'address' is set
-            if (address == null)
-                throw new ApiException(400, "Missing required parameter 'address' when calling UserApi->UserRequestWithdrawal");
 
             var localVarPath = "/user/requestWithdrawal";
             var localVarPathParams = new Dictionary<String, String>();
@@ -3849,8 +6164,11 @@ namespace IO.Swagger.Api
 
             if (otpToken != null) localVarFormParams.Add("otpToken", this.Configuration.ApiClient.ParameterToString(otpToken)); // form parameter
             if (currency != null) localVarFormParams.Add("currency", this.Configuration.ApiClient.ParameterToString(currency)); // form parameter
+            if (network != null) localVarFormParams.Add("network", this.Configuration.ApiClient.ParameterToString(network)); // form parameter
             if (amount != null) localVarFormParams.Add("amount", this.Configuration.ApiClient.ParameterToString(amount)); // form parameter
             if (address != null) localVarFormParams.Add("address", this.Configuration.ApiClient.ParameterToString(address)); // form parameter
+            if (addressId != null) localVarFormParams.Add("addressId", this.Configuration.ApiClient.ParameterToString(addressId)); // form parameter
+            if (targetUserId != null) localVarFormParams.Add("targetUserId", this.Configuration.ApiClient.ParameterToString(targetUserId)); // form parameter
             if (fee != null) localVarFormParams.Add("fee", this.Configuration.ApiClient.ParameterToString(fee)); // form parameter
             if (text != null) localVarFormParams.Add("text", this.Configuration.ApiClient.ParameterToString(text)); // form parameter
 
@@ -4067,6 +6385,398 @@ namespace IO.Swagger.Api
             return new ApiResponse<User>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (User) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
+        }
+
+        /// <summary>
+        /// Updates the sub-account name. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId"></param>
+        /// <param name="accountName"></param>
+        /// <returns>Object</returns>
+        public Object UserUpdateSubAccount (double? targetAccountId, string accountName)
+        {
+             ApiResponse<Object> localVarResponse = UserUpdateSubAccountWithHttpInfo(targetAccountId, accountName);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Updates the sub-account name. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId"></param>
+        /// <param name="accountName"></param>
+        /// <returns>ApiResponse of Object</returns>
+        public ApiResponse< Object > UserUpdateSubAccountWithHttpInfo (double? targetAccountId, string accountName)
+        {
+            // verify the required parameter 'targetAccountId' is set
+            if (targetAccountId == null)
+                throw new ApiException(400, "Missing required parameter 'targetAccountId' when calling UserApi->UserUpdateSubAccount");
+            // verify the required parameter 'accountName' is set
+            if (accountName == null)
+                throw new ApiException(400, "Missing required parameter 'accountName' when calling UserApi->UserUpdateSubAccount");
+
+            var localVarPath = "/user/updateSubaccount";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (targetAccountId != null) localVarFormParams.Add("targetAccountId", this.Configuration.ApiClient.ParameterToString(targetAccountId)); // form parameter
+            if (accountName != null) localVarFormParams.Add("accountName", this.Configuration.ApiClient.ParameterToString(accountName)); // form parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserUpdateSubAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Updates the sub-account name. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId"></param>
+        /// <param name="accountName"></param>
+        /// <returns>Task of Object</returns>
+        public async System.Threading.Tasks.Task<Object> UserUpdateSubAccountAsync (double? targetAccountId, string accountName)
+        {
+             ApiResponse<Object> localVarResponse = await UserUpdateSubAccountAsyncWithHttpInfo(targetAccountId, accountName);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Updates the sub-account name. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="targetAccountId"></param>
+        /// <param name="accountName"></param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UserUpdateSubAccountAsyncWithHttpInfo (double? targetAccountId, string accountName)
+        {
+            // verify the required parameter 'targetAccountId' is set
+            if (targetAccountId == null)
+                throw new ApiException(400, "Missing required parameter 'targetAccountId' when calling UserApi->UserUpdateSubAccount");
+            // verify the required parameter 'accountName' is set
+            if (accountName == null)
+                throw new ApiException(400, "Missing required parameter 'accountName' when calling UserApi->UserUpdateSubAccount");
+
+            var localVarPath = "/user/updateSubaccount";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (targetAccountId != null) localVarFormParams.Add("targetAccountId", this.Configuration.ApiClient.ParameterToString(targetAccountId)); // form parameter
+            if (accountName != null) localVarFormParams.Add("accountName", this.Configuration.ApiClient.ParameterToString(accountName)); // form parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserUpdateSubAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Execute a transfer to a paired account. This will send a confirmation email to the email address on record.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="amount">Amount of transfer.</param>
+        /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
+        /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
+        /// <returns>Transaction</returns>
+        public Transaction UserWalletTransfer (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+        {
+             ApiResponse<Transaction> localVarResponse = UserWalletTransferWithHttpInfo(currency, amount, targetAccountId, fromAccountId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Execute a transfer to a paired account. This will send a confirmation email to the email address on record.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="amount">Amount of transfer.</param>
+        /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
+        /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
+        /// <returns>ApiResponse of Transaction</returns>
+        public ApiResponse< Transaction > UserWalletTransferWithHttpInfo (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+        {
+            // verify the required parameter 'currency' is set
+            if (currency == null)
+                throw new ApiException(400, "Missing required parameter 'currency' when calling UserApi->UserWalletTransfer");
+            // verify the required parameter 'amount' is set
+            if (amount == null)
+                throw new ApiException(400, "Missing required parameter 'amount' when calling UserApi->UserWalletTransfer");
+            // verify the required parameter 'targetAccountId' is set
+            if (targetAccountId == null)
+                throw new ApiException(400, "Missing required parameter 'targetAccountId' when calling UserApi->UserWalletTransfer");
+
+            var localVarPath = "/user/walletTransfer";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (currency != null) localVarFormParams.Add("currency", this.Configuration.ApiClient.ParameterToString(currency)); // form parameter
+            if (amount != null) localVarFormParams.Add("amount", this.Configuration.ApiClient.ParameterToString(amount)); // form parameter
+            if (fromAccountId != null) localVarFormParams.Add("fromAccountId", this.Configuration.ApiClient.ParameterToString(fromAccountId)); // form parameter
+            if (targetAccountId != null) localVarFormParams.Add("targetAccountId", this.Configuration.ApiClient.ParameterToString(targetAccountId)); // form parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserWalletTransfer", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Transaction>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Transaction) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Transaction)));
+        }
+
+        /// <summary>
+        /// Execute a transfer to a paired account. This will send a confirmation email to the email address on record.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="amount">Amount of transfer.</param>
+        /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
+        /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
+        /// <returns>Task of Transaction</returns>
+        public async System.Threading.Tasks.Task<Transaction> UserWalletTransferAsync (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+        {
+             ApiResponse<Transaction> localVarResponse = await UserWalletTransferAsyncWithHttpInfo(currency, amount, targetAccountId, fromAccountId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Execute a transfer to a paired account. This will send a confirmation email to the email address on record.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="amount">Amount of transfer.</param>
+        /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
+        /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
+        /// <returns>Task of ApiResponse (Transaction)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Transaction>> UserWalletTransferAsyncWithHttpInfo (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+        {
+            // verify the required parameter 'currency' is set
+            if (currency == null)
+                throw new ApiException(400, "Missing required parameter 'currency' when calling UserApi->UserWalletTransfer");
+            // verify the required parameter 'amount' is set
+            if (amount == null)
+                throw new ApiException(400, "Missing required parameter 'amount' when calling UserApi->UserWalletTransfer");
+            // verify the required parameter 'targetAccountId' is set
+            if (targetAccountId == null)
+                throw new ApiException(400, "Missing required parameter 'targetAccountId' when calling UserApi->UserWalletTransfer");
+
+            var localVarPath = "/user/walletTransfer";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (currency != null) localVarFormParams.Add("currency", this.Configuration.ApiClient.ParameterToString(currency)); // form parameter
+            if (amount != null) localVarFormParams.Add("amount", this.Configuration.ApiClient.ParameterToString(amount)); // form parameter
+            if (fromAccountId != null) localVarFormParams.Add("fromAccountId", this.Configuration.ApiClient.ParameterToString(fromAccountId)); // form parameter
+            if (targetAccountId != null) localVarFormParams.Add("targetAccountId", this.Configuration.ApiClient.ParameterToString(targetAccountId)); // form parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserWalletTransfer", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Transaction>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Transaction) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Transaction)));
         }
 
     }

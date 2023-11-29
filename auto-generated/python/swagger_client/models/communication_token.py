@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class CommunicationToken(object):
@@ -44,8 +46,11 @@ class CommunicationToken(object):
         'channel': 'channel'
     }
 
-    def __init__(self, id=None, user_id=None, device_token=None, channel=None):  # noqa: E501
+    def __init__(self, id=None, user_id=None, device_token=None, channel=None, _configuration=None):  # noqa: E501
         """CommunicationToken - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._id = None
         self._user_id = None
@@ -76,7 +81,7 @@ class CommunicationToken(object):
         :param id: The id of this CommunicationToken.  # noqa: E501
         :type: str
         """
-        if id is None:
+        if self._configuration.client_side_validation and id is None:
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
@@ -99,7 +104,7 @@ class CommunicationToken(object):
         :param user_id: The user_id of this CommunicationToken.  # noqa: E501
         :type: float
         """
-        if user_id is None:
+        if self._configuration.client_side_validation and user_id is None:
             raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
@@ -122,7 +127,7 @@ class CommunicationToken(object):
         :param device_token: The device_token of this CommunicationToken.  # noqa: E501
         :type: str
         """
-        if device_token is None:
+        if self._configuration.client_side_validation and device_token is None:
             raise ValueError("Invalid value for `device_token`, must not be `None`")  # noqa: E501
 
         self._device_token = device_token
@@ -145,7 +150,7 @@ class CommunicationToken(object):
         :param channel: The channel of this CommunicationToken.  # noqa: E501
         :type: str
         """
-        if channel is None:
+        if self._configuration.client_side_validation and channel is None:
             raise ValueError("Invalid value for `channel`, must not be `None`")  # noqa: E501
 
         self._channel = channel
@@ -190,8 +195,11 @@ class CommunicationToken(object):
         if not isinstance(other, CommunicationToken):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, CommunicationToken):
+            return True
+
+        return self.to_dict() != other.to_dict()

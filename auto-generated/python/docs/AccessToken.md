@@ -3,6 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**updated** | **datetime** |  | 
+**authorized_accounts** | **object** |  | [optional] 
 **id** | **str** |  | 
 **ttl** | **float** | time to live in seconds (2 weeks by default) | [optional] [default to 1209600.0]
 **created** | **datetime** |  | [optional] 

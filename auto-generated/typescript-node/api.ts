@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -145,6 +145,8 @@ export class APIKey {
     'name': string;
     'nonce': number;
     'cidr'?: string;
+    'cidrs'?: Array<XAny>;
+    'targetAccountId'?: number;
     'permissions'?: Array<XAny>;
     'enabled'?: boolean;
     'userId': number;
@@ -179,6 +181,16 @@ export class APIKey {
             "type": "string"
         },
         {
+            "name": "cidrs",
+            "baseName": "cidrs",
+            "type": "Array<XAny>"
+        },
+        {
+            "name": "targetAccountId",
+            "baseName": "targetAccountId",
+            "type": "number"
+        },
+        {
             "name": "permissions",
             "baseName": "permissions",
             "type": "Array<XAny>"
@@ -205,6 +217,8 @@ export class APIKey {
 }
 
 export class AccessToken {
+    'updated': Date;
+    'authorizedAccounts'?: any;
     'id': string;
     /**
     * time to live in seconds (2 weeks by default)
@@ -216,6 +230,16 @@ export class AccessToken {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "updated",
+            "baseName": "updated",
+            "type": "Date"
+        },
+        {
+            "name": "authorizedAccounts",
+            "baseName": "authorizedAccounts",
+            "type": "any"
+        },
         {
             "name": "id",
             "baseName": "id",
@@ -239,6 +263,89 @@ export class AccessToken {
 
     static getAttributeTypeMap() {
         return AccessToken.attributeTypeMap;
+    }
+}
+
+export class Address {
+    'id'?: number;
+    'currency'?: string;
+    'created'?: Date;
+    'userId'?: number;
+    'address': string;
+    'name': string;
+    'note'?: string;
+    'skipConfirm'?: boolean;
+    'skipConfirmVerified'?: boolean;
+    'skip2FA'?: boolean;
+    'skip2FAVerified'?: boolean;
+    'network': string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "number"
+        },
+        {
+            "name": "currency",
+            "baseName": "currency",
+            "type": "string"
+        },
+        {
+            "name": "created",
+            "baseName": "created",
+            "type": "Date"
+        },
+        {
+            "name": "userId",
+            "baseName": "userId",
+            "type": "number"
+        },
+        {
+            "name": "address",
+            "baseName": "address",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "note",
+            "baseName": "note",
+            "type": "string"
+        },
+        {
+            "name": "skipConfirm",
+            "baseName": "skipConfirm",
+            "type": "boolean"
+        },
+        {
+            "name": "skipConfirmVerified",
+            "baseName": "skipConfirmVerified",
+            "type": "boolean"
+        },
+        {
+            "name": "skip2FA",
+            "baseName": "skip2FA",
+            "type": "boolean"
+        },
+        {
+            "name": "skip2FAVerified",
+            "baseName": "skip2FAVerified",
+            "type": "boolean"
+        },
+        {
+            "name": "network",
+            "baseName": "network",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Address.attributeTypeMap;
     }
 }
 
@@ -399,6 +506,124 @@ export class Announcement {
     }
 }
 
+export class AssetsConfig {
+    'asset': string;
+    'currency'?: string;
+    'majorCurrency'?: string;
+    'name'?: string;
+    'currencyType'?: string;
+    'scale'?: number;
+    'enabled'?: boolean;
+    'isMarginCurrency'?: boolean;
+    'networks'?: Array<AssetsConfigNetworkItem>;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "asset",
+            "baseName": "asset",
+            "type": "string"
+        },
+        {
+            "name": "currency",
+            "baseName": "currency",
+            "type": "string"
+        },
+        {
+            "name": "majorCurrency",
+            "baseName": "majorCurrency",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "currencyType",
+            "baseName": "currencyType",
+            "type": "string"
+        },
+        {
+            "name": "scale",
+            "baseName": "scale",
+            "type": "number"
+        },
+        {
+            "name": "enabled",
+            "baseName": "enabled",
+            "type": "boolean"
+        },
+        {
+            "name": "isMarginCurrency",
+            "baseName": "isMarginCurrency",
+            "type": "boolean"
+        },
+        {
+            "name": "networks",
+            "baseName": "networks",
+            "type": "Array<AssetsConfigNetworkItem>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AssetsConfig.attributeTypeMap;
+    }
+}
+
+export class AssetsConfigNetworkItem {
+    'asset': string;
+    'tokenAddress'?: string;
+    'depositEnabled'?: boolean;
+    'withdrawalEnabled'?: boolean;
+    'withdrawalFee'?: number;
+    'minFee'?: number;
+    'maxFee'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "asset",
+            "baseName": "asset",
+            "type": "string"
+        },
+        {
+            "name": "tokenAddress",
+            "baseName": "tokenAddress",
+            "type": "string"
+        },
+        {
+            "name": "depositEnabled",
+            "baseName": "depositEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "withdrawalEnabled",
+            "baseName": "withdrawalEnabled",
+            "type": "boolean"
+        },
+        {
+            "name": "withdrawalFee",
+            "baseName": "withdrawalFee",
+            "type": "number"
+        },
+        {
+            "name": "minFee",
+            "baseName": "minFee",
+            "type": "number"
+        },
+        {
+            "name": "maxFee",
+            "baseName": "maxFee",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return AssetsConfigNetworkItem.attributeTypeMap;
+    }
+}
+
 /**
 * Trollbox Data
 */
@@ -406,9 +631,9 @@ export class Chat {
     'id'?: number;
     'date': Date;
     'user': string;
+    'userColor'?: string;
     'message': string;
     'html': string;
-    'fromBot'?: boolean;
     'channelID'?: number;
 
     static discriminator: string | undefined = undefined;
@@ -430,6 +655,11 @@ export class Chat {
             "type": "string"
         },
         {
+            "name": "userColor",
+            "baseName": "userColor",
+            "type": "string"
+        },
+        {
             "name": "message",
             "baseName": "message",
             "type": "string"
@@ -438,11 +668,6 @@ export class Chat {
             "name": "html",
             "baseName": "html",
             "type": "string"
-        },
-        {
-            "name": "fromBot",
-            "baseName": "fromBot",
-            "type": "boolean"
         },
         {
             "name": "channelID",
@@ -458,6 +683,7 @@ export class Chat {
 export class ChatChannel {
     'id'?: number;
     'name': string;
+    'isPrivate': boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -471,10 +697,122 @@ export class ChatChannel {
             "name": "name",
             "baseName": "name",
             "type": "string"
+        },
+        {
+            "name": "isPrivate",
+            "baseName": "isPrivate",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
         return ChatChannel.attributeTypeMap;
+    }
+}
+
+export class CollateralSupportAgreement {
+    'csaID': string;
+    'account'?: number;
+    'currency'?: string;
+    'amount'?: number;
+    'minAmount'?: number;
+    'threshold'?: number;
+    'mmRatioMarginCall'?: number;
+    'mmRatioLiquidation'?: number;
+    'startTime'?: string;
+    'maturityTime'?: string;
+    'maturityInstruction'?: string;
+    'csaStatus'?: string;
+    'requester'?: string;
+    'clientDetails'?: string;
+    'text'?: string;
+    'timestamp'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "csaID",
+            "baseName": "csaID",
+            "type": "string"
+        },
+        {
+            "name": "account",
+            "baseName": "account",
+            "type": "number"
+        },
+        {
+            "name": "currency",
+            "baseName": "currency",
+            "type": "string"
+        },
+        {
+            "name": "amount",
+            "baseName": "amount",
+            "type": "number"
+        },
+        {
+            "name": "minAmount",
+            "baseName": "minAmount",
+            "type": "number"
+        },
+        {
+            "name": "threshold",
+            "baseName": "threshold",
+            "type": "number"
+        },
+        {
+            "name": "mmRatioMarginCall",
+            "baseName": "mmRatioMarginCall",
+            "type": "number"
+        },
+        {
+            "name": "mmRatioLiquidation",
+            "baseName": "mmRatioLiquidation",
+            "type": "number"
+        },
+        {
+            "name": "startTime",
+            "baseName": "startTime",
+            "type": "string"
+        },
+        {
+            "name": "maturityTime",
+            "baseName": "maturityTime",
+            "type": "string"
+        },
+        {
+            "name": "maturityInstruction",
+            "baseName": "maturityInstruction",
+            "type": "string"
+        },
+        {
+            "name": "csaStatus",
+            "baseName": "csaStatus",
+            "type": "string"
+        },
+        {
+            "name": "requester",
+            "baseName": "requester",
+            "type": "string"
+        },
+        {
+            "name": "clientDetails",
+            "baseName": "clientDetails",
+            "type": "string"
+        },
+        {
+            "name": "text",
+            "baseName": "text",
+            "type": "string"
+        },
+        {
+            "name": "timestamp",
+            "baseName": "timestamp",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CollateralSupportAgreement.attributeTypeMap;
     }
 }
 
@@ -566,19 +904,16 @@ export class ErrorError {
 * Raw Order and Balance Data
 */
 export class Execution {
-    'execID': string;
-    'orderID'?: string;
+    'execID'?: string;
+    'orderID': string;
     'clOrdID'?: string;
     'clOrdLinkID'?: string;
     'account'?: number;
-    'symbol'?: string;
+    'symbol': string;
     'side'?: string;
     'lastQty'?: number;
     'lastPx'?: number;
-    'underlyingLastPx'?: number;
-    'lastMkt'?: string;
     'lastLiquidityInd'?: string;
-    'simpleOrderQty'?: number;
     'orderQty'?: number;
     'price'?: number;
     'displayQty'?: number;
@@ -592,19 +927,15 @@ export class Execution {
     'timeInForce'?: string;
     'execInst'?: string;
     'contingencyType'?: string;
-    'exDestination'?: string;
     'ordStatus'?: string;
     'triggered'?: string;
     'workingIndicator'?: boolean;
     'ordRejReason'?: string;
-    'simpleLeavesQty'?: number;
     'leavesQty'?: number;
-    'simpleCumQty'?: number;
     'cumQty'?: number;
     'avgPx'?: number;
     'commission'?: number;
     'tradePublishIndicator'?: string;
-    'multiLegReportingType'?: string;
     'text'?: string;
     'trdMatchID'?: string;
     'execCost'?: number;
@@ -612,7 +943,12 @@ export class Execution {
     'homeNotional'?: number;
     'foreignNotional'?: number;
     'transactTime'?: Date;
-    'timestamp'?: Date;
+    'timestamp': Date;
+    'execGrossPnl'?: number;
+    'currentQty'?: number;
+    'avgEntryPrice'?: number;
+    'realisedPnl'?: number;
+    'unrealisedPnl'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -663,24 +999,9 @@ export class Execution {
             "type": "number"
         },
         {
-            "name": "underlyingLastPx",
-            "baseName": "underlyingLastPx",
-            "type": "number"
-        },
-        {
-            "name": "lastMkt",
-            "baseName": "lastMkt",
-            "type": "string"
-        },
-        {
             "name": "lastLiquidityInd",
             "baseName": "lastLiquidityInd",
             "type": "string"
-        },
-        {
-            "name": "simpleOrderQty",
-            "baseName": "simpleOrderQty",
-            "type": "number"
         },
         {
             "name": "orderQty",
@@ -748,11 +1069,6 @@ export class Execution {
             "type": "string"
         },
         {
-            "name": "exDestination",
-            "baseName": "exDestination",
-            "type": "string"
-        },
-        {
             "name": "ordStatus",
             "baseName": "ordStatus",
             "type": "string"
@@ -773,18 +1089,8 @@ export class Execution {
             "type": "string"
         },
         {
-            "name": "simpleLeavesQty",
-            "baseName": "simpleLeavesQty",
-            "type": "number"
-        },
-        {
             "name": "leavesQty",
             "baseName": "leavesQty",
-            "type": "number"
-        },
-        {
-            "name": "simpleCumQty",
-            "baseName": "simpleCumQty",
             "type": "number"
         },
         {
@@ -805,11 +1111,6 @@ export class Execution {
         {
             "name": "tradePublishIndicator",
             "baseName": "tradePublishIndicator",
-            "type": "string"
-        },
-        {
-            "name": "multiLegReportingType",
-            "baseName": "multiLegReportingType",
             "type": "string"
         },
         {
@@ -851,6 +1152,31 @@ export class Execution {
             "name": "timestamp",
             "baseName": "timestamp",
             "type": "Date"
+        },
+        {
+            "name": "execGrossPnl",
+            "baseName": "execGrossPnl",
+            "type": "number"
+        },
+        {
+            "name": "currentQty",
+            "baseName": "currentQty",
+            "type": "number"
+        },
+        {
+            "name": "avgEntryPrice",
+            "baseName": "avgEntryPrice",
+            "type": "number"
+        },
+        {
+            "name": "realisedPnl",
+            "baseName": "realisedPnl",
+            "type": "number"
+        },
+        {
+            "name": "unrealisedPnl",
+            "baseName": "unrealisedPnl",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -983,12 +1309,123 @@ export namespace GlobalNotification {
         Info = <any> 'info'
     }
 }
+export class Guild {
+    'id'?: number;
+    'created': Date;
+    'updated': Date;
+    'archived'?: boolean;
+    'name': string;
+    'imgUrl'?: string;
+    'mobileHeroImgUrl'?: string;
+    'emoji'?: string;
+    'logoUrl'?: string;
+    'description'?: string;
+    'chatChannelId': number;
+    'isPrivate': boolean;
+    'affiliateId'?: string;
+    'potDistributionPreferences'?: any;
+    'socials'?: any;
+    'deleted'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "number"
+        },
+        {
+            "name": "created",
+            "baseName": "created",
+            "type": "Date"
+        },
+        {
+            "name": "updated",
+            "baseName": "updated",
+            "type": "Date"
+        },
+        {
+            "name": "archived",
+            "baseName": "archived",
+            "type": "boolean"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "imgUrl",
+            "baseName": "imgUrl",
+            "type": "string"
+        },
+        {
+            "name": "mobileHeroImgUrl",
+            "baseName": "mobileHeroImgUrl",
+            "type": "string"
+        },
+        {
+            "name": "emoji",
+            "baseName": "emoji",
+            "type": "string"
+        },
+        {
+            "name": "logoUrl",
+            "baseName": "logoUrl",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "chatChannelId",
+            "baseName": "chatChannelId",
+            "type": "number"
+        },
+        {
+            "name": "isPrivate",
+            "baseName": "isPrivate",
+            "type": "boolean"
+        },
+        {
+            "name": "affiliateId",
+            "baseName": "affiliateId",
+            "type": "string"
+        },
+        {
+            "name": "potDistributionPreferences",
+            "baseName": "potDistributionPreferences",
+            "type": "any"
+        },
+        {
+            "name": "socials",
+            "baseName": "socials",
+            "type": "any"
+        },
+        {
+            "name": "deleted",
+            "baseName": "deleted",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Guild.attributeTypeMap;
+    }
+}
+
 export class IndexComposite {
     'timestamp': Date;
     'symbol'?: string;
     'indexSymbol'?: string;
+    'indexMultiplier'?: number;
     'reference'?: string;
     'lastPrice'?: number;
+    'sourcePrice'?: number;
+    'conversionIndex'?: string;
+    'conversionIndexPrice'?: number;
     'weight'?: number;
     'logged'?: Date;
 
@@ -1011,6 +1448,11 @@ export class IndexComposite {
             "type": "string"
         },
         {
+            "name": "indexMultiplier",
+            "baseName": "indexMultiplier",
+            "type": "number"
+        },
+        {
             "name": "reference",
             "baseName": "reference",
             "type": "string"
@@ -1018,6 +1460,21 @@ export class IndexComposite {
         {
             "name": "lastPrice",
             "baseName": "lastPrice",
+            "type": "number"
+        },
+        {
+            "name": "sourcePrice",
+            "baseName": "sourcePrice",
+            "type": "number"
+        },
+        {
+            "name": "conversionIndex",
+            "baseName": "conversionIndex",
+            "type": "string"
+        },
+        {
+            "name": "conversionIndexPrice",
+            "baseName": "conversionIndexPrice",
             "type": "number"
         },
         {
@@ -1065,14 +1522,7 @@ export class Instrument {
     'front'?: Date;
     'expiry'?: Date;
     'settle'?: Date;
-    'relistInterval'?: Date;
-    'inverseLeg'?: string;
-    'sellLeg'?: string;
-    'buyLeg'?: string;
-    'optionStrikePcnt'?: number;
-    'optionStrikeRound'?: number;
-    'optionStrikePrice'?: number;
-    'optionMultiplier'?: number;
+    'listedSettle'?: Date;
     'positionCurrency'?: string;
     'underlying'?: string;
     'quoteCurrency'?: string;
@@ -1098,13 +1548,11 @@ export class Instrument {
     'riskLimit'?: number;
     'riskStep'?: number;
     'limit'?: number;
-    'capped'?: boolean;
     'taxed'?: boolean;
     'deleverage'?: boolean;
     'makerFee'?: number;
     'takerFee'?: number;
     'settlementFee'?: number;
-    'insuranceFee'?: number;
     'fundingBaseSymbol'?: string;
     'fundingQuoteSymbol'?: string;
     'fundingPremiumSymbol'?: string;
@@ -1114,15 +1562,9 @@ export class Instrument {
     'indicativeFundingRate'?: number;
     'rebalanceTimestamp'?: Date;
     'rebalanceInterval'?: Date;
-    'openingTimestamp'?: Date;
-    'closingTimestamp'?: Date;
-    'sessionInterval'?: Date;
     'prevClosePrice'?: number;
     'limitDownPrice'?: number;
     'limitUpPrice'?: number;
-    'bankruptLimitDownPrice'?: number;
-    'bankruptLimitUpPrice'?: number;
-    'prevTotalVolume'?: number;
     'totalVolume'?: number;
     'volume'?: number;
     'volume24h'?: number;
@@ -1155,10 +1597,10 @@ export class Instrument {
     'fairPrice'?: number;
     'markMethod'?: string;
     'markPrice'?: number;
-    'indicativeTaxRate'?: number;
     'indicativeSettlePrice'?: number;
-    'optionUnderlyingPrice'?: number;
+    'settledPriceAdjustmentRate'?: number;
     'settledPrice'?: number;
+    'instantPnl'?: boolean;
     'timestamp'?: Date;
 
     static discriminator: string | undefined = undefined;
@@ -1205,44 +1647,9 @@ export class Instrument {
             "type": "Date"
         },
         {
-            "name": "relistInterval",
-            "baseName": "relistInterval",
+            "name": "listedSettle",
+            "baseName": "listedSettle",
             "type": "Date"
-        },
-        {
-            "name": "inverseLeg",
-            "baseName": "inverseLeg",
-            "type": "string"
-        },
-        {
-            "name": "sellLeg",
-            "baseName": "sellLeg",
-            "type": "string"
-        },
-        {
-            "name": "buyLeg",
-            "baseName": "buyLeg",
-            "type": "string"
-        },
-        {
-            "name": "optionStrikePcnt",
-            "baseName": "optionStrikePcnt",
-            "type": "number"
-        },
-        {
-            "name": "optionStrikeRound",
-            "baseName": "optionStrikeRound",
-            "type": "number"
-        },
-        {
-            "name": "optionStrikePrice",
-            "baseName": "optionStrikePrice",
-            "type": "number"
-        },
-        {
-            "name": "optionMultiplier",
-            "baseName": "optionMultiplier",
-            "type": "number"
         },
         {
             "name": "positionCurrency",
@@ -1370,11 +1777,6 @@ export class Instrument {
             "type": "number"
         },
         {
-            "name": "capped",
-            "baseName": "capped",
-            "type": "boolean"
-        },
-        {
             "name": "taxed",
             "baseName": "taxed",
             "type": "boolean"
@@ -1397,11 +1799,6 @@ export class Instrument {
         {
             "name": "settlementFee",
             "baseName": "settlementFee",
-            "type": "number"
-        },
-        {
-            "name": "insuranceFee",
-            "baseName": "insuranceFee",
             "type": "number"
         },
         {
@@ -1450,21 +1847,6 @@ export class Instrument {
             "type": "Date"
         },
         {
-            "name": "openingTimestamp",
-            "baseName": "openingTimestamp",
-            "type": "Date"
-        },
-        {
-            "name": "closingTimestamp",
-            "baseName": "closingTimestamp",
-            "type": "Date"
-        },
-        {
-            "name": "sessionInterval",
-            "baseName": "sessionInterval",
-            "type": "Date"
-        },
-        {
             "name": "prevClosePrice",
             "baseName": "prevClosePrice",
             "type": "number"
@@ -1477,21 +1859,6 @@ export class Instrument {
         {
             "name": "limitUpPrice",
             "baseName": "limitUpPrice",
-            "type": "number"
-        },
-        {
-            "name": "bankruptLimitDownPrice",
-            "baseName": "bankruptLimitDownPrice",
-            "type": "number"
-        },
-        {
-            "name": "bankruptLimitUpPrice",
-            "baseName": "bankruptLimitUpPrice",
-            "type": "number"
-        },
-        {
-            "name": "prevTotalVolume",
-            "baseName": "prevTotalVolume",
             "type": "number"
         },
         {
@@ -1655,24 +2022,24 @@ export class Instrument {
             "type": "number"
         },
         {
-            "name": "indicativeTaxRate",
-            "baseName": "indicativeTaxRate",
-            "type": "number"
-        },
-        {
             "name": "indicativeSettlePrice",
             "baseName": "indicativeSettlePrice",
             "type": "number"
         },
         {
-            "name": "optionUnderlyingPrice",
-            "baseName": "optionUnderlyingPrice",
+            "name": "settledPriceAdjustmentRate",
+            "baseName": "settledPriceAdjustmentRate",
             "type": "number"
         },
         {
             "name": "settledPrice",
             "baseName": "settledPrice",
             "type": "number"
+        },
+        {
+            "name": "instantPnl",
+            "baseName": "instantPnl",
+            "type": "boolean"
         },
         {
             "name": "timestamp",
@@ -1820,44 +2187,30 @@ export class Margin {
     'account': number;
     'currency': string;
     'riskLimit'?: number;
-    'prevState'?: string;
     'state'?: string;
-    'action'?: string;
     'amount'?: number;
-    'pendingCredit'?: number;
-    'pendingDebit'?: number;
-    'confirmedDebit'?: number;
     'prevRealisedPnl'?: number;
-    'prevUnrealisedPnl'?: number;
     'grossComm'?: number;
     'grossOpenCost'?: number;
     'grossOpenPremium'?: number;
     'grossExecCost'?: number;
     'grossMarkValue'?: number;
     'riskValue'?: number;
-    'taxableMargin'?: number;
     'initMargin'?: number;
     'maintMargin'?: number;
-    'sessionMargin'?: number;
     'targetExcessMargin'?: number;
-    'varMargin'?: number;
     'realisedPnl'?: number;
     'unrealisedPnl'?: number;
-    'indicativeTax'?: number;
-    'unrealisedProfit'?: number;
-    'syntheticMargin'?: number;
     'walletBalance'?: number;
     'marginBalance'?: number;
-    'marginBalancePcnt'?: number;
     'marginLeverage'?: number;
     'marginUsedPcnt'?: number;
     'excessMargin'?: number;
-    'excessMarginPcnt'?: number;
     'availableMargin'?: number;
     'withdrawableMargin'?: number;
+    'makerFeeDiscount'?: number;
+    'takerFeeDiscount'?: number;
     'timestamp'?: Date;
-    'grossLastValue'?: number;
-    'commission'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -1878,18 +2231,8 @@ export class Margin {
             "type": "number"
         },
         {
-            "name": "prevState",
-            "baseName": "prevState",
-            "type": "string"
-        },
-        {
             "name": "state",
             "baseName": "state",
-            "type": "string"
-        },
-        {
-            "name": "action",
-            "baseName": "action",
             "type": "string"
         },
         {
@@ -1898,28 +2241,8 @@ export class Margin {
             "type": "number"
         },
         {
-            "name": "pendingCredit",
-            "baseName": "pendingCredit",
-            "type": "number"
-        },
-        {
-            "name": "pendingDebit",
-            "baseName": "pendingDebit",
-            "type": "number"
-        },
-        {
-            "name": "confirmedDebit",
-            "baseName": "confirmedDebit",
-            "type": "number"
-        },
-        {
             "name": "prevRealisedPnl",
             "baseName": "prevRealisedPnl",
-            "type": "number"
-        },
-        {
-            "name": "prevUnrealisedPnl",
-            "baseName": "prevUnrealisedPnl",
             "type": "number"
         },
         {
@@ -1953,11 +2276,6 @@ export class Margin {
             "type": "number"
         },
         {
-            "name": "taxableMargin",
-            "baseName": "taxableMargin",
-            "type": "number"
-        },
-        {
             "name": "initMargin",
             "baseName": "initMargin",
             "type": "number"
@@ -1968,18 +2286,8 @@ export class Margin {
             "type": "number"
         },
         {
-            "name": "sessionMargin",
-            "baseName": "sessionMargin",
-            "type": "number"
-        },
-        {
             "name": "targetExcessMargin",
             "baseName": "targetExcessMargin",
-            "type": "number"
-        },
-        {
-            "name": "varMargin",
-            "baseName": "varMargin",
             "type": "number"
         },
         {
@@ -1993,21 +2301,6 @@ export class Margin {
             "type": "number"
         },
         {
-            "name": "indicativeTax",
-            "baseName": "indicativeTax",
-            "type": "number"
-        },
-        {
-            "name": "unrealisedProfit",
-            "baseName": "unrealisedProfit",
-            "type": "number"
-        },
-        {
-            "name": "syntheticMargin",
-            "baseName": "syntheticMargin",
-            "type": "number"
-        },
-        {
             "name": "walletBalance",
             "baseName": "walletBalance",
             "type": "number"
@@ -2015,11 +2308,6 @@ export class Margin {
         {
             "name": "marginBalance",
             "baseName": "marginBalance",
-            "type": "number"
-        },
-        {
-            "name": "marginBalancePcnt",
-            "baseName": "marginBalancePcnt",
             "type": "number"
         },
         {
@@ -2038,11 +2326,6 @@ export class Margin {
             "type": "number"
         },
         {
-            "name": "excessMarginPcnt",
-            "baseName": "excessMarginPcnt",
-            "type": "number"
-        },
-        {
             "name": "availableMargin",
             "baseName": "availableMargin",
             "type": "number"
@@ -2053,19 +2336,19 @@ export class Margin {
             "type": "number"
         },
         {
+            "name": "makerFeeDiscount",
+            "baseName": "makerFeeDiscount",
+            "type": "number"
+        },
+        {
+            "name": "takerFeeDiscount",
+            "baseName": "takerFeeDiscount",
+            "type": "number"
+        },
+        {
             "name": "timestamp",
             "baseName": "timestamp",
             "type": "Date"
-        },
-        {
-            "name": "grossLastValue",
-            "baseName": "grossLastValue",
-            "type": "number"
-        },
-        {
-            "name": "commission",
-            "baseName": "commission",
-            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -2090,6 +2373,65 @@ export class ModelError {
     }
 }
 
+export class NetworksConfig {
+    'network': string;
+    'name'?: string;
+    'currency'?: string;
+    'networkSymbol'?: string;
+    'transactionExplorer'?: string;
+    'tokenExplorer'?: string;
+    'depositConfirmations'?: number;
+    'enabled'?: boolean;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "network",
+            "baseName": "network",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
+        },
+        {
+            "name": "currency",
+            "baseName": "currency",
+            "type": "string"
+        },
+        {
+            "name": "networkSymbol",
+            "baseName": "networkSymbol",
+            "type": "string"
+        },
+        {
+            "name": "transactionExplorer",
+            "baseName": "transactionExplorer",
+            "type": "string"
+        },
+        {
+            "name": "tokenExplorer",
+            "baseName": "tokenExplorer",
+            "type": "string"
+        },
+        {
+            "name": "depositConfirmations",
+            "baseName": "depositConfirmations",
+            "type": "number"
+        },
+        {
+            "name": "enabled",
+            "baseName": "enabled",
+            "type": "boolean"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return NetworksConfig.attributeTypeMap;
+    }
+}
+
 /**
 * Placement, Cancellation, Amending, and History
 */
@@ -2100,7 +2442,6 @@ export class Order {
     'account'?: number;
     'symbol'?: string;
     'side'?: string;
-    'simpleOrderQty'?: number;
     'orderQty'?: number;
     'price'?: number;
     'displayQty'?: number;
@@ -2113,17 +2454,13 @@ export class Order {
     'timeInForce'?: string;
     'execInst'?: string;
     'contingencyType'?: string;
-    'exDestination'?: string;
     'ordStatus'?: string;
     'triggered'?: string;
     'workingIndicator'?: boolean;
     'ordRejReason'?: string;
-    'simpleLeavesQty'?: number;
     'leavesQty'?: number;
-    'simpleCumQty'?: number;
     'cumQty'?: number;
     'avgPx'?: number;
-    'multiLegReportingType'?: string;
     'text'?: string;
     'transactTime'?: Date;
     'timestamp'?: Date;
@@ -2160,11 +2497,6 @@ export class Order {
             "name": "side",
             "baseName": "side",
             "type": "string"
-        },
-        {
-            "name": "simpleOrderQty",
-            "baseName": "simpleOrderQty",
-            "type": "number"
         },
         {
             "name": "orderQty",
@@ -2227,11 +2559,6 @@ export class Order {
             "type": "string"
         },
         {
-            "name": "exDestination",
-            "baseName": "exDestination",
-            "type": "string"
-        },
-        {
             "name": "ordStatus",
             "baseName": "ordStatus",
             "type": "string"
@@ -2252,18 +2579,8 @@ export class Order {
             "type": "string"
         },
         {
-            "name": "simpleLeavesQty",
-            "baseName": "simpleLeavesQty",
-            "type": "number"
-        },
-        {
             "name": "leavesQty",
             "baseName": "leavesQty",
-            "type": "number"
-        },
-        {
-            "name": "simpleCumQty",
-            "baseName": "simpleCumQty",
             "type": "number"
         },
         {
@@ -2275,11 +2592,6 @@ export class Order {
             "name": "avgPx",
             "baseName": "avgPx",
             "type": "number"
-        },
-        {
-            "name": "multiLegReportingType",
-            "baseName": "multiLegReportingType",
-            "type": "string"
         },
         {
             "name": "text",
@@ -2308,6 +2620,7 @@ export class OrderBookL2 {
     'side': string;
     'size'?: number;
     'price'?: number;
+    'timestamp'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -2336,10 +2649,133 @@ export class OrderBookL2 {
             "name": "price",
             "baseName": "price",
             "type": "number"
+        },
+        {
+            "name": "timestamp",
+            "baseName": "timestamp",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
         return OrderBookL2.attributeTypeMap;
+    }
+}
+
+/**
+* Pinned Messages
+*/
+export class PinnedMessage {
+    'id': number;
+    'channelID': number;
+    'messageId': number;
+    'created'?: Date;
+    'ended'?: Date;
+    'createdUserId'?: number;
+    'endedUserId'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "number"
+        },
+        {
+            "name": "channelID",
+            "baseName": "channelID",
+            "type": "number"
+        },
+        {
+            "name": "messageId",
+            "baseName": "messageId",
+            "type": "number"
+        },
+        {
+            "name": "created",
+            "baseName": "created",
+            "type": "Date"
+        },
+        {
+            "name": "ended",
+            "baseName": "ended",
+            "type": "Date"
+        },
+        {
+            "name": "createdUserId",
+            "baseName": "createdUserId",
+            "type": "number"
+        },
+        {
+            "name": "endedUserId",
+            "baseName": "endedUserId",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return PinnedMessage.attributeTypeMap;
+    }
+}
+
+/**
+* Proof of Reserves/Liabilities
+*/
+export class Porl {
+    'account': number;
+    'nonce'?: string;
+    'accountNonce': string;
+    'total': number;
+    'balance': number;
+    'filename'?: string;
+    'height': number;
+    'created': Date;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "account",
+            "baseName": "account",
+            "type": "number"
+        },
+        {
+            "name": "nonce",
+            "baseName": "nonce",
+            "type": "string"
+        },
+        {
+            "name": "accountNonce",
+            "baseName": "accountNonce",
+            "type": "string"
+        },
+        {
+            "name": "total",
+            "baseName": "total",
+            "type": "number"
+        },
+        {
+            "name": "balance",
+            "baseName": "balance",
+            "type": "number"
+        },
+        {
+            "name": "filename",
+            "baseName": "filename",
+            "type": "string"
+        },
+        {
+            "name": "height",
+            "baseName": "height",
+            "type": "number"
+        },
+        {
+            "name": "created",
+            "baseName": "created",
+            "type": "Date"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Porl.attributeTypeMap;
     }
 }
 
@@ -2349,7 +2785,7 @@ export class OrderBookL2 {
 export class Position {
     'account': number;
     'symbol': string;
-    'currency': string;
+    'currency'?: string;
     'underlying'?: string;
     'quoteCurrency'?: string;
     'commission'?: number;
@@ -2362,33 +2798,19 @@ export class Position {
     'rebalancedPnl'?: number;
     'prevRealisedPnl'?: number;
     'prevUnrealisedPnl'?: number;
-    'prevClosePrice'?: number;
-    'openingTimestamp'?: Date;
     'openingQty'?: number;
-    'openingCost'?: number;
-    'openingComm'?: number;
     'openOrderBuyQty'?: number;
     'openOrderBuyCost'?: number;
     'openOrderBuyPremium'?: number;
     'openOrderSellQty'?: number;
     'openOrderSellCost'?: number;
     'openOrderSellPremium'?: number;
-    'execBuyQty'?: number;
-    'execBuyCost'?: number;
-    'execSellQty'?: number;
-    'execSellCost'?: number;
-    'execQty'?: number;
-    'execCost'?: number;
-    'execComm'?: number;
-    'currentTimestamp'?: Date;
     'currentQty'?: number;
     'currentCost'?: number;
     'currentComm'?: number;
     'realisedCost'?: number;
     'unrealisedCost'?: number;
-    'grossOpenCost'?: number;
     'grossOpenPremium'?: number;
-    'grossExecCost'?: number;
     'isOpen'?: boolean;
     'markPrice'?: number;
     'markValue'?: number;
@@ -2397,38 +2819,17 @@ export class Position {
     'foreignNotional'?: number;
     'posState'?: string;
     'posCost'?: number;
-    'posCost2'?: number;
     'posCross'?: number;
-    'posInit'?: number;
     'posComm'?: number;
     'posLoss'?: number;
     'posMargin'?: number;
     'posMaint'?: number;
-    'posAllowance'?: number;
-    'taxableMargin'?: number;
     'initMargin'?: number;
     'maintMargin'?: number;
-    'sessionMargin'?: number;
-    'targetExcessMargin'?: number;
-    'varMargin'?: number;
-    'realisedGrossPnl'?: number;
-    'realisedTax'?: number;
     'realisedPnl'?: number;
-    'unrealisedGrossPnl'?: number;
-    'longBankrupt'?: number;
-    'shortBankrupt'?: number;
-    'taxBase'?: number;
-    'indicativeTaxRate'?: number;
-    'indicativeTax'?: number;
-    'unrealisedTax'?: number;
     'unrealisedPnl'?: number;
     'unrealisedPnlPcnt'?: number;
     'unrealisedRoePcnt'?: number;
-    'simpleQty'?: number;
-    'simpleCost'?: number;
-    'simpleValue'?: number;
-    'simplePnl'?: number;
-    'simplePnlPcnt'?: number;
     'avgCostPrice'?: number;
     'avgEntryPrice'?: number;
     'breakEvenPrice'?: number;
@@ -2436,8 +2837,6 @@ export class Position {
     'liquidationPrice'?: number;
     'bankruptPrice'?: number;
     'timestamp'?: Date;
-    'lastPrice'?: number;
-    'lastValue'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -2518,28 +2917,8 @@ export class Position {
             "type": "number"
         },
         {
-            "name": "prevClosePrice",
-            "baseName": "prevClosePrice",
-            "type": "number"
-        },
-        {
-            "name": "openingTimestamp",
-            "baseName": "openingTimestamp",
-            "type": "Date"
-        },
-        {
             "name": "openingQty",
             "baseName": "openingQty",
-            "type": "number"
-        },
-        {
-            "name": "openingCost",
-            "baseName": "openingCost",
-            "type": "number"
-        },
-        {
-            "name": "openingComm",
-            "baseName": "openingComm",
             "type": "number"
         },
         {
@@ -2573,46 +2952,6 @@ export class Position {
             "type": "number"
         },
         {
-            "name": "execBuyQty",
-            "baseName": "execBuyQty",
-            "type": "number"
-        },
-        {
-            "name": "execBuyCost",
-            "baseName": "execBuyCost",
-            "type": "number"
-        },
-        {
-            "name": "execSellQty",
-            "baseName": "execSellQty",
-            "type": "number"
-        },
-        {
-            "name": "execSellCost",
-            "baseName": "execSellCost",
-            "type": "number"
-        },
-        {
-            "name": "execQty",
-            "baseName": "execQty",
-            "type": "number"
-        },
-        {
-            "name": "execCost",
-            "baseName": "execCost",
-            "type": "number"
-        },
-        {
-            "name": "execComm",
-            "baseName": "execComm",
-            "type": "number"
-        },
-        {
-            "name": "currentTimestamp",
-            "baseName": "currentTimestamp",
-            "type": "Date"
-        },
-        {
             "name": "currentQty",
             "baseName": "currentQty",
             "type": "number"
@@ -2638,18 +2977,8 @@ export class Position {
             "type": "number"
         },
         {
-            "name": "grossOpenCost",
-            "baseName": "grossOpenCost",
-            "type": "number"
-        },
-        {
             "name": "grossOpenPremium",
             "baseName": "grossOpenPremium",
-            "type": "number"
-        },
-        {
-            "name": "grossExecCost",
-            "baseName": "grossExecCost",
             "type": "number"
         },
         {
@@ -2693,18 +3022,8 @@ export class Position {
             "type": "number"
         },
         {
-            "name": "posCost2",
-            "baseName": "posCost2",
-            "type": "number"
-        },
-        {
             "name": "posCross",
             "baseName": "posCross",
-            "type": "number"
-        },
-        {
-            "name": "posInit",
-            "baseName": "posInit",
             "type": "number"
         },
         {
@@ -2728,16 +3047,6 @@ export class Position {
             "type": "number"
         },
         {
-            "name": "posAllowance",
-            "baseName": "posAllowance",
-            "type": "number"
-        },
-        {
-            "name": "taxableMargin",
-            "baseName": "taxableMargin",
-            "type": "number"
-        },
-        {
             "name": "initMargin",
             "baseName": "initMargin",
             "type": "number"
@@ -2748,68 +3057,8 @@ export class Position {
             "type": "number"
         },
         {
-            "name": "sessionMargin",
-            "baseName": "sessionMargin",
-            "type": "number"
-        },
-        {
-            "name": "targetExcessMargin",
-            "baseName": "targetExcessMargin",
-            "type": "number"
-        },
-        {
-            "name": "varMargin",
-            "baseName": "varMargin",
-            "type": "number"
-        },
-        {
-            "name": "realisedGrossPnl",
-            "baseName": "realisedGrossPnl",
-            "type": "number"
-        },
-        {
-            "name": "realisedTax",
-            "baseName": "realisedTax",
-            "type": "number"
-        },
-        {
             "name": "realisedPnl",
             "baseName": "realisedPnl",
-            "type": "number"
-        },
-        {
-            "name": "unrealisedGrossPnl",
-            "baseName": "unrealisedGrossPnl",
-            "type": "number"
-        },
-        {
-            "name": "longBankrupt",
-            "baseName": "longBankrupt",
-            "type": "number"
-        },
-        {
-            "name": "shortBankrupt",
-            "baseName": "shortBankrupt",
-            "type": "number"
-        },
-        {
-            "name": "taxBase",
-            "baseName": "taxBase",
-            "type": "number"
-        },
-        {
-            "name": "indicativeTaxRate",
-            "baseName": "indicativeTaxRate",
-            "type": "number"
-        },
-        {
-            "name": "indicativeTax",
-            "baseName": "indicativeTax",
-            "type": "number"
-        },
-        {
-            "name": "unrealisedTax",
-            "baseName": "unrealisedTax",
             "type": "number"
         },
         {
@@ -2825,31 +3074,6 @@ export class Position {
         {
             "name": "unrealisedRoePcnt",
             "baseName": "unrealisedRoePcnt",
-            "type": "number"
-        },
-        {
-            "name": "simpleQty",
-            "baseName": "simpleQty",
-            "type": "number"
-        },
-        {
-            "name": "simpleCost",
-            "baseName": "simpleCost",
-            "type": "number"
-        },
-        {
-            "name": "simpleValue",
-            "baseName": "simpleValue",
-            "type": "number"
-        },
-        {
-            "name": "simplePnl",
-            "baseName": "simplePnl",
-            "type": "number"
-        },
-        {
-            "name": "simplePnlPcnt",
-            "baseName": "simplePnlPcnt",
             "type": "number"
         },
         {
@@ -2886,16 +3110,6 @@ export class Position {
             "name": "timestamp",
             "baseName": "timestamp",
             "type": "Date"
-        },
-        {
-            "name": "lastPrice",
-            "baseName": "lastPrice",
-            "type": "number"
-        },
-        {
-            "name": "lastValue",
-            "baseName": "lastValue",
-            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -3010,6 +3224,62 @@ export class QuoteFillRatio {
 }
 
 /**
+* Hourly Quote Value Ratio Statistic
+*/
+export class QuoteValueRatio {
+    'timestamp'?: Date;
+    'account'?: number;
+    'symbol'?: string;
+    'quoteCount'?: number;
+    'volumeXBT'?: number;
+    'QVR'?: number;
+    'id'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "timestamp",
+            "baseName": "timestamp",
+            "type": "Date"
+        },
+        {
+            "name": "account",
+            "baseName": "account",
+            "type": "number"
+        },
+        {
+            "name": "symbol",
+            "baseName": "symbol",
+            "type": "string"
+        },
+        {
+            "name": "quoteCount",
+            "baseName": "quoteCount",
+            "type": "number"
+        },
+        {
+            "name": "volumeXBT",
+            "baseName": "volumeXBT",
+            "type": "number"
+        },
+        {
+            "name": "QVR",
+            "baseName": "QVR",
+            "type": "number"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return QuoteValueRatio.attributeTypeMap;
+    }
+}
+
+/**
 * Historical Settlement Data
 */
 export class Settlement {
@@ -3074,6 +3344,38 @@ export class Settlement {
 
     static getAttributeTypeMap() {
         return Settlement.attributeTypeMap;
+    }
+}
+
+/**
+* Get the current user staking amount in vertical format.
+*/
+export class StakingRecord {
+    'account': number;
+    'amount'?: number;
+    'currency'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "account",
+            "baseName": "account",
+            "type": "number"
+        },
+        {
+            "name": "amount",
+            "baseName": "amount",
+            "type": "number"
+        },
+        {
+            "name": "currency",
+            "baseName": "currency",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StakingRecord.attributeTypeMap;
     }
 }
 
@@ -3215,6 +3517,53 @@ export class StatsUSD {
     }
 }
 
+export class StatsUSDBySymbol {
+    'symbol': string;
+    'currency'?: string;
+    'turnover24h'?: number;
+    'turnover30d'?: number;
+    'turnover365d'?: number;
+    'turnover'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "symbol",
+            "baseName": "symbol",
+            "type": "string"
+        },
+        {
+            "name": "currency",
+            "baseName": "currency",
+            "type": "string"
+        },
+        {
+            "name": "turnover24h",
+            "baseName": "turnover24h",
+            "type": "number"
+        },
+        {
+            "name": "turnover30d",
+            "baseName": "turnover30d",
+            "type": "number"
+        },
+        {
+            "name": "turnover365d",
+            "baseName": "turnover365d",
+            "type": "number"
+        },
+        {
+            "name": "turnover",
+            "baseName": "turnover",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return StatsUSDBySymbol.attributeTypeMap;
+    }
+}
+
 /**
 * Individual & Bucketed Trades
 */
@@ -3229,6 +3578,7 @@ export class Trade {
     'grossValue'?: number;
     'homeNotional'?: number;
     'foreignNotional'?: number;
+    'trdType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -3282,6 +3632,11 @@ export class Trade {
             "name": "foreignNotional",
             "baseName": "foreignNotional",
             "type": "number"
+        },
+        {
+            "name": "trdType",
+            "baseName": "trdType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -3378,10 +3733,43 @@ export class TradeBin {
     }
 }
 
+/**
+* 30 days USD average trading volume
+*/
+export class TradingVolume {
+    'advUsd': number;
+    'advUsdSpot'?: number;
+    'advUsdContract'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "advUsd",
+            "baseName": "advUsd",
+            "type": "number"
+        },
+        {
+            "name": "advUsdSpot",
+            "baseName": "advUsdSpot",
+            "type": "number"
+        },
+        {
+            "name": "advUsdContract",
+            "baseName": "advUsdContract",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TradingVolume.attributeTypeMap;
+    }
+}
+
 export class Transaction {
     'transactID': string;
     'account'?: number;
     'currency'?: string;
+    'network'?: string;
     'transactType'?: string;
     'amount'?: number;
     'fee'?: number;
@@ -3391,6 +3779,7 @@ export class Transaction {
     'text'?: string;
     'transactTime'?: Date;
     'timestamp'?: Date;
+    'walletBalance'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -3408,6 +3797,11 @@ export class Transaction {
         {
             "name": "currency",
             "baseName": "currency",
+            "type": "string"
+        },
+        {
+            "name": "network",
+            "baseName": "network",
             "type": "string"
         },
         {
@@ -3454,6 +3848,11 @@ export class Transaction {
             "name": "timestamp",
             "baseName": "timestamp",
             "type": "Date"
+        },
+        {
+            "name": "walletBalance",
+            "baseName": "walletBalance",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -3466,21 +3865,23 @@ export class Transaction {
 */
 export class User {
     'id'?: number;
-    'ownerId'?: number;
     'firstname'?: string;
     'lastname'?: string;
     'username': string;
-    'email': string;
+    'accountName'?: string;
+    'isUser': boolean;
+    'email'?: string;
+    'dateOfBirth'?: string;
     'phone'?: string;
     'created'?: Date;
     'lastUpdated'?: Date;
     'preferences'?: UserPreferences;
     'tFAEnabled'?: string;
     'affiliateID'?: string;
-    'pgpPubKey'?: string;
     'country'?: string;
     'geoipCountry'?: string;
     'geoipRegion'?: string;
+    'firstTradeTimestamp'?: Date;
     'typ'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -3489,11 +3890,6 @@ export class User {
         {
             "name": "id",
             "baseName": "id",
-            "type": "number"
-        },
-        {
-            "name": "ownerId",
-            "baseName": "ownerId",
             "type": "number"
         },
         {
@@ -3512,8 +3908,23 @@ export class User {
             "type": "string"
         },
         {
+            "name": "accountName",
+            "baseName": "accountName",
+            "type": "string"
+        },
+        {
+            "name": "isUser",
+            "baseName": "isUser",
+            "type": "boolean"
+        },
+        {
             "name": "email",
             "baseName": "email",
+            "type": "string"
+        },
+        {
+            "name": "dateOfBirth",
+            "baseName": "dateOfBirth",
             "type": "string"
         },
         {
@@ -3547,11 +3958,6 @@ export class User {
             "type": "string"
         },
         {
-            "name": "pgpPubKey",
-            "baseName": "pgpPubKey",
-            "type": "string"
-        },
-        {
             "name": "country",
             "baseName": "country",
             "type": "string"
@@ -3565,6 +3971,11 @@ export class User {
             "name": "geoipRegion",
             "baseName": "geoipRegion",
             "type": "string"
+        },
+        {
+            "name": "firstTradeTimestamp",
+            "baseName": "firstTradeTimestamp",
+            "type": "Date"
         },
         {
             "name": "typ",
@@ -3590,7 +4001,7 @@ export class UserCommissionsBySymbol {
 }
 
 /**
-* User Events for auditing
+* User Events for Auditing
 */
 export class UserEvent {
     'id'?: number;
@@ -3678,8 +4089,7 @@ export namespace UserEvent {
         BanZeroVolumeApiUser = <any> 'banZeroVolumeApiUser',
         LiquidationOrderPlaced = <any> 'liquidationOrderPlaced',
         Login = <any> 'login',
-        PgpMaskedEmail = <any> 'pgpMaskedEmail',
-        PgpTestEmail = <any> 'pgpTestEmail',
+        ExistingAccountRegistrationAttempt = <any> 'existingAccountRegistrationAttempt',
         PasswordChanged = <any> 'passwordChanged',
         PositionStateLiquidated = <any> 'positionStateLiquidated',
         PositionStateWarning = <any> 'positionStateWarning',
@@ -3695,6 +4105,8 @@ export namespace UserEvent {
         WithdrawalCompleted = <any> 'withdrawalCompleted',
         WithdrawalConfirmed = <any> 'withdrawalConfirmed',
         WithdrawalRequested = <any> 'withdrawalRequested',
+        AddressSkipConfirmRequested = <any> 'addressSkipConfirmRequested',
+        AddressSkipConfirmVerified = <any> 'addressSkipConfirmVerified',
         Verify = <any> 'verify'
     }
     export enum StatusEnum {
@@ -3712,17 +4124,33 @@ export class UserPreferences {
     'debug'?: boolean;
     'disableEmails'?: Array<string>;
     'disablePush'?: Array<string>;
+    'displayCorpEnrollUpsell'?: boolean;
+    'equivalentCurrency'?: string;
+    'features'?: Array<string>;
+    'favourites'?: Array<string>;
+    'favouritesAssets'?: Array<string>;
+    'favouritesOrdered'?: Array<string>;
     'hideConfirmDialogs'?: Array<string>;
     'hideConnectionModal'?: boolean;
     'hideFromLeaderboard'?: boolean;
     'hideNameFromLeaderboard'?: boolean;
     'hideNotifications'?: Array<string>;
+    'hidePhoneConfirm'?: boolean;
+    'isSensitiveInfoVisible'?: boolean;
+    'isWalletZeroBalanceHidden'?: boolean;
     'locale'?: string;
+    'localeSetTime'?: number;
+    'marginPnlRow'?: string;
+    'marginPnlRowKind'?: string;
     'msgsSeen'?: Array<string>;
+    'notifications'?: any;
     'orderBookBinning'?: any;
     'orderBookType'?: string;
     'orderClearImmediate'?: boolean;
     'orderControlsPlusMinus'?: boolean;
+    'platformLayout'?: string;
+    'selectedFiatCurrency'?: string;
+    'showChartBottomToolbar'?: boolean;
     'showLocaleNumbers'?: boolean;
     'sounds'?: Array<string>;
     'strictIPCheck'?: boolean;
@@ -3730,6 +4158,7 @@ export class UserPreferences {
     'tickerGroup'?: string;
     'tickerPinned'?: boolean;
     'tradeLayout'?: string;
+    'userColor'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -3780,6 +4209,36 @@ export class UserPreferences {
             "type": "Array<string>"
         },
         {
+            "name": "displayCorpEnrollUpsell",
+            "baseName": "displayCorpEnrollUpsell",
+            "type": "boolean"
+        },
+        {
+            "name": "equivalentCurrency",
+            "baseName": "equivalentCurrency",
+            "type": "string"
+        },
+        {
+            "name": "features",
+            "baseName": "features",
+            "type": "Array<string>"
+        },
+        {
+            "name": "favourites",
+            "baseName": "favourites",
+            "type": "Array<string>"
+        },
+        {
+            "name": "favouritesAssets",
+            "baseName": "favouritesAssets",
+            "type": "Array<string>"
+        },
+        {
+            "name": "favouritesOrdered",
+            "baseName": "favouritesOrdered",
+            "type": "Array<string>"
+        },
+        {
             "name": "hideConfirmDialogs",
             "baseName": "hideConfirmDialogs",
             "type": "Array<string>"
@@ -3805,14 +4264,49 @@ export class UserPreferences {
             "type": "Array<string>"
         },
         {
+            "name": "hidePhoneConfirm",
+            "baseName": "hidePhoneConfirm",
+            "type": "boolean"
+        },
+        {
+            "name": "isSensitiveInfoVisible",
+            "baseName": "isSensitiveInfoVisible",
+            "type": "boolean"
+        },
+        {
+            "name": "isWalletZeroBalanceHidden",
+            "baseName": "isWalletZeroBalanceHidden",
+            "type": "boolean"
+        },
+        {
             "name": "locale",
             "baseName": "locale",
+            "type": "string"
+        },
+        {
+            "name": "localeSetTime",
+            "baseName": "localeSetTime",
+            "type": "number"
+        },
+        {
+            "name": "marginPnlRow",
+            "baseName": "marginPnlRow",
+            "type": "string"
+        },
+        {
+            "name": "marginPnlRowKind",
+            "baseName": "marginPnlRowKind",
             "type": "string"
         },
         {
             "name": "msgsSeen",
             "baseName": "msgsSeen",
             "type": "Array<string>"
+        },
+        {
+            "name": "notifications",
+            "baseName": "notifications",
+            "type": "any"
         },
         {
             "name": "orderBookBinning",
@@ -3832,6 +4326,21 @@ export class UserPreferences {
         {
             "name": "orderControlsPlusMinus",
             "baseName": "orderControlsPlusMinus",
+            "type": "boolean"
+        },
+        {
+            "name": "platformLayout",
+            "baseName": "platformLayout",
+            "type": "string"
+        },
+        {
+            "name": "selectedFiatCurrency",
+            "baseName": "selectedFiatCurrency",
+            "type": "string"
+        },
+        {
+            "name": "showChartBottomToolbar",
+            "baseName": "showChartBottomToolbar",
             "type": "boolean"
         },
         {
@@ -3868,6 +4377,11 @@ export class UserPreferences {
             "name": "tradeLayout",
             "baseName": "tradeLayout",
             "type": "string"
+        },
+        {
+            "name": "userColor",
+            "baseName": "userColor",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -3875,20 +4389,12 @@ export class UserPreferences {
     }
 }
 
+/**
+* Assets and Networks Data
+*/
 export class Wallet {
     'account': number;
     'currency': string;
-    'prevDeposited'?: number;
-    'prevWithdrawn'?: number;
-    'prevTransferIn'?: number;
-    'prevTransferOut'?: number;
-    'prevAmount'?: number;
-    'prevTimestamp'?: Date;
-    'deltaDeposited'?: number;
-    'deltaWithdrawn'?: number;
-    'deltaTransferIn'?: number;
-    'deltaTransferOut'?: number;
-    'deltaAmount'?: number;
     'deposited'?: number;
     'withdrawn'?: number;
     'transferIn'?: number;
@@ -3898,9 +4404,6 @@ export class Wallet {
     'pendingDebit'?: number;
     'confirmedDebit'?: number;
     'timestamp'?: Date;
-    'addr'?: string;
-    'script'?: string;
-    'withdrawalLock'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -3914,61 +4417,6 @@ export class Wallet {
             "name": "currency",
             "baseName": "currency",
             "type": "string"
-        },
-        {
-            "name": "prevDeposited",
-            "baseName": "prevDeposited",
-            "type": "number"
-        },
-        {
-            "name": "prevWithdrawn",
-            "baseName": "prevWithdrawn",
-            "type": "number"
-        },
-        {
-            "name": "prevTransferIn",
-            "baseName": "prevTransferIn",
-            "type": "number"
-        },
-        {
-            "name": "prevTransferOut",
-            "baseName": "prevTransferOut",
-            "type": "number"
-        },
-        {
-            "name": "prevAmount",
-            "baseName": "prevAmount",
-            "type": "number"
-        },
-        {
-            "name": "prevTimestamp",
-            "baseName": "prevTimestamp",
-            "type": "Date"
-        },
-        {
-            "name": "deltaDeposited",
-            "baseName": "deltaDeposited",
-            "type": "number"
-        },
-        {
-            "name": "deltaWithdrawn",
-            "baseName": "deltaWithdrawn",
-            "type": "number"
-        },
-        {
-            "name": "deltaTransferIn",
-            "baseName": "deltaTransferIn",
-            "type": "number"
-        },
-        {
-            "name": "deltaTransferOut",
-            "baseName": "deltaTransferOut",
-            "type": "number"
-        },
-        {
-            "name": "deltaAmount",
-            "baseName": "deltaAmount",
-            "type": "number"
         },
         {
             "name": "deposited",
@@ -4014,21 +4462,6 @@ export class Wallet {
             "name": "timestamp",
             "baseName": "timestamp",
             "type": "Date"
-        },
-        {
-            "name": "addr",
-            "baseName": "addr",
-            "type": "string"
-        },
-        {
-            "name": "script",
-            "baseName": "script",
-            "type": "string"
-        },
-        {
-            "name": "withdrawalLock",
-            "baseName": "withdrawalLock",
-            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4058,16 +4491,21 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "APIKey": APIKey,
     "AccessToken": AccessToken,
+    "Address": Address,
     "Affiliate": Affiliate,
     "Announcement": Announcement,
+    "AssetsConfig": AssetsConfig,
+    "AssetsConfigNetworkItem": AssetsConfigNetworkItem,
     "Chat": Chat,
     "ChatChannel": ChatChannel,
+    "CollateralSupportAgreement": CollateralSupportAgreement,
     "CommunicationToken": CommunicationToken,
     "ConnectedUsers": ConnectedUsers,
     "ErrorError": ErrorError,
     "Execution": Execution,
     "Funding": Funding,
     "GlobalNotification": GlobalNotification,
+    "Guild": Guild,
     "IndexComposite": IndexComposite,
     "InlineResponse200": InlineResponse200,
     "Instrument": Instrument,
@@ -4077,17 +4515,24 @@ let typeMap: {[index: string]: any} = {
     "Liquidation": Liquidation,
     "Margin": Margin,
     "ModelError": ModelError,
+    "NetworksConfig": NetworksConfig,
     "Order": Order,
     "OrderBookL2": OrderBookL2,
+    "PinnedMessage": PinnedMessage,
+    "Porl": Porl,
     "Position": Position,
     "Quote": Quote,
     "QuoteFillRatio": QuoteFillRatio,
+    "QuoteValueRatio": QuoteValueRatio,
     "Settlement": Settlement,
+    "StakingRecord": StakingRecord,
     "Stats": Stats,
     "StatsHistory": StatsHistory,
     "StatsUSD": StatsUSD,
+    "StatsUSDBySymbol": StatsUSDBySymbol,
     "Trade": Trade,
     "TradeBin": TradeBin,
+    "TradingVolume": TradingVolume,
     "Transaction": Transaction,
     "User": User,
     "UserCommissionsBySymbol": UserCommissionsBySymbol,
@@ -4249,6 +4694,220 @@ export class APIKeyApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "Array<APIKey>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum AddressApiApiKeys {
+    apiExpires,
+    apiKey,
+    apiSignature,
+}
+
+export class AddressApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'apiExpires': new ApiKeyAuth('header', 'api-expires'),
+        'apiKey': new ApiKeyAuth('header', 'api-key'),
+        'apiSignature': new ApiKeyAuth('header', 'api-signature'),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: AddressApiApiKeys, value: string) {
+        (this.authentications as any)[AddressApiApiKeys[key]].apiKey = value;
+    }
+    /**
+     * 
+     * @summary Get your addresses.
+     * @param {*} [options] Override http request options.
+     */
+    public addressGet (options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Address>;  }> {
+        const localVarPath = this.basePath + '/address';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Array<Address>;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Array<Address>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Creates a new saved address.
+     * @param currency Currency of the address. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;
+     * @param network Selected network.
+     * @param address Destination Address.
+     * @param name Name of the entry, eg. &#39;Hardware wallet&#39;.
+     * @param note Optional annotation.
+     * @param skipConfirm Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation.
+     * @param skip2FA Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.
+     * @param {*} [options] Override http request options.
+     */
+    public addressNew (currency: string, network: string, address: string, name: string, note?: string, skipConfirm?: boolean, skip2FA?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: Address;  }> {
+        const localVarPath = this.basePath + '/address';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'currency' is not null or undefined
+        if (currency === null || currency === undefined) {
+            throw new Error('Required parameter currency was null or undefined when calling addressNew.');
+        }
+
+        // verify required parameter 'network' is not null or undefined
+        if (network === null || network === undefined) {
+            throw new Error('Required parameter network was null or undefined when calling addressNew.');
+        }
+
+        // verify required parameter 'address' is not null or undefined
+        if (address === null || address === undefined) {
+            throw new Error('Required parameter address was null or undefined when calling addressNew.');
+        }
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling addressNew.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (currency !== undefined) {
+            localVarFormParams['currency'] = ObjectSerializer.serialize(currency, "string");
+        }
+
+        if (network !== undefined) {
+            localVarFormParams['network'] = ObjectSerializer.serialize(network, "string");
+        }
+
+        if (address !== undefined) {
+            localVarFormParams['address'] = ObjectSerializer.serialize(address, "string");
+        }
+
+        if (name !== undefined) {
+            localVarFormParams['name'] = ObjectSerializer.serialize(name, "string");
+        }
+
+        if (note !== undefined) {
+            localVarFormParams['note'] = ObjectSerializer.serialize(note, "string");
+        }
+
+        if (skipConfirm !== undefined) {
+            localVarFormParams['skipConfirm'] = ObjectSerializer.serialize(skipConfirm, "boolean");
+        }
+
+        if (skip2FA !== undefined) {
+            localVarFormParams['skip2FA'] = ObjectSerializer.serialize(skip2FA, "boolean");
+        }
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Address;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Address");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -4473,7 +5132,7 @@ export class ChatApi {
      * @param count Number of results to fetch.
      * @param start Starting ID for results.
      * @param reverse If true, will sort results newest first.
-     * @param channelID Channel id. GET /chat/channels for ids. Leave blank for all.
+     * @param channelID Channel id. GET /chat/channels for ids. Global English by default
      * @param {*} [options] Override http request options.
      */
     public chatGet (count?: number, start?: number, reverse?: boolean, channelID?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Chat>;  }> {
@@ -4633,6 +5292,64 @@ export class ChatApi {
     }
     /**
      * 
+     * @summary Get pinned message for a channel.
+     * @param channelID 
+     * @param {*} [options] Override http request options.
+     */
+    public chatGetPinnedMessage (channelID: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: PinnedMessage;  }> {
+        const localVarPath = this.basePath + '/chat/pinned';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'channelID' is not null or undefined
+        if (channelID === null || channelID === undefined) {
+            throw new Error('Required parameter channelID was null or undefined when calling chatGetPinnedMessage.');
+        }
+
+        if (channelID !== undefined) {
+            localVarQueryParameters['channelID'] = ObjectSerializer.serialize(channelID, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: PinnedMessage;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "PinnedMessage");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Send a chat message.
      * @param message 
      * @param channelID Channel to post to. Default 1 (English).
@@ -4754,10 +5471,10 @@ export class ExecutionApi {
     /**
      * This returns all raw transactions, which includes order opening and cancelation, and order status changes. It can be quite noisy. More focused information is available at `/execution/tradeHistory`.  You may also use the `filter` param to target your query. Specify an array as a filter value, such as `{\"execType\": [\"Settlement\", \"Trade\"]}` to filter on multiple values.  See [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_8_8.html) for explanations of these fields. 
      * @summary Get all raw executions for your account.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -4847,22 +5564,32 @@ export class ExecutionApi {
     }
     /**
      * 
-     * @summary Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @summary Get all balance-affecting executions.
+     * @param targetAccountId AccountId fetching the trade history, must be a paired account with main user.
+     * @param targetAccountIds AccountIds fetching the trade history, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
      * @param endTime Ending date filter for results.
      * @param {*} [options] Override http request options.
      */
-    public executionGetTradeHistory (symbol?: string, filter?: string, columns?: string, count?: number, start?: number, reverse?: boolean, startTime?: Date, endTime?: Date, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Execution>;  }> {
+    public executionGetTradeHistory (targetAccountId?: number, targetAccountIds?: string, symbol?: string, filter?: string, columns?: string, count?: number, start?: number, reverse?: boolean, startTime?: Date, endTime?: Date, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Execution>;  }> {
         const localVarPath = this.basePath + '/execution/tradeHistory';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        if (targetAccountId !== undefined) {
+            localVarQueryParameters['targetAccountId'] = ObjectSerializer.serialize(targetAccountId, "number");
+        }
+
+        if (targetAccountIds !== undefined) {
+            localVarQueryParameters['targetAccountIds'] = ObjectSerializer.serialize(targetAccountIds, "string");
+        }
 
         if (symbol !== undefined) {
             localVarQueryParameters['symbol'] = ObjectSerializer.serialize(symbol, "string");
@@ -4993,10 +5720,10 @@ export class FundingApi {
     /**
      * 
      * @summary Get funding history.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -5184,6 +5911,648 @@ export class GlobalNotificationApi {
         });
     }
 }
+export enum GuildApiApiKeys {
+    apiExpires,
+    apiKey,
+    apiSignature,
+}
+
+export class GuildApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'apiExpires': new ApiKeyAuth('header', 'api-expires'),
+        'apiKey': new ApiKeyAuth('header', 'api-key'),
+        'apiSignature': new ApiKeyAuth('header', 'api-signature'),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: GuildApiApiKeys, value: string) {
+        (this.authentications as any)[GuildApiApiKeys[key]].apiKey = value;
+    }
+    /**
+     * 
+     * @summary Archive a guild
+     * @param {*} [options] Override http request options.
+     */
+    public guildArchive (options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/guild/archive';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Edit guild new guild
+     * @param name Name of the guild, must be unique, must be at least 5 characters
+     * @param emoji Emoji name.
+     * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100
+     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+     * @param potTraderId User ID of the guild member with order write permission for the pot
+     * @param description Guild description, can be used to explain the guild to other users.
+     * @param twitter Guild twitter handle.
+     * @param discord Guild discord link.
+     * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
+     * @param isPrivate Guild privacy status
+     * @param {*} [options] Override http request options.
+     */
+    public guildEdit (name: string, emoji: string, potDistributionPercent: number, potDistributionType: string, potTraderId?: number, description?: string, twitter?: string, discord?: string, imgUrl?: string, isPrivate?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: Guild;  }> {
+        const localVarPath = this.basePath + '/guild';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling guildEdit.');
+        }
+
+        // verify required parameter 'emoji' is not null or undefined
+        if (emoji === null || emoji === undefined) {
+            throw new Error('Required parameter emoji was null or undefined when calling guildEdit.');
+        }
+
+        // verify required parameter 'potDistributionPercent' is not null or undefined
+        if (potDistributionPercent === null || potDistributionPercent === undefined) {
+            throw new Error('Required parameter potDistributionPercent was null or undefined when calling guildEdit.');
+        }
+
+        // verify required parameter 'potDistributionType' is not null or undefined
+        if (potDistributionType === null || potDistributionType === undefined) {
+            throw new Error('Required parameter potDistributionType was null or undefined when calling guildEdit.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (name !== undefined) {
+            localVarFormParams['name'] = ObjectSerializer.serialize(name, "string");
+        }
+
+        if (emoji !== undefined) {
+            localVarFormParams['emoji'] = ObjectSerializer.serialize(emoji, "string");
+        }
+
+        if (potDistributionPercent !== undefined) {
+            localVarFormParams['potDistributionPercent'] = ObjectSerializer.serialize(potDistributionPercent, "number");
+        }
+
+        if (potDistributionType !== undefined) {
+            localVarFormParams['potDistributionType'] = ObjectSerializer.serialize(potDistributionType, "string");
+        }
+
+        if (potTraderId !== undefined) {
+            localVarFormParams['potTraderId'] = ObjectSerializer.serialize(potTraderId, "number");
+        }
+
+        if (description !== undefined) {
+            localVarFormParams['description'] = ObjectSerializer.serialize(description, "string");
+        }
+
+        if (twitter !== undefined) {
+            localVarFormParams['twitter'] = ObjectSerializer.serialize(twitter, "string");
+        }
+
+        if (discord !== undefined) {
+            localVarFormParams['discord'] = ObjectSerializer.serialize(discord, "string");
+        }
+
+        if (imgUrl !== undefined) {
+            localVarFormParams['imgUrl'] = ObjectSerializer.serialize(imgUrl, "string");
+        }
+
+        if (isPrivate !== undefined) {
+            localVarFormParams['isPrivate'] = ObjectSerializer.serialize(isPrivate, "boolean");
+        }
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Guild;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Guild");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get all guilds
+     * @param {*} [options] Override http request options.
+     */
+    public guildGet (options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<XAny>;  }> {
+        const localVarPath = this.basePath + '/guild';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Array<XAny>;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Array<XAny>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Request to Join a private guild or join a public guild
+     * @param code 
+     * @param {*} [options] Override http request options.
+     */
+    public guildJoin (code: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/guild/join';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'code' is not null or undefined
+        if (code === null || code === undefined) {
+            throw new Error('Required parameter code was null or undefined when calling guildJoin.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (code !== undefined) {
+            localVarFormParams['code'] = ObjectSerializer.serialize(code, "string");
+        }
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Kick member from guild
+     * @param memberUserId 
+     * @param {*} [options] Override http request options.
+     */
+    public guildKick (memberUserId: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/guild/kick';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'memberUserId' is not null or undefined
+        if (memberUserId === null || memberUserId === undefined) {
+            throw new Error('Required parameter memberUserId was null or undefined when calling guildKick.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (memberUserId !== undefined) {
+            localVarFormParams['memberUserId'] = ObjectSerializer.serialize(memberUserId, "number");
+        }
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Leave guild or cancel guild join request
+     * @param {*} [options] Override http request options.
+     */
+    public guildLeave (options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/guild/leave';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Creates a new guild
+     * @param name Name of the guild, must be unique, must be at least 5 characters
+     * @param emoji Emoji name.
+     * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100
+     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+     * @param description Guild description, can be used to explain the guild to other users.
+     * @param twitter Guild twitter handle.
+     * @param discord Guild discord link.
+     * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
+     * @param isPrivate Guild privacy status
+     * @param {*} [options] Override http request options.
+     */
+    public guildNew (name: string, emoji: string, potDistributionPercent: number, potDistributionType: string, description?: string, twitter?: string, discord?: string, imgUrl?: string, isPrivate?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: Guild;  }> {
+        const localVarPath = this.basePath + '/guild';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling guildNew.');
+        }
+
+        // verify required parameter 'emoji' is not null or undefined
+        if (emoji === null || emoji === undefined) {
+            throw new Error('Required parameter emoji was null or undefined when calling guildNew.');
+        }
+
+        // verify required parameter 'potDistributionPercent' is not null or undefined
+        if (potDistributionPercent === null || potDistributionPercent === undefined) {
+            throw new Error('Required parameter potDistributionPercent was null or undefined when calling guildNew.');
+        }
+
+        // verify required parameter 'potDistributionType' is not null or undefined
+        if (potDistributionType === null || potDistributionType === undefined) {
+            throw new Error('Required parameter potDistributionType was null or undefined when calling guildNew.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (name !== undefined) {
+            localVarFormParams['name'] = ObjectSerializer.serialize(name, "string");
+        }
+
+        if (emoji !== undefined) {
+            localVarFormParams['emoji'] = ObjectSerializer.serialize(emoji, "string");
+        }
+
+        if (potDistributionPercent !== undefined) {
+            localVarFormParams['potDistributionPercent'] = ObjectSerializer.serialize(potDistributionPercent, "number");
+        }
+
+        if (potDistributionType !== undefined) {
+            localVarFormParams['potDistributionType'] = ObjectSerializer.serialize(potDistributionType, "string");
+        }
+
+        if (description !== undefined) {
+            localVarFormParams['description'] = ObjectSerializer.serialize(description, "string");
+        }
+
+        if (twitter !== undefined) {
+            localVarFormParams['twitter'] = ObjectSerializer.serialize(twitter, "string");
+        }
+
+        if (discord !== undefined) {
+            localVarFormParams['discord'] = ObjectSerializer.serialize(discord, "string");
+        }
+
+        if (imgUrl !== undefined) {
+            localVarFormParams['imgUrl'] = ObjectSerializer.serialize(imgUrl, "string");
+        }
+
+        if (isPrivate !== undefined) {
+            localVarFormParams['isPrivate'] = ObjectSerializer.serialize(isPrivate, "boolean");
+        }
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Guild;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Guild");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Toggle share trades for your account, which controls whether your guild members can see your orders and positions in their UI
+     * @param shareTrades 
+     * @param {*} [options] Override http request options.
+     */
+    public guildShareTrades (shareTrades: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/guild/shareTrades';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'shareTrades' is not null or undefined
+        if (shareTrades === null || shareTrades === undefined) {
+            throw new Error('Required parameter shareTrades was null or undefined when calling guildShareTrades.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (shareTrades !== undefined) {
+            localVarFormParams['shareTrades'] = ObjectSerializer.serialize(shareTrades, "boolean");
+        }
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
 export enum InstrumentApiApiKeys {
     apiExpires,
     apiKey,
@@ -5235,12 +6604,12 @@ export class InstrumentApi {
         (this.authentications as any)[InstrumentApiApiKeys[key]].apiKey = value;
     }
     /**
-     * This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`.
+     * This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`.  The instrument type is specified by the `typ` param.  - Perpetual Contracts - `FFWCSX` - Perpetual Contracts (FX underliers) - `FFWCSF` - Spot - `IFXXXP` - Futures - `FFCCSX` - BitMEX Basket Index - `MRBXXX` - BitMEX Crypto Index - `MRCXXX` - BitMEX FX Index - `MRFXXX` - BitMEX Lending/Premium Index - `MRRXXX` - BitMEX Volatility Index - `MRIXXX` 
      * @summary Get instruments.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -5467,12 +6836,12 @@ export class InstrumentApi {
         });
     }
     /**
-     * Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to get the ticks and weights of the constituent exchanges that build the \".XBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
+     * Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.BXBT` to get the ticks and weights of the constituent exchanges that build the \".BXBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
      * @summary Show constituent parts of an index.
      * @param symbol The composite index symbol.
-     * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
+     * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -5602,6 +6971,64 @@ export class InstrumentApi {
             });
         });
     }
+    /**
+     * 
+     * @summary Get a summary of exchange statistics in USD.
+     * @param symbol Filter by symbol.
+     * @param columns Array of column names to fetch.
+     * @param {*} [options] Override http request options.
+     */
+    public instrumentGetUsdVolume (symbol?: string, columns?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<StatsUSDBySymbol>;  }> {
+        const localVarPath = this.basePath + '/instrument/usdVolume';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        if (symbol !== undefined) {
+            localVarQueryParameters['symbol'] = ObjectSerializer.serialize(symbol, "string");
+        }
+
+        if (columns !== undefined) {
+            localVarQueryParameters['columns'] = ObjectSerializer.serialize(columns, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Array<StatsUSDBySymbol>;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Array<StatsUSDBySymbol>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
 }
 export enum InsuranceApiApiKeys {
     apiExpires,
@@ -5656,10 +7083,10 @@ export class InsuranceApi {
     /**
      * 
      * @summary Get insurance fund history.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -5953,10 +7380,10 @@ export class LiquidationApi {
     /**
      * 
      * @summary Get liquidation orders.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -6090,15 +7517,15 @@ export class OrderApi {
         (this.authentications as any)[OrderApiApiKeys[key]].apiKey = value;
     }
     /**
-     * Send an `orderID` or `origClOrdID` to identify the order you wish to amend.  Both order quantity and price can be amended. Only one `qty` field can be used to amend.  Use the `leavesQty` field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position's delta by a certain amount, regardless of how much of the order has already filled.  > A `leavesQty` can be used to make a \"Filled\" order live again, if it is received within 60 seconds of the fill.  Like order placement, amending can be done in bulk. Simply send a request to `PUT /api/v1/order/bulk` with a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing the fields used in this endpoint. 
+     * Send an `orderID` or `origClOrdID` to identify the order you wish to amend.  Both order quantity and price can be amended. Only one `qty` field can be used to amend.  Use the `leavesQty` field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position's delta by a certain amount, regardless of how much of the order has already filled.  > A `leavesQty` can be used to make a \"Filled\" order live again, if it is received within 60 seconds of the fill. 
      * @summary Amend the quantity or price of an open order.
      * @param orderID Order ID
      * @param origClOrdID Client Order ID. See POST /order.
      * @param clOrdID Optional new Client Order ID, requires &#x60;origClOrdID&#x60;.
      * @param simpleOrderQty Deprecated: simple orders are not supported after 2018/10/26
-     * @param orderQty Optional order quantity in units of the instrument (i.e. contracts).
+     * @param orderQty Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)).
      * @param simpleLeavesQty Deprecated: simple orders are not supported after 2018/10/26
-     * @param leavesQty Optional leaves quantity in units of the instrument (i.e. contracts). Useful for amending partially filled orders.
+     * @param leavesQty Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders.
      * @param price Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders.
      * @param stopPx Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders.
      * @param pegOffsetValue Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders.
@@ -6270,12 +7697,13 @@ export class OrderApi {
     /**
      * 
      * @summary Cancels all of your orders.
+     * @param targetAccountIds AccountIds to cancel all orders, must be a paired account with main user. Also accepts wildcard, [*], this will cancel all orders for all accounts. the authenticated user has order write permissions for.
      * @param symbol Optional symbol. If provided, only cancels orders for that symbol.
      * @param filter Optional filter for cancellation. Use to only cancel some orders, e.g. &#x60;{\&quot;side\&quot;: \&quot;Buy\&quot;}&#x60;.
      * @param text Optional cancellation annotation. e.g. &#39;Spread Exceeded&#39;
      * @param {*} [options] Override http request options.
      */
-    public orderCancelAll (symbol?: string, filter?: string, text?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Order>;  }> {
+    public orderCancelAll (targetAccountIds?: string, symbol?: string, filter?: string, text?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Order>;  }> {
         const localVarPath = this.basePath + '/order/all';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -6284,6 +7712,10 @@ export class OrderApi {
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
+
+        if (targetAccountIds !== undefined) {
+            localVarFormParams['targetAccountIds'] = ObjectSerializer.serialize(targetAccountIds, "string");
+        }
 
         if (symbol !== undefined) {
             localVarFormParams['symbol'] = ObjectSerializer.serialize(symbol, "string");
@@ -6472,10 +7904,10 @@ export class OrderApi {
     /**
      * To get open orders only, send {\"open\": true} in the filter param.  See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_D_68.html\">the FIX Spec</a> for explanations of these fields.
      * @summary Get your orders.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -6564,23 +7996,23 @@ export class OrderApi {
         });
     }
     /**
-     * ## Placing Orders  This endpoint is used for placing orders. See individual fields below for more details on their use.  #### Order Types  All orders require a `symbol`. All other fields are optional except when otherwise specified.  These are the valid `ordType`s:  - **Limit**: The default order type. Specify an `orderQty` and `price`. - **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at   which point it will cancel. - **Stop**: A Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx` is reached, the order will be entered   into the book.   - On sell orders, the order will trigger if the triggering price is lower than the `stopPx`. On buys, higher.   - Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your     account so that it may trigger fully.   - `Close` Stops don't require an `orderQty`. See Execution Instructions below. - **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,   and `price`. - **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders. - **LimitIfTouched**: As above; use for Take Profit Limit orders.  #### Execution Instructions  The following `execInst`s are supported. If using multiple, separate with a comma (e.g. `LastPrice,Close`).  - **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,   it will cancel instead. - **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.   Use only one. By default, `'MarkPrice'` is used. Also used for Pegged orders to define the value of `'LastPeg'`. - **ReduceOnly**: A `'ReduceOnly'` order can only reduce your position, not increase it. If you have a `'ReduceOnly'`   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will   be amended down or canceled. If there are multiple `'ReduceOnly'` orders the least aggressive will be amended first. - **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit orders with the same side   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a   `'Close'` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your   position. If `orderQty` is not specified, a `'Close'` order has an `orderQty` equal to your current position's size.   - Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger     above or below the `stopPx`.  #### Linked Orders  [Linked Orders are deprecated as of 2018/11/10](https://blog.bitmex.com/api_announcement/deprecation-of-contingent-orders/)  #### Trailing Stops  You may use `pegPriceType` of `'TrailingStopPeg'` to create Trailing Stops. The pegged `stopPx` will move as the market moves away from the peg, and freeze as the market moves toward it.  To use, combine with `pegOffsetValue` to set the `stopPx` of your order. The peg is set to the triggering price specified in the `execInst` (default `'MarkPrice'`). Use a negative offset for stop-sell and buy-if-touched orders.  Requires `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.  #### Simple Quantities  [Simple Quantities are deprecated as of 2018/10/26](https://blog.bitmex.com/api_announcement/deprecation-of-simpleorderqty-functionality/)  #### Rate Limits  See the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time. Bulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.  You can also improve your reactivity to market movements while staying under your ratelimit by using the [Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay in the market and avoids the cancel/replace cycle.  #### Tracking Your Orders  If you want to keep track of order IDs yourself, set a unique `clOrdID` per order. This `clOrdID` will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters.  You can also change the `clOrdID` by amending an order, supplying an `origClOrdID`, and your desired new ID as the `clOrdID` param, like so:  ``` # Amends an order's leavesQty, and updates its clOrdID to \"def-456\" PUT /api/v1/order {\"origClOrdID\": \"abc-123\", \"clOrdID\": \"def-456\", \"leavesQty\": 1000} ``` 
+     * ## Placing Orders  This endpoint is used for placing orders. See individual fields below for more details on their use.  #### Order Types  All orders require a `symbol`. All other fields are optional except when otherwise specified.  These are the valid `ordType`s:  - **Limit**: The default order type. Specify an `orderQty` and `price`. - **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at   which point it will cancel. - **Stop**: A Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx` is reached, the order will be entered   into the book.   - On sell orders, the order will trigger if the triggering price is lower than the `stopPx`. On buys, higher.   - Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your     account so that it may trigger fully.   - `Close` Stops don't require an `orderQty`. See Execution Instructions below. - **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,   and `price`. - **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders. - **LimitIfTouched**: As above; use for Take Profit Limit orders. - **Pegged**: Pegged orders allow users to submit a limit price relative to the current market price. Specify a   `pegPriceType`, and `pegOffsetValue`.   - Pegged orders **must** have an `execInst` of `Fixed`. This means the limit price is set at the time the order     is accepted and does not change as the reference price changes.   - `PrimaryPeg`: Price is set relative to near touch price.   - `MarketPeg`: Price is set relative to far touch price.   - A `pegPriceType` submitted with no `ordType` is treated as a `Pegged` order.  #### Execution Instructions  The following `execInst`s are supported. If using multiple, separate with a comma (e.g. `LastPrice,Close`).  - **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement, it will cancel instead.   This is intended to protect you from the far touch moving towards you while the order is in transit.   It is not intended for speculating on the far touch moving away after submission - we consider such behaviour abusive and monitor for it. - **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.   Use only one. By default, `MarkPrice` is used. Also used for Pegged orders to define the value of `LastPeg`. IndexPrice is not applicable to spot trading symbols. - **ReduceOnly**: A `ReduceOnly` order can only reduce your position, not increase it. If you have a `ReduceOnly`   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will   be amended down or canceled. If there are multiple `ReduceOnly` orders the least aggressive will be amended first. Not applicable to spot trading symbols. - **Close**: `Close` implies `ReduceOnly`. A `Close` order will cancel other active limit orders with the same side   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a   `Close` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your   position. If `orderQty` is not specified, a `Close` order has an `orderQty` equal to your current position's size. Not applicable to spot trading symbols.   - Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger     above or below the `stopPx`. - **LastWithinMark**: Used by stop orders with `LastPrice` to allow stop triggers only when:   - For Sell Stop Market / Stop Limit Order     - Last Price &lt= Stop Price     - Last Price &gt= Mark Price × (1 - 5%)   - For Buy Stop Market / Stop Limit Order:     - Last Price &gt= Stop Price     - Last Price &lt= Mark Price × (1 + 5%)   - Not applicable to spot trading symbols. - **Fixed**: Pegged orders **must** have an `execInst` of `Fixed`. This means the limit price is set at the time   the order is accepted and does not change as the reference price changes.  #### Pegged Orders  Pegged orders allow users to submit a limit price relative to the current market price. The limit price is set once when the order is submitted and does not change with the reference price. This order type is not intended for speculating on the far touch moving away after submission - we consider such behaviour abusive and monitor for it.  Pegged orders have an `ordType` of `Pegged`, and an `execInst` of `Fixed`.  A `pegPriceType` and `pegOffsetValue` must also be submitted:  - `PrimaryPeg` - price is set relative to the **near touch** price - `MarketPeg` - price is set relative to the **far touch** price  #### Trailing Stop Pegged Orders  Use `pegPriceType` of `TrailingStopPeg` to create Trailing Stops.  The price is set at submission and updates once per second if the underlying price (last/mark/index) has moved by more than 0.1%. `stopPx` then moves as the market moves away from the peg, and freezes as the market moves toward it.  Use `pegOffsetValue` to set the `stopPx` of your order. The peg is set to the triggering price specified in the `execInst` (default `MarkPrice`). Use a negative offset for stop-sell and buy-if-touched orders.  Requires `ordType`: `Stop`, `StopLimit`, `MarketIfTouched`, `LimitIfTouched`.  #### Linked Orders  Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing. Please follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.  BitMEX offers four advanced Linked Order types:  - **OCO**: _One Cancels the Other_. A very flexible version of the standard Stop / Take Profit technique.   Multiple orders may be linked together using a single `clOrdLinkID`. Send a `contingencyType` of   `OneCancelsTheOther` on the orders. The first order that fully or partially executes (or activates   for `Stop` orders) will cancel all other orders with the same `clOrdLinkID`. - **OTO**: _One Triggers the Other_. Send a `contingencyType` of `'OneTriggersTheOther'` on the primary order and   then subsequent orders with the same `clOrdLinkID` will be not be triggered until the primary order fully executes.  #### Trailing Stops  You may use `pegPriceType` of `'TrailingStopPeg'` to create Trailing Stops. The pegged `stopPx` will move as the market moves away from the peg, and freeze as the market moves toward it.  To use, combine with `pegOffsetValue` to set the `stopPx` of your order. The peg is set to the triggering price specified in the `execInst` (default `'MarkPrice'`). Use a negative offset for stop-sell and buy-if-touched orders.  Requires `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.  #### Simple Quantities  [Simple Quantities are deprecated as of 2018/10/26](https://blog.bitmex.com/api_announcement/deprecation-of-simpleorderqty-functionality/)  #### Rate Limits  You can improve your reactivity to market movements while staying under your rate limit by using the [Amend](#!/Order/Order_amend) endpoint (PUT /order). This allows you to stay in the market and avoids the cancel/replace cycle.  #### Tracking Your Orders  If you want to keep track of order IDs yourself, set a unique `clOrdID` per order. This `clOrdID` will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters.  You can also change the `clOrdID` by amending an order, supplying an `origClOrdID`, and your desired new ID as the `clOrdID` param, like so:  ``` # Amends an order's leavesQty, and updates its clOrdID to \"def-456\" PUT /api/v1/order {\"origClOrdID\": \"abc-123\", \"clOrdID\": \"def-456\", \"leavesQty\": 1000} ``` 
      * @summary Create a new order.
      * @param symbol Instrument symbol. e.g. &#39;XBTUSD&#39;.
      * @param side Order side. Valid options: Buy, Sell. Defaults to &#39;Buy&#39; unless &#x60;orderQty&#x60; is negative.
      * @param simpleOrderQty Deprecated: simple orders are not supported after 2018/10/26
-     * @param orderQty Order quantity in units of the instrument (i.e. contracts).
+     * @param orderQty Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)).
      * @param price Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders.
      * @param displayQty Optional quantity to display in the book. Use 0 for a fully hidden order.
      * @param stopPx Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use &#x60;execInst&#x60; of &#39;MarkPrice&#39; or &#39;LastPrice&#39; to define the current price used for triggering.
      * @param clOrdID Optional Client Order ID. This clOrdID will come back on the order and any related executions.
-     * @param clOrdLinkID Deprecated: linked orders are not supported after 2018/11/10.
+     * @param clOrdLinkID Optional Client Order Link ID for contingent orders
      * @param pegOffsetValue Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders.
-     * @param pegPriceType Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg.
+     * @param pegPriceType Optional peg price type. Valid options: MarketPeg, PrimaryPeg, TrailingStopPeg.
      * @param ordType Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, Pegged. Defaults to &#39;Limit&#39; when &#x60;price&#x60; is specified. Defaults to &#39;Stop&#39; when &#x60;stopPx&#x60; is specified. Defaults to &#39;StopLimit&#39; when &#x60;price&#x60; and &#x60;stopPx&#x60; are specified.
      * @param timeInForce Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders.
-     * @param execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39;, &#39;IndexPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders.
-     * @param contingencyType Deprecated: linked orders are not supported after 2018/11/10.
+     * @param execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed, LastWithinMark. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39;, &#39;IndexPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. &#39;LastWithinMark&#39; instruction valid for &#39;Stop&#39; and &#39;StopLimit&#39; with instruction &#39;LastPrice&#39;. IndexPrice, LastWithMark, Close and ReduceOnly are not applicable to spot trading symbols.
+     * @param contingencyType Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther.
      * @param text Optional order annotation. e.g. &#39;Take profit&#39;.
      * @param {*} [options] Override http request options.
      */
@@ -6817,6 +8249,159 @@ export class OrderBookApi {
         });
     }
 }
+export enum PorlApiApiKeys {
+    apiExpires,
+    apiKey,
+    apiSignature,
+}
+
+export class PorlApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'apiExpires': new ApiKeyAuth('header', 'api-expires'),
+        'apiKey': new ApiKeyAuth('header', 'api-key'),
+        'apiSignature': new ApiKeyAuth('header', 'api-signature'),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: PorlApiApiKeys, value: string) {
+        (this.authentications as any)[PorlApiApiKeys[key]].apiKey = value;
+    }
+    /**
+     * ## Proof of Reserves Nonce  This endpoint will return the nonce and associated data needed to validate BitMEX reserves data.  <! TODO link to docs, GitHub, etc > 
+     * @summary Get your Proof of Reserves nonce and data.
+     * @param {*} [options] Override http request options.
+     */
+    public porlGetNonce (options: any = {}) : Promise<{ response: http.ClientResponse; body: Porl;  }> {
+        const localVarPath = this.basePath + '/porl/nonce';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Porl;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Porl");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get Proof of Reserves historical snapshots
+     * @param {*} [options] Override http request options.
+     */
+    public porlGetSnapshots (options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<XAny>;  }> {
+        const localVarPath = this.basePath + '/porl/snapshots';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Array<XAny>;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Array<XAny>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
 export enum PositionApiApiKeys {
     apiExpires,
     apiKey,
@@ -6868,7 +8453,7 @@ export class PositionApi {
         (this.authentications as any)[PositionApiApiKeys[key]].apiKey = value;
     }
     /**
-     * This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol's default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol's default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenCost**: The absolute value of your open orders for this symbol. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
+     * This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols do not return any position data.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol's default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol's default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
      * @summary Get your positions.
      * @param filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}.
      * @param columns Which columns to fetch. For example, send [\&quot;columnName\&quot;].
@@ -6937,7 +8522,7 @@ export class PositionApi {
         });
     }
     /**
-     * 
+     * Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
      * @summary Enable isolated margin or cross margin per-position.
      * @param symbol Position symbol to isolate.
      * @param enabled True for isolated margin, false for cross margin.
@@ -7006,13 +8591,14 @@ export class PositionApi {
         });
     }
     /**
-     * 
+     * When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
      * @summary Transfer equity in or out of a position.
      * @param symbol Symbol of position to isolate.
      * @param amount Amount to transfer, in Satoshis. May be negative.
+     * @param targetAccountId AccountId for the position that the margin would be transfered to, must be a paired account with main user.
      * @param {*} [options] Override http request options.
      */
-    public positionTransferIsolatedMargin (symbol: string, amount: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: Position;  }> {
+    public positionTransferIsolatedMargin (symbol: string, amount: number, targetAccountId?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: Position;  }> {
         const localVarPath = this.basePath + '/position/transferMargin';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7040,6 +8626,10 @@ export class PositionApi {
             localVarFormParams['amount'] = ObjectSerializer.serialize(amount, "number");
         }
 
+        if (targetAccountId !== undefined) {
+            localVarFormParams['targetAccountId'] = ObjectSerializer.serialize(targetAccountId, "number");
+        }
+
         let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
             qs: localVarQueryParameters,
@@ -7080,13 +8670,14 @@ export class PositionApi {
         });
     }
     /**
-     * 
+     * Users can choose an isolated leverage. This will automatically enable isolated margin.
      * @summary Choose leverage for a position.
      * @param symbol Symbol of position to adjust.
      * @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.
+     * @param targetAccountId AccountId for the position that the leverage would be changed on, must be a paired account with main user.
      * @param {*} [options] Override http request options.
      */
-    public positionUpdateLeverage (symbol: string, leverage: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: Position;  }> {
+    public positionUpdateLeverage (symbol: string, leverage: number, targetAccountId?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: Position;  }> {
         const localVarPath = this.basePath + '/position/leverage';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7114,6 +8705,10 @@ export class PositionApi {
             localVarFormParams['leverage'] = ObjectSerializer.serialize(leverage, "number");
         }
 
+        if (targetAccountId !== undefined) {
+            localVarFormParams['targetAccountId'] = ObjectSerializer.serialize(targetAccountId, "number");
+        }
+
         let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
             qs: localVarQueryParameters,
@@ -7154,13 +8749,14 @@ export class PositionApi {
         });
     }
     /**
-     * 
+     * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
      * @summary Update your risk limit.
      * @param symbol Symbol of position to update risk limit on.
      * @param riskLimit New Risk Limit, in Satoshis.
+     * @param targetAccountId AccountId for the position that the risk limit would be updated on, must be a paired account with main user.
      * @param {*} [options] Override http request options.
      */
-    public positionUpdateRiskLimit (symbol: string, riskLimit: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: Position;  }> {
+    public positionUpdateRiskLimit (symbol: string, riskLimit: number, targetAccountId?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: Position;  }> {
         const localVarPath = this.basePath + '/position/riskLimit';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7186,6 +8782,10 @@ export class PositionApi {
 
         if (riskLimit !== undefined) {
             localVarFormParams['riskLimit'] = ObjectSerializer.serialize(riskLimit, "number");
+        }
+
+        if (targetAccountId !== undefined) {
+            localVarFormParams['targetAccountId'] = ObjectSerializer.serialize(targetAccountId, "number");
         }
 
         let localVarRequestOptions: localVarRequest.Options = {
@@ -7281,10 +8881,10 @@ export class QuoteApi {
     /**
      * 
      * @summary Get Quotes.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -7371,10 +8971,10 @@ export class QuoteApi {
      * @summary Get previous quotes in time buckets.
      * @param binSize Time interval to bucket by. Available options: [1m,5m,1h,1d].
      * @param partial If true, will send in-progress (incomplete) bins for the current time period.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -7670,10 +9270,10 @@ export class SettlementApi {
     /**
      * 
      * @summary Get settlement history.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -8004,10 +9604,10 @@ export class TradeApi {
     /**
      * Please note that indices (symbols starting with `.`) post trades at intervals to the trade feed. These have a `size` of 0 and are used only to indicate a changing price.  See [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.html) for explanations of these fields.
      * @summary Get Trades.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -8094,10 +9694,10 @@ export class TradeApi {
      * @summary Get previous trades in time buckets.
      * @param binSize Time interval to bucket by. Available options: [1m,5m,1h,1d].
      * @param partial If true, will send in-progress (incomplete) bins for the current time period.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -8302,7 +9902,7 @@ export class UserApi {
      * @param referralCode 
      * @param {*} [options] Override http request options.
      */
-    public userCheckReferralCode (referralCode?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: number;  }> {
+    public userCheckReferralCode (referralCode?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/user/checkReferralCode';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -8334,12 +9934,12 @@ export class UserApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: number;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "number");
+                    body = ObjectSerializer.deserialize(body, "any");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -8541,6 +10141,208 @@ export class UserApi {
     }
     /**
      * 
+     * @summary Creates a new sub-account.
+     * @param accountName 
+     * @param {*} [options] Override http request options.
+     */
+    public userCreateSubAccount (accountName: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/user/addSubaccount';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'accountName' is not null or undefined
+        if (accountName === null || accountName === undefined) {
+            throw new Error('Required parameter accountName was null or undefined when calling userCreateSubAccount.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (accountName !== undefined) {
+            localVarFormParams['accountName'] = ObjectSerializer.serialize(accountName, "string");
+        }
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Create unstaking request
+     * @param symbol 
+     * @param amount 
+     * @param {*} [options] Override http request options.
+     */
+    public userCreateUnstakingRequests (symbol: string, amount: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/user/unstakingRequests';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'symbol' is not null or undefined
+        if (symbol === null || symbol === undefined) {
+            throw new Error('Required parameter symbol was null or undefined when calling userCreateUnstakingRequests.');
+        }
+
+        // verify required parameter 'amount' is not null or undefined
+        if (amount === null || amount === undefined) {
+            throw new Error('Required parameter amount was null or undefined when calling userCreateUnstakingRequests.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (symbol !== undefined) {
+            localVarFormParams['symbol'] = ObjectSerializer.serialize(symbol, "string");
+        }
+
+        if (amount !== undefined) {
+            localVarFormParams['amount'] = ObjectSerializer.serialize(amount, "number");
+        }
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Cancel unstaking request
+     * @param redemptionID 
+     * @param {*} [options] Override http request options.
+     */
+    public userDeleteUnstakingRequests (redemptionID: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/user/unstakingRequests';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'redemptionID' is not null or undefined
+        if (redemptionID === null || redemptionID === undefined) {
+            throw new Error('Required parameter redemptionID was null or undefined when calling userDeleteUnstakingRequests.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (redemptionID !== undefined) {
+            localVarFormParams['redemptionID'] = ObjectSerializer.serialize(redemptionID, "string");
+        }
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Get your user model.
      * @param {*} [options] Override http request options.
      */
@@ -8596,13 +10398,18 @@ export class UserApi {
     /**
      * 
      * @summary Get your current affiliate/referral status.
+     * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
      * @param {*} [options] Override http request options.
      */
-    public userGetAffiliateStatus (options: any = {}) : Promise<{ response: http.ClientResponse; body: Affiliate;  }> {
+    public userGetAffiliateStatus (currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Affiliate;  }> {
         const localVarPath = this.basePath + '/user/affiliateStatus';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        if (currency !== undefined) {
+            localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "string");
+        }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
@@ -8638,6 +10445,60 @@ export class UserApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "Affiliate");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get your account's CSA status.
+     * @param {*} [options] Override http request options.
+     */
+    public userGetCSA (options: any = {}) : Promise<{ response: http.ClientResponse; body: CollateralSupportAgreement;  }> {
+        const localVarPath = this.basePath + '/user/csa';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CollateralSupportAgreement;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "CollateralSupportAgreement");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -8704,17 +10565,32 @@ export class UserApi {
     /**
      * 
      * @summary Get a deposit address.
-     * @param currency 
+     * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+     * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.
      * @param {*} [options] Override http request options.
      */
-    public userGetDepositAddress (currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: string;  }> {
+    public userGetDepositAddress (currency: string, network: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: string;  }> {
         const localVarPath = this.basePath + '/user/depositAddress';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
+        // verify required parameter 'currency' is not null or undefined
+        if (currency === null || currency === undefined) {
+            throw new Error('Required parameter currency was null or undefined when calling userGetDepositAddress.');
+        }
+
+        // verify required parameter 'network' is not null or undefined
+        if (network === null || network === undefined) {
+            throw new Error('Required parameter network was null or undefined when calling userGetDepositAddress.');
+        }
+
         if (currency !== undefined) {
             localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "string");
+        }
+
+        if (network !== undefined) {
+            localVarQueryParameters['network'] = ObjectSerializer.serialize(network, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -8767,7 +10643,7 @@ export class UserApi {
      * @param timestamp 
      * @param {*} [options] Override http request options.
      */
-    public userGetExecutionHistory (symbol: string, timestamp: Date, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public userGetExecutionHistory (symbol: string, timestamp: Date, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Execution>;  }> {
         const localVarPath = this.basePath + '/user/executionHistory';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -8819,12 +10695,12 @@ export class UserApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: Array<Execution>;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "any");
+                    body = ObjectSerializer.deserialize(body, "Array<Execution>");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -8837,7 +10713,7 @@ export class UserApi {
     /**
      * 
      * @summary Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
-     * @param currency 
+     * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
      * @param {*} [options] Override http request options.
      */
     public userGetMargin (currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Margin;  }> {
@@ -8896,13 +10772,18 @@ export class UserApi {
     /**
      * 
      * @summary Get 7 days worth of Quote Fill Ratio statistics.
+     * @param targetAccountId AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user
      * @param {*} [options] Override http request options.
      */
-    public userGetQuoteFillRatio (options: any = {}) : Promise<{ response: http.ClientResponse; body: QuoteFillRatio;  }> {
+    public userGetQuoteFillRatio (targetAccountId?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: QuoteFillRatio;  }> {
         const localVarPath = this.basePath + '/user/quoteFillRatio';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        if (targetAccountId !== undefined) {
+            localVarQueryParameters['targetAccountId'] = ObjectSerializer.serialize(targetAccountId, "number");
+        }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
@@ -8949,8 +10830,366 @@ export class UserApi {
     }
     /**
      * 
-     * @summary Get your current wallet information.
+     * @summary Get Quote Value Ratio statistics over the last 3 days
+     * @param targetAccountId AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user
+     * @param {*} [options] Override http request options.
+     */
+    public userGetQuoteValueRatio (targetAccountId?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: QuoteValueRatio;  }> {
+        const localVarPath = this.basePath + '/user/quoteValueRatio';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        if (targetAccountId !== undefined) {
+            localVarQueryParameters['targetAccountId'] = ObjectSerializer.serialize(targetAccountId, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: QuoteValueRatio;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "QuoteValueRatio");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get the current user staking amount.
      * @param currency 
+     * @param {*} [options] Override http request options.
+     */
+    public userGetStaking (currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<StakingRecord>;  }> {
+        const localVarPath = this.basePath + '/user/staking';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        if (currency !== undefined) {
+            localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Array<StakingRecord>;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Array<StakingRecord>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary List staking instruments
+     * @param symbol 
+     * @param currency 
+     * @param {*} [options] Override http request options.
+     */
+    public userGetStakingInstruments (symbol?: string, currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<XAny>;  }> {
+        const localVarPath = this.basePath + '/user/staking/instruments';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        if (symbol !== undefined) {
+            localVarQueryParameters['symbol'] = ObjectSerializer.serialize(symbol, "string");
+        }
+
+        if (currency !== undefined) {
+            localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Array<XAny>;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Array<XAny>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary List staking tiers for a given currency
+     * @param currency 
+     * @param {*} [options] Override http request options.
+     */
+    public userGetStakingTiers (currency: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<XAny>;  }> {
+        const localVarPath = this.basePath + '/user/staking/tiers';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'currency' is not null or undefined
+        if (currency === null || currency === undefined) {
+            throw new Error('Required parameter currency was null or undefined when calling userGetStakingTiers.');
+        }
+
+        if (currency !== undefined) {
+            localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Array<XAny>;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Array<XAny>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get your 30 days USD average trading volume
+     * @param {*} [options] Override http request options.
+     */
+    public userGetTradingVolume (options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<TradingVolume>;  }> {
+        const localVarPath = this.basePath + '/user/tradingVolume';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Array<TradingVolume>;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Array<TradingVolume>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get the current user unstaking requests
+     * @param status 
+     * @param {*} [options] Override http request options.
+     */
+    public userGetUnstakingRequests (status: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<StakingRecord>;  }> {
+        const localVarPath = this.basePath + '/user/unstakingRequests';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'status' is not null or undefined
+        if (status === null || status === undefined) {
+            throw new Error('Required parameter status was null or undefined when calling userGetUnstakingRequests.');
+        }
+
+        if (status !== undefined) {
+            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Array<StakingRecord>;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Array<StakingRecord>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get your current wallet information.
+     * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
      * @param {*} [options] Override http request options.
      */
     public userGetWallet (currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Wallet;  }> {
@@ -9009,12 +11248,13 @@ export class UserApi {
     /**
      * 
      * @summary Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
-     * @param currency 
+     * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
      * @param count Number of results to fetch.
      * @param start Starting point for results.
+     * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history.
      * @param {*} [options] Override http request options.
      */
-    public userGetWalletHistory (currency?: string, count?: number, start?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Transaction>;  }> {
+    public userGetWalletHistory (currency?: string, count?: number, start?: number, targetAccountId?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Transaction>;  }> {
         const localVarPath = this.basePath + '/user/walletHistory';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -9030,6 +11270,10 @@ export class UserApi {
 
         if (start !== undefined) {
             localVarQueryParameters['start'] = ObjectSerializer.serialize(start, "number");
+        }
+
+        if (targetAccountId !== undefined) {
+            localVarQueryParameters['targetAccountId'] = ObjectSerializer.serialize(targetAccountId, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -9078,7 +11322,7 @@ export class UserApi {
     /**
      * 
      * @summary Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
-     * @param currency 
+     * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
      * @param {*} [options] Override http request options.
      */
     public userGetWalletSummary (currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Transaction>;  }> {
@@ -9136,6 +11380,60 @@ export class UserApi {
     }
     /**
      * 
+     * @summary Get the list of accounts you can transfer funds between.
+     * @param {*} [options] Override http request options.
+     */
+    public userGetWalletTransferAccounts (options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<XAny>;  }> {
+        const localVarPath = this.basePath + '/user/getWalletTransferAccounts';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Array<XAny>;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Array<XAny>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Log out of BitMEX.
      * @param {*} [options] Override http request options.
      */
@@ -9182,70 +11480,20 @@ export class UserApi {
         });
     }
     /**
-     * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-     * @summary Get the minimum withdrawal fee for a currency.
-     * @param currency 
-     * @param {*} [options] Override http request options.
-     */
-    public userMinWithdrawalFee (currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
-        const localVarPath = this.basePath + '/user/minWithdrawalFee';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        if (currency !== undefined) {
-            localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "any");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
      * This will send a confirmation email to the email address on record.
      * @summary Request a withdrawal to an external wallet.
-     * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;
+     * @param currency Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+     * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.
      * @param amount Amount of withdrawal currency.
-     * @param address Destination Address.
-     * @param otpToken 2FA token. Required if 2FA is enabled on your account.
+     * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
+     * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+     * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+     * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
      * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
      * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
      * @param {*} [options] Override http request options.
      */
-    public userRequestWithdrawal (currency: string, amount: number, address: string, otpToken?: string, fee?: number, text?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Transaction;  }> {
+    public userRequestWithdrawal (currency: string, network: string, amount: number, otpToken?: string, address?: string, addressId?: number, targetUserId?: number, fee?: number, text?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Transaction;  }> {
         const localVarPath = this.basePath + '/user/requestWithdrawal';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -9256,14 +11504,14 @@ export class UserApi {
             throw new Error('Required parameter currency was null or undefined when calling userRequestWithdrawal.');
         }
 
+        // verify required parameter 'network' is not null or undefined
+        if (network === null || network === undefined) {
+            throw new Error('Required parameter network was null or undefined when calling userRequestWithdrawal.');
+        }
+
         // verify required parameter 'amount' is not null or undefined
         if (amount === null || amount === undefined) {
             throw new Error('Required parameter amount was null or undefined when calling userRequestWithdrawal.');
-        }
-
-        // verify required parameter 'address' is not null or undefined
-        if (address === null || address === undefined) {
-            throw new Error('Required parameter address was null or undefined when calling userRequestWithdrawal.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -9278,12 +11526,24 @@ export class UserApi {
             localVarFormParams['currency'] = ObjectSerializer.serialize(currency, "string");
         }
 
+        if (network !== undefined) {
+            localVarFormParams['network'] = ObjectSerializer.serialize(network, "string");
+        }
+
         if (amount !== undefined) {
             localVarFormParams['amount'] = ObjectSerializer.serialize(amount, "number");
         }
 
         if (address !== undefined) {
             localVarFormParams['address'] = ObjectSerializer.serialize(address, "string");
+        }
+
+        if (addressId !== undefined) {
+            localVarFormParams['addressId'] = ObjectSerializer.serialize(addressId, "number");
+        }
+
+        if (targetUserId !== undefined) {
+            localVarFormParams['targetUserId'] = ObjectSerializer.serialize(targetUserId, "number");
         }
 
         if (fee !== undefined) {
@@ -9402,6 +11662,279 @@ export class UserApi {
             });
         });
     }
+    /**
+     * 
+     * @summary Updates the sub-account name.
+     * @param targetAccountId 
+     * @param accountName 
+     * @param {*} [options] Override http request options.
+     */
+    public userUpdateSubAccount (targetAccountId: number, accountName: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/user/updateSubaccount';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'targetAccountId' is not null or undefined
+        if (targetAccountId === null || targetAccountId === undefined) {
+            throw new Error('Required parameter targetAccountId was null or undefined when calling userUpdateSubAccount.');
+        }
+
+        // verify required parameter 'accountName' is not null or undefined
+        if (accountName === null || accountName === undefined) {
+            throw new Error('Required parameter accountName was null or undefined when calling userUpdateSubAccount.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (targetAccountId !== undefined) {
+            localVarFormParams['targetAccountId'] = ObjectSerializer.serialize(targetAccountId, "number");
+        }
+
+        if (accountName !== undefined) {
+            localVarFormParams['accountName'] = ObjectSerializer.serialize(accountName, "string");
+        }
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * This will send a confirmation email to the email address on record.
+     * @summary Execute a transfer to a paired account.
+     * @param currency Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+     * @param amount Amount of transfer.
+     * @param targetAccountId AccountId to send the transfer to, must be a paired account with the user sending the transfer.
+     * @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user.
+     * @param {*} [options] Override http request options.
+     */
+    public userWalletTransfer (currency: string, amount: number, targetAccountId: number, fromAccountId?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: Transaction;  }> {
+        const localVarPath = this.basePath + '/user/walletTransfer';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'currency' is not null or undefined
+        if (currency === null || currency === undefined) {
+            throw new Error('Required parameter currency was null or undefined when calling userWalletTransfer.');
+        }
+
+        // verify required parameter 'amount' is not null or undefined
+        if (amount === null || amount === undefined) {
+            throw new Error('Required parameter amount was null or undefined when calling userWalletTransfer.');
+        }
+
+        // verify required parameter 'targetAccountId' is not null or undefined
+        if (targetAccountId === null || targetAccountId === undefined) {
+            throw new Error('Required parameter targetAccountId was null or undefined when calling userWalletTransfer.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (currency !== undefined) {
+            localVarFormParams['currency'] = ObjectSerializer.serialize(currency, "string");
+        }
+
+        if (amount !== undefined) {
+            localVarFormParams['amount'] = ObjectSerializer.serialize(amount, "number");
+        }
+
+        if (fromAccountId !== undefined) {
+            localVarFormParams['fromAccountId'] = ObjectSerializer.serialize(fromAccountId, "number");
+        }
+
+        if (targetAccountId !== undefined) {
+            localVarFormParams['targetAccountId'] = ObjectSerializer.serialize(targetAccountId, "number");
+        }
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Transaction;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Transaction");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum UserAffiliatesApiApiKeys {
+    apiExpires,
+    apiKey,
+    apiSignature,
+}
+
+export class UserAffiliatesApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'apiExpires': new ApiKeyAuth('header', 'api-expires'),
+        'apiKey': new ApiKeyAuth('header', 'api-key'),
+        'apiSignature': new ApiKeyAuth('header', 'api-signature'),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: UserAffiliatesApiApiKeys, value: string) {
+        (this.authentications as any)[UserAffiliatesApiApiKeys[key]].apiKey = value;
+    }
+    /**
+     * 
+     * @summary Get user's affiliates to a given depth
+     * @param depth the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates
+     * @param {*} [options] Override http request options.
+     */
+    public userAffiliatesGet (depth?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<XAny>;  }> {
+        const localVarPath = this.basePath + '/userAffiliates';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        if (depth !== undefined) {
+            localVarQueryParameters['depth'] = ObjectSerializer.serialize(depth, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Array<XAny>;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Array<XAny>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
 }
 export enum UserEventApiApiKeys {
     apiExpires,
@@ -9508,6 +12041,153 @@ export class UserEventApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "Array<UserEvent>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum WalletApiApiKeys {
+    apiExpires,
+    apiKey,
+    apiSignature,
+}
+
+export class WalletApi {
+    protected _basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'apiExpires': new ApiKeyAuth('header', 'api-expires'),
+        'apiKey': new ApiKeyAuth('header', 'api-key'),
+        'apiSignature': new ApiKeyAuth('header', 'api-signature'),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this._basePath = basePath;
+    }
+
+    get basePath() {
+        return this._basePath;
+    }
+
+    public setDefaultAuthentication(auth: Authentication) {
+	this.authentications.default = auth;
+    }
+
+    public setApiKey(key: WalletApiApiKeys, value: string) {
+        (this.authentications as any)[WalletApiApiKeys[key]].apiKey = value;
+    }
+    /**
+     * 
+     * @summary Get Assets Config
+     * @param {*} [options] Override http request options.
+     */
+    public walletGetAssetsConfig (options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<AssetsConfig>;  }> {
+        const localVarPath = this.basePath + '/wallet/assets';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Array<AssetsConfig>;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Array<AssetsConfig>");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get Networks Config
+     * @param {*} [options] Override http request options.
+     */
+    public walletGetNetworksConfig (options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<NetworksConfig>;  }> {
+        const localVarPath = this.basePath + '/wallet/networks';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: Array<NetworksConfig>;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "Array<NetworksConfig>");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {

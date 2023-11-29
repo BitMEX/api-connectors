@@ -23,7 +23,7 @@
       <span class="param-name">symbol</span>
       <span class="param-type">String</span>
       
-      <p class="param-description">Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.</p>
+      <p class="param-description">Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.</p>
 	  </li>
 	  <li class="parameter">
       
@@ -56,7 +56,7 @@
       <span class="param-name">count</span>
       <span class="param-type">BigDecimal</span>
       
-      <p class="param-description">Number of results to fetch.</p>
+      <p class="param-description">Number of results to fetch. Must be a positive integer.</p>
 	  </li>
 	  <li class="parameter">
       
@@ -121,10 +121,32 @@
       
       
       
+      <span class="param-name">targetAccountId</span>
+      <span class="param-type">Double</span>
+      
+      <p class="param-description">AccountId fetching the trade history, must be a paired account with main user.</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">targetAccountIds</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">AccountIds fetching the trade history, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
       <span class="param-name">symbol</span>
       <span class="param-type">String</span>
       
-      <p class="param-description">Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.</p>
+      <p class="param-description">Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.</p>
 	  </li>
 	  <li class="parameter">
       
@@ -157,7 +179,7 @@
       <span class="param-name">count</span>
       <span class="param-type">BigDecimal</span>
       
-      <p class="param-description">Number of results to fetch.</p>
+      <p class="param-description">Number of results to fetch. Must be a positive integer.</p>
 	  </li>
 	  <li class="parameter">
       

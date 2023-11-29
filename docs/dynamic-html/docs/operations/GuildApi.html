@@ -1,0 +1,351 @@
+<div class="main-content">
+  <h2><a name=""></a></h2>
+  <p>This is the  API</p>
+
+  <h2><a name="guild.archive"></a>guild.archive</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://www.bitmex.com/api/v1/guild/archive</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="object"><a href="">Object</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  </ul>
+  <h2><a name="guild.edit"></a>guild.edit</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://www.bitmex.com/api/v1/guild</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Guild"><a href="">Guild</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">name</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Name of the guild, must be unique, must be at least 5 characters</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">emoji</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Emoji name.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">potDistributionPercent</span>
+      <span class="param-type">Double</span>
+      
+      <p class="param-description">How much of the pot should be distributed to the guild members, must be between 0 and 100</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">potDistributionType</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">potTraderId</span>
+      <span class="param-type">Double</span>
+      
+      <p class="param-description">User ID of the guild member with order write permission for the pot</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">description</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Guild description, can be used to explain the guild to other users.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">twitter</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Guild twitter handle.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">discord</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Guild discord link.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">imgUrl</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">isPrivate</span>
+      <span class="param-type">Boolean</span>
+      
+      <p class="param-description">Guild privacy status</p>
+	  </li>
+  </ul>
+  <h2><a name="guild.get"></a>guild.get</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://www.bitmex.com/api/v1/guild</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="x-any"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  </ul>
+  <h2><a name="guild.join"></a>guild.join</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://www.bitmex.com/api/v1/guild/join</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="object"><a href="">Object</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">code</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
+  <h2><a name="guild.kick"></a>guild.kick</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://www.bitmex.com/api/v1/guild/kick</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="object"><a href="">Object</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">memberUserId</span>
+      <span class="param-type">Double</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
+  <h2><a name="guild.leave"></a>guild.leave</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://www.bitmex.com/api/v1/guild/leave</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="object"><a href="">Object</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  </ul>
+  <h2><a name="guild.new"></a>guild.new</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://www.bitmex.com/api/v1/guild</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Guild"><a href="">Guild</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">name</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Name of the guild, must be unique, must be at least 5 characters</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">emoji</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Emoji name.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">potDistributionPercent</span>
+      <span class="param-type">Double</span>
+      
+      <p class="param-description">How much of the pot should be distributed to the guild members, must be between 0 and 100</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">potDistributionType</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">description</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Guild description, can be used to explain the guild to other users.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">twitter</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Guild twitter handle.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">discord</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Guild discord link.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">imgUrl</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">isPrivate</span>
+      <span class="param-type">Boolean</span>
+      
+      <p class="param-description">Guild privacy status</p>
+	  </li>
+  </ul>
+  <h2><a name="guild.shareTrades"></a>guild.shareTrades</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://www.bitmex.com/api/v1/guild/shareTrades</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="object"><a href="">Object</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">shareTrades</span>
+      <span class="param-type">Boolean</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
+</div>

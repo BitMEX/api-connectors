@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -19,6 +19,10 @@ import com.google.gson.annotations.SerializedName;
 @ApiModel(description = "")
 public class AccessToken {
   
+  @SerializedName("updated")
+  private Date updated = null;
+  @SerializedName("authorizedAccounts")
+  private Object authorizedAccounts = null;
   @SerializedName("id")
   private String id = null;
   @SerializedName("ttl")
@@ -27,6 +31,26 @@ public class AccessToken {
   private Date created = null;
   @SerializedName("userId")
   private Double userId = null;
+
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public Date getUpdated() {
+    return updated;
+  }
+  public void setUpdated(Date updated) {
+    this.updated = updated;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Object getAuthorizedAccounts() {
+    return authorizedAccounts;
+  }
+  public void setAuthorizedAccounts(Object authorizedAccounts) {
+    this.authorizedAccounts = authorizedAccounts;
+  }
 
   /**
    **/
@@ -79,7 +103,9 @@ public class AccessToken {
       return false;
     }
     AccessToken accessToken = (AccessToken) o;
-    return (this.id == null ? accessToken.id == null : this.id.equals(accessToken.id)) &&
+    return (this.updated == null ? accessToken.updated == null : this.updated.equals(accessToken.updated)) &&
+        (this.authorizedAccounts == null ? accessToken.authorizedAccounts == null : this.authorizedAccounts.equals(accessToken.authorizedAccounts)) &&
+        (this.id == null ? accessToken.id == null : this.id.equals(accessToken.id)) &&
         (this.ttl == null ? accessToken.ttl == null : this.ttl.equals(accessToken.ttl)) &&
         (this.created == null ? accessToken.created == null : this.created.equals(accessToken.created)) &&
         (this.userId == null ? accessToken.userId == null : this.userId.equals(accessToken.userId));
@@ -88,6 +114,8 @@ public class AccessToken {
   @Override
   public int hashCode() {
     int result = 17;
+    result = 31 * result + (this.updated == null ? 0: this.updated.hashCode());
+    result = 31 * result + (this.authorizedAccounts == null ? 0: this.authorizedAccounts.hashCode());
     result = 31 * result + (this.id == null ? 0: this.id.hashCode());
     result = 31 * result + (this.ttl == null ? 0: this.ttl.hashCode());
     result = 31 * result + (this.created == null ? 0: this.created.hashCode());
@@ -100,6 +128,8 @@ public class AccessToken {
     StringBuilder sb = new StringBuilder();
     sb.append("class AccessToken {\n");
     
+    sb.append("  updated: ").append(updated).append("\n");
+    sb.append("  authorizedAccounts: ").append(authorizedAccounts).append("\n");
     sb.append("  id: ").append(id).append("\n");
     sb.append("  ttl: ").append(ttl).append("\n");
     sb.append("  created: ").append(created).append("\n");

@@ -14,6 +14,7 @@ public struct Transaction: Codable {
     public var transactID: String
     public var account: Double?
     public var currency: String?
+    public var network: String?
     public var transactType: String?
     public var amount: Double?
     public var fee: Double?
@@ -23,11 +24,13 @@ public struct Transaction: Codable {
     public var text: String?
     public var transactTime: Date?
     public var timestamp: Date?
+    public var walletBalance: Double?
 
-    public init(transactID: String, account: Double?, currency: String?, transactType: String?, amount: Double?, fee: Double?, transactStatus: String?, address: String?, tx: String?, text: String?, transactTime: Date?, timestamp: Date?) {
+    public init(transactID: String, account: Double?, currency: String?, network: String?, transactType: String?, amount: Double?, fee: Double?, transactStatus: String?, address: String?, tx: String?, text: String?, transactTime: Date?, timestamp: Date?, walletBalance: Double?) {
         self.transactID = transactID
         self.account = account
         self.currency = currency
+        self.network = network
         self.transactType = transactType
         self.amount = amount
         self.fee = fee
@@ -37,6 +40,7 @@ public struct Transaction: Codable {
         self.text = text
         self.transactTime = transactTime
         self.timestamp = timestamp
+        self.walletBalance = walletBalance
     }
 
 

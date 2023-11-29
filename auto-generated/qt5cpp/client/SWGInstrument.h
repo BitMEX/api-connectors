@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -67,29 +67,8 @@ public:
     QDateTime* getSettle();
     void setSettle(QDateTime* settle);
 
-    QDateTime* getRelistInterval();
-    void setRelistInterval(QDateTime* relist_interval);
-
-    QString* getInverseLeg();
-    void setInverseLeg(QString* inverse_leg);
-
-    QString* getSellLeg();
-    void setSellLeg(QString* sell_leg);
-
-    QString* getBuyLeg();
-    void setBuyLeg(QString* buy_leg);
-
-    double getOptionStrikePcnt();
-    void setOptionStrikePcnt(double option_strike_pcnt);
-
-    double getOptionStrikeRound();
-    void setOptionStrikeRound(double option_strike_round);
-
-    double getOptionStrikePrice();
-    void setOptionStrikePrice(double option_strike_price);
-
-    double getOptionMultiplier();
-    void setOptionMultiplier(double option_multiplier);
+    QDateTime* getListedSettle();
+    void setListedSettle(QDateTime* listed_settle);
 
     QString* getPositionCurrency();
     void setPositionCurrency(QString* position_currency);
@@ -166,9 +145,6 @@ public:
     double getLimit();
     void setLimit(double limit);
 
-    bool isCapped();
-    void setCapped(bool capped);
-
     bool isTaxed();
     void setTaxed(bool taxed);
 
@@ -183,9 +159,6 @@ public:
 
     double getSettlementFee();
     void setSettlementFee(double settlement_fee);
-
-    double getInsuranceFee();
-    void setInsuranceFee(double insurance_fee);
 
     QString* getFundingBaseSymbol();
     void setFundingBaseSymbol(QString* funding_base_symbol);
@@ -214,15 +187,6 @@ public:
     QDateTime* getRebalanceInterval();
     void setRebalanceInterval(QDateTime* rebalance_interval);
 
-    QDateTime* getOpeningTimestamp();
-    void setOpeningTimestamp(QDateTime* opening_timestamp);
-
-    QDateTime* getClosingTimestamp();
-    void setClosingTimestamp(QDateTime* closing_timestamp);
-
-    QDateTime* getSessionInterval();
-    void setSessionInterval(QDateTime* session_interval);
-
     double getPrevClosePrice();
     void setPrevClosePrice(double prev_close_price);
 
@@ -231,15 +195,6 @@ public:
 
     double getLimitUpPrice();
     void setLimitUpPrice(double limit_up_price);
-
-    double getBankruptLimitDownPrice();
-    void setBankruptLimitDownPrice(double bankrupt_limit_down_price);
-
-    double getBankruptLimitUpPrice();
-    void setBankruptLimitUpPrice(double bankrupt_limit_up_price);
-
-    SWGNumber* getPrevTotalVolume();
-    void setPrevTotalVolume(SWGNumber* prev_total_volume);
 
     SWGNumber* getTotalVolume();
     void setTotalVolume(SWGNumber* total_volume);
@@ -337,17 +292,17 @@ public:
     double getMarkPrice();
     void setMarkPrice(double mark_price);
 
-    double getIndicativeTaxRate();
-    void setIndicativeTaxRate(double indicative_tax_rate);
-
     double getIndicativeSettlePrice();
     void setIndicativeSettlePrice(double indicative_settle_price);
 
-    double getOptionUnderlyingPrice();
-    void setOptionUnderlyingPrice(double option_underlying_price);
+    double getSettledPriceAdjustmentRate();
+    void setSettledPriceAdjustmentRate(double settled_price_adjustment_rate);
 
     double getSettledPrice();
     void setSettledPrice(double settled_price);
+
+    bool isInstantPnl();
+    void setInstantPnl(bool instant_pnl);
 
     QDateTime* getTimestamp();
     void setTimestamp(QDateTime* timestamp);
@@ -380,29 +335,8 @@ private:
     QDateTime* settle;
     bool m_settle_isSet;
 
-    QDateTime* relist_interval;
-    bool m_relist_interval_isSet;
-
-    QString* inverse_leg;
-    bool m_inverse_leg_isSet;
-
-    QString* sell_leg;
-    bool m_sell_leg_isSet;
-
-    QString* buy_leg;
-    bool m_buy_leg_isSet;
-
-    double option_strike_pcnt;
-    bool m_option_strike_pcnt_isSet;
-
-    double option_strike_round;
-    bool m_option_strike_round_isSet;
-
-    double option_strike_price;
-    bool m_option_strike_price_isSet;
-
-    double option_multiplier;
-    bool m_option_multiplier_isSet;
+    QDateTime* listed_settle;
+    bool m_listed_settle_isSet;
 
     QString* position_currency;
     bool m_position_currency_isSet;
@@ -479,9 +413,6 @@ private:
     double limit;
     bool m_limit_isSet;
 
-    bool capped;
-    bool m_capped_isSet;
-
     bool taxed;
     bool m_taxed_isSet;
 
@@ -496,9 +427,6 @@ private:
 
     double settlement_fee;
     bool m_settlement_fee_isSet;
-
-    double insurance_fee;
-    bool m_insurance_fee_isSet;
 
     QString* funding_base_symbol;
     bool m_funding_base_symbol_isSet;
@@ -527,15 +455,6 @@ private:
     QDateTime* rebalance_interval;
     bool m_rebalance_interval_isSet;
 
-    QDateTime* opening_timestamp;
-    bool m_opening_timestamp_isSet;
-
-    QDateTime* closing_timestamp;
-    bool m_closing_timestamp_isSet;
-
-    QDateTime* session_interval;
-    bool m_session_interval_isSet;
-
     double prev_close_price;
     bool m_prev_close_price_isSet;
 
@@ -544,15 +463,6 @@ private:
 
     double limit_up_price;
     bool m_limit_up_price_isSet;
-
-    double bankrupt_limit_down_price;
-    bool m_bankrupt_limit_down_price_isSet;
-
-    double bankrupt_limit_up_price;
-    bool m_bankrupt_limit_up_price_isSet;
-
-    SWGNumber* prev_total_volume;
-    bool m_prev_total_volume_isSet;
 
     SWGNumber* total_volume;
     bool m_total_volume_isSet;
@@ -650,17 +560,17 @@ private:
     double mark_price;
     bool m_mark_price_isSet;
 
-    double indicative_tax_rate;
-    bool m_indicative_tax_rate_isSet;
-
     double indicative_settle_price;
     bool m_indicative_settle_price_isSet;
 
-    double option_underlying_price;
-    bool m_option_underlying_price_isSet;
+    double settled_price_adjustment_rate;
+    bool m_settled_price_adjustment_rate_isSet;
 
     double settled_price;
     bool m_settled_price_isSet;
+
+    bool instant_pnl;
+    bool m_instant_pnl_isSet;
 
     QDateTime* timestamp;
     bool m_timestamp_isSet;

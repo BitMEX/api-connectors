@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -39,23 +39,25 @@ namespace IO.Swagger.Model
         /// Initializes a new instance of the <see cref="User" /> class.
         /// </summary>
         /// <param name="id">id.</param>
-        /// <param name="ownerId">ownerId.</param>
         /// <param name="firstname">firstname.</param>
         /// <param name="lastname">lastname.</param>
         /// <param name="username">username (required).</param>
-        /// <param name="email">email (required).</param>
+        /// <param name="accountName">accountName.</param>
+        /// <param name="isUser">isUser (required) (default to true).</param>
+        /// <param name="email">email.</param>
+        /// <param name="dateOfBirth">dateOfBirth.</param>
         /// <param name="phone">phone.</param>
         /// <param name="created">created.</param>
         /// <param name="lastUpdated">lastUpdated.</param>
         /// <param name="preferences">preferences.</param>
         /// <param name="tFAEnabled">tFAEnabled.</param>
         /// <param name="affiliateID">affiliateID.</param>
-        /// <param name="pgpPubKey">pgpPubKey.</param>
         /// <param name="country">country.</param>
         /// <param name="geoipCountry">geoipCountry.</param>
         /// <param name="geoipRegion">geoipRegion.</param>
+        /// <param name="firstTradeTimestamp">firstTradeTimestamp.</param>
         /// <param name="typ">typ.</param>
-        public User(decimal? id = default(decimal?), decimal? ownerId = default(decimal?), string firstname = default(string), string lastname = default(string), string username = default(string), string email = default(string), string phone = default(string), DateTime? created = default(DateTime?), DateTime? lastUpdated = default(DateTime?), UserPreferences preferences = default(UserPreferences), string tFAEnabled = default(string), string affiliateID = default(string), string pgpPubKey = default(string), string country = default(string), string geoipCountry = default(string), string geoipRegion = default(string), string typ = default(string))
+        public User(decimal? id = default(decimal?), string firstname = default(string), string lastname = default(string), string username = default(string), string accountName = default(string), bool? isUser = true, string email = default(string), string dateOfBirth = default(string), string phone = default(string), DateTime? created = default(DateTime?), DateTime? lastUpdated = default(DateTime?), UserPreferences preferences = default(UserPreferences), string tFAEnabled = default(string), string affiliateID = default(string), string country = default(string), string geoipCountry = default(string), string geoipRegion = default(string), DateTime? firstTradeTimestamp = default(DateTime?), string typ = default(string))
         {
             // to ensure "username" is required (not null)
             if (username == null)
@@ -66,29 +68,31 @@ namespace IO.Swagger.Model
             {
                 this.Username = username;
             }
-            // to ensure "email" is required (not null)
-            if (email == null)
+            // to ensure "isUser" is required (not null)
+            if (isUser == null)
             {
-                throw new InvalidDataException("email is a required property for User and cannot be null");
+                throw new InvalidDataException("isUser is a required property for User and cannot be null");
             }
             else
             {
-                this.Email = email;
+                this.IsUser = isUser;
             }
             this.Id = id;
-            this.OwnerId = ownerId;
             this.Firstname = firstname;
             this.Lastname = lastname;
+            this.AccountName = accountName;
+            this.Email = email;
+            this.DateOfBirth = dateOfBirth;
             this.Phone = phone;
             this.Created = created;
             this.LastUpdated = lastUpdated;
             this.Preferences = preferences;
             this.TFAEnabled = tFAEnabled;
             this.AffiliateID = affiliateID;
-            this.PgpPubKey = pgpPubKey;
             this.Country = country;
             this.GeoipCountry = geoipCountry;
             this.GeoipRegion = geoipRegion;
+            this.FirstTradeTimestamp = firstTradeTimestamp;
             this.Typ = typ;
         }
         
@@ -97,12 +101,6 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public decimal? Id { get; set; }
-
-        /// <summary>
-        /// Gets or Sets OwnerId
-        /// </summary>
-        [DataMember(Name="ownerId", EmitDefaultValue=false)]
-        public decimal? OwnerId { get; set; }
 
         /// <summary>
         /// Gets or Sets Firstname
@@ -123,10 +121,28 @@ namespace IO.Swagger.Model
         public string Username { get; set; }
 
         /// <summary>
+        /// Gets or Sets AccountName
+        /// </summary>
+        [DataMember(Name="accountName", EmitDefaultValue=false)]
+        public string AccountName { get; set; }
+
+        /// <summary>
+        /// Gets or Sets IsUser
+        /// </summary>
+        [DataMember(Name="isUser", EmitDefaultValue=false)]
+        public bool? IsUser { get; set; }
+
+        /// <summary>
         /// Gets or Sets Email
         /// </summary>
         [DataMember(Name="email", EmitDefaultValue=false)]
         public string Email { get; set; }
+
+        /// <summary>
+        /// Gets or Sets DateOfBirth
+        /// </summary>
+        [DataMember(Name="dateOfBirth", EmitDefaultValue=false)]
+        public string DateOfBirth { get; set; }
 
         /// <summary>
         /// Gets or Sets Phone
@@ -165,12 +181,6 @@ namespace IO.Swagger.Model
         public string AffiliateID { get; set; }
 
         /// <summary>
-        /// Gets or Sets PgpPubKey
-        /// </summary>
-        [DataMember(Name="pgpPubKey", EmitDefaultValue=false)]
-        public string PgpPubKey { get; set; }
-
-        /// <summary>
         /// Gets or Sets Country
         /// </summary>
         [DataMember(Name="country", EmitDefaultValue=false)]
@@ -189,6 +199,12 @@ namespace IO.Swagger.Model
         public string GeoipRegion { get; set; }
 
         /// <summary>
+        /// Gets or Sets FirstTradeTimestamp
+        /// </summary>
+        [DataMember(Name="firstTradeTimestamp", EmitDefaultValue=false)]
+        public DateTime? FirstTradeTimestamp { get; set; }
+
+        /// <summary>
         /// Gets or Sets Typ
         /// </summary>
         [DataMember(Name="typ", EmitDefaultValue=false)]
@@ -203,21 +219,23 @@ namespace IO.Swagger.Model
             var sb = new StringBuilder();
             sb.Append("class User {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  OwnerId: ").Append(OwnerId).Append("\n");
             sb.Append("  Firstname: ").Append(Firstname).Append("\n");
             sb.Append("  Lastname: ").Append(Lastname).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
+            sb.Append("  AccountName: ").Append(AccountName).Append("\n");
+            sb.Append("  IsUser: ").Append(IsUser).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  DateOfBirth: ").Append(DateOfBirth).Append("\n");
             sb.Append("  Phone: ").Append(Phone).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  LastUpdated: ").Append(LastUpdated).Append("\n");
             sb.Append("  Preferences: ").Append(Preferences).Append("\n");
             sb.Append("  TFAEnabled: ").Append(TFAEnabled).Append("\n");
             sb.Append("  AffiliateID: ").Append(AffiliateID).Append("\n");
-            sb.Append("  PgpPubKey: ").Append(PgpPubKey).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  GeoipCountry: ").Append(GeoipCountry).Append("\n");
             sb.Append("  GeoipRegion: ").Append(GeoipRegion).Append("\n");
+            sb.Append("  FirstTradeTimestamp: ").Append(FirstTradeTimestamp).Append("\n");
             sb.Append("  Typ: ").Append(Typ).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -259,11 +277,6 @@ namespace IO.Swagger.Model
                     this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.OwnerId == input.OwnerId ||
-                    (this.OwnerId != null &&
-                    this.OwnerId.Equals(input.OwnerId))
-                ) && 
-                (
                     this.Firstname == input.Firstname ||
                     (this.Firstname != null &&
                     this.Firstname.Equals(input.Firstname))
@@ -279,9 +292,24 @@ namespace IO.Swagger.Model
                     this.Username.Equals(input.Username))
                 ) && 
                 (
+                    this.AccountName == input.AccountName ||
+                    (this.AccountName != null &&
+                    this.AccountName.Equals(input.AccountName))
+                ) && 
+                (
+                    this.IsUser == input.IsUser ||
+                    (this.IsUser != null &&
+                    this.IsUser.Equals(input.IsUser))
+                ) && 
+                (
                     this.Email == input.Email ||
                     (this.Email != null &&
                     this.Email.Equals(input.Email))
+                ) && 
+                (
+                    this.DateOfBirth == input.DateOfBirth ||
+                    (this.DateOfBirth != null &&
+                    this.DateOfBirth.Equals(input.DateOfBirth))
                 ) && 
                 (
                     this.Phone == input.Phone ||
@@ -314,11 +342,6 @@ namespace IO.Swagger.Model
                     this.AffiliateID.Equals(input.AffiliateID))
                 ) && 
                 (
-                    this.PgpPubKey == input.PgpPubKey ||
-                    (this.PgpPubKey != null &&
-                    this.PgpPubKey.Equals(input.PgpPubKey))
-                ) && 
-                (
                     this.Country == input.Country ||
                     (this.Country != null &&
                     this.Country.Equals(input.Country))
@@ -332,6 +355,11 @@ namespace IO.Swagger.Model
                     this.GeoipRegion == input.GeoipRegion ||
                     (this.GeoipRegion != null &&
                     this.GeoipRegion.Equals(input.GeoipRegion))
+                ) && 
+                (
+                    this.FirstTradeTimestamp == input.FirstTradeTimestamp ||
+                    (this.FirstTradeTimestamp != null &&
+                    this.FirstTradeTimestamp.Equals(input.FirstTradeTimestamp))
                 ) && 
                 (
                     this.Typ == input.Typ ||
@@ -351,16 +379,20 @@ namespace IO.Swagger.Model
                 int hashCode = 41;
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.OwnerId != null)
-                    hashCode = hashCode * 59 + this.OwnerId.GetHashCode();
                 if (this.Firstname != null)
                     hashCode = hashCode * 59 + this.Firstname.GetHashCode();
                 if (this.Lastname != null)
                     hashCode = hashCode * 59 + this.Lastname.GetHashCode();
                 if (this.Username != null)
                     hashCode = hashCode * 59 + this.Username.GetHashCode();
+                if (this.AccountName != null)
+                    hashCode = hashCode * 59 + this.AccountName.GetHashCode();
+                if (this.IsUser != null)
+                    hashCode = hashCode * 59 + this.IsUser.GetHashCode();
                 if (this.Email != null)
                     hashCode = hashCode * 59 + this.Email.GetHashCode();
+                if (this.DateOfBirth != null)
+                    hashCode = hashCode * 59 + this.DateOfBirth.GetHashCode();
                 if (this.Phone != null)
                     hashCode = hashCode * 59 + this.Phone.GetHashCode();
                 if (this.Created != null)
@@ -373,14 +405,14 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.TFAEnabled.GetHashCode();
                 if (this.AffiliateID != null)
                     hashCode = hashCode * 59 + this.AffiliateID.GetHashCode();
-                if (this.PgpPubKey != null)
-                    hashCode = hashCode * 59 + this.PgpPubKey.GetHashCode();
                 if (this.Country != null)
                     hashCode = hashCode * 59 + this.Country.GetHashCode();
                 if (this.GeoipCountry != null)
                     hashCode = hashCode * 59 + this.GeoipCountry.GetHashCode();
                 if (this.GeoipRegion != null)
                     hashCode = hashCode * 59 + this.GeoipRegion.GetHashCode();
+                if (this.FirstTradeTimestamp != null)
+                    hashCode = hashCode * 59 + this.FirstTradeTimestamp.GetHashCode();
                 if (this.Typ != null)
                     hashCode = hashCode * 59 + this.Typ.GetHashCode();
                 return hashCode;
@@ -398,12 +430,6 @@ namespace IO.Swagger.Model
             if(this.AffiliateID != null && this.AffiliateID.Length > 6)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AffiliateID, length must be less than 6.", new [] { "AffiliateID" });
-            }
-
-            // PgpPubKey (string) maxLength
-            if(this.PgpPubKey != null && this.PgpPubKey.Length > 16384)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PgpPubKey, length must be less than 16384.", new [] { "PgpPubKey" });
             }
 
             // Country (string) maxLength

@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class Execution(object):
@@ -40,10 +42,7 @@ class Execution(object):
         'side': 'str',
         'last_qty': 'float',
         'last_px': 'float',
-        'underlying_last_px': 'float',
-        'last_mkt': 'str',
         'last_liquidity_ind': 'str',
-        'simple_order_qty': 'float',
         'order_qty': 'float',
         'price': 'float',
         'display_qty': 'float',
@@ -57,19 +56,15 @@ class Execution(object):
         'time_in_force': 'str',
         'exec_inst': 'str',
         'contingency_type': 'str',
-        'ex_destination': 'str',
         'ord_status': 'str',
         'triggered': 'str',
         'working_indicator': 'bool',
         'ord_rej_reason': 'str',
-        'simple_leaves_qty': 'float',
         'leaves_qty': 'float',
-        'simple_cum_qty': 'float',
         'cum_qty': 'float',
         'avg_px': 'float',
         'commission': 'float',
         'trade_publish_indicator': 'str',
-        'multi_leg_reporting_type': 'str',
         'text': 'str',
         'trd_match_id': 'str',
         'exec_cost': 'float',
@@ -77,7 +72,12 @@ class Execution(object):
         'home_notional': 'float',
         'foreign_notional': 'float',
         'transact_time': 'datetime',
-        'timestamp': 'datetime'
+        'timestamp': 'datetime',
+        'exec_gross_pnl': 'float',
+        'current_qty': 'float',
+        'avg_entry_price': 'float',
+        'realised_pnl': 'float',
+        'unrealised_pnl': 'float'
     }
 
     attribute_map = {
@@ -90,10 +90,7 @@ class Execution(object):
         'side': 'side',
         'last_qty': 'lastQty',
         'last_px': 'lastPx',
-        'underlying_last_px': 'underlyingLastPx',
-        'last_mkt': 'lastMkt',
         'last_liquidity_ind': 'lastLiquidityInd',
-        'simple_order_qty': 'simpleOrderQty',
         'order_qty': 'orderQty',
         'price': 'price',
         'display_qty': 'displayQty',
@@ -107,19 +104,15 @@ class Execution(object):
         'time_in_force': 'timeInForce',
         'exec_inst': 'execInst',
         'contingency_type': 'contingencyType',
-        'ex_destination': 'exDestination',
         'ord_status': 'ordStatus',
         'triggered': 'triggered',
         'working_indicator': 'workingIndicator',
         'ord_rej_reason': 'ordRejReason',
-        'simple_leaves_qty': 'simpleLeavesQty',
         'leaves_qty': 'leavesQty',
-        'simple_cum_qty': 'simpleCumQty',
         'cum_qty': 'cumQty',
         'avg_px': 'avgPx',
         'commission': 'commission',
         'trade_publish_indicator': 'tradePublishIndicator',
-        'multi_leg_reporting_type': 'multiLegReportingType',
         'text': 'text',
         'trd_match_id': 'trdMatchID',
         'exec_cost': 'execCost',
@@ -127,11 +120,19 @@ class Execution(object):
         'home_notional': 'homeNotional',
         'foreign_notional': 'foreignNotional',
         'transact_time': 'transactTime',
-        'timestamp': 'timestamp'
+        'timestamp': 'timestamp',
+        'exec_gross_pnl': 'execGrossPnl',
+        'current_qty': 'currentQty',
+        'avg_entry_price': 'avgEntryPrice',
+        'realised_pnl': 'realisedPnl',
+        'unrealised_pnl': 'unrealisedPnl'
     }
 
-    def __init__(self, exec_id=None, order_id=None, cl_ord_id=None, cl_ord_link_id=None, account=None, symbol=None, side=None, last_qty=None, last_px=None, underlying_last_px=None, last_mkt=None, last_liquidity_ind=None, simple_order_qty=None, order_qty=None, price=None, display_qty=None, stop_px=None, peg_offset_value=None, peg_price_type=None, currency=None, settl_currency=None, exec_type=None, ord_type=None, time_in_force=None, exec_inst=None, contingency_type=None, ex_destination=None, ord_status=None, triggered=None, working_indicator=None, ord_rej_reason=None, simple_leaves_qty=None, leaves_qty=None, simple_cum_qty=None, cum_qty=None, avg_px=None, commission=None, trade_publish_indicator=None, multi_leg_reporting_type=None, text=None, trd_match_id=None, exec_cost=None, exec_comm=None, home_notional=None, foreign_notional=None, transact_time=None, timestamp=None):  # noqa: E501
+    def __init__(self, exec_id=None, order_id=None, cl_ord_id=None, cl_ord_link_id=None, account=None, symbol=None, side=None, last_qty=None, last_px=None, last_liquidity_ind=None, order_qty=None, price=None, display_qty=None, stop_px=None, peg_offset_value=None, peg_price_type=None, currency=None, settl_currency=None, exec_type=None, ord_type=None, time_in_force=None, exec_inst=None, contingency_type=None, ord_status=None, triggered=None, working_indicator=None, ord_rej_reason=None, leaves_qty=None, cum_qty=None, avg_px=None, commission=None, trade_publish_indicator=None, text=None, trd_match_id=None, exec_cost=None, exec_comm=None, home_notional=None, foreign_notional=None, transact_time=None, timestamp=None, exec_gross_pnl=None, current_qty=None, avg_entry_price=None, realised_pnl=None, unrealised_pnl=None, _configuration=None):  # noqa: E501
         """Execution - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._exec_id = None
         self._order_id = None
@@ -142,10 +143,7 @@ class Execution(object):
         self._side = None
         self._last_qty = None
         self._last_px = None
-        self._underlying_last_px = None
-        self._last_mkt = None
         self._last_liquidity_ind = None
-        self._simple_order_qty = None
         self._order_qty = None
         self._price = None
         self._display_qty = None
@@ -159,19 +157,15 @@ class Execution(object):
         self._time_in_force = None
         self._exec_inst = None
         self._contingency_type = None
-        self._ex_destination = None
         self._ord_status = None
         self._triggered = None
         self._working_indicator = None
         self._ord_rej_reason = None
-        self._simple_leaves_qty = None
         self._leaves_qty = None
-        self._simple_cum_qty = None
         self._cum_qty = None
         self._avg_px = None
         self._commission = None
         self._trade_publish_indicator = None
-        self._multi_leg_reporting_type = None
         self._text = None
         self._trd_match_id = None
         self._exec_cost = None
@@ -180,33 +174,31 @@ class Execution(object):
         self._foreign_notional = None
         self._transact_time = None
         self._timestamp = None
+        self._exec_gross_pnl = None
+        self._current_qty = None
+        self._avg_entry_price = None
+        self._realised_pnl = None
+        self._unrealised_pnl = None
         self.discriminator = None
 
-        self.exec_id = exec_id
-        if order_id is not None:
-            self.order_id = order_id
+        if exec_id is not None:
+            self.exec_id = exec_id
+        self.order_id = order_id
         if cl_ord_id is not None:
             self.cl_ord_id = cl_ord_id
         if cl_ord_link_id is not None:
             self.cl_ord_link_id = cl_ord_link_id
         if account is not None:
             self.account = account
-        if symbol is not None:
-            self.symbol = symbol
+        self.symbol = symbol
         if side is not None:
             self.side = side
         if last_qty is not None:
             self.last_qty = last_qty
         if last_px is not None:
             self.last_px = last_px
-        if underlying_last_px is not None:
-            self.underlying_last_px = underlying_last_px
-        if last_mkt is not None:
-            self.last_mkt = last_mkt
         if last_liquidity_ind is not None:
             self.last_liquidity_ind = last_liquidity_ind
-        if simple_order_qty is not None:
-            self.simple_order_qty = simple_order_qty
         if order_qty is not None:
             self.order_qty = order_qty
         if price is not None:
@@ -233,8 +225,6 @@ class Execution(object):
             self.exec_inst = exec_inst
         if contingency_type is not None:
             self.contingency_type = contingency_type
-        if ex_destination is not None:
-            self.ex_destination = ex_destination
         if ord_status is not None:
             self.ord_status = ord_status
         if triggered is not None:
@@ -243,12 +233,8 @@ class Execution(object):
             self.working_indicator = working_indicator
         if ord_rej_reason is not None:
             self.ord_rej_reason = ord_rej_reason
-        if simple_leaves_qty is not None:
-            self.simple_leaves_qty = simple_leaves_qty
         if leaves_qty is not None:
             self.leaves_qty = leaves_qty
-        if simple_cum_qty is not None:
-            self.simple_cum_qty = simple_cum_qty
         if cum_qty is not None:
             self.cum_qty = cum_qty
         if avg_px is not None:
@@ -257,8 +243,6 @@ class Execution(object):
             self.commission = commission
         if trade_publish_indicator is not None:
             self.trade_publish_indicator = trade_publish_indicator
-        if multi_leg_reporting_type is not None:
-            self.multi_leg_reporting_type = multi_leg_reporting_type
         if text is not None:
             self.text = text
         if trd_match_id is not None:
@@ -273,8 +257,17 @@ class Execution(object):
             self.foreign_notional = foreign_notional
         if transact_time is not None:
             self.transact_time = transact_time
-        if timestamp is not None:
-            self.timestamp = timestamp
+        self.timestamp = timestamp
+        if exec_gross_pnl is not None:
+            self.exec_gross_pnl = exec_gross_pnl
+        if current_qty is not None:
+            self.current_qty = current_qty
+        if avg_entry_price is not None:
+            self.avg_entry_price = avg_entry_price
+        if realised_pnl is not None:
+            self.realised_pnl = realised_pnl
+        if unrealised_pnl is not None:
+            self.unrealised_pnl = unrealised_pnl
 
     @property
     def exec_id(self):
@@ -294,8 +287,6 @@ class Execution(object):
         :param exec_id: The exec_id of this Execution.  # noqa: E501
         :type: str
         """
-        if exec_id is None:
-            raise ValueError("Invalid value for `exec_id`, must not be `None`")  # noqa: E501
 
         self._exec_id = exec_id
 
@@ -317,6 +308,8 @@ class Execution(object):
         :param order_id: The order_id of this Execution.  # noqa: E501
         :type: str
         """
+        if self._configuration.client_side_validation and order_id is None:
+            raise ValueError("Invalid value for `order_id`, must not be `None`")  # noqa: E501
 
         self._order_id = order_id
 
@@ -401,6 +394,8 @@ class Execution(object):
         :param symbol: The symbol of this Execution.  # noqa: E501
         :type: str
         """
+        if self._configuration.client_side_validation and symbol is None:
+            raise ValueError("Invalid value for `symbol`, must not be `None`")  # noqa: E501
 
         self._symbol = symbol
 
@@ -468,48 +463,6 @@ class Execution(object):
         self._last_px = last_px
 
     @property
-    def underlying_last_px(self):
-        """Gets the underlying_last_px of this Execution.  # noqa: E501
-
-
-        :return: The underlying_last_px of this Execution.  # noqa: E501
-        :rtype: float
-        """
-        return self._underlying_last_px
-
-    @underlying_last_px.setter
-    def underlying_last_px(self, underlying_last_px):
-        """Sets the underlying_last_px of this Execution.
-
-
-        :param underlying_last_px: The underlying_last_px of this Execution.  # noqa: E501
-        :type: float
-        """
-
-        self._underlying_last_px = underlying_last_px
-
-    @property
-    def last_mkt(self):
-        """Gets the last_mkt of this Execution.  # noqa: E501
-
-
-        :return: The last_mkt of this Execution.  # noqa: E501
-        :rtype: str
-        """
-        return self._last_mkt
-
-    @last_mkt.setter
-    def last_mkt(self, last_mkt):
-        """Sets the last_mkt of this Execution.
-
-
-        :param last_mkt: The last_mkt of this Execution.  # noqa: E501
-        :type: str
-        """
-
-        self._last_mkt = last_mkt
-
-    @property
     def last_liquidity_ind(self):
         """Gets the last_liquidity_ind of this Execution.  # noqa: E501
 
@@ -529,27 +482,6 @@ class Execution(object):
         """
 
         self._last_liquidity_ind = last_liquidity_ind
-
-    @property
-    def simple_order_qty(self):
-        """Gets the simple_order_qty of this Execution.  # noqa: E501
-
-
-        :return: The simple_order_qty of this Execution.  # noqa: E501
-        :rtype: float
-        """
-        return self._simple_order_qty
-
-    @simple_order_qty.setter
-    def simple_order_qty(self, simple_order_qty):
-        """Sets the simple_order_qty of this Execution.
-
-
-        :param simple_order_qty: The simple_order_qty of this Execution.  # noqa: E501
-        :type: float
-        """
-
-        self._simple_order_qty = simple_order_qty
 
     @property
     def order_qty(self):
@@ -825,27 +757,6 @@ class Execution(object):
         self._contingency_type = contingency_type
 
     @property
-    def ex_destination(self):
-        """Gets the ex_destination of this Execution.  # noqa: E501
-
-
-        :return: The ex_destination of this Execution.  # noqa: E501
-        :rtype: str
-        """
-        return self._ex_destination
-
-    @ex_destination.setter
-    def ex_destination(self, ex_destination):
-        """Sets the ex_destination of this Execution.
-
-
-        :param ex_destination: The ex_destination of this Execution.  # noqa: E501
-        :type: str
-        """
-
-        self._ex_destination = ex_destination
-
-    @property
     def ord_status(self):
         """Gets the ord_status of this Execution.  # noqa: E501
 
@@ -930,27 +841,6 @@ class Execution(object):
         self._ord_rej_reason = ord_rej_reason
 
     @property
-    def simple_leaves_qty(self):
-        """Gets the simple_leaves_qty of this Execution.  # noqa: E501
-
-
-        :return: The simple_leaves_qty of this Execution.  # noqa: E501
-        :rtype: float
-        """
-        return self._simple_leaves_qty
-
-    @simple_leaves_qty.setter
-    def simple_leaves_qty(self, simple_leaves_qty):
-        """Sets the simple_leaves_qty of this Execution.
-
-
-        :param simple_leaves_qty: The simple_leaves_qty of this Execution.  # noqa: E501
-        :type: float
-        """
-
-        self._simple_leaves_qty = simple_leaves_qty
-
-    @property
     def leaves_qty(self):
         """Gets the leaves_qty of this Execution.  # noqa: E501
 
@@ -970,27 +860,6 @@ class Execution(object):
         """
 
         self._leaves_qty = leaves_qty
-
-    @property
-    def simple_cum_qty(self):
-        """Gets the simple_cum_qty of this Execution.  # noqa: E501
-
-
-        :return: The simple_cum_qty of this Execution.  # noqa: E501
-        :rtype: float
-        """
-        return self._simple_cum_qty
-
-    @simple_cum_qty.setter
-    def simple_cum_qty(self, simple_cum_qty):
-        """Sets the simple_cum_qty of this Execution.
-
-
-        :param simple_cum_qty: The simple_cum_qty of this Execution.  # noqa: E501
-        :type: float
-        """
-
-        self._simple_cum_qty = simple_cum_qty
 
     @property
     def cum_qty(self):
@@ -1075,27 +944,6 @@ class Execution(object):
         """
 
         self._trade_publish_indicator = trade_publish_indicator
-
-    @property
-    def multi_leg_reporting_type(self):
-        """Gets the multi_leg_reporting_type of this Execution.  # noqa: E501
-
-
-        :return: The multi_leg_reporting_type of this Execution.  # noqa: E501
-        :rtype: str
-        """
-        return self._multi_leg_reporting_type
-
-    @multi_leg_reporting_type.setter
-    def multi_leg_reporting_type(self, multi_leg_reporting_type):
-        """Sets the multi_leg_reporting_type of this Execution.
-
-
-        :param multi_leg_reporting_type: The multi_leg_reporting_type of this Execution.  # noqa: E501
-        :type: str
-        """
-
-        self._multi_leg_reporting_type = multi_leg_reporting_type
 
     @property
     def text(self):
@@ -1262,8 +1110,115 @@ class Execution(object):
         :param timestamp: The timestamp of this Execution.  # noqa: E501
         :type: datetime
         """
+        if self._configuration.client_side_validation and timestamp is None:
+            raise ValueError("Invalid value for `timestamp`, must not be `None`")  # noqa: E501
 
         self._timestamp = timestamp
+
+    @property
+    def exec_gross_pnl(self):
+        """Gets the exec_gross_pnl of this Execution.  # noqa: E501
+
+
+        :return: The exec_gross_pnl of this Execution.  # noqa: E501
+        :rtype: float
+        """
+        return self._exec_gross_pnl
+
+    @exec_gross_pnl.setter
+    def exec_gross_pnl(self, exec_gross_pnl):
+        """Sets the exec_gross_pnl of this Execution.
+
+
+        :param exec_gross_pnl: The exec_gross_pnl of this Execution.  # noqa: E501
+        :type: float
+        """
+
+        self._exec_gross_pnl = exec_gross_pnl
+
+    @property
+    def current_qty(self):
+        """Gets the current_qty of this Execution.  # noqa: E501
+
+
+        :return: The current_qty of this Execution.  # noqa: E501
+        :rtype: float
+        """
+        return self._current_qty
+
+    @current_qty.setter
+    def current_qty(self, current_qty):
+        """Sets the current_qty of this Execution.
+
+
+        :param current_qty: The current_qty of this Execution.  # noqa: E501
+        :type: float
+        """
+
+        self._current_qty = current_qty
+
+    @property
+    def avg_entry_price(self):
+        """Gets the avg_entry_price of this Execution.  # noqa: E501
+
+
+        :return: The avg_entry_price of this Execution.  # noqa: E501
+        :rtype: float
+        """
+        return self._avg_entry_price
+
+    @avg_entry_price.setter
+    def avg_entry_price(self, avg_entry_price):
+        """Sets the avg_entry_price of this Execution.
+
+
+        :param avg_entry_price: The avg_entry_price of this Execution.  # noqa: E501
+        :type: float
+        """
+
+        self._avg_entry_price = avg_entry_price
+
+    @property
+    def realised_pnl(self):
+        """Gets the realised_pnl of this Execution.  # noqa: E501
+
+
+        :return: The realised_pnl of this Execution.  # noqa: E501
+        :rtype: float
+        """
+        return self._realised_pnl
+
+    @realised_pnl.setter
+    def realised_pnl(self, realised_pnl):
+        """Sets the realised_pnl of this Execution.
+
+
+        :param realised_pnl: The realised_pnl of this Execution.  # noqa: E501
+        :type: float
+        """
+
+        self._realised_pnl = realised_pnl
+
+    @property
+    def unrealised_pnl(self):
+        """Gets the unrealised_pnl of this Execution.  # noqa: E501
+
+
+        :return: The unrealised_pnl of this Execution.  # noqa: E501
+        :rtype: float
+        """
+        return self._unrealised_pnl
+
+    @unrealised_pnl.setter
+    def unrealised_pnl(self, unrealised_pnl):
+        """Sets the unrealised_pnl of this Execution.
+
+
+        :param unrealised_pnl: The unrealised_pnl of this Execution.  # noqa: E501
+        :type: float
+        """
+
+        self._unrealised_pnl = unrealised_pnl
 
     def to_dict(self):
         """Returns the model properties as a dict"""
@@ -1305,8 +1260,11 @@ class Execution(object):
         if not isinstance(other, Execution):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, Execution):
+            return True
+
+        return self.to_dict() != other.to_dict()

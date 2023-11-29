@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**instrumentGetActiveIntervals**](InstrumentApi.md#instrumentGetActiveIntervals) | **GET** /instrument/activeIntervals | Return all active contract series and interval pairs.
 [**instrumentGetCompositeIndex**](InstrumentApi.md#instrumentGetCompositeIndex) | **GET** /instrument/compositeIndex | Show constituent parts of an index.
 [**instrumentGetIndices**](InstrumentApi.md#instrumentGetIndices) | **GET** /instrument/indices | Get all price indices.
+[**instrumentGetUsdVolume**](InstrumentApi.md#instrumentGetUsdVolume) | **GET** /instrument/usdVolume | Get a summary of exchange statistics in USD.
 
 
 <a name="instrumentGet"></a>
@@ -18,7 +19,7 @@ Method | HTTP request | Description
 
 Get instruments.
 
-This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`.
+This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`.  The instrument type is specified by the `typ` param.  - Perpetual Contracts - `FFWCSX` - Perpetual Contracts (FX underliers) - `FFWCSF` - Spot - `IFXXXP` - Futures - `FFCCSX` - BitMEX Basket Index - `MRBXXX` - BitMEX Crypto Index - `MRCXXX` - BitMEX FX Index - `MRFXXX` - BitMEX Lending/Premium Index - `MRRXXX` - BitMEX Volatility Index - `MRIXXX` 
 
 ### Example
 ```javascript
@@ -27,10 +28,10 @@ var BitMexApi = require('bit_mex_api');
 var apiInstance = new BitMexApi.InstrumentApi();
 
 var opts = { 
-  'symbol': "symbol_example", // String | Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.
+  'symbol': "symbol_example", // String | Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive.
   'filter': "filter_example", // String | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
   'columns': "columns_example", // String | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-  'count': 100, // Number | Number of results to fetch.
+  'count': 100, // Number | Number of results to fetch. Must be a positive integer.
   'start': 0, // Number | Starting point for results.
   'reverse': false, // Boolean | If true, will sort results newest first.
   'startTime': new Date("2013-10-20T19:20:30+01:00"), // Date | Starting date filter for results.
@@ -51,10 +52,10 @@ apiInstance.instrumentGet(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **String**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`. | [optional] 
+ **symbol** | **String**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive. | [optional] 
  **filter** | **String**| Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional] 
  **columns** | **String**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 
- **count** | **Number**| Number of results to fetch. | [optional] [default to 100]
+ **count** | **Number**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
  **start** | **Number**| Starting point for results. | [optional] [default to 0]
  **reverse** | **Boolean**| If true, will sort results newest first. | [optional] [default to false]
  **startTime** | **Date**| Starting date filter for results. | [optional] 
@@ -195,7 +196,7 @@ No authorization required
 
 Show constituent parts of an index.
 
-Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to get the ticks and weights of the constituent exchanges that build the \".XBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
+Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.BXBT` to get the ticks and weights of the constituent exchanges that build the \".BXBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
 
 ### Example
 ```javascript
@@ -204,10 +205,10 @@ var BitMexApi = require('bit_mex_api');
 var apiInstance = new BitMexApi.InstrumentApi();
 
 var opts = { 
-  'symbol': ".XBT", // String | The composite index symbol.
-  'filter': "filter_example", // String | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
+  'symbol': ".BXBT", // String | The composite index symbol.
+  'filter': "filter_example", // String | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`.
   'columns': "columns_example", // String | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-  'count': 100, // Number | Number of results to fetch.
+  'count': 100, // Number | Number of results to fetch. Must be a positive integer.
   'start': 0, // Number | Starting point for results.
   'reverse': false, // Boolean | If true, will sort results newest first.
   'startTime': new Date("2013-10-20T19:20:30+01:00"), // Date | Starting date filter for results.
@@ -228,10 +229,10 @@ apiInstance.instrumentGetCompositeIndex(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **String**| The composite index symbol. | [optional] [default to .XBT]
- **filter** | **String**| Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional] 
+ **symbol** | **String**| The composite index symbol. | [optional] [default to .BXBT]
+ **filter** | **String**| Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. | [optional] 
  **columns** | **String**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 
- **count** | **Number**| Number of results to fetch. | [optional] [default to 100]
+ **count** | **Number**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
  **start** | **Number**| Starting point for results. | [optional] [default to 0]
  **reverse** | **Boolean**| If true, will sort results newest first. | [optional] [default to false]
  **startTime** | **Date**| Starting date filter for results. | [optional] 
@@ -278,6 +279,53 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**[Instrument]**](Instrument.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+<a name="instrumentGetUsdVolume"></a>
+# **instrumentGetUsdVolume**
+> [StatsUSDBySymbol] instrumentGetUsdVolume(opts)
+
+Get a summary of exchange statistics in USD.
+
+### Example
+```javascript
+var BitMexApi = require('bit_mex_api');
+
+var apiInstance = new BitMexApi.InstrumentApi();
+
+var opts = { 
+  'symbol': "symbol_example", // String | Filter by symbol.
+  'columns': "columns_example" // String | Array of column names to fetch.
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.instrumentGetUsdVolume(opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Filter by symbol. | [optional] 
+ **columns** | **String**| Array of column names to fetch. | [optional] 
+
+### Return type
+
+[**[StatsUSDBySymbol]**](StatsUSDBySymbol.md)
 
 ### Authorization
 

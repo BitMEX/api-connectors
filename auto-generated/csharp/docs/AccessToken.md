@@ -3,6 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Updated** | **DateTime?** |  | 
+**AuthorizedAccounts** | **Object** |  | [optional] 
 **Id** | **string** |  | 
 **Ttl** | **double?** | time to live in seconds (2 weeks by default) | [optional] [default to 1209600.0]
 **Created** | **DateTime?** |  | [optional] 

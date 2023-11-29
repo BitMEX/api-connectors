@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **name** | **NSString*** |  | 
 **nonce** | **NSNumber*** |  | 
 **cidr** | **NSString*** |  | [optional] 
+**cidrs** | [**NSArray&lt;SWGXAny&gt;***](SWGXAny.md) |  | [optional] 
+**targetAccountId** | **NSNumber*** |  | [optional] 
 **permissions** | [**NSArray&lt;SWGXAny&gt;***](SWGXAny.md) |  | [optional] 
 **enabled** | **NSNumber*** |  | [optional] [default to @(NO)]
 **userId** | **NSNumber*** |  | 

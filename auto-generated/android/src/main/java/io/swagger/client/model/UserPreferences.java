@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,6 +38,18 @@ public class UserPreferences {
   private List<String> disableEmails = null;
   @SerializedName("disablePush")
   private List<String> disablePush = null;
+  @SerializedName("displayCorpEnrollUpsell")
+  private Boolean displayCorpEnrollUpsell = null;
+  @SerializedName("equivalentCurrency")
+  private String equivalentCurrency = null;
+  @SerializedName("features")
+  private List<String> features = null;
+  @SerializedName("favourites")
+  private List<String> favourites = null;
+  @SerializedName("favouritesAssets")
+  private List<String> favouritesAssets = null;
+  @SerializedName("favouritesOrdered")
+  private List<String> favouritesOrdered = null;
   @SerializedName("hideConfirmDialogs")
   private List<String> hideConfirmDialogs = null;
   @SerializedName("hideConnectionModal")
@@ -48,10 +60,24 @@ public class UserPreferences {
   private Boolean hideNameFromLeaderboard = null;
   @SerializedName("hideNotifications")
   private List<String> hideNotifications = null;
+  @SerializedName("hidePhoneConfirm")
+  private Boolean hidePhoneConfirm = null;
+  @SerializedName("isSensitiveInfoVisible")
+  private Boolean isSensitiveInfoVisible = null;
+  @SerializedName("isWalletZeroBalanceHidden")
+  private Boolean isWalletZeroBalanceHidden = null;
   @SerializedName("locale")
   private String locale = null;
+  @SerializedName("localeSetTime")
+  private Double localeSetTime = null;
+  @SerializedName("marginPnlRow")
+  private String marginPnlRow = null;
+  @SerializedName("marginPnlRowKind")
+  private String marginPnlRowKind = null;
   @SerializedName("msgsSeen")
   private List<String> msgsSeen = null;
+  @SerializedName("notifications")
+  private Object notifications = null;
   @SerializedName("orderBookBinning")
   private Object orderBookBinning = null;
   @SerializedName("orderBookType")
@@ -60,6 +86,12 @@ public class UserPreferences {
   private Boolean orderClearImmediate = null;
   @SerializedName("orderControlsPlusMinus")
   private Boolean orderControlsPlusMinus = null;
+  @SerializedName("platformLayout")
+  private String platformLayout = null;
+  @SerializedName("selectedFiatCurrency")
+  private String selectedFiatCurrency = null;
+  @SerializedName("showChartBottomToolbar")
+  private Boolean showChartBottomToolbar = null;
   @SerializedName("showLocaleNumbers")
   private Boolean showLocaleNumbers = null;
   @SerializedName("sounds")
@@ -74,6 +106,8 @@ public class UserPreferences {
   private Boolean tickerPinned = null;
   @SerializedName("tradeLayout")
   private String tradeLayout = null;
+  @SerializedName("userColor")
+  private String userColor = null;
 
   /**
    **/
@@ -168,6 +202,66 @@ public class UserPreferences {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Boolean getDisplayCorpEnrollUpsell() {
+    return displayCorpEnrollUpsell;
+  }
+  public void setDisplayCorpEnrollUpsell(Boolean displayCorpEnrollUpsell) {
+    this.displayCorpEnrollUpsell = displayCorpEnrollUpsell;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getEquivalentCurrency() {
+    return equivalentCurrency;
+  }
+  public void setEquivalentCurrency(String equivalentCurrency) {
+    this.equivalentCurrency = equivalentCurrency;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public List<String> getFeatures() {
+    return features;
+  }
+  public void setFeatures(List<String> features) {
+    this.features = features;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public List<String> getFavourites() {
+    return favourites;
+  }
+  public void setFavourites(List<String> favourites) {
+    this.favourites = favourites;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public List<String> getFavouritesAssets() {
+    return favouritesAssets;
+  }
+  public void setFavouritesAssets(List<String> favouritesAssets) {
+    this.favouritesAssets = favouritesAssets;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public List<String> getFavouritesOrdered() {
+    return favouritesOrdered;
+  }
+  public void setFavouritesOrdered(List<String> favouritesOrdered) {
+    this.favouritesOrdered = favouritesOrdered;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public List<String> getHideConfirmDialogs() {
     return hideConfirmDialogs;
   }
@@ -218,6 +312,36 @@ public class UserPreferences {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Boolean getHidePhoneConfirm() {
+    return hidePhoneConfirm;
+  }
+  public void setHidePhoneConfirm(Boolean hidePhoneConfirm) {
+    this.hidePhoneConfirm = hidePhoneConfirm;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Boolean getIsSensitiveInfoVisible() {
+    return isSensitiveInfoVisible;
+  }
+  public void setIsSensitiveInfoVisible(Boolean isSensitiveInfoVisible) {
+    this.isSensitiveInfoVisible = isSensitiveInfoVisible;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Boolean getIsWalletZeroBalanceHidden() {
+    return isWalletZeroBalanceHidden;
+  }
+  public void setIsWalletZeroBalanceHidden(Boolean isWalletZeroBalanceHidden) {
+    this.isWalletZeroBalanceHidden = isWalletZeroBalanceHidden;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public String getLocale() {
     return locale;
   }
@@ -228,11 +352,51 @@ public class UserPreferences {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Double getLocaleSetTime() {
+    return localeSetTime;
+  }
+  public void setLocaleSetTime(Double localeSetTime) {
+    this.localeSetTime = localeSetTime;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getMarginPnlRow() {
+    return marginPnlRow;
+  }
+  public void setMarginPnlRow(String marginPnlRow) {
+    this.marginPnlRow = marginPnlRow;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getMarginPnlRowKind() {
+    return marginPnlRowKind;
+  }
+  public void setMarginPnlRowKind(String marginPnlRowKind) {
+    this.marginPnlRowKind = marginPnlRowKind;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public List<String> getMsgsSeen() {
     return msgsSeen;
   }
   public void setMsgsSeen(List<String> msgsSeen) {
     this.msgsSeen = msgsSeen;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Object getNotifications() {
+    return notifications;
+  }
+  public void setNotifications(Object notifications) {
+    this.notifications = notifications;
   }
 
   /**
@@ -273,6 +437,36 @@ public class UserPreferences {
   }
   public void setOrderControlsPlusMinus(Boolean orderControlsPlusMinus) {
     this.orderControlsPlusMinus = orderControlsPlusMinus;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getPlatformLayout() {
+    return platformLayout;
+  }
+  public void setPlatformLayout(String platformLayout) {
+    this.platformLayout = platformLayout;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getSelectedFiatCurrency() {
+    return selectedFiatCurrency;
+  }
+  public void setSelectedFiatCurrency(String selectedFiatCurrency) {
+    this.selectedFiatCurrency = selectedFiatCurrency;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Boolean getShowChartBottomToolbar() {
+    return showChartBottomToolbar;
+  }
+  public void setShowChartBottomToolbar(Boolean showChartBottomToolbar) {
+    this.showChartBottomToolbar = showChartBottomToolbar;
   }
 
   /**
@@ -345,6 +539,16 @@ public class UserPreferences {
     this.tradeLayout = tradeLayout;
   }
 
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getUserColor() {
+    return userColor;
+  }
+  public void setUserColor(String userColor) {
+    this.userColor = userColor;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -364,24 +568,41 @@ public class UserPreferences {
         (this.debug == null ? userPreferences.debug == null : this.debug.equals(userPreferences.debug)) &&
         (this.disableEmails == null ? userPreferences.disableEmails == null : this.disableEmails.equals(userPreferences.disableEmails)) &&
         (this.disablePush == null ? userPreferences.disablePush == null : this.disablePush.equals(userPreferences.disablePush)) &&
+        (this.displayCorpEnrollUpsell == null ? userPreferences.displayCorpEnrollUpsell == null : this.displayCorpEnrollUpsell.equals(userPreferences.displayCorpEnrollUpsell)) &&
+        (this.equivalentCurrency == null ? userPreferences.equivalentCurrency == null : this.equivalentCurrency.equals(userPreferences.equivalentCurrency)) &&
+        (this.features == null ? userPreferences.features == null : this.features.equals(userPreferences.features)) &&
+        (this.favourites == null ? userPreferences.favourites == null : this.favourites.equals(userPreferences.favourites)) &&
+        (this.favouritesAssets == null ? userPreferences.favouritesAssets == null : this.favouritesAssets.equals(userPreferences.favouritesAssets)) &&
+        (this.favouritesOrdered == null ? userPreferences.favouritesOrdered == null : this.favouritesOrdered.equals(userPreferences.favouritesOrdered)) &&
         (this.hideConfirmDialogs == null ? userPreferences.hideConfirmDialogs == null : this.hideConfirmDialogs.equals(userPreferences.hideConfirmDialogs)) &&
         (this.hideConnectionModal == null ? userPreferences.hideConnectionModal == null : this.hideConnectionModal.equals(userPreferences.hideConnectionModal)) &&
         (this.hideFromLeaderboard == null ? userPreferences.hideFromLeaderboard == null : this.hideFromLeaderboard.equals(userPreferences.hideFromLeaderboard)) &&
         (this.hideNameFromLeaderboard == null ? userPreferences.hideNameFromLeaderboard == null : this.hideNameFromLeaderboard.equals(userPreferences.hideNameFromLeaderboard)) &&
         (this.hideNotifications == null ? userPreferences.hideNotifications == null : this.hideNotifications.equals(userPreferences.hideNotifications)) &&
+        (this.hidePhoneConfirm == null ? userPreferences.hidePhoneConfirm == null : this.hidePhoneConfirm.equals(userPreferences.hidePhoneConfirm)) &&
+        (this.isSensitiveInfoVisible == null ? userPreferences.isSensitiveInfoVisible == null : this.isSensitiveInfoVisible.equals(userPreferences.isSensitiveInfoVisible)) &&
+        (this.isWalletZeroBalanceHidden == null ? userPreferences.isWalletZeroBalanceHidden == null : this.isWalletZeroBalanceHidden.equals(userPreferences.isWalletZeroBalanceHidden)) &&
         (this.locale == null ? userPreferences.locale == null : this.locale.equals(userPreferences.locale)) &&
+        (this.localeSetTime == null ? userPreferences.localeSetTime == null : this.localeSetTime.equals(userPreferences.localeSetTime)) &&
+        (this.marginPnlRow == null ? userPreferences.marginPnlRow == null : this.marginPnlRow.equals(userPreferences.marginPnlRow)) &&
+        (this.marginPnlRowKind == null ? userPreferences.marginPnlRowKind == null : this.marginPnlRowKind.equals(userPreferences.marginPnlRowKind)) &&
         (this.msgsSeen == null ? userPreferences.msgsSeen == null : this.msgsSeen.equals(userPreferences.msgsSeen)) &&
+        (this.notifications == null ? userPreferences.notifications == null : this.notifications.equals(userPreferences.notifications)) &&
         (this.orderBookBinning == null ? userPreferences.orderBookBinning == null : this.orderBookBinning.equals(userPreferences.orderBookBinning)) &&
         (this.orderBookType == null ? userPreferences.orderBookType == null : this.orderBookType.equals(userPreferences.orderBookType)) &&
         (this.orderClearImmediate == null ? userPreferences.orderClearImmediate == null : this.orderClearImmediate.equals(userPreferences.orderClearImmediate)) &&
         (this.orderControlsPlusMinus == null ? userPreferences.orderControlsPlusMinus == null : this.orderControlsPlusMinus.equals(userPreferences.orderControlsPlusMinus)) &&
+        (this.platformLayout == null ? userPreferences.platformLayout == null : this.platformLayout.equals(userPreferences.platformLayout)) &&
+        (this.selectedFiatCurrency == null ? userPreferences.selectedFiatCurrency == null : this.selectedFiatCurrency.equals(userPreferences.selectedFiatCurrency)) &&
+        (this.showChartBottomToolbar == null ? userPreferences.showChartBottomToolbar == null : this.showChartBottomToolbar.equals(userPreferences.showChartBottomToolbar)) &&
         (this.showLocaleNumbers == null ? userPreferences.showLocaleNumbers == null : this.showLocaleNumbers.equals(userPreferences.showLocaleNumbers)) &&
         (this.sounds == null ? userPreferences.sounds == null : this.sounds.equals(userPreferences.sounds)) &&
         (this.strictIPCheck == null ? userPreferences.strictIPCheck == null : this.strictIPCheck.equals(userPreferences.strictIPCheck)) &&
         (this.strictTimeout == null ? userPreferences.strictTimeout == null : this.strictTimeout.equals(userPreferences.strictTimeout)) &&
         (this.tickerGroup == null ? userPreferences.tickerGroup == null : this.tickerGroup.equals(userPreferences.tickerGroup)) &&
         (this.tickerPinned == null ? userPreferences.tickerPinned == null : this.tickerPinned.equals(userPreferences.tickerPinned)) &&
-        (this.tradeLayout == null ? userPreferences.tradeLayout == null : this.tradeLayout.equals(userPreferences.tradeLayout));
+        (this.tradeLayout == null ? userPreferences.tradeLayout == null : this.tradeLayout.equals(userPreferences.tradeLayout)) &&
+        (this.userColor == null ? userPreferences.userColor == null : this.userColor.equals(userPreferences.userColor));
   }
 
   @Override
@@ -396,17 +617,33 @@ public class UserPreferences {
     result = 31 * result + (this.debug == null ? 0: this.debug.hashCode());
     result = 31 * result + (this.disableEmails == null ? 0: this.disableEmails.hashCode());
     result = 31 * result + (this.disablePush == null ? 0: this.disablePush.hashCode());
+    result = 31 * result + (this.displayCorpEnrollUpsell == null ? 0: this.displayCorpEnrollUpsell.hashCode());
+    result = 31 * result + (this.equivalentCurrency == null ? 0: this.equivalentCurrency.hashCode());
+    result = 31 * result + (this.features == null ? 0: this.features.hashCode());
+    result = 31 * result + (this.favourites == null ? 0: this.favourites.hashCode());
+    result = 31 * result + (this.favouritesAssets == null ? 0: this.favouritesAssets.hashCode());
+    result = 31 * result + (this.favouritesOrdered == null ? 0: this.favouritesOrdered.hashCode());
     result = 31 * result + (this.hideConfirmDialogs == null ? 0: this.hideConfirmDialogs.hashCode());
     result = 31 * result + (this.hideConnectionModal == null ? 0: this.hideConnectionModal.hashCode());
     result = 31 * result + (this.hideFromLeaderboard == null ? 0: this.hideFromLeaderboard.hashCode());
     result = 31 * result + (this.hideNameFromLeaderboard == null ? 0: this.hideNameFromLeaderboard.hashCode());
     result = 31 * result + (this.hideNotifications == null ? 0: this.hideNotifications.hashCode());
+    result = 31 * result + (this.hidePhoneConfirm == null ? 0: this.hidePhoneConfirm.hashCode());
+    result = 31 * result + (this.isSensitiveInfoVisible == null ? 0: this.isSensitiveInfoVisible.hashCode());
+    result = 31 * result + (this.isWalletZeroBalanceHidden == null ? 0: this.isWalletZeroBalanceHidden.hashCode());
     result = 31 * result + (this.locale == null ? 0: this.locale.hashCode());
+    result = 31 * result + (this.localeSetTime == null ? 0: this.localeSetTime.hashCode());
+    result = 31 * result + (this.marginPnlRow == null ? 0: this.marginPnlRow.hashCode());
+    result = 31 * result + (this.marginPnlRowKind == null ? 0: this.marginPnlRowKind.hashCode());
     result = 31 * result + (this.msgsSeen == null ? 0: this.msgsSeen.hashCode());
+    result = 31 * result + (this.notifications == null ? 0: this.notifications.hashCode());
     result = 31 * result + (this.orderBookBinning == null ? 0: this.orderBookBinning.hashCode());
     result = 31 * result + (this.orderBookType == null ? 0: this.orderBookType.hashCode());
     result = 31 * result + (this.orderClearImmediate == null ? 0: this.orderClearImmediate.hashCode());
     result = 31 * result + (this.orderControlsPlusMinus == null ? 0: this.orderControlsPlusMinus.hashCode());
+    result = 31 * result + (this.platformLayout == null ? 0: this.platformLayout.hashCode());
+    result = 31 * result + (this.selectedFiatCurrency == null ? 0: this.selectedFiatCurrency.hashCode());
+    result = 31 * result + (this.showChartBottomToolbar == null ? 0: this.showChartBottomToolbar.hashCode());
     result = 31 * result + (this.showLocaleNumbers == null ? 0: this.showLocaleNumbers.hashCode());
     result = 31 * result + (this.sounds == null ? 0: this.sounds.hashCode());
     result = 31 * result + (this.strictIPCheck == null ? 0: this.strictIPCheck.hashCode());
@@ -414,6 +651,7 @@ public class UserPreferences {
     result = 31 * result + (this.tickerGroup == null ? 0: this.tickerGroup.hashCode());
     result = 31 * result + (this.tickerPinned == null ? 0: this.tickerPinned.hashCode());
     result = 31 * result + (this.tradeLayout == null ? 0: this.tradeLayout.hashCode());
+    result = 31 * result + (this.userColor == null ? 0: this.userColor.hashCode());
     return result;
   }
 
@@ -431,17 +669,33 @@ public class UserPreferences {
     sb.append("  debug: ").append(debug).append("\n");
     sb.append("  disableEmails: ").append(disableEmails).append("\n");
     sb.append("  disablePush: ").append(disablePush).append("\n");
+    sb.append("  displayCorpEnrollUpsell: ").append(displayCorpEnrollUpsell).append("\n");
+    sb.append("  equivalentCurrency: ").append(equivalentCurrency).append("\n");
+    sb.append("  features: ").append(features).append("\n");
+    sb.append("  favourites: ").append(favourites).append("\n");
+    sb.append("  favouritesAssets: ").append(favouritesAssets).append("\n");
+    sb.append("  favouritesOrdered: ").append(favouritesOrdered).append("\n");
     sb.append("  hideConfirmDialogs: ").append(hideConfirmDialogs).append("\n");
     sb.append("  hideConnectionModal: ").append(hideConnectionModal).append("\n");
     sb.append("  hideFromLeaderboard: ").append(hideFromLeaderboard).append("\n");
     sb.append("  hideNameFromLeaderboard: ").append(hideNameFromLeaderboard).append("\n");
     sb.append("  hideNotifications: ").append(hideNotifications).append("\n");
+    sb.append("  hidePhoneConfirm: ").append(hidePhoneConfirm).append("\n");
+    sb.append("  isSensitiveInfoVisible: ").append(isSensitiveInfoVisible).append("\n");
+    sb.append("  isWalletZeroBalanceHidden: ").append(isWalletZeroBalanceHidden).append("\n");
     sb.append("  locale: ").append(locale).append("\n");
+    sb.append("  localeSetTime: ").append(localeSetTime).append("\n");
+    sb.append("  marginPnlRow: ").append(marginPnlRow).append("\n");
+    sb.append("  marginPnlRowKind: ").append(marginPnlRowKind).append("\n");
     sb.append("  msgsSeen: ").append(msgsSeen).append("\n");
+    sb.append("  notifications: ").append(notifications).append("\n");
     sb.append("  orderBookBinning: ").append(orderBookBinning).append("\n");
     sb.append("  orderBookType: ").append(orderBookType).append("\n");
     sb.append("  orderClearImmediate: ").append(orderClearImmediate).append("\n");
     sb.append("  orderControlsPlusMinus: ").append(orderControlsPlusMinus).append("\n");
+    sb.append("  platformLayout: ").append(platformLayout).append("\n");
+    sb.append("  selectedFiatCurrency: ").append(selectedFiatCurrency).append("\n");
+    sb.append("  showChartBottomToolbar: ").append(showChartBottomToolbar).append("\n");
     sb.append("  showLocaleNumbers: ").append(showLocaleNumbers).append("\n");
     sb.append("  sounds: ").append(sounds).append("\n");
     sb.append("  strictIPCheck: ").append(strictIPCheck).append("\n");
@@ -449,6 +703,7 @@ public class UserPreferences {
     sb.append("  tickerGroup: ").append(tickerGroup).append("\n");
     sb.append("  tickerPinned: ").append(tickerPinned).append("\n");
     sb.append("  tradeLayout: ").append(tradeLayout).append("\n");
+    sb.append("  userColor: ").append(userColor).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

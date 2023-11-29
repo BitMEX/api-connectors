@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **transactID** | **NSString*** |  | 
 **account** | **NSNumber*** |  | [optional] 
 **currency** | **NSString*** |  | [optional] 
+**network** | **NSString*** |  | [optional] 
 **transactType** | **NSString*** |  | [optional] 
 **amount** | **NSNumber*** |  | [optional] 
 **fee** | **NSNumber*** |  | [optional] 
@@ -15,6 +16,7 @@ Name | Type | Description | Notes
 **text** | **NSString*** |  | [optional] 
 **transactTime** | **NSDate*** |  | [optional] 
 **timestamp** | **NSDate*** |  | [optional] 
+**walletBalance** | **NSNumber*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

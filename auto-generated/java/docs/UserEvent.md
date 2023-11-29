@@ -28,8 +28,7 @@ DEPOSITPENDING | &quot;depositPending&quot;
 BANZEROVOLUMEAPIUSER | &quot;banZeroVolumeApiUser&quot;
 LIQUIDATIONORDERPLACED | &quot;liquidationOrderPlaced&quot;
 LOGIN | &quot;login&quot;
-PGPMASKEDEMAIL | &quot;pgpMaskedEmail&quot;
-PGPTESTEMAIL | &quot;pgpTestEmail&quot;
+EXISTINGACCOUNTREGISTRATIONATTEMPT | &quot;existingAccountRegistrationAttempt&quot;
 PASSWORDCHANGED | &quot;passwordChanged&quot;
 POSITIONSTATELIQUIDATED | &quot;positionStateLiquidated&quot;
 POSITIONSTATEWARNING | &quot;positionStateWarning&quot;
@@ -45,6 +44,8 @@ WITHDRAWALCANCELED | &quot;withdrawalCanceled&quot;
 WITHDRAWALCOMPLETED | &quot;withdrawalCompleted&quot;
 WITHDRAWALCONFIRMED | &quot;withdrawalConfirmed&quot;
 WITHDRAWALREQUESTED | &quot;withdrawalRequested&quot;
+ADDRESSSKIPCONFIRMREQUESTED | &quot;addressSkipConfirmRequested&quot;
+ADDRESSSKIPCONFIRMVERIFIED | &quot;addressSkipConfirmVerified&quot;
 VERIFY | &quot;verify&quot;
 
 

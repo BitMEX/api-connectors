@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **gross_value** | **float** |  | [optional] 
 **home_notional** | **float** |  | [optional] 
 **foreign_notional** | **float** |  | [optional] 
+**trd_type** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -27,15 +27,7 @@ open class LeaderboardAPI {
     /**
      Get current leaderboard.
      - GET /leaderboard
-     - examples: [{contentType=application/json, example=[ {
-  "name" : "name",
-  "isRealName" : true,
-  "profit" : 0.8008281904610115
-}, {
-  "name" : "name",
-  "isRealName" : true,
-  "profit" : 0.8008281904610115
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
      
      - parameter method: (query) Ranking type. Options: \&quot;notional\&quot;, \&quot;ROE\&quot; (optional, default to notional)
 
@@ -80,9 +72,7 @@ open class LeaderboardAPI {
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
-     - examples: [{contentType=application/json, example={
-  "name" : "name"
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
 
      - returns: RequestBuilder<InlineResponse200> 
      */

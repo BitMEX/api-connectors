@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -26,15 +26,21 @@ import com.android.volley.VolleyError;
 import io.swagger.client.model.AccessToken;
 import io.swagger.client.model.Affiliate;
 import java.math.BigDecimal;
+import io.swagger.client.model.CollateralSupportAgreement;
 import io.swagger.client.model.CommunicationToken;
 import java.util.Date;
 import io.swagger.client.model.Error;
+import io.swagger.client.model.Execution;
 import io.swagger.client.model.Margin;
 import io.swagger.client.model.QuoteFillRatio;
+import io.swagger.client.model.QuoteValueRatio;
+import io.swagger.client.model.StakingRecord;
+import io.swagger.client.model.TradingVolume;
 import io.swagger.client.model.Transaction;
 import io.swagger.client.model.User;
 import io.swagger.client.model.UserCommissionsBySymbol;
 import io.swagger.client.model.Wallet;
+import io.swagger.client.model.XAny;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -208,9 +214,9 @@ public class UserApi {
   * Check if a referral code is valid.
   * If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404 or 451 if invalid.
    * @param referralCode 
-   * @return Double
+   * @return Object
   */
-  public Double userCheckReferralCode (String referralCode) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Object userCheckReferralCode (String referralCode) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -243,7 +249,7 @@ public class UserApi {
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (Double) ApiInvoker.deserialize(localVarResponse, "", Double.class);
+         return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
       } else {
          return null;
       }
@@ -269,7 +275,7 @@ public class UserApi {
    * If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404 or 451 if invalid.
    * @param referralCode 
   */
-  public void userCheckReferralCode (String referralCode, final Response.Listener<Double> responseListener, final Response.ErrorListener errorListener) {
+  public void userCheckReferralCode (String referralCode, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -310,7 +316,7 @@ public class UserApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((Double) ApiInvoker.deserialize(localVarResponse,  "", Double.class));
+              responseListener.onResponse((Object) ApiInvoker.deserialize(localVarResponse,  "", Object.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -760,6 +766,440 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     }
   }
   /**
+  * Creates a new sub-account.
+  * 
+   * @param accountName 
+   * @return Object
+  */
+  public Object userCreateSubAccount (String accountName) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'accountName' is set
+    if (accountName == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'accountName' when calling userCreateSubAccount",
+        new ApiException(400, "Missing the required parameter 'accountName' when calling userCreateSubAccount"));
+    }
+
+    // create path and map variables
+    String path = "/user/addSubaccount";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (accountName != null) {
+        localVarBuilder.addTextBody("accountName", ApiInvoker.parameterToString(accountName), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("accountName", ApiInvoker.parameterToString(accountName));
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Creates a new sub-account.
+   * 
+   * @param accountName 
+  */
+  public void userCreateSubAccount (String accountName, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'accountName' is set
+    if (accountName == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'accountName' when calling userCreateSubAccount",
+        new ApiException(400, "Missing the required parameter 'accountName' when calling userCreateSubAccount"));
+    }
+
+    // create path and map variables
+    String path = "/user/addSubaccount".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+      if (accountName != null) {
+        localVarBuilder.addTextBody("accountName", ApiInvoker.parameterToString(accountName), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("accountName", ApiInvoker.parameterToString(accountName));
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Object) ApiInvoker.deserialize(localVarResponse,  "", Object.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Create unstaking request
+  * 
+   * @param symbol 
+   * @param amount 
+   * @return Object
+  */
+  public Object userCreateUnstakingRequests (String symbol, Double amount) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'symbol' is set
+    if (symbol == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'symbol' when calling userCreateUnstakingRequests",
+        new ApiException(400, "Missing the required parameter 'symbol' when calling userCreateUnstakingRequests"));
+    }
+    // verify the required parameter 'amount' is set
+    if (amount == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'amount' when calling userCreateUnstakingRequests",
+        new ApiException(400, "Missing the required parameter 'amount' when calling userCreateUnstakingRequests"));
+    }
+
+    // create path and map variables
+    String path = "/user/unstakingRequests";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (amount != null) {
+        localVarBuilder.addTextBody("amount", ApiInvoker.parameterToString(amount), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+      formParams.put("amount", ApiInvoker.parameterToString(amount));
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Create unstaking request
+   * 
+   * @param symbol    * @param amount 
+  */
+  public void userCreateUnstakingRequests (String symbol, Double amount, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'symbol' is set
+    if (symbol == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'symbol' when calling userCreateUnstakingRequests",
+        new ApiException(400, "Missing the required parameter 'symbol' when calling userCreateUnstakingRequests"));
+    }
+    // verify the required parameter 'amount' is set
+    if (amount == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'amount' when calling userCreateUnstakingRequests",
+        new ApiException(400, "Missing the required parameter 'amount' when calling userCreateUnstakingRequests"));
+    }
+
+    // create path and map variables
+    String path = "/user/unstakingRequests".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (amount != null) {
+        localVarBuilder.addTextBody("amount", ApiInvoker.parameterToString(amount), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+formParams.put("amount", ApiInvoker.parameterToString(amount));
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Object) ApiInvoker.deserialize(localVarResponse,  "", Object.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Cancel unstaking request
+  * 
+   * @param redemptionID 
+   * @return Object
+  */
+  public Object userDeleteUnstakingRequests (String redemptionID) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'redemptionID' is set
+    if (redemptionID == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'redemptionID' when calling userDeleteUnstakingRequests",
+        new ApiException(400, "Missing the required parameter 'redemptionID' when calling userDeleteUnstakingRequests"));
+    }
+
+    // create path and map variables
+    String path = "/user/unstakingRequests";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (redemptionID != null) {
+        localVarBuilder.addTextBody("redemptionID", ApiInvoker.parameterToString(redemptionID), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("redemptionID", ApiInvoker.parameterToString(redemptionID));
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Cancel unstaking request
+   * 
+   * @param redemptionID 
+  */
+  public void userDeleteUnstakingRequests (String redemptionID, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'redemptionID' is set
+    if (redemptionID == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'redemptionID' when calling userDeleteUnstakingRequests",
+        new ApiException(400, "Missing the required parameter 'redemptionID' when calling userDeleteUnstakingRequests"));
+    }
+
+    // create path and map variables
+    String path = "/user/unstakingRequests".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+      if (redemptionID != null) {
+        localVarBuilder.addTextBody("redemptionID", ApiInvoker.parameterToString(redemptionID), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("redemptionID", ApiInvoker.parameterToString(redemptionID));
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Object) ApiInvoker.deserialize(localVarResponse,  "", Object.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
   * Get your user model.
   * 
    * @return User
@@ -880,9 +1320,10 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
   /**
   * Get your current affiliate/referral status.
   * 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
    * @return Affiliate
   */
-  public Affiliate userGetAffiliateStatus () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Affiliate userGetAffiliateStatus (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -894,6 +1335,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -938,14 +1380,133 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Get your current affiliate/referral status.
    * 
-
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
   */
-  public void userGetAffiliateStatus (final Response.Listener<Affiliate> responseListener, final Response.ErrorListener errorListener) {
+  public void userGetAffiliateStatus (String currency, final Response.Listener<Affiliate> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
     // create path and map variables
     String path = "/user/affiliateStatus".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Affiliate) ApiInvoker.deserialize(localVarResponse,  "", Affiliate.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Get your account&#39;s CSA status.
+  * 
+   * @return CollateralSupportAgreement
+  */
+  public CollateralSupportAgreement userGetCSA () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+
+    // create path and map variables
+    String path = "/user/csa";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (CollateralSupportAgreement) ApiInvoker.deserialize(localVarResponse, "", CollateralSupportAgreement.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Get your account&#39;s CSA status.
+   * 
+
+  */
+  public void userGetCSA (final Response.Listener<CollateralSupportAgreement> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+
+    // create path and map variables
+    String path = "/user/csa".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -980,7 +1541,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((Affiliate) ApiInvoker.deserialize(localVarResponse,  "", Affiliate.class));
+              responseListener.onResponse((CollateralSupportAgreement) ApiInvoker.deserialize(localVarResponse,  "", CollateralSupportAgreement.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -1116,11 +1677,22 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
   /**
   * Get a deposit address.
   * 
-   * @param currency 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+   * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.
    * @return String
   */
-  public String userGetDepositAddress (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public String userGetDepositAddress (String currency, String network) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
+    // verify the required parameter 'currency' is set
+    if (currency == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'currency' when calling userGetDepositAddress",
+        new ApiException(400, "Missing the required parameter 'currency' when calling userGetDepositAddress"));
+    }
+    // verify the required parameter 'network' is set
+    if (network == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'network' when calling userGetDepositAddress",
+        new ApiException(400, "Missing the required parameter 'network' when calling userGetDepositAddress"));
+    }
 
     // create path and map variables
     String path = "/user/depositAddress";
@@ -1132,6 +1704,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
     queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "network", network));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -1176,11 +1749,21 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Get a deposit address.
    * 
-   * @param currency 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;   * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.
   */
-  public void userGetDepositAddress (String currency, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
+  public void userGetDepositAddress (String currency, String network, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
+    // verify the required parameter 'currency' is set
+    if (currency == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'currency' when calling userGetDepositAddress",
+        new ApiException(400, "Missing the required parameter 'currency' when calling userGetDepositAddress"));
+    }
+    // verify the required parameter 'network' is set
+    if (network == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'network' when calling userGetDepositAddress",
+        new ApiException(400, "Missing the required parameter 'network' when calling userGetDepositAddress"));
+    }
 
     // create path and map variables
     String path = "/user/depositAddress".replaceAll("\\{format\\}","json");
@@ -1193,6 +1776,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     Map<String, String> formParams = new HashMap<String, String>();
 
     queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "network", network));
 
 
     String[] contentTypes = {
@@ -1239,9 +1823,9 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
   * 
    * @param symbol 
    * @param timestamp 
-   * @return Object
+   * @return List<Execution>
   */
-  public Object userGetExecutionHistory (String symbol, Date timestamp) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public List<Execution> userGetExecutionHistory (String symbol, Date timestamp) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'symbol' is set
     if (symbol == null) {
@@ -1285,7 +1869,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
+         return (List<Execution>) ApiInvoker.deserialize(localVarResponse, "array", Execution.class);
       } else {
          return null;
       }
@@ -1311,7 +1895,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
    * 
    * @param symbol    * @param timestamp 
   */
-  public void userGetExecutionHistory (String symbol, Date timestamp, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+  public void userGetExecutionHistory (String symbol, Date timestamp, final Response.Listener<List<Execution>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'symbol' is set
@@ -1363,7 +1947,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((Object) ApiInvoker.deserialize(localVarResponse,  "", Object.class));
+              responseListener.onResponse((List<Execution>) ApiInvoker.deserialize(localVarResponse,  "array", Execution.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -1381,7 +1965,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
   /**
   * Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
   * 
-   * @param currency 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
    * @return Margin
   */
   public Margin userGetMargin (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
@@ -1441,7 +2025,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
    * 
-   * @param currency 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
   */
   public void userGetMargin (String currency, final Response.Listener<Margin> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
@@ -1502,9 +2086,10 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
   /**
   * Get 7 days worth of Quote Fill Ratio statistics.
   * 
+   * @param targetAccountId AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user
    * @return QuoteFillRatio
   */
-  public QuoteFillRatio userGetQuoteFillRatio () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public QuoteFillRatio userGetQuoteFillRatio (Double targetAccountId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -1516,6 +2101,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "targetAccountId", targetAccountId));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -1560,9 +2146,9 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Get 7 days worth of Quote Fill Ratio statistics.
    * 
-
+   * @param targetAccountId AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user
   */
-  public void userGetQuoteFillRatio (final Response.Listener<QuoteFillRatio> responseListener, final Response.ErrorListener errorListener) {
+  public void userGetQuoteFillRatio (Double targetAccountId, final Response.Listener<QuoteFillRatio> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -1576,6 +2162,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "targetAccountId", targetAccountId));
 
 
     String[] contentTypes = {
@@ -1618,9 +2205,755 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     }
   }
   /**
-  * Get your current wallet information.
+  * Get Quote Value Ratio statistics over the last 3 days
+  * 
+   * @param targetAccountId AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user
+   * @return QuoteValueRatio
+  */
+  public QuoteValueRatio userGetQuoteValueRatio (Double targetAccountId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+
+    // create path and map variables
+    String path = "/user/quoteValueRatio";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "targetAccountId", targetAccountId));
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (QuoteValueRatio) ApiInvoker.deserialize(localVarResponse, "", QuoteValueRatio.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Get Quote Value Ratio statistics over the last 3 days
+   * 
+   * @param targetAccountId AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user
+  */
+  public void userGetQuoteValueRatio (Double targetAccountId, final Response.Listener<QuoteValueRatio> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+
+    // create path and map variables
+    String path = "/user/quoteValueRatio".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "targetAccountId", targetAccountId));
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((QuoteValueRatio) ApiInvoker.deserialize(localVarResponse,  "", QuoteValueRatio.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Get the current user staking amount.
   * 
    * @param currency 
+   * @return List<StakingRecord>
+  */
+  public List<StakingRecord> userGetStaking (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+
+    // create path and map variables
+    String path = "/user/staking";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (List<StakingRecord>) ApiInvoker.deserialize(localVarResponse, "array", StakingRecord.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Get the current user staking amount.
+   * 
+   * @param currency 
+  */
+  public void userGetStaking (String currency, final Response.Listener<List<StakingRecord>> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+
+    // create path and map variables
+    String path = "/user/staking".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((List<StakingRecord>) ApiInvoker.deserialize(localVarResponse,  "array", StakingRecord.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * List staking instruments
+  * 
+   * @param symbol 
+   * @param currency 
+   * @return List<XAny>
+  */
+  public List<XAny> userGetStakingInstruments (String symbol, String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+
+    // create path and map variables
+    String path = "/user/staking/instruments";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (List<XAny>) ApiInvoker.deserialize(localVarResponse, "array", XAny.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * List staking instruments
+   * 
+   * @param symbol    * @param currency 
+  */
+  public void userGetStakingInstruments (String symbol, String currency, final Response.Listener<List<XAny>> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+
+    // create path and map variables
+    String path = "/user/staking/instruments".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((List<XAny>) ApiInvoker.deserialize(localVarResponse,  "array", XAny.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * List staking tiers for a given currency
+  * 
+   * @param currency 
+   * @return List<XAny>
+  */
+  public List<XAny> userGetStakingTiers (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'currency' is set
+    if (currency == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'currency' when calling userGetStakingTiers",
+        new ApiException(400, "Missing the required parameter 'currency' when calling userGetStakingTiers"));
+    }
+
+    // create path and map variables
+    String path = "/user/staking/tiers";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] {  };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (List<XAny>) ApiInvoker.deserialize(localVarResponse, "array", XAny.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * List staking tiers for a given currency
+   * 
+   * @param currency 
+  */
+  public void userGetStakingTiers (String currency, final Response.Listener<List<XAny>> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'currency' is set
+    if (currency == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'currency' when calling userGetStakingTiers",
+        new ApiException(400, "Missing the required parameter 'currency' when calling userGetStakingTiers"));
+    }
+
+    // create path and map variables
+    String path = "/user/staking/tiers".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] {  };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((List<XAny>) ApiInvoker.deserialize(localVarResponse,  "array", XAny.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Get your 30 days USD average trading volume
+  * 
+   * @return List<TradingVolume>
+  */
+  public List<TradingVolume> userGetTradingVolume () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+
+    // create path and map variables
+    String path = "/user/tradingVolume";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (List<TradingVolume>) ApiInvoker.deserialize(localVarResponse, "array", TradingVolume.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Get your 30 days USD average trading volume
+   * 
+
+  */
+  public void userGetTradingVolume (final Response.Listener<List<TradingVolume>> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+
+    // create path and map variables
+    String path = "/user/tradingVolume".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((List<TradingVolume>) ApiInvoker.deserialize(localVarResponse,  "array", TradingVolume.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Get the current user unstaking requests
+  * 
+   * @param status 
+   * @return List<StakingRecord>
+  */
+  public List<StakingRecord> userGetUnstakingRequests (String status) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'status' is set
+    if (status == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'status' when calling userGetUnstakingRequests",
+        new ApiException(400, "Missing the required parameter 'status' when calling userGetUnstakingRequests"));
+    }
+
+    // create path and map variables
+    String path = "/user/unstakingRequests";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "status", status));
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (List<StakingRecord>) ApiInvoker.deserialize(localVarResponse, "array", StakingRecord.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Get the current user unstaking requests
+   * 
+   * @param status 
+  */
+  public void userGetUnstakingRequests (String status, final Response.Listener<List<StakingRecord>> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'status' is set
+    if (status == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'status' when calling userGetUnstakingRequests",
+        new ApiException(400, "Missing the required parameter 'status' when calling userGetUnstakingRequests"));
+    }
+
+    // create path and map variables
+    String path = "/user/unstakingRequests".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "status", status));
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((List<StakingRecord>) ApiInvoker.deserialize(localVarResponse,  "array", StakingRecord.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Get your current wallet information.
+  * 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
    * @return Wallet
   */
   public Wallet userGetWallet (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
@@ -1680,7 +3013,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Get your current wallet information.
    * 
-   * @param currency 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
   */
   public void userGetWallet (String currency, final Response.Listener<Wallet> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
@@ -1741,12 +3074,13 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
   /**
   * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
   * 
-   * @param currency 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
    * @param count Number of results to fetch.
    * @param start Starting point for results.
+   * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history.
    * @return List<Transaction>
   */
-  public List<Transaction> userGetWalletHistory (String currency, Double count, Double start) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public List<Transaction> userGetWalletHistory (String currency, Double count, Double start, Double targetAccountId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -1761,6 +3095,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "count", count));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "start", start));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "targetAccountId", targetAccountId));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -1805,9 +3140,9 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
    * 
-   * @param currency    * @param count Number of results to fetch.   * @param start Starting point for results.
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;   * @param count Number of results to fetch.   * @param start Starting point for results.   * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history.
   */
-  public void userGetWalletHistory (String currency, Double count, Double start, final Response.Listener<List<Transaction>> responseListener, final Response.ErrorListener errorListener) {
+  public void userGetWalletHistory (String currency, Double count, Double start, Double targetAccountId, final Response.Listener<List<Transaction>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -1824,6 +3159,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "count", count));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "start", start));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "targetAccountId", targetAccountId));
 
 
     String[] contentTypes = {
@@ -1868,7 +3204,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
   /**
   * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
   * 
-   * @param currency 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
    * @return List<Transaction>
   */
   public List<Transaction> userGetWalletSummary (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
@@ -1928,7 +3264,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
    * 
-   * @param currency 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
   */
   public void userGetWalletSummary (String currency, final Response.Listener<List<Transaction>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
@@ -1972,6 +3308,124 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
           public void onResponse(String localVarResponse) {
             try {
               responseListener.onResponse((List<Transaction>) ApiInvoker.deserialize(localVarResponse,  "array", Transaction.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Get the list of accounts you can transfer funds between.
+  * 
+   * @return List<XAny>
+  */
+  public List<XAny> userGetWalletTransferAccounts () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+
+    // create path and map variables
+    String path = "/user/getWalletTransferAccounts";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (List<XAny>) ApiInvoker.deserialize(localVarResponse, "array", XAny.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Get the list of accounts you can transfer funds between.
+   * 
+
+  */
+  public void userGetWalletTransferAccounts (final Response.Listener<List<XAny>> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+
+    // create path and map variables
+    String path = "/user/getWalletTransferAccounts".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((List<XAny>) ApiInvoker.deserialize(localVarResponse,  "array", XAny.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -2101,153 +3555,35 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     }
   }
   /**
-  * Get the minimum withdrawal fee for a currency.
-  * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-   * @param currency 
-   * @return Object
-  */
-  public Object userMinWithdrawalFee (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
-    Object postBody = null;
-
-    // create path and map variables
-    String path = "/user/minWithdrawalFee";
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
-    String[] contentTypes = {
-      "application/json",
-      "application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-    }
-
-    String[] authNames = new String[] {  };
-
-    try {
-      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
-      if (localVarResponse != null) {
-         return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
-      } else {
-         return null;
-      }
-    } catch (ApiException ex) {
-       throw ex;
-    } catch (InterruptedException ex) {
-       throw ex;
-    } catch (ExecutionException ex) {
-      if (ex.getCause() instanceof VolleyError) {
-        VolleyError volleyError = (VolleyError)ex.getCause();
-        if (volleyError.networkResponse != null) {
-          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-        }
-      }
-      throw ex;
-    } catch (TimeoutException ex) {
-      throw ex;
-    }
-  }
-
-      /**
-   * Get the minimum withdrawal fee for a currency.
-   * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-   * @param currency 
-  */
-  public void userMinWithdrawalFee (String currency, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
-    Object postBody = null;
-
-
-    // create path and map variables
-    String path = "/user/minWithdrawalFee".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
-
-
-    String[] contentTypes = {
-      "application/json","application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-          }
-
-    String[] authNames = new String[] {  };
-
-    try {
-      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
-        new Response.Listener<String>() {
-          @Override
-          public void onResponse(String localVarResponse) {
-            try {
-              responseListener.onResponse((Object) ApiInvoker.deserialize(localVarResponse,  "", Object.class));
-            } catch (ApiException exception) {
-               errorListener.onErrorResponse(new VolleyError(exception));
-            }
-          }
-      }, new Response.ErrorListener() {
-          @Override
-          public void onErrorResponse(VolleyError error) {
-            errorListener.onErrorResponse(error);
-          }
-      });
-    } catch (ApiException ex) {
-      errorListener.onErrorResponse(new VolleyError(ex));
-    }
-  }
-  /**
   * Request a withdrawal to an external wallet.
   * This will send a confirmation email to the email address on record.
-   * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;
+   * @param currency Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+   * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.
    * @param amount Amount of withdrawal currency.
-   * @param address Destination Address.
-   * @param otpToken 2FA token. Required if 2FA is enabled on your account.
+   * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
+   * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+   * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+   * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
    * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
    * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
    * @return Transaction
   */
-  public Transaction userRequestWithdrawal (String currency, BigDecimal amount, String address, String otpToken, Double fee, String text) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Transaction userRequestWithdrawal (String currency, String network, BigDecimal amount, String otpToken, String address, Double addressId, Double targetUserId, Double fee, String text) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'currency' is set
     if (currency == null) {
       VolleyError error = new VolleyError("Missing the required parameter 'currency' when calling userRequestWithdrawal",
         new ApiException(400, "Missing the required parameter 'currency' when calling userRequestWithdrawal"));
     }
+    // verify the required parameter 'network' is set
+    if (network == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'network' when calling userRequestWithdrawal",
+        new ApiException(400, "Missing the required parameter 'network' when calling userRequestWithdrawal"));
+    }
     // verify the required parameter 'amount' is set
     if (amount == null) {
       VolleyError error = new VolleyError("Missing the required parameter 'amount' when calling userRequestWithdrawal",
         new ApiException(400, "Missing the required parameter 'amount' when calling userRequestWithdrawal"));
-    }
-    // verify the required parameter 'address' is set
-    if (address == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'address' when calling userRequestWithdrawal",
-        new ApiException(400, "Missing the required parameter 'address' when calling userRequestWithdrawal"));
     }
 
     // create path and map variables
@@ -2274,11 +3610,20 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       if (currency != null) {
         localVarBuilder.addTextBody("currency", ApiInvoker.parameterToString(currency), ApiInvoker.TEXT_PLAIN_UTF8);
       }
+      if (network != null) {
+        localVarBuilder.addTextBody("network", ApiInvoker.parameterToString(network), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       if (amount != null) {
         localVarBuilder.addTextBody("amount", ApiInvoker.parameterToString(amount), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       if (address != null) {
         localVarBuilder.addTextBody("address", ApiInvoker.parameterToString(address), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (addressId != null) {
+        localVarBuilder.addTextBody("addressId", ApiInvoker.parameterToString(addressId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (targetUserId != null) {
+        localVarBuilder.addTextBody("targetUserId", ApiInvoker.parameterToString(targetUserId), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       if (fee != null) {
         localVarBuilder.addTextBody("fee", ApiInvoker.parameterToString(fee), ApiInvoker.TEXT_PLAIN_UTF8);
@@ -2292,8 +3637,11 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       // normal form params
       formParams.put("otpToken", ApiInvoker.parameterToString(otpToken));
       formParams.put("currency", ApiInvoker.parameterToString(currency));
+      formParams.put("network", ApiInvoker.parameterToString(network));
       formParams.put("amount", ApiInvoker.parameterToString(amount));
       formParams.put("address", ApiInvoker.parameterToString(address));
+      formParams.put("addressId", ApiInvoker.parameterToString(addressId));
+      formParams.put("targetUserId", ApiInvoker.parameterToString(targetUserId));
       formParams.put("fee", ApiInvoker.parameterToString(fee));
       formParams.put("text", ApiInvoker.parameterToString(text));
     }
@@ -2327,9 +3675,9 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Request a withdrawal to an external wallet.
    * This will send a confirmation email to the email address on record.
-   * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;   * @param amount Amount of withdrawal currency.   * @param address Destination Address.   * @param otpToken 2FA token. Required if 2FA is enabled on your account.   * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.   * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
+   * @param currency Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;   * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.   * @param amount Amount of withdrawal currency.   * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.   * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.   * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
   */
-  public void userRequestWithdrawal (String currency, BigDecimal amount, String address, String otpToken, Double fee, String text, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
+  public void userRequestWithdrawal (String currency, String network, BigDecimal amount, String otpToken, String address, Double addressId, Double targetUserId, Double fee, String text, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'currency' is set
@@ -2337,15 +3685,15 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       VolleyError error = new VolleyError("Missing the required parameter 'currency' when calling userRequestWithdrawal",
         new ApiException(400, "Missing the required parameter 'currency' when calling userRequestWithdrawal"));
     }
+    // verify the required parameter 'network' is set
+    if (network == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'network' when calling userRequestWithdrawal",
+        new ApiException(400, "Missing the required parameter 'network' when calling userRequestWithdrawal"));
+    }
     // verify the required parameter 'amount' is set
     if (amount == null) {
       VolleyError error = new VolleyError("Missing the required parameter 'amount' when calling userRequestWithdrawal",
         new ApiException(400, "Missing the required parameter 'amount' when calling userRequestWithdrawal"));
-    }
-    // verify the required parameter 'address' is set
-    if (address == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'address' when calling userRequestWithdrawal",
-        new ApiException(400, "Missing the required parameter 'address' when calling userRequestWithdrawal"));
     }
 
     // create path and map variables
@@ -2377,12 +3725,24 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
         localVarBuilder.addTextBody("currency", ApiInvoker.parameterToString(currency), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       
+      if (network != null) {
+        localVarBuilder.addTextBody("network", ApiInvoker.parameterToString(network), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
       if (amount != null) {
         localVarBuilder.addTextBody("amount", ApiInvoker.parameterToString(amount), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       
       if (address != null) {
         localVarBuilder.addTextBody("address", ApiInvoker.parameterToString(address), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (addressId != null) {
+        localVarBuilder.addTextBody("addressId", ApiInvoker.parameterToString(addressId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (targetUserId != null) {
+        localVarBuilder.addTextBody("targetUserId", ApiInvoker.parameterToString(targetUserId), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       
       if (fee != null) {
@@ -2400,8 +3760,11 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       // normal form params
       formParams.put("otpToken", ApiInvoker.parameterToString(otpToken));
 formParams.put("currency", ApiInvoker.parameterToString(currency));
+formParams.put("network", ApiInvoker.parameterToString(network));
 formParams.put("amount", ApiInvoker.parameterToString(amount));
 formParams.put("address", ApiInvoker.parameterToString(address));
+formParams.put("addressId", ApiInvoker.parameterToString(addressId));
+formParams.put("targetUserId", ApiInvoker.parameterToString(targetUserId));
 formParams.put("fee", ApiInvoker.parameterToString(fee));
 formParams.put("text", ApiInvoker.parameterToString(text));
     }
@@ -2563,6 +3926,352 @@ formParams.put("overwrite", ApiInvoker.parameterToString(overwrite));
           public void onResponse(String localVarResponse) {
             try {
               responseListener.onResponse((User) ApiInvoker.deserialize(localVarResponse,  "", User.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Updates the sub-account name.
+  * 
+   * @param targetAccountId 
+   * @param accountName 
+   * @return Object
+  */
+  public Object userUpdateSubAccount (Double targetAccountId, String accountName) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'targetAccountId' is set
+    if (targetAccountId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'targetAccountId' when calling userUpdateSubAccount",
+        new ApiException(400, "Missing the required parameter 'targetAccountId' when calling userUpdateSubAccount"));
+    }
+    // verify the required parameter 'accountName' is set
+    if (accountName == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'accountName' when calling userUpdateSubAccount",
+        new ApiException(400, "Missing the required parameter 'accountName' when calling userUpdateSubAccount"));
+    }
+
+    // create path and map variables
+    String path = "/user/updateSubaccount";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (targetAccountId != null) {
+        localVarBuilder.addTextBody("targetAccountId", ApiInvoker.parameterToString(targetAccountId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (accountName != null) {
+        localVarBuilder.addTextBody("accountName", ApiInvoker.parameterToString(accountName), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("targetAccountId", ApiInvoker.parameterToString(targetAccountId));
+      formParams.put("accountName", ApiInvoker.parameterToString(accountName));
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Updates the sub-account name.
+   * 
+   * @param targetAccountId    * @param accountName 
+  */
+  public void userUpdateSubAccount (Double targetAccountId, String accountName, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'targetAccountId' is set
+    if (targetAccountId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'targetAccountId' when calling userUpdateSubAccount",
+        new ApiException(400, "Missing the required parameter 'targetAccountId' when calling userUpdateSubAccount"));
+    }
+    // verify the required parameter 'accountName' is set
+    if (accountName == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'accountName' when calling userUpdateSubAccount",
+        new ApiException(400, "Missing the required parameter 'accountName' when calling userUpdateSubAccount"));
+    }
+
+    // create path and map variables
+    String path = "/user/updateSubaccount".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+      if (targetAccountId != null) {
+        localVarBuilder.addTextBody("targetAccountId", ApiInvoker.parameterToString(targetAccountId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (accountName != null) {
+        localVarBuilder.addTextBody("accountName", ApiInvoker.parameterToString(accountName), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("targetAccountId", ApiInvoker.parameterToString(targetAccountId));
+formParams.put("accountName", ApiInvoker.parameterToString(accountName));
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Object) ApiInvoker.deserialize(localVarResponse,  "", Object.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Execute a transfer to a paired account.
+  * This will send a confirmation email to the email address on record.
+   * @param currency Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+   * @param amount Amount of transfer.
+   * @param targetAccountId AccountId to send the transfer to, must be a paired account with the user sending the transfer.
+   * @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user.
+   * @return Transaction
+  */
+  public Transaction userWalletTransfer (String currency, BigDecimal amount, Double targetAccountId, Double fromAccountId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'currency' is set
+    if (currency == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'currency' when calling userWalletTransfer",
+        new ApiException(400, "Missing the required parameter 'currency' when calling userWalletTransfer"));
+    }
+    // verify the required parameter 'amount' is set
+    if (amount == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'amount' when calling userWalletTransfer",
+        new ApiException(400, "Missing the required parameter 'amount' when calling userWalletTransfer"));
+    }
+    // verify the required parameter 'targetAccountId' is set
+    if (targetAccountId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'targetAccountId' when calling userWalletTransfer",
+        new ApiException(400, "Missing the required parameter 'targetAccountId' when calling userWalletTransfer"));
+    }
+
+    // create path and map variables
+    String path = "/user/walletTransfer";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (currency != null) {
+        localVarBuilder.addTextBody("currency", ApiInvoker.parameterToString(currency), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (amount != null) {
+        localVarBuilder.addTextBody("amount", ApiInvoker.parameterToString(amount), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (fromAccountId != null) {
+        localVarBuilder.addTextBody("fromAccountId", ApiInvoker.parameterToString(fromAccountId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (targetAccountId != null) {
+        localVarBuilder.addTextBody("targetAccountId", ApiInvoker.parameterToString(targetAccountId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("currency", ApiInvoker.parameterToString(currency));
+      formParams.put("amount", ApiInvoker.parameterToString(amount));
+      formParams.put("fromAccountId", ApiInvoker.parameterToString(fromAccountId));
+      formParams.put("targetAccountId", ApiInvoker.parameterToString(targetAccountId));
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (Transaction) ApiInvoker.deserialize(localVarResponse, "", Transaction.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Execute a transfer to a paired account.
+   * This will send a confirmation email to the email address on record.
+   * @param currency Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;   * @param amount Amount of transfer.   * @param targetAccountId AccountId to send the transfer to, must be a paired account with the user sending the transfer.   * @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user.
+  */
+  public void userWalletTransfer (String currency, BigDecimal amount, Double targetAccountId, Double fromAccountId, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'currency' is set
+    if (currency == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'currency' when calling userWalletTransfer",
+        new ApiException(400, "Missing the required parameter 'currency' when calling userWalletTransfer"));
+    }
+    // verify the required parameter 'amount' is set
+    if (amount == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'amount' when calling userWalletTransfer",
+        new ApiException(400, "Missing the required parameter 'amount' when calling userWalletTransfer"));
+    }
+    // verify the required parameter 'targetAccountId' is set
+    if (targetAccountId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'targetAccountId' when calling userWalletTransfer",
+        new ApiException(400, "Missing the required parameter 'targetAccountId' when calling userWalletTransfer"));
+    }
+
+    // create path and map variables
+    String path = "/user/walletTransfer".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+      if (currency != null) {
+        localVarBuilder.addTextBody("currency", ApiInvoker.parameterToString(currency), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (amount != null) {
+        localVarBuilder.addTextBody("amount", ApiInvoker.parameterToString(amount), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (fromAccountId != null) {
+        localVarBuilder.addTextBody("fromAccountId", ApiInvoker.parameterToString(fromAccountId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (targetAccountId != null) {
+        localVarBuilder.addTextBody("targetAccountId", ApiInvoker.parameterToString(targetAccountId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("currency", ApiInvoker.parameterToString(currency));
+formParams.put("amount", ApiInvoker.parameterToString(amount));
+formParams.put("fromAccountId", ApiInvoker.parameterToString(fromAccountId));
+formParams.put("targetAccountId", ApiInvoker.parameterToString(targetAccountId));
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Transaction) ApiInvoker.deserialize(localVarResponse,  "", Transaction.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }

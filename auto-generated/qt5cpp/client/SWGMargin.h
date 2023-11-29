@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -52,32 +52,14 @@ public:
     SWGNumber* getRiskLimit();
     void setRiskLimit(SWGNumber* risk_limit);
 
-    QString* getPrevState();
-    void setPrevState(QString* prev_state);
-
     QString* getState();
     void setState(QString* state);
-
-    QString* getAction();
-    void setAction(QString* action);
 
     SWGNumber* getAmount();
     void setAmount(SWGNumber* amount);
 
-    SWGNumber* getPendingCredit();
-    void setPendingCredit(SWGNumber* pending_credit);
-
-    SWGNumber* getPendingDebit();
-    void setPendingDebit(SWGNumber* pending_debit);
-
-    SWGNumber* getConfirmedDebit();
-    void setConfirmedDebit(SWGNumber* confirmed_debit);
-
     SWGNumber* getPrevRealisedPnl();
     void setPrevRealisedPnl(SWGNumber* prev_realised_pnl);
-
-    SWGNumber* getPrevUnrealisedPnl();
-    void setPrevUnrealisedPnl(SWGNumber* prev_unrealised_pnl);
 
     SWGNumber* getGrossComm();
     void setGrossComm(SWGNumber* gross_comm);
@@ -97,23 +79,14 @@ public:
     SWGNumber* getRiskValue();
     void setRiskValue(SWGNumber* risk_value);
 
-    SWGNumber* getTaxableMargin();
-    void setTaxableMargin(SWGNumber* taxable_margin);
-
     SWGNumber* getInitMargin();
     void setInitMargin(SWGNumber* init_margin);
 
     SWGNumber* getMaintMargin();
     void setMaintMargin(SWGNumber* maint_margin);
 
-    SWGNumber* getSessionMargin();
-    void setSessionMargin(SWGNumber* session_margin);
-
     SWGNumber* getTargetExcessMargin();
     void setTargetExcessMargin(SWGNumber* target_excess_margin);
-
-    SWGNumber* getVarMargin();
-    void setVarMargin(SWGNumber* var_margin);
 
     SWGNumber* getRealisedPnl();
     void setRealisedPnl(SWGNumber* realised_pnl);
@@ -121,23 +94,11 @@ public:
     SWGNumber* getUnrealisedPnl();
     void setUnrealisedPnl(SWGNumber* unrealised_pnl);
 
-    SWGNumber* getIndicativeTax();
-    void setIndicativeTax(SWGNumber* indicative_tax);
-
-    SWGNumber* getUnrealisedProfit();
-    void setUnrealisedProfit(SWGNumber* unrealised_profit);
-
-    SWGNumber* getSyntheticMargin();
-    void setSyntheticMargin(SWGNumber* synthetic_margin);
-
     SWGNumber* getWalletBalance();
     void setWalletBalance(SWGNumber* wallet_balance);
 
     SWGNumber* getMarginBalance();
     void setMarginBalance(SWGNumber* margin_balance);
-
-    double getMarginBalancePcnt();
-    void setMarginBalancePcnt(double margin_balance_pcnt);
 
     double getMarginLeverage();
     void setMarginLeverage(double margin_leverage);
@@ -148,23 +109,20 @@ public:
     SWGNumber* getExcessMargin();
     void setExcessMargin(SWGNumber* excess_margin);
 
-    double getExcessMarginPcnt();
-    void setExcessMarginPcnt(double excess_margin_pcnt);
-
     SWGNumber* getAvailableMargin();
     void setAvailableMargin(SWGNumber* available_margin);
 
     SWGNumber* getWithdrawableMargin();
     void setWithdrawableMargin(SWGNumber* withdrawable_margin);
 
+    double getMakerFeeDiscount();
+    void setMakerFeeDiscount(double maker_fee_discount);
+
+    double getTakerFeeDiscount();
+    void setTakerFeeDiscount(double taker_fee_discount);
+
     QDateTime* getTimestamp();
     void setTimestamp(QDateTime* timestamp);
-
-    SWGNumber* getGrossLastValue();
-    void setGrossLastValue(SWGNumber* gross_last_value);
-
-    double getCommission();
-    void setCommission(double commission);
 
 
     virtual bool isSet() override;
@@ -179,32 +137,14 @@ private:
     SWGNumber* risk_limit;
     bool m_risk_limit_isSet;
 
-    QString* prev_state;
-    bool m_prev_state_isSet;
-
     QString* state;
     bool m_state_isSet;
-
-    QString* action;
-    bool m_action_isSet;
 
     SWGNumber* amount;
     bool m_amount_isSet;
 
-    SWGNumber* pending_credit;
-    bool m_pending_credit_isSet;
-
-    SWGNumber* pending_debit;
-    bool m_pending_debit_isSet;
-
-    SWGNumber* confirmed_debit;
-    bool m_confirmed_debit_isSet;
-
     SWGNumber* prev_realised_pnl;
     bool m_prev_realised_pnl_isSet;
-
-    SWGNumber* prev_unrealised_pnl;
-    bool m_prev_unrealised_pnl_isSet;
 
     SWGNumber* gross_comm;
     bool m_gross_comm_isSet;
@@ -224,23 +164,14 @@ private:
     SWGNumber* risk_value;
     bool m_risk_value_isSet;
 
-    SWGNumber* taxable_margin;
-    bool m_taxable_margin_isSet;
-
     SWGNumber* init_margin;
     bool m_init_margin_isSet;
 
     SWGNumber* maint_margin;
     bool m_maint_margin_isSet;
 
-    SWGNumber* session_margin;
-    bool m_session_margin_isSet;
-
     SWGNumber* target_excess_margin;
     bool m_target_excess_margin_isSet;
-
-    SWGNumber* var_margin;
-    bool m_var_margin_isSet;
 
     SWGNumber* realised_pnl;
     bool m_realised_pnl_isSet;
@@ -248,23 +179,11 @@ private:
     SWGNumber* unrealised_pnl;
     bool m_unrealised_pnl_isSet;
 
-    SWGNumber* indicative_tax;
-    bool m_indicative_tax_isSet;
-
-    SWGNumber* unrealised_profit;
-    bool m_unrealised_profit_isSet;
-
-    SWGNumber* synthetic_margin;
-    bool m_synthetic_margin_isSet;
-
     SWGNumber* wallet_balance;
     bool m_wallet_balance_isSet;
 
     SWGNumber* margin_balance;
     bool m_margin_balance_isSet;
-
-    double margin_balance_pcnt;
-    bool m_margin_balance_pcnt_isSet;
 
     double margin_leverage;
     bool m_margin_leverage_isSet;
@@ -275,23 +194,20 @@ private:
     SWGNumber* excess_margin;
     bool m_excess_margin_isSet;
 
-    double excess_margin_pcnt;
-    bool m_excess_margin_pcnt_isSet;
-
     SWGNumber* available_margin;
     bool m_available_margin_isSet;
 
     SWGNumber* withdrawable_margin;
     bool m_withdrawable_margin_isSet;
 
+    double maker_fee_discount;
+    bool m_maker_fee_discount_isSet;
+
+    double taker_fee_discount;
+    bool m_taker_fee_discount_isSet;
+
     QDateTime* timestamp;
     bool m_timestamp_isSet;
-
-    SWGNumber* gross_last_value;
-    bool m_gross_last_value_isSet;
-
-    double commission;
-    bool m_commission_isSet;
 
 };
 

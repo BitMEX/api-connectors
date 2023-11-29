@@ -13,60 +13,66 @@ import Foundation
 public struct User: Codable {
 
     public var _id: Double?
-    public var ownerId: Double?
     public var firstname: String?
     public var lastname: String?
     public var username: String
-    public var email: String
+    public var accountName: String?
+    public var isUser: Bool
+    public var email: String?
+    public var dateOfBirth: String?
     public var phone: String?
     public var created: Date?
     public var lastUpdated: Date?
     public var preferences: UserPreferences?
     public var tFAEnabled: String?
     public var affiliateID: String?
-    public var pgpPubKey: String?
     public var country: String?
     public var geoipCountry: String?
     public var geoipRegion: String?
+    public var firstTradeTimestamp: Date?
     public var typ: String?
 
-    public init(_id: Double?, ownerId: Double?, firstname: String?, lastname: String?, username: String, email: String, phone: String?, created: Date?, lastUpdated: Date?, preferences: UserPreferences?, tFAEnabled: String?, affiliateID: String?, pgpPubKey: String?, country: String?, geoipCountry: String?, geoipRegion: String?, typ: String?) {
+    public init(_id: Double?, firstname: String?, lastname: String?, username: String, accountName: String?, isUser: Bool, email: String?, dateOfBirth: String?, phone: String?, created: Date?, lastUpdated: Date?, preferences: UserPreferences?, tFAEnabled: String?, affiliateID: String?, country: String?, geoipCountry: String?, geoipRegion: String?, firstTradeTimestamp: Date?, typ: String?) {
         self._id = _id
-        self.ownerId = ownerId
         self.firstname = firstname
         self.lastname = lastname
         self.username = username
+        self.accountName = accountName
+        self.isUser = isUser
         self.email = email
+        self.dateOfBirth = dateOfBirth
         self.phone = phone
         self.created = created
         self.lastUpdated = lastUpdated
         self.preferences = preferences
         self.tFAEnabled = tFAEnabled
         self.affiliateID = affiliateID
-        self.pgpPubKey = pgpPubKey
         self.country = country
         self.geoipCountry = geoipCountry
         self.geoipRegion = geoipRegion
+        self.firstTradeTimestamp = firstTradeTimestamp
         self.typ = typ
     }
 
     public enum CodingKeys: String, CodingKey { 
         case _id = "id"
-        case ownerId
         case firstname
         case lastname
         case username
+        case accountName
+        case isUser
         case email
+        case dateOfBirth
         case phone
         case created
         case lastUpdated
         case preferences
         case tFAEnabled = "TFAEnabled"
         case affiliateID
-        case pgpPubKey
         case country
         case geoipCountry
         case geoipRegion
+        case firstTradeTimestamp
         case typ
     }
 

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -43,10 +43,18 @@ SWGIndexComposite::init() {
     m_symbol_isSet = false;
     index_symbol = new QString("");
     m_index_symbol_isSet = false;
+    index_multiplier = 0.0;
+    m_index_multiplier_isSet = false;
     reference = new QString("");
     m_reference_isSet = false;
     last_price = 0.0;
     m_last_price_isSet = false;
+    source_price = 0.0;
+    m_source_price_isSet = false;
+    conversion_index = new QString("");
+    m_conversion_index_isSet = false;
+    conversion_index_price = 0.0;
+    m_conversion_index_price_isSet = false;
     weight = 0.0;
     m_weight_isSet = false;
     logged = NULL;
@@ -64,8 +72,14 @@ SWGIndexComposite::cleanup() {
     if(index_symbol != nullptr) { 
         delete index_symbol;
     }
+
     if(reference != nullptr) { 
         delete reference;
+    }
+
+
+    if(conversion_index != nullptr) { 
+        delete conversion_index;
     }
 
 
@@ -91,9 +105,17 @@ SWGIndexComposite::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&index_symbol, pJson["indexSymbol"], "QString", "QString");
     
+    ::Swagger::setValue(&index_multiplier, pJson["indexMultiplier"], "double", "");
+    
     ::Swagger::setValue(&reference, pJson["reference"], "QString", "QString");
     
     ::Swagger::setValue(&last_price, pJson["lastPrice"], "double", "");
+    
+    ::Swagger::setValue(&source_price, pJson["sourcePrice"], "double", "");
+    
+    ::Swagger::setValue(&conversion_index, pJson["conversionIndex"], "QString", "QString");
+    
+    ::Swagger::setValue(&conversion_index_price, pJson["conversionIndexPrice"], "double", "");
     
     ::Swagger::setValue(&weight, pJson["weight"], "double", "");
     
@@ -122,11 +144,23 @@ SWGIndexComposite::asJsonObject() {
     if(index_symbol != nullptr && *index_symbol != QString("")){
         toJsonValue(QString("indexSymbol"), index_symbol, obj, QString("QString"));
     }
+    if(m_index_multiplier_isSet){
+        obj.insert("indexMultiplier", QJsonValue(index_multiplier));
+    }
     if(reference != nullptr && *reference != QString("")){
         toJsonValue(QString("reference"), reference, obj, QString("QString"));
     }
     if(m_last_price_isSet){
         obj.insert("lastPrice", QJsonValue(last_price));
+    }
+    if(m_source_price_isSet){
+        obj.insert("sourcePrice", QJsonValue(source_price));
+    }
+    if(conversion_index != nullptr && *conversion_index != QString("")){
+        toJsonValue(QString("conversionIndex"), conversion_index, obj, QString("QString"));
+    }
+    if(m_conversion_index_price_isSet){
+        obj.insert("conversionIndexPrice", QJsonValue(conversion_index_price));
     }
     if(m_weight_isSet){
         obj.insert("weight", QJsonValue(weight));
@@ -168,6 +202,16 @@ SWGIndexComposite::setIndexSymbol(QString* index_symbol) {
     this->m_index_symbol_isSet = true;
 }
 
+double
+SWGIndexComposite::getIndexMultiplier() {
+    return index_multiplier;
+}
+void
+SWGIndexComposite::setIndexMultiplier(double index_multiplier) {
+    this->index_multiplier = index_multiplier;
+    this->m_index_multiplier_isSet = true;
+}
+
 QString*
 SWGIndexComposite::getReference() {
     return reference;
@@ -186,6 +230,36 @@ void
 SWGIndexComposite::setLastPrice(double last_price) {
     this->last_price = last_price;
     this->m_last_price_isSet = true;
+}
+
+double
+SWGIndexComposite::getSourcePrice() {
+    return source_price;
+}
+void
+SWGIndexComposite::setSourcePrice(double source_price) {
+    this->source_price = source_price;
+    this->m_source_price_isSet = true;
+}
+
+QString*
+SWGIndexComposite::getConversionIndex() {
+    return conversion_index;
+}
+void
+SWGIndexComposite::setConversionIndex(QString* conversion_index) {
+    this->conversion_index = conversion_index;
+    this->m_conversion_index_isSet = true;
+}
+
+double
+SWGIndexComposite::getConversionIndexPrice() {
+    return conversion_index_price;
+}
+void
+SWGIndexComposite::setConversionIndexPrice(double conversion_index_price) {
+    this->conversion_index_price = conversion_index_price;
+    this->m_conversion_index_price_isSet = true;
 }
 
 double
@@ -216,8 +290,12 @@ SWGIndexComposite::isSet(){
         
         if(symbol != nullptr && *symbol != QString("")){ isObjectUpdated = true; break;}
         if(index_symbol != nullptr && *index_symbol != QString("")){ isObjectUpdated = true; break;}
+        if(m_index_multiplier_isSet){ isObjectUpdated = true; break;}
         if(reference != nullptr && *reference != QString("")){ isObjectUpdated = true; break;}
         if(m_last_price_isSet){ isObjectUpdated = true; break;}
+        if(m_source_price_isSet){ isObjectUpdated = true; break;}
+        if(conversion_index != nullptr && *conversion_index != QString("")){ isObjectUpdated = true; break;}
+        if(m_conversion_index_price_isSet){ isObjectUpdated = true; break;}
         if(m_weight_isSet){ isObjectUpdated = true; break;}
         
     }while(false);

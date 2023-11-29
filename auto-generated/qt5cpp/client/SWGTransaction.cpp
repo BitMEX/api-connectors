@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -43,6 +43,8 @@ SWGTransaction::init() {
     m_account_isSet = false;
     currency = new QString("");
     m_currency_isSet = false;
+    network = new QString("");
+    m_network_isSet = false;
     transact_type = new QString("");
     m_transact_type_isSet = false;
     amount = 0.0;
@@ -61,6 +63,8 @@ SWGTransaction::init() {
     m_transact_time_isSet = false;
     timestamp = NULL;
     m_timestamp_isSet = false;
+    wallet_balance = 0.0;
+    m_wallet_balance_isSet = false;
 }
 
 void
@@ -73,6 +77,9 @@ SWGTransaction::cleanup() {
     }
     if(currency != nullptr) { 
         delete currency;
+    }
+    if(network != nullptr) { 
+        delete network;
     }
     if(transact_type != nullptr) { 
         delete transact_type;
@@ -101,6 +108,9 @@ SWGTransaction::cleanup() {
     if(timestamp != nullptr) { 
         delete timestamp;
     }
+    if(wallet_balance != nullptr) { 
+        delete wallet_balance;
+    }
 }
 
 SWGTransaction*
@@ -120,6 +130,8 @@ SWGTransaction::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&currency, pJson["currency"], "QString", "QString");
     
+    ::Swagger::setValue(&network, pJson["network"], "QString", "QString");
+    
     ::Swagger::setValue(&transact_type, pJson["transactType"], "QString", "QString");
     
     ::Swagger::setValue(&amount, pJson["amount"], "SWGNumber", "SWGNumber");
@@ -137,6 +149,8 @@ SWGTransaction::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&transact_time, pJson["transactTime"], "QDateTime", "QDateTime");
     
     ::Swagger::setValue(&timestamp, pJson["timestamp"], "QDateTime", "QDateTime");
+    
+    ::Swagger::setValue(&wallet_balance, pJson["walletBalance"], "SWGNumber", "SWGNumber");
     
 }
 
@@ -160,6 +174,9 @@ SWGTransaction::asJsonObject() {
     }
     if(currency != nullptr && *currency != QString("")){
         toJsonValue(QString("currency"), currency, obj, QString("QString"));
+    }
+    if(network != nullptr && *network != QString("")){
+        toJsonValue(QString("network"), network, obj, QString("QString"));
     }
     if(transact_type != nullptr && *transact_type != QString("")){
         toJsonValue(QString("transactType"), transact_type, obj, QString("QString"));
@@ -187,6 +204,9 @@ SWGTransaction::asJsonObject() {
     }
     if(timestamp != nullptr) { 
         toJsonValue(QString("timestamp"), timestamp, obj, QString("QDateTime"));
+    }
+    if((wallet_balance != nullptr) && (wallet_balance->isSet())){
+        toJsonValue(QString("walletBalance"), wallet_balance, obj, QString("SWGNumber"));
     }
 
     return obj;
@@ -220,6 +240,16 @@ void
 SWGTransaction::setCurrency(QString* currency) {
     this->currency = currency;
     this->m_currency_isSet = true;
+}
+
+QString*
+SWGTransaction::getNetwork() {
+    return network;
+}
+void
+SWGTransaction::setNetwork(QString* network) {
+    this->network = network;
+    this->m_network_isSet = true;
 }
 
 QString*
@@ -312,6 +342,16 @@ SWGTransaction::setTimestamp(QDateTime* timestamp) {
     this->m_timestamp_isSet = true;
 }
 
+SWGNumber*
+SWGTransaction::getWalletBalance() {
+    return wallet_balance;
+}
+void
+SWGTransaction::setWalletBalance(SWGNumber* wallet_balance) {
+    this->wallet_balance = wallet_balance;
+    this->m_wallet_balance_isSet = true;
+}
+
 
 bool
 SWGTransaction::isSet(){
@@ -320,6 +360,7 @@ SWGTransaction::isSet(){
         if(transact_id != nullptr && *transact_id != QString("")){ isObjectUpdated = true; break;}
         if(account != nullptr && account->isSet()){ isObjectUpdated = true; break;}
         if(currency != nullptr && *currency != QString("")){ isObjectUpdated = true; break;}
+        if(network != nullptr && *network != QString("")){ isObjectUpdated = true; break;}
         if(transact_type != nullptr && *transact_type != QString("")){ isObjectUpdated = true; break;}
         if(amount != nullptr && amount->isSet()){ isObjectUpdated = true; break;}
         if(fee != nullptr && fee->isSet()){ isObjectUpdated = true; break;}
@@ -329,6 +370,7 @@ SWGTransaction::isSet(){
         if(text != nullptr && *text != QString("")){ isObjectUpdated = true; break;}
         
         
+        if(wallet_balance != nullptr && wallet_balance->isSet()){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

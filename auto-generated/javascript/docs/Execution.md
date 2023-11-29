@@ -3,19 +3,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**execID** | **String** |  | 
-**orderID** | **String** |  | [optional] 
+**execID** | **String** |  | [optional] 
+**orderID** | **String** |  | 
 **clOrdID** | **String** |  | [optional] 
 **clOrdLinkID** | **String** |  | [optional] 
 **account** | **Number** |  | [optional] 
-**symbol** | **String** |  | [optional] 
+**symbol** | **String** |  | 
 **side** | **String** |  | [optional] 
 **lastQty** | **Number** |  | [optional] 
 **lastPx** | **Number** |  | [optional] 
-**underlyingLastPx** | **Number** |  | [optional] 
-**lastMkt** | **String** |  | [optional] 
 **lastLiquidityInd** | **String** |  | [optional] 
-**simpleOrderQty** | **Number** |  | [optional] 
 **orderQty** | **Number** |  | [optional] 
 **price** | **Number** |  | [optional] 
 **displayQty** | **Number** |  | [optional] 
@@ -29,19 +26,15 @@ Name | Type | Description | Notes
 **timeInForce** | **String** |  | [optional] 
 **execInst** | **String** |  | [optional] 
 **contingencyType** | **String** |  | [optional] 
-**exDestination** | **String** |  | [optional] 
 **ordStatus** | **String** |  | [optional] 
 **triggered** | **String** |  | [optional] 
 **workingIndicator** | **Boolean** |  | [optional] 
 **ordRejReason** | **String** |  | [optional] 
-**simpleLeavesQty** | **Number** |  | [optional] 
 **leavesQty** | **Number** |  | [optional] 
-**simpleCumQty** | **Number** |  | [optional] 
 **cumQty** | **Number** |  | [optional] 
 **avgPx** | **Number** |  | [optional] 
 **commission** | **Number** |  | [optional] 
 **tradePublishIndicator** | **String** |  | [optional] 
-**multiLegReportingType** | **String** |  | [optional] 
 **text** | **String** |  | [optional] 
 **trdMatchID** | **String** |  | [optional] 
 **execCost** | **Number** |  | [optional] 
@@ -49,6 +42,11 @@ Name | Type | Description | Notes
 **homeNotional** | **Number** |  | [optional] 
 **foreignNotional** | **Number** |  | [optional] 
 **transactTime** | **Date** |  | [optional] 
-**timestamp** | **Date** |  | [optional] 
+**timestamp** | **Date** |  | 
+**execGrossPnl** | **Number** |  | [optional] 
+**currentQty** | **Number** |  | [optional] 
+**avgEntryPrice** | **Number** |  | [optional] 
+**realisedPnl** | **Number** |  | [optional] 
+**unrealisedPnl** | **Number** |  | [optional] 
 
 

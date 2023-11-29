@@ -17,10 +17,10 @@ Get site announcements.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***AnnouncementGetOpts** | optional parameters | nil if no parameters
+ **optional** | ***AnnouncementApiAnnouncementGetOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a AnnouncementGetOpts struct
+Optional parameters are passed through a pointer to a AnnouncementApiAnnouncementGetOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

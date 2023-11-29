@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -85,8 +85,8 @@ class UserApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'token' is set
-        if ('token' not in params or
-                params['token'] is None):
+        if self.api_client.client_side_validation and ('token' not in params or
+                                                       params['token'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `token` when calling `user_cancel_withdrawal`")  # noqa: E501
 
         collection_formats = {}
@@ -141,7 +141,7 @@ class UserApi(object):
 
         :param async_req bool
         :param str referral_code:
-        :return: float
+        :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -163,7 +163,7 @@ class UserApi(object):
 
         :param async_req bool
         :param str referral_code:
-        :return: float
+        :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -217,7 +217,7 @@ class UserApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='float',  # noqa: E501
+            response_type='object',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -279,12 +279,12 @@ class UserApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'token' is set
-        if ('token' not in params or
-                params['token'] is None):
+        if self.api_client.client_side_validation and ('token' not in params or
+                                                       params['token'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `token` when calling `user_communication_token`")  # noqa: E501
         # verify the required parameter 'platform_agent' is set
-        if ('platform_agent' not in params or
-                params['platform_agent'] is None):
+        if self.api_client.client_side_validation and ('platform_agent' not in params or
+                                                       params['platform_agent'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `platform_agent` when calling `user_communication_token`")  # noqa: E501
 
         collection_formats = {}
@@ -382,8 +382,8 @@ class UserApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'token' is set
-        if ('token' not in params or
-                params['token'] is None):
+        if self.api_client.client_side_validation and ('token' not in params or
+                                                       params['token'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `token` when calling `user_confirm`")  # noqa: E501
 
         collection_formats = {}
@@ -479,8 +479,8 @@ class UserApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'token' is set
-        if ('token' not in params or
-                params['token'] is None):
+        if self.api_client.client_side_validation and ('token' not in params or
+                                                       params['token'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `token` when calling `user_confirm_withdrawal`")  # noqa: E501
 
         collection_formats = {}
@@ -517,6 +517,305 @@ class UserApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='Transaction',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def user_create_sub_account(self, account_name, **kwargs):  # noqa: E501
+        """Creates a new sub-account.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_create_sub_account(account_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str account_name: (required)
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_create_sub_account_with_http_info(account_name, **kwargs)  # noqa: E501
+        else:
+            (data) = self.user_create_sub_account_with_http_info(account_name, **kwargs)  # noqa: E501
+            return data
+
+    def user_create_sub_account_with_http_info(self, account_name, **kwargs):  # noqa: E501
+        """Creates a new sub-account.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_create_sub_account_with_http_info(account_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str account_name: (required)
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['account_name']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_create_sub_account" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'account_name' is set
+        if self.api_client.client_side_validation and ('account_name' not in params or
+                                                       params['account_name'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `account_name` when calling `user_create_sub_account`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+        if 'account_name' in params:
+            form_params.append(('accountName', params['account_name']))  # noqa: E501
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/addSubaccount', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='object',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def user_create_unstaking_requests(self, symbol, amount, **kwargs):  # noqa: E501
+        """Create unstaking request  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_create_unstaking_requests(symbol, amount, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str symbol: (required)
+        :param float amount: (required)
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_create_unstaking_requests_with_http_info(symbol, amount, **kwargs)  # noqa: E501
+        else:
+            (data) = self.user_create_unstaking_requests_with_http_info(symbol, amount, **kwargs)  # noqa: E501
+            return data
+
+    def user_create_unstaking_requests_with_http_info(self, symbol, amount, **kwargs):  # noqa: E501
+        """Create unstaking request  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_create_unstaking_requests_with_http_info(symbol, amount, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str symbol: (required)
+        :param float amount: (required)
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['symbol', 'amount']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_create_unstaking_requests" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'symbol' is set
+        if self.api_client.client_side_validation and ('symbol' not in params or
+                                                       params['symbol'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `symbol` when calling `user_create_unstaking_requests`")  # noqa: E501
+        # verify the required parameter 'amount' is set
+        if self.api_client.client_side_validation and ('amount' not in params or
+                                                       params['amount'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `amount` when calling `user_create_unstaking_requests`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+        if 'symbol' in params:
+            form_params.append(('symbol', params['symbol']))  # noqa: E501
+        if 'amount' in params:
+            form_params.append(('amount', params['amount']))  # noqa: E501
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/unstakingRequests', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='object',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def user_delete_unstaking_requests(self, redemption_id, **kwargs):  # noqa: E501
+        """Cancel unstaking request  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_delete_unstaking_requests(redemption_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str redemption_id: (required)
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_delete_unstaking_requests_with_http_info(redemption_id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.user_delete_unstaking_requests_with_http_info(redemption_id, **kwargs)  # noqa: E501
+            return data
+
+    def user_delete_unstaking_requests_with_http_info(self, redemption_id, **kwargs):  # noqa: E501
+        """Cancel unstaking request  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_delete_unstaking_requests_with_http_info(redemption_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str redemption_id: (required)
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['redemption_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_delete_unstaking_requests" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'redemption_id' is set
+        if self.api_client.client_side_validation and ('redemption_id' not in params or
+                                                       params['redemption_id'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `redemption_id` when calling `user_delete_unstaking_requests`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+        if 'redemption_id' in params:
+            form_params.append(('redemptionID', params['redemption_id']))  # noqa: E501
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/unstakingRequests', 'DELETE',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='object',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -622,6 +921,7 @@ class UserApi(object):
         >>> result = thread.get()
 
         :param async_req bool
+        :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
         :return: Affiliate
                  If the method is called asynchronously,
                  returns the request thread.
@@ -642,12 +942,13 @@ class UserApi(object):
         >>> result = thread.get()
 
         :param async_req bool
+        :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
         :return: Affiliate
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = []  # noqa: E501
+        all_params = ['currency']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -668,6 +969,8 @@ class UserApi(object):
         path_params = {}
 
         query_params = []
+        if 'currency' in params:
+            query_params.append(('currency', params['currency']))  # noqa: E501
 
         header_params = {}
 
@@ -791,43 +1094,134 @@ class UserApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def user_get_deposit_address(self, **kwargs):  # noqa: E501
+    def user_get_csa(self, **kwargs):  # noqa: E501
+        """Get your account's CSA status.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_csa(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :return: CollateralSupportAgreement
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_get_csa_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.user_get_csa_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def user_get_csa_with_http_info(self, **kwargs):  # noqa: E501
+        """Get your account's CSA status.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_csa_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :return: CollateralSupportAgreement
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_get_csa" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/csa', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='CollateralSupportAgreement',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def user_get_deposit_address(self, currency, network, **kwargs):  # noqa: E501
         """Get a deposit address.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.user_get_deposit_address(async_req=True)
+        >>> thread = api.user_get_deposit_address(currency, network, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str currency:
+        :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
+        :param str network: The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`. (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.user_get_deposit_address_with_http_info(**kwargs)  # noqa: E501
+            return self.user_get_deposit_address_with_http_info(currency, network, **kwargs)  # noqa: E501
         else:
-            (data) = self.user_get_deposit_address_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.user_get_deposit_address_with_http_info(currency, network, **kwargs)  # noqa: E501
             return data
 
-    def user_get_deposit_address_with_http_info(self, **kwargs):  # noqa: E501
+    def user_get_deposit_address_with_http_info(self, currency, network, **kwargs):  # noqa: E501
         """Get a deposit address.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.user_get_deposit_address_with_http_info(async_req=True)
+        >>> thread = api.user_get_deposit_address_with_http_info(currency, network, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str currency:
+        :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
+        :param str network: The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`. (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['currency']  # noqa: E501
+        all_params = ['currency', 'network']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -842,6 +1236,14 @@ class UserApi(object):
                 )
             params[key] = val
         del params['kwargs']
+        # verify the required parameter 'currency' is set
+        if self.api_client.client_side_validation and ('currency' not in params or
+                                                       params['currency'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `currency` when calling `user_get_deposit_address`")  # noqa: E501
+        # verify the required parameter 'network' is set
+        if self.api_client.client_side_validation and ('network' not in params or
+                                                       params['network'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `network` when calling `user_get_deposit_address`")  # noqa: E501
 
         collection_formats = {}
 
@@ -850,6 +1252,8 @@ class UserApi(object):
         query_params = []
         if 'currency' in params:
             query_params.append(('currency', params['currency']))  # noqa: E501
+        if 'network' in params:
+            query_params.append(('network', params['network']))  # noqa: E501
 
         header_params = {}
 
@@ -895,7 +1299,7 @@ class UserApi(object):
         :param async_req bool
         :param str symbol: (required)
         :param datetime timestamp: (required)
-        :return: object
+        :return: list[Execution]
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -917,7 +1321,7 @@ class UserApi(object):
         :param async_req bool
         :param str symbol: (required)
         :param datetime timestamp: (required)
-        :return: object
+        :return: list[Execution]
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -938,12 +1342,12 @@ class UserApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'symbol' is set
-        if ('symbol' not in params or
-                params['symbol'] is None):
+        if self.api_client.client_side_validation and ('symbol' not in params or
+                                                       params['symbol'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `symbol` when calling `user_get_execution_history`")  # noqa: E501
         # verify the required parameter 'timestamp' is set
-        if ('timestamp' not in params or
-                params['timestamp'] is None):
+        if self.api_client.client_side_validation and ('timestamp' not in params or
+                                                       params['timestamp'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `timestamp` when calling `user_get_execution_history`")  # noqa: E501
 
         collection_formats = {}
@@ -981,7 +1385,7 @@ class UserApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='object',  # noqa: E501
+            response_type='list[Execution]',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -998,7 +1402,7 @@ class UserApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str currency:
+        :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
         :return: Margin
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1019,7 +1423,7 @@ class UserApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str currency:
+        :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
         :return: Margin
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1091,6 +1495,7 @@ class UserApi(object):
         >>> result = thread.get()
 
         :param async_req bool
+        :param float target_account_id: AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user
         :return: QuoteFillRatio
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1111,12 +1516,13 @@ class UserApi(object):
         >>> result = thread.get()
 
         :param async_req bool
+        :param float target_account_id: AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user
         :return: QuoteFillRatio
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = []  # noqa: E501
+        all_params = ['target_account_id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1137,6 +1543,8 @@ class UserApi(object):
         path_params = {}
 
         query_params = []
+        if 'target_account_id' in params:
+            query_params.append(('targetAccountId', params['target_account_id']))  # noqa: E501
 
         header_params = {}
 
@@ -1171,6 +1579,572 @@ class UserApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def user_get_quote_value_ratio(self, **kwargs):  # noqa: E501
+        """Get Quote Value Ratio statistics over the last 3 days  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_quote_value_ratio(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param float target_account_id: AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user
+        :return: QuoteValueRatio
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_get_quote_value_ratio_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.user_get_quote_value_ratio_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def user_get_quote_value_ratio_with_http_info(self, **kwargs):  # noqa: E501
+        """Get Quote Value Ratio statistics over the last 3 days  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_quote_value_ratio_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param float target_account_id: AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user
+        :return: QuoteValueRatio
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['target_account_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_get_quote_value_ratio" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'target_account_id' in params:
+            query_params.append(('targetAccountId', params['target_account_id']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/quoteValueRatio', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='QuoteValueRatio',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def user_get_staking(self, **kwargs):  # noqa: E501
+        """Get the current user staking amount.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_staking(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str currency:
+        :return: list[StakingRecord]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_get_staking_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.user_get_staking_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def user_get_staking_with_http_info(self, **kwargs):  # noqa: E501
+        """Get the current user staking amount.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_staking_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str currency:
+        :return: list[StakingRecord]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['currency']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_get_staking" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'currency' in params:
+            query_params.append(('currency', params['currency']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/staking', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='list[StakingRecord]',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def user_get_staking_instruments(self, **kwargs):  # noqa: E501
+        """List staking instruments  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_staking_instruments(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str symbol:
+        :param str currency:
+        :return: list[XAny]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_get_staking_instruments_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.user_get_staking_instruments_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def user_get_staking_instruments_with_http_info(self, **kwargs):  # noqa: E501
+        """List staking instruments  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_staking_instruments_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str symbol:
+        :param str currency:
+        :return: list[XAny]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['symbol', 'currency']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_get_staking_instruments" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'symbol' in params:
+            query_params.append(('symbol', params['symbol']))  # noqa: E501
+        if 'currency' in params:
+            query_params.append(('currency', params['currency']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/staking/instruments', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='list[XAny]',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def user_get_staking_tiers(self, currency, **kwargs):  # noqa: E501
+        """List staking tiers for a given currency  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_staking_tiers(currency, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str currency: (required)
+        :return: list[XAny]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_get_staking_tiers_with_http_info(currency, **kwargs)  # noqa: E501
+        else:
+            (data) = self.user_get_staking_tiers_with_http_info(currency, **kwargs)  # noqa: E501
+            return data
+
+    def user_get_staking_tiers_with_http_info(self, currency, **kwargs):  # noqa: E501
+        """List staking tiers for a given currency  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_staking_tiers_with_http_info(currency, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str currency: (required)
+        :return: list[XAny]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['currency']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_get_staking_tiers" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'currency' is set
+        if self.api_client.client_side_validation and ('currency' not in params or
+                                                       params['currency'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `currency` when calling `user_get_staking_tiers`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'currency' in params:
+            query_params.append(('currency', params['currency']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/staking/tiers', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='list[XAny]',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def user_get_trading_volume(self, **kwargs):  # noqa: E501
+        """Get your 30 days USD average trading volume  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_trading_volume(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :return: list[TradingVolume]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_get_trading_volume_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.user_get_trading_volume_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def user_get_trading_volume_with_http_info(self, **kwargs):  # noqa: E501
+        """Get your 30 days USD average trading volume  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_trading_volume_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :return: list[TradingVolume]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_get_trading_volume" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/tradingVolume', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='list[TradingVolume]',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def user_get_unstaking_requests(self, status, **kwargs):  # noqa: E501
+        """Get the current user unstaking requests  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_unstaking_requests(status, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str status: (required)
+        :return: list[StakingRecord]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_get_unstaking_requests_with_http_info(status, **kwargs)  # noqa: E501
+        else:
+            (data) = self.user_get_unstaking_requests_with_http_info(status, **kwargs)  # noqa: E501
+            return data
+
+    def user_get_unstaking_requests_with_http_info(self, status, **kwargs):  # noqa: E501
+        """Get the current user unstaking requests  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_unstaking_requests_with_http_info(status, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str status: (required)
+        :return: list[StakingRecord]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['status']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_get_unstaking_requests" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'status' is set
+        if self.api_client.client_side_validation and ('status' not in params or
+                                                       params['status'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `status` when calling `user_get_unstaking_requests`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'status' in params:
+            query_params.append(('status', params['status']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/unstakingRequests', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='list[StakingRecord]',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def user_get_wallet(self, **kwargs):  # noqa: E501
         """Get your current wallet information.  # noqa: E501
 
@@ -1180,7 +2154,7 @@ class UserApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str currency:
+        :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
         :return: Wallet
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1201,7 +2175,7 @@ class UserApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str currency:
+        :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
         :return: Wallet
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1273,9 +2247,10 @@ class UserApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str currency:
+        :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
         :param float count: Number of results to fetch.
         :param float start: Starting point for results.
+        :param float target_account_id: AccountId to view the history of, must be a paired account with the authorised user requesting the history.
         :return: list[Transaction]
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1296,15 +2271,16 @@ class UserApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str currency:
+        :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
         :param float count: Number of results to fetch.
         :param float start: Starting point for results.
+        :param float target_account_id: AccountId to view the history of, must be a paired account with the authorised user requesting the history.
         :return: list[Transaction]
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['currency', 'count', 'start']  # noqa: E501
+        all_params = ['currency', 'count', 'start', 'target_account_id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1331,6 +2307,8 @@ class UserApi(object):
             query_params.append(('count', params['count']))  # noqa: E501
         if 'start' in params:
             query_params.append(('start', params['start']))  # noqa: E501
+        if 'target_account_id' in params:
+            query_params.append(('targetAccountId', params['target_account_id']))  # noqa: E501
 
         header_params = {}
 
@@ -1374,7 +2352,7 @@ class UserApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str currency:
+        :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
         :return: list[Transaction]
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1395,7 +2373,7 @@ class UserApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str currency:
+        :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
         :return: list[Transaction]
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1451,6 +2429,95 @@ class UserApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='list[Transaction]',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def user_get_wallet_transfer_accounts(self, **kwargs):  # noqa: E501
+        """Get the list of accounts you can transfer funds between.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_wallet_transfer_accounts(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :return: list[XAny]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_get_wallet_transfer_accounts_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.user_get_wallet_transfer_accounts_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def user_get_wallet_transfer_accounts_with_http_info(self, **kwargs):  # noqa: E501
+        """Get the list of accounts you can transfer funds between.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_wallet_transfer_accounts_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :return: list[XAny]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_get_wallet_transfer_accounts" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/getWalletTransferAccounts', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='list[XAny]',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -1547,115 +2614,23 @@ class UserApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def user_min_withdrawal_fee(self, **kwargs):  # noqa: E501
-        """Get the minimum withdrawal fee for a currency.  # noqa: E501
-
-        This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.user_min_withdrawal_fee(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str currency:
-        :return: object
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.user_min_withdrawal_fee_with_http_info(**kwargs)  # noqa: E501
-        else:
-            (data) = self.user_min_withdrawal_fee_with_http_info(**kwargs)  # noqa: E501
-            return data
-
-    def user_min_withdrawal_fee_with_http_info(self, **kwargs):  # noqa: E501
-        """Get the minimum withdrawal fee for a currency.  # noqa: E501
-
-        This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.user_min_withdrawal_fee_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str currency:
-        :return: object
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['currency']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        params = locals()
-        for key, val in six.iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method user_min_withdrawal_fee" % key
-                )
-            params[key] = val
-        del params['kwargs']
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-        if 'currency' in params:
-            query_params.append(('currency', params['currency']))  # noqa: E501
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/user/minWithdrawalFee', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='object',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def user_request_withdrawal(self, currency, amount, address, **kwargs):  # noqa: E501
+    def user_request_withdrawal(self, currency, network, amount, **kwargs):  # noqa: E501
         """Request a withdrawal to an external wallet.  # noqa: E501
 
         This will send a confirmation email to the email address on record.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.user_request_withdrawal(currency, amount, address, async_req=True)
+        >>> thread = api.user_request_withdrawal(currency, network, amount, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str currency: Currency you're withdrawing. Options: `XBt` (required)
+        :param str currency: Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
+        :param str network: The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`. (required)
         :param float amount: Amount of withdrawal currency. (required)
-        :param str address: Destination Address. (required)
-        :param str otp_token: 2FA token. Required if 2FA is enabled on your account.
+        :param str otp_token: 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
+        :param str address: Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
+        :param float address_id: ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
+        :param float target_user_id: ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified.
         :param float fee: Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
         :param str text: Optional annotation, e.g. 'Transfer to home wallet'.
         :return: Transaction
@@ -1664,25 +2639,28 @@ class UserApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.user_request_withdrawal_with_http_info(currency, amount, address, **kwargs)  # noqa: E501
+            return self.user_request_withdrawal_with_http_info(currency, network, amount, **kwargs)  # noqa: E501
         else:
-            (data) = self.user_request_withdrawal_with_http_info(currency, amount, address, **kwargs)  # noqa: E501
+            (data) = self.user_request_withdrawal_with_http_info(currency, network, amount, **kwargs)  # noqa: E501
             return data
 
-    def user_request_withdrawal_with_http_info(self, currency, amount, address, **kwargs):  # noqa: E501
+    def user_request_withdrawal_with_http_info(self, currency, network, amount, **kwargs):  # noqa: E501
         """Request a withdrawal to an external wallet.  # noqa: E501
 
         This will send a confirmation email to the email address on record.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.user_request_withdrawal_with_http_info(currency, amount, address, async_req=True)
+        >>> thread = api.user_request_withdrawal_with_http_info(currency, network, amount, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str currency: Currency you're withdrawing. Options: `XBt` (required)
+        :param str currency: Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
+        :param str network: The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`. (required)
         :param float amount: Amount of withdrawal currency. (required)
-        :param str address: Destination Address. (required)
-        :param str otp_token: 2FA token. Required if 2FA is enabled on your account.
+        :param str otp_token: 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
+        :param str address: Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
+        :param float address_id: ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
+        :param float target_user_id: ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified.
         :param float fee: Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
         :param str text: Optional annotation, e.g. 'Transfer to home wallet'.
         :return: Transaction
@@ -1690,7 +2668,7 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['currency', 'amount', 'address', 'otp_token', 'fee', 'text']  # noqa: E501
+        all_params = ['currency', 'network', 'amount', 'otp_token', 'address', 'address_id', 'target_user_id', 'fee', 'text']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1706,17 +2684,17 @@ class UserApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'currency' is set
-        if ('currency' not in params or
-                params['currency'] is None):
+        if self.api_client.client_side_validation and ('currency' not in params or
+                                                       params['currency'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `currency` when calling `user_request_withdrawal`")  # noqa: E501
+        # verify the required parameter 'network' is set
+        if self.api_client.client_side_validation and ('network' not in params or
+                                                       params['network'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `network` when calling `user_request_withdrawal`")  # noqa: E501
         # verify the required parameter 'amount' is set
-        if ('amount' not in params or
-                params['amount'] is None):
+        if self.api_client.client_side_validation and ('amount' not in params or
+                                                       params['amount'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `amount` when calling `user_request_withdrawal`")  # noqa: E501
-        # verify the required parameter 'address' is set
-        if ('address' not in params or
-                params['address'] is None):
-            raise ValueError("Missing the required parameter `address` when calling `user_request_withdrawal`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1732,10 +2710,16 @@ class UserApi(object):
             form_params.append(('otpToken', params['otp_token']))  # noqa: E501
         if 'currency' in params:
             form_params.append(('currency', params['currency']))  # noqa: E501
+        if 'network' in params:
+            form_params.append(('network', params['network']))  # noqa: E501
         if 'amount' in params:
             form_params.append(('amount', params['amount']))  # noqa: E501
         if 'address' in params:
             form_params.append(('address', params['address']))  # noqa: E501
+        if 'address_id' in params:
+            form_params.append(('addressId', params['address_id']))  # noqa: E501
+        if 'target_user_id' in params:
+            form_params.append(('targetUserId', params['target_user_id']))  # noqa: E501
         if 'fee' in params:
             form_params.append(('fee', params['fee']))  # noqa: E501
         if 'text' in params:
@@ -1823,8 +2807,8 @@ class UserApi(object):
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'prefs' is set
-        if ('prefs' not in params or
-                params['prefs'] is None):
+        if self.api_client.client_side_validation and ('prefs' not in params or
+                                                       params['prefs'] is None):  # noqa: E501
             raise ValueError("Missing the required parameter `prefs` when calling `user_save_preferences`")  # noqa: E501
 
         collection_formats = {}
@@ -1863,6 +2847,230 @@ class UserApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='User',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def user_update_sub_account(self, target_account_id, account_name, **kwargs):  # noqa: E501
+        """Updates the sub-account name.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_update_sub_account(target_account_id, account_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param float target_account_id: (required)
+        :param str account_name: (required)
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_update_sub_account_with_http_info(target_account_id, account_name, **kwargs)  # noqa: E501
+        else:
+            (data) = self.user_update_sub_account_with_http_info(target_account_id, account_name, **kwargs)  # noqa: E501
+            return data
+
+    def user_update_sub_account_with_http_info(self, target_account_id, account_name, **kwargs):  # noqa: E501
+        """Updates the sub-account name.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_update_sub_account_with_http_info(target_account_id, account_name, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param float target_account_id: (required)
+        :param str account_name: (required)
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['target_account_id', 'account_name']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_update_sub_account" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'target_account_id' is set
+        if self.api_client.client_side_validation and ('target_account_id' not in params or
+                                                       params['target_account_id'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `target_account_id` when calling `user_update_sub_account`")  # noqa: E501
+        # verify the required parameter 'account_name' is set
+        if self.api_client.client_side_validation and ('account_name' not in params or
+                                                       params['account_name'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `account_name` when calling `user_update_sub_account`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+        if 'target_account_id' in params:
+            form_params.append(('targetAccountId', params['target_account_id']))  # noqa: E501
+        if 'account_name' in params:
+            form_params.append(('accountName', params['account_name']))  # noqa: E501
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/updateSubaccount', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='object',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def user_wallet_transfer(self, currency, amount, target_account_id, **kwargs):  # noqa: E501
+        """Execute a transfer to a paired account.  # noqa: E501
+
+        This will send a confirmation email to the email address on record.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_wallet_transfer(currency, amount, target_account_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str currency: Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
+        :param float amount: Amount of transfer. (required)
+        :param float target_account_id: AccountId to send the transfer to, must be a paired account with the user sending the transfer. (required)
+        :param float from_account_id: AccountID to send the transfer from. Must be paired account with the authenticated user.
+        :return: Transaction
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_wallet_transfer_with_http_info(currency, amount, target_account_id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.user_wallet_transfer_with_http_info(currency, amount, target_account_id, **kwargs)  # noqa: E501
+            return data
+
+    def user_wallet_transfer_with_http_info(self, currency, amount, target_account_id, **kwargs):  # noqa: E501
+        """Execute a transfer to a paired account.  # noqa: E501
+
+        This will send a confirmation email to the email address on record.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_wallet_transfer_with_http_info(currency, amount, target_account_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str currency: Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
+        :param float amount: Amount of transfer. (required)
+        :param float target_account_id: AccountId to send the transfer to, must be a paired account with the user sending the transfer. (required)
+        :param float from_account_id: AccountID to send the transfer from. Must be paired account with the authenticated user.
+        :return: Transaction
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['currency', 'amount', 'target_account_id', 'from_account_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_wallet_transfer" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'currency' is set
+        if self.api_client.client_side_validation and ('currency' not in params or
+                                                       params['currency'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `currency` when calling `user_wallet_transfer`")  # noqa: E501
+        # verify the required parameter 'amount' is set
+        if self.api_client.client_side_validation and ('amount' not in params or
+                                                       params['amount'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `amount` when calling `user_wallet_transfer`")  # noqa: E501
+        # verify the required parameter 'target_account_id' is set
+        if self.api_client.client_side_validation and ('target_account_id' not in params or
+                                                       params['target_account_id'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `target_account_id` when calling `user_wallet_transfer`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+        if 'currency' in params:
+            form_params.append(('currency', params['currency']))  # noqa: E501
+        if 'amount' in params:
+            form_params.append(('amount', params['amount']))  # noqa: E501
+        if 'from_account_id' in params:
+            form_params.append(('fromAccountId', params['from_account_id']))  # noqa: E501
+        if 'target_account_id' in params:
+            form_params.append(('targetAccountId', params['target_account_id']))  # noqa: E501
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/walletTransfer', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='Transaction',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),

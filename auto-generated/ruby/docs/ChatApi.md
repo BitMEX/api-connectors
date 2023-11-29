@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**chat_get**](ChatApi.md#chat_get) | **GET** /chat | Get chat messages.
 [**chat_get_channels**](ChatApi.md#chat_get_channels) | **GET** /chat/channels | Get available channels.
 [**chat_get_connected**](ChatApi.md#chat_get_connected) | **GET** /chat/connected | Get connected users.
+[**chat_get_pinned_message**](ChatApi.md#chat_get_pinned_message) | **GET** /chat/pinned | Get pinned message for a channel.
 [**chat_new**](ChatApi.md#chat_new) | **POST** /chat | Send a chat message.
 
 
@@ -26,7 +27,7 @@ opts = {
   count: 100, # Float | Number of results to fetch.
   start: 0, # Float | Starting ID for results.
   reverse: true, # BOOLEAN | If true, will sort results newest first.
-  channel_id: 1.2 # Float | Channel id. GET /chat/channels for ids. Leave blank for all.
+  channel_id: 1 # Float | Channel id. GET /chat/channels for ids. Global English by default
 }
 
 begin
@@ -45,7 +46,7 @@ Name | Type | Description  | Notes
  **count** | **Float**| Number of results to fetch. | [optional] [default to 100]
  **start** | **Float**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **BOOLEAN**| If true, will sort results newest first. | [optional] [default to true]
- **channel_id** | **Float**| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional] 
+ **channel_id** | **Float**| Channel id. GET /chat/channels for ids. Global English by default | [optional] [default to 1]
 
 ### Return type
 
@@ -130,6 +131,51 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ConnectedUsers**](ConnectedUsers.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+
+
+# **chat_get_pinned_message**
+> PinnedMessage chat_get_pinned_message(channel_id)
+
+Get pinned message for a channel.
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+
+api_instance = SwaggerClient::ChatApi.new
+
+channel_id = 1.2 # Float | 
+
+
+begin
+  #Get pinned message for a channel.
+  result = api_instance.chat_get_pinned_message(channel_id)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling ChatApi->chat_get_pinned_message: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **channel_id** | **Float**|  | 
+
+### Return type
+
+[**PinnedMessage**](PinnedMessage.md)
 
 ### Authorization
 

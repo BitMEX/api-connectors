@@ -1,19 +1,25 @@
 #import <Foundation/Foundation.h>
 #import "SWGAccessToken.h"
 #import "SWGAffiliate.h"
+#import "SWGCollateralSupportAgreement.h"
 #import "SWGCommunicationToken.h"
 #import "SWGError.h"
+#import "SWGExecution.h"
 #import "SWGMargin.h"
 #import "SWGQuoteFillRatio.h"
+#import "SWGQuoteValueRatio.h"
+#import "SWGStakingRecord.h"
+#import "SWGTradingVolume.h"
 #import "SWGTransaction.h"
 #import "SWGUser.h"
 #import "SWGUserCommissionsBySymbol.h"
 #import "SWGWallet.h"
+#import "SWGXAny.h"
 #import "SWGApi.h"
 
 /**
 * BitMEX API
-* ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+* ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
 *
 * OpenAPI spec version: 1.2.0
 * Contact: support@bitmex.com
@@ -59,9 +65,9 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 ///  code:403 message:"Access Denied",
 ///  code:404 message:"Not Found"
 ///
-/// @return NSNumber*
+/// @return NSObject*
 -(NSURLSessionTask*) userCheckReferralCodeWithReferralCode: (NSString*) referralCode
-    completionHandler: (void (^)(NSNumber* output, NSError* error)) handler;
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 
 /// Register your communication token for mobile clients
@@ -114,6 +120,56 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
     completionHandler: (void (^)(SWGTransaction* output, NSError* error)) handler;
 
 
+/// Creates a new sub-account.
+/// 
+///
+/// @param accountName 
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) userCreateSubAccountWithAccountName: (NSString*) accountName
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Create unstaking request
+/// 
+///
+/// @param symbol 
+/// @param amount 
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) userCreateUnstakingRequestsWithSymbol: (NSString*) symbol
+    amount: (NSNumber*) amount
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Cancel unstaking request
+/// 
+///
+/// @param redemptionID 
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) userDeleteUnstakingRequestsWithRedemptionID: (NSString*) redemptionID
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
 /// Get your user model.
 /// 
 ///
@@ -132,6 +188,7 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 /// Get your current affiliate/referral status.
 /// 
 ///
+/// @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional) (default to XBt)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -140,8 +197,23 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 ///  code:404 message:"Not Found"
 ///
 /// @return SWGAffiliate*
--(NSURLSessionTask*) userGetAffiliateStatusWithCompletionHandler: 
-    (void (^)(SWGAffiliate* output, NSError* error)) handler;
+-(NSURLSessionTask*) userGetAffiliateStatusWithCurrency: (NSString*) currency
+    completionHandler: (void (^)(SWGAffiliate* output, NSError* error)) handler;
+
+
+/// Get your account's CSA status.
+/// 
+///
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return SWGCollateralSupportAgreement*
+-(NSURLSessionTask*) userGetCSAWithCompletionHandler: 
+    (void (^)(SWGCollateralSupportAgreement* output, NSError* error)) handler;
 
 
 /// Get your account's commission status.
@@ -162,7 +234,8 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 /// Get a deposit address.
 /// 
 ///
-/// @param currency  (optional) (default to XBt)
+/// @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+/// @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -172,6 +245,7 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 ///
 /// @return NSString*
 -(NSURLSessionTask*) userGetDepositAddressWithCurrency: (NSString*) currency
+    network: (NSString*) network
     completionHandler: (void (^)(NSString* output, NSError* error)) handler;
 
 
@@ -187,16 +261,16 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 ///  code:403 message:"Access Denied",
 ///  code:404 message:"Not Found"
 ///
-/// @return NSObject*
+/// @return NSArray<SWGExecution>*
 -(NSURLSessionTask*) userGetExecutionHistoryWithSymbol: (NSString*) symbol
     timestamp: (NSDate*) timestamp
-    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+    completionHandler: (void (^)(NSArray<SWGExecution>* output, NSError* error)) handler;
 
 
 /// Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
 /// 
 ///
-/// @param currency  (optional) (default to XBt)
+/// @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional) (default to XBt)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -212,6 +286,7 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 /// Get 7 days worth of Quote Fill Ratio statistics.
 /// 
 ///
+/// @param targetAccountId AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -220,14 +295,111 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 ///  code:404 message:"Not Found"
 ///
 /// @return SWGQuoteFillRatio*
--(NSURLSessionTask*) userGetQuoteFillRatioWithCompletionHandler: 
-    (void (^)(SWGQuoteFillRatio* output, NSError* error)) handler;
+-(NSURLSessionTask*) userGetQuoteFillRatioWithTargetAccountId: (NSNumber*) targetAccountId
+    completionHandler: (void (^)(SWGQuoteFillRatio* output, NSError* error)) handler;
+
+
+/// Get Quote Value Ratio statistics over the last 3 days
+/// 
+///
+/// @param targetAccountId AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return SWGQuoteValueRatio*
+-(NSURLSessionTask*) userGetQuoteValueRatioWithTargetAccountId: (NSNumber*) targetAccountId
+    completionHandler: (void (^)(SWGQuoteValueRatio* output, NSError* error)) handler;
+
+
+/// Get the current user staking amount.
+/// 
+///
+/// @param currency  (optional)
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return NSArray<SWGStakingRecord>*
+-(NSURLSessionTask*) userGetStakingWithCurrency: (NSString*) currency
+    completionHandler: (void (^)(NSArray<SWGStakingRecord>* output, NSError* error)) handler;
+
+
+/// List staking instruments
+/// 
+///
+/// @param symbol  (optional)
+/// @param currency  (optional)
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return NSArray<SWGXAny>*
+-(NSURLSessionTask*) userGetStakingInstrumentsWithSymbol: (NSString*) symbol
+    currency: (NSString*) currency
+    completionHandler: (void (^)(NSArray<SWGXAny>* output, NSError* error)) handler;
+
+
+/// List staking tiers for a given currency
+/// 
+///
+/// @param currency 
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return NSArray<SWGXAny>*
+-(NSURLSessionTask*) userGetStakingTiersWithCurrency: (NSString*) currency
+    completionHandler: (void (^)(NSArray<SWGXAny>* output, NSError* error)) handler;
+
+
+/// Get your 30 days USD average trading volume
+/// 
+///
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return NSArray<SWGTradingVolume>*
+-(NSURLSessionTask*) userGetTradingVolumeWithCompletionHandler: 
+    (void (^)(NSArray<SWGTradingVolume>* output, NSError* error)) handler;
+
+
+/// Get the current user unstaking requests
+/// 
+///
+/// @param status 
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return NSArray<SWGStakingRecord>*
+-(NSURLSessionTask*) userGetUnstakingRequestsWithStatus: (NSString*) status
+    completionHandler: (void (^)(NSArray<SWGStakingRecord>* output, NSError* error)) handler;
 
 
 /// Get your current wallet information.
 /// 
 ///
-/// @param currency  (optional) (default to XBt)
+/// @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional) (default to XBt)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -243,9 +415,10 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 /// 
 ///
-/// @param currency  (optional) (default to XBt)
+/// @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional) (default to XBt)
 /// @param count Number of results to fetch. (optional) (default to 100)
 /// @param start Starting point for results. (optional) (default to 0)
+/// @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -257,13 +430,14 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 -(NSURLSessionTask*) userGetWalletHistoryWithCurrency: (NSString*) currency
     count: (NSNumber*) count
     start: (NSNumber*) start
+    targetAccountId: (NSNumber*) targetAccountId
     completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler;
 
 
 /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 /// 
 ///
-/// @param currency  (optional) (default to XBt)
+/// @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional) (default to XBt)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -274,6 +448,21 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 /// @return NSArray<SWGTransaction>*
 -(NSURLSessionTask*) userGetWalletSummaryWithCurrency: (NSString*) currency
     completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler;
+
+
+/// Get the list of accounts you can transfer funds between.
+/// 
+///
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return NSArray<SWGXAny>*
+-(NSURLSessionTask*) userGetWalletTransferAccountsWithCompletionHandler: 
+    (void (^)(NSArray<SWGXAny>* output, NSError* error)) handler;
 
 
 /// Log out of BitMEX.
@@ -291,29 +480,16 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
     (void (^)(NSError* error)) handler;
 
 
-/// Get the minimum withdrawal fee for a currency.
-/// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-///
-/// @param currency  (optional) (default to XBt)
-/// 
-///  code:200 message:"Request was successful",
-///  code:400 message:"Parameter Error",
-///  code:401 message:"Unauthorized",
-///  code:403 message:"Access Denied",
-///  code:404 message:"Not Found"
-///
-/// @return NSObject*
--(NSURLSessionTask*) userMinWithdrawalFeeWithCurrency: (NSString*) currency
-    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
-
-
 /// Request a withdrawal to an external wallet.
 /// This will send a confirmation email to the email address on record.
 ///
-/// @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; (default to XBt)
+/// @param currency Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (default to XBt)
+/// @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.
 /// @param amount Amount of withdrawal currency.
-/// @param address Destination Address.
-/// @param otpToken 2FA token. Required if 2FA is enabled on your account. (optional)
+/// @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
+/// @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
+/// @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
+/// @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
 /// @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
 /// @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)
 /// 
@@ -325,9 +501,12 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 ///
 /// @return SWGTransaction*
 -(NSURLSessionTask*) userRequestWithdrawalWithCurrency: (NSString*) currency
+    network: (NSString*) network
     amount: (NSNumber*) amount
-    address: (NSString*) address
     otpToken: (NSString*) otpToken
+    address: (NSString*) address
+    addressId: (NSNumber*) addressId
+    targetUserId: (NSNumber*) targetUserId
     fee: (NSNumber*) fee
     text: (NSString*) text
     completionHandler: (void (^)(SWGTransaction* output, NSError* error)) handler;
@@ -349,6 +528,46 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 -(NSURLSessionTask*) userSavePreferencesWithPrefs: (NSString*) prefs
     overwrite: (NSNumber*) overwrite
     completionHandler: (void (^)(SWGUser* output, NSError* error)) handler;
+
+
+/// Updates the sub-account name.
+/// 
+///
+/// @param targetAccountId 
+/// @param accountName 
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) userUpdateSubAccountWithTargetAccountId: (NSNumber*) targetAccountId
+    accountName: (NSString*) accountName
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Execute a transfer to a paired account.
+/// This will send a confirmation email to the email address on record.
+///
+/// @param currency Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+/// @param amount Amount of transfer.
+/// @param targetAccountId AccountId to send the transfer to, must be a paired account with the user sending the transfer.
+/// @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return SWGTransaction*
+-(NSURLSessionTask*) userWalletTransferWithCurrency: (NSString*) currency
+    amount: (NSNumber*) amount
+    targetAccountId: (NSNumber*) targetAccountId
+    fromAccountId: (NSNumber*) fromAccountId
+    completionHandler: (void (^)(SWGTransaction* output, NSError* error)) handler;
 
 
 

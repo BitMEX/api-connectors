@@ -20,17 +20,33 @@ public struct UserPreferences: Codable {
     public var debug: Bool?
     public var disableEmails: [String]?
     public var disablePush: [String]?
+    public var displayCorpEnrollUpsell: Bool?
+    public var equivalentCurrency: String?
+    public var features: [String]?
+    public var favourites: [String]?
+    public var favouritesAssets: [String]?
+    public var favouritesOrdered: [String]?
     public var hideConfirmDialogs: [String]?
     public var hideConnectionModal: Bool?
     public var hideFromLeaderboard: Bool?
     public var hideNameFromLeaderboard: Bool?
     public var hideNotifications: [String]?
+    public var hidePhoneConfirm: Bool?
+    public var isSensitiveInfoVisible: Bool?
+    public var isWalletZeroBalanceHidden: Bool?
     public var locale: String?
+    public var localeSetTime: Double?
+    public var marginPnlRow: String?
+    public var marginPnlRowKind: String?
     public var msgsSeen: [String]?
+    public var notifications: Any?
     public var orderBookBinning: Any?
     public var orderBookType: String?
     public var orderClearImmediate: Bool?
     public var orderControlsPlusMinus: Bool?
+    public var platformLayout: String?
+    public var selectedFiatCurrency: String?
+    public var showChartBottomToolbar: Bool?
     public var showLocaleNumbers: Bool?
     public var sounds: [String]?
     public var strictIPCheck: Bool?
@@ -38,8 +54,9 @@ public struct UserPreferences: Codable {
     public var tickerGroup: String?
     public var tickerPinned: Bool?
     public var tradeLayout: String?
+    public var userColor: String?
 
-    public init(alertOnLiquidations: Bool?, animationsEnabled: Bool?, announcementsLastSeen: Date?, chatChannelID: Double?, colorTheme: String?, currency: String?, debug: Bool?, disableEmails: [String]?, disablePush: [String]?, hideConfirmDialogs: [String]?, hideConnectionModal: Bool?, hideFromLeaderboard: Bool?, hideNameFromLeaderboard: Bool?, hideNotifications: [String]?, locale: String?, msgsSeen: [String]?, orderBookBinning: Any?, orderBookType: String?, orderClearImmediate: Bool?, orderControlsPlusMinus: Bool?, showLocaleNumbers: Bool?, sounds: [String]?, strictIPCheck: Bool?, strictTimeout: Bool?, tickerGroup: String?, tickerPinned: Bool?, tradeLayout: String?) {
+    public init(alertOnLiquidations: Bool?, animationsEnabled: Bool?, announcementsLastSeen: Date?, chatChannelID: Double?, colorTheme: String?, currency: String?, debug: Bool?, disableEmails: [String]?, disablePush: [String]?, displayCorpEnrollUpsell: Bool?, equivalentCurrency: String?, features: [String]?, favourites: [String]?, favouritesAssets: [String]?, favouritesOrdered: [String]?, hideConfirmDialogs: [String]?, hideConnectionModal: Bool?, hideFromLeaderboard: Bool?, hideNameFromLeaderboard: Bool?, hideNotifications: [String]?, hidePhoneConfirm: Bool?, isSensitiveInfoVisible: Bool?, isWalletZeroBalanceHidden: Bool?, locale: String?, localeSetTime: Double?, marginPnlRow: String?, marginPnlRowKind: String?, msgsSeen: [String]?, notifications: Any?, orderBookBinning: Any?, orderBookType: String?, orderClearImmediate: Bool?, orderControlsPlusMinus: Bool?, platformLayout: String?, selectedFiatCurrency: String?, showChartBottomToolbar: Bool?, showLocaleNumbers: Bool?, sounds: [String]?, strictIPCheck: Bool?, strictTimeout: Bool?, tickerGroup: String?, tickerPinned: Bool?, tradeLayout: String?, userColor: String?) {
         self.alertOnLiquidations = alertOnLiquidations
         self.animationsEnabled = animationsEnabled
         self.announcementsLastSeen = announcementsLastSeen
@@ -49,17 +66,33 @@ public struct UserPreferences: Codable {
         self.debug = debug
         self.disableEmails = disableEmails
         self.disablePush = disablePush
+        self.displayCorpEnrollUpsell = displayCorpEnrollUpsell
+        self.equivalentCurrency = equivalentCurrency
+        self.features = features
+        self.favourites = favourites
+        self.favouritesAssets = favouritesAssets
+        self.favouritesOrdered = favouritesOrdered
         self.hideConfirmDialogs = hideConfirmDialogs
         self.hideConnectionModal = hideConnectionModal
         self.hideFromLeaderboard = hideFromLeaderboard
         self.hideNameFromLeaderboard = hideNameFromLeaderboard
         self.hideNotifications = hideNotifications
+        self.hidePhoneConfirm = hidePhoneConfirm
+        self.isSensitiveInfoVisible = isSensitiveInfoVisible
+        self.isWalletZeroBalanceHidden = isWalletZeroBalanceHidden
         self.locale = locale
+        self.localeSetTime = localeSetTime
+        self.marginPnlRow = marginPnlRow
+        self.marginPnlRowKind = marginPnlRowKind
         self.msgsSeen = msgsSeen
+        self.notifications = notifications
         self.orderBookBinning = orderBookBinning
         self.orderBookType = orderBookType
         self.orderClearImmediate = orderClearImmediate
         self.orderControlsPlusMinus = orderControlsPlusMinus
+        self.platformLayout = platformLayout
+        self.selectedFiatCurrency = selectedFiatCurrency
+        self.showChartBottomToolbar = showChartBottomToolbar
         self.showLocaleNumbers = showLocaleNumbers
         self.sounds = sounds
         self.strictIPCheck = strictIPCheck
@@ -67,6 +100,7 @@ public struct UserPreferences: Codable {
         self.tickerGroup = tickerGroup
         self.tickerPinned = tickerPinned
         self.tradeLayout = tradeLayout
+        self.userColor = userColor
     }
 
 

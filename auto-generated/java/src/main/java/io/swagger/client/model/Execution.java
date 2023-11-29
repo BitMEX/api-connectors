@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * Raw Order and Balance Data
  */
 @ApiModel(description = "Raw Order and Balance Data")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-12-17T20:26:16.019-05:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
 public class Execution {
   @SerializedName("execID")
   private String execID = null;
@@ -45,7 +45,7 @@ public class Execution {
   private String clOrdLinkID = null;
 
   @SerializedName("account")
-  private BigDecimal account = null;
+  private Double account = null;
 
   @SerializedName("symbol")
   private String symbol = null;
@@ -54,25 +54,16 @@ public class Execution {
   private String side = null;
 
   @SerializedName("lastQty")
-  private BigDecimal lastQty = null;
+  private Double lastQty = null;
 
   @SerializedName("lastPx")
   private Double lastPx = null;
 
-  @SerializedName("underlyingLastPx")
-  private Double underlyingLastPx = null;
-
-  @SerializedName("lastMkt")
-  private String lastMkt = null;
-
   @SerializedName("lastLiquidityInd")
   private String lastLiquidityInd = null;
 
-  @SerializedName("simpleOrderQty")
-  private Double simpleOrderQty = null;
-
   @SerializedName("orderQty")
-  private BigDecimal orderQty = null;
+  private Double orderQty = null;
 
   @SerializedName("price")
   private Double price = null;
@@ -110,9 +101,6 @@ public class Execution {
   @SerializedName("contingencyType")
   private String contingencyType = null;
 
-  @SerializedName("exDestination")
-  private String exDestination = null;
-
   @SerializedName("ordStatus")
   private String ordStatus = null;
 
@@ -125,14 +113,8 @@ public class Execution {
   @SerializedName("ordRejReason")
   private String ordRejReason = null;
 
-  @SerializedName("simpleLeavesQty")
-  private Double simpleLeavesQty = null;
-
   @SerializedName("leavesQty")
-  private BigDecimal leavesQty = null;
-
-  @SerializedName("simpleCumQty")
-  private Double simpleCumQty = null;
+  private Double leavesQty = null;
 
   @SerializedName("cumQty")
   private BigDecimal cumQty = null;
@@ -146,9 +128,6 @@ public class Execution {
   @SerializedName("tradePublishIndicator")
   private String tradePublishIndicator = null;
 
-  @SerializedName("multiLegReportingType")
-  private String multiLegReportingType = null;
-
   @SerializedName("text")
   private String text = null;
 
@@ -156,10 +135,10 @@ public class Execution {
   private String trdMatchID = null;
 
   @SerializedName("execCost")
-  private BigDecimal execCost = null;
+  private Double execCost = null;
 
   @SerializedName("execComm")
-  private BigDecimal execComm = null;
+  private Double execComm = null;
 
   @SerializedName("homeNotional")
   private Double homeNotional = null;
@@ -173,6 +152,21 @@ public class Execution {
   @SerializedName("timestamp")
   private OffsetDateTime timestamp = null;
 
+  @SerializedName("execGrossPnl")
+  private Double execGrossPnl = null;
+
+  @SerializedName("currentQty")
+  private Double currentQty = null;
+
+  @SerializedName("avgEntryPrice")
+  private Double avgEntryPrice = null;
+
+  @SerializedName("realisedPnl")
+  private Double realisedPnl = null;
+
+  @SerializedName("unrealisedPnl")
+  private Double unrealisedPnl = null;
+
   public Execution execID(String execID) {
     this.execID = execID;
     return this;
@@ -182,7 +176,7 @@ public class Execution {
    * Get execID
    * @return execID
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(value = "")
   public String getExecID() {
     return execID;
   }
@@ -200,7 +194,7 @@ public class Execution {
    * Get orderID
    * @return orderID
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public String getOrderID() {
     return orderID;
   }
@@ -245,7 +239,7 @@ public class Execution {
     this.clOrdLinkID = clOrdLinkID;
   }
 
-  public Execution account(BigDecimal account) {
+  public Execution account(Double account) {
     this.account = account;
     return this;
   }
@@ -255,11 +249,11 @@ public class Execution {
    * @return account
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAccount() {
+  public Double getAccount() {
     return account;
   }
 
-  public void setAccount(BigDecimal account) {
+  public void setAccount(Double account) {
     this.account = account;
   }
 
@@ -272,7 +266,7 @@ public class Execution {
    * Get symbol
    * @return symbol
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public String getSymbol() {
     return symbol;
   }
@@ -299,7 +293,7 @@ public class Execution {
     this.side = side;
   }
 
-  public Execution lastQty(BigDecimal lastQty) {
+  public Execution lastQty(Double lastQty) {
     this.lastQty = lastQty;
     return this;
   }
@@ -309,11 +303,11 @@ public class Execution {
    * @return lastQty
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getLastQty() {
+  public Double getLastQty() {
     return lastQty;
   }
 
-  public void setLastQty(BigDecimal lastQty) {
+  public void setLastQty(Double lastQty) {
     this.lastQty = lastQty;
   }
 
@@ -335,42 +329,6 @@ public class Execution {
     this.lastPx = lastPx;
   }
 
-  public Execution underlyingLastPx(Double underlyingLastPx) {
-    this.underlyingLastPx = underlyingLastPx;
-    return this;
-  }
-
-   /**
-   * Get underlyingLastPx
-   * @return underlyingLastPx
-  **/
-  @ApiModelProperty(value = "")
-  public Double getUnderlyingLastPx() {
-    return underlyingLastPx;
-  }
-
-  public void setUnderlyingLastPx(Double underlyingLastPx) {
-    this.underlyingLastPx = underlyingLastPx;
-  }
-
-  public Execution lastMkt(String lastMkt) {
-    this.lastMkt = lastMkt;
-    return this;
-  }
-
-   /**
-   * Get lastMkt
-   * @return lastMkt
-  **/
-  @ApiModelProperty(value = "")
-  public String getLastMkt() {
-    return lastMkt;
-  }
-
-  public void setLastMkt(String lastMkt) {
-    this.lastMkt = lastMkt;
-  }
-
   public Execution lastLiquidityInd(String lastLiquidityInd) {
     this.lastLiquidityInd = lastLiquidityInd;
     return this;
@@ -389,25 +347,7 @@ public class Execution {
     this.lastLiquidityInd = lastLiquidityInd;
   }
 
-  public Execution simpleOrderQty(Double simpleOrderQty) {
-    this.simpleOrderQty = simpleOrderQty;
-    return this;
-  }
-
-   /**
-   * Get simpleOrderQty
-   * @return simpleOrderQty
-  **/
-  @ApiModelProperty(value = "")
-  public Double getSimpleOrderQty() {
-    return simpleOrderQty;
-  }
-
-  public void setSimpleOrderQty(Double simpleOrderQty) {
-    this.simpleOrderQty = simpleOrderQty;
-  }
-
-  public Execution orderQty(BigDecimal orderQty) {
+  public Execution orderQty(Double orderQty) {
     this.orderQty = orderQty;
     return this;
   }
@@ -417,11 +357,11 @@ public class Execution {
    * @return orderQty
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOrderQty() {
+  public Double getOrderQty() {
     return orderQty;
   }
 
-  public void setOrderQty(BigDecimal orderQty) {
+  public void setOrderQty(Double orderQty) {
     this.orderQty = orderQty;
   }
 
@@ -641,24 +581,6 @@ public class Execution {
     this.contingencyType = contingencyType;
   }
 
-  public Execution exDestination(String exDestination) {
-    this.exDestination = exDestination;
-    return this;
-  }
-
-   /**
-   * Get exDestination
-   * @return exDestination
-  **/
-  @ApiModelProperty(value = "")
-  public String getExDestination() {
-    return exDestination;
-  }
-
-  public void setExDestination(String exDestination) {
-    this.exDestination = exDestination;
-  }
-
   public Execution ordStatus(String ordStatus) {
     this.ordStatus = ordStatus;
     return this;
@@ -731,25 +653,7 @@ public class Execution {
     this.ordRejReason = ordRejReason;
   }
 
-  public Execution simpleLeavesQty(Double simpleLeavesQty) {
-    this.simpleLeavesQty = simpleLeavesQty;
-    return this;
-  }
-
-   /**
-   * Get simpleLeavesQty
-   * @return simpleLeavesQty
-  **/
-  @ApiModelProperty(value = "")
-  public Double getSimpleLeavesQty() {
-    return simpleLeavesQty;
-  }
-
-  public void setSimpleLeavesQty(Double simpleLeavesQty) {
-    this.simpleLeavesQty = simpleLeavesQty;
-  }
-
-  public Execution leavesQty(BigDecimal leavesQty) {
+  public Execution leavesQty(Double leavesQty) {
     this.leavesQty = leavesQty;
     return this;
   }
@@ -759,30 +663,12 @@ public class Execution {
    * @return leavesQty
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getLeavesQty() {
+  public Double getLeavesQty() {
     return leavesQty;
   }
 
-  public void setLeavesQty(BigDecimal leavesQty) {
+  public void setLeavesQty(Double leavesQty) {
     this.leavesQty = leavesQty;
-  }
-
-  public Execution simpleCumQty(Double simpleCumQty) {
-    this.simpleCumQty = simpleCumQty;
-    return this;
-  }
-
-   /**
-   * Get simpleCumQty
-   * @return simpleCumQty
-  **/
-  @ApiModelProperty(value = "")
-  public Double getSimpleCumQty() {
-    return simpleCumQty;
-  }
-
-  public void setSimpleCumQty(Double simpleCumQty) {
-    this.simpleCumQty = simpleCumQty;
   }
 
   public Execution cumQty(BigDecimal cumQty) {
@@ -857,24 +743,6 @@ public class Execution {
     this.tradePublishIndicator = tradePublishIndicator;
   }
 
-  public Execution multiLegReportingType(String multiLegReportingType) {
-    this.multiLegReportingType = multiLegReportingType;
-    return this;
-  }
-
-   /**
-   * Get multiLegReportingType
-   * @return multiLegReportingType
-  **/
-  @ApiModelProperty(value = "")
-  public String getMultiLegReportingType() {
-    return multiLegReportingType;
-  }
-
-  public void setMultiLegReportingType(String multiLegReportingType) {
-    this.multiLegReportingType = multiLegReportingType;
-  }
-
   public Execution text(String text) {
     this.text = text;
     return this;
@@ -911,7 +779,7 @@ public class Execution {
     this.trdMatchID = trdMatchID;
   }
 
-  public Execution execCost(BigDecimal execCost) {
+  public Execution execCost(Double execCost) {
     this.execCost = execCost;
     return this;
   }
@@ -921,15 +789,15 @@ public class Execution {
    * @return execCost
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getExecCost() {
+  public Double getExecCost() {
     return execCost;
   }
 
-  public void setExecCost(BigDecimal execCost) {
+  public void setExecCost(Double execCost) {
     this.execCost = execCost;
   }
 
-  public Execution execComm(BigDecimal execComm) {
+  public Execution execComm(Double execComm) {
     this.execComm = execComm;
     return this;
   }
@@ -939,11 +807,11 @@ public class Execution {
    * @return execComm
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getExecComm() {
+  public Double getExecComm() {
     return execComm;
   }
 
-  public void setExecComm(BigDecimal execComm) {
+  public void setExecComm(Double execComm) {
     this.execComm = execComm;
   }
 
@@ -1010,13 +878,103 @@ public class Execution {
    * Get timestamp
    * @return timestamp
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public OffsetDateTime getTimestamp() {
     return timestamp;
   }
 
   public void setTimestamp(OffsetDateTime timestamp) {
     this.timestamp = timestamp;
+  }
+
+  public Execution execGrossPnl(Double execGrossPnl) {
+    this.execGrossPnl = execGrossPnl;
+    return this;
+  }
+
+   /**
+   * Get execGrossPnl
+   * @return execGrossPnl
+  **/
+  @ApiModelProperty(value = "")
+  public Double getExecGrossPnl() {
+    return execGrossPnl;
+  }
+
+  public void setExecGrossPnl(Double execGrossPnl) {
+    this.execGrossPnl = execGrossPnl;
+  }
+
+  public Execution currentQty(Double currentQty) {
+    this.currentQty = currentQty;
+    return this;
+  }
+
+   /**
+   * Get currentQty
+   * @return currentQty
+  **/
+  @ApiModelProperty(value = "")
+  public Double getCurrentQty() {
+    return currentQty;
+  }
+
+  public void setCurrentQty(Double currentQty) {
+    this.currentQty = currentQty;
+  }
+
+  public Execution avgEntryPrice(Double avgEntryPrice) {
+    this.avgEntryPrice = avgEntryPrice;
+    return this;
+  }
+
+   /**
+   * Get avgEntryPrice
+   * @return avgEntryPrice
+  **/
+  @ApiModelProperty(value = "")
+  public Double getAvgEntryPrice() {
+    return avgEntryPrice;
+  }
+
+  public void setAvgEntryPrice(Double avgEntryPrice) {
+    this.avgEntryPrice = avgEntryPrice;
+  }
+
+  public Execution realisedPnl(Double realisedPnl) {
+    this.realisedPnl = realisedPnl;
+    return this;
+  }
+
+   /**
+   * Get realisedPnl
+   * @return realisedPnl
+  **/
+  @ApiModelProperty(value = "")
+  public Double getRealisedPnl() {
+    return realisedPnl;
+  }
+
+  public void setRealisedPnl(Double realisedPnl) {
+    this.realisedPnl = realisedPnl;
+  }
+
+  public Execution unrealisedPnl(Double unrealisedPnl) {
+    this.unrealisedPnl = unrealisedPnl;
+    return this;
+  }
+
+   /**
+   * Get unrealisedPnl
+   * @return unrealisedPnl
+  **/
+  @ApiModelProperty(value = "")
+  public Double getUnrealisedPnl() {
+    return unrealisedPnl;
+  }
+
+  public void setUnrealisedPnl(Double unrealisedPnl) {
+    this.unrealisedPnl = unrealisedPnl;
   }
 
 
@@ -1038,10 +996,7 @@ public class Execution {
         Objects.equals(this.side, execution.side) &&
         Objects.equals(this.lastQty, execution.lastQty) &&
         Objects.equals(this.lastPx, execution.lastPx) &&
-        Objects.equals(this.underlyingLastPx, execution.underlyingLastPx) &&
-        Objects.equals(this.lastMkt, execution.lastMkt) &&
         Objects.equals(this.lastLiquidityInd, execution.lastLiquidityInd) &&
-        Objects.equals(this.simpleOrderQty, execution.simpleOrderQty) &&
         Objects.equals(this.orderQty, execution.orderQty) &&
         Objects.equals(this.price, execution.price) &&
         Objects.equals(this.displayQty, execution.displayQty) &&
@@ -1055,19 +1010,15 @@ public class Execution {
         Objects.equals(this.timeInForce, execution.timeInForce) &&
         Objects.equals(this.execInst, execution.execInst) &&
         Objects.equals(this.contingencyType, execution.contingencyType) &&
-        Objects.equals(this.exDestination, execution.exDestination) &&
         Objects.equals(this.ordStatus, execution.ordStatus) &&
         Objects.equals(this.triggered, execution.triggered) &&
         Objects.equals(this.workingIndicator, execution.workingIndicator) &&
         Objects.equals(this.ordRejReason, execution.ordRejReason) &&
-        Objects.equals(this.simpleLeavesQty, execution.simpleLeavesQty) &&
         Objects.equals(this.leavesQty, execution.leavesQty) &&
-        Objects.equals(this.simpleCumQty, execution.simpleCumQty) &&
         Objects.equals(this.cumQty, execution.cumQty) &&
         Objects.equals(this.avgPx, execution.avgPx) &&
         Objects.equals(this.commission, execution.commission) &&
         Objects.equals(this.tradePublishIndicator, execution.tradePublishIndicator) &&
-        Objects.equals(this.multiLegReportingType, execution.multiLegReportingType) &&
         Objects.equals(this.text, execution.text) &&
         Objects.equals(this.trdMatchID, execution.trdMatchID) &&
         Objects.equals(this.execCost, execution.execCost) &&
@@ -1075,12 +1026,17 @@ public class Execution {
         Objects.equals(this.homeNotional, execution.homeNotional) &&
         Objects.equals(this.foreignNotional, execution.foreignNotional) &&
         Objects.equals(this.transactTime, execution.transactTime) &&
-        Objects.equals(this.timestamp, execution.timestamp);
+        Objects.equals(this.timestamp, execution.timestamp) &&
+        Objects.equals(this.execGrossPnl, execution.execGrossPnl) &&
+        Objects.equals(this.currentQty, execution.currentQty) &&
+        Objects.equals(this.avgEntryPrice, execution.avgEntryPrice) &&
+        Objects.equals(this.realisedPnl, execution.realisedPnl) &&
+        Objects.equals(this.unrealisedPnl, execution.unrealisedPnl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(execID, orderID, clOrdID, clOrdLinkID, account, symbol, side, lastQty, lastPx, underlyingLastPx, lastMkt, lastLiquidityInd, simpleOrderQty, orderQty, price, displayQty, stopPx, pegOffsetValue, pegPriceType, currency, settlCurrency, execType, ordType, timeInForce, execInst, contingencyType, exDestination, ordStatus, triggered, workingIndicator, ordRejReason, simpleLeavesQty, leavesQty, simpleCumQty, cumQty, avgPx, commission, tradePublishIndicator, multiLegReportingType, text, trdMatchID, execCost, execComm, homeNotional, foreignNotional, transactTime, timestamp);
+    return Objects.hash(execID, orderID, clOrdID, clOrdLinkID, account, symbol, side, lastQty, lastPx, lastLiquidityInd, orderQty, price, displayQty, stopPx, pegOffsetValue, pegPriceType, currency, settlCurrency, execType, ordType, timeInForce, execInst, contingencyType, ordStatus, triggered, workingIndicator, ordRejReason, leavesQty, cumQty, avgPx, commission, tradePublishIndicator, text, trdMatchID, execCost, execComm, homeNotional, foreignNotional, transactTime, timestamp, execGrossPnl, currentQty, avgEntryPrice, realisedPnl, unrealisedPnl);
   }
 
 
@@ -1098,10 +1054,7 @@ public class Execution {
     sb.append("    side: ").append(toIndentedString(side)).append("\n");
     sb.append("    lastQty: ").append(toIndentedString(lastQty)).append("\n");
     sb.append("    lastPx: ").append(toIndentedString(lastPx)).append("\n");
-    sb.append("    underlyingLastPx: ").append(toIndentedString(underlyingLastPx)).append("\n");
-    sb.append("    lastMkt: ").append(toIndentedString(lastMkt)).append("\n");
     sb.append("    lastLiquidityInd: ").append(toIndentedString(lastLiquidityInd)).append("\n");
-    sb.append("    simpleOrderQty: ").append(toIndentedString(simpleOrderQty)).append("\n");
     sb.append("    orderQty: ").append(toIndentedString(orderQty)).append("\n");
     sb.append("    price: ").append(toIndentedString(price)).append("\n");
     sb.append("    displayQty: ").append(toIndentedString(displayQty)).append("\n");
@@ -1115,19 +1068,15 @@ public class Execution {
     sb.append("    timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
     sb.append("    execInst: ").append(toIndentedString(execInst)).append("\n");
     sb.append("    contingencyType: ").append(toIndentedString(contingencyType)).append("\n");
-    sb.append("    exDestination: ").append(toIndentedString(exDestination)).append("\n");
     sb.append("    ordStatus: ").append(toIndentedString(ordStatus)).append("\n");
     sb.append("    triggered: ").append(toIndentedString(triggered)).append("\n");
     sb.append("    workingIndicator: ").append(toIndentedString(workingIndicator)).append("\n");
     sb.append("    ordRejReason: ").append(toIndentedString(ordRejReason)).append("\n");
-    sb.append("    simpleLeavesQty: ").append(toIndentedString(simpleLeavesQty)).append("\n");
     sb.append("    leavesQty: ").append(toIndentedString(leavesQty)).append("\n");
-    sb.append("    simpleCumQty: ").append(toIndentedString(simpleCumQty)).append("\n");
     sb.append("    cumQty: ").append(toIndentedString(cumQty)).append("\n");
     sb.append("    avgPx: ").append(toIndentedString(avgPx)).append("\n");
     sb.append("    commission: ").append(toIndentedString(commission)).append("\n");
     sb.append("    tradePublishIndicator: ").append(toIndentedString(tradePublishIndicator)).append("\n");
-    sb.append("    multiLegReportingType: ").append(toIndentedString(multiLegReportingType)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("    trdMatchID: ").append(toIndentedString(trdMatchID)).append("\n");
     sb.append("    execCost: ").append(toIndentedString(execCost)).append("\n");
@@ -1136,6 +1085,11 @@ public class Execution {
     sb.append("    foreignNotional: ").append(toIndentedString(foreignNotional)).append("\n");
     sb.append("    transactTime: ").append(toIndentedString(transactTime)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
+    sb.append("    execGrossPnl: ").append(toIndentedString(execGrossPnl)).append("\n");
+    sb.append("    currentQty: ").append(toIndentedString(currentQty)).append("\n");
+    sb.append("    avgEntryPrice: ").append(toIndentedString(avgEntryPrice)).append("\n");
+    sb.append("    realisedPnl: ").append(toIndentedString(realisedPnl)).append("\n");
+    sb.append("    unrealisedPnl: ").append(toIndentedString(unrealisedPnl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

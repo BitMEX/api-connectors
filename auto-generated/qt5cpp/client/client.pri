@@ -4,10 +4,14 @@ HEADERS += \
 # Models
     $${PWD}/SWGAPIKey.h \
     $${PWD}/SWGAccessToken.h \
+    $${PWD}/SWGAddress.h \
     $${PWD}/SWGAffiliate.h \
     $${PWD}/SWGAnnouncement.h \
+    $${PWD}/SWGAssetsConfig.h \
+    $${PWD}/SWGAssetsConfigNetworkItem.h \
     $${PWD}/SWGChat.h \
     $${PWD}/SWGChatChannel.h \
+    $${PWD}/SWGCollateralSupportAgreement.h \
     $${PWD}/SWGCommunicationToken.h \
     $${PWD}/SWGConnectedUsers.h \
     $${PWD}/SWGError.h \
@@ -15,6 +19,7 @@ HEADERS += \
     $${PWD}/SWGExecution.h \
     $${PWD}/SWGFunding.h \
     $${PWD}/SWGGlobalNotification.h \
+    $${PWD}/SWGGuild.h \
     $${PWD}/SWGIndexComposite.h \
     $${PWD}/SWGInline_response_200.h \
     $${PWD}/SWGInstrument.h \
@@ -23,17 +28,24 @@ HEADERS += \
     $${PWD}/SWGLeaderboard.h \
     $${PWD}/SWGLiquidation.h \
     $${PWD}/SWGMargin.h \
+    $${PWD}/SWGNetworksConfig.h \
     $${PWD}/SWGOrder.h \
     $${PWD}/SWGOrderBookL2.h \
+    $${PWD}/SWGPinnedMessage.h \
+    $${PWD}/SWGPorl.h \
     $${PWD}/SWGPosition.h \
     $${PWD}/SWGQuote.h \
     $${PWD}/SWGQuoteFillRatio.h \
+    $${PWD}/SWGQuoteValueRatio.h \
     $${PWD}/SWGSettlement.h \
+    $${PWD}/SWGStakingRecord.h \
     $${PWD}/SWGStats.h \
     $${PWD}/SWGStatsHistory.h \
     $${PWD}/SWGStatsUSD.h \
+    $${PWD}/SWGStatsUSDBySymbol.h \
     $${PWD}/SWGTrade.h \
     $${PWD}/SWGTradeBin.h \
+    $${PWD}/SWGTradingVolume.h \
     $${PWD}/SWGTransaction.h \
     $${PWD}/SWGUser.h \
     $${PWD}/SWGUserCommissionsBySymbol.h \
@@ -43,17 +55,20 @@ HEADERS += \
     $${PWD}/SWGX-any.h \
 # APIs
     $${PWD}/SWGAPIKeyApi.h \
+    $${PWD}/SWGAddressApi.h \
     $${PWD}/SWGAnnouncementApi.h \
     $${PWD}/SWGChatApi.h \
     $${PWD}/SWGExecutionApi.h \
     $${PWD}/SWGFundingApi.h \
     $${PWD}/SWGGlobalNotificationApi.h \
+    $${PWD}/SWGGuildApi.h \
     $${PWD}/SWGInstrumentApi.h \
     $${PWD}/SWGInsuranceApi.h \
     $${PWD}/SWGLeaderboardApi.h \
     $${PWD}/SWGLiquidationApi.h \
     $${PWD}/SWGOrderApi.h \
     $${PWD}/SWGOrderBookApi.h \
+    $${PWD}/SWGPorlApi.h \
     $${PWD}/SWGPositionApi.h \
     $${PWD}/SWGQuoteApi.h \
     $${PWD}/SWGSchemaApi.h \
@@ -61,7 +76,9 @@ HEADERS += \
     $${PWD}/SWGStatsApi.h \
     $${PWD}/SWGTradeApi.h \
     $${PWD}/SWGUserApi.h \
+    $${PWD}/SWGUserAffiliatesApi.h \
     $${PWD}/SWGUserEventApi.h \
+    $${PWD}/SWGWalletApi.h \
 # Others
     $${PWD}/SWGHelpers.h \
     $${PWD}/SWGHttpRequest.h \
@@ -73,10 +90,14 @@ SOURCES += \
 # Models
     $${PWD}/SWGAPIKey.cpp \
     $${PWD}/SWGAccessToken.cpp \
+    $${PWD}/SWGAddress.cpp \
     $${PWD}/SWGAffiliate.cpp \
     $${PWD}/SWGAnnouncement.cpp \
+    $${PWD}/SWGAssetsConfig.cpp \
+    $${PWD}/SWGAssetsConfigNetworkItem.cpp \
     $${PWD}/SWGChat.cpp \
     $${PWD}/SWGChatChannel.cpp \
+    $${PWD}/SWGCollateralSupportAgreement.cpp \
     $${PWD}/SWGCommunicationToken.cpp \
     $${PWD}/SWGConnectedUsers.cpp \
     $${PWD}/SWGError.cpp \
@@ -84,6 +105,7 @@ SOURCES += \
     $${PWD}/SWGExecution.cpp \
     $${PWD}/SWGFunding.cpp \
     $${PWD}/SWGGlobalNotification.cpp \
+    $${PWD}/SWGGuild.cpp \
     $${PWD}/SWGIndexComposite.cpp \
     $${PWD}/SWGInline_response_200.cpp \
     $${PWD}/SWGInstrument.cpp \
@@ -92,17 +114,24 @@ SOURCES += \
     $${PWD}/SWGLeaderboard.cpp \
     $${PWD}/SWGLiquidation.cpp \
     $${PWD}/SWGMargin.cpp \
+    $${PWD}/SWGNetworksConfig.cpp \
     $${PWD}/SWGOrder.cpp \
     $${PWD}/SWGOrderBookL2.cpp \
+    $${PWD}/SWGPinnedMessage.cpp \
+    $${PWD}/SWGPorl.cpp \
     $${PWD}/SWGPosition.cpp \
     $${PWD}/SWGQuote.cpp \
     $${PWD}/SWGQuoteFillRatio.cpp \
+    $${PWD}/SWGQuoteValueRatio.cpp \
     $${PWD}/SWGSettlement.cpp \
+    $${PWD}/SWGStakingRecord.cpp \
     $${PWD}/SWGStats.cpp \
     $${PWD}/SWGStatsHistory.cpp \
     $${PWD}/SWGStatsUSD.cpp \
+    $${PWD}/SWGStatsUSDBySymbol.cpp \
     $${PWD}/SWGTrade.cpp \
     $${PWD}/SWGTradeBin.cpp \
+    $${PWD}/SWGTradingVolume.cpp \
     $${PWD}/SWGTransaction.cpp \
     $${PWD}/SWGUser.cpp \
     $${PWD}/SWGUserCommissionsBySymbol.cpp \
@@ -112,17 +141,20 @@ SOURCES += \
     $${PWD}/SWGX-any.cpp \
 # APIs
     $${PWD}/SWGAPIKeyApi.cpp \
+    $${PWD}/SWGAddressApi.cpp \
     $${PWD}/SWGAnnouncementApi.cpp \
     $${PWD}/SWGChatApi.cpp \
     $${PWD}/SWGExecutionApi.cpp \
     $${PWD}/SWGFundingApi.cpp \
     $${PWD}/SWGGlobalNotificationApi.cpp \
+    $${PWD}/SWGGuildApi.cpp \
     $${PWD}/SWGInstrumentApi.cpp \
     $${PWD}/SWGInsuranceApi.cpp \
     $${PWD}/SWGLeaderboardApi.cpp \
     $${PWD}/SWGLiquidationApi.cpp \
     $${PWD}/SWGOrderApi.cpp \
     $${PWD}/SWGOrderBookApi.cpp \
+    $${PWD}/SWGPorlApi.cpp \
     $${PWD}/SWGPositionApi.cpp \
     $${PWD}/SWGQuoteApi.cpp \
     $${PWD}/SWGSchemaApi.cpp \
@@ -130,7 +162,9 @@ SOURCES += \
     $${PWD}/SWGStatsApi.cpp \
     $${PWD}/SWGTradeApi.cpp \
     $${PWD}/SWGUserApi.cpp \
+    $${PWD}/SWGUserAffiliatesApi.cpp \
     $${PWD}/SWGUserEventApi.cpp \
+    $${PWD}/SWGWalletApi.cpp \
 # Others
     $${PWD}/SWGHelpers.cpp \
     $${PWD}/SWGHttpRequest.cpp

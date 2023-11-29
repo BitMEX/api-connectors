@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **name** | **String** |  | 
 **nonce** | **Number** |  | 
 **cidr** | **String** |  | [optional] 
+**cidrs** | [**[XAny]**](XAny.md) |  | [optional] 
+**targetAccountId** | **Number** |  | [optional] 
 **permissions** | [**[XAny]**](XAny.md) |  | [optional] 
 **enabled** | **Boolean** |  | [optional] [default to false]
 **userId** | **Number** |  | 

@@ -3,7 +3,7 @@
 
 /**
 * BitMEX API
-* ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+* ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
 *
 * OpenAPI spec version: 1.2.0
 * Contact: support@bitmex.com
@@ -39,21 +39,7 @@
 
 @property(nonatomic) NSDate* settle;
 
-@property(nonatomic) NSDate* relistInterval;
-
-@property(nonatomic) NSString* inverseLeg;
-
-@property(nonatomic) NSString* sellLeg;
-
-@property(nonatomic) NSString* buyLeg;
-
-@property(nonatomic) NSNumber* optionStrikePcnt;
-
-@property(nonatomic) NSNumber* optionStrikeRound;
-
-@property(nonatomic) NSNumber* optionStrikePrice;
-
-@property(nonatomic) NSNumber* optionMultiplier;
+@property(nonatomic) NSDate* listedSettle;
 
 @property(nonatomic) NSString* positionCurrency;
 
@@ -105,8 +91,6 @@
 
 @property(nonatomic) NSNumber* limit;
 
-@property(nonatomic) NSNumber* capped;
-
 @property(nonatomic) NSNumber* taxed;
 
 @property(nonatomic) NSNumber* deleverage;
@@ -116,8 +100,6 @@
 @property(nonatomic) NSNumber* takerFee;
 
 @property(nonatomic) NSNumber* settlementFee;
-
-@property(nonatomic) NSNumber* insuranceFee;
 
 @property(nonatomic) NSString* fundingBaseSymbol;
 
@@ -137,23 +119,11 @@
 
 @property(nonatomic) NSDate* rebalanceInterval;
 
-@property(nonatomic) NSDate* openingTimestamp;
-
-@property(nonatomic) NSDate* closingTimestamp;
-
-@property(nonatomic) NSDate* sessionInterval;
-
 @property(nonatomic) NSNumber* prevClosePrice;
 
 @property(nonatomic) NSNumber* limitDownPrice;
 
 @property(nonatomic) NSNumber* limitUpPrice;
-
-@property(nonatomic) NSNumber* bankruptLimitDownPrice;
-
-@property(nonatomic) NSNumber* bankruptLimitUpPrice;
-
-@property(nonatomic) NSNumber* prevTotalVolume;
 
 @property(nonatomic) NSNumber* totalVolume;
 
@@ -219,13 +189,13 @@
 
 @property(nonatomic) NSNumber* markPrice;
 
-@property(nonatomic) NSNumber* indicativeTaxRate;
-
 @property(nonatomic) NSNumber* indicativeSettlePrice;
 
-@property(nonatomic) NSNumber* optionUnderlyingPrice;
+@property(nonatomic) NSNumber* settledPriceAdjustmentRate;
 
 @property(nonatomic) NSNumber* settledPrice;
+
+@property(nonatomic) NSNumber* instantPnl;
 
 @property(nonatomic) NSDate* timestamp;
 

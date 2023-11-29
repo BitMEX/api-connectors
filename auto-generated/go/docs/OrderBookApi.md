@@ -17,10 +17,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **symbol** | **string**| Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. | 
- **optional** | ***OrderBookGetL2Opts** | optional parameters | nil if no parameters
+ **optional** | ***OrderBookApiOrderBookGetL2Opts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a OrderBookGetL2Opts struct
+Optional parameters are passed through a pointer to a OrderBookApiOrderBookGetL2Opts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -41,6 +41,7 @@ namespace IO.Swagger.Model
         /// <param name="transactID">transactID (required).</param>
         /// <param name="account">account.</param>
         /// <param name="currency">currency.</param>
+        /// <param name="network">network.</param>
         /// <param name="transactType">transactType.</param>
         /// <param name="amount">amount.</param>
         /// <param name="fee">fee.</param>
@@ -50,7 +51,8 @@ namespace IO.Swagger.Model
         /// <param name="text">text.</param>
         /// <param name="transactTime">transactTime.</param>
         /// <param name="timestamp">timestamp.</param>
-        public Transaction(string transactID = default(string), decimal? account = default(decimal?), string currency = default(string), string transactType = default(string), decimal? amount = default(decimal?), decimal? fee = default(decimal?), string transactStatus = default(string), string address = default(string), string tx = default(string), string text = default(string), DateTime? transactTime = default(DateTime?), DateTime? timestamp = default(DateTime?))
+        /// <param name="walletBalance">walletBalance.</param>
+        public Transaction(string transactID = default(string), decimal? account = default(decimal?), string currency = default(string), string network = default(string), string transactType = default(string), decimal? amount = default(decimal?), decimal? fee = default(decimal?), string transactStatus = default(string), string address = default(string), string tx = default(string), string text = default(string), DateTime? transactTime = default(DateTime?), DateTime? timestamp = default(DateTime?), decimal? walletBalance = default(decimal?))
         {
             // to ensure "transactID" is required (not null)
             if (transactID == null)
@@ -63,6 +65,7 @@ namespace IO.Swagger.Model
             }
             this.Account = account;
             this.Currency = currency;
+            this.Network = network;
             this.TransactType = transactType;
             this.Amount = amount;
             this.Fee = fee;
@@ -72,6 +75,7 @@ namespace IO.Swagger.Model
             this.Text = text;
             this.TransactTime = transactTime;
             this.Timestamp = timestamp;
+            this.WalletBalance = walletBalance;
         }
         
         /// <summary>
@@ -91,6 +95,12 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="currency", EmitDefaultValue=false)]
         public string Currency { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Network
+        /// </summary>
+        [DataMember(Name="network", EmitDefaultValue=false)]
+        public string Network { get; set; }
 
         /// <summary>
         /// Gets or Sets TransactType
@@ -147,6 +157,12 @@ namespace IO.Swagger.Model
         public DateTime? Timestamp { get; set; }
 
         /// <summary>
+        /// Gets or Sets WalletBalance
+        /// </summary>
+        [DataMember(Name="walletBalance", EmitDefaultValue=false)]
+        public decimal? WalletBalance { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -157,6 +173,7 @@ namespace IO.Swagger.Model
             sb.Append("  TransactID: ").Append(TransactID).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("  Network: ").Append(Network).Append("\n");
             sb.Append("  TransactType: ").Append(TransactType).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  Fee: ").Append(Fee).Append("\n");
@@ -166,6 +183,7 @@ namespace IO.Swagger.Model
             sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  TransactTime: ").Append(TransactTime).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+            sb.Append("  WalletBalance: ").Append(WalletBalance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -216,6 +234,11 @@ namespace IO.Swagger.Model
                     this.Currency.Equals(input.Currency))
                 ) && 
                 (
+                    this.Network == input.Network ||
+                    (this.Network != null &&
+                    this.Network.Equals(input.Network))
+                ) && 
+                (
                     this.TransactType == input.TransactType ||
                     (this.TransactType != null &&
                     this.TransactType.Equals(input.TransactType))
@@ -259,6 +282,11 @@ namespace IO.Swagger.Model
                     this.Timestamp == input.Timestamp ||
                     (this.Timestamp != null &&
                     this.Timestamp.Equals(input.Timestamp))
+                ) && 
+                (
+                    this.WalletBalance == input.WalletBalance ||
+                    (this.WalletBalance != null &&
+                    this.WalletBalance.Equals(input.WalletBalance))
                 );
         }
 
@@ -277,6 +305,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Account.GetHashCode();
                 if (this.Currency != null)
                     hashCode = hashCode * 59 + this.Currency.GetHashCode();
+                if (this.Network != null)
+                    hashCode = hashCode * 59 + this.Network.GetHashCode();
                 if (this.TransactType != null)
                     hashCode = hashCode * 59 + this.TransactType.GetHashCode();
                 if (this.Amount != null)
@@ -295,6 +325,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.TransactTime.GetHashCode();
                 if (this.Timestamp != null)
                     hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
+                if (this.WalletBalance != null)
+                    hashCode = hashCode * 59 + this.WalletBalance.GetHashCode();
                 return hashCode;
             }
         }

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -55,6 +55,18 @@ SWGUserPreferences::init() {
     m_disable_emails_isSet = false;
     disable_push = new QList<QString*>();
     m_disable_push_isSet = false;
+    display_corp_enroll_upsell = false;
+    m_display_corp_enroll_upsell_isSet = false;
+    equivalent_currency = new QString("");
+    m_equivalent_currency_isSet = false;
+    features = new QList<QString*>();
+    m_features_isSet = false;
+    favourites = new QList<QString*>();
+    m_favourites_isSet = false;
+    favourites_assets = new QList<QString*>();
+    m_favourites_assets_isSet = false;
+    favourites_ordered = new QList<QString*>();
+    m_favourites_ordered_isSet = false;
     hide_confirm_dialogs = new QList<QString*>();
     m_hide_confirm_dialogs_isSet = false;
     hide_connection_modal = false;
@@ -65,10 +77,24 @@ SWGUserPreferences::init() {
     m_hide_name_from_leaderboard_isSet = false;
     hide_notifications = new QList<QString*>();
     m_hide_notifications_isSet = false;
+    hide_phone_confirm = false;
+    m_hide_phone_confirm_isSet = false;
+    is_sensitive_info_visible = false;
+    m_is_sensitive_info_visible_isSet = false;
+    is_wallet_zero_balance_hidden = false;
+    m_is_wallet_zero_balance_hidden_isSet = false;
     locale = new QString("");
     m_locale_isSet = false;
+    locale_set_time = 0.0;
+    m_locale_set_time_isSet = false;
+    margin_pnl_row = new QString("");
+    m_margin_pnl_row_isSet = false;
+    margin_pnl_row_kind = new QString("");
+    m_margin_pnl_row_kind_isSet = false;
     msgs_seen = new QList<QString*>();
     m_msgs_seen_isSet = false;
+    notifications = NULL;
+    m_notifications_isSet = false;
     order_book_binning = NULL;
     m_order_book_binning_isSet = false;
     order_book_type = new QString("");
@@ -77,6 +103,12 @@ SWGUserPreferences::init() {
     m_order_clear_immediate_isSet = false;
     order_controls_plus_minus = false;
     m_order_controls_plus_minus_isSet = false;
+    platform_layout = new QString("");
+    m_platform_layout_isSet = false;
+    selected_fiat_currency = new QString("");
+    m_selected_fiat_currency_isSet = false;
+    show_chart_bottom_toolbar = false;
+    m_show_chart_bottom_toolbar_isSet = false;
     show_locale_numbers = false;
     m_show_locale_numbers_isSet = false;
     sounds = new QList<QString*>();
@@ -91,6 +123,8 @@ SWGUserPreferences::init() {
     m_ticker_pinned_isSet = false;
     trade_layout = new QString("");
     m_trade_layout_isSet = false;
+    user_color = new QString("");
+    m_user_color_isSet = false;
 }
 
 void
@@ -122,6 +156,38 @@ SWGUserPreferences::cleanup() {
         }
         delete disable_push;
     }
+
+    if(equivalent_currency != nullptr) { 
+        delete equivalent_currency;
+    }
+    if(features != nullptr) { 
+        auto arr = features;
+        for(auto o: *arr) { 
+            delete o;
+        }
+        delete features;
+    }
+    if(favourites != nullptr) { 
+        auto arr = favourites;
+        for(auto o: *arr) { 
+            delete o;
+        }
+        delete favourites;
+    }
+    if(favourites_assets != nullptr) { 
+        auto arr = favourites_assets;
+        for(auto o: *arr) { 
+            delete o;
+        }
+        delete favourites_assets;
+    }
+    if(favourites_ordered != nullptr) { 
+        auto arr = favourites_ordered;
+        for(auto o: *arr) { 
+            delete o;
+        }
+        delete favourites_ordered;
+    }
     if(hide_confirm_dialogs != nullptr) { 
         auto arr = hide_confirm_dialogs;
         for(auto o: *arr) { 
@@ -139,8 +205,18 @@ SWGUserPreferences::cleanup() {
         }
         delete hide_notifications;
     }
+
+
+
     if(locale != nullptr) { 
         delete locale;
+    }
+
+    if(margin_pnl_row != nullptr) { 
+        delete margin_pnl_row;
+    }
+    if(margin_pnl_row_kind != nullptr) { 
+        delete margin_pnl_row_kind;
     }
     if(msgs_seen != nullptr) { 
         auto arr = msgs_seen;
@@ -149,6 +225,9 @@ SWGUserPreferences::cleanup() {
         }
         delete msgs_seen;
     }
+    if(notifications != nullptr) { 
+        delete notifications;
+    }
     if(order_book_binning != nullptr) { 
         delete order_book_binning;
     }
@@ -156,6 +235,13 @@ SWGUserPreferences::cleanup() {
         delete order_book_type;
     }
 
+
+    if(platform_layout != nullptr) { 
+        delete platform_layout;
+    }
+    if(selected_fiat_currency != nullptr) { 
+        delete selected_fiat_currency;
+    }
 
 
     if(sounds != nullptr) { 
@@ -173,6 +259,9 @@ SWGUserPreferences::cleanup() {
 
     if(trade_layout != nullptr) { 
         delete trade_layout;
+    }
+    if(user_color != nullptr) { 
+        delete user_color;
     }
 }
 
@@ -205,6 +294,18 @@ SWGUserPreferences::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&disable_emails, pJson["disableEmails"], "QList", "QString");
     
     ::Swagger::setValue(&disable_push, pJson["disablePush"], "QList", "QString");
+    ::Swagger::setValue(&display_corp_enroll_upsell, pJson["displayCorpEnrollUpsell"], "bool", "");
+    
+    ::Swagger::setValue(&equivalent_currency, pJson["equivalentCurrency"], "QString", "QString");
+    
+    
+    ::Swagger::setValue(&features, pJson["features"], "QList", "QString");
+    
+    ::Swagger::setValue(&favourites, pJson["favourites"], "QList", "QString");
+    
+    ::Swagger::setValue(&favourites_assets, pJson["favouritesAssets"], "QList", "QString");
+    
+    ::Swagger::setValue(&favourites_ordered, pJson["favouritesOrdered"], "QList", "QString");
     
     ::Swagger::setValue(&hide_confirm_dialogs, pJson["hideConfirmDialogs"], "QList", "QString");
     ::Swagger::setValue(&hide_connection_modal, pJson["hideConnectionModal"], "bool", "");
@@ -215,10 +316,24 @@ SWGUserPreferences::fromJsonObject(QJsonObject pJson) {
     
     
     ::Swagger::setValue(&hide_notifications, pJson["hideNotifications"], "QList", "QString");
+    ::Swagger::setValue(&hide_phone_confirm, pJson["hidePhoneConfirm"], "bool", "");
+    
+    ::Swagger::setValue(&is_sensitive_info_visible, pJson["isSensitiveInfoVisible"], "bool", "");
+    
+    ::Swagger::setValue(&is_wallet_zero_balance_hidden, pJson["isWalletZeroBalanceHidden"], "bool", "");
+    
     ::Swagger::setValue(&locale, pJson["locale"], "QString", "QString");
+    
+    ::Swagger::setValue(&locale_set_time, pJson["localeSetTime"], "double", "");
+    
+    ::Swagger::setValue(&margin_pnl_row, pJson["marginPnlRow"], "QString", "QString");
+    
+    ::Swagger::setValue(&margin_pnl_row_kind, pJson["marginPnlRowKind"], "QString", "QString");
     
     
     ::Swagger::setValue(&msgs_seen, pJson["msgsSeen"], "QList", "QString");
+    ::Swagger::setValue(&notifications, pJson["notifications"], "SWGObject", "SWGObject");
+    
     ::Swagger::setValue(&order_book_binning, pJson["orderBookBinning"], "SWGObject", "SWGObject");
     
     ::Swagger::setValue(&order_book_type, pJson["orderBookType"], "QString", "QString");
@@ -226,6 +341,12 @@ SWGUserPreferences::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&order_clear_immediate, pJson["orderClearImmediate"], "bool", "");
     
     ::Swagger::setValue(&order_controls_plus_minus, pJson["orderControlsPlusMinus"], "bool", "");
+    
+    ::Swagger::setValue(&platform_layout, pJson["platformLayout"], "QString", "QString");
+    
+    ::Swagger::setValue(&selected_fiat_currency, pJson["selectedFiatCurrency"], "QString", "QString");
+    
+    ::Swagger::setValue(&show_chart_bottom_toolbar, pJson["showChartBottomToolbar"], "bool", "");
     
     ::Swagger::setValue(&show_locale_numbers, pJson["showLocaleNumbers"], "bool", "");
     
@@ -240,6 +361,8 @@ SWGUserPreferences::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&ticker_pinned, pJson["tickerPinned"], "bool", "");
     
     ::Swagger::setValue(&trade_layout, pJson["tradeLayout"], "QString", "QString");
+    
+    ::Swagger::setValue(&user_color, pJson["userColor"], "QString", "QString");
     
 }
 
@@ -282,6 +405,24 @@ SWGUserPreferences::asJsonObject() {
     if(disable_push->size() > 0){
         toJsonArray((QList<void*>*)disable_push, obj, "disablePush", "QString");
     }
+    if(m_display_corp_enroll_upsell_isSet){
+        obj.insert("displayCorpEnrollUpsell", QJsonValue(display_corp_enroll_upsell));
+    }
+    if(equivalent_currency != nullptr && *equivalent_currency != QString("")){
+        toJsonValue(QString("equivalentCurrency"), equivalent_currency, obj, QString("QString"));
+    }
+    if(features->size() > 0){
+        toJsonArray((QList<void*>*)features, obj, "features", "QString");
+    }
+    if(favourites->size() > 0){
+        toJsonArray((QList<void*>*)favourites, obj, "favourites", "QString");
+    }
+    if(favourites_assets->size() > 0){
+        toJsonArray((QList<void*>*)favourites_assets, obj, "favouritesAssets", "QString");
+    }
+    if(favourites_ordered->size() > 0){
+        toJsonArray((QList<void*>*)favourites_ordered, obj, "favouritesOrdered", "QString");
+    }
     if(hide_confirm_dialogs->size() > 0){
         toJsonArray((QList<void*>*)hide_confirm_dialogs, obj, "hideConfirmDialogs", "QString");
     }
@@ -297,11 +438,32 @@ SWGUserPreferences::asJsonObject() {
     if(hide_notifications->size() > 0){
         toJsonArray((QList<void*>*)hide_notifications, obj, "hideNotifications", "QString");
     }
+    if(m_hide_phone_confirm_isSet){
+        obj.insert("hidePhoneConfirm", QJsonValue(hide_phone_confirm));
+    }
+    if(m_is_sensitive_info_visible_isSet){
+        obj.insert("isSensitiveInfoVisible", QJsonValue(is_sensitive_info_visible));
+    }
+    if(m_is_wallet_zero_balance_hidden_isSet){
+        obj.insert("isWalletZeroBalanceHidden", QJsonValue(is_wallet_zero_balance_hidden));
+    }
     if(locale != nullptr && *locale != QString("")){
         toJsonValue(QString("locale"), locale, obj, QString("QString"));
     }
+    if(m_locale_set_time_isSet){
+        obj.insert("localeSetTime", QJsonValue(locale_set_time));
+    }
+    if(margin_pnl_row != nullptr && *margin_pnl_row != QString("")){
+        toJsonValue(QString("marginPnlRow"), margin_pnl_row, obj, QString("QString"));
+    }
+    if(margin_pnl_row_kind != nullptr && *margin_pnl_row_kind != QString("")){
+        toJsonValue(QString("marginPnlRowKind"), margin_pnl_row_kind, obj, QString("QString"));
+    }
     if(msgs_seen->size() > 0){
         toJsonArray((QList<void*>*)msgs_seen, obj, "msgsSeen", "QString");
+    }
+    if((notifications != nullptr) && (notifications->isSet())){
+        toJsonValue(QString("notifications"), notifications, obj, QString("SWGObject"));
     }
     if((order_book_binning != nullptr) && (order_book_binning->isSet())){
         toJsonValue(QString("orderBookBinning"), order_book_binning, obj, QString("SWGObject"));
@@ -314,6 +476,15 @@ SWGUserPreferences::asJsonObject() {
     }
     if(m_order_controls_plus_minus_isSet){
         obj.insert("orderControlsPlusMinus", QJsonValue(order_controls_plus_minus));
+    }
+    if(platform_layout != nullptr && *platform_layout != QString("")){
+        toJsonValue(QString("platformLayout"), platform_layout, obj, QString("QString"));
+    }
+    if(selected_fiat_currency != nullptr && *selected_fiat_currency != QString("")){
+        toJsonValue(QString("selectedFiatCurrency"), selected_fiat_currency, obj, QString("QString"));
+    }
+    if(m_show_chart_bottom_toolbar_isSet){
+        obj.insert("showChartBottomToolbar", QJsonValue(show_chart_bottom_toolbar));
     }
     if(m_show_locale_numbers_isSet){
         obj.insert("showLocaleNumbers", QJsonValue(show_locale_numbers));
@@ -335,6 +506,9 @@ SWGUserPreferences::asJsonObject() {
     }
     if(trade_layout != nullptr && *trade_layout != QString("")){
         toJsonValue(QString("tradeLayout"), trade_layout, obj, QString("QString"));
+    }
+    if(user_color != nullptr && *user_color != QString("")){
+        toJsonValue(QString("userColor"), user_color, obj, QString("QString"));
     }
 
     return obj;
@@ -430,6 +604,66 @@ SWGUserPreferences::setDisablePush(QList<QString*>* disable_push) {
     this->m_disable_push_isSet = true;
 }
 
+bool
+SWGUserPreferences::isDisplayCorpEnrollUpsell() {
+    return display_corp_enroll_upsell;
+}
+void
+SWGUserPreferences::setDisplayCorpEnrollUpsell(bool display_corp_enroll_upsell) {
+    this->display_corp_enroll_upsell = display_corp_enroll_upsell;
+    this->m_display_corp_enroll_upsell_isSet = true;
+}
+
+QString*
+SWGUserPreferences::getEquivalentCurrency() {
+    return equivalent_currency;
+}
+void
+SWGUserPreferences::setEquivalentCurrency(QString* equivalent_currency) {
+    this->equivalent_currency = equivalent_currency;
+    this->m_equivalent_currency_isSet = true;
+}
+
+QList<QString*>*
+SWGUserPreferences::getFeatures() {
+    return features;
+}
+void
+SWGUserPreferences::setFeatures(QList<QString*>* features) {
+    this->features = features;
+    this->m_features_isSet = true;
+}
+
+QList<QString*>*
+SWGUserPreferences::getFavourites() {
+    return favourites;
+}
+void
+SWGUserPreferences::setFavourites(QList<QString*>* favourites) {
+    this->favourites = favourites;
+    this->m_favourites_isSet = true;
+}
+
+QList<QString*>*
+SWGUserPreferences::getFavouritesAssets() {
+    return favourites_assets;
+}
+void
+SWGUserPreferences::setFavouritesAssets(QList<QString*>* favourites_assets) {
+    this->favourites_assets = favourites_assets;
+    this->m_favourites_assets_isSet = true;
+}
+
+QList<QString*>*
+SWGUserPreferences::getFavouritesOrdered() {
+    return favourites_ordered;
+}
+void
+SWGUserPreferences::setFavouritesOrdered(QList<QString*>* favourites_ordered) {
+    this->favourites_ordered = favourites_ordered;
+    this->m_favourites_ordered_isSet = true;
+}
+
 QList<QString*>*
 SWGUserPreferences::getHideConfirmDialogs() {
     return hide_confirm_dialogs;
@@ -480,6 +714,36 @@ SWGUserPreferences::setHideNotifications(QList<QString*>* hide_notifications) {
     this->m_hide_notifications_isSet = true;
 }
 
+bool
+SWGUserPreferences::isHidePhoneConfirm() {
+    return hide_phone_confirm;
+}
+void
+SWGUserPreferences::setHidePhoneConfirm(bool hide_phone_confirm) {
+    this->hide_phone_confirm = hide_phone_confirm;
+    this->m_hide_phone_confirm_isSet = true;
+}
+
+bool
+SWGUserPreferences::isIsSensitiveInfoVisible() {
+    return is_sensitive_info_visible;
+}
+void
+SWGUserPreferences::setIsSensitiveInfoVisible(bool is_sensitive_info_visible) {
+    this->is_sensitive_info_visible = is_sensitive_info_visible;
+    this->m_is_sensitive_info_visible_isSet = true;
+}
+
+bool
+SWGUserPreferences::isIsWalletZeroBalanceHidden() {
+    return is_wallet_zero_balance_hidden;
+}
+void
+SWGUserPreferences::setIsWalletZeroBalanceHidden(bool is_wallet_zero_balance_hidden) {
+    this->is_wallet_zero_balance_hidden = is_wallet_zero_balance_hidden;
+    this->m_is_wallet_zero_balance_hidden_isSet = true;
+}
+
 QString*
 SWGUserPreferences::getLocale() {
     return locale;
@@ -490,6 +754,36 @@ SWGUserPreferences::setLocale(QString* locale) {
     this->m_locale_isSet = true;
 }
 
+double
+SWGUserPreferences::getLocaleSetTime() {
+    return locale_set_time;
+}
+void
+SWGUserPreferences::setLocaleSetTime(double locale_set_time) {
+    this->locale_set_time = locale_set_time;
+    this->m_locale_set_time_isSet = true;
+}
+
+QString*
+SWGUserPreferences::getMarginPnlRow() {
+    return margin_pnl_row;
+}
+void
+SWGUserPreferences::setMarginPnlRow(QString* margin_pnl_row) {
+    this->margin_pnl_row = margin_pnl_row;
+    this->m_margin_pnl_row_isSet = true;
+}
+
+QString*
+SWGUserPreferences::getMarginPnlRowKind() {
+    return margin_pnl_row_kind;
+}
+void
+SWGUserPreferences::setMarginPnlRowKind(QString* margin_pnl_row_kind) {
+    this->margin_pnl_row_kind = margin_pnl_row_kind;
+    this->m_margin_pnl_row_kind_isSet = true;
+}
+
 QList<QString*>*
 SWGUserPreferences::getMsgsSeen() {
     return msgs_seen;
@@ -498,6 +792,16 @@ void
 SWGUserPreferences::setMsgsSeen(QList<QString*>* msgs_seen) {
     this->msgs_seen = msgs_seen;
     this->m_msgs_seen_isSet = true;
+}
+
+SWGObject*
+SWGUserPreferences::getNotifications() {
+    return notifications;
+}
+void
+SWGUserPreferences::setNotifications(SWGObject* notifications) {
+    this->notifications = notifications;
+    this->m_notifications_isSet = true;
 }
 
 SWGObject*
@@ -538,6 +842,36 @@ void
 SWGUserPreferences::setOrderControlsPlusMinus(bool order_controls_plus_minus) {
     this->order_controls_plus_minus = order_controls_plus_minus;
     this->m_order_controls_plus_minus_isSet = true;
+}
+
+QString*
+SWGUserPreferences::getPlatformLayout() {
+    return platform_layout;
+}
+void
+SWGUserPreferences::setPlatformLayout(QString* platform_layout) {
+    this->platform_layout = platform_layout;
+    this->m_platform_layout_isSet = true;
+}
+
+QString*
+SWGUserPreferences::getSelectedFiatCurrency() {
+    return selected_fiat_currency;
+}
+void
+SWGUserPreferences::setSelectedFiatCurrency(QString* selected_fiat_currency) {
+    this->selected_fiat_currency = selected_fiat_currency;
+    this->m_selected_fiat_currency_isSet = true;
+}
+
+bool
+SWGUserPreferences::isShowChartBottomToolbar() {
+    return show_chart_bottom_toolbar;
+}
+void
+SWGUserPreferences::setShowChartBottomToolbar(bool show_chart_bottom_toolbar) {
+    this->show_chart_bottom_toolbar = show_chart_bottom_toolbar;
+    this->m_show_chart_bottom_toolbar_isSet = true;
 }
 
 bool
@@ -610,6 +944,16 @@ SWGUserPreferences::setTradeLayout(QString* trade_layout) {
     this->m_trade_layout_isSet = true;
 }
 
+QString*
+SWGUserPreferences::getUserColor() {
+    return user_color;
+}
+void
+SWGUserPreferences::setUserColor(QString* user_color) {
+    this->user_color = user_color;
+    this->m_user_color_isSet = true;
+}
+
 
 bool
 SWGUserPreferences::isSet(){
@@ -624,17 +968,33 @@ SWGUserPreferences::isSet(){
         if(m_debug_isSet){ isObjectUpdated = true; break;}
         if(disable_emails->size() > 0){ isObjectUpdated = true; break;}
         if(disable_push->size() > 0){ isObjectUpdated = true; break;}
+        if(m_display_corp_enroll_upsell_isSet){ isObjectUpdated = true; break;}
+        if(equivalent_currency != nullptr && *equivalent_currency != QString("")){ isObjectUpdated = true; break;}
+        if(features->size() > 0){ isObjectUpdated = true; break;}
+        if(favourites->size() > 0){ isObjectUpdated = true; break;}
+        if(favourites_assets->size() > 0){ isObjectUpdated = true; break;}
+        if(favourites_ordered->size() > 0){ isObjectUpdated = true; break;}
         if(hide_confirm_dialogs->size() > 0){ isObjectUpdated = true; break;}
         if(m_hide_connection_modal_isSet){ isObjectUpdated = true; break;}
         if(m_hide_from_leaderboard_isSet){ isObjectUpdated = true; break;}
         if(m_hide_name_from_leaderboard_isSet){ isObjectUpdated = true; break;}
         if(hide_notifications->size() > 0){ isObjectUpdated = true; break;}
+        if(m_hide_phone_confirm_isSet){ isObjectUpdated = true; break;}
+        if(m_is_sensitive_info_visible_isSet){ isObjectUpdated = true; break;}
+        if(m_is_wallet_zero_balance_hidden_isSet){ isObjectUpdated = true; break;}
         if(locale != nullptr && *locale != QString("")){ isObjectUpdated = true; break;}
+        if(m_locale_set_time_isSet){ isObjectUpdated = true; break;}
+        if(margin_pnl_row != nullptr && *margin_pnl_row != QString("")){ isObjectUpdated = true; break;}
+        if(margin_pnl_row_kind != nullptr && *margin_pnl_row_kind != QString("")){ isObjectUpdated = true; break;}
         if(msgs_seen->size() > 0){ isObjectUpdated = true; break;}
+        if(notifications != nullptr && notifications->isSet()){ isObjectUpdated = true; break;}
         if(order_book_binning != nullptr && order_book_binning->isSet()){ isObjectUpdated = true; break;}
         if(order_book_type != nullptr && *order_book_type != QString("")){ isObjectUpdated = true; break;}
         if(m_order_clear_immediate_isSet){ isObjectUpdated = true; break;}
         if(m_order_controls_plus_minus_isSet){ isObjectUpdated = true; break;}
+        if(platform_layout != nullptr && *platform_layout != QString("")){ isObjectUpdated = true; break;}
+        if(selected_fiat_currency != nullptr && *selected_fiat_currency != QString("")){ isObjectUpdated = true; break;}
+        if(m_show_chart_bottom_toolbar_isSet){ isObjectUpdated = true; break;}
         if(m_show_locale_numbers_isSet){ isObjectUpdated = true; break;}
         if(sounds->size() > 0){ isObjectUpdated = true; break;}
         if(m_strict_ip_check_isSet){ isObjectUpdated = true; break;}
@@ -642,6 +1002,7 @@ SWGUserPreferences::isSet(){
         if(ticker_group != nullptr && *ticker_group != QString("")){ isObjectUpdated = true; break;}
         if(m_ticker_pinned_isSet){ isObjectUpdated = true; break;}
         if(trade_layout != nullptr && *trade_layout != QString("")){ isObjectUpdated = true; break;}
+        if(user_color != nullptr && *user_color != QString("")){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

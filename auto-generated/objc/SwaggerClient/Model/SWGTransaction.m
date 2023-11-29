@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"transactID": @"transactID", @"account": @"account", @"currency": @"currency", @"transactType": @"transactType", @"amount": @"amount", @"fee": @"fee", @"transactStatus": @"transactStatus", @"address": @"address", @"tx": @"tx", @"text": @"text", @"transactTime": @"transactTime", @"timestamp": @"timestamp" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"transactID": @"transactID", @"account": @"account", @"currency": @"currency", @"network": @"network", @"transactType": @"transactType", @"amount": @"amount", @"fee": @"fee", @"transactStatus": @"transactStatus", @"address": @"address", @"tx": @"tx", @"text": @"text", @"transactTime": @"transactTime", @"timestamp": @"timestamp", @"walletBalance": @"walletBalance" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"account", @"currency", @"transactType", @"amount", @"fee", @"transactStatus", @"address", @"tx", @"text", @"transactTime", @"timestamp"];
+  NSArray *optionalProperties = @[@"account", @"currency", @"network", @"transactType", @"amount", @"fee", @"transactStatus", @"address", @"tx", @"text", @"transactTime", @"timestamp", @"walletBalance"];
   return [optionalProperties containsObject:propertyName];
 }
 

@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -28,7 +28,7 @@ namespace IO.Swagger.Api
         /// Get your positions.
         /// </summary>
         /// <remarks>
-        /// This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenCost**: The absolute value of your open orders for this symbol. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
+        /// This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols do not return any position data.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filter">Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)</param>
@@ -41,7 +41,7 @@ namespace IO.Swagger.Api
         /// Get your positions.
         /// </summary>
         /// <remarks>
-        /// This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenCost**: The absolute value of your open orders for this symbol. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
+        /// This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols do not return any position data.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filter">Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)</param>
@@ -53,7 +53,7 @@ namespace IO.Swagger.Api
         /// Enable isolated margin or cross margin per-position.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -65,7 +65,7 @@ namespace IO.Swagger.Api
         /// Enable isolated margin or cross margin per-position.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -76,78 +76,84 @@ namespace IO.Swagger.Api
         /// Transfer equity in or out of a position.
         /// </summary>
         /// <remarks>
-        /// 
+        /// When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
+        /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>Position</returns>
-        Position PositionTransferIsolatedMargin (string symbol, decimal? amount);
+        Position PositionTransferIsolatedMargin (string symbol, decimal? amount, double? targetAccountId = null);
 
         /// <summary>
         /// Transfer equity in or out of a position.
         /// </summary>
         /// <remarks>
-        /// 
+        /// When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
+        /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>ApiResponse of Position</returns>
-        ApiResponse<Position> PositionTransferIsolatedMarginWithHttpInfo (string symbol, decimal? amount);
+        ApiResponse<Position> PositionTransferIsolatedMarginWithHttpInfo (string symbol, decimal? amount, double? targetAccountId = null);
         /// <summary>
         /// Choose leverage for a position.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Users can choose an isolated leverage. This will automatically enable isolated margin.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
         /// <param name="leverage">Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.</param>
+        /// <param name="targetAccountId">AccountId for the position that the leverage would be changed on, must be a paired account with main user. (optional)</param>
         /// <returns>Position</returns>
-        Position PositionUpdateLeverage (string symbol, double? leverage);
+        Position PositionUpdateLeverage (string symbol, double? leverage, double? targetAccountId = null);
 
         /// <summary>
         /// Choose leverage for a position.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Users can choose an isolated leverage. This will automatically enable isolated margin.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
         /// <param name="leverage">Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.</param>
+        /// <param name="targetAccountId">AccountId for the position that the leverage would be changed on, must be a paired account with main user. (optional)</param>
         /// <returns>ApiResponse of Position</returns>
-        ApiResponse<Position> PositionUpdateLeverageWithHttpInfo (string symbol, double? leverage);
+        ApiResponse<Position> PositionUpdateLeverageWithHttpInfo (string symbol, double? leverage, double? targetAccountId = null);
         /// <summary>
         /// Update your risk limit.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>Position</returns>
-        Position PositionUpdateRiskLimit (string symbol, decimal? riskLimit);
+        Position PositionUpdateRiskLimit (string symbol, decimal? riskLimit, double? targetAccountId = null);
 
         /// <summary>
         /// Update your risk limit.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>ApiResponse of Position</returns>
-        ApiResponse<Position> PositionUpdateRiskLimitWithHttpInfo (string symbol, decimal? riskLimit);
+        ApiResponse<Position> PositionUpdateRiskLimitWithHttpInfo (string symbol, decimal? riskLimit, double? targetAccountId = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
         /// Get your positions.
         /// </summary>
         /// <remarks>
-        /// This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenCost**: The absolute value of your open orders for this symbol. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
+        /// This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols do not return any position data.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filter">Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)</param>
@@ -160,7 +166,7 @@ namespace IO.Swagger.Api
         /// Get your positions.
         /// </summary>
         /// <remarks>
-        /// This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenCost**: The absolute value of your open orders for this symbol. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
+        /// This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols do not return any position data.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filter">Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)</param>
@@ -172,7 +178,7 @@ namespace IO.Swagger.Api
         /// Enable isolated margin or cross margin per-position.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -184,7 +190,7 @@ namespace IO.Swagger.Api
         /// Enable isolated margin or cross margin per-position.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -195,71 +201,77 @@ namespace IO.Swagger.Api
         /// Transfer equity in or out of a position.
         /// </summary>
         /// <remarks>
-        /// 
+        /// When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
+        /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>Task of Position</returns>
-        System.Threading.Tasks.Task<Position> PositionTransferIsolatedMarginAsync (string symbol, decimal? amount);
+        System.Threading.Tasks.Task<Position> PositionTransferIsolatedMarginAsync (string symbol, decimal? amount, double? targetAccountId = null);
 
         /// <summary>
         /// Transfer equity in or out of a position.
         /// </summary>
         /// <remarks>
-        /// 
+        /// When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
+        /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>Task of ApiResponse (Position)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Position>> PositionTransferIsolatedMarginAsyncWithHttpInfo (string symbol, decimal? amount);
+        System.Threading.Tasks.Task<ApiResponse<Position>> PositionTransferIsolatedMarginAsyncWithHttpInfo (string symbol, decimal? amount, double? targetAccountId = null);
         /// <summary>
         /// Choose leverage for a position.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Users can choose an isolated leverage. This will automatically enable isolated margin.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
         /// <param name="leverage">Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.</param>
+        /// <param name="targetAccountId">AccountId for the position that the leverage would be changed on, must be a paired account with main user. (optional)</param>
         /// <returns>Task of Position</returns>
-        System.Threading.Tasks.Task<Position> PositionUpdateLeverageAsync (string symbol, double? leverage);
+        System.Threading.Tasks.Task<Position> PositionUpdateLeverageAsync (string symbol, double? leverage, double? targetAccountId = null);
 
         /// <summary>
         /// Choose leverage for a position.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Users can choose an isolated leverage. This will automatically enable isolated margin.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
         /// <param name="leverage">Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.</param>
+        /// <param name="targetAccountId">AccountId for the position that the leverage would be changed on, must be a paired account with main user. (optional)</param>
         /// <returns>Task of ApiResponse (Position)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateLeverageAsyncWithHttpInfo (string symbol, double? leverage);
+        System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateLeverageAsyncWithHttpInfo (string symbol, double? leverage, double? targetAccountId = null);
         /// <summary>
         /// Update your risk limit.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>Task of Position</returns>
-        System.Threading.Tasks.Task<Position> PositionUpdateRiskLimitAsync (string symbol, decimal? riskLimit);
+        System.Threading.Tasks.Task<Position> PositionUpdateRiskLimitAsync (string symbol, decimal? riskLimit, double? targetAccountId = null);
 
         /// <summary>
         /// Update your risk limit.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>Task of ApiResponse (Position)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateRiskLimitAsyncWithHttpInfo (string symbol, decimal? riskLimit);
+        System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateRiskLimitAsyncWithHttpInfo (string symbol, decimal? riskLimit, double? targetAccountId = null);
         #endregion Asynchronous Operations
     }
 
@@ -361,7 +373,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get your positions. This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenCost**: The absolute value of your open orders for this symbol. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
+        /// Get your positions. This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols do not return any position data.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filter">Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)</param>
@@ -375,7 +387,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get your positions. This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenCost**: The absolute value of your open orders for this symbol. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
+        /// Get your positions. This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols do not return any position data.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filter">Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)</param>
@@ -451,7 +463,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get your positions. This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenCost**: The absolute value of your open orders for this symbol. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
+        /// Get your positions. This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols do not return any position data.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filter">Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)</param>
@@ -466,7 +478,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get your positions. This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenCost**: The absolute value of your open orders for this symbol. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
+        /// Get your positions. This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols do not return any position data.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filter">Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)</param>
@@ -542,7 +554,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Enable isolated margin or cross margin per-position. 
+        /// Enable isolated margin or cross margin per-position. Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -555,7 +567,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Enable isolated margin or cross margin per-position. 
+        /// Enable isolated margin or cross margin per-position. Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -632,7 +644,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Enable isolated margin or cross margin per-position. 
+        /// Enable isolated margin or cross margin per-position. Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -646,7 +658,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Enable isolated margin or cross margin per-position. 
+        /// Enable isolated margin or cross margin per-position. Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -723,26 +735,28 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Transfer equity in or out of a position. 
+        /// Transfer equity in or out of a position. When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
+        /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>Position</returns>
-        public Position PositionTransferIsolatedMargin (string symbol, decimal? amount)
+        public Position PositionTransferIsolatedMargin (string symbol, decimal? amount, double? targetAccountId = null)
         {
-             ApiResponse<Position> localVarResponse = PositionTransferIsolatedMarginWithHttpInfo(symbol, amount);
+             ApiResponse<Position> localVarResponse = PositionTransferIsolatedMarginWithHttpInfo(symbol, amount, targetAccountId);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Transfer equity in or out of a position. 
+        /// Transfer equity in or out of a position. When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
+        /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>ApiResponse of Position</returns>
-        public ApiResponse< Position > PositionTransferIsolatedMarginWithHttpInfo (string symbol, decimal? amount)
+        public ApiResponse< Position > PositionTransferIsolatedMarginWithHttpInfo (string symbol, decimal? amount, double? targetAccountId = null)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)
@@ -780,6 +794,7 @@ namespace IO.Swagger.Api
 
             if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
             if (amount != null) localVarFormParams.Add("amount", this.Configuration.ApiClient.ParameterToString(amount)); // form parameter
+            if (targetAccountId != null) localVarFormParams.Add("targetAccountId", this.Configuration.ApiClient.ParameterToString(targetAccountId)); // form parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -816,27 +831,29 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Transfer equity in or out of a position. 
+        /// Transfer equity in or out of a position. When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
+        /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>Task of Position</returns>
-        public async System.Threading.Tasks.Task<Position> PositionTransferIsolatedMarginAsync (string symbol, decimal? amount)
+        public async System.Threading.Tasks.Task<Position> PositionTransferIsolatedMarginAsync (string symbol, decimal? amount, double? targetAccountId = null)
         {
-             ApiResponse<Position> localVarResponse = await PositionTransferIsolatedMarginAsyncWithHttpInfo(symbol, amount);
+             ApiResponse<Position> localVarResponse = await PositionTransferIsolatedMarginAsyncWithHttpInfo(symbol, amount, targetAccountId);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Transfer equity in or out of a position. 
+        /// Transfer equity in or out of a position. When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
+        /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>Task of ApiResponse (Position)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Position>> PositionTransferIsolatedMarginAsyncWithHttpInfo (string symbol, decimal? amount)
+        public async System.Threading.Tasks.Task<ApiResponse<Position>> PositionTransferIsolatedMarginAsyncWithHttpInfo (string symbol, decimal? amount, double? targetAccountId = null)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)
@@ -874,6 +891,7 @@ namespace IO.Swagger.Api
 
             if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
             if (amount != null) localVarFormParams.Add("amount", this.Configuration.ApiClient.ParameterToString(amount)); // form parameter
+            if (targetAccountId != null) localVarFormParams.Add("targetAccountId", this.Configuration.ApiClient.ParameterToString(targetAccountId)); // form parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -910,26 +928,28 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Choose leverage for a position. 
+        /// Choose leverage for a position. Users can choose an isolated leverage. This will automatically enable isolated margin.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
         /// <param name="leverage">Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.</param>
+        /// <param name="targetAccountId">AccountId for the position that the leverage would be changed on, must be a paired account with main user. (optional)</param>
         /// <returns>Position</returns>
-        public Position PositionUpdateLeverage (string symbol, double? leverage)
+        public Position PositionUpdateLeverage (string symbol, double? leverage, double? targetAccountId = null)
         {
-             ApiResponse<Position> localVarResponse = PositionUpdateLeverageWithHttpInfo(symbol, leverage);
+             ApiResponse<Position> localVarResponse = PositionUpdateLeverageWithHttpInfo(symbol, leverage, targetAccountId);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Choose leverage for a position. 
+        /// Choose leverage for a position. Users can choose an isolated leverage. This will automatically enable isolated margin.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
         /// <param name="leverage">Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.</param>
+        /// <param name="targetAccountId">AccountId for the position that the leverage would be changed on, must be a paired account with main user. (optional)</param>
         /// <returns>ApiResponse of Position</returns>
-        public ApiResponse< Position > PositionUpdateLeverageWithHttpInfo (string symbol, double? leverage)
+        public ApiResponse< Position > PositionUpdateLeverageWithHttpInfo (string symbol, double? leverage, double? targetAccountId = null)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)
@@ -967,6 +987,7 @@ namespace IO.Swagger.Api
 
             if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
             if (leverage != null) localVarFormParams.Add("leverage", this.Configuration.ApiClient.ParameterToString(leverage)); // form parameter
+            if (targetAccountId != null) localVarFormParams.Add("targetAccountId", this.Configuration.ApiClient.ParameterToString(targetAccountId)); // form parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -1003,27 +1024,29 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Choose leverage for a position. 
+        /// Choose leverage for a position. Users can choose an isolated leverage. This will automatically enable isolated margin.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
         /// <param name="leverage">Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.</param>
+        /// <param name="targetAccountId">AccountId for the position that the leverage would be changed on, must be a paired account with main user. (optional)</param>
         /// <returns>Task of Position</returns>
-        public async System.Threading.Tasks.Task<Position> PositionUpdateLeverageAsync (string symbol, double? leverage)
+        public async System.Threading.Tasks.Task<Position> PositionUpdateLeverageAsync (string symbol, double? leverage, double? targetAccountId = null)
         {
-             ApiResponse<Position> localVarResponse = await PositionUpdateLeverageAsyncWithHttpInfo(symbol, leverage);
+             ApiResponse<Position> localVarResponse = await PositionUpdateLeverageAsyncWithHttpInfo(symbol, leverage, targetAccountId);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Choose leverage for a position. 
+        /// Choose leverage for a position. Users can choose an isolated leverage. This will automatically enable isolated margin.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
         /// <param name="leverage">Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.</param>
+        /// <param name="targetAccountId">AccountId for the position that the leverage would be changed on, must be a paired account with main user. (optional)</param>
         /// <returns>Task of ApiResponse (Position)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateLeverageAsyncWithHttpInfo (string symbol, double? leverage)
+        public async System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateLeverageAsyncWithHttpInfo (string symbol, double? leverage, double? targetAccountId = null)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)
@@ -1061,6 +1084,7 @@ namespace IO.Swagger.Api
 
             if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
             if (leverage != null) localVarFormParams.Add("leverage", this.Configuration.ApiClient.ParameterToString(leverage)); // form parameter
+            if (targetAccountId != null) localVarFormParams.Add("targetAccountId", this.Configuration.ApiClient.ParameterToString(targetAccountId)); // form parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -1097,26 +1121,28 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Update your risk limit. 
+        /// Update your risk limit. Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>Position</returns>
-        public Position PositionUpdateRiskLimit (string symbol, decimal? riskLimit)
+        public Position PositionUpdateRiskLimit (string symbol, decimal? riskLimit, double? targetAccountId = null)
         {
-             ApiResponse<Position> localVarResponse = PositionUpdateRiskLimitWithHttpInfo(symbol, riskLimit);
+             ApiResponse<Position> localVarResponse = PositionUpdateRiskLimitWithHttpInfo(symbol, riskLimit, targetAccountId);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Update your risk limit. 
+        /// Update your risk limit. Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>ApiResponse of Position</returns>
-        public ApiResponse< Position > PositionUpdateRiskLimitWithHttpInfo (string symbol, decimal? riskLimit)
+        public ApiResponse< Position > PositionUpdateRiskLimitWithHttpInfo (string symbol, decimal? riskLimit, double? targetAccountId = null)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)
@@ -1154,6 +1180,7 @@ namespace IO.Swagger.Api
 
             if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
             if (riskLimit != null) localVarFormParams.Add("riskLimit", this.Configuration.ApiClient.ParameterToString(riskLimit)); // form parameter
+            if (targetAccountId != null) localVarFormParams.Add("targetAccountId", this.Configuration.ApiClient.ParameterToString(targetAccountId)); // form parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -1190,27 +1217,29 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Update your risk limit. 
+        /// Update your risk limit. Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>Task of Position</returns>
-        public async System.Threading.Tasks.Task<Position> PositionUpdateRiskLimitAsync (string symbol, decimal? riskLimit)
+        public async System.Threading.Tasks.Task<Position> PositionUpdateRiskLimitAsync (string symbol, decimal? riskLimit, double? targetAccountId = null)
         {
-             ApiResponse<Position> localVarResponse = await PositionUpdateRiskLimitAsyncWithHttpInfo(symbol, riskLimit);
+             ApiResponse<Position> localVarResponse = await PositionUpdateRiskLimitAsyncWithHttpInfo(symbol, riskLimit, targetAccountId);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Update your risk limit. 
+        /// Update your risk limit. Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>Task of ApiResponse (Position)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateRiskLimitAsyncWithHttpInfo (string symbol, decimal? riskLimit)
+        public async System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateRiskLimitAsyncWithHttpInfo (string symbol, decimal? riskLimit, double? targetAccountId = null)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)
@@ -1248,6 +1277,7 @@ namespace IO.Swagger.Api
 
             if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
             if (riskLimit != null) localVarFormParams.Add("riskLimit", this.Configuration.ApiClient.ParameterToString(riskLimit)); // form parameter
+            if (targetAccountId != null) localVarFormParams.Add("targetAccountId", this.Configuration.ApiClient.ParameterToString(targetAccountId)); // form parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))

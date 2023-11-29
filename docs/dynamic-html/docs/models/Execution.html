@@ -1,12 +1,12 @@
 
 <h2>Execution</h2>
 <ul class="parameter">
-  <li class="param-required-true">execID : String
+  <li class="param-required-false">execID : String
     <br/>
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-false">orderID : String
+  <li class="param-required-true">orderID : String
     <br/>
   </li>
 </ul>
@@ -21,12 +21,12 @@
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-false">account : BigDecimal
+  <li class="param-required-false">account : Double
     <br/>
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-false">symbol : String
+  <li class="param-required-true">symbol : String
     <br/>
   </li>
 </ul>
@@ -36,7 +36,7 @@
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-false">lastQty : BigDecimal
+  <li class="param-required-false">lastQty : Double
     <br/>
   </li>
 </ul>
@@ -46,27 +46,12 @@
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-false">underlyingLastPx : Double
-    <br/>
-  </li>
-</ul>
-<ul class="parameter">
-  <li class="param-required-false">lastMkt : String
-    <br/>
-  </li>
-</ul>
-<ul class="parameter">
   <li class="param-required-false">lastLiquidityInd : String
     <br/>
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-false">simpleOrderQty : Double
-    <br/>
-  </li>
-</ul>
-<ul class="parameter">
-  <li class="param-required-false">orderQty : BigDecimal
+  <li class="param-required-false">orderQty : Double
     <br/>
   </li>
 </ul>
@@ -131,11 +116,6 @@
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-false">exDestination : String
-    <br/>
-  </li>
-</ul>
-<ul class="parameter">
   <li class="param-required-false">ordStatus : String
     <br/>
   </li>
@@ -156,17 +136,7 @@
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-false">simpleLeavesQty : Double
-    <br/>
-  </li>
-</ul>
-<ul class="parameter">
-  <li class="param-required-false">leavesQty : BigDecimal
-    <br/>
-  </li>
-</ul>
-<ul class="parameter">
-  <li class="param-required-false">simpleCumQty : Double
+  <li class="param-required-false">leavesQty : Double
     <br/>
   </li>
 </ul>
@@ -191,11 +161,6 @@
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-false">multiLegReportingType : String
-    <br/>
-  </li>
-</ul>
-<ul class="parameter">
   <li class="param-required-false">text : String
     <br/>
   </li>
@@ -206,12 +171,12 @@
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-false">execCost : BigDecimal
+  <li class="param-required-false">execCost : Double
     <br/>
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-false">execComm : BigDecimal
+  <li class="param-required-false">execComm : Double
     <br/>
   </li>
 </ul>
@@ -231,7 +196,32 @@
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-false">timestamp : Date
+  <li class="param-required-true">timestamp : Date
+    <br/>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">execGrossPnl : Double
+    <br/>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">currentQty : Double
+    <br/>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">avgEntryPrice : Double
+    <br/>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">realisedPnl : Double
+    <br/>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">unrealisedPnl : Double
     <br/>
   </li>
 </ul>

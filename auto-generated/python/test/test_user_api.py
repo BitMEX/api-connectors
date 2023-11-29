@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -64,6 +64,27 @@ class TestUserApi(unittest.TestCase):
         """
         pass
 
+    def test_user_create_sub_account(self):
+        """Test case for user_create_sub_account
+
+        Creates a new sub-account.  # noqa: E501
+        """
+        pass
+
+    def test_user_create_unstaking_requests(self):
+        """Test case for user_create_unstaking_requests
+
+        Create unstaking request  # noqa: E501
+        """
+        pass
+
+    def test_user_delete_unstaking_requests(self):
+        """Test case for user_delete_unstaking_requests
+
+        Cancel unstaking request  # noqa: E501
+        """
+        pass
+
     def test_user_get(self):
         """Test case for user_get
 
@@ -82,6 +103,13 @@ class TestUserApi(unittest.TestCase):
         """Test case for user_get_commission
 
         Get your account's commission status.  # noqa: E501
+        """
+        pass
+
+    def test_user_get_csa(self):
+        """Test case for user_get_csa
+
+        Get your account's CSA status.  # noqa: E501
         """
         pass
 
@@ -113,6 +141,48 @@ class TestUserApi(unittest.TestCase):
         """
         pass
 
+    def test_user_get_quote_value_ratio(self):
+        """Test case for user_get_quote_value_ratio
+
+        Get Quote Value Ratio statistics over the last 3 days  # noqa: E501
+        """
+        pass
+
+    def test_user_get_staking(self):
+        """Test case for user_get_staking
+
+        Get the current user staking amount.  # noqa: E501
+        """
+        pass
+
+    def test_user_get_staking_instruments(self):
+        """Test case for user_get_staking_instruments
+
+        List staking instruments  # noqa: E501
+        """
+        pass
+
+    def test_user_get_staking_tiers(self):
+        """Test case for user_get_staking_tiers
+
+        List staking tiers for a given currency  # noqa: E501
+        """
+        pass
+
+    def test_user_get_trading_volume(self):
+        """Test case for user_get_trading_volume
+
+        Get your 30 days USD average trading volume  # noqa: E501
+        """
+        pass
+
+    def test_user_get_unstaking_requests(self):
+        """Test case for user_get_unstaking_requests
+
+        Get the current user unstaking requests  # noqa: E501
+        """
+        pass
+
     def test_user_get_wallet(self):
         """Test case for user_get_wallet
 
@@ -134,17 +204,17 @@ class TestUserApi(unittest.TestCase):
         """
         pass
 
+    def test_user_get_wallet_transfer_accounts(self):
+        """Test case for user_get_wallet_transfer_accounts
+
+        Get the list of accounts you can transfer funds between.  # noqa: E501
+        """
+        pass
+
     def test_user_logout(self):
         """Test case for user_logout
 
         Log out of BitMEX.  # noqa: E501
-        """
-        pass
-
-    def test_user_min_withdrawal_fee(self):
-        """Test case for user_min_withdrawal_fee
-
-        Get the minimum withdrawal fee for a currency.  # noqa: E501
         """
         pass
 
@@ -159,6 +229,20 @@ class TestUserApi(unittest.TestCase):
         """Test case for user_save_preferences
 
         Save user preferences.  # noqa: E501
+        """
+        pass
+
+    def test_user_update_sub_account(self):
+        """Test case for user_update_sub_account
+
+        Updates the sub-account name.  # noqa: E501
+        """
+        pass
+
+    def test_user_wallet_transfer(self):
+        """Test case for user_wallet_transfer
+
+        Execute a transfer to a paired account.  # noqa: E501
         """
         pass
 

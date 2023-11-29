@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **grossValue** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **homeNotional** | **Double** |  |  [optional]
 **foreignNotional** | **Double** |  |  [optional]
+**trdType** | **String** |  |  [optional]
 
 
 

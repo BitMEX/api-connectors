@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -43,12 +43,12 @@ SWGChat::init() {
     m_date_isSet = false;
     user = new QString("");
     m_user_isSet = false;
+    user_color = new QString("");
+    m_user_color_isSet = false;
     message = new QString("");
     m_message_isSet = false;
     html = new QString("");
     m_html_isSet = false;
-    from_bot = false;
-    m_from_bot_isSet = false;
     channel_id = 0.0;
     m_channel_id_isSet = false;
 }
@@ -64,13 +64,15 @@ SWGChat::cleanup() {
     if(user != nullptr) { 
         delete user;
     }
+    if(user_color != nullptr) { 
+        delete user_color;
+    }
     if(message != nullptr) { 
         delete message;
     }
     if(html != nullptr) { 
         delete html;
     }
-
 
 }
 
@@ -91,11 +93,11 @@ SWGChat::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&user, pJson["user"], "QString", "QString");
     
+    ::Swagger::setValue(&user_color, pJson["userColor"], "QString", "QString");
+    
     ::Swagger::setValue(&message, pJson["message"], "QString", "QString");
     
     ::Swagger::setValue(&html, pJson["html"], "QString", "QString");
-    
-    ::Swagger::setValue(&from_bot, pJson["fromBot"], "bool", "");
     
     ::Swagger::setValue(&channel_id, pJson["channelID"], "double", "");
     
@@ -122,14 +124,14 @@ SWGChat::asJsonObject() {
     if(user != nullptr && *user != QString("")){
         toJsonValue(QString("user"), user, obj, QString("QString"));
     }
+    if(user_color != nullptr && *user_color != QString("")){
+        toJsonValue(QString("userColor"), user_color, obj, QString("QString"));
+    }
     if(message != nullptr && *message != QString("")){
         toJsonValue(QString("message"), message, obj, QString("QString"));
     }
     if(html != nullptr && *html != QString("")){
         toJsonValue(QString("html"), html, obj, QString("QString"));
-    }
-    if(m_from_bot_isSet){
-        obj.insert("fromBot", QJsonValue(from_bot));
     }
     if(m_channel_id_isSet){
         obj.insert("channelID", QJsonValue(channel_id));
@@ -169,6 +171,16 @@ SWGChat::setUser(QString* user) {
 }
 
 QString*
+SWGChat::getUserColor() {
+    return user_color;
+}
+void
+SWGChat::setUserColor(QString* user_color) {
+    this->user_color = user_color;
+    this->m_user_color_isSet = true;
+}
+
+QString*
 SWGChat::getMessage() {
     return message;
 }
@@ -186,16 +198,6 @@ void
 SWGChat::setHtml(QString* html) {
     this->html = html;
     this->m_html_isSet = true;
-}
-
-bool
-SWGChat::isFromBot() {
-    return from_bot;
-}
-void
-SWGChat::setFromBot(bool from_bot) {
-    this->from_bot = from_bot;
-    this->m_from_bot_isSet = true;
 }
 
 double
@@ -216,9 +218,9 @@ SWGChat::isSet(){
         if(id != nullptr && id->isSet()){ isObjectUpdated = true; break;}
         
         if(user != nullptr && *user != QString("")){ isObjectUpdated = true; break;}
+        if(user_color != nullptr && *user_color != QString("")){ isObjectUpdated = true; break;}
         if(message != nullptr && *message != QString("")){ isObjectUpdated = true; break;}
         if(html != nullptr && *html != QString("")){ isObjectUpdated = true; break;}
-        if(m_from_bot_isSet){ isObjectUpdated = true; break;}
         if(m_channel_id_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;

@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -31,13 +31,10 @@ import org.threeten.bp.OffsetDateTime;
  * Account Operations
  */
 @ApiModel(description = "Account Operations")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-12-17T20:26:16.019-05:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
 public class User {
   @SerializedName("id")
   private BigDecimal id = null;
-
-  @SerializedName("ownerId")
-  private BigDecimal ownerId = null;
 
   @SerializedName("firstname")
   private String firstname = null;
@@ -48,8 +45,17 @@ public class User {
   @SerializedName("username")
   private String username = null;
 
+  @SerializedName("accountName")
+  private String accountName = null;
+
+  @SerializedName("isUser")
+  private Boolean isUser = true;
+
   @SerializedName("email")
   private String email = null;
+
+  @SerializedName("dateOfBirth")
+  private String dateOfBirth = null;
 
   @SerializedName("phone")
   private String phone = null;
@@ -69,9 +75,6 @@ public class User {
   @SerializedName("affiliateID")
   private String affiliateID = null;
 
-  @SerializedName("pgpPubKey")
-  private String pgpPubKey = null;
-
   @SerializedName("country")
   private String country = null;
 
@@ -80,6 +83,9 @@ public class User {
 
   @SerializedName("geoipRegion")
   private String geoipRegion = null;
+
+  @SerializedName("firstTradeTimestamp")
+  private OffsetDateTime firstTradeTimestamp = null;
 
   @SerializedName("typ")
   private String typ = null;
@@ -100,24 +106,6 @@ public class User {
 
   public void setId(BigDecimal id) {
     this.id = id;
-  }
-
-  public User ownerId(BigDecimal ownerId) {
-    this.ownerId = ownerId;
-    return this;
-  }
-
-   /**
-   * Get ownerId
-   * @return ownerId
-  **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getOwnerId() {
-    return ownerId;
-  }
-
-  public void setOwnerId(BigDecimal ownerId) {
-    this.ownerId = ownerId;
   }
 
   public User firstname(String firstname) {
@@ -174,6 +162,42 @@ public class User {
     this.username = username;
   }
 
+  public User accountName(String accountName) {
+    this.accountName = accountName;
+    return this;
+  }
+
+   /**
+   * Get accountName
+   * @return accountName
+  **/
+  @ApiModelProperty(value = "")
+  public String getAccountName() {
+    return accountName;
+  }
+
+  public void setAccountName(String accountName) {
+    this.accountName = accountName;
+  }
+
+  public User isUser(Boolean isUser) {
+    this.isUser = isUser;
+    return this;
+  }
+
+   /**
+   * Get isUser
+   * @return isUser
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public Boolean isIsUser() {
+    return isUser;
+  }
+
+  public void setIsUser(Boolean isUser) {
+    this.isUser = isUser;
+  }
+
   public User email(String email) {
     this.email = email;
     return this;
@@ -183,13 +207,31 @@ public class User {
    * Get email
    * @return email
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(value = "")
   public String getEmail() {
     return email;
   }
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public User dateOfBirth(String dateOfBirth) {
+    this.dateOfBirth = dateOfBirth;
+    return this;
+  }
+
+   /**
+   * Get dateOfBirth
+   * @return dateOfBirth
+  **/
+  @ApiModelProperty(value = "")
+  public String getDateOfBirth() {
+    return dateOfBirth;
+  }
+
+  public void setDateOfBirth(String dateOfBirth) {
+    this.dateOfBirth = dateOfBirth;
   }
 
   public User phone(String phone) {
@@ -300,24 +342,6 @@ public class User {
     this.affiliateID = affiliateID;
   }
 
-  public User pgpPubKey(String pgpPubKey) {
-    this.pgpPubKey = pgpPubKey;
-    return this;
-  }
-
-   /**
-   * Get pgpPubKey
-   * @return pgpPubKey
-  **/
-  @ApiModelProperty(value = "")
-  public String getPgpPubKey() {
-    return pgpPubKey;
-  }
-
-  public void setPgpPubKey(String pgpPubKey) {
-    this.pgpPubKey = pgpPubKey;
-  }
-
   public User country(String country) {
     this.country = country;
     return this;
@@ -372,6 +396,24 @@ public class User {
     this.geoipRegion = geoipRegion;
   }
 
+  public User firstTradeTimestamp(OffsetDateTime firstTradeTimestamp) {
+    this.firstTradeTimestamp = firstTradeTimestamp;
+    return this;
+  }
+
+   /**
+   * Get firstTradeTimestamp
+   * @return firstTradeTimestamp
+  **/
+  @ApiModelProperty(value = "")
+  public OffsetDateTime getFirstTradeTimestamp() {
+    return firstTradeTimestamp;
+  }
+
+  public void setFirstTradeTimestamp(OffsetDateTime firstTradeTimestamp) {
+    this.firstTradeTimestamp = firstTradeTimestamp;
+  }
+
   public User typ(String typ) {
     this.typ = typ;
     return this;
@@ -401,27 +443,29 @@ public class User {
     }
     User user = (User) o;
     return Objects.equals(this.id, user.id) &&
-        Objects.equals(this.ownerId, user.ownerId) &&
         Objects.equals(this.firstname, user.firstname) &&
         Objects.equals(this.lastname, user.lastname) &&
         Objects.equals(this.username, user.username) &&
+        Objects.equals(this.accountName, user.accountName) &&
+        Objects.equals(this.isUser, user.isUser) &&
         Objects.equals(this.email, user.email) &&
+        Objects.equals(this.dateOfBirth, user.dateOfBirth) &&
         Objects.equals(this.phone, user.phone) &&
         Objects.equals(this.created, user.created) &&
         Objects.equals(this.lastUpdated, user.lastUpdated) &&
         Objects.equals(this.preferences, user.preferences) &&
         Objects.equals(this.tfAEnabled, user.tfAEnabled) &&
         Objects.equals(this.affiliateID, user.affiliateID) &&
-        Objects.equals(this.pgpPubKey, user.pgpPubKey) &&
         Objects.equals(this.country, user.country) &&
         Objects.equals(this.geoipCountry, user.geoipCountry) &&
         Objects.equals(this.geoipRegion, user.geoipRegion) &&
+        Objects.equals(this.firstTradeTimestamp, user.firstTradeTimestamp) &&
         Objects.equals(this.typ, user.typ);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, ownerId, firstname, lastname, username, email, phone, created, lastUpdated, preferences, tfAEnabled, affiliateID, pgpPubKey, country, geoipCountry, geoipRegion, typ);
+    return Objects.hash(id, firstname, lastname, username, accountName, isUser, email, dateOfBirth, phone, created, lastUpdated, preferences, tfAEnabled, affiliateID, country, geoipCountry, geoipRegion, firstTradeTimestamp, typ);
   }
 
 
@@ -431,21 +475,23 @@ public class User {
     sb.append("class User {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    firstname: ").append(toIndentedString(firstname)).append("\n");
     sb.append("    lastname: ").append(toIndentedString(lastname)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
+    sb.append("    accountName: ").append(toIndentedString(accountName)).append("\n");
+    sb.append("    isUser: ").append(toIndentedString(isUser)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    dateOfBirth: ").append(toIndentedString(dateOfBirth)).append("\n");
     sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    lastUpdated: ").append(toIndentedString(lastUpdated)).append("\n");
     sb.append("    preferences: ").append(toIndentedString(preferences)).append("\n");
     sb.append("    tfAEnabled: ").append(toIndentedString(tfAEnabled)).append("\n");
     sb.append("    affiliateID: ").append(toIndentedString(affiliateID)).append("\n");
-    sb.append("    pgpPubKey: ").append(toIndentedString(pgpPubKey)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    geoipCountry: ").append(toIndentedString(geoipCountry)).append("\n");
     sb.append("    geoipRegion: ").append(toIndentedString(geoipRegion)).append("\n");
+    sb.append("    firstTradeTimestamp: ").append(toIndentedString(firstTradeTimestamp)).append("\n");
     sb.append("    typ: ").append(toIndentedString(typ)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -43,7 +43,8 @@ namespace IO.Swagger.Model
         /// <param name="side">side (required).</param>
         /// <param name="size">size.</param>
         /// <param name="price">price.</param>
-        public OrderBookL2(string symbol = default(string), decimal? id = default(decimal?), string side = default(string), decimal? size = default(decimal?), double? price = default(double?))
+        /// <param name="timestamp">timestamp.</param>
+        public OrderBookL2(string symbol = default(string), decimal? id = default(decimal?), string side = default(string), decimal? size = default(decimal?), double? price = default(double?), DateTime? timestamp = default(DateTime?))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -74,6 +75,7 @@ namespace IO.Swagger.Model
             }
             this.Size = size;
             this.Price = price;
+            this.Timestamp = timestamp;
         }
         
         /// <summary>
@@ -107,6 +109,12 @@ namespace IO.Swagger.Model
         public double? Price { get; set; }
 
         /// <summary>
+        /// Gets or Sets Timestamp
+        /// </summary>
+        [DataMember(Name="timestamp", EmitDefaultValue=false)]
+        public DateTime? Timestamp { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -119,6 +127,7 @@ namespace IO.Swagger.Model
             sb.Append("  Side: ").Append(Side).Append("\n");
             sb.Append("  Size: ").Append(Size).Append("\n");
             sb.Append("  Price: ").Append(Price).Append("\n");
+            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -177,6 +186,11 @@ namespace IO.Swagger.Model
                     this.Price == input.Price ||
                     (this.Price != null &&
                     this.Price.Equals(input.Price))
+                ) && 
+                (
+                    this.Timestamp == input.Timestamp ||
+                    (this.Timestamp != null &&
+                    this.Timestamp.Equals(input.Timestamp))
                 );
         }
 
@@ -199,6 +213,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Size.GetHashCode();
                 if (this.Price != null)
                     hashCode = hashCode * 59 + this.Price.GetHashCode();
+                if (this.Timestamp != null)
+                    hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
                 return hashCode;
             }
         }

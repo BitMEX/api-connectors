@@ -3,19 +3,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**exec_id** | **String** |  | 
-**order_id** | **String** |  | [optional] 
+**exec_id** | **String** |  | [optional] 
+**order_id** | **String** |  | 
 **cl_ord_id** | **String** |  | [optional] 
 **cl_ord_link_id** | **String** |  | [optional] 
 **account** | **Float** |  | [optional] 
-**symbol** | **String** |  | [optional] 
+**symbol** | **String** |  | 
 **side** | **String** |  | [optional] 
 **last_qty** | **Float** |  | [optional] 
 **last_px** | **Float** |  | [optional] 
-**underlying_last_px** | **Float** |  | [optional] 
-**last_mkt** | **String** |  | [optional] 
 **last_liquidity_ind** | **String** |  | [optional] 
-**simple_order_qty** | **Float** |  | [optional] 
 **order_qty** | **Float** |  | [optional] 
 **price** | **Float** |  | [optional] 
 **display_qty** | **Float** |  | [optional] 
@@ -29,19 +26,15 @@ Name | Type | Description | Notes
 **time_in_force** | **String** |  | [optional] 
 **exec_inst** | **String** |  | [optional] 
 **contingency_type** | **String** |  | [optional] 
-**ex_destination** | **String** |  | [optional] 
 **ord_status** | **String** |  | [optional] 
 **triggered** | **String** |  | [optional] 
 **working_indicator** | **BOOLEAN** |  | [optional] 
 **ord_rej_reason** | **String** |  | [optional] 
-**simple_leaves_qty** | **Float** |  | [optional] 
 **leaves_qty** | **Float** |  | [optional] 
-**simple_cum_qty** | **Float** |  | [optional] 
 **cum_qty** | **Float** |  | [optional] 
 **avg_px** | **Float** |  | [optional] 
 **commission** | **Float** |  | [optional] 
 **trade_publish_indicator** | **String** |  | [optional] 
-**multi_leg_reporting_type** | **String** |  | [optional] 
 **text** | **String** |  | [optional] 
 **trd_match_id** | **String** |  | [optional] 
 **exec_cost** | **Float** |  | [optional] 
@@ -49,6 +42,11 @@ Name | Type | Description | Notes
 **home_notional** | **Float** |  | [optional] 
 **foreign_notional** | **Float** |  | [optional] 
 **transact_time** | **DateTime** |  | [optional] 
-**timestamp** | **DateTime** |  | [optional] 
+**timestamp** | **DateTime** |  | 
+**exec_gross_pnl** | **Float** |  | [optional] 
+**current_qty** | **Float** |  | [optional] 
+**avg_entry_price** | **Float** |  | [optional] 
+**realised_pnl** | **Float** |  | [optional] 
+**unrealised_pnl** | **Float** |  | [optional] 
 
 

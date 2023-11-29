@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * Trollbox Data
  */
 @ApiModel(description = "Trollbox Data")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-12-17T20:26:16.019-05:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
 public class Chat {
   @SerializedName("id")
   private BigDecimal id = null;
@@ -41,14 +41,14 @@ public class Chat {
   @SerializedName("user")
   private String user = null;
 
+  @SerializedName("userColor")
+  private String userColor = null;
+
   @SerializedName("message")
   private String message = null;
 
   @SerializedName("html")
   private String html = null;
-
-  @SerializedName("fromBot")
-  private Boolean fromBot = false;
 
   @SerializedName("channelID")
   private Double channelID = null;
@@ -107,6 +107,24 @@ public class Chat {
     this.user = user;
   }
 
+  public Chat userColor(String userColor) {
+    this.userColor = userColor;
+    return this;
+  }
+
+   /**
+   * Get userColor
+   * @return userColor
+  **/
+  @ApiModelProperty(value = "")
+  public String getUserColor() {
+    return userColor;
+  }
+
+  public void setUserColor(String userColor) {
+    this.userColor = userColor;
+  }
+
   public Chat message(String message) {
     this.message = message;
     return this;
@@ -143,24 +161,6 @@ public class Chat {
     this.html = html;
   }
 
-  public Chat fromBot(Boolean fromBot) {
-    this.fromBot = fromBot;
-    return this;
-  }
-
-   /**
-   * Get fromBot
-   * @return fromBot
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean isFromBot() {
-    return fromBot;
-  }
-
-  public void setFromBot(Boolean fromBot) {
-    this.fromBot = fromBot;
-  }
-
   public Chat channelID(Double channelID) {
     this.channelID = channelID;
     return this;
@@ -192,15 +192,15 @@ public class Chat {
     return Objects.equals(this.id, chat.id) &&
         Objects.equals(this.date, chat.date) &&
         Objects.equals(this.user, chat.user) &&
+        Objects.equals(this.userColor, chat.userColor) &&
         Objects.equals(this.message, chat.message) &&
         Objects.equals(this.html, chat.html) &&
-        Objects.equals(this.fromBot, chat.fromBot) &&
         Objects.equals(this.channelID, chat.channelID);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, date, user, message, html, fromBot, channelID);
+    return Objects.hash(id, date, user, userColor, message, html, channelID);
   }
 
 
@@ -212,9 +212,9 @@ public class Chat {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
+    sb.append("    userColor: ").append(toIndentedString(userColor)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    html: ").append(toIndentedString(html)).append("\n");
-    sb.append("    fromBot: ").append(toIndentedString(fromBot)).append("\n");
     sb.append("    channelID: ").append(toIndentedString(channelID)).append("\n");
     sb.append("}");
     return sb.toString();

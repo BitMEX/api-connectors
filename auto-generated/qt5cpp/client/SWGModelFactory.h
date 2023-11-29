@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -17,10 +17,14 @@
 
 #include "SWGAPIKey.h"
 #include "SWGAccessToken.h"
+#include "SWGAddress.h"
 #include "SWGAffiliate.h"
 #include "SWGAnnouncement.h"
+#include "SWGAssetsConfig.h"
+#include "SWGAssetsConfigNetworkItem.h"
 #include "SWGChat.h"
 #include "SWGChatChannel.h"
+#include "SWGCollateralSupportAgreement.h"
 #include "SWGCommunicationToken.h"
 #include "SWGConnectedUsers.h"
 #include "SWGError.h"
@@ -28,6 +32,7 @@
 #include "SWGExecution.h"
 #include "SWGFunding.h"
 #include "SWGGlobalNotification.h"
+#include "SWGGuild.h"
 #include "SWGIndexComposite.h"
 #include "SWGInline_response_200.h"
 #include "SWGInstrument.h"
@@ -36,17 +41,24 @@
 #include "SWGLeaderboard.h"
 #include "SWGLiquidation.h"
 #include "SWGMargin.h"
+#include "SWGNetworksConfig.h"
 #include "SWGOrder.h"
 #include "SWGOrderBookL2.h"
+#include "SWGPinnedMessage.h"
+#include "SWGPorl.h"
 #include "SWGPosition.h"
 #include "SWGQuote.h"
 #include "SWGQuoteFillRatio.h"
+#include "SWGQuoteValueRatio.h"
 #include "SWGSettlement.h"
+#include "SWGStakingRecord.h"
 #include "SWGStats.h"
 #include "SWGStatsHistory.h"
 #include "SWGStatsUSD.h"
+#include "SWGStatsUSDBySymbol.h"
 #include "SWGTrade.h"
 #include "SWGTradeBin.h"
+#include "SWGTradingVolume.h"
 #include "SWGTransaction.h"
 #include "SWGUser.h"
 #include "SWGUserCommissionsBySymbol.h"
@@ -64,17 +76,29 @@ namespace Swagger {
     if(QString("SWGAccessToken").compare(type) == 0) {
       return new SWGAccessToken();
     }
+    if(QString("SWGAddress").compare(type) == 0) {
+      return new SWGAddress();
+    }
     if(QString("SWGAffiliate").compare(type) == 0) {
       return new SWGAffiliate();
     }
     if(QString("SWGAnnouncement").compare(type) == 0) {
       return new SWGAnnouncement();
     }
+    if(QString("SWGAssetsConfig").compare(type) == 0) {
+      return new SWGAssetsConfig();
+    }
+    if(QString("SWGAssetsConfigNetworkItem").compare(type) == 0) {
+      return new SWGAssetsConfigNetworkItem();
+    }
     if(QString("SWGChat").compare(type) == 0) {
       return new SWGChat();
     }
     if(QString("SWGChatChannel").compare(type) == 0) {
       return new SWGChatChannel();
+    }
+    if(QString("SWGCollateralSupportAgreement").compare(type) == 0) {
+      return new SWGCollateralSupportAgreement();
     }
     if(QString("SWGCommunicationToken").compare(type) == 0) {
       return new SWGCommunicationToken();
@@ -96,6 +120,9 @@ namespace Swagger {
     }
     if(QString("SWGGlobalNotification").compare(type) == 0) {
       return new SWGGlobalNotification();
+    }
+    if(QString("SWGGuild").compare(type) == 0) {
+      return new SWGGuild();
     }
     if(QString("SWGIndexComposite").compare(type) == 0) {
       return new SWGIndexComposite();
@@ -121,11 +148,20 @@ namespace Swagger {
     if(QString("SWGMargin").compare(type) == 0) {
       return new SWGMargin();
     }
+    if(QString("SWGNetworksConfig").compare(type) == 0) {
+      return new SWGNetworksConfig();
+    }
     if(QString("SWGOrder").compare(type) == 0) {
       return new SWGOrder();
     }
     if(QString("SWGOrderBookL2").compare(type) == 0) {
       return new SWGOrderBookL2();
+    }
+    if(QString("SWGPinnedMessage").compare(type) == 0) {
+      return new SWGPinnedMessage();
+    }
+    if(QString("SWGPorl").compare(type) == 0) {
+      return new SWGPorl();
     }
     if(QString("SWGPosition").compare(type) == 0) {
       return new SWGPosition();
@@ -136,8 +172,14 @@ namespace Swagger {
     if(QString("SWGQuoteFillRatio").compare(type) == 0) {
       return new SWGQuoteFillRatio();
     }
+    if(QString("SWGQuoteValueRatio").compare(type) == 0) {
+      return new SWGQuoteValueRatio();
+    }
     if(QString("SWGSettlement").compare(type) == 0) {
       return new SWGSettlement();
+    }
+    if(QString("SWGStakingRecord").compare(type) == 0) {
+      return new SWGStakingRecord();
     }
     if(QString("SWGStats").compare(type) == 0) {
       return new SWGStats();
@@ -148,11 +190,17 @@ namespace Swagger {
     if(QString("SWGStatsUSD").compare(type) == 0) {
       return new SWGStatsUSD();
     }
+    if(QString("SWGStatsUSDBySymbol").compare(type) == 0) {
+      return new SWGStatsUSDBySymbol();
+    }
     if(QString("SWGTrade").compare(type) == 0) {
       return new SWGTrade();
     }
     if(QString("SWGTradeBin").compare(type) == 0) {
       return new SWGTradeBin();
+    }
+    if(QString("SWGTradingVolume").compare(type) == 0) {
+      return new SWGTradingVolume();
     }
     if(QString("SWGTransaction").compare(type) == 0) {
       return new SWGTransaction();

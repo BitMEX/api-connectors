@@ -5,7 +5,7 @@
   <h2><a name="instrument.get"></a>instrument.get</h2>
   <hr>
   <p></p>
-  <p>This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use &#x60;/instrument/active&#x60; to return active instruments, or use a filter like &#x60;{\&quot;state\&quot;: \&quot;Open\&quot;}&#x60;.</p>
+  <p>This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use &#x60;/instrument/active&#x60; to return active instruments, or use a filter like &#x60;{\&quot;state\&quot;: \&quot;Open\&quot;}&#x60;.  The instrument type is specified by the &#x60;typ&#x60; param.  - Perpetual Contracts - &#x60;FFWCSX&#x60; - Perpetual Contracts (FX underliers) - &#x60;FFWCSF&#x60; - Spot - &#x60;IFXXXP&#x60; - Futures - &#x60;FFCCSX&#x60; - BitMEX Basket Index - &#x60;MRBXXX&#x60; - BitMEX Crypto Index - &#x60;MRCXXX&#x60; - BitMEX FX Index - &#x60;MRFXXX&#x60; - BitMEX Lending/Premium Index - &#x60;MRRXXX&#x60; - BitMEX Volatility Index - &#x60;MRIXXX&#x60; </p>
   <h3 class="section">URL</h3>
   <code>https://www.bitmex.com/api/v1/instrument</code>
   <h3 class="section">HTTP Method</h3>
@@ -23,7 +23,7 @@
       <span class="param-name">symbol</span>
       <span class="param-type">String</span>
       
-      <p class="param-description">Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.</p>
+      <p class="param-description">Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.</p>
 	  </li>
 	  <li class="parameter">
       
@@ -56,7 +56,7 @@
       <span class="param-name">count</span>
       <span class="param-type">BigDecimal</span>
       
-      <p class="param-description">Number of results to fetch.</p>
+      <p class="param-description">Number of results to fetch. Must be a positive integer.</p>
 	  </li>
 	  <li class="parameter">
       
@@ -145,7 +145,7 @@
   <h2><a name="instrument.getCompositeIndex"></a>instrument.getCompositeIndex</h2>
   <hr>
   <p></p>
-  <p>Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a &#x60;symbol&#x60; of &#x60;.XBT&#x60; to get the ticks and weights of the constituent exchanges that build the \&quot;.XBT\&quot; index.  A tick with reference &#x60;\&quot;BMI\&quot;&#x60; and weight &#x60;null&#x60; is the composite index tick. </p>
+  <p>Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a &#x60;symbol&#x60; of &#x60;.BXBT&#x60; to get the ticks and weights of the constituent exchanges that build the \&quot;.BXBT\&quot; index.  A tick with reference &#x60;\&quot;BMI\&quot;&#x60; and weight &#x60;null&#x60; is the composite index tick. </p>
   <h3 class="section">URL</h3>
   <code>https://www.bitmex.com/api/v1/instrument/compositeIndex</code>
   <h3 class="section">HTTP Method</h3>
@@ -174,7 +174,7 @@
       <span class="param-name">filter</span>
       <span class="param-type">String</span>
       
-      <p class="param-description">Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.</p>
+      <p class="param-description">Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;.</p>
 	  </li>
 	  <li class="parameter">
       
@@ -196,7 +196,7 @@
       <span class="param-name">count</span>
       <span class="param-type">BigDecimal</span>
       
-      <p class="param-description">Number of results to fetch.</p>
+      <p class="param-description">Number of results to fetch. Must be a positive integer.</p>
 	  </li>
 	  <li class="parameter">
       
@@ -255,5 +255,40 @@
   <div class="model" data-model="Instrument"><a href="">List</a></div>
   <h3 class="section">Parameters</h3>
   <ul>
+  </ul>
+  <h2><a name="instrument.getUsdVolume"></a>instrument.getUsdVolume</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://www.bitmex.com/api/v1/instrument/usdVolume</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="StatsUSDBySymbol"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">symbol</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Filter by symbol.</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">columns</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Array of column names to fetch.</p>
+	  </li>
   </ul>
 </div>

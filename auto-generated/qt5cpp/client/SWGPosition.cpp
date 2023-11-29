@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -67,16 +67,8 @@ SWGPosition::init() {
     m_prev_realised_pnl_isSet = false;
     prev_unrealised_pnl = 0.0;
     m_prev_unrealised_pnl_isSet = false;
-    prev_close_price = 0.0;
-    m_prev_close_price_isSet = false;
-    opening_timestamp = NULL;
-    m_opening_timestamp_isSet = false;
     opening_qty = 0.0;
     m_opening_qty_isSet = false;
-    opening_cost = 0.0;
-    m_opening_cost_isSet = false;
-    opening_comm = 0.0;
-    m_opening_comm_isSet = false;
     open_order_buy_qty = 0.0;
     m_open_order_buy_qty_isSet = false;
     open_order_buy_cost = 0.0;
@@ -89,22 +81,6 @@ SWGPosition::init() {
     m_open_order_sell_cost_isSet = false;
     open_order_sell_premium = 0.0;
     m_open_order_sell_premium_isSet = false;
-    exec_buy_qty = 0.0;
-    m_exec_buy_qty_isSet = false;
-    exec_buy_cost = 0.0;
-    m_exec_buy_cost_isSet = false;
-    exec_sell_qty = 0.0;
-    m_exec_sell_qty_isSet = false;
-    exec_sell_cost = 0.0;
-    m_exec_sell_cost_isSet = false;
-    exec_qty = 0.0;
-    m_exec_qty_isSet = false;
-    exec_cost = 0.0;
-    m_exec_cost_isSet = false;
-    exec_comm = 0.0;
-    m_exec_comm_isSet = false;
-    current_timestamp = NULL;
-    m_current_timestamp_isSet = false;
     current_qty = 0.0;
     m_current_qty_isSet = false;
     current_cost = 0.0;
@@ -115,12 +91,8 @@ SWGPosition::init() {
     m_realised_cost_isSet = false;
     unrealised_cost = 0.0;
     m_unrealised_cost_isSet = false;
-    gross_open_cost = 0.0;
-    m_gross_open_cost_isSet = false;
     gross_open_premium = 0.0;
     m_gross_open_premium_isSet = false;
-    gross_exec_cost = 0.0;
-    m_gross_exec_cost_isSet = false;
     is_open = false;
     m_is_open_isSet = false;
     mark_price = 0.0;
@@ -137,12 +109,8 @@ SWGPosition::init() {
     m_pos_state_isSet = false;
     pos_cost = 0.0;
     m_pos_cost_isSet = false;
-    pos_cost2 = 0.0;
-    m_pos_cost2_isSet = false;
     pos_cross = 0.0;
     m_pos_cross_isSet = false;
-    pos_init = 0.0;
-    m_pos_init_isSet = false;
     pos_comm = 0.0;
     m_pos_comm_isSet = false;
     pos_loss = 0.0;
@@ -151,56 +119,18 @@ SWGPosition::init() {
     m_pos_margin_isSet = false;
     pos_maint = 0.0;
     m_pos_maint_isSet = false;
-    pos_allowance = 0.0;
-    m_pos_allowance_isSet = false;
-    taxable_margin = 0.0;
-    m_taxable_margin_isSet = false;
     init_margin = 0.0;
     m_init_margin_isSet = false;
     maint_margin = 0.0;
     m_maint_margin_isSet = false;
-    session_margin = 0.0;
-    m_session_margin_isSet = false;
-    target_excess_margin = 0.0;
-    m_target_excess_margin_isSet = false;
-    var_margin = 0.0;
-    m_var_margin_isSet = false;
-    realised_gross_pnl = 0.0;
-    m_realised_gross_pnl_isSet = false;
-    realised_tax = 0.0;
-    m_realised_tax_isSet = false;
     realised_pnl = 0.0;
     m_realised_pnl_isSet = false;
-    unrealised_gross_pnl = 0.0;
-    m_unrealised_gross_pnl_isSet = false;
-    long_bankrupt = 0.0;
-    m_long_bankrupt_isSet = false;
-    short_bankrupt = 0.0;
-    m_short_bankrupt_isSet = false;
-    tax_base = 0.0;
-    m_tax_base_isSet = false;
-    indicative_tax_rate = 0.0;
-    m_indicative_tax_rate_isSet = false;
-    indicative_tax = 0.0;
-    m_indicative_tax_isSet = false;
-    unrealised_tax = 0.0;
-    m_unrealised_tax_isSet = false;
     unrealised_pnl = 0.0;
     m_unrealised_pnl_isSet = false;
     unrealised_pnl_pcnt = 0.0;
     m_unrealised_pnl_pcnt_isSet = false;
     unrealised_roe_pcnt = 0.0;
     m_unrealised_roe_pcnt_isSet = false;
-    simple_qty = 0.0;
-    m_simple_qty_isSet = false;
-    simple_cost = 0.0;
-    m_simple_cost_isSet = false;
-    simple_value = 0.0;
-    m_simple_value_isSet = false;
-    simple_pnl = 0.0;
-    m_simple_pnl_isSet = false;
-    simple_pnl_pcnt = 0.0;
-    m_simple_pnl_pcnt_isSet = false;
     avg_cost_price = 0.0;
     m_avg_cost_price_isSet = false;
     avg_entry_price = 0.0;
@@ -215,10 +145,6 @@ SWGPosition::init() {
     m_bankrupt_price_isSet = false;
     timestamp = NULL;
     m_timestamp_isSet = false;
-    last_price = 0.0;
-    m_last_price_isSet = false;
-    last_value = 0.0;
-    m_last_value_isSet = false;
 }
 
 void
@@ -256,18 +182,8 @@ SWGPosition::cleanup() {
     if(prev_unrealised_pnl != nullptr) { 
         delete prev_unrealised_pnl;
     }
-
-    if(opening_timestamp != nullptr) { 
-        delete opening_timestamp;
-    }
     if(opening_qty != nullptr) { 
         delete opening_qty;
-    }
-    if(opening_cost != nullptr) { 
-        delete opening_cost;
-    }
-    if(opening_comm != nullptr) { 
-        delete opening_comm;
     }
     if(open_order_buy_qty != nullptr) { 
         delete open_order_buy_qty;
@@ -287,30 +203,6 @@ SWGPosition::cleanup() {
     if(open_order_sell_premium != nullptr) { 
         delete open_order_sell_premium;
     }
-    if(exec_buy_qty != nullptr) { 
-        delete exec_buy_qty;
-    }
-    if(exec_buy_cost != nullptr) { 
-        delete exec_buy_cost;
-    }
-    if(exec_sell_qty != nullptr) { 
-        delete exec_sell_qty;
-    }
-    if(exec_sell_cost != nullptr) { 
-        delete exec_sell_cost;
-    }
-    if(exec_qty != nullptr) { 
-        delete exec_qty;
-    }
-    if(exec_cost != nullptr) { 
-        delete exec_cost;
-    }
-    if(exec_comm != nullptr) { 
-        delete exec_comm;
-    }
-    if(current_timestamp != nullptr) { 
-        delete current_timestamp;
-    }
     if(current_qty != nullptr) { 
         delete current_qty;
     }
@@ -326,14 +218,8 @@ SWGPosition::cleanup() {
     if(unrealised_cost != nullptr) { 
         delete unrealised_cost;
     }
-    if(gross_open_cost != nullptr) { 
-        delete gross_open_cost;
-    }
     if(gross_open_premium != nullptr) { 
         delete gross_open_premium;
-    }
-    if(gross_exec_cost != nullptr) { 
-        delete gross_exec_cost;
     }
 
 
@@ -351,14 +237,8 @@ SWGPosition::cleanup() {
     if(pos_cost != nullptr) { 
         delete pos_cost;
     }
-    if(pos_cost2 != nullptr) { 
-        delete pos_cost2;
-    }
     if(pos_cross != nullptr) { 
         delete pos_cross;
-    }
-    if(pos_init != nullptr) { 
-        delete pos_init;
     }
     if(pos_comm != nullptr) { 
         delete pos_comm;
@@ -372,54 +252,14 @@ SWGPosition::cleanup() {
     if(pos_maint != nullptr) { 
         delete pos_maint;
     }
-    if(pos_allowance != nullptr) { 
-        delete pos_allowance;
-    }
-    if(taxable_margin != nullptr) { 
-        delete taxable_margin;
-    }
     if(init_margin != nullptr) { 
         delete init_margin;
     }
     if(maint_margin != nullptr) { 
         delete maint_margin;
     }
-    if(session_margin != nullptr) { 
-        delete session_margin;
-    }
-    if(target_excess_margin != nullptr) { 
-        delete target_excess_margin;
-    }
-    if(var_margin != nullptr) { 
-        delete var_margin;
-    }
-    if(realised_gross_pnl != nullptr) { 
-        delete realised_gross_pnl;
-    }
-    if(realised_tax != nullptr) { 
-        delete realised_tax;
-    }
     if(realised_pnl != nullptr) { 
         delete realised_pnl;
-    }
-    if(unrealised_gross_pnl != nullptr) { 
-        delete unrealised_gross_pnl;
-    }
-    if(long_bankrupt != nullptr) { 
-        delete long_bankrupt;
-    }
-    if(short_bankrupt != nullptr) { 
-        delete short_bankrupt;
-    }
-    if(tax_base != nullptr) { 
-        delete tax_base;
-    }
-
-    if(indicative_tax != nullptr) { 
-        delete indicative_tax;
-    }
-    if(unrealised_tax != nullptr) { 
-        delete unrealised_tax;
     }
     if(unrealised_pnl != nullptr) { 
         delete unrealised_pnl;
@@ -432,17 +272,8 @@ SWGPosition::cleanup() {
 
 
 
-
-
-
-
-
     if(timestamp != nullptr) { 
         delete timestamp;
-    }
-
-    if(last_value != nullptr) { 
-        delete last_value;
     }
 }
 
@@ -487,15 +318,7 @@ SWGPosition::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&prev_unrealised_pnl, pJson["prevUnrealisedPnl"], "SWGNumber", "SWGNumber");
     
-    ::Swagger::setValue(&prev_close_price, pJson["prevClosePrice"], "double", "");
-    
-    ::Swagger::setValue(&opening_timestamp, pJson["openingTimestamp"], "QDateTime", "QDateTime");
-    
     ::Swagger::setValue(&opening_qty, pJson["openingQty"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&opening_cost, pJson["openingCost"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&opening_comm, pJson["openingComm"], "SWGNumber", "SWGNumber");
     
     ::Swagger::setValue(&open_order_buy_qty, pJson["openOrderBuyQty"], "SWGNumber", "SWGNumber");
     
@@ -509,22 +332,6 @@ SWGPosition::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&open_order_sell_premium, pJson["openOrderSellPremium"], "SWGNumber", "SWGNumber");
     
-    ::Swagger::setValue(&exec_buy_qty, pJson["execBuyQty"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&exec_buy_cost, pJson["execBuyCost"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&exec_sell_qty, pJson["execSellQty"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&exec_sell_cost, pJson["execSellCost"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&exec_qty, pJson["execQty"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&exec_cost, pJson["execCost"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&exec_comm, pJson["execComm"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&current_timestamp, pJson["currentTimestamp"], "QDateTime", "QDateTime");
-    
     ::Swagger::setValue(&current_qty, pJson["currentQty"], "SWGNumber", "SWGNumber");
     
     ::Swagger::setValue(&current_cost, pJson["currentCost"], "SWGNumber", "SWGNumber");
@@ -535,11 +342,7 @@ SWGPosition::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&unrealised_cost, pJson["unrealisedCost"], "SWGNumber", "SWGNumber");
     
-    ::Swagger::setValue(&gross_open_cost, pJson["grossOpenCost"], "SWGNumber", "SWGNumber");
-    
     ::Swagger::setValue(&gross_open_premium, pJson["grossOpenPremium"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&gross_exec_cost, pJson["grossExecCost"], "SWGNumber", "SWGNumber");
     
     ::Swagger::setValue(&is_open, pJson["isOpen"], "bool", "");
     
@@ -557,11 +360,7 @@ SWGPosition::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&pos_cost, pJson["posCost"], "SWGNumber", "SWGNumber");
     
-    ::Swagger::setValue(&pos_cost2, pJson["posCost2"], "SWGNumber", "SWGNumber");
-    
     ::Swagger::setValue(&pos_cross, pJson["posCross"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&pos_init, pJson["posInit"], "SWGNumber", "SWGNumber");
     
     ::Swagger::setValue(&pos_comm, pJson["posComm"], "SWGNumber", "SWGNumber");
     
@@ -571,55 +370,17 @@ SWGPosition::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&pos_maint, pJson["posMaint"], "SWGNumber", "SWGNumber");
     
-    ::Swagger::setValue(&pos_allowance, pJson["posAllowance"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&taxable_margin, pJson["taxableMargin"], "SWGNumber", "SWGNumber");
-    
     ::Swagger::setValue(&init_margin, pJson["initMargin"], "SWGNumber", "SWGNumber");
     
     ::Swagger::setValue(&maint_margin, pJson["maintMargin"], "SWGNumber", "SWGNumber");
     
-    ::Swagger::setValue(&session_margin, pJson["sessionMargin"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&target_excess_margin, pJson["targetExcessMargin"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&var_margin, pJson["varMargin"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&realised_gross_pnl, pJson["realisedGrossPnl"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&realised_tax, pJson["realisedTax"], "SWGNumber", "SWGNumber");
-    
     ::Swagger::setValue(&realised_pnl, pJson["realisedPnl"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&unrealised_gross_pnl, pJson["unrealisedGrossPnl"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&long_bankrupt, pJson["longBankrupt"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&short_bankrupt, pJson["shortBankrupt"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&tax_base, pJson["taxBase"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&indicative_tax_rate, pJson["indicativeTaxRate"], "double", "");
-    
-    ::Swagger::setValue(&indicative_tax, pJson["indicativeTax"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&unrealised_tax, pJson["unrealisedTax"], "SWGNumber", "SWGNumber");
     
     ::Swagger::setValue(&unrealised_pnl, pJson["unrealisedPnl"], "SWGNumber", "SWGNumber");
     
     ::Swagger::setValue(&unrealised_pnl_pcnt, pJson["unrealisedPnlPcnt"], "double", "");
     
     ::Swagger::setValue(&unrealised_roe_pcnt, pJson["unrealisedRoePcnt"], "double", "");
-    
-    ::Swagger::setValue(&simple_qty, pJson["simpleQty"], "double", "");
-    
-    ::Swagger::setValue(&simple_cost, pJson["simpleCost"], "double", "");
-    
-    ::Swagger::setValue(&simple_value, pJson["simpleValue"], "double", "");
-    
-    ::Swagger::setValue(&simple_pnl, pJson["simplePnl"], "double", "");
-    
-    ::Swagger::setValue(&simple_pnl_pcnt, pJson["simplePnlPcnt"], "double", "");
     
     ::Swagger::setValue(&avg_cost_price, pJson["avgCostPrice"], "double", "");
     
@@ -634,10 +395,6 @@ SWGPosition::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&bankrupt_price, pJson["bankruptPrice"], "double", "");
     
     ::Swagger::setValue(&timestamp, pJson["timestamp"], "QDateTime", "QDateTime");
-    
-    ::Swagger::setValue(&last_price, pJson["lastPrice"], "double", "");
-    
-    ::Swagger::setValue(&last_value, pJson["lastValue"], "SWGNumber", "SWGNumber");
     
 }
 
@@ -698,20 +455,8 @@ SWGPosition::asJsonObject() {
     if((prev_unrealised_pnl != nullptr) && (prev_unrealised_pnl->isSet())){
         toJsonValue(QString("prevUnrealisedPnl"), prev_unrealised_pnl, obj, QString("SWGNumber"));
     }
-    if(m_prev_close_price_isSet){
-        obj.insert("prevClosePrice", QJsonValue(prev_close_price));
-    }
-    if(opening_timestamp != nullptr) { 
-        toJsonValue(QString("openingTimestamp"), opening_timestamp, obj, QString("QDateTime"));
-    }
     if((opening_qty != nullptr) && (opening_qty->isSet())){
         toJsonValue(QString("openingQty"), opening_qty, obj, QString("SWGNumber"));
-    }
-    if((opening_cost != nullptr) && (opening_cost->isSet())){
-        toJsonValue(QString("openingCost"), opening_cost, obj, QString("SWGNumber"));
-    }
-    if((opening_comm != nullptr) && (opening_comm->isSet())){
-        toJsonValue(QString("openingComm"), opening_comm, obj, QString("SWGNumber"));
     }
     if((open_order_buy_qty != nullptr) && (open_order_buy_qty->isSet())){
         toJsonValue(QString("openOrderBuyQty"), open_order_buy_qty, obj, QString("SWGNumber"));
@@ -731,30 +476,6 @@ SWGPosition::asJsonObject() {
     if((open_order_sell_premium != nullptr) && (open_order_sell_premium->isSet())){
         toJsonValue(QString("openOrderSellPremium"), open_order_sell_premium, obj, QString("SWGNumber"));
     }
-    if((exec_buy_qty != nullptr) && (exec_buy_qty->isSet())){
-        toJsonValue(QString("execBuyQty"), exec_buy_qty, obj, QString("SWGNumber"));
-    }
-    if((exec_buy_cost != nullptr) && (exec_buy_cost->isSet())){
-        toJsonValue(QString("execBuyCost"), exec_buy_cost, obj, QString("SWGNumber"));
-    }
-    if((exec_sell_qty != nullptr) && (exec_sell_qty->isSet())){
-        toJsonValue(QString("execSellQty"), exec_sell_qty, obj, QString("SWGNumber"));
-    }
-    if((exec_sell_cost != nullptr) && (exec_sell_cost->isSet())){
-        toJsonValue(QString("execSellCost"), exec_sell_cost, obj, QString("SWGNumber"));
-    }
-    if((exec_qty != nullptr) && (exec_qty->isSet())){
-        toJsonValue(QString("execQty"), exec_qty, obj, QString("SWGNumber"));
-    }
-    if((exec_cost != nullptr) && (exec_cost->isSet())){
-        toJsonValue(QString("execCost"), exec_cost, obj, QString("SWGNumber"));
-    }
-    if((exec_comm != nullptr) && (exec_comm->isSet())){
-        toJsonValue(QString("execComm"), exec_comm, obj, QString("SWGNumber"));
-    }
-    if(current_timestamp != nullptr) { 
-        toJsonValue(QString("currentTimestamp"), current_timestamp, obj, QString("QDateTime"));
-    }
     if((current_qty != nullptr) && (current_qty->isSet())){
         toJsonValue(QString("currentQty"), current_qty, obj, QString("SWGNumber"));
     }
@@ -770,14 +491,8 @@ SWGPosition::asJsonObject() {
     if((unrealised_cost != nullptr) && (unrealised_cost->isSet())){
         toJsonValue(QString("unrealisedCost"), unrealised_cost, obj, QString("SWGNumber"));
     }
-    if((gross_open_cost != nullptr) && (gross_open_cost->isSet())){
-        toJsonValue(QString("grossOpenCost"), gross_open_cost, obj, QString("SWGNumber"));
-    }
     if((gross_open_premium != nullptr) && (gross_open_premium->isSet())){
         toJsonValue(QString("grossOpenPremium"), gross_open_premium, obj, QString("SWGNumber"));
-    }
-    if((gross_exec_cost != nullptr) && (gross_exec_cost->isSet())){
-        toJsonValue(QString("grossExecCost"), gross_exec_cost, obj, QString("SWGNumber"));
     }
     if(m_is_open_isSet){
         obj.insert("isOpen", QJsonValue(is_open));
@@ -803,14 +518,8 @@ SWGPosition::asJsonObject() {
     if((pos_cost != nullptr) && (pos_cost->isSet())){
         toJsonValue(QString("posCost"), pos_cost, obj, QString("SWGNumber"));
     }
-    if((pos_cost2 != nullptr) && (pos_cost2->isSet())){
-        toJsonValue(QString("posCost2"), pos_cost2, obj, QString("SWGNumber"));
-    }
     if((pos_cross != nullptr) && (pos_cross->isSet())){
         toJsonValue(QString("posCross"), pos_cross, obj, QString("SWGNumber"));
-    }
-    if((pos_init != nullptr) && (pos_init->isSet())){
-        toJsonValue(QString("posInit"), pos_init, obj, QString("SWGNumber"));
     }
     if((pos_comm != nullptr) && (pos_comm->isSet())){
         toJsonValue(QString("posComm"), pos_comm, obj, QString("SWGNumber"));
@@ -824,56 +533,14 @@ SWGPosition::asJsonObject() {
     if((pos_maint != nullptr) && (pos_maint->isSet())){
         toJsonValue(QString("posMaint"), pos_maint, obj, QString("SWGNumber"));
     }
-    if((pos_allowance != nullptr) && (pos_allowance->isSet())){
-        toJsonValue(QString("posAllowance"), pos_allowance, obj, QString("SWGNumber"));
-    }
-    if((taxable_margin != nullptr) && (taxable_margin->isSet())){
-        toJsonValue(QString("taxableMargin"), taxable_margin, obj, QString("SWGNumber"));
-    }
     if((init_margin != nullptr) && (init_margin->isSet())){
         toJsonValue(QString("initMargin"), init_margin, obj, QString("SWGNumber"));
     }
     if((maint_margin != nullptr) && (maint_margin->isSet())){
         toJsonValue(QString("maintMargin"), maint_margin, obj, QString("SWGNumber"));
     }
-    if((session_margin != nullptr) && (session_margin->isSet())){
-        toJsonValue(QString("sessionMargin"), session_margin, obj, QString("SWGNumber"));
-    }
-    if((target_excess_margin != nullptr) && (target_excess_margin->isSet())){
-        toJsonValue(QString("targetExcessMargin"), target_excess_margin, obj, QString("SWGNumber"));
-    }
-    if((var_margin != nullptr) && (var_margin->isSet())){
-        toJsonValue(QString("varMargin"), var_margin, obj, QString("SWGNumber"));
-    }
-    if((realised_gross_pnl != nullptr) && (realised_gross_pnl->isSet())){
-        toJsonValue(QString("realisedGrossPnl"), realised_gross_pnl, obj, QString("SWGNumber"));
-    }
-    if((realised_tax != nullptr) && (realised_tax->isSet())){
-        toJsonValue(QString("realisedTax"), realised_tax, obj, QString("SWGNumber"));
-    }
     if((realised_pnl != nullptr) && (realised_pnl->isSet())){
         toJsonValue(QString("realisedPnl"), realised_pnl, obj, QString("SWGNumber"));
-    }
-    if((unrealised_gross_pnl != nullptr) && (unrealised_gross_pnl->isSet())){
-        toJsonValue(QString("unrealisedGrossPnl"), unrealised_gross_pnl, obj, QString("SWGNumber"));
-    }
-    if((long_bankrupt != nullptr) && (long_bankrupt->isSet())){
-        toJsonValue(QString("longBankrupt"), long_bankrupt, obj, QString("SWGNumber"));
-    }
-    if((short_bankrupt != nullptr) && (short_bankrupt->isSet())){
-        toJsonValue(QString("shortBankrupt"), short_bankrupt, obj, QString("SWGNumber"));
-    }
-    if((tax_base != nullptr) && (tax_base->isSet())){
-        toJsonValue(QString("taxBase"), tax_base, obj, QString("SWGNumber"));
-    }
-    if(m_indicative_tax_rate_isSet){
-        obj.insert("indicativeTaxRate", QJsonValue(indicative_tax_rate));
-    }
-    if((indicative_tax != nullptr) && (indicative_tax->isSet())){
-        toJsonValue(QString("indicativeTax"), indicative_tax, obj, QString("SWGNumber"));
-    }
-    if((unrealised_tax != nullptr) && (unrealised_tax->isSet())){
-        toJsonValue(QString("unrealisedTax"), unrealised_tax, obj, QString("SWGNumber"));
     }
     if((unrealised_pnl != nullptr) && (unrealised_pnl->isSet())){
         toJsonValue(QString("unrealisedPnl"), unrealised_pnl, obj, QString("SWGNumber"));
@@ -883,21 +550,6 @@ SWGPosition::asJsonObject() {
     }
     if(m_unrealised_roe_pcnt_isSet){
         obj.insert("unrealisedRoePcnt", QJsonValue(unrealised_roe_pcnt));
-    }
-    if(m_simple_qty_isSet){
-        obj.insert("simpleQty", QJsonValue(simple_qty));
-    }
-    if(m_simple_cost_isSet){
-        obj.insert("simpleCost", QJsonValue(simple_cost));
-    }
-    if(m_simple_value_isSet){
-        obj.insert("simpleValue", QJsonValue(simple_value));
-    }
-    if(m_simple_pnl_isSet){
-        obj.insert("simplePnl", QJsonValue(simple_pnl));
-    }
-    if(m_simple_pnl_pcnt_isSet){
-        obj.insert("simplePnlPcnt", QJsonValue(simple_pnl_pcnt));
     }
     if(m_avg_cost_price_isSet){
         obj.insert("avgCostPrice", QJsonValue(avg_cost_price));
@@ -919,12 +571,6 @@ SWGPosition::asJsonObject() {
     }
     if(timestamp != nullptr) { 
         toJsonValue(QString("timestamp"), timestamp, obj, QString("QDateTime"));
-    }
-    if(m_last_price_isSet){
-        obj.insert("lastPrice", QJsonValue(last_price));
-    }
-    if((last_value != nullptr) && (last_value->isSet())){
-        toJsonValue(QString("lastValue"), last_value, obj, QString("SWGNumber"));
     }
 
     return obj;
@@ -1080,26 +726,6 @@ SWGPosition::setPrevUnrealisedPnl(SWGNumber* prev_unrealised_pnl) {
     this->m_prev_unrealised_pnl_isSet = true;
 }
 
-double
-SWGPosition::getPrevClosePrice() {
-    return prev_close_price;
-}
-void
-SWGPosition::setPrevClosePrice(double prev_close_price) {
-    this->prev_close_price = prev_close_price;
-    this->m_prev_close_price_isSet = true;
-}
-
-QDateTime*
-SWGPosition::getOpeningTimestamp() {
-    return opening_timestamp;
-}
-void
-SWGPosition::setOpeningTimestamp(QDateTime* opening_timestamp) {
-    this->opening_timestamp = opening_timestamp;
-    this->m_opening_timestamp_isSet = true;
-}
-
 SWGNumber*
 SWGPosition::getOpeningQty() {
     return opening_qty;
@@ -1108,26 +734,6 @@ void
 SWGPosition::setOpeningQty(SWGNumber* opening_qty) {
     this->opening_qty = opening_qty;
     this->m_opening_qty_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getOpeningCost() {
-    return opening_cost;
-}
-void
-SWGPosition::setOpeningCost(SWGNumber* opening_cost) {
-    this->opening_cost = opening_cost;
-    this->m_opening_cost_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getOpeningComm() {
-    return opening_comm;
-}
-void
-SWGPosition::setOpeningComm(SWGNumber* opening_comm) {
-    this->opening_comm = opening_comm;
-    this->m_opening_comm_isSet = true;
 }
 
 SWGNumber*
@@ -1191,86 +797,6 @@ SWGPosition::setOpenOrderSellPremium(SWGNumber* open_order_sell_premium) {
 }
 
 SWGNumber*
-SWGPosition::getExecBuyQty() {
-    return exec_buy_qty;
-}
-void
-SWGPosition::setExecBuyQty(SWGNumber* exec_buy_qty) {
-    this->exec_buy_qty = exec_buy_qty;
-    this->m_exec_buy_qty_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getExecBuyCost() {
-    return exec_buy_cost;
-}
-void
-SWGPosition::setExecBuyCost(SWGNumber* exec_buy_cost) {
-    this->exec_buy_cost = exec_buy_cost;
-    this->m_exec_buy_cost_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getExecSellQty() {
-    return exec_sell_qty;
-}
-void
-SWGPosition::setExecSellQty(SWGNumber* exec_sell_qty) {
-    this->exec_sell_qty = exec_sell_qty;
-    this->m_exec_sell_qty_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getExecSellCost() {
-    return exec_sell_cost;
-}
-void
-SWGPosition::setExecSellCost(SWGNumber* exec_sell_cost) {
-    this->exec_sell_cost = exec_sell_cost;
-    this->m_exec_sell_cost_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getExecQty() {
-    return exec_qty;
-}
-void
-SWGPosition::setExecQty(SWGNumber* exec_qty) {
-    this->exec_qty = exec_qty;
-    this->m_exec_qty_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getExecCost() {
-    return exec_cost;
-}
-void
-SWGPosition::setExecCost(SWGNumber* exec_cost) {
-    this->exec_cost = exec_cost;
-    this->m_exec_cost_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getExecComm() {
-    return exec_comm;
-}
-void
-SWGPosition::setExecComm(SWGNumber* exec_comm) {
-    this->exec_comm = exec_comm;
-    this->m_exec_comm_isSet = true;
-}
-
-QDateTime*
-SWGPosition::getCurrentTimestamp() {
-    return current_timestamp;
-}
-void
-SWGPosition::setCurrentTimestamp(QDateTime* current_timestamp) {
-    this->current_timestamp = current_timestamp;
-    this->m_current_timestamp_isSet = true;
-}
-
-SWGNumber*
 SWGPosition::getCurrentQty() {
     return current_qty;
 }
@@ -1321,16 +847,6 @@ SWGPosition::setUnrealisedCost(SWGNumber* unrealised_cost) {
 }
 
 SWGNumber*
-SWGPosition::getGrossOpenCost() {
-    return gross_open_cost;
-}
-void
-SWGPosition::setGrossOpenCost(SWGNumber* gross_open_cost) {
-    this->gross_open_cost = gross_open_cost;
-    this->m_gross_open_cost_isSet = true;
-}
-
-SWGNumber*
 SWGPosition::getGrossOpenPremium() {
     return gross_open_premium;
 }
@@ -1338,16 +854,6 @@ void
 SWGPosition::setGrossOpenPremium(SWGNumber* gross_open_premium) {
     this->gross_open_premium = gross_open_premium;
     this->m_gross_open_premium_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getGrossExecCost() {
-    return gross_exec_cost;
-}
-void
-SWGPosition::setGrossExecCost(SWGNumber* gross_exec_cost) {
-    this->gross_exec_cost = gross_exec_cost;
-    this->m_gross_exec_cost_isSet = true;
 }
 
 bool
@@ -1431,16 +937,6 @@ SWGPosition::setPosCost(SWGNumber* pos_cost) {
 }
 
 SWGNumber*
-SWGPosition::getPosCost2() {
-    return pos_cost2;
-}
-void
-SWGPosition::setPosCost2(SWGNumber* pos_cost2) {
-    this->pos_cost2 = pos_cost2;
-    this->m_pos_cost2_isSet = true;
-}
-
-SWGNumber*
 SWGPosition::getPosCross() {
     return pos_cross;
 }
@@ -1448,16 +944,6 @@ void
 SWGPosition::setPosCross(SWGNumber* pos_cross) {
     this->pos_cross = pos_cross;
     this->m_pos_cross_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getPosInit() {
-    return pos_init;
-}
-void
-SWGPosition::setPosInit(SWGNumber* pos_init) {
-    this->pos_init = pos_init;
-    this->m_pos_init_isSet = true;
 }
 
 SWGNumber*
@@ -1501,26 +987,6 @@ SWGPosition::setPosMaint(SWGNumber* pos_maint) {
 }
 
 SWGNumber*
-SWGPosition::getPosAllowance() {
-    return pos_allowance;
-}
-void
-SWGPosition::setPosAllowance(SWGNumber* pos_allowance) {
-    this->pos_allowance = pos_allowance;
-    this->m_pos_allowance_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getTaxableMargin() {
-    return taxable_margin;
-}
-void
-SWGPosition::setTaxableMargin(SWGNumber* taxable_margin) {
-    this->taxable_margin = taxable_margin;
-    this->m_taxable_margin_isSet = true;
-}
-
-SWGNumber*
 SWGPosition::getInitMargin() {
     return init_margin;
 }
@@ -1541,56 +1007,6 @@ SWGPosition::setMaintMargin(SWGNumber* maint_margin) {
 }
 
 SWGNumber*
-SWGPosition::getSessionMargin() {
-    return session_margin;
-}
-void
-SWGPosition::setSessionMargin(SWGNumber* session_margin) {
-    this->session_margin = session_margin;
-    this->m_session_margin_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getTargetExcessMargin() {
-    return target_excess_margin;
-}
-void
-SWGPosition::setTargetExcessMargin(SWGNumber* target_excess_margin) {
-    this->target_excess_margin = target_excess_margin;
-    this->m_target_excess_margin_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getVarMargin() {
-    return var_margin;
-}
-void
-SWGPosition::setVarMargin(SWGNumber* var_margin) {
-    this->var_margin = var_margin;
-    this->m_var_margin_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getRealisedGrossPnl() {
-    return realised_gross_pnl;
-}
-void
-SWGPosition::setRealisedGrossPnl(SWGNumber* realised_gross_pnl) {
-    this->realised_gross_pnl = realised_gross_pnl;
-    this->m_realised_gross_pnl_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getRealisedTax() {
-    return realised_tax;
-}
-void
-SWGPosition::setRealisedTax(SWGNumber* realised_tax) {
-    this->realised_tax = realised_tax;
-    this->m_realised_tax_isSet = true;
-}
-
-SWGNumber*
 SWGPosition::getRealisedPnl() {
     return realised_pnl;
 }
@@ -1598,76 +1014,6 @@ void
 SWGPosition::setRealisedPnl(SWGNumber* realised_pnl) {
     this->realised_pnl = realised_pnl;
     this->m_realised_pnl_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getUnrealisedGrossPnl() {
-    return unrealised_gross_pnl;
-}
-void
-SWGPosition::setUnrealisedGrossPnl(SWGNumber* unrealised_gross_pnl) {
-    this->unrealised_gross_pnl = unrealised_gross_pnl;
-    this->m_unrealised_gross_pnl_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getLongBankrupt() {
-    return long_bankrupt;
-}
-void
-SWGPosition::setLongBankrupt(SWGNumber* long_bankrupt) {
-    this->long_bankrupt = long_bankrupt;
-    this->m_long_bankrupt_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getShortBankrupt() {
-    return short_bankrupt;
-}
-void
-SWGPosition::setShortBankrupt(SWGNumber* short_bankrupt) {
-    this->short_bankrupt = short_bankrupt;
-    this->m_short_bankrupt_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getTaxBase() {
-    return tax_base;
-}
-void
-SWGPosition::setTaxBase(SWGNumber* tax_base) {
-    this->tax_base = tax_base;
-    this->m_tax_base_isSet = true;
-}
-
-double
-SWGPosition::getIndicativeTaxRate() {
-    return indicative_tax_rate;
-}
-void
-SWGPosition::setIndicativeTaxRate(double indicative_tax_rate) {
-    this->indicative_tax_rate = indicative_tax_rate;
-    this->m_indicative_tax_rate_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getIndicativeTax() {
-    return indicative_tax;
-}
-void
-SWGPosition::setIndicativeTax(SWGNumber* indicative_tax) {
-    this->indicative_tax = indicative_tax;
-    this->m_indicative_tax_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getUnrealisedTax() {
-    return unrealised_tax;
-}
-void
-SWGPosition::setUnrealisedTax(SWGNumber* unrealised_tax) {
-    this->unrealised_tax = unrealised_tax;
-    this->m_unrealised_tax_isSet = true;
 }
 
 SWGNumber*
@@ -1698,56 +1044,6 @@ void
 SWGPosition::setUnrealisedRoePcnt(double unrealised_roe_pcnt) {
     this->unrealised_roe_pcnt = unrealised_roe_pcnt;
     this->m_unrealised_roe_pcnt_isSet = true;
-}
-
-double
-SWGPosition::getSimpleQty() {
-    return simple_qty;
-}
-void
-SWGPosition::setSimpleQty(double simple_qty) {
-    this->simple_qty = simple_qty;
-    this->m_simple_qty_isSet = true;
-}
-
-double
-SWGPosition::getSimpleCost() {
-    return simple_cost;
-}
-void
-SWGPosition::setSimpleCost(double simple_cost) {
-    this->simple_cost = simple_cost;
-    this->m_simple_cost_isSet = true;
-}
-
-double
-SWGPosition::getSimpleValue() {
-    return simple_value;
-}
-void
-SWGPosition::setSimpleValue(double simple_value) {
-    this->simple_value = simple_value;
-    this->m_simple_value_isSet = true;
-}
-
-double
-SWGPosition::getSimplePnl() {
-    return simple_pnl;
-}
-void
-SWGPosition::setSimplePnl(double simple_pnl) {
-    this->simple_pnl = simple_pnl;
-    this->m_simple_pnl_isSet = true;
-}
-
-double
-SWGPosition::getSimplePnlPcnt() {
-    return simple_pnl_pcnt;
-}
-void
-SWGPosition::setSimplePnlPcnt(double simple_pnl_pcnt) {
-    this->simple_pnl_pcnt = simple_pnl_pcnt;
-    this->m_simple_pnl_pcnt_isSet = true;
 }
 
 double
@@ -1820,26 +1116,6 @@ SWGPosition::setTimestamp(QDateTime* timestamp) {
     this->m_timestamp_isSet = true;
 }
 
-double
-SWGPosition::getLastPrice() {
-    return last_price;
-}
-void
-SWGPosition::setLastPrice(double last_price) {
-    this->last_price = last_price;
-    this->m_last_price_isSet = true;
-}
-
-SWGNumber*
-SWGPosition::getLastValue() {
-    return last_value;
-}
-void
-SWGPosition::setLastValue(SWGNumber* last_value) {
-    this->last_value = last_value;
-    this->m_last_value_isSet = true;
-}
-
 
 bool
 SWGPosition::isSet(){
@@ -1860,33 +1136,19 @@ SWGPosition::isSet(){
         if(rebalanced_pnl != nullptr && rebalanced_pnl->isSet()){ isObjectUpdated = true; break;}
         if(prev_realised_pnl != nullptr && prev_realised_pnl->isSet()){ isObjectUpdated = true; break;}
         if(prev_unrealised_pnl != nullptr && prev_unrealised_pnl->isSet()){ isObjectUpdated = true; break;}
-        if(m_prev_close_price_isSet){ isObjectUpdated = true; break;}
-        
         if(opening_qty != nullptr && opening_qty->isSet()){ isObjectUpdated = true; break;}
-        if(opening_cost != nullptr && opening_cost->isSet()){ isObjectUpdated = true; break;}
-        if(opening_comm != nullptr && opening_comm->isSet()){ isObjectUpdated = true; break;}
         if(open_order_buy_qty != nullptr && open_order_buy_qty->isSet()){ isObjectUpdated = true; break;}
         if(open_order_buy_cost != nullptr && open_order_buy_cost->isSet()){ isObjectUpdated = true; break;}
         if(open_order_buy_premium != nullptr && open_order_buy_premium->isSet()){ isObjectUpdated = true; break;}
         if(open_order_sell_qty != nullptr && open_order_sell_qty->isSet()){ isObjectUpdated = true; break;}
         if(open_order_sell_cost != nullptr && open_order_sell_cost->isSet()){ isObjectUpdated = true; break;}
         if(open_order_sell_premium != nullptr && open_order_sell_premium->isSet()){ isObjectUpdated = true; break;}
-        if(exec_buy_qty != nullptr && exec_buy_qty->isSet()){ isObjectUpdated = true; break;}
-        if(exec_buy_cost != nullptr && exec_buy_cost->isSet()){ isObjectUpdated = true; break;}
-        if(exec_sell_qty != nullptr && exec_sell_qty->isSet()){ isObjectUpdated = true; break;}
-        if(exec_sell_cost != nullptr && exec_sell_cost->isSet()){ isObjectUpdated = true; break;}
-        if(exec_qty != nullptr && exec_qty->isSet()){ isObjectUpdated = true; break;}
-        if(exec_cost != nullptr && exec_cost->isSet()){ isObjectUpdated = true; break;}
-        if(exec_comm != nullptr && exec_comm->isSet()){ isObjectUpdated = true; break;}
-        
         if(current_qty != nullptr && current_qty->isSet()){ isObjectUpdated = true; break;}
         if(current_cost != nullptr && current_cost->isSet()){ isObjectUpdated = true; break;}
         if(current_comm != nullptr && current_comm->isSet()){ isObjectUpdated = true; break;}
         if(realised_cost != nullptr && realised_cost->isSet()){ isObjectUpdated = true; break;}
         if(unrealised_cost != nullptr && unrealised_cost->isSet()){ isObjectUpdated = true; break;}
-        if(gross_open_cost != nullptr && gross_open_cost->isSet()){ isObjectUpdated = true; break;}
         if(gross_open_premium != nullptr && gross_open_premium->isSet()){ isObjectUpdated = true; break;}
-        if(gross_exec_cost != nullptr && gross_exec_cost->isSet()){ isObjectUpdated = true; break;}
         if(m_is_open_isSet){ isObjectUpdated = true; break;}
         if(m_mark_price_isSet){ isObjectUpdated = true; break;}
         if(mark_value != nullptr && mark_value->isSet()){ isObjectUpdated = true; break;}
@@ -1895,38 +1157,17 @@ SWGPosition::isSet(){
         if(m_foreign_notional_isSet){ isObjectUpdated = true; break;}
         if(pos_state != nullptr && *pos_state != QString("")){ isObjectUpdated = true; break;}
         if(pos_cost != nullptr && pos_cost->isSet()){ isObjectUpdated = true; break;}
-        if(pos_cost2 != nullptr && pos_cost2->isSet()){ isObjectUpdated = true; break;}
         if(pos_cross != nullptr && pos_cross->isSet()){ isObjectUpdated = true; break;}
-        if(pos_init != nullptr && pos_init->isSet()){ isObjectUpdated = true; break;}
         if(pos_comm != nullptr && pos_comm->isSet()){ isObjectUpdated = true; break;}
         if(pos_loss != nullptr && pos_loss->isSet()){ isObjectUpdated = true; break;}
         if(pos_margin != nullptr && pos_margin->isSet()){ isObjectUpdated = true; break;}
         if(pos_maint != nullptr && pos_maint->isSet()){ isObjectUpdated = true; break;}
-        if(pos_allowance != nullptr && pos_allowance->isSet()){ isObjectUpdated = true; break;}
-        if(taxable_margin != nullptr && taxable_margin->isSet()){ isObjectUpdated = true; break;}
         if(init_margin != nullptr && init_margin->isSet()){ isObjectUpdated = true; break;}
         if(maint_margin != nullptr && maint_margin->isSet()){ isObjectUpdated = true; break;}
-        if(session_margin != nullptr && session_margin->isSet()){ isObjectUpdated = true; break;}
-        if(target_excess_margin != nullptr && target_excess_margin->isSet()){ isObjectUpdated = true; break;}
-        if(var_margin != nullptr && var_margin->isSet()){ isObjectUpdated = true; break;}
-        if(realised_gross_pnl != nullptr && realised_gross_pnl->isSet()){ isObjectUpdated = true; break;}
-        if(realised_tax != nullptr && realised_tax->isSet()){ isObjectUpdated = true; break;}
         if(realised_pnl != nullptr && realised_pnl->isSet()){ isObjectUpdated = true; break;}
-        if(unrealised_gross_pnl != nullptr && unrealised_gross_pnl->isSet()){ isObjectUpdated = true; break;}
-        if(long_bankrupt != nullptr && long_bankrupt->isSet()){ isObjectUpdated = true; break;}
-        if(short_bankrupt != nullptr && short_bankrupt->isSet()){ isObjectUpdated = true; break;}
-        if(tax_base != nullptr && tax_base->isSet()){ isObjectUpdated = true; break;}
-        if(m_indicative_tax_rate_isSet){ isObjectUpdated = true; break;}
-        if(indicative_tax != nullptr && indicative_tax->isSet()){ isObjectUpdated = true; break;}
-        if(unrealised_tax != nullptr && unrealised_tax->isSet()){ isObjectUpdated = true; break;}
         if(unrealised_pnl != nullptr && unrealised_pnl->isSet()){ isObjectUpdated = true; break;}
         if(m_unrealised_pnl_pcnt_isSet){ isObjectUpdated = true; break;}
         if(m_unrealised_roe_pcnt_isSet){ isObjectUpdated = true; break;}
-        if(m_simple_qty_isSet){ isObjectUpdated = true; break;}
-        if(m_simple_cost_isSet){ isObjectUpdated = true; break;}
-        if(m_simple_value_isSet){ isObjectUpdated = true; break;}
-        if(m_simple_pnl_isSet){ isObjectUpdated = true; break;}
-        if(m_simple_pnl_pcnt_isSet){ isObjectUpdated = true; break;}
         if(m_avg_cost_price_isSet){ isObjectUpdated = true; break;}
         if(m_avg_entry_price_isSet){ isObjectUpdated = true; break;}
         if(m_break_even_price_isSet){ isObjectUpdated = true; break;}
@@ -1934,8 +1175,6 @@ SWGPosition::isSet(){
         if(m_liquidation_price_isSet){ isObjectUpdated = true; break;}
         if(m_bankrupt_price_isSet){ isObjectUpdated = true; break;}
         
-        if(m_last_price_isSet){ isObjectUpdated = true; break;}
-        if(last_value != nullptr && last_value->isSet()){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

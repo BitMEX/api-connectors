@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -25,7 +25,7 @@ using SwaggerDateConverter = IO.Swagger.Client.SwaggerDateConverter;
 namespace IO.Swagger.Model
 {
     /// <summary>
-    /// Wallet
+    /// Assets and Networks Data
     /// </summary>
     [DataContract]
     public partial class Wallet :  IEquatable<Wallet>, IValidatableObject
@@ -40,17 +40,6 @@ namespace IO.Swagger.Model
         /// </summary>
         /// <param name="account">account (required).</param>
         /// <param name="currency">currency (required).</param>
-        /// <param name="prevDeposited">prevDeposited.</param>
-        /// <param name="prevWithdrawn">prevWithdrawn.</param>
-        /// <param name="prevTransferIn">prevTransferIn.</param>
-        /// <param name="prevTransferOut">prevTransferOut.</param>
-        /// <param name="prevAmount">prevAmount.</param>
-        /// <param name="prevTimestamp">prevTimestamp.</param>
-        /// <param name="deltaDeposited">deltaDeposited.</param>
-        /// <param name="deltaWithdrawn">deltaWithdrawn.</param>
-        /// <param name="deltaTransferIn">deltaTransferIn.</param>
-        /// <param name="deltaTransferOut">deltaTransferOut.</param>
-        /// <param name="deltaAmount">deltaAmount.</param>
         /// <param name="deposited">deposited.</param>
         /// <param name="withdrawn">withdrawn.</param>
         /// <param name="transferIn">transferIn.</param>
@@ -60,10 +49,7 @@ namespace IO.Swagger.Model
         /// <param name="pendingDebit">pendingDebit.</param>
         /// <param name="confirmedDebit">confirmedDebit.</param>
         /// <param name="timestamp">timestamp.</param>
-        /// <param name="addr">addr.</param>
-        /// <param name="script">script.</param>
-        /// <param name="withdrawalLock">withdrawalLock.</param>
-        public Wallet(decimal? account = default(decimal?), string currency = default(string), decimal? prevDeposited = default(decimal?), decimal? prevWithdrawn = default(decimal?), decimal? prevTransferIn = default(decimal?), decimal? prevTransferOut = default(decimal?), decimal? prevAmount = default(decimal?), DateTime? prevTimestamp = default(DateTime?), decimal? deltaDeposited = default(decimal?), decimal? deltaWithdrawn = default(decimal?), decimal? deltaTransferIn = default(decimal?), decimal? deltaTransferOut = default(decimal?), decimal? deltaAmount = default(decimal?), decimal? deposited = default(decimal?), decimal? withdrawn = default(decimal?), decimal? transferIn = default(decimal?), decimal? transferOut = default(decimal?), decimal? amount = default(decimal?), decimal? pendingCredit = default(decimal?), decimal? pendingDebit = default(decimal?), decimal? confirmedDebit = default(decimal?), DateTime? timestamp = default(DateTime?), string addr = default(string), string script = default(string), List<string> withdrawalLock = default(List<string>))
+        public Wallet(decimal? account = default(decimal?), string currency = default(string), decimal? deposited = default(decimal?), decimal? withdrawn = default(decimal?), decimal? transferIn = default(decimal?), decimal? transferOut = default(decimal?), decimal? amount = default(decimal?), decimal? pendingCredit = default(decimal?), decimal? pendingDebit = default(decimal?), decimal? confirmedDebit = default(decimal?), DateTime? timestamp = default(DateTime?))
         {
             // to ensure "account" is required (not null)
             if (account == null)
@@ -83,17 +69,6 @@ namespace IO.Swagger.Model
             {
                 this.Currency = currency;
             }
-            this.PrevDeposited = prevDeposited;
-            this.PrevWithdrawn = prevWithdrawn;
-            this.PrevTransferIn = prevTransferIn;
-            this.PrevTransferOut = prevTransferOut;
-            this.PrevAmount = prevAmount;
-            this.PrevTimestamp = prevTimestamp;
-            this.DeltaDeposited = deltaDeposited;
-            this.DeltaWithdrawn = deltaWithdrawn;
-            this.DeltaTransferIn = deltaTransferIn;
-            this.DeltaTransferOut = deltaTransferOut;
-            this.DeltaAmount = deltaAmount;
             this.Deposited = deposited;
             this.Withdrawn = withdrawn;
             this.TransferIn = transferIn;
@@ -103,9 +78,6 @@ namespace IO.Swagger.Model
             this.PendingDebit = pendingDebit;
             this.ConfirmedDebit = confirmedDebit;
             this.Timestamp = timestamp;
-            this.Addr = addr;
-            this.Script = script;
-            this.WithdrawalLock = withdrawalLock;
         }
         
         /// <summary>
@@ -119,72 +91,6 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="currency", EmitDefaultValue=false)]
         public string Currency { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PrevDeposited
-        /// </summary>
-        [DataMember(Name="prevDeposited", EmitDefaultValue=false)]
-        public decimal? PrevDeposited { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PrevWithdrawn
-        /// </summary>
-        [DataMember(Name="prevWithdrawn", EmitDefaultValue=false)]
-        public decimal? PrevWithdrawn { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PrevTransferIn
-        /// </summary>
-        [DataMember(Name="prevTransferIn", EmitDefaultValue=false)]
-        public decimal? PrevTransferIn { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PrevTransferOut
-        /// </summary>
-        [DataMember(Name="prevTransferOut", EmitDefaultValue=false)]
-        public decimal? PrevTransferOut { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PrevAmount
-        /// </summary>
-        [DataMember(Name="prevAmount", EmitDefaultValue=false)]
-        public decimal? PrevAmount { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PrevTimestamp
-        /// </summary>
-        [DataMember(Name="prevTimestamp", EmitDefaultValue=false)]
-        public DateTime? PrevTimestamp { get; set; }
-
-        /// <summary>
-        /// Gets or Sets DeltaDeposited
-        /// </summary>
-        [DataMember(Name="deltaDeposited", EmitDefaultValue=false)]
-        public decimal? DeltaDeposited { get; set; }
-
-        /// <summary>
-        /// Gets or Sets DeltaWithdrawn
-        /// </summary>
-        [DataMember(Name="deltaWithdrawn", EmitDefaultValue=false)]
-        public decimal? DeltaWithdrawn { get; set; }
-
-        /// <summary>
-        /// Gets or Sets DeltaTransferIn
-        /// </summary>
-        [DataMember(Name="deltaTransferIn", EmitDefaultValue=false)]
-        public decimal? DeltaTransferIn { get; set; }
-
-        /// <summary>
-        /// Gets or Sets DeltaTransferOut
-        /// </summary>
-        [DataMember(Name="deltaTransferOut", EmitDefaultValue=false)]
-        public decimal? DeltaTransferOut { get; set; }
-
-        /// <summary>
-        /// Gets or Sets DeltaAmount
-        /// </summary>
-        [DataMember(Name="deltaAmount", EmitDefaultValue=false)]
-        public decimal? DeltaAmount { get; set; }
 
         /// <summary>
         /// Gets or Sets Deposited
@@ -241,24 +147,6 @@ namespace IO.Swagger.Model
         public DateTime? Timestamp { get; set; }
 
         /// <summary>
-        /// Gets or Sets Addr
-        /// </summary>
-        [DataMember(Name="addr", EmitDefaultValue=false)]
-        public string Addr { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Script
-        /// </summary>
-        [DataMember(Name="script", EmitDefaultValue=false)]
-        public string Script { get; set; }
-
-        /// <summary>
-        /// Gets or Sets WithdrawalLock
-        /// </summary>
-        [DataMember(Name="withdrawalLock", EmitDefaultValue=false)]
-        public List<string> WithdrawalLock { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -268,17 +156,6 @@ namespace IO.Swagger.Model
             sb.Append("class Wallet {\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
-            sb.Append("  PrevDeposited: ").Append(PrevDeposited).Append("\n");
-            sb.Append("  PrevWithdrawn: ").Append(PrevWithdrawn).Append("\n");
-            sb.Append("  PrevTransferIn: ").Append(PrevTransferIn).Append("\n");
-            sb.Append("  PrevTransferOut: ").Append(PrevTransferOut).Append("\n");
-            sb.Append("  PrevAmount: ").Append(PrevAmount).Append("\n");
-            sb.Append("  PrevTimestamp: ").Append(PrevTimestamp).Append("\n");
-            sb.Append("  DeltaDeposited: ").Append(DeltaDeposited).Append("\n");
-            sb.Append("  DeltaWithdrawn: ").Append(DeltaWithdrawn).Append("\n");
-            sb.Append("  DeltaTransferIn: ").Append(DeltaTransferIn).Append("\n");
-            sb.Append("  DeltaTransferOut: ").Append(DeltaTransferOut).Append("\n");
-            sb.Append("  DeltaAmount: ").Append(DeltaAmount).Append("\n");
             sb.Append("  Deposited: ").Append(Deposited).Append("\n");
             sb.Append("  Withdrawn: ").Append(Withdrawn).Append("\n");
             sb.Append("  TransferIn: ").Append(TransferIn).Append("\n");
@@ -288,9 +165,6 @@ namespace IO.Swagger.Model
             sb.Append("  PendingDebit: ").Append(PendingDebit).Append("\n");
             sb.Append("  ConfirmedDebit: ").Append(ConfirmedDebit).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  Addr: ").Append(Addr).Append("\n");
-            sb.Append("  Script: ").Append(Script).Append("\n");
-            sb.Append("  WithdrawalLock: ").Append(WithdrawalLock).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -336,61 +210,6 @@ namespace IO.Swagger.Model
                     this.Currency.Equals(input.Currency))
                 ) && 
                 (
-                    this.PrevDeposited == input.PrevDeposited ||
-                    (this.PrevDeposited != null &&
-                    this.PrevDeposited.Equals(input.PrevDeposited))
-                ) && 
-                (
-                    this.PrevWithdrawn == input.PrevWithdrawn ||
-                    (this.PrevWithdrawn != null &&
-                    this.PrevWithdrawn.Equals(input.PrevWithdrawn))
-                ) && 
-                (
-                    this.PrevTransferIn == input.PrevTransferIn ||
-                    (this.PrevTransferIn != null &&
-                    this.PrevTransferIn.Equals(input.PrevTransferIn))
-                ) && 
-                (
-                    this.PrevTransferOut == input.PrevTransferOut ||
-                    (this.PrevTransferOut != null &&
-                    this.PrevTransferOut.Equals(input.PrevTransferOut))
-                ) && 
-                (
-                    this.PrevAmount == input.PrevAmount ||
-                    (this.PrevAmount != null &&
-                    this.PrevAmount.Equals(input.PrevAmount))
-                ) && 
-                (
-                    this.PrevTimestamp == input.PrevTimestamp ||
-                    (this.PrevTimestamp != null &&
-                    this.PrevTimestamp.Equals(input.PrevTimestamp))
-                ) && 
-                (
-                    this.DeltaDeposited == input.DeltaDeposited ||
-                    (this.DeltaDeposited != null &&
-                    this.DeltaDeposited.Equals(input.DeltaDeposited))
-                ) && 
-                (
-                    this.DeltaWithdrawn == input.DeltaWithdrawn ||
-                    (this.DeltaWithdrawn != null &&
-                    this.DeltaWithdrawn.Equals(input.DeltaWithdrawn))
-                ) && 
-                (
-                    this.DeltaTransferIn == input.DeltaTransferIn ||
-                    (this.DeltaTransferIn != null &&
-                    this.DeltaTransferIn.Equals(input.DeltaTransferIn))
-                ) && 
-                (
-                    this.DeltaTransferOut == input.DeltaTransferOut ||
-                    (this.DeltaTransferOut != null &&
-                    this.DeltaTransferOut.Equals(input.DeltaTransferOut))
-                ) && 
-                (
-                    this.DeltaAmount == input.DeltaAmount ||
-                    (this.DeltaAmount != null &&
-                    this.DeltaAmount.Equals(input.DeltaAmount))
-                ) && 
-                (
                     this.Deposited == input.Deposited ||
                     (this.Deposited != null &&
                     this.Deposited.Equals(input.Deposited))
@@ -434,21 +253,6 @@ namespace IO.Swagger.Model
                     this.Timestamp == input.Timestamp ||
                     (this.Timestamp != null &&
                     this.Timestamp.Equals(input.Timestamp))
-                ) && 
-                (
-                    this.Addr == input.Addr ||
-                    (this.Addr != null &&
-                    this.Addr.Equals(input.Addr))
-                ) && 
-                (
-                    this.Script == input.Script ||
-                    (this.Script != null &&
-                    this.Script.Equals(input.Script))
-                ) && 
-                (
-                    this.WithdrawalLock == input.WithdrawalLock ||
-                    this.WithdrawalLock != null &&
-                    this.WithdrawalLock.SequenceEqual(input.WithdrawalLock)
                 );
         }
 
@@ -465,28 +269,6 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Account.GetHashCode();
                 if (this.Currency != null)
                     hashCode = hashCode * 59 + this.Currency.GetHashCode();
-                if (this.PrevDeposited != null)
-                    hashCode = hashCode * 59 + this.PrevDeposited.GetHashCode();
-                if (this.PrevWithdrawn != null)
-                    hashCode = hashCode * 59 + this.PrevWithdrawn.GetHashCode();
-                if (this.PrevTransferIn != null)
-                    hashCode = hashCode * 59 + this.PrevTransferIn.GetHashCode();
-                if (this.PrevTransferOut != null)
-                    hashCode = hashCode * 59 + this.PrevTransferOut.GetHashCode();
-                if (this.PrevAmount != null)
-                    hashCode = hashCode * 59 + this.PrevAmount.GetHashCode();
-                if (this.PrevTimestamp != null)
-                    hashCode = hashCode * 59 + this.PrevTimestamp.GetHashCode();
-                if (this.DeltaDeposited != null)
-                    hashCode = hashCode * 59 + this.DeltaDeposited.GetHashCode();
-                if (this.DeltaWithdrawn != null)
-                    hashCode = hashCode * 59 + this.DeltaWithdrawn.GetHashCode();
-                if (this.DeltaTransferIn != null)
-                    hashCode = hashCode * 59 + this.DeltaTransferIn.GetHashCode();
-                if (this.DeltaTransferOut != null)
-                    hashCode = hashCode * 59 + this.DeltaTransferOut.GetHashCode();
-                if (this.DeltaAmount != null)
-                    hashCode = hashCode * 59 + this.DeltaAmount.GetHashCode();
                 if (this.Deposited != null)
                     hashCode = hashCode * 59 + this.Deposited.GetHashCode();
                 if (this.Withdrawn != null)
@@ -505,12 +287,6 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.ConfirmedDebit.GetHashCode();
                 if (this.Timestamp != null)
                     hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
-                if (this.Addr != null)
-                    hashCode = hashCode * 59 + this.Addr.GetHashCode();
-                if (this.Script != null)
-                    hashCode = hashCode * 59 + this.Script.GetHashCode();
-                if (this.WithdrawalLock != null)
-                    hashCode = hashCode * 59 + this.WithdrawalLock.GetHashCode();
                 return hashCode;
             }
         }

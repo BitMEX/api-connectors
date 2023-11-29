@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -187,44 +187,12 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'PrevUnrealisedPnl'
         }
         /// <summary>
-        /// Test the property 'PrevClosePrice'
-        /// </summary>
-        [Test]
-        public void PrevClosePriceTest()
-        {
-            // TODO unit test for the property 'PrevClosePrice'
-        }
-        /// <summary>
-        /// Test the property 'OpeningTimestamp'
-        /// </summary>
-        [Test]
-        public void OpeningTimestampTest()
-        {
-            // TODO unit test for the property 'OpeningTimestamp'
-        }
-        /// <summary>
         /// Test the property 'OpeningQty'
         /// </summary>
         [Test]
         public void OpeningQtyTest()
         {
             // TODO unit test for the property 'OpeningQty'
-        }
-        /// <summary>
-        /// Test the property 'OpeningCost'
-        /// </summary>
-        [Test]
-        public void OpeningCostTest()
-        {
-            // TODO unit test for the property 'OpeningCost'
-        }
-        /// <summary>
-        /// Test the property 'OpeningComm'
-        /// </summary>
-        [Test]
-        public void OpeningCommTest()
-        {
-            // TODO unit test for the property 'OpeningComm'
         }
         /// <summary>
         /// Test the property 'OpenOrderBuyQty'
@@ -275,70 +243,6 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'OpenOrderSellPremium'
         }
         /// <summary>
-        /// Test the property 'ExecBuyQty'
-        /// </summary>
-        [Test]
-        public void ExecBuyQtyTest()
-        {
-            // TODO unit test for the property 'ExecBuyQty'
-        }
-        /// <summary>
-        /// Test the property 'ExecBuyCost'
-        /// </summary>
-        [Test]
-        public void ExecBuyCostTest()
-        {
-            // TODO unit test for the property 'ExecBuyCost'
-        }
-        /// <summary>
-        /// Test the property 'ExecSellQty'
-        /// </summary>
-        [Test]
-        public void ExecSellQtyTest()
-        {
-            // TODO unit test for the property 'ExecSellQty'
-        }
-        /// <summary>
-        /// Test the property 'ExecSellCost'
-        /// </summary>
-        [Test]
-        public void ExecSellCostTest()
-        {
-            // TODO unit test for the property 'ExecSellCost'
-        }
-        /// <summary>
-        /// Test the property 'ExecQty'
-        /// </summary>
-        [Test]
-        public void ExecQtyTest()
-        {
-            // TODO unit test for the property 'ExecQty'
-        }
-        /// <summary>
-        /// Test the property 'ExecCost'
-        /// </summary>
-        [Test]
-        public void ExecCostTest()
-        {
-            // TODO unit test for the property 'ExecCost'
-        }
-        /// <summary>
-        /// Test the property 'ExecComm'
-        /// </summary>
-        [Test]
-        public void ExecCommTest()
-        {
-            // TODO unit test for the property 'ExecComm'
-        }
-        /// <summary>
-        /// Test the property 'CurrentTimestamp'
-        /// </summary>
-        [Test]
-        public void CurrentTimestampTest()
-        {
-            // TODO unit test for the property 'CurrentTimestamp'
-        }
-        /// <summary>
         /// Test the property 'CurrentQty'
         /// </summary>
         [Test]
@@ -379,28 +283,12 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'UnrealisedCost'
         }
         /// <summary>
-        /// Test the property 'GrossOpenCost'
-        /// </summary>
-        [Test]
-        public void GrossOpenCostTest()
-        {
-            // TODO unit test for the property 'GrossOpenCost'
-        }
-        /// <summary>
         /// Test the property 'GrossOpenPremium'
         /// </summary>
         [Test]
         public void GrossOpenPremiumTest()
         {
             // TODO unit test for the property 'GrossOpenPremium'
-        }
-        /// <summary>
-        /// Test the property 'GrossExecCost'
-        /// </summary>
-        [Test]
-        public void GrossExecCostTest()
-        {
-            // TODO unit test for the property 'GrossExecCost'
         }
         /// <summary>
         /// Test the property 'IsOpen'
@@ -467,28 +355,12 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'PosCost'
         }
         /// <summary>
-        /// Test the property 'PosCost2'
-        /// </summary>
-        [Test]
-        public void PosCost2Test()
-        {
-            // TODO unit test for the property 'PosCost2'
-        }
-        /// <summary>
         /// Test the property 'PosCross'
         /// </summary>
         [Test]
         public void PosCrossTest()
         {
             // TODO unit test for the property 'PosCross'
-        }
-        /// <summary>
-        /// Test the property 'PosInit'
-        /// </summary>
-        [Test]
-        public void PosInitTest()
-        {
-            // TODO unit test for the property 'PosInit'
         }
         /// <summary>
         /// Test the property 'PosComm'
@@ -523,22 +395,6 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'PosMaint'
         }
         /// <summary>
-        /// Test the property 'PosAllowance'
-        /// </summary>
-        [Test]
-        public void PosAllowanceTest()
-        {
-            // TODO unit test for the property 'PosAllowance'
-        }
-        /// <summary>
-        /// Test the property 'TaxableMargin'
-        /// </summary>
-        [Test]
-        public void TaxableMarginTest()
-        {
-            // TODO unit test for the property 'TaxableMargin'
-        }
-        /// <summary>
         /// Test the property 'InitMargin'
         /// </summary>
         [Test]
@@ -555,108 +411,12 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'MaintMargin'
         }
         /// <summary>
-        /// Test the property 'SessionMargin'
-        /// </summary>
-        [Test]
-        public void SessionMarginTest()
-        {
-            // TODO unit test for the property 'SessionMargin'
-        }
-        /// <summary>
-        /// Test the property 'TargetExcessMargin'
-        /// </summary>
-        [Test]
-        public void TargetExcessMarginTest()
-        {
-            // TODO unit test for the property 'TargetExcessMargin'
-        }
-        /// <summary>
-        /// Test the property 'VarMargin'
-        /// </summary>
-        [Test]
-        public void VarMarginTest()
-        {
-            // TODO unit test for the property 'VarMargin'
-        }
-        /// <summary>
-        /// Test the property 'RealisedGrossPnl'
-        /// </summary>
-        [Test]
-        public void RealisedGrossPnlTest()
-        {
-            // TODO unit test for the property 'RealisedGrossPnl'
-        }
-        /// <summary>
-        /// Test the property 'RealisedTax'
-        /// </summary>
-        [Test]
-        public void RealisedTaxTest()
-        {
-            // TODO unit test for the property 'RealisedTax'
-        }
-        /// <summary>
         /// Test the property 'RealisedPnl'
         /// </summary>
         [Test]
         public void RealisedPnlTest()
         {
             // TODO unit test for the property 'RealisedPnl'
-        }
-        /// <summary>
-        /// Test the property 'UnrealisedGrossPnl'
-        /// </summary>
-        [Test]
-        public void UnrealisedGrossPnlTest()
-        {
-            // TODO unit test for the property 'UnrealisedGrossPnl'
-        }
-        /// <summary>
-        /// Test the property 'LongBankrupt'
-        /// </summary>
-        [Test]
-        public void LongBankruptTest()
-        {
-            // TODO unit test for the property 'LongBankrupt'
-        }
-        /// <summary>
-        /// Test the property 'ShortBankrupt'
-        /// </summary>
-        [Test]
-        public void ShortBankruptTest()
-        {
-            // TODO unit test for the property 'ShortBankrupt'
-        }
-        /// <summary>
-        /// Test the property 'TaxBase'
-        /// </summary>
-        [Test]
-        public void TaxBaseTest()
-        {
-            // TODO unit test for the property 'TaxBase'
-        }
-        /// <summary>
-        /// Test the property 'IndicativeTaxRate'
-        /// </summary>
-        [Test]
-        public void IndicativeTaxRateTest()
-        {
-            // TODO unit test for the property 'IndicativeTaxRate'
-        }
-        /// <summary>
-        /// Test the property 'IndicativeTax'
-        /// </summary>
-        [Test]
-        public void IndicativeTaxTest()
-        {
-            // TODO unit test for the property 'IndicativeTax'
-        }
-        /// <summary>
-        /// Test the property 'UnrealisedTax'
-        /// </summary>
-        [Test]
-        public void UnrealisedTaxTest()
-        {
-            // TODO unit test for the property 'UnrealisedTax'
         }
         /// <summary>
         /// Test the property 'UnrealisedPnl'
@@ -681,46 +441,6 @@ namespace IO.Swagger.Test
         public void UnrealisedRoePcntTest()
         {
             // TODO unit test for the property 'UnrealisedRoePcnt'
-        }
-        /// <summary>
-        /// Test the property 'SimpleQty'
-        /// </summary>
-        [Test]
-        public void SimpleQtyTest()
-        {
-            // TODO unit test for the property 'SimpleQty'
-        }
-        /// <summary>
-        /// Test the property 'SimpleCost'
-        /// </summary>
-        [Test]
-        public void SimpleCostTest()
-        {
-            // TODO unit test for the property 'SimpleCost'
-        }
-        /// <summary>
-        /// Test the property 'SimpleValue'
-        /// </summary>
-        [Test]
-        public void SimpleValueTest()
-        {
-            // TODO unit test for the property 'SimpleValue'
-        }
-        /// <summary>
-        /// Test the property 'SimplePnl'
-        /// </summary>
-        [Test]
-        public void SimplePnlTest()
-        {
-            // TODO unit test for the property 'SimplePnl'
-        }
-        /// <summary>
-        /// Test the property 'SimplePnlPcnt'
-        /// </summary>
-        [Test]
-        public void SimplePnlPcntTest()
-        {
-            // TODO unit test for the property 'SimplePnlPcnt'
         }
         /// <summary>
         /// Test the property 'AvgCostPrice'
@@ -777,22 +497,6 @@ namespace IO.Swagger.Test
         public void TimestampTest()
         {
             // TODO unit test for the property 'Timestamp'
-        }
-        /// <summary>
-        /// Test the property 'LastPrice'
-        /// </summary>
-        [Test]
-        public void LastPriceTest()
-        {
-            // TODO unit test for the property 'LastPrice'
-        }
-        /// <summary>
-        /// Test the property 'LastValue'
-        /// </summary>
-        [Test]
-        public void LastValueTest()
-        {
-            // TODO unit test for the property 'LastValue'
         }
 
     }

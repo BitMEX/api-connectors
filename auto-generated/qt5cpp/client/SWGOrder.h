@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -52,8 +51,8 @@ public:
     QString* getClOrdLinkId();
     void setClOrdLinkId(QString* cl_ord_link_id);
 
-    SWGNumber* getAccount();
-    void setAccount(SWGNumber* account);
+    double getAccount();
+    void setAccount(double account);
 
     QString* getSymbol();
     void setSymbol(QString* symbol);
@@ -61,17 +60,14 @@ public:
     QString* getSide();
     void setSide(QString* side);
 
-    double getSimpleOrderQty();
-    void setSimpleOrderQty(double simple_order_qty);
-
-    SWGNumber* getOrderQty();
-    void setOrderQty(SWGNumber* order_qty);
+    double getOrderQty();
+    void setOrderQty(double order_qty);
 
     double getPrice();
     void setPrice(double price);
 
-    SWGNumber* getDisplayQty();
-    void setDisplayQty(SWGNumber* display_qty);
+    double getDisplayQty();
+    void setDisplayQty(double display_qty);
 
     double getStopPx();
     void setStopPx(double stop_px);
@@ -100,9 +96,6 @@ public:
     QString* getContingencyType();
     void setContingencyType(QString* contingency_type);
 
-    QString* getExDestination();
-    void setExDestination(QString* ex_destination);
-
     QString* getOrdStatus();
     void setOrdStatus(QString* ord_status);
 
@@ -115,23 +108,14 @@ public:
     QString* getOrdRejReason();
     void setOrdRejReason(QString* ord_rej_reason);
 
-    double getSimpleLeavesQty();
-    void setSimpleLeavesQty(double simple_leaves_qty);
+    double getLeavesQty();
+    void setLeavesQty(double leaves_qty);
 
-    SWGNumber* getLeavesQty();
-    void setLeavesQty(SWGNumber* leaves_qty);
-
-    double getSimpleCumQty();
-    void setSimpleCumQty(double simple_cum_qty);
-
-    SWGNumber* getCumQty();
-    void setCumQty(SWGNumber* cum_qty);
+    double getCumQty();
+    void setCumQty(double cum_qty);
 
     double getAvgPx();
     void setAvgPx(double avg_px);
-
-    QString* getMultiLegReportingType();
-    void setMultiLegReportingType(QString* multi_leg_reporting_type);
 
     QString* getText();
     void setText(QString* text);
@@ -155,7 +139,7 @@ private:
     QString* cl_ord_link_id;
     bool m_cl_ord_link_id_isSet;
 
-    SWGNumber* account;
+    double account;
     bool m_account_isSet;
 
     QString* symbol;
@@ -164,16 +148,13 @@ private:
     QString* side;
     bool m_side_isSet;
 
-    double simple_order_qty;
-    bool m_simple_order_qty_isSet;
-
-    SWGNumber* order_qty;
+    double order_qty;
     bool m_order_qty_isSet;
 
     double price;
     bool m_price_isSet;
 
-    SWGNumber* display_qty;
+    double display_qty;
     bool m_display_qty_isSet;
 
     double stop_px;
@@ -203,9 +184,6 @@ private:
     QString* contingency_type;
     bool m_contingency_type_isSet;
 
-    QString* ex_destination;
-    bool m_ex_destination_isSet;
-
     QString* ord_status;
     bool m_ord_status_isSet;
 
@@ -218,23 +196,14 @@ private:
     QString* ord_rej_reason;
     bool m_ord_rej_reason_isSet;
 
-    double simple_leaves_qty;
-    bool m_simple_leaves_qty_isSet;
-
-    SWGNumber* leaves_qty;
+    double leaves_qty;
     bool m_leaves_qty_isSet;
 
-    double simple_cum_qty;
-    bool m_simple_cum_qty_isSet;
-
-    SWGNumber* cum_qty;
+    double cum_qty;
     bool m_cum_qty_isSet;
 
     double avg_px;
     bool m_avg_px_isSet;
-
-    QString* multi_leg_reporting_type;
-    bool m_multi_leg_reporting_type_isSet;
 
     QString* text;
     bool m_text_isSet;

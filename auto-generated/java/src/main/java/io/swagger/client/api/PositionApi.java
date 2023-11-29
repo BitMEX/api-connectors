@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -124,7 +124,7 @@ public class PositionApi {
 
     /**
      * Get your positions.
-     * This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenCost**: The absolute value of your open orders for this symbol. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
+     * This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols do not return any position data.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
      * @param filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)
      * @param columns Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)
      * @param count Number of rows to fetch. (optional)
@@ -138,7 +138,7 @@ public class PositionApi {
 
     /**
      * Get your positions.
-     * This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenCost**: The absolute value of your open orders for this symbol. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
+     * This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols do not return any position data.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
      * @param filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)
      * @param columns Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)
      * @param count Number of rows to fetch. (optional)
@@ -153,7 +153,7 @@ public class PositionApi {
 
     /**
      * Get your positions. (asynchronously)
-     * This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenCost**: The absolute value of your open orders for this symbol. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
+     * This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols do not return any position data.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol&#39;s default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol&#39;s default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
      * @param filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)
      * @param columns Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)
      * @param count Number of rows to fetch. (optional)
@@ -257,7 +257,7 @@ public class PositionApi {
 
     /**
      * Enable isolated margin or cross margin per-position.
-     * 
+     * Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
      * @param symbol Position symbol to isolate. (required)
      * @param enabled True for isolated margin, false for cross margin. (optional, default to true)
      * @return Position
@@ -270,7 +270,7 @@ public class PositionApi {
 
     /**
      * Enable isolated margin or cross margin per-position.
-     * 
+     * Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
      * @param symbol Position symbol to isolate. (required)
      * @param enabled True for isolated margin, false for cross margin. (optional, default to true)
      * @return ApiResponse&lt;Position&gt;
@@ -284,7 +284,7 @@ public class PositionApi {
 
     /**
      * Enable isolated margin or cross margin per-position. (asynchronously)
-     * 
+     * Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
      * @param symbol Position symbol to isolate. (required)
      * @param enabled True for isolated margin, false for cross margin. (optional, default to true)
      * @param callback The callback to be executed when the API call finishes
@@ -321,12 +321,13 @@ public class PositionApi {
      * Build call for positionTransferIsolatedMargin
      * @param symbol Symbol of position to isolate. (required)
      * @param amount Amount to transfer, in Satoshis. May be negative. (required)
+     * @param targetAccountId AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call positionTransferIsolatedMarginCall(String symbol, BigDecimal amount, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call positionTransferIsolatedMarginCall(String symbol, BigDecimal amount, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -342,6 +343,8 @@ public class PositionApi {
         localVarFormParams.put("symbol", symbol);
         if (amount != null)
         localVarFormParams.put("amount", amount);
+        if (targetAccountId != null)
+        localVarFormParams.put("targetAccountId", targetAccountId);
 
         final String[] localVarAccepts = {
             "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
@@ -372,7 +375,7 @@ public class PositionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call positionTransferIsolatedMarginValidateBeforeCall(String symbol, BigDecimal amount, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call positionTransferIsolatedMarginValidateBeforeCall(String symbol, BigDecimal amount, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'symbol' is set
         if (symbol == null) {
@@ -385,48 +388,51 @@ public class PositionApi {
         }
         
 
-        com.squareup.okhttp.Call call = positionTransferIsolatedMarginCall(symbol, amount, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = positionTransferIsolatedMarginCall(symbol, amount, targetAccountId, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * Transfer equity in or out of a position.
-     * 
+     * When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
      * @param symbol Symbol of position to isolate. (required)
      * @param amount Amount to transfer, in Satoshis. May be negative. (required)
+     * @param targetAccountId AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)
      * @return Position
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Position positionTransferIsolatedMargin(String symbol, BigDecimal amount) throws ApiException {
-        ApiResponse<Position> resp = positionTransferIsolatedMarginWithHttpInfo(symbol, amount);
+    public Position positionTransferIsolatedMargin(String symbol, BigDecimal amount, Double targetAccountId) throws ApiException {
+        ApiResponse<Position> resp = positionTransferIsolatedMarginWithHttpInfo(symbol, amount, targetAccountId);
         return resp.getData();
     }
 
     /**
      * Transfer equity in or out of a position.
-     * 
+     * When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
      * @param symbol Symbol of position to isolate. (required)
      * @param amount Amount to transfer, in Satoshis. May be negative. (required)
+     * @param targetAccountId AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)
      * @return ApiResponse&lt;Position&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Position> positionTransferIsolatedMarginWithHttpInfo(String symbol, BigDecimal amount) throws ApiException {
-        com.squareup.okhttp.Call call = positionTransferIsolatedMarginValidateBeforeCall(symbol, amount, null, null);
+    public ApiResponse<Position> positionTransferIsolatedMarginWithHttpInfo(String symbol, BigDecimal amount, Double targetAccountId) throws ApiException {
+        com.squareup.okhttp.Call call = positionTransferIsolatedMarginValidateBeforeCall(symbol, amount, targetAccountId, null, null);
         Type localVarReturnType = new TypeToken<Position>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Transfer equity in or out of a position. (asynchronously)
-     * 
+     * When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
      * @param symbol Symbol of position to isolate. (required)
      * @param amount Amount to transfer, in Satoshis. May be negative. (required)
+     * @param targetAccountId AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call positionTransferIsolatedMarginAsync(String symbol, BigDecimal amount, final ApiCallback<Position> callback) throws ApiException {
+    public com.squareup.okhttp.Call positionTransferIsolatedMarginAsync(String symbol, BigDecimal amount, Double targetAccountId, final ApiCallback<Position> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -447,7 +453,7 @@ public class PositionApi {
             };
         }
 
-        com.squareup.okhttp.Call call = positionTransferIsolatedMarginValidateBeforeCall(symbol, amount, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = positionTransferIsolatedMarginValidateBeforeCall(symbol, amount, targetAccountId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Position>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -456,12 +462,13 @@ public class PositionApi {
      * Build call for positionUpdateLeverage
      * @param symbol Symbol of position to adjust. (required)
      * @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. (required)
+     * @param targetAccountId AccountId for the position that the leverage would be changed on, must be a paired account with main user. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call positionUpdateLeverageCall(String symbol, Double leverage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call positionUpdateLeverageCall(String symbol, Double leverage, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -477,6 +484,8 @@ public class PositionApi {
         localVarFormParams.put("symbol", symbol);
         if (leverage != null)
         localVarFormParams.put("leverage", leverage);
+        if (targetAccountId != null)
+        localVarFormParams.put("targetAccountId", targetAccountId);
 
         final String[] localVarAccepts = {
             "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
@@ -507,7 +516,7 @@ public class PositionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call positionUpdateLeverageValidateBeforeCall(String symbol, Double leverage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call positionUpdateLeverageValidateBeforeCall(String symbol, Double leverage, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'symbol' is set
         if (symbol == null) {
@@ -520,48 +529,51 @@ public class PositionApi {
         }
         
 
-        com.squareup.okhttp.Call call = positionUpdateLeverageCall(symbol, leverage, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = positionUpdateLeverageCall(symbol, leverage, targetAccountId, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * Choose leverage for a position.
-     * 
+     * Users can choose an isolated leverage. This will automatically enable isolated margin.
      * @param symbol Symbol of position to adjust. (required)
      * @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. (required)
+     * @param targetAccountId AccountId for the position that the leverage would be changed on, must be a paired account with main user. (optional)
      * @return Position
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Position positionUpdateLeverage(String symbol, Double leverage) throws ApiException {
-        ApiResponse<Position> resp = positionUpdateLeverageWithHttpInfo(symbol, leverage);
+    public Position positionUpdateLeverage(String symbol, Double leverage, Double targetAccountId) throws ApiException {
+        ApiResponse<Position> resp = positionUpdateLeverageWithHttpInfo(symbol, leverage, targetAccountId);
         return resp.getData();
     }
 
     /**
      * Choose leverage for a position.
-     * 
+     * Users can choose an isolated leverage. This will automatically enable isolated margin.
      * @param symbol Symbol of position to adjust. (required)
      * @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. (required)
+     * @param targetAccountId AccountId for the position that the leverage would be changed on, must be a paired account with main user. (optional)
      * @return ApiResponse&lt;Position&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Position> positionUpdateLeverageWithHttpInfo(String symbol, Double leverage) throws ApiException {
-        com.squareup.okhttp.Call call = positionUpdateLeverageValidateBeforeCall(symbol, leverage, null, null);
+    public ApiResponse<Position> positionUpdateLeverageWithHttpInfo(String symbol, Double leverage, Double targetAccountId) throws ApiException {
+        com.squareup.okhttp.Call call = positionUpdateLeverageValidateBeforeCall(symbol, leverage, targetAccountId, null, null);
         Type localVarReturnType = new TypeToken<Position>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Choose leverage for a position. (asynchronously)
-     * 
+     * Users can choose an isolated leverage. This will automatically enable isolated margin.
      * @param symbol Symbol of position to adjust. (required)
      * @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. (required)
+     * @param targetAccountId AccountId for the position that the leverage would be changed on, must be a paired account with main user. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call positionUpdateLeverageAsync(String symbol, Double leverage, final ApiCallback<Position> callback) throws ApiException {
+    public com.squareup.okhttp.Call positionUpdateLeverageAsync(String symbol, Double leverage, Double targetAccountId, final ApiCallback<Position> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -582,7 +594,7 @@ public class PositionApi {
             };
         }
 
-        com.squareup.okhttp.Call call = positionUpdateLeverageValidateBeforeCall(symbol, leverage, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = positionUpdateLeverageValidateBeforeCall(symbol, leverage, targetAccountId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Position>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -591,12 +603,13 @@ public class PositionApi {
      * Build call for positionUpdateRiskLimit
      * @param symbol Symbol of position to update risk limit on. (required)
      * @param riskLimit New Risk Limit, in Satoshis. (required)
+     * @param targetAccountId AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call positionUpdateRiskLimitCall(String symbol, BigDecimal riskLimit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call positionUpdateRiskLimitCall(String symbol, BigDecimal riskLimit, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -612,6 +625,8 @@ public class PositionApi {
         localVarFormParams.put("symbol", symbol);
         if (riskLimit != null)
         localVarFormParams.put("riskLimit", riskLimit);
+        if (targetAccountId != null)
+        localVarFormParams.put("targetAccountId", targetAccountId);
 
         final String[] localVarAccepts = {
             "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
@@ -642,7 +657,7 @@ public class PositionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call positionUpdateRiskLimitValidateBeforeCall(String symbol, BigDecimal riskLimit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call positionUpdateRiskLimitValidateBeforeCall(String symbol, BigDecimal riskLimit, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'symbol' is set
         if (symbol == null) {
@@ -655,48 +670,51 @@ public class PositionApi {
         }
         
 
-        com.squareup.okhttp.Call call = positionUpdateRiskLimitCall(symbol, riskLimit, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = positionUpdateRiskLimitCall(symbol, riskLimit, targetAccountId, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * Update your risk limit.
-     * 
+     * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
      * @param symbol Symbol of position to update risk limit on. (required)
      * @param riskLimit New Risk Limit, in Satoshis. (required)
+     * @param targetAccountId AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)
      * @return Position
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Position positionUpdateRiskLimit(String symbol, BigDecimal riskLimit) throws ApiException {
-        ApiResponse<Position> resp = positionUpdateRiskLimitWithHttpInfo(symbol, riskLimit);
+    public Position positionUpdateRiskLimit(String symbol, BigDecimal riskLimit, Double targetAccountId) throws ApiException {
+        ApiResponse<Position> resp = positionUpdateRiskLimitWithHttpInfo(symbol, riskLimit, targetAccountId);
         return resp.getData();
     }
 
     /**
      * Update your risk limit.
-     * 
+     * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
      * @param symbol Symbol of position to update risk limit on. (required)
      * @param riskLimit New Risk Limit, in Satoshis. (required)
+     * @param targetAccountId AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)
      * @return ApiResponse&lt;Position&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Position> positionUpdateRiskLimitWithHttpInfo(String symbol, BigDecimal riskLimit) throws ApiException {
-        com.squareup.okhttp.Call call = positionUpdateRiskLimitValidateBeforeCall(symbol, riskLimit, null, null);
+    public ApiResponse<Position> positionUpdateRiskLimitWithHttpInfo(String symbol, BigDecimal riskLimit, Double targetAccountId) throws ApiException {
+        com.squareup.okhttp.Call call = positionUpdateRiskLimitValidateBeforeCall(symbol, riskLimit, targetAccountId, null, null);
         Type localVarReturnType = new TypeToken<Position>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Update your risk limit. (asynchronously)
-     * 
+     * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
      * @param symbol Symbol of position to update risk limit on. (required)
      * @param riskLimit New Risk Limit, in Satoshis. (required)
+     * @param targetAccountId AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call positionUpdateRiskLimitAsync(String symbol, BigDecimal riskLimit, final ApiCallback<Position> callback) throws ApiException {
+    public com.squareup.okhttp.Call positionUpdateRiskLimitAsync(String symbol, BigDecimal riskLimit, Double targetAccountId, final ApiCallback<Position> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -717,7 +735,7 @@ public class PositionApi {
             };
         }
 
-        com.squareup.okhttp.Call call = positionUpdateRiskLimitValidateBeforeCall(symbol, riskLimit, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = positionUpdateRiskLimitValidateBeforeCall(symbol, riskLimit, targetAccountId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Position>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

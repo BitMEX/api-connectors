@@ -13,15 +13,18 @@ public struct ChatChannel: Codable {
 
     public var _id: Double?
     public var name: String
+    public var isPrivate: Bool
 
-    public init(_id: Double?, name: String) {
+    public init(_id: Double?, name: String, isPrivate: Bool) {
         self._id = _id
         self.name = name
+        self.isPrivate = isPrivate
     }
 
     public enum CodingKeys: String, CodingKey { 
         case _id = "id"
         case name
+        case isPrivate
     }
 
 

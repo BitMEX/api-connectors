@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -35,6 +35,10 @@ public class APIKey {
   private BigDecimal nonce = null;
   @SerializedName("cidr")
   private String cidr = null;
+  @SerializedName("cidrs")
+  private List<XAny> cidrs = null;
+  @SerializedName("targetAccountId")
+  private BigDecimal targetAccountId = null;
   @SerializedName("permissions")
   private List<XAny> permissions = null;
   @SerializedName("enabled")
@@ -97,6 +101,26 @@ public class APIKey {
   /**
    **/
   @ApiModelProperty(value = "")
+  public List<XAny> getCidrs() {
+    return cidrs;
+  }
+  public void setCidrs(List<XAny> cidrs) {
+    this.cidrs = cidrs;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getTargetAccountId() {
+    return targetAccountId;
+  }
+  public void setTargetAccountId(BigDecimal targetAccountId) {
+    this.targetAccountId = targetAccountId;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public List<XAny> getPermissions() {
     return permissions;
   }
@@ -149,6 +173,8 @@ public class APIKey {
         (this.name == null ? aPIKey.name == null : this.name.equals(aPIKey.name)) &&
         (this.nonce == null ? aPIKey.nonce == null : this.nonce.equals(aPIKey.nonce)) &&
         (this.cidr == null ? aPIKey.cidr == null : this.cidr.equals(aPIKey.cidr)) &&
+        (this.cidrs == null ? aPIKey.cidrs == null : this.cidrs.equals(aPIKey.cidrs)) &&
+        (this.targetAccountId == null ? aPIKey.targetAccountId == null : this.targetAccountId.equals(aPIKey.targetAccountId)) &&
         (this.permissions == null ? aPIKey.permissions == null : this.permissions.equals(aPIKey.permissions)) &&
         (this.enabled == null ? aPIKey.enabled == null : this.enabled.equals(aPIKey.enabled)) &&
         (this.userId == null ? aPIKey.userId == null : this.userId.equals(aPIKey.userId)) &&
@@ -163,6 +189,8 @@ public class APIKey {
     result = 31 * result + (this.name == null ? 0: this.name.hashCode());
     result = 31 * result + (this.nonce == null ? 0: this.nonce.hashCode());
     result = 31 * result + (this.cidr == null ? 0: this.cidr.hashCode());
+    result = 31 * result + (this.cidrs == null ? 0: this.cidrs.hashCode());
+    result = 31 * result + (this.targetAccountId == null ? 0: this.targetAccountId.hashCode());
     result = 31 * result + (this.permissions == null ? 0: this.permissions.hashCode());
     result = 31 * result + (this.enabled == null ? 0: this.enabled.hashCode());
     result = 31 * result + (this.userId == null ? 0: this.userId.hashCode());
@@ -180,6 +208,8 @@ public class APIKey {
     sb.append("  name: ").append(name).append("\n");
     sb.append("  nonce: ").append(nonce).append("\n");
     sb.append("  cidr: ").append(cidr).append("\n");
+    sb.append("  cidrs: ").append(cidrs).append("\n");
+    sb.append("  targetAccountId: ").append(targetAccountId).append("\n");
     sb.append("  permissions: ").append(permissions).append("\n");
     sb.append("  enabled: ").append(enabled).append("\n");
     sb.append("  userId: ").append(userId).append("\n");

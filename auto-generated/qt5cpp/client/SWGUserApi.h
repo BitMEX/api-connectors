@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -19,16 +19,22 @@
 #include <QString>
 #include "SWGAccessToken.h"
 #include "SWGAffiliate.h"
+#include "SWGCollateralSupportAgreement.h"
 #include "SWGCommunicationToken.h"
 #include "SWGError.h"
+#include "SWGExecution.h"
 #include "SWGMargin.h"
 #include "SWGNumber.h"
 #include "SWGObject.h"
 #include "SWGQuoteFillRatio.h"
+#include "SWGQuoteValueRatio.h"
+#include "SWGStakingRecord.h"
+#include "SWGTradingVolume.h"
 #include "SWGTransaction.h"
 #include "SWGUser.h"
 #include "SWGUserCommissionsBySymbol.h"
 #include "SWGWallet.h"
+#include "SWGX-any.h"
 
 #include <QObject>
 
@@ -51,20 +57,32 @@ public:
     void user_communicationToken(QString* token, QString* platform_agent);
     void user_confirm(QString* token);
     void user_confirmWithdrawal(QString* token);
+    void user_createSubAccount(QString* account_name);
+    void user_createUnstakingRequests(QString* symbol, double amount);
+    void user_deleteUnstakingRequests(QString* redemption_id);
     void user_get();
-    void user_getAffiliateStatus();
+    void user_getAffiliateStatus(QString* currency);
+    void user_getCSA();
     void user_getCommission();
-    void user_getDepositAddress(QString* currency);
+    void user_getDepositAddress(QString* currency, QString* network);
     void user_getExecutionHistory(QString* symbol, QDateTime* timestamp);
     void user_getMargin(QString* currency);
-    void user_getQuoteFillRatio();
+    void user_getQuoteFillRatio(double target_account_id);
+    void user_getQuoteValueRatio(double target_account_id);
+    void user_getStaking(QString* currency);
+    void user_getStakingInstruments(QString* symbol, QString* currency);
+    void user_getStakingTiers(QString* currency);
+    void user_getTradingVolume();
+    void user_getUnstakingRequests(QString* status);
     void user_getWallet(QString* currency);
-    void user_getWalletHistory(QString* currency, double count, double start);
+    void user_getWalletHistory(QString* currency, double count, double start, double target_account_id);
     void user_getWalletSummary(QString* currency);
+    void user_getWalletTransferAccounts();
     void user_logout();
-    void user_minWithdrawalFee(QString* currency);
-    void user_requestWithdrawal(QString* currency, SWGNumber* amount, QString* address, QString* otp_token, double fee, QString* text);
+    void user_requestWithdrawal(QString* currency, QString* network, SWGNumber* amount, QString* otp_token, QString* address, double address_id, double target_user_id, double fee, QString* text);
     void user_savePreferences(QString* prefs, bool overwrite);
+    void user_updateSubAccount(double target_account_id, QString* account_name);
+    void user_walletTransfer(QString* currency, SWGNumber* amount, double target_account_id, double from_account_id);
     
 private:
     void user_cancelWithdrawalCallback (SWGHttpRequestWorker * worker);
@@ -72,81 +90,129 @@ private:
     void user_communicationTokenCallback (SWGHttpRequestWorker * worker);
     void user_confirmCallback (SWGHttpRequestWorker * worker);
     void user_confirmWithdrawalCallback (SWGHttpRequestWorker * worker);
+    void user_createSubAccountCallback (SWGHttpRequestWorker * worker);
+    void user_createUnstakingRequestsCallback (SWGHttpRequestWorker * worker);
+    void user_deleteUnstakingRequestsCallback (SWGHttpRequestWorker * worker);
     void user_getCallback (SWGHttpRequestWorker * worker);
     void user_getAffiliateStatusCallback (SWGHttpRequestWorker * worker);
+    void user_getCSACallback (SWGHttpRequestWorker * worker);
     void user_getCommissionCallback (SWGHttpRequestWorker * worker);
     void user_getDepositAddressCallback (SWGHttpRequestWorker * worker);
     void user_getExecutionHistoryCallback (SWGHttpRequestWorker * worker);
     void user_getMarginCallback (SWGHttpRequestWorker * worker);
     void user_getQuoteFillRatioCallback (SWGHttpRequestWorker * worker);
+    void user_getQuoteValueRatioCallback (SWGHttpRequestWorker * worker);
+    void user_getStakingCallback (SWGHttpRequestWorker * worker);
+    void user_getStakingInstrumentsCallback (SWGHttpRequestWorker * worker);
+    void user_getStakingTiersCallback (SWGHttpRequestWorker * worker);
+    void user_getTradingVolumeCallback (SWGHttpRequestWorker * worker);
+    void user_getUnstakingRequestsCallback (SWGHttpRequestWorker * worker);
     void user_getWalletCallback (SWGHttpRequestWorker * worker);
     void user_getWalletHistoryCallback (SWGHttpRequestWorker * worker);
     void user_getWalletSummaryCallback (SWGHttpRequestWorker * worker);
+    void user_getWalletTransferAccountsCallback (SWGHttpRequestWorker * worker);
     void user_logoutCallback (SWGHttpRequestWorker * worker);
-    void user_minWithdrawalFeeCallback (SWGHttpRequestWorker * worker);
     void user_requestWithdrawalCallback (SWGHttpRequestWorker * worker);
     void user_savePreferencesCallback (SWGHttpRequestWorker * worker);
+    void user_updateSubAccountCallback (SWGHttpRequestWorker * worker);
+    void user_walletTransferCallback (SWGHttpRequestWorker * worker);
     
 signals:
     void user_cancelWithdrawalSignal(SWGTransaction* summary);
-    void user_checkReferralCodeSignal(double summary);
+    void user_checkReferralCodeSignal(SWGObject* summary);
     void user_communicationTokenSignal(QList<SWGCommunicationToken*>* summary);
     void user_confirmSignal(SWGAccessToken* summary);
     void user_confirmWithdrawalSignal(SWGTransaction* summary);
+    void user_createSubAccountSignal(SWGObject* summary);
+    void user_createUnstakingRequestsSignal(SWGObject* summary);
+    void user_deleteUnstakingRequestsSignal(SWGObject* summary);
     void user_getSignal(SWGUser* summary);
     void user_getAffiliateStatusSignal(SWGAffiliate* summary);
+    void user_getCSASignal(SWGCollateralSupportAgreement* summary);
     void user_getCommissionSignal(SWGUserCommissionsBySymbol* summary);
     void user_getDepositAddressSignal(QString* summary);
-    void user_getExecutionHistorySignal(SWGObject* summary);
+    void user_getExecutionHistorySignal(QList<SWGExecution*>* summary);
     void user_getMarginSignal(SWGMargin* summary);
     void user_getQuoteFillRatioSignal(SWGQuoteFillRatio* summary);
+    void user_getQuoteValueRatioSignal(SWGQuoteValueRatio* summary);
+    void user_getStakingSignal(QList<SWGStakingRecord*>* summary);
+    void user_getStakingInstrumentsSignal(QList<SWGX-any*>* summary);
+    void user_getStakingTiersSignal(QList<SWGX-any*>* summary);
+    void user_getTradingVolumeSignal(QList<SWGTradingVolume*>* summary);
+    void user_getUnstakingRequestsSignal(QList<SWGStakingRecord*>* summary);
     void user_getWalletSignal(SWGWallet* summary);
     void user_getWalletHistorySignal(QList<SWGTransaction*>* summary);
     void user_getWalletSummarySignal(QList<SWGTransaction*>* summary);
+    void user_getWalletTransferAccountsSignal(QList<SWGX-any*>* summary);
     void user_logoutSignal();
-    void user_minWithdrawalFeeSignal(SWGObject* summary);
     void user_requestWithdrawalSignal(SWGTransaction* summary);
     void user_savePreferencesSignal(SWGUser* summary);
+    void user_updateSubAccountSignal(SWGObject* summary);
+    void user_walletTransferSignal(SWGTransaction* summary);
     
     void user_cancelWithdrawalSignalE(SWGTransaction* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void user_checkReferralCodeSignalE(double summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_checkReferralCodeSignalE(SWGObject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_communicationTokenSignalE(QList<SWGCommunicationToken*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_confirmSignalE(SWGAccessToken* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_confirmWithdrawalSignalE(SWGTransaction* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_createSubAccountSignalE(SWGObject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_createUnstakingRequestsSignalE(SWGObject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_deleteUnstakingRequestsSignalE(SWGObject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getSignalE(SWGUser* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getAffiliateStatusSignalE(SWGAffiliate* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getCSASignalE(SWGCollateralSupportAgreement* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getCommissionSignalE(SWGUserCommissionsBySymbol* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getDepositAddressSignalE(QString* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void user_getExecutionHistorySignalE(SWGObject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getExecutionHistorySignalE(QList<SWGExecution*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getMarginSignalE(SWGMargin* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getQuoteFillRatioSignalE(SWGQuoteFillRatio* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getQuoteValueRatioSignalE(SWGQuoteValueRatio* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getStakingSignalE(QList<SWGStakingRecord*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getStakingInstrumentsSignalE(QList<SWGX-any*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getStakingTiersSignalE(QList<SWGX-any*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getTradingVolumeSignalE(QList<SWGTradingVolume*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getUnstakingRequestsSignalE(QList<SWGStakingRecord*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletSignalE(SWGWallet* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletHistorySignalE(QList<SWGTransaction*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletSummarySignalE(QList<SWGTransaction*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getWalletTransferAccountsSignalE(QList<SWGX-any*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_logoutSignalE(QNetworkReply::NetworkError error_type, QString& error_str);
-    void user_minWithdrawalFeeSignalE(SWGObject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_requestWithdrawalSignalE(SWGTransaction* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_savePreferencesSignalE(SWGUser* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_updateSubAccountSignalE(SWGObject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_walletTransferSignalE(SWGTransaction* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     
     void user_cancelWithdrawalSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_checkReferralCodeSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_communicationTokenSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_confirmSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_confirmWithdrawalSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_createSubAccountSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_createUnstakingRequestsSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_deleteUnstakingRequestsSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getAffiliateStatusSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getCSASignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getCommissionSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getDepositAddressSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getExecutionHistorySignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getMarginSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getQuoteFillRatioSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getQuoteValueRatioSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getStakingSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getStakingInstrumentsSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getStakingTiersSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getTradingVolumeSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getUnstakingRequestsSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletHistorySignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletSummarySignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getWalletTransferAccountsSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_logoutSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
-    void user_minWithdrawalFeeSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_requestWithdrawalSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_savePreferencesSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_updateSubAccountSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_walletTransferSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     
 };
 

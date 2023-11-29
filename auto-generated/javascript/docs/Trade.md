@@ -13,5 +13,6 @@ Name | Type | Description | Notes
 **grossValue** | **Number** |  | [optional] 
 **homeNotional** | **Number** |  | [optional] 
 **foreignNotional** | **Number** |  | [optional] 
+**trdType** | **String** |  | [optional] 
 
 

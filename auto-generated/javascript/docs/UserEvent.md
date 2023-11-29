@@ -34,9 +34,7 @@ Name | Type | Description | Notes
 
 * `login` (value: `"login"`)
 
-* `pgpMaskedEmail` (value: `"pgpMaskedEmail"`)
-
-* `pgpTestEmail` (value: `"pgpTestEmail"`)
+* `existingAccountRegistrationAttempt` (value: `"existingAccountRegistrationAttempt"`)
 
 * `passwordChanged` (value: `"passwordChanged"`)
 
@@ -67,6 +65,10 @@ Name | Type | Description | Notes
 * `withdrawalConfirmed` (value: `"withdrawalConfirmed"`)
 
 * `withdrawalRequested` (value: `"withdrawalRequested"`)
+
+* `addressSkipConfirmRequested` (value: `"addressSkipConfirmRequested"`)
+
+* `addressSkipConfirmVerified` (value: `"addressSkipConfirmVerified"`)
 
 * `verify` (value: `"verify"`)
 

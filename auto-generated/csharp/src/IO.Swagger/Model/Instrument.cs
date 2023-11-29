@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -46,14 +46,7 @@ namespace IO.Swagger.Model
         /// <param name="front">front.</param>
         /// <param name="expiry">expiry.</param>
         /// <param name="settle">settle.</param>
-        /// <param name="relistInterval">relistInterval.</param>
-        /// <param name="inverseLeg">inverseLeg.</param>
-        /// <param name="sellLeg">sellLeg.</param>
-        /// <param name="buyLeg">buyLeg.</param>
-        /// <param name="optionStrikePcnt">optionStrikePcnt.</param>
-        /// <param name="optionStrikeRound">optionStrikeRound.</param>
-        /// <param name="optionStrikePrice">optionStrikePrice.</param>
-        /// <param name="optionMultiplier">optionMultiplier.</param>
+        /// <param name="listedSettle">listedSettle.</param>
         /// <param name="positionCurrency">positionCurrency.</param>
         /// <param name="underlying">underlying.</param>
         /// <param name="quoteCurrency">quoteCurrency.</param>
@@ -79,13 +72,11 @@ namespace IO.Swagger.Model
         /// <param name="riskLimit">riskLimit.</param>
         /// <param name="riskStep">riskStep.</param>
         /// <param name="limit">limit.</param>
-        /// <param name="capped">capped.</param>
         /// <param name="taxed">taxed.</param>
         /// <param name="deleverage">deleverage.</param>
         /// <param name="makerFee">makerFee.</param>
         /// <param name="takerFee">takerFee.</param>
         /// <param name="settlementFee">settlementFee.</param>
-        /// <param name="insuranceFee">insuranceFee.</param>
         /// <param name="fundingBaseSymbol">fundingBaseSymbol.</param>
         /// <param name="fundingQuoteSymbol">fundingQuoteSymbol.</param>
         /// <param name="fundingPremiumSymbol">fundingPremiumSymbol.</param>
@@ -95,15 +86,9 @@ namespace IO.Swagger.Model
         /// <param name="indicativeFundingRate">indicativeFundingRate.</param>
         /// <param name="rebalanceTimestamp">rebalanceTimestamp.</param>
         /// <param name="rebalanceInterval">rebalanceInterval.</param>
-        /// <param name="openingTimestamp">openingTimestamp.</param>
-        /// <param name="closingTimestamp">closingTimestamp.</param>
-        /// <param name="sessionInterval">sessionInterval.</param>
         /// <param name="prevClosePrice">prevClosePrice.</param>
         /// <param name="limitDownPrice">limitDownPrice.</param>
         /// <param name="limitUpPrice">limitUpPrice.</param>
-        /// <param name="bankruptLimitDownPrice">bankruptLimitDownPrice.</param>
-        /// <param name="bankruptLimitUpPrice">bankruptLimitUpPrice.</param>
-        /// <param name="prevTotalVolume">prevTotalVolume.</param>
         /// <param name="totalVolume">totalVolume.</param>
         /// <param name="volume">volume.</param>
         /// <param name="volume24h">volume24h.</param>
@@ -136,12 +121,12 @@ namespace IO.Swagger.Model
         /// <param name="fairPrice">fairPrice.</param>
         /// <param name="markMethod">markMethod.</param>
         /// <param name="markPrice">markPrice.</param>
-        /// <param name="indicativeTaxRate">indicativeTaxRate.</param>
         /// <param name="indicativeSettlePrice">indicativeSettlePrice.</param>
-        /// <param name="optionUnderlyingPrice">optionUnderlyingPrice.</param>
+        /// <param name="settledPriceAdjustmentRate">settledPriceAdjustmentRate.</param>
         /// <param name="settledPrice">settledPrice.</param>
+        /// <param name="instantPnl">instantPnl.</param>
         /// <param name="timestamp">timestamp.</param>
-        public Instrument(string symbol = default(string), string rootSymbol = default(string), string state = default(string), string typ = default(string), DateTime? listing = default(DateTime?), DateTime? front = default(DateTime?), DateTime? expiry = default(DateTime?), DateTime? settle = default(DateTime?), DateTime? relistInterval = default(DateTime?), string inverseLeg = default(string), string sellLeg = default(string), string buyLeg = default(string), double? optionStrikePcnt = default(double?), double? optionStrikeRound = default(double?), double? optionStrikePrice = default(double?), double? optionMultiplier = default(double?), string positionCurrency = default(string), string underlying = default(string), string quoteCurrency = default(string), string underlyingSymbol = default(string), string reference = default(string), string referenceSymbol = default(string), DateTime? calcInterval = default(DateTime?), DateTime? publishInterval = default(DateTime?), DateTime? publishTime = default(DateTime?), decimal? maxOrderQty = default(decimal?), double? maxPrice = default(double?), decimal? lotSize = default(decimal?), double? tickSize = default(double?), decimal? multiplier = default(decimal?), string settlCurrency = default(string), decimal? underlyingToPositionMultiplier = default(decimal?), decimal? underlyingToSettleMultiplier = default(decimal?), decimal? quoteToSettleMultiplier = default(decimal?), bool? isQuanto = default(bool?), bool? isInverse = default(bool?), double? initMargin = default(double?), double? maintMargin = default(double?), decimal? riskLimit = default(decimal?), decimal? riskStep = default(decimal?), double? limit = default(double?), bool? capped = default(bool?), bool? taxed = default(bool?), bool? deleverage = default(bool?), double? makerFee = default(double?), double? takerFee = default(double?), double? settlementFee = default(double?), double? insuranceFee = default(double?), string fundingBaseSymbol = default(string), string fundingQuoteSymbol = default(string), string fundingPremiumSymbol = default(string), DateTime? fundingTimestamp = default(DateTime?), DateTime? fundingInterval = default(DateTime?), double? fundingRate = default(double?), double? indicativeFundingRate = default(double?), DateTime? rebalanceTimestamp = default(DateTime?), DateTime? rebalanceInterval = default(DateTime?), DateTime? openingTimestamp = default(DateTime?), DateTime? closingTimestamp = default(DateTime?), DateTime? sessionInterval = default(DateTime?), double? prevClosePrice = default(double?), double? limitDownPrice = default(double?), double? limitUpPrice = default(double?), double? bankruptLimitDownPrice = default(double?), double? bankruptLimitUpPrice = default(double?), decimal? prevTotalVolume = default(decimal?), decimal? totalVolume = default(decimal?), decimal? volume = default(decimal?), decimal? volume24h = default(decimal?), decimal? prevTotalTurnover = default(decimal?), decimal? totalTurnover = default(decimal?), decimal? turnover = default(decimal?), decimal? turnover24h = default(decimal?), double? homeNotional24h = default(double?), double? foreignNotional24h = default(double?), double? prevPrice24h = default(double?), double? vwap = default(double?), double? highPrice = default(double?), double? lowPrice = default(double?), double? lastPrice = default(double?), double? lastPriceProtected = default(double?), string lastTickDirection = default(string), double? lastChangePcnt = default(double?), double? bidPrice = default(double?), double? midPrice = default(double?), double? askPrice = default(double?), double? impactBidPrice = default(double?), double? impactMidPrice = default(double?), double? impactAskPrice = default(double?), bool? hasLiquidity = default(bool?), decimal? openInterest = default(decimal?), decimal? openValue = default(decimal?), string fairMethod = default(string), double? fairBasisRate = default(double?), double? fairBasis = default(double?), double? fairPrice = default(double?), string markMethod = default(string), double? markPrice = default(double?), double? indicativeTaxRate = default(double?), double? indicativeSettlePrice = default(double?), double? optionUnderlyingPrice = default(double?), double? settledPrice = default(double?), DateTime? timestamp = default(DateTime?))
+        public Instrument(string symbol = default(string), string rootSymbol = default(string), string state = default(string), string typ = default(string), DateTime? listing = default(DateTime?), DateTime? front = default(DateTime?), DateTime? expiry = default(DateTime?), DateTime? settle = default(DateTime?), DateTime? listedSettle = default(DateTime?), string positionCurrency = default(string), string underlying = default(string), string quoteCurrency = default(string), string underlyingSymbol = default(string), string reference = default(string), string referenceSymbol = default(string), DateTime? calcInterval = default(DateTime?), DateTime? publishInterval = default(DateTime?), DateTime? publishTime = default(DateTime?), decimal? maxOrderQty = default(decimal?), double? maxPrice = default(double?), decimal? lotSize = default(decimal?), double? tickSize = default(double?), decimal? multiplier = default(decimal?), string settlCurrency = default(string), decimal? underlyingToPositionMultiplier = default(decimal?), decimal? underlyingToSettleMultiplier = default(decimal?), decimal? quoteToSettleMultiplier = default(decimal?), bool? isQuanto = default(bool?), bool? isInverse = default(bool?), double? initMargin = default(double?), double? maintMargin = default(double?), decimal? riskLimit = default(decimal?), decimal? riskStep = default(decimal?), double? limit = default(double?), bool? taxed = default(bool?), bool? deleverage = default(bool?), double? makerFee = default(double?), double? takerFee = default(double?), double? settlementFee = default(double?), string fundingBaseSymbol = default(string), string fundingQuoteSymbol = default(string), string fundingPremiumSymbol = default(string), DateTime? fundingTimestamp = default(DateTime?), DateTime? fundingInterval = default(DateTime?), double? fundingRate = default(double?), double? indicativeFundingRate = default(double?), DateTime? rebalanceTimestamp = default(DateTime?), DateTime? rebalanceInterval = default(DateTime?), double? prevClosePrice = default(double?), double? limitDownPrice = default(double?), double? limitUpPrice = default(double?), decimal? totalVolume = default(decimal?), decimal? volume = default(decimal?), decimal? volume24h = default(decimal?), decimal? prevTotalTurnover = default(decimal?), decimal? totalTurnover = default(decimal?), decimal? turnover = default(decimal?), decimal? turnover24h = default(decimal?), double? homeNotional24h = default(double?), double? foreignNotional24h = default(double?), double? prevPrice24h = default(double?), double? vwap = default(double?), double? highPrice = default(double?), double? lowPrice = default(double?), double? lastPrice = default(double?), double? lastPriceProtected = default(double?), string lastTickDirection = default(string), double? lastChangePcnt = default(double?), double? bidPrice = default(double?), double? midPrice = default(double?), double? askPrice = default(double?), double? impactBidPrice = default(double?), double? impactMidPrice = default(double?), double? impactAskPrice = default(double?), bool? hasLiquidity = default(bool?), decimal? openInterest = default(decimal?), decimal? openValue = default(decimal?), string fairMethod = default(string), double? fairBasisRate = default(double?), double? fairBasis = default(double?), double? fairPrice = default(double?), string markMethod = default(string), double? markPrice = default(double?), double? indicativeSettlePrice = default(double?), double? settledPriceAdjustmentRate = default(double?), double? settledPrice = default(double?), bool? instantPnl = default(bool?), DateTime? timestamp = default(DateTime?))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -159,14 +144,7 @@ namespace IO.Swagger.Model
             this.Front = front;
             this.Expiry = expiry;
             this.Settle = settle;
-            this.RelistInterval = relistInterval;
-            this.InverseLeg = inverseLeg;
-            this.SellLeg = sellLeg;
-            this.BuyLeg = buyLeg;
-            this.OptionStrikePcnt = optionStrikePcnt;
-            this.OptionStrikeRound = optionStrikeRound;
-            this.OptionStrikePrice = optionStrikePrice;
-            this.OptionMultiplier = optionMultiplier;
+            this.ListedSettle = listedSettle;
             this.PositionCurrency = positionCurrency;
             this.Underlying = underlying;
             this.QuoteCurrency = quoteCurrency;
@@ -192,13 +170,11 @@ namespace IO.Swagger.Model
             this.RiskLimit = riskLimit;
             this.RiskStep = riskStep;
             this.Limit = limit;
-            this.Capped = capped;
             this.Taxed = taxed;
             this.Deleverage = deleverage;
             this.MakerFee = makerFee;
             this.TakerFee = takerFee;
             this.SettlementFee = settlementFee;
-            this.InsuranceFee = insuranceFee;
             this.FundingBaseSymbol = fundingBaseSymbol;
             this.FundingQuoteSymbol = fundingQuoteSymbol;
             this.FundingPremiumSymbol = fundingPremiumSymbol;
@@ -208,15 +184,9 @@ namespace IO.Swagger.Model
             this.IndicativeFundingRate = indicativeFundingRate;
             this.RebalanceTimestamp = rebalanceTimestamp;
             this.RebalanceInterval = rebalanceInterval;
-            this.OpeningTimestamp = openingTimestamp;
-            this.ClosingTimestamp = closingTimestamp;
-            this.SessionInterval = sessionInterval;
             this.PrevClosePrice = prevClosePrice;
             this.LimitDownPrice = limitDownPrice;
             this.LimitUpPrice = limitUpPrice;
-            this.BankruptLimitDownPrice = bankruptLimitDownPrice;
-            this.BankruptLimitUpPrice = bankruptLimitUpPrice;
-            this.PrevTotalVolume = prevTotalVolume;
             this.TotalVolume = totalVolume;
             this.Volume = volume;
             this.Volume24h = volume24h;
@@ -249,10 +219,10 @@ namespace IO.Swagger.Model
             this.FairPrice = fairPrice;
             this.MarkMethod = markMethod;
             this.MarkPrice = markPrice;
-            this.IndicativeTaxRate = indicativeTaxRate;
             this.IndicativeSettlePrice = indicativeSettlePrice;
-            this.OptionUnderlyingPrice = optionUnderlyingPrice;
+            this.SettledPriceAdjustmentRate = settledPriceAdjustmentRate;
             this.SettledPrice = settledPrice;
+            this.InstantPnl = instantPnl;
             this.Timestamp = timestamp;
         }
         
@@ -305,52 +275,10 @@ namespace IO.Swagger.Model
         public DateTime? Settle { get; set; }
 
         /// <summary>
-        /// Gets or Sets RelistInterval
+        /// Gets or Sets ListedSettle
         /// </summary>
-        [DataMember(Name="relistInterval", EmitDefaultValue=false)]
-        public DateTime? RelistInterval { get; set; }
-
-        /// <summary>
-        /// Gets or Sets InverseLeg
-        /// </summary>
-        [DataMember(Name="inverseLeg", EmitDefaultValue=false)]
-        public string InverseLeg { get; set; }
-
-        /// <summary>
-        /// Gets or Sets SellLeg
-        /// </summary>
-        [DataMember(Name="sellLeg", EmitDefaultValue=false)]
-        public string SellLeg { get; set; }
-
-        /// <summary>
-        /// Gets or Sets BuyLeg
-        /// </summary>
-        [DataMember(Name="buyLeg", EmitDefaultValue=false)]
-        public string BuyLeg { get; set; }
-
-        /// <summary>
-        /// Gets or Sets OptionStrikePcnt
-        /// </summary>
-        [DataMember(Name="optionStrikePcnt", EmitDefaultValue=false)]
-        public double? OptionStrikePcnt { get; set; }
-
-        /// <summary>
-        /// Gets or Sets OptionStrikeRound
-        /// </summary>
-        [DataMember(Name="optionStrikeRound", EmitDefaultValue=false)]
-        public double? OptionStrikeRound { get; set; }
-
-        /// <summary>
-        /// Gets or Sets OptionStrikePrice
-        /// </summary>
-        [DataMember(Name="optionStrikePrice", EmitDefaultValue=false)]
-        public double? OptionStrikePrice { get; set; }
-
-        /// <summary>
-        /// Gets or Sets OptionMultiplier
-        /// </summary>
-        [DataMember(Name="optionMultiplier", EmitDefaultValue=false)]
-        public double? OptionMultiplier { get; set; }
+        [DataMember(Name="listedSettle", EmitDefaultValue=false)]
+        public DateTime? ListedSettle { get; set; }
 
         /// <summary>
         /// Gets or Sets PositionCurrency
@@ -503,12 +431,6 @@ namespace IO.Swagger.Model
         public double? Limit { get; set; }
 
         /// <summary>
-        /// Gets or Sets Capped
-        /// </summary>
-        [DataMember(Name="capped", EmitDefaultValue=false)]
-        public bool? Capped { get; set; }
-
-        /// <summary>
         /// Gets or Sets Taxed
         /// </summary>
         [DataMember(Name="taxed", EmitDefaultValue=false)]
@@ -537,12 +459,6 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="settlementFee", EmitDefaultValue=false)]
         public double? SettlementFee { get; set; }
-
-        /// <summary>
-        /// Gets or Sets InsuranceFee
-        /// </summary>
-        [DataMember(Name="insuranceFee", EmitDefaultValue=false)]
-        public double? InsuranceFee { get; set; }
 
         /// <summary>
         /// Gets or Sets FundingBaseSymbol
@@ -599,24 +515,6 @@ namespace IO.Swagger.Model
         public DateTime? RebalanceInterval { get; set; }
 
         /// <summary>
-        /// Gets or Sets OpeningTimestamp
-        /// </summary>
-        [DataMember(Name="openingTimestamp", EmitDefaultValue=false)]
-        public DateTime? OpeningTimestamp { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ClosingTimestamp
-        /// </summary>
-        [DataMember(Name="closingTimestamp", EmitDefaultValue=false)]
-        public DateTime? ClosingTimestamp { get; set; }
-
-        /// <summary>
-        /// Gets or Sets SessionInterval
-        /// </summary>
-        [DataMember(Name="sessionInterval", EmitDefaultValue=false)]
-        public DateTime? SessionInterval { get; set; }
-
-        /// <summary>
         /// Gets or Sets PrevClosePrice
         /// </summary>
         [DataMember(Name="prevClosePrice", EmitDefaultValue=false)]
@@ -633,24 +531,6 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="limitUpPrice", EmitDefaultValue=false)]
         public double? LimitUpPrice { get; set; }
-
-        /// <summary>
-        /// Gets or Sets BankruptLimitDownPrice
-        /// </summary>
-        [DataMember(Name="bankruptLimitDownPrice", EmitDefaultValue=false)]
-        public double? BankruptLimitDownPrice { get; set; }
-
-        /// <summary>
-        /// Gets or Sets BankruptLimitUpPrice
-        /// </summary>
-        [DataMember(Name="bankruptLimitUpPrice", EmitDefaultValue=false)]
-        public double? BankruptLimitUpPrice { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PrevTotalVolume
-        /// </summary>
-        [DataMember(Name="prevTotalVolume", EmitDefaultValue=false)]
-        public decimal? PrevTotalVolume { get; set; }
 
         /// <summary>
         /// Gets or Sets TotalVolume
@@ -845,28 +725,28 @@ namespace IO.Swagger.Model
         public double? MarkPrice { get; set; }
 
         /// <summary>
-        /// Gets or Sets IndicativeTaxRate
-        /// </summary>
-        [DataMember(Name="indicativeTaxRate", EmitDefaultValue=false)]
-        public double? IndicativeTaxRate { get; set; }
-
-        /// <summary>
         /// Gets or Sets IndicativeSettlePrice
         /// </summary>
         [DataMember(Name="indicativeSettlePrice", EmitDefaultValue=false)]
         public double? IndicativeSettlePrice { get; set; }
 
         /// <summary>
-        /// Gets or Sets OptionUnderlyingPrice
+        /// Gets or Sets SettledPriceAdjustmentRate
         /// </summary>
-        [DataMember(Name="optionUnderlyingPrice", EmitDefaultValue=false)]
-        public double? OptionUnderlyingPrice { get; set; }
+        [DataMember(Name="settledPriceAdjustmentRate", EmitDefaultValue=false)]
+        public double? SettledPriceAdjustmentRate { get; set; }
 
         /// <summary>
         /// Gets or Sets SettledPrice
         /// </summary>
         [DataMember(Name="settledPrice", EmitDefaultValue=false)]
         public double? SettledPrice { get; set; }
+
+        /// <summary>
+        /// Gets or Sets InstantPnl
+        /// </summary>
+        [DataMember(Name="instantPnl", EmitDefaultValue=false)]
+        public bool? InstantPnl { get; set; }
 
         /// <summary>
         /// Gets or Sets Timestamp
@@ -890,14 +770,7 @@ namespace IO.Swagger.Model
             sb.Append("  Front: ").Append(Front).Append("\n");
             sb.Append("  Expiry: ").Append(Expiry).Append("\n");
             sb.Append("  Settle: ").Append(Settle).Append("\n");
-            sb.Append("  RelistInterval: ").Append(RelistInterval).Append("\n");
-            sb.Append("  InverseLeg: ").Append(InverseLeg).Append("\n");
-            sb.Append("  SellLeg: ").Append(SellLeg).Append("\n");
-            sb.Append("  BuyLeg: ").Append(BuyLeg).Append("\n");
-            sb.Append("  OptionStrikePcnt: ").Append(OptionStrikePcnt).Append("\n");
-            sb.Append("  OptionStrikeRound: ").Append(OptionStrikeRound).Append("\n");
-            sb.Append("  OptionStrikePrice: ").Append(OptionStrikePrice).Append("\n");
-            sb.Append("  OptionMultiplier: ").Append(OptionMultiplier).Append("\n");
+            sb.Append("  ListedSettle: ").Append(ListedSettle).Append("\n");
             sb.Append("  PositionCurrency: ").Append(PositionCurrency).Append("\n");
             sb.Append("  Underlying: ").Append(Underlying).Append("\n");
             sb.Append("  QuoteCurrency: ").Append(QuoteCurrency).Append("\n");
@@ -923,13 +796,11 @@ namespace IO.Swagger.Model
             sb.Append("  RiskLimit: ").Append(RiskLimit).Append("\n");
             sb.Append("  RiskStep: ").Append(RiskStep).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
-            sb.Append("  Capped: ").Append(Capped).Append("\n");
             sb.Append("  Taxed: ").Append(Taxed).Append("\n");
             sb.Append("  Deleverage: ").Append(Deleverage).Append("\n");
             sb.Append("  MakerFee: ").Append(MakerFee).Append("\n");
             sb.Append("  TakerFee: ").Append(TakerFee).Append("\n");
             sb.Append("  SettlementFee: ").Append(SettlementFee).Append("\n");
-            sb.Append("  InsuranceFee: ").Append(InsuranceFee).Append("\n");
             sb.Append("  FundingBaseSymbol: ").Append(FundingBaseSymbol).Append("\n");
             sb.Append("  FundingQuoteSymbol: ").Append(FundingQuoteSymbol).Append("\n");
             sb.Append("  FundingPremiumSymbol: ").Append(FundingPremiumSymbol).Append("\n");
@@ -939,15 +810,9 @@ namespace IO.Swagger.Model
             sb.Append("  IndicativeFundingRate: ").Append(IndicativeFundingRate).Append("\n");
             sb.Append("  RebalanceTimestamp: ").Append(RebalanceTimestamp).Append("\n");
             sb.Append("  RebalanceInterval: ").Append(RebalanceInterval).Append("\n");
-            sb.Append("  OpeningTimestamp: ").Append(OpeningTimestamp).Append("\n");
-            sb.Append("  ClosingTimestamp: ").Append(ClosingTimestamp).Append("\n");
-            sb.Append("  SessionInterval: ").Append(SessionInterval).Append("\n");
             sb.Append("  PrevClosePrice: ").Append(PrevClosePrice).Append("\n");
             sb.Append("  LimitDownPrice: ").Append(LimitDownPrice).Append("\n");
             sb.Append("  LimitUpPrice: ").Append(LimitUpPrice).Append("\n");
-            sb.Append("  BankruptLimitDownPrice: ").Append(BankruptLimitDownPrice).Append("\n");
-            sb.Append("  BankruptLimitUpPrice: ").Append(BankruptLimitUpPrice).Append("\n");
-            sb.Append("  PrevTotalVolume: ").Append(PrevTotalVolume).Append("\n");
             sb.Append("  TotalVolume: ").Append(TotalVolume).Append("\n");
             sb.Append("  Volume: ").Append(Volume).Append("\n");
             sb.Append("  Volume24h: ").Append(Volume24h).Append("\n");
@@ -980,10 +845,10 @@ namespace IO.Swagger.Model
             sb.Append("  FairPrice: ").Append(FairPrice).Append("\n");
             sb.Append("  MarkMethod: ").Append(MarkMethod).Append("\n");
             sb.Append("  MarkPrice: ").Append(MarkPrice).Append("\n");
-            sb.Append("  IndicativeTaxRate: ").Append(IndicativeTaxRate).Append("\n");
             sb.Append("  IndicativeSettlePrice: ").Append(IndicativeSettlePrice).Append("\n");
-            sb.Append("  OptionUnderlyingPrice: ").Append(OptionUnderlyingPrice).Append("\n");
+            sb.Append("  SettledPriceAdjustmentRate: ").Append(SettledPriceAdjustmentRate).Append("\n");
             sb.Append("  SettledPrice: ").Append(SettledPrice).Append("\n");
+            sb.Append("  InstantPnl: ").Append(InstantPnl).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -1060,44 +925,9 @@ namespace IO.Swagger.Model
                     this.Settle.Equals(input.Settle))
                 ) && 
                 (
-                    this.RelistInterval == input.RelistInterval ||
-                    (this.RelistInterval != null &&
-                    this.RelistInterval.Equals(input.RelistInterval))
-                ) && 
-                (
-                    this.InverseLeg == input.InverseLeg ||
-                    (this.InverseLeg != null &&
-                    this.InverseLeg.Equals(input.InverseLeg))
-                ) && 
-                (
-                    this.SellLeg == input.SellLeg ||
-                    (this.SellLeg != null &&
-                    this.SellLeg.Equals(input.SellLeg))
-                ) && 
-                (
-                    this.BuyLeg == input.BuyLeg ||
-                    (this.BuyLeg != null &&
-                    this.BuyLeg.Equals(input.BuyLeg))
-                ) && 
-                (
-                    this.OptionStrikePcnt == input.OptionStrikePcnt ||
-                    (this.OptionStrikePcnt != null &&
-                    this.OptionStrikePcnt.Equals(input.OptionStrikePcnt))
-                ) && 
-                (
-                    this.OptionStrikeRound == input.OptionStrikeRound ||
-                    (this.OptionStrikeRound != null &&
-                    this.OptionStrikeRound.Equals(input.OptionStrikeRound))
-                ) && 
-                (
-                    this.OptionStrikePrice == input.OptionStrikePrice ||
-                    (this.OptionStrikePrice != null &&
-                    this.OptionStrikePrice.Equals(input.OptionStrikePrice))
-                ) && 
-                (
-                    this.OptionMultiplier == input.OptionMultiplier ||
-                    (this.OptionMultiplier != null &&
-                    this.OptionMultiplier.Equals(input.OptionMultiplier))
+                    this.ListedSettle == input.ListedSettle ||
+                    (this.ListedSettle != null &&
+                    this.ListedSettle.Equals(input.ListedSettle))
                 ) && 
                 (
                     this.PositionCurrency == input.PositionCurrency ||
@@ -1225,11 +1055,6 @@ namespace IO.Swagger.Model
                     this.Limit.Equals(input.Limit))
                 ) && 
                 (
-                    this.Capped == input.Capped ||
-                    (this.Capped != null &&
-                    this.Capped.Equals(input.Capped))
-                ) && 
-                (
                     this.Taxed == input.Taxed ||
                     (this.Taxed != null &&
                     this.Taxed.Equals(input.Taxed))
@@ -1253,11 +1078,6 @@ namespace IO.Swagger.Model
                     this.SettlementFee == input.SettlementFee ||
                     (this.SettlementFee != null &&
                     this.SettlementFee.Equals(input.SettlementFee))
-                ) && 
-                (
-                    this.InsuranceFee == input.InsuranceFee ||
-                    (this.InsuranceFee != null &&
-                    this.InsuranceFee.Equals(input.InsuranceFee))
                 ) && 
                 (
                     this.FundingBaseSymbol == input.FundingBaseSymbol ||
@@ -1305,21 +1125,6 @@ namespace IO.Swagger.Model
                     this.RebalanceInterval.Equals(input.RebalanceInterval))
                 ) && 
                 (
-                    this.OpeningTimestamp == input.OpeningTimestamp ||
-                    (this.OpeningTimestamp != null &&
-                    this.OpeningTimestamp.Equals(input.OpeningTimestamp))
-                ) && 
-                (
-                    this.ClosingTimestamp == input.ClosingTimestamp ||
-                    (this.ClosingTimestamp != null &&
-                    this.ClosingTimestamp.Equals(input.ClosingTimestamp))
-                ) && 
-                (
-                    this.SessionInterval == input.SessionInterval ||
-                    (this.SessionInterval != null &&
-                    this.SessionInterval.Equals(input.SessionInterval))
-                ) && 
-                (
                     this.PrevClosePrice == input.PrevClosePrice ||
                     (this.PrevClosePrice != null &&
                     this.PrevClosePrice.Equals(input.PrevClosePrice))
@@ -1333,21 +1138,6 @@ namespace IO.Swagger.Model
                     this.LimitUpPrice == input.LimitUpPrice ||
                     (this.LimitUpPrice != null &&
                     this.LimitUpPrice.Equals(input.LimitUpPrice))
-                ) && 
-                (
-                    this.BankruptLimitDownPrice == input.BankruptLimitDownPrice ||
-                    (this.BankruptLimitDownPrice != null &&
-                    this.BankruptLimitDownPrice.Equals(input.BankruptLimitDownPrice))
-                ) && 
-                (
-                    this.BankruptLimitUpPrice == input.BankruptLimitUpPrice ||
-                    (this.BankruptLimitUpPrice != null &&
-                    this.BankruptLimitUpPrice.Equals(input.BankruptLimitUpPrice))
-                ) && 
-                (
-                    this.PrevTotalVolume == input.PrevTotalVolume ||
-                    (this.PrevTotalVolume != null &&
-                    this.PrevTotalVolume.Equals(input.PrevTotalVolume))
                 ) && 
                 (
                     this.TotalVolume == input.TotalVolume ||
@@ -1510,24 +1300,24 @@ namespace IO.Swagger.Model
                     this.MarkPrice.Equals(input.MarkPrice))
                 ) && 
                 (
-                    this.IndicativeTaxRate == input.IndicativeTaxRate ||
-                    (this.IndicativeTaxRate != null &&
-                    this.IndicativeTaxRate.Equals(input.IndicativeTaxRate))
-                ) && 
-                (
                     this.IndicativeSettlePrice == input.IndicativeSettlePrice ||
                     (this.IndicativeSettlePrice != null &&
                     this.IndicativeSettlePrice.Equals(input.IndicativeSettlePrice))
                 ) && 
                 (
-                    this.OptionUnderlyingPrice == input.OptionUnderlyingPrice ||
-                    (this.OptionUnderlyingPrice != null &&
-                    this.OptionUnderlyingPrice.Equals(input.OptionUnderlyingPrice))
+                    this.SettledPriceAdjustmentRate == input.SettledPriceAdjustmentRate ||
+                    (this.SettledPriceAdjustmentRate != null &&
+                    this.SettledPriceAdjustmentRate.Equals(input.SettledPriceAdjustmentRate))
                 ) && 
                 (
                     this.SettledPrice == input.SettledPrice ||
                     (this.SettledPrice != null &&
                     this.SettledPrice.Equals(input.SettledPrice))
+                ) && 
+                (
+                    this.InstantPnl == input.InstantPnl ||
+                    (this.InstantPnl != null &&
+                    this.InstantPnl.Equals(input.InstantPnl))
                 ) && 
                 (
                     this.Timestamp == input.Timestamp ||
@@ -1561,22 +1351,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Expiry.GetHashCode();
                 if (this.Settle != null)
                     hashCode = hashCode * 59 + this.Settle.GetHashCode();
-                if (this.RelistInterval != null)
-                    hashCode = hashCode * 59 + this.RelistInterval.GetHashCode();
-                if (this.InverseLeg != null)
-                    hashCode = hashCode * 59 + this.InverseLeg.GetHashCode();
-                if (this.SellLeg != null)
-                    hashCode = hashCode * 59 + this.SellLeg.GetHashCode();
-                if (this.BuyLeg != null)
-                    hashCode = hashCode * 59 + this.BuyLeg.GetHashCode();
-                if (this.OptionStrikePcnt != null)
-                    hashCode = hashCode * 59 + this.OptionStrikePcnt.GetHashCode();
-                if (this.OptionStrikeRound != null)
-                    hashCode = hashCode * 59 + this.OptionStrikeRound.GetHashCode();
-                if (this.OptionStrikePrice != null)
-                    hashCode = hashCode * 59 + this.OptionStrikePrice.GetHashCode();
-                if (this.OptionMultiplier != null)
-                    hashCode = hashCode * 59 + this.OptionMultiplier.GetHashCode();
+                if (this.ListedSettle != null)
+                    hashCode = hashCode * 59 + this.ListedSettle.GetHashCode();
                 if (this.PositionCurrency != null)
                     hashCode = hashCode * 59 + this.PositionCurrency.GetHashCode();
                 if (this.Underlying != null)
@@ -1627,8 +1403,6 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.RiskStep.GetHashCode();
                 if (this.Limit != null)
                     hashCode = hashCode * 59 + this.Limit.GetHashCode();
-                if (this.Capped != null)
-                    hashCode = hashCode * 59 + this.Capped.GetHashCode();
                 if (this.Taxed != null)
                     hashCode = hashCode * 59 + this.Taxed.GetHashCode();
                 if (this.Deleverage != null)
@@ -1639,8 +1413,6 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.TakerFee.GetHashCode();
                 if (this.SettlementFee != null)
                     hashCode = hashCode * 59 + this.SettlementFee.GetHashCode();
-                if (this.InsuranceFee != null)
-                    hashCode = hashCode * 59 + this.InsuranceFee.GetHashCode();
                 if (this.FundingBaseSymbol != null)
                     hashCode = hashCode * 59 + this.FundingBaseSymbol.GetHashCode();
                 if (this.FundingQuoteSymbol != null)
@@ -1659,24 +1431,12 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.RebalanceTimestamp.GetHashCode();
                 if (this.RebalanceInterval != null)
                     hashCode = hashCode * 59 + this.RebalanceInterval.GetHashCode();
-                if (this.OpeningTimestamp != null)
-                    hashCode = hashCode * 59 + this.OpeningTimestamp.GetHashCode();
-                if (this.ClosingTimestamp != null)
-                    hashCode = hashCode * 59 + this.ClosingTimestamp.GetHashCode();
-                if (this.SessionInterval != null)
-                    hashCode = hashCode * 59 + this.SessionInterval.GetHashCode();
                 if (this.PrevClosePrice != null)
                     hashCode = hashCode * 59 + this.PrevClosePrice.GetHashCode();
                 if (this.LimitDownPrice != null)
                     hashCode = hashCode * 59 + this.LimitDownPrice.GetHashCode();
                 if (this.LimitUpPrice != null)
                     hashCode = hashCode * 59 + this.LimitUpPrice.GetHashCode();
-                if (this.BankruptLimitDownPrice != null)
-                    hashCode = hashCode * 59 + this.BankruptLimitDownPrice.GetHashCode();
-                if (this.BankruptLimitUpPrice != null)
-                    hashCode = hashCode * 59 + this.BankruptLimitUpPrice.GetHashCode();
-                if (this.PrevTotalVolume != null)
-                    hashCode = hashCode * 59 + this.PrevTotalVolume.GetHashCode();
                 if (this.TotalVolume != null)
                     hashCode = hashCode * 59 + this.TotalVolume.GetHashCode();
                 if (this.Volume != null)
@@ -1741,14 +1501,14 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.MarkMethod.GetHashCode();
                 if (this.MarkPrice != null)
                     hashCode = hashCode * 59 + this.MarkPrice.GetHashCode();
-                if (this.IndicativeTaxRate != null)
-                    hashCode = hashCode * 59 + this.IndicativeTaxRate.GetHashCode();
                 if (this.IndicativeSettlePrice != null)
                     hashCode = hashCode * 59 + this.IndicativeSettlePrice.GetHashCode();
-                if (this.OptionUnderlyingPrice != null)
-                    hashCode = hashCode * 59 + this.OptionUnderlyingPrice.GetHashCode();
+                if (this.SettledPriceAdjustmentRate != null)
+                    hashCode = hashCode * 59 + this.SettledPriceAdjustmentRate.GetHashCode();
                 if (this.SettledPrice != null)
                     hashCode = hashCode * 59 + this.SettledPrice.GetHashCode();
+                if (this.InstantPnl != null)
+                    hashCode = hashCode * 59 + this.InstantPnl.GetHashCode();
                 if (this.Timestamp != null)
                     hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
                 return hashCode;

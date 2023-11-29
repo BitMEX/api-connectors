@@ -9,20 +9,32 @@ Method | HTTP request | Description
 [**userCommunicationToken**](SWGUserApi.md#usercommunicationtoken) | **POST** /user/communicationToken | Register your communication token for mobile clients
 [**userConfirm**](SWGUserApi.md#userconfirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
 [**userConfirmWithdrawal**](SWGUserApi.md#userconfirmwithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
+[**userCreateSubAccount**](SWGUserApi.md#usercreatesubaccount) | **POST** /user/addSubaccount | Creates a new sub-account.
+[**userCreateUnstakingRequests**](SWGUserApi.md#usercreateunstakingrequests) | **POST** /user/unstakingRequests | Create unstaking request
+[**userDeleteUnstakingRequests**](SWGUserApi.md#userdeleteunstakingrequests) | **DELETE** /user/unstakingRequests | Cancel unstaking request
 [**userGet**](SWGUserApi.md#userget) | **GET** /user | Get your user model.
 [**userGetAffiliateStatus**](SWGUserApi.md#usergetaffiliatestatus) | **GET** /user/affiliateStatus | Get your current affiliate/referral status.
+[**userGetCSA**](SWGUserApi.md#usergetcsa) | **GET** /user/csa | Get your account&#39;s CSA status.
 [**userGetCommission**](SWGUserApi.md#usergetcommission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**userGetDepositAddress**](SWGUserApi.md#usergetdepositaddress) | **GET** /user/depositAddress | Get a deposit address.
 [**userGetExecutionHistory**](SWGUserApi.md#usergetexecutionhistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**userGetMargin**](SWGUserApi.md#usergetmargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**userGetQuoteFillRatio**](SWGUserApi.md#usergetquotefillratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
+[**userGetQuoteValueRatio**](SWGUserApi.md#usergetquotevalueratio) | **GET** /user/quoteValueRatio | Get Quote Value Ratio statistics over the last 3 days
+[**userGetStaking**](SWGUserApi.md#usergetstaking) | **GET** /user/staking | Get the current user staking amount.
+[**userGetStakingInstruments**](SWGUserApi.md#usergetstakinginstruments) | **GET** /user/staking/instruments | List staking instruments
+[**userGetStakingTiers**](SWGUserApi.md#usergetstakingtiers) | **GET** /user/staking/tiers | List staking tiers for a given currency
+[**userGetTradingVolume**](SWGUserApi.md#usergettradingvolume) | **GET** /user/tradingVolume | Get your 30 days USD average trading volume
+[**userGetUnstakingRequests**](SWGUserApi.md#usergetunstakingrequests) | **GET** /user/unstakingRequests | Get the current user unstaking requests
 [**userGetWallet**](SWGUserApi.md#usergetwallet) | **GET** /user/wallet | Get your current wallet information.
 [**userGetWalletHistory**](SWGUserApi.md#usergetwallethistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userGetWalletSummary**](SWGUserApi.md#usergetwalletsummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+[**userGetWalletTransferAccounts**](SWGUserApi.md#usergetwallettransferaccounts) | **GET** /user/getWalletTransferAccounts | Get the list of accounts you can transfer funds between.
 [**userLogout**](SWGUserApi.md#userlogout) | **POST** /user/logout | Log out of BitMEX.
-[**userMinWithdrawalFee**](SWGUserApi.md#userminwithdrawalfee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
 [**userRequestWithdrawal**](SWGUserApi.md#userrequestwithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**userSavePreferences**](SWGUserApi.md#usersavepreferences) | **POST** /user/preferences | Save user preferences.
+[**userUpdateSubAccount**](SWGUserApi.md#userupdatesubaccount) | **POST** /user/updateSubaccount | Updates the sub-account name.
+[**userWalletTransfer**](SWGUserApi.md#userwallettransfer) | **POST** /user/walletTransfer | Execute a transfer to a paired account.
 
 
 # **userCancelWithdrawal**
@@ -76,7 +88,7 @@ No authorization required
 # **userCheckReferralCode**
 ```objc
 -(NSURLSessionTask*) userCheckReferralCodeWithReferralCode: (NSString*) referralCode
-        completionHandler: (void (^)(NSNumber* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 ```
 
 Check if a referral code is valid.
@@ -92,7 +104,7 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 // Check if a referral code is valid.
 [apiInstance userCheckReferralCodeWithReferralCode:referralCode
-          completionHandler: ^(NSNumber* output, NSError* error) {
+          completionHandler: ^(NSObject* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -110,7 +122,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**NSNumber***
+**NSObject***
 
 ### Authorization
 
@@ -288,6 +300,205 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **userCreateSubAccount**
+```objc
+-(NSURLSessionTask*) userCreateSubAccountWithAccountName: (NSString*) accountName
+        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+```
+
+Creates a new sub-account.
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSString* accountName = @"accountName_example"; // 
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Creates a new sub-account.
+[apiInstance userCreateSubAccountWithAccountName:accountName
+          completionHandler: ^(NSObject* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userCreateSubAccount: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountName** | **NSString***|  | 
+
+### Return type
+
+**NSObject***
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userCreateUnstakingRequests**
+```objc
+-(NSURLSessionTask*) userCreateUnstakingRequestsWithSymbol: (NSString*) symbol
+    amount: (NSNumber*) amount
+        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+```
+
+Create unstaking request
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSString* symbol = @"symbol_example"; // 
+NSNumber* amount = @1.2; // 
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Create unstaking request
+[apiInstance userCreateUnstakingRequestsWithSymbol:symbol
+              amount:amount
+          completionHandler: ^(NSObject* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userCreateUnstakingRequests: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **NSString***|  | 
+ **amount** | **NSNumber***|  | 
+
+### Return type
+
+**NSObject***
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userDeleteUnstakingRequests**
+```objc
+-(NSURLSessionTask*) userDeleteUnstakingRequestsWithRedemptionID: (NSString*) redemptionID
+        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+```
+
+Cancel unstaking request
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSString* redemptionID = @"redemptionID_example"; // 
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Cancel unstaking request
+[apiInstance userDeleteUnstakingRequestsWithRedemptionID:redemptionID
+          completionHandler: ^(NSObject* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userDeleteUnstakingRequests: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **redemptionID** | **NSString***|  | 
+
+### Return type
+
+**NSObject***
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **userGet**
 ```objc
 -(NSURLSessionTask*) userGetWithCompletionHandler: 
@@ -351,8 +562,8 @@ This endpoint does not need any parameter.
 
 # **userGetAffiliateStatus**
 ```objc
--(NSURLSessionTask*) userGetAffiliateStatusWithCompletionHandler: 
-        (void (^)(SWGAffiliate* output, NSError* error)) handler;
+-(NSURLSessionTask*) userGetAffiliateStatusWithCurrency: (NSString*) currency
+        completionHandler: (void (^)(SWGAffiliate* output, NSError* error)) handler;
 ```
 
 Get your current affiliate/referral status.
@@ -377,12 +588,13 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
+NSString* currency = @"XBt"; // Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional) (default to XBt)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 // Get your current affiliate/referral status.
-[apiInstance userGetAffiliateStatusWithCompletionHandler: 
-          ^(SWGAffiliate* output, NSError* error) {
+[apiInstance userGetAffiliateStatusWithCurrency:currency
+          completionHandler: ^(SWGAffiliate* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -393,11 +605,75 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **NSString***| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
 
 ### Return type
 
 [**SWGAffiliate***](SWGAffiliate.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userGetCSA**
+```objc
+-(NSURLSessionTask*) userGetCSAWithCompletionHandler: 
+        (void (^)(SWGCollateralSupportAgreement* output, NSError* error)) handler;
+```
+
+Get your account's CSA status.
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Get your account's CSA status.
+[apiInstance userGetCSAWithCompletionHandler: 
+          ^(SWGCollateralSupportAgreement* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userGetCSA: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SWGCollateralSupportAgreement***](SWGCollateralSupportAgreement.md)
 
 ### Authorization
 
@@ -474,6 +750,7 @@ This endpoint does not need any parameter.
 # **userGetDepositAddress**
 ```objc
 -(NSURLSessionTask*) userGetDepositAddressWithCurrency: (NSString*) currency
+    network: (NSString*) network
         completionHandler: (void (^)(NSString* output, NSError* error)) handler;
 ```
 
@@ -499,12 +776,14 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* currency = @"XBt"; //  (optional) (default to XBt)
+NSString* currency = @"currency_example"; // Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
+NSString* network = @"network_example"; // The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 // Get a deposit address.
 [apiInstance userGetDepositAddressWithCurrency:currency
+              network:network
           completionHandler: ^(NSString* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -519,7 +798,8 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **NSString***|  | [optional] [default to XBt]
+ **currency** | **NSString***| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
+ **network** | **NSString***| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
 
 ### Return type
 
@@ -540,7 +820,7 @@ Name | Type | Description  | Notes
 ```objc
 -(NSURLSessionTask*) userGetExecutionHistoryWithSymbol: (NSString*) symbol
     timestamp: (NSDate*) timestamp
-        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSArray<SWGExecution>* output, NSError* error)) handler;
 ```
 
 Get the execution history by day.
@@ -573,7 +853,7 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 // Get the execution history by day.
 [apiInstance userGetExecutionHistoryWithSymbol:symbol
               timestamp:timestamp
-          completionHandler: ^(NSObject* output, NSError* error) {
+          completionHandler: ^(NSArray<SWGExecution>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -592,7 +872,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**NSObject***
+[**NSArray<SWGExecution>***](SWGExecution.md)
 
 ### Authorization
 
@@ -633,7 +913,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* currency = @"XBt"; //  (optional) (default to XBt)
+NSString* currency = @"XBt"; // Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional) (default to XBt)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
@@ -653,7 +933,7 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **NSString***|  | [optional] [default to XBt]
+ **currency** | **NSString***| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
 
 ### Return type
 
@@ -672,8 +952,8 @@ Name | Type | Description  | Notes
 
 # **userGetQuoteFillRatio**
 ```objc
--(NSURLSessionTask*) userGetQuoteFillRatioWithCompletionHandler: 
-        (void (^)(SWGQuoteFillRatio* output, NSError* error)) handler;
+-(NSURLSessionTask*) userGetQuoteFillRatioWithTargetAccountId: (NSNumber*) targetAccountId
+        completionHandler: (void (^)(SWGQuoteFillRatio* output, NSError* error)) handler;
 ```
 
 Get 7 days worth of Quote Fill Ratio statistics.
@@ -698,12 +978,13 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
+NSNumber* targetAccountId = @1.2; // AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 // Get 7 days worth of Quote Fill Ratio statistics.
-[apiInstance userGetQuoteFillRatioWithCompletionHandler: 
-          ^(SWGQuoteFillRatio* output, NSError* error) {
+[apiInstance userGetQuoteFillRatioWithTargetAccountId:targetAccountId
+          completionHandler: ^(SWGQuoteFillRatio* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -714,11 +995,387 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **targetAccountId** | **NSNumber***| AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user | [optional] 
 
 ### Return type
 
 [**SWGQuoteFillRatio***](SWGQuoteFillRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userGetQuoteValueRatio**
+```objc
+-(NSURLSessionTask*) userGetQuoteValueRatioWithTargetAccountId: (NSNumber*) targetAccountId
+        completionHandler: (void (^)(SWGQuoteValueRatio* output, NSError* error)) handler;
+```
+
+Get Quote Value Ratio statistics over the last 3 days
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSNumber* targetAccountId = @1.2; // AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Get Quote Value Ratio statistics over the last 3 days
+[apiInstance userGetQuoteValueRatioWithTargetAccountId:targetAccountId
+          completionHandler: ^(SWGQuoteValueRatio* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userGetQuoteValueRatio: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **targetAccountId** | **NSNumber***| AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user | [optional] 
+
+### Return type
+
+[**SWGQuoteValueRatio***](SWGQuoteValueRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userGetStaking**
+```objc
+-(NSURLSessionTask*) userGetStakingWithCurrency: (NSString*) currency
+        completionHandler: (void (^)(NSArray<SWGStakingRecord>* output, NSError* error)) handler;
+```
+
+Get the current user staking amount.
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSString* currency = @"currency_example"; //  (optional)
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Get the current user staking amount.
+[apiInstance userGetStakingWithCurrency:currency
+          completionHandler: ^(NSArray<SWGStakingRecord>* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userGetStaking: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **NSString***|  | [optional] 
+
+### Return type
+
+[**NSArray<SWGStakingRecord>***](SWGStakingRecord.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userGetStakingInstruments**
+```objc
+-(NSURLSessionTask*) userGetStakingInstrumentsWithSymbol: (NSString*) symbol
+    currency: (NSString*) currency
+        completionHandler: (void (^)(NSArray<SWGXAny>* output, NSError* error)) handler;
+```
+
+List staking instruments
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSString* symbol = @"symbol_example"; //  (optional)
+NSString* currency = @"currency_example"; //  (optional)
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// List staking instruments
+[apiInstance userGetStakingInstrumentsWithSymbol:symbol
+              currency:currency
+          completionHandler: ^(NSArray<SWGXAny>* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userGetStakingInstruments: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **NSString***|  | [optional] 
+ **currency** | **NSString***|  | [optional] 
+
+### Return type
+
+[**NSArray<SWGXAny>***](SWGXAny.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userGetStakingTiers**
+```objc
+-(NSURLSessionTask*) userGetStakingTiersWithCurrency: (NSString*) currency
+        completionHandler: (void (^)(NSArray<SWGXAny>* output, NSError* error)) handler;
+```
+
+List staking tiers for a given currency
+
+### Example 
+```objc
+
+NSString* currency = @"currency_example"; // 
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// List staking tiers for a given currency
+[apiInstance userGetStakingTiersWithCurrency:currency
+          completionHandler: ^(NSArray<SWGXAny>* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userGetStakingTiers: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **NSString***|  | 
+
+### Return type
+
+[**NSArray<SWGXAny>***](SWGXAny.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userGetTradingVolume**
+```objc
+-(NSURLSessionTask*) userGetTradingVolumeWithCompletionHandler: 
+        (void (^)(NSArray<SWGTradingVolume>* output, NSError* error)) handler;
+```
+
+Get your 30 days USD average trading volume
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Get your 30 days USD average trading volume
+[apiInstance userGetTradingVolumeWithCompletionHandler: 
+          ^(NSArray<SWGTradingVolume>* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userGetTradingVolume: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**NSArray<SWGTradingVolume>***](SWGTradingVolume.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userGetUnstakingRequests**
+```objc
+-(NSURLSessionTask*) userGetUnstakingRequestsWithStatus: (NSString*) status
+        completionHandler: (void (^)(NSArray<SWGStakingRecord>* output, NSError* error)) handler;
+```
+
+Get the current user unstaking requests
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSString* status = @"status_example"; // 
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Get the current user unstaking requests
+[apiInstance userGetUnstakingRequestsWithStatus:status
+          completionHandler: ^(NSArray<SWGStakingRecord>* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userGetUnstakingRequests: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **status** | **NSString***|  | 
+
+### Return type
+
+[**NSArray<SWGStakingRecord>***](SWGStakingRecord.md)
 
 ### Authorization
 
@@ -759,7 +1416,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* currency = @"XBt"; //  (optional) (default to XBt)
+NSString* currency = @"XBt"; // Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional) (default to XBt)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
@@ -779,7 +1436,7 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **NSString***|  | [optional] [default to XBt]
+ **currency** | **NSString***| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
 
 ### Return type
 
@@ -801,6 +1458,7 @@ Name | Type | Description  | Notes
 -(NSURLSessionTask*) userGetWalletHistoryWithCurrency: (NSString*) currency
     count: (NSNumber*) count
     start: (NSNumber*) start
+    targetAccountId: (NSNumber*) targetAccountId
         completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler;
 ```
 
@@ -826,9 +1484,10 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* currency = @"XBt"; //  (optional) (default to XBt)
+NSString* currency = @"XBt"; // Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional) (default to XBt)
 NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
 NSNumber* start = @0; // Starting point for results. (optional) (default to 0)
+NSNumber* targetAccountId = @1.2; // AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
@@ -836,6 +1495,7 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 [apiInstance userGetWalletHistoryWithCurrency:currency
               count:count
               start:start
+              targetAccountId:targetAccountId
           completionHandler: ^(NSArray<SWGTransaction>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -850,9 +1510,10 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **NSString***|  | [optional] [default to XBt]
+ **currency** | **NSString***| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
  **count** | **NSNumber***| Number of results to fetch. | [optional] [default to 100]
  **start** | **NSNumber***| Starting point for results. | [optional] [default to 0]
+ **targetAccountId** | **NSNumber***| AccountId to view the history of, must be a paired account with the authorised user requesting the history. | [optional] 
 
 ### Return type
 
@@ -897,7 +1558,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* currency = @"XBt"; //  (optional) (default to XBt)
+NSString* currency = @"XBt"; // Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional) (default to XBt)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
@@ -917,11 +1578,72 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **NSString***|  | [optional] [default to XBt]
+ **currency** | **NSString***| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
 
 ### Return type
 
 [**NSArray<SWGTransaction>***](SWGTransaction.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userGetWalletTransferAccounts**
+```objc
+-(NSURLSessionTask*) userGetWalletTransferAccountsWithCompletionHandler: 
+        (void (^)(NSArray<SWGXAny>* output, NSError* error)) handler;
+```
+
+Get the list of accounts you can transfer funds between.
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Get the list of accounts you can transfer funds between.
+[apiInstance userGetWalletTransferAccountsWithCompletionHandler: 
+          ^(NSArray<SWGXAny>* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userGetWalletTransferAccounts: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**NSArray<SWGXAny>***](SWGXAny.md)
 
 ### Authorization
 
@@ -975,62 +1697,15 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **userMinWithdrawalFee**
-```objc
--(NSURLSessionTask*) userMinWithdrawalFeeWithCurrency: (NSString*) currency
-        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
-```
-
-Get the minimum withdrawal fee for a currency.
-
-This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-
-### Example 
-```objc
-
-NSString* currency = @"XBt"; //  (optional) (default to XBt)
-
-SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
-
-// Get the minimum withdrawal fee for a currency.
-[apiInstance userMinWithdrawalFeeWithCurrency:currency
-          completionHandler: ^(NSObject* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling SWGUserApi->userMinWithdrawalFee: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **currency** | **NSString***|  | [optional] [default to XBt]
-
-### Return type
-
-**NSObject***
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **userRequestWithdrawal**
 ```objc
 -(NSURLSessionTask*) userRequestWithdrawalWithCurrency: (NSString*) currency
+    network: (NSString*) network
     amount: (NSNumber*) amount
-    address: (NSString*) address
     otpToken: (NSString*) otpToken
+    address: (NSString*) address
+    addressId: (NSNumber*) addressId
+    targetUserId: (NSNumber*) targetUserId
     fee: (NSNumber*) fee
     text: (NSString*) text
         completionHandler: (void (^)(SWGTransaction* output, NSError* error)) handler;
@@ -1060,10 +1735,13 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* currency = @"XBt"; // Currency you're withdrawing. Options: `XBt` (default to XBt)
+NSString* currency = @"XBt"; // Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (default to XBt)
+NSString* network = @"network_example"; // The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
 NSNumber* amount = @8.14; // Amount of withdrawal currency.
-NSString* address = @"address_example"; // Destination Address.
-NSString* otpToken = @"otpToken_example"; // 2FA token. Required if 2FA is enabled on your account. (optional)
+NSString* otpToken = @"otpToken_example"; // 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
+NSString* address = @"address_example"; // Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
+NSNumber* addressId = @1.2; // ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
+NSNumber* targetUserId = @1.2; // ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
 NSNumber* fee = @1.2; // Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
 NSString* text = @"text_example"; // Optional annotation, e.g. 'Transfer to home wallet'. (optional)
 
@@ -1071,9 +1749,12 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 // Request a withdrawal to an external wallet.
 [apiInstance userRequestWithdrawalWithCurrency:currency
+              network:network
               amount:amount
-              address:address
               otpToken:otpToken
+              address:address
+              addressId:addressId
+              targetUserId:targetUserId
               fee:fee
               text:text
           completionHandler: ^(SWGTransaction* output, NSError* error) {
@@ -1090,10 +1771,13 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **NSString***| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; | [default to XBt]
+ **currency** | **NSString***| Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | [default to XBt]
+ **network** | **NSString***| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
  **amount** | **NSNumber***| Amount of withdrawal currency. | 
- **address** | **NSString***| Destination Address. | 
- **otpToken** | **NSString***| 2FA token. Required if 2FA is enabled on your account. | [optional] 
+ **otpToken** | **NSString***| 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. | [optional] 
+ **address** | **NSString***| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **addressId** | **NSNumber***| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **targetUserId** | **NSNumber***| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
  **fee** | **NSNumber***| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 
  **text** | **NSString***| Optional annotation, e.g. &#39;Transfer to home wallet&#39;. | [optional] 
 
@@ -1169,6 +1853,154 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SWGUser***](SWGUser.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userUpdateSubAccount**
+```objc
+-(NSURLSessionTask*) userUpdateSubAccountWithTargetAccountId: (NSNumber*) targetAccountId
+    accountName: (NSString*) accountName
+        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+```
+
+Updates the sub-account name.
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSNumber* targetAccountId = @1.2; // 
+NSString* accountName = @"accountName_example"; // 
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Updates the sub-account name.
+[apiInstance userUpdateSubAccountWithTargetAccountId:targetAccountId
+              accountName:accountName
+          completionHandler: ^(NSObject* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userUpdateSubAccount: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **targetAccountId** | **NSNumber***|  | 
+ **accountName** | **NSString***|  | 
+
+### Return type
+
+**NSObject***
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userWalletTransfer**
+```objc
+-(NSURLSessionTask*) userWalletTransferWithCurrency: (NSString*) currency
+    amount: (NSNumber*) amount
+    targetAccountId: (NSNumber*) targetAccountId
+    fromAccountId: (NSNumber*) fromAccountId
+        completionHandler: (void (^)(SWGTransaction* output, NSError* error)) handler;
+```
+
+Execute a transfer to a paired account.
+
+This will send a confirmation email to the email address on record.
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSString* currency = @"currency_example"; // Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
+NSNumber* amount = @8.14; // Amount of transfer.
+NSNumber* targetAccountId = @1.2; // AccountId to send the transfer to, must be a paired account with the user sending the transfer.
+NSNumber* fromAccountId = @1.2; // AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Execute a transfer to a paired account.
+[apiInstance userWalletTransferWithCurrency:currency
+              amount:amount
+              targetAccountId:targetAccountId
+              fromAccountId:fromAccountId
+          completionHandler: ^(SWGTransaction* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userWalletTransfer: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **NSString***| Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
+ **amount** | **NSNumber***| Amount of transfer. | 
+ **targetAccountId** | **NSNumber***| AccountId to send the transfer to, must be a paired account with the user sending the transfer. | 
+ **fromAccountId** | **NSNumber***| AccountID to send the transfer from. Must be paired account with the authenticated user. | [optional] 
+
+### Return type
+
+[**SWGTransaction***](SWGTransaction.md)
 
 ### Authorization
 

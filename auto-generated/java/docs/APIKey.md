@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **name** | **String** |  | 
 **nonce** | [**BigDecimal**](BigDecimal.md) |  | 
 **cidr** | **String** |  |  [optional]
+**cidrs** | [**List&lt;XAny&gt;**](XAny.md) |  |  [optional]
+**targetAccountId** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **permissions** | [**List&lt;XAny&gt;**](XAny.md) |  |  [optional]
 **enabled** | **Boolean** |  |  [optional]
 **userId** | [**BigDecimal**](BigDecimal.md) |  | 

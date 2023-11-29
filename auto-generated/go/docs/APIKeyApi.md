@@ -16,10 +16,10 @@ Get your API Keys.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***APIKeyGetOpts** | optional parameters | nil if no parameters
+ **optional** | ***APIKeyApiAPIKeyGetOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a APIKeyGetOpts struct
+Optional parameters are passed through a pointer to a APIKeyApiAPIKeyGetOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

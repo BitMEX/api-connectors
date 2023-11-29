@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -40,7 +40,7 @@ namespace IO.Swagger.Model
         /// </summary>
         /// <param name="account">account (required).</param>
         /// <param name="symbol">symbol (required).</param>
-        /// <param name="currency">currency (required).</param>
+        /// <param name="currency">currency.</param>
         /// <param name="underlying">underlying.</param>
         /// <param name="quoteCurrency">quoteCurrency.</param>
         /// <param name="commission">commission (default to 0.0).</param>
@@ -53,33 +53,19 @@ namespace IO.Swagger.Model
         /// <param name="rebalancedPnl">rebalancedPnl.</param>
         /// <param name="prevRealisedPnl">prevRealisedPnl.</param>
         /// <param name="prevUnrealisedPnl">prevUnrealisedPnl.</param>
-        /// <param name="prevClosePrice">prevClosePrice (default to 0.0).</param>
-        /// <param name="openingTimestamp">openingTimestamp.</param>
         /// <param name="openingQty">openingQty.</param>
-        /// <param name="openingCost">openingCost.</param>
-        /// <param name="openingComm">openingComm.</param>
         /// <param name="openOrderBuyQty">openOrderBuyQty.</param>
         /// <param name="openOrderBuyCost">openOrderBuyCost.</param>
         /// <param name="openOrderBuyPremium">openOrderBuyPremium.</param>
         /// <param name="openOrderSellQty">openOrderSellQty.</param>
         /// <param name="openOrderSellCost">openOrderSellCost.</param>
         /// <param name="openOrderSellPremium">openOrderSellPremium.</param>
-        /// <param name="execBuyQty">execBuyQty.</param>
-        /// <param name="execBuyCost">execBuyCost.</param>
-        /// <param name="execSellQty">execSellQty.</param>
-        /// <param name="execSellCost">execSellCost.</param>
-        /// <param name="execQty">execQty.</param>
-        /// <param name="execCost">execCost.</param>
-        /// <param name="execComm">execComm.</param>
-        /// <param name="currentTimestamp">currentTimestamp.</param>
         /// <param name="currentQty">currentQty.</param>
         /// <param name="currentCost">currentCost.</param>
         /// <param name="currentComm">currentComm.</param>
         /// <param name="realisedCost">realisedCost.</param>
         /// <param name="unrealisedCost">unrealisedCost.</param>
-        /// <param name="grossOpenCost">grossOpenCost.</param>
         /// <param name="grossOpenPremium">grossOpenPremium.</param>
-        /// <param name="grossExecCost">grossExecCost.</param>
         /// <param name="isOpen">isOpen.</param>
         /// <param name="markPrice">markPrice (default to 0.0).</param>
         /// <param name="markValue">markValue.</param>
@@ -88,38 +74,17 @@ namespace IO.Swagger.Model
         /// <param name="foreignNotional">foreignNotional (default to 0.0).</param>
         /// <param name="posState">posState.</param>
         /// <param name="posCost">posCost.</param>
-        /// <param name="posCost2">posCost2.</param>
         /// <param name="posCross">posCross.</param>
-        /// <param name="posInit">posInit.</param>
         /// <param name="posComm">posComm.</param>
         /// <param name="posLoss">posLoss.</param>
         /// <param name="posMargin">posMargin.</param>
         /// <param name="posMaint">posMaint.</param>
-        /// <param name="posAllowance">posAllowance.</param>
-        /// <param name="taxableMargin">taxableMargin.</param>
         /// <param name="initMargin">initMargin.</param>
         /// <param name="maintMargin">maintMargin.</param>
-        /// <param name="sessionMargin">sessionMargin.</param>
-        /// <param name="targetExcessMargin">targetExcessMargin.</param>
-        /// <param name="varMargin">varMargin.</param>
-        /// <param name="realisedGrossPnl">realisedGrossPnl.</param>
-        /// <param name="realisedTax">realisedTax.</param>
         /// <param name="realisedPnl">realisedPnl.</param>
-        /// <param name="unrealisedGrossPnl">unrealisedGrossPnl.</param>
-        /// <param name="longBankrupt">longBankrupt.</param>
-        /// <param name="shortBankrupt">shortBankrupt.</param>
-        /// <param name="taxBase">taxBase.</param>
-        /// <param name="indicativeTaxRate">indicativeTaxRate (default to 0.0).</param>
-        /// <param name="indicativeTax">indicativeTax.</param>
-        /// <param name="unrealisedTax">unrealisedTax.</param>
         /// <param name="unrealisedPnl">unrealisedPnl.</param>
         /// <param name="unrealisedPnlPcnt">unrealisedPnlPcnt (default to 0.0).</param>
         /// <param name="unrealisedRoePcnt">unrealisedRoePcnt (default to 0.0).</param>
-        /// <param name="simpleQty">simpleQty (default to 0.0).</param>
-        /// <param name="simpleCost">simpleCost (default to 0.0).</param>
-        /// <param name="simpleValue">simpleValue (default to 0.0).</param>
-        /// <param name="simplePnl">simplePnl (default to 0.0).</param>
-        /// <param name="simplePnlPcnt">simplePnlPcnt (default to 0.0).</param>
         /// <param name="avgCostPrice">avgCostPrice (default to 0.0).</param>
         /// <param name="avgEntryPrice">avgEntryPrice (default to 0.0).</param>
         /// <param name="breakEvenPrice">breakEvenPrice (default to 0.0).</param>
@@ -127,9 +92,7 @@ namespace IO.Swagger.Model
         /// <param name="liquidationPrice">liquidationPrice (default to 0.0).</param>
         /// <param name="bankruptPrice">bankruptPrice (default to 0.0).</param>
         /// <param name="timestamp">timestamp.</param>
-        /// <param name="lastPrice">lastPrice (default to 0.0).</param>
-        /// <param name="lastValue">lastValue.</param>
-        public Position(decimal? account = default(decimal?), string symbol = default(string), string currency = default(string), string underlying = default(string), string quoteCurrency = default(string), double? commission = 0.0, double? initMarginReq = 0.0, double? maintMarginReq = 0.0, decimal? riskLimit = default(decimal?), double? leverage = 0.0, bool? crossMargin = default(bool?), double? deleveragePercentile = 0.0, decimal? rebalancedPnl = default(decimal?), decimal? prevRealisedPnl = default(decimal?), decimal? prevUnrealisedPnl = default(decimal?), double? prevClosePrice = 0.0, DateTime? openingTimestamp = default(DateTime?), decimal? openingQty = default(decimal?), decimal? openingCost = default(decimal?), decimal? openingComm = default(decimal?), decimal? openOrderBuyQty = default(decimal?), decimal? openOrderBuyCost = default(decimal?), decimal? openOrderBuyPremium = default(decimal?), decimal? openOrderSellQty = default(decimal?), decimal? openOrderSellCost = default(decimal?), decimal? openOrderSellPremium = default(decimal?), decimal? execBuyQty = default(decimal?), decimal? execBuyCost = default(decimal?), decimal? execSellQty = default(decimal?), decimal? execSellCost = default(decimal?), decimal? execQty = default(decimal?), decimal? execCost = default(decimal?), decimal? execComm = default(decimal?), DateTime? currentTimestamp = default(DateTime?), decimal? currentQty = default(decimal?), decimal? currentCost = default(decimal?), decimal? currentComm = default(decimal?), decimal? realisedCost = default(decimal?), decimal? unrealisedCost = default(decimal?), decimal? grossOpenCost = default(decimal?), decimal? grossOpenPremium = default(decimal?), decimal? grossExecCost = default(decimal?), bool? isOpen = default(bool?), double? markPrice = 0.0, decimal? markValue = default(decimal?), decimal? riskValue = default(decimal?), double? homeNotional = 0.0, double? foreignNotional = 0.0, string posState = default(string), decimal? posCost = default(decimal?), decimal? posCost2 = default(decimal?), decimal? posCross = default(decimal?), decimal? posInit = default(decimal?), decimal? posComm = default(decimal?), decimal? posLoss = default(decimal?), decimal? posMargin = default(decimal?), decimal? posMaint = default(decimal?), decimal? posAllowance = default(decimal?), decimal? taxableMargin = default(decimal?), decimal? initMargin = default(decimal?), decimal? maintMargin = default(decimal?), decimal? sessionMargin = default(decimal?), decimal? targetExcessMargin = default(decimal?), decimal? varMargin = default(decimal?), decimal? realisedGrossPnl = default(decimal?), decimal? realisedTax = default(decimal?), decimal? realisedPnl = default(decimal?), decimal? unrealisedGrossPnl = default(decimal?), decimal? longBankrupt = default(decimal?), decimal? shortBankrupt = default(decimal?), decimal? taxBase = default(decimal?), double? indicativeTaxRate = 0.0, decimal? indicativeTax = default(decimal?), decimal? unrealisedTax = default(decimal?), decimal? unrealisedPnl = default(decimal?), double? unrealisedPnlPcnt = 0.0, double? unrealisedRoePcnt = 0.0, double? simpleQty = 0.0, double? simpleCost = 0.0, double? simpleValue = 0.0, double? simplePnl = 0.0, double? simplePnlPcnt = 0.0, double? avgCostPrice = 0.0, double? avgEntryPrice = 0.0, double? breakEvenPrice = 0.0, double? marginCallPrice = 0.0, double? liquidationPrice = 0.0, double? bankruptPrice = 0.0, DateTime? timestamp = default(DateTime?), double? lastPrice = 0.0, decimal? lastValue = default(decimal?))
+        public Position(decimal? account = default(decimal?), string symbol = default(string), string currency = default(string), string underlying = default(string), string quoteCurrency = default(string), double? commission = 0.0, double? initMarginReq = 0.0, double? maintMarginReq = 0.0, decimal? riskLimit = default(decimal?), double? leverage = 0.0, bool? crossMargin = default(bool?), double? deleveragePercentile = 0.0, decimal? rebalancedPnl = default(decimal?), decimal? prevRealisedPnl = default(decimal?), decimal? prevUnrealisedPnl = default(decimal?), decimal? openingQty = default(decimal?), decimal? openOrderBuyQty = default(decimal?), decimal? openOrderBuyCost = default(decimal?), decimal? openOrderBuyPremium = default(decimal?), decimal? openOrderSellQty = default(decimal?), decimal? openOrderSellCost = default(decimal?), decimal? openOrderSellPremium = default(decimal?), decimal? currentQty = default(decimal?), decimal? currentCost = default(decimal?), decimal? currentComm = default(decimal?), decimal? realisedCost = default(decimal?), decimal? unrealisedCost = default(decimal?), decimal? grossOpenPremium = default(decimal?), bool? isOpen = default(bool?), double? markPrice = 0.0, decimal? markValue = default(decimal?), decimal? riskValue = default(decimal?), double? homeNotional = 0.0, double? foreignNotional = 0.0, string posState = default(string), decimal? posCost = default(decimal?), decimal? posCross = default(decimal?), decimal? posComm = default(decimal?), decimal? posLoss = default(decimal?), decimal? posMargin = default(decimal?), decimal? posMaint = default(decimal?), decimal? initMargin = default(decimal?), decimal? maintMargin = default(decimal?), decimal? realisedPnl = default(decimal?), decimal? unrealisedPnl = default(decimal?), double? unrealisedPnlPcnt = 0.0, double? unrealisedRoePcnt = 0.0, double? avgCostPrice = 0.0, double? avgEntryPrice = 0.0, double? breakEvenPrice = 0.0, double? marginCallPrice = 0.0, double? liquidationPrice = 0.0, double? bankruptPrice = 0.0, DateTime? timestamp = default(DateTime?))
         {
             // to ensure "account" is required (not null)
             if (account == null)
@@ -149,15 +112,7 @@ namespace IO.Swagger.Model
             {
                 this.Symbol = symbol;
             }
-            // to ensure "currency" is required (not null)
-            if (currency == null)
-            {
-                throw new InvalidDataException("currency is a required property for Position and cannot be null");
-            }
-            else
-            {
-                this.Currency = currency;
-            }
+            this.Currency = currency;
             this.Underlying = underlying;
             this.QuoteCurrency = quoteCurrency;
             // use default value if no "commission" provided
@@ -210,41 +165,19 @@ namespace IO.Swagger.Model
             this.RebalancedPnl = rebalancedPnl;
             this.PrevRealisedPnl = prevRealisedPnl;
             this.PrevUnrealisedPnl = prevUnrealisedPnl;
-            // use default value if no "prevClosePrice" provided
-            if (prevClosePrice == null)
-            {
-                this.PrevClosePrice = 0.0;
-            }
-            else
-            {
-                this.PrevClosePrice = prevClosePrice;
-            }
-            this.OpeningTimestamp = openingTimestamp;
             this.OpeningQty = openingQty;
-            this.OpeningCost = openingCost;
-            this.OpeningComm = openingComm;
             this.OpenOrderBuyQty = openOrderBuyQty;
             this.OpenOrderBuyCost = openOrderBuyCost;
             this.OpenOrderBuyPremium = openOrderBuyPremium;
             this.OpenOrderSellQty = openOrderSellQty;
             this.OpenOrderSellCost = openOrderSellCost;
             this.OpenOrderSellPremium = openOrderSellPremium;
-            this.ExecBuyQty = execBuyQty;
-            this.ExecBuyCost = execBuyCost;
-            this.ExecSellQty = execSellQty;
-            this.ExecSellCost = execSellCost;
-            this.ExecQty = execQty;
-            this.ExecCost = execCost;
-            this.ExecComm = execComm;
-            this.CurrentTimestamp = currentTimestamp;
             this.CurrentQty = currentQty;
             this.CurrentCost = currentCost;
             this.CurrentComm = currentComm;
             this.RealisedCost = realisedCost;
             this.UnrealisedCost = unrealisedCost;
-            this.GrossOpenCost = grossOpenCost;
             this.GrossOpenPremium = grossOpenPremium;
-            this.GrossExecCost = grossExecCost;
             this.IsOpen = isOpen;
             // use default value if no "markPrice" provided
             if (markPrice == null)
@@ -277,38 +210,14 @@ namespace IO.Swagger.Model
             }
             this.PosState = posState;
             this.PosCost = posCost;
-            this.PosCost2 = posCost2;
             this.PosCross = posCross;
-            this.PosInit = posInit;
             this.PosComm = posComm;
             this.PosLoss = posLoss;
             this.PosMargin = posMargin;
             this.PosMaint = posMaint;
-            this.PosAllowance = posAllowance;
-            this.TaxableMargin = taxableMargin;
             this.InitMargin = initMargin;
             this.MaintMargin = maintMargin;
-            this.SessionMargin = sessionMargin;
-            this.TargetExcessMargin = targetExcessMargin;
-            this.VarMargin = varMargin;
-            this.RealisedGrossPnl = realisedGrossPnl;
-            this.RealisedTax = realisedTax;
             this.RealisedPnl = realisedPnl;
-            this.UnrealisedGrossPnl = unrealisedGrossPnl;
-            this.LongBankrupt = longBankrupt;
-            this.ShortBankrupt = shortBankrupt;
-            this.TaxBase = taxBase;
-            // use default value if no "indicativeTaxRate" provided
-            if (indicativeTaxRate == null)
-            {
-                this.IndicativeTaxRate = 0.0;
-            }
-            else
-            {
-                this.IndicativeTaxRate = indicativeTaxRate;
-            }
-            this.IndicativeTax = indicativeTax;
-            this.UnrealisedTax = unrealisedTax;
             this.UnrealisedPnl = unrealisedPnl;
             // use default value if no "unrealisedPnlPcnt" provided
             if (unrealisedPnlPcnt == null)
@@ -327,51 +236,6 @@ namespace IO.Swagger.Model
             else
             {
                 this.UnrealisedRoePcnt = unrealisedRoePcnt;
-            }
-            // use default value if no "simpleQty" provided
-            if (simpleQty == null)
-            {
-                this.SimpleQty = 0.0;
-            }
-            else
-            {
-                this.SimpleQty = simpleQty;
-            }
-            // use default value if no "simpleCost" provided
-            if (simpleCost == null)
-            {
-                this.SimpleCost = 0.0;
-            }
-            else
-            {
-                this.SimpleCost = simpleCost;
-            }
-            // use default value if no "simpleValue" provided
-            if (simpleValue == null)
-            {
-                this.SimpleValue = 0.0;
-            }
-            else
-            {
-                this.SimpleValue = simpleValue;
-            }
-            // use default value if no "simplePnl" provided
-            if (simplePnl == null)
-            {
-                this.SimplePnl = 0.0;
-            }
-            else
-            {
-                this.SimplePnl = simplePnl;
-            }
-            // use default value if no "simplePnlPcnt" provided
-            if (simplePnlPcnt == null)
-            {
-                this.SimplePnlPcnt = 0.0;
-            }
-            else
-            {
-                this.SimplePnlPcnt = simplePnlPcnt;
             }
             // use default value if no "avgCostPrice" provided
             if (avgCostPrice == null)
@@ -428,16 +292,6 @@ namespace IO.Swagger.Model
                 this.BankruptPrice = bankruptPrice;
             }
             this.Timestamp = timestamp;
-            // use default value if no "lastPrice" provided
-            if (lastPrice == null)
-            {
-                this.LastPrice = 0.0;
-            }
-            else
-            {
-                this.LastPrice = lastPrice;
-            }
-            this.LastValue = lastValue;
         }
         
         /// <summary>
@@ -531,34 +385,10 @@ namespace IO.Swagger.Model
         public decimal? PrevUnrealisedPnl { get; set; }
 
         /// <summary>
-        /// Gets or Sets PrevClosePrice
-        /// </summary>
-        [DataMember(Name="prevClosePrice", EmitDefaultValue=false)]
-        public double? PrevClosePrice { get; set; }
-
-        /// <summary>
-        /// Gets or Sets OpeningTimestamp
-        /// </summary>
-        [DataMember(Name="openingTimestamp", EmitDefaultValue=false)]
-        public DateTime? OpeningTimestamp { get; set; }
-
-        /// <summary>
         /// Gets or Sets OpeningQty
         /// </summary>
         [DataMember(Name="openingQty", EmitDefaultValue=false)]
         public decimal? OpeningQty { get; set; }
-
-        /// <summary>
-        /// Gets or Sets OpeningCost
-        /// </summary>
-        [DataMember(Name="openingCost", EmitDefaultValue=false)]
-        public decimal? OpeningCost { get; set; }
-
-        /// <summary>
-        /// Gets or Sets OpeningComm
-        /// </summary>
-        [DataMember(Name="openingComm", EmitDefaultValue=false)]
-        public decimal? OpeningComm { get; set; }
 
         /// <summary>
         /// Gets or Sets OpenOrderBuyQty
@@ -597,54 +427,6 @@ namespace IO.Swagger.Model
         public decimal? OpenOrderSellPremium { get; set; }
 
         /// <summary>
-        /// Gets or Sets ExecBuyQty
-        /// </summary>
-        [DataMember(Name="execBuyQty", EmitDefaultValue=false)]
-        public decimal? ExecBuyQty { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ExecBuyCost
-        /// </summary>
-        [DataMember(Name="execBuyCost", EmitDefaultValue=false)]
-        public decimal? ExecBuyCost { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ExecSellQty
-        /// </summary>
-        [DataMember(Name="execSellQty", EmitDefaultValue=false)]
-        public decimal? ExecSellQty { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ExecSellCost
-        /// </summary>
-        [DataMember(Name="execSellCost", EmitDefaultValue=false)]
-        public decimal? ExecSellCost { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ExecQty
-        /// </summary>
-        [DataMember(Name="execQty", EmitDefaultValue=false)]
-        public decimal? ExecQty { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ExecCost
-        /// </summary>
-        [DataMember(Name="execCost", EmitDefaultValue=false)]
-        public decimal? ExecCost { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ExecComm
-        /// </summary>
-        [DataMember(Name="execComm", EmitDefaultValue=false)]
-        public decimal? ExecComm { get; set; }
-
-        /// <summary>
-        /// Gets or Sets CurrentTimestamp
-        /// </summary>
-        [DataMember(Name="currentTimestamp", EmitDefaultValue=false)]
-        public DateTime? CurrentTimestamp { get; set; }
-
-        /// <summary>
         /// Gets or Sets CurrentQty
         /// </summary>
         [DataMember(Name="currentQty", EmitDefaultValue=false)]
@@ -675,22 +457,10 @@ namespace IO.Swagger.Model
         public decimal? UnrealisedCost { get; set; }
 
         /// <summary>
-        /// Gets or Sets GrossOpenCost
-        /// </summary>
-        [DataMember(Name="grossOpenCost", EmitDefaultValue=false)]
-        public decimal? GrossOpenCost { get; set; }
-
-        /// <summary>
         /// Gets or Sets GrossOpenPremium
         /// </summary>
         [DataMember(Name="grossOpenPremium", EmitDefaultValue=false)]
         public decimal? GrossOpenPremium { get; set; }
-
-        /// <summary>
-        /// Gets or Sets GrossExecCost
-        /// </summary>
-        [DataMember(Name="grossExecCost", EmitDefaultValue=false)]
-        public decimal? GrossExecCost { get; set; }
 
         /// <summary>
         /// Gets or Sets IsOpen
@@ -741,22 +511,10 @@ namespace IO.Swagger.Model
         public decimal? PosCost { get; set; }
 
         /// <summary>
-        /// Gets or Sets PosCost2
-        /// </summary>
-        [DataMember(Name="posCost2", EmitDefaultValue=false)]
-        public decimal? PosCost2 { get; set; }
-
-        /// <summary>
         /// Gets or Sets PosCross
         /// </summary>
         [DataMember(Name="posCross", EmitDefaultValue=false)]
         public decimal? PosCross { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PosInit
-        /// </summary>
-        [DataMember(Name="posInit", EmitDefaultValue=false)]
-        public decimal? PosInit { get; set; }
 
         /// <summary>
         /// Gets or Sets PosComm
@@ -783,18 +541,6 @@ namespace IO.Swagger.Model
         public decimal? PosMaint { get; set; }
 
         /// <summary>
-        /// Gets or Sets PosAllowance
-        /// </summary>
-        [DataMember(Name="posAllowance", EmitDefaultValue=false)]
-        public decimal? PosAllowance { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TaxableMargin
-        /// </summary>
-        [DataMember(Name="taxableMargin", EmitDefaultValue=false)]
-        public decimal? TaxableMargin { get; set; }
-
-        /// <summary>
         /// Gets or Sets InitMargin
         /// </summary>
         [DataMember(Name="initMargin", EmitDefaultValue=false)]
@@ -807,82 +553,10 @@ namespace IO.Swagger.Model
         public decimal? MaintMargin { get; set; }
 
         /// <summary>
-        /// Gets or Sets SessionMargin
-        /// </summary>
-        [DataMember(Name="sessionMargin", EmitDefaultValue=false)]
-        public decimal? SessionMargin { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TargetExcessMargin
-        /// </summary>
-        [DataMember(Name="targetExcessMargin", EmitDefaultValue=false)]
-        public decimal? TargetExcessMargin { get; set; }
-
-        /// <summary>
-        /// Gets or Sets VarMargin
-        /// </summary>
-        [DataMember(Name="varMargin", EmitDefaultValue=false)]
-        public decimal? VarMargin { get; set; }
-
-        /// <summary>
-        /// Gets or Sets RealisedGrossPnl
-        /// </summary>
-        [DataMember(Name="realisedGrossPnl", EmitDefaultValue=false)]
-        public decimal? RealisedGrossPnl { get; set; }
-
-        /// <summary>
-        /// Gets or Sets RealisedTax
-        /// </summary>
-        [DataMember(Name="realisedTax", EmitDefaultValue=false)]
-        public decimal? RealisedTax { get; set; }
-
-        /// <summary>
         /// Gets or Sets RealisedPnl
         /// </summary>
         [DataMember(Name="realisedPnl", EmitDefaultValue=false)]
         public decimal? RealisedPnl { get; set; }
-
-        /// <summary>
-        /// Gets or Sets UnrealisedGrossPnl
-        /// </summary>
-        [DataMember(Name="unrealisedGrossPnl", EmitDefaultValue=false)]
-        public decimal? UnrealisedGrossPnl { get; set; }
-
-        /// <summary>
-        /// Gets or Sets LongBankrupt
-        /// </summary>
-        [DataMember(Name="longBankrupt", EmitDefaultValue=false)]
-        public decimal? LongBankrupt { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ShortBankrupt
-        /// </summary>
-        [DataMember(Name="shortBankrupt", EmitDefaultValue=false)]
-        public decimal? ShortBankrupt { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TaxBase
-        /// </summary>
-        [DataMember(Name="taxBase", EmitDefaultValue=false)]
-        public decimal? TaxBase { get; set; }
-
-        /// <summary>
-        /// Gets or Sets IndicativeTaxRate
-        /// </summary>
-        [DataMember(Name="indicativeTaxRate", EmitDefaultValue=false)]
-        public double? IndicativeTaxRate { get; set; }
-
-        /// <summary>
-        /// Gets or Sets IndicativeTax
-        /// </summary>
-        [DataMember(Name="indicativeTax", EmitDefaultValue=false)]
-        public decimal? IndicativeTax { get; set; }
-
-        /// <summary>
-        /// Gets or Sets UnrealisedTax
-        /// </summary>
-        [DataMember(Name="unrealisedTax", EmitDefaultValue=false)]
-        public decimal? UnrealisedTax { get; set; }
 
         /// <summary>
         /// Gets or Sets UnrealisedPnl
@@ -901,36 +575,6 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="unrealisedRoePcnt", EmitDefaultValue=false)]
         public double? UnrealisedRoePcnt { get; set; }
-
-        /// <summary>
-        /// Gets or Sets SimpleQty
-        /// </summary>
-        [DataMember(Name="simpleQty", EmitDefaultValue=false)]
-        public double? SimpleQty { get; set; }
-
-        /// <summary>
-        /// Gets or Sets SimpleCost
-        /// </summary>
-        [DataMember(Name="simpleCost", EmitDefaultValue=false)]
-        public double? SimpleCost { get; set; }
-
-        /// <summary>
-        /// Gets or Sets SimpleValue
-        /// </summary>
-        [DataMember(Name="simpleValue", EmitDefaultValue=false)]
-        public double? SimpleValue { get; set; }
-
-        /// <summary>
-        /// Gets or Sets SimplePnl
-        /// </summary>
-        [DataMember(Name="simplePnl", EmitDefaultValue=false)]
-        public double? SimplePnl { get; set; }
-
-        /// <summary>
-        /// Gets or Sets SimplePnlPcnt
-        /// </summary>
-        [DataMember(Name="simplePnlPcnt", EmitDefaultValue=false)]
-        public double? SimplePnlPcnt { get; set; }
 
         /// <summary>
         /// Gets or Sets AvgCostPrice
@@ -975,18 +619,6 @@ namespace IO.Swagger.Model
         public DateTime? Timestamp { get; set; }
 
         /// <summary>
-        /// Gets or Sets LastPrice
-        /// </summary>
-        [DataMember(Name="lastPrice", EmitDefaultValue=false)]
-        public double? LastPrice { get; set; }
-
-        /// <summary>
-        /// Gets or Sets LastValue
-        /// </summary>
-        [DataMember(Name="lastValue", EmitDefaultValue=false)]
-        public decimal? LastValue { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -1009,33 +641,19 @@ namespace IO.Swagger.Model
             sb.Append("  RebalancedPnl: ").Append(RebalancedPnl).Append("\n");
             sb.Append("  PrevRealisedPnl: ").Append(PrevRealisedPnl).Append("\n");
             sb.Append("  PrevUnrealisedPnl: ").Append(PrevUnrealisedPnl).Append("\n");
-            sb.Append("  PrevClosePrice: ").Append(PrevClosePrice).Append("\n");
-            sb.Append("  OpeningTimestamp: ").Append(OpeningTimestamp).Append("\n");
             sb.Append("  OpeningQty: ").Append(OpeningQty).Append("\n");
-            sb.Append("  OpeningCost: ").Append(OpeningCost).Append("\n");
-            sb.Append("  OpeningComm: ").Append(OpeningComm).Append("\n");
             sb.Append("  OpenOrderBuyQty: ").Append(OpenOrderBuyQty).Append("\n");
             sb.Append("  OpenOrderBuyCost: ").Append(OpenOrderBuyCost).Append("\n");
             sb.Append("  OpenOrderBuyPremium: ").Append(OpenOrderBuyPremium).Append("\n");
             sb.Append("  OpenOrderSellQty: ").Append(OpenOrderSellQty).Append("\n");
             sb.Append("  OpenOrderSellCost: ").Append(OpenOrderSellCost).Append("\n");
             sb.Append("  OpenOrderSellPremium: ").Append(OpenOrderSellPremium).Append("\n");
-            sb.Append("  ExecBuyQty: ").Append(ExecBuyQty).Append("\n");
-            sb.Append("  ExecBuyCost: ").Append(ExecBuyCost).Append("\n");
-            sb.Append("  ExecSellQty: ").Append(ExecSellQty).Append("\n");
-            sb.Append("  ExecSellCost: ").Append(ExecSellCost).Append("\n");
-            sb.Append("  ExecQty: ").Append(ExecQty).Append("\n");
-            sb.Append("  ExecCost: ").Append(ExecCost).Append("\n");
-            sb.Append("  ExecComm: ").Append(ExecComm).Append("\n");
-            sb.Append("  CurrentTimestamp: ").Append(CurrentTimestamp).Append("\n");
             sb.Append("  CurrentQty: ").Append(CurrentQty).Append("\n");
             sb.Append("  CurrentCost: ").Append(CurrentCost).Append("\n");
             sb.Append("  CurrentComm: ").Append(CurrentComm).Append("\n");
             sb.Append("  RealisedCost: ").Append(RealisedCost).Append("\n");
             sb.Append("  UnrealisedCost: ").Append(UnrealisedCost).Append("\n");
-            sb.Append("  GrossOpenCost: ").Append(GrossOpenCost).Append("\n");
             sb.Append("  GrossOpenPremium: ").Append(GrossOpenPremium).Append("\n");
-            sb.Append("  GrossExecCost: ").Append(GrossExecCost).Append("\n");
             sb.Append("  IsOpen: ").Append(IsOpen).Append("\n");
             sb.Append("  MarkPrice: ").Append(MarkPrice).Append("\n");
             sb.Append("  MarkValue: ").Append(MarkValue).Append("\n");
@@ -1044,38 +662,17 @@ namespace IO.Swagger.Model
             sb.Append("  ForeignNotional: ").Append(ForeignNotional).Append("\n");
             sb.Append("  PosState: ").Append(PosState).Append("\n");
             sb.Append("  PosCost: ").Append(PosCost).Append("\n");
-            sb.Append("  PosCost2: ").Append(PosCost2).Append("\n");
             sb.Append("  PosCross: ").Append(PosCross).Append("\n");
-            sb.Append("  PosInit: ").Append(PosInit).Append("\n");
             sb.Append("  PosComm: ").Append(PosComm).Append("\n");
             sb.Append("  PosLoss: ").Append(PosLoss).Append("\n");
             sb.Append("  PosMargin: ").Append(PosMargin).Append("\n");
             sb.Append("  PosMaint: ").Append(PosMaint).Append("\n");
-            sb.Append("  PosAllowance: ").Append(PosAllowance).Append("\n");
-            sb.Append("  TaxableMargin: ").Append(TaxableMargin).Append("\n");
             sb.Append("  InitMargin: ").Append(InitMargin).Append("\n");
             sb.Append("  MaintMargin: ").Append(MaintMargin).Append("\n");
-            sb.Append("  SessionMargin: ").Append(SessionMargin).Append("\n");
-            sb.Append("  TargetExcessMargin: ").Append(TargetExcessMargin).Append("\n");
-            sb.Append("  VarMargin: ").Append(VarMargin).Append("\n");
-            sb.Append("  RealisedGrossPnl: ").Append(RealisedGrossPnl).Append("\n");
-            sb.Append("  RealisedTax: ").Append(RealisedTax).Append("\n");
             sb.Append("  RealisedPnl: ").Append(RealisedPnl).Append("\n");
-            sb.Append("  UnrealisedGrossPnl: ").Append(UnrealisedGrossPnl).Append("\n");
-            sb.Append("  LongBankrupt: ").Append(LongBankrupt).Append("\n");
-            sb.Append("  ShortBankrupt: ").Append(ShortBankrupt).Append("\n");
-            sb.Append("  TaxBase: ").Append(TaxBase).Append("\n");
-            sb.Append("  IndicativeTaxRate: ").Append(IndicativeTaxRate).Append("\n");
-            sb.Append("  IndicativeTax: ").Append(IndicativeTax).Append("\n");
-            sb.Append("  UnrealisedTax: ").Append(UnrealisedTax).Append("\n");
             sb.Append("  UnrealisedPnl: ").Append(UnrealisedPnl).Append("\n");
             sb.Append("  UnrealisedPnlPcnt: ").Append(UnrealisedPnlPcnt).Append("\n");
             sb.Append("  UnrealisedRoePcnt: ").Append(UnrealisedRoePcnt).Append("\n");
-            sb.Append("  SimpleQty: ").Append(SimpleQty).Append("\n");
-            sb.Append("  SimpleCost: ").Append(SimpleCost).Append("\n");
-            sb.Append("  SimpleValue: ").Append(SimpleValue).Append("\n");
-            sb.Append("  SimplePnl: ").Append(SimplePnl).Append("\n");
-            sb.Append("  SimplePnlPcnt: ").Append(SimplePnlPcnt).Append("\n");
             sb.Append("  AvgCostPrice: ").Append(AvgCostPrice).Append("\n");
             sb.Append("  AvgEntryPrice: ").Append(AvgEntryPrice).Append("\n");
             sb.Append("  BreakEvenPrice: ").Append(BreakEvenPrice).Append("\n");
@@ -1083,8 +680,6 @@ namespace IO.Swagger.Model
             sb.Append("  LiquidationPrice: ").Append(LiquidationPrice).Append("\n");
             sb.Append("  BankruptPrice: ").Append(BankruptPrice).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  LastPrice: ").Append(LastPrice).Append("\n");
-            sb.Append("  LastValue: ").Append(LastValue).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -1195,29 +790,9 @@ namespace IO.Swagger.Model
                     this.PrevUnrealisedPnl.Equals(input.PrevUnrealisedPnl))
                 ) && 
                 (
-                    this.PrevClosePrice == input.PrevClosePrice ||
-                    (this.PrevClosePrice != null &&
-                    this.PrevClosePrice.Equals(input.PrevClosePrice))
-                ) && 
-                (
-                    this.OpeningTimestamp == input.OpeningTimestamp ||
-                    (this.OpeningTimestamp != null &&
-                    this.OpeningTimestamp.Equals(input.OpeningTimestamp))
-                ) && 
-                (
                     this.OpeningQty == input.OpeningQty ||
                     (this.OpeningQty != null &&
                     this.OpeningQty.Equals(input.OpeningQty))
-                ) && 
-                (
-                    this.OpeningCost == input.OpeningCost ||
-                    (this.OpeningCost != null &&
-                    this.OpeningCost.Equals(input.OpeningCost))
-                ) && 
-                (
-                    this.OpeningComm == input.OpeningComm ||
-                    (this.OpeningComm != null &&
-                    this.OpeningComm.Equals(input.OpeningComm))
                 ) && 
                 (
                     this.OpenOrderBuyQty == input.OpenOrderBuyQty ||
@@ -1250,46 +825,6 @@ namespace IO.Swagger.Model
                     this.OpenOrderSellPremium.Equals(input.OpenOrderSellPremium))
                 ) && 
                 (
-                    this.ExecBuyQty == input.ExecBuyQty ||
-                    (this.ExecBuyQty != null &&
-                    this.ExecBuyQty.Equals(input.ExecBuyQty))
-                ) && 
-                (
-                    this.ExecBuyCost == input.ExecBuyCost ||
-                    (this.ExecBuyCost != null &&
-                    this.ExecBuyCost.Equals(input.ExecBuyCost))
-                ) && 
-                (
-                    this.ExecSellQty == input.ExecSellQty ||
-                    (this.ExecSellQty != null &&
-                    this.ExecSellQty.Equals(input.ExecSellQty))
-                ) && 
-                (
-                    this.ExecSellCost == input.ExecSellCost ||
-                    (this.ExecSellCost != null &&
-                    this.ExecSellCost.Equals(input.ExecSellCost))
-                ) && 
-                (
-                    this.ExecQty == input.ExecQty ||
-                    (this.ExecQty != null &&
-                    this.ExecQty.Equals(input.ExecQty))
-                ) && 
-                (
-                    this.ExecCost == input.ExecCost ||
-                    (this.ExecCost != null &&
-                    this.ExecCost.Equals(input.ExecCost))
-                ) && 
-                (
-                    this.ExecComm == input.ExecComm ||
-                    (this.ExecComm != null &&
-                    this.ExecComm.Equals(input.ExecComm))
-                ) && 
-                (
-                    this.CurrentTimestamp == input.CurrentTimestamp ||
-                    (this.CurrentTimestamp != null &&
-                    this.CurrentTimestamp.Equals(input.CurrentTimestamp))
-                ) && 
-                (
                     this.CurrentQty == input.CurrentQty ||
                     (this.CurrentQty != null &&
                     this.CurrentQty.Equals(input.CurrentQty))
@@ -1315,19 +850,9 @@ namespace IO.Swagger.Model
                     this.UnrealisedCost.Equals(input.UnrealisedCost))
                 ) && 
                 (
-                    this.GrossOpenCost == input.GrossOpenCost ||
-                    (this.GrossOpenCost != null &&
-                    this.GrossOpenCost.Equals(input.GrossOpenCost))
-                ) && 
-                (
                     this.GrossOpenPremium == input.GrossOpenPremium ||
                     (this.GrossOpenPremium != null &&
                     this.GrossOpenPremium.Equals(input.GrossOpenPremium))
-                ) && 
-                (
-                    this.GrossExecCost == input.GrossExecCost ||
-                    (this.GrossExecCost != null &&
-                    this.GrossExecCost.Equals(input.GrossExecCost))
                 ) && 
                 (
                     this.IsOpen == input.IsOpen ||
@@ -1370,19 +895,9 @@ namespace IO.Swagger.Model
                     this.PosCost.Equals(input.PosCost))
                 ) && 
                 (
-                    this.PosCost2 == input.PosCost2 ||
-                    (this.PosCost2 != null &&
-                    this.PosCost2.Equals(input.PosCost2))
-                ) && 
-                (
                     this.PosCross == input.PosCross ||
                     (this.PosCross != null &&
                     this.PosCross.Equals(input.PosCross))
-                ) && 
-                (
-                    this.PosInit == input.PosInit ||
-                    (this.PosInit != null &&
-                    this.PosInit.Equals(input.PosInit))
                 ) && 
                 (
                     this.PosComm == input.PosComm ||
@@ -1405,16 +920,6 @@ namespace IO.Swagger.Model
                     this.PosMaint.Equals(input.PosMaint))
                 ) && 
                 (
-                    this.PosAllowance == input.PosAllowance ||
-                    (this.PosAllowance != null &&
-                    this.PosAllowance.Equals(input.PosAllowance))
-                ) && 
-                (
-                    this.TaxableMargin == input.TaxableMargin ||
-                    (this.TaxableMargin != null &&
-                    this.TaxableMargin.Equals(input.TaxableMargin))
-                ) && 
-                (
                     this.InitMargin == input.InitMargin ||
                     (this.InitMargin != null &&
                     this.InitMargin.Equals(input.InitMargin))
@@ -1425,69 +930,9 @@ namespace IO.Swagger.Model
                     this.MaintMargin.Equals(input.MaintMargin))
                 ) && 
                 (
-                    this.SessionMargin == input.SessionMargin ||
-                    (this.SessionMargin != null &&
-                    this.SessionMargin.Equals(input.SessionMargin))
-                ) && 
-                (
-                    this.TargetExcessMargin == input.TargetExcessMargin ||
-                    (this.TargetExcessMargin != null &&
-                    this.TargetExcessMargin.Equals(input.TargetExcessMargin))
-                ) && 
-                (
-                    this.VarMargin == input.VarMargin ||
-                    (this.VarMargin != null &&
-                    this.VarMargin.Equals(input.VarMargin))
-                ) && 
-                (
-                    this.RealisedGrossPnl == input.RealisedGrossPnl ||
-                    (this.RealisedGrossPnl != null &&
-                    this.RealisedGrossPnl.Equals(input.RealisedGrossPnl))
-                ) && 
-                (
-                    this.RealisedTax == input.RealisedTax ||
-                    (this.RealisedTax != null &&
-                    this.RealisedTax.Equals(input.RealisedTax))
-                ) && 
-                (
                     this.RealisedPnl == input.RealisedPnl ||
                     (this.RealisedPnl != null &&
                     this.RealisedPnl.Equals(input.RealisedPnl))
-                ) && 
-                (
-                    this.UnrealisedGrossPnl == input.UnrealisedGrossPnl ||
-                    (this.UnrealisedGrossPnl != null &&
-                    this.UnrealisedGrossPnl.Equals(input.UnrealisedGrossPnl))
-                ) && 
-                (
-                    this.LongBankrupt == input.LongBankrupt ||
-                    (this.LongBankrupt != null &&
-                    this.LongBankrupt.Equals(input.LongBankrupt))
-                ) && 
-                (
-                    this.ShortBankrupt == input.ShortBankrupt ||
-                    (this.ShortBankrupt != null &&
-                    this.ShortBankrupt.Equals(input.ShortBankrupt))
-                ) && 
-                (
-                    this.TaxBase == input.TaxBase ||
-                    (this.TaxBase != null &&
-                    this.TaxBase.Equals(input.TaxBase))
-                ) && 
-                (
-                    this.IndicativeTaxRate == input.IndicativeTaxRate ||
-                    (this.IndicativeTaxRate != null &&
-                    this.IndicativeTaxRate.Equals(input.IndicativeTaxRate))
-                ) && 
-                (
-                    this.IndicativeTax == input.IndicativeTax ||
-                    (this.IndicativeTax != null &&
-                    this.IndicativeTax.Equals(input.IndicativeTax))
-                ) && 
-                (
-                    this.UnrealisedTax == input.UnrealisedTax ||
-                    (this.UnrealisedTax != null &&
-                    this.UnrealisedTax.Equals(input.UnrealisedTax))
                 ) && 
                 (
                     this.UnrealisedPnl == input.UnrealisedPnl ||
@@ -1503,31 +948,6 @@ namespace IO.Swagger.Model
                     this.UnrealisedRoePcnt == input.UnrealisedRoePcnt ||
                     (this.UnrealisedRoePcnt != null &&
                     this.UnrealisedRoePcnt.Equals(input.UnrealisedRoePcnt))
-                ) && 
-                (
-                    this.SimpleQty == input.SimpleQty ||
-                    (this.SimpleQty != null &&
-                    this.SimpleQty.Equals(input.SimpleQty))
-                ) && 
-                (
-                    this.SimpleCost == input.SimpleCost ||
-                    (this.SimpleCost != null &&
-                    this.SimpleCost.Equals(input.SimpleCost))
-                ) && 
-                (
-                    this.SimpleValue == input.SimpleValue ||
-                    (this.SimpleValue != null &&
-                    this.SimpleValue.Equals(input.SimpleValue))
-                ) && 
-                (
-                    this.SimplePnl == input.SimplePnl ||
-                    (this.SimplePnl != null &&
-                    this.SimplePnl.Equals(input.SimplePnl))
-                ) && 
-                (
-                    this.SimplePnlPcnt == input.SimplePnlPcnt ||
-                    (this.SimplePnlPcnt != null &&
-                    this.SimplePnlPcnt.Equals(input.SimplePnlPcnt))
                 ) && 
                 (
                     this.AvgCostPrice == input.AvgCostPrice ||
@@ -1563,16 +983,6 @@ namespace IO.Swagger.Model
                     this.Timestamp == input.Timestamp ||
                     (this.Timestamp != null &&
                     this.Timestamp.Equals(input.Timestamp))
-                ) && 
-                (
-                    this.LastPrice == input.LastPrice ||
-                    (this.LastPrice != null &&
-                    this.LastPrice.Equals(input.LastPrice))
-                ) && 
-                (
-                    this.LastValue == input.LastValue ||
-                    (this.LastValue != null &&
-                    this.LastValue.Equals(input.LastValue))
                 );
         }
 
@@ -1615,16 +1025,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.PrevRealisedPnl.GetHashCode();
                 if (this.PrevUnrealisedPnl != null)
                     hashCode = hashCode * 59 + this.PrevUnrealisedPnl.GetHashCode();
-                if (this.PrevClosePrice != null)
-                    hashCode = hashCode * 59 + this.PrevClosePrice.GetHashCode();
-                if (this.OpeningTimestamp != null)
-                    hashCode = hashCode * 59 + this.OpeningTimestamp.GetHashCode();
                 if (this.OpeningQty != null)
                     hashCode = hashCode * 59 + this.OpeningQty.GetHashCode();
-                if (this.OpeningCost != null)
-                    hashCode = hashCode * 59 + this.OpeningCost.GetHashCode();
-                if (this.OpeningComm != null)
-                    hashCode = hashCode * 59 + this.OpeningComm.GetHashCode();
                 if (this.OpenOrderBuyQty != null)
                     hashCode = hashCode * 59 + this.OpenOrderBuyQty.GetHashCode();
                 if (this.OpenOrderBuyCost != null)
@@ -1637,22 +1039,6 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.OpenOrderSellCost.GetHashCode();
                 if (this.OpenOrderSellPremium != null)
                     hashCode = hashCode * 59 + this.OpenOrderSellPremium.GetHashCode();
-                if (this.ExecBuyQty != null)
-                    hashCode = hashCode * 59 + this.ExecBuyQty.GetHashCode();
-                if (this.ExecBuyCost != null)
-                    hashCode = hashCode * 59 + this.ExecBuyCost.GetHashCode();
-                if (this.ExecSellQty != null)
-                    hashCode = hashCode * 59 + this.ExecSellQty.GetHashCode();
-                if (this.ExecSellCost != null)
-                    hashCode = hashCode * 59 + this.ExecSellCost.GetHashCode();
-                if (this.ExecQty != null)
-                    hashCode = hashCode * 59 + this.ExecQty.GetHashCode();
-                if (this.ExecCost != null)
-                    hashCode = hashCode * 59 + this.ExecCost.GetHashCode();
-                if (this.ExecComm != null)
-                    hashCode = hashCode * 59 + this.ExecComm.GetHashCode();
-                if (this.CurrentTimestamp != null)
-                    hashCode = hashCode * 59 + this.CurrentTimestamp.GetHashCode();
                 if (this.CurrentQty != null)
                     hashCode = hashCode * 59 + this.CurrentQty.GetHashCode();
                 if (this.CurrentCost != null)
@@ -1663,12 +1049,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.RealisedCost.GetHashCode();
                 if (this.UnrealisedCost != null)
                     hashCode = hashCode * 59 + this.UnrealisedCost.GetHashCode();
-                if (this.GrossOpenCost != null)
-                    hashCode = hashCode * 59 + this.GrossOpenCost.GetHashCode();
                 if (this.GrossOpenPremium != null)
                     hashCode = hashCode * 59 + this.GrossOpenPremium.GetHashCode();
-                if (this.GrossExecCost != null)
-                    hashCode = hashCode * 59 + this.GrossExecCost.GetHashCode();
                 if (this.IsOpen != null)
                     hashCode = hashCode * 59 + this.IsOpen.GetHashCode();
                 if (this.MarkPrice != null)
@@ -1685,12 +1067,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.PosState.GetHashCode();
                 if (this.PosCost != null)
                     hashCode = hashCode * 59 + this.PosCost.GetHashCode();
-                if (this.PosCost2 != null)
-                    hashCode = hashCode * 59 + this.PosCost2.GetHashCode();
                 if (this.PosCross != null)
                     hashCode = hashCode * 59 + this.PosCross.GetHashCode();
-                if (this.PosInit != null)
-                    hashCode = hashCode * 59 + this.PosInit.GetHashCode();
                 if (this.PosComm != null)
                     hashCode = hashCode * 59 + this.PosComm.GetHashCode();
                 if (this.PosLoss != null)
@@ -1699,56 +1077,18 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.PosMargin.GetHashCode();
                 if (this.PosMaint != null)
                     hashCode = hashCode * 59 + this.PosMaint.GetHashCode();
-                if (this.PosAllowance != null)
-                    hashCode = hashCode * 59 + this.PosAllowance.GetHashCode();
-                if (this.TaxableMargin != null)
-                    hashCode = hashCode * 59 + this.TaxableMargin.GetHashCode();
                 if (this.InitMargin != null)
                     hashCode = hashCode * 59 + this.InitMargin.GetHashCode();
                 if (this.MaintMargin != null)
                     hashCode = hashCode * 59 + this.MaintMargin.GetHashCode();
-                if (this.SessionMargin != null)
-                    hashCode = hashCode * 59 + this.SessionMargin.GetHashCode();
-                if (this.TargetExcessMargin != null)
-                    hashCode = hashCode * 59 + this.TargetExcessMargin.GetHashCode();
-                if (this.VarMargin != null)
-                    hashCode = hashCode * 59 + this.VarMargin.GetHashCode();
-                if (this.RealisedGrossPnl != null)
-                    hashCode = hashCode * 59 + this.RealisedGrossPnl.GetHashCode();
-                if (this.RealisedTax != null)
-                    hashCode = hashCode * 59 + this.RealisedTax.GetHashCode();
                 if (this.RealisedPnl != null)
                     hashCode = hashCode * 59 + this.RealisedPnl.GetHashCode();
-                if (this.UnrealisedGrossPnl != null)
-                    hashCode = hashCode * 59 + this.UnrealisedGrossPnl.GetHashCode();
-                if (this.LongBankrupt != null)
-                    hashCode = hashCode * 59 + this.LongBankrupt.GetHashCode();
-                if (this.ShortBankrupt != null)
-                    hashCode = hashCode * 59 + this.ShortBankrupt.GetHashCode();
-                if (this.TaxBase != null)
-                    hashCode = hashCode * 59 + this.TaxBase.GetHashCode();
-                if (this.IndicativeTaxRate != null)
-                    hashCode = hashCode * 59 + this.IndicativeTaxRate.GetHashCode();
-                if (this.IndicativeTax != null)
-                    hashCode = hashCode * 59 + this.IndicativeTax.GetHashCode();
-                if (this.UnrealisedTax != null)
-                    hashCode = hashCode * 59 + this.UnrealisedTax.GetHashCode();
                 if (this.UnrealisedPnl != null)
                     hashCode = hashCode * 59 + this.UnrealisedPnl.GetHashCode();
                 if (this.UnrealisedPnlPcnt != null)
                     hashCode = hashCode * 59 + this.UnrealisedPnlPcnt.GetHashCode();
                 if (this.UnrealisedRoePcnt != null)
                     hashCode = hashCode * 59 + this.UnrealisedRoePcnt.GetHashCode();
-                if (this.SimpleQty != null)
-                    hashCode = hashCode * 59 + this.SimpleQty.GetHashCode();
-                if (this.SimpleCost != null)
-                    hashCode = hashCode * 59 + this.SimpleCost.GetHashCode();
-                if (this.SimpleValue != null)
-                    hashCode = hashCode * 59 + this.SimpleValue.GetHashCode();
-                if (this.SimplePnl != null)
-                    hashCode = hashCode * 59 + this.SimplePnl.GetHashCode();
-                if (this.SimplePnlPcnt != null)
-                    hashCode = hashCode * 59 + this.SimplePnlPcnt.GetHashCode();
                 if (this.AvgCostPrice != null)
                     hashCode = hashCode * 59 + this.AvgCostPrice.GetHashCode();
                 if (this.AvgEntryPrice != null)
@@ -1763,10 +1103,6 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.BankruptPrice.GetHashCode();
                 if (this.Timestamp != null)
                     hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
-                if (this.LastPrice != null)
-                    hashCode = hashCode * 59 + this.LastPrice.GetHashCode();
-                if (this.LastValue != null)
-                    hashCode = hashCode * 59 + this.LastValue.GetHashCode();
                 return hashCode;
             }
         }

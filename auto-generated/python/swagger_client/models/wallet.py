@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class Wallet(object):
@@ -33,17 +35,6 @@ class Wallet(object):
     swagger_types = {
         'account': 'float',
         'currency': 'str',
-        'prev_deposited': 'float',
-        'prev_withdrawn': 'float',
-        'prev_transfer_in': 'float',
-        'prev_transfer_out': 'float',
-        'prev_amount': 'float',
-        'prev_timestamp': 'datetime',
-        'delta_deposited': 'float',
-        'delta_withdrawn': 'float',
-        'delta_transfer_in': 'float',
-        'delta_transfer_out': 'float',
-        'delta_amount': 'float',
         'deposited': 'float',
         'withdrawn': 'float',
         'transfer_in': 'float',
@@ -52,26 +43,12 @@ class Wallet(object):
         'pending_credit': 'float',
         'pending_debit': 'float',
         'confirmed_debit': 'float',
-        'timestamp': 'datetime',
-        'addr': 'str',
-        'script': 'str',
-        'withdrawal_lock': 'list[str]'
+        'timestamp': 'datetime'
     }
 
     attribute_map = {
         'account': 'account',
         'currency': 'currency',
-        'prev_deposited': 'prevDeposited',
-        'prev_withdrawn': 'prevWithdrawn',
-        'prev_transfer_in': 'prevTransferIn',
-        'prev_transfer_out': 'prevTransferOut',
-        'prev_amount': 'prevAmount',
-        'prev_timestamp': 'prevTimestamp',
-        'delta_deposited': 'deltaDeposited',
-        'delta_withdrawn': 'deltaWithdrawn',
-        'delta_transfer_in': 'deltaTransferIn',
-        'delta_transfer_out': 'deltaTransferOut',
-        'delta_amount': 'deltaAmount',
         'deposited': 'deposited',
         'withdrawn': 'withdrawn',
         'transfer_in': 'transferIn',
@@ -80,28 +57,17 @@ class Wallet(object):
         'pending_credit': 'pendingCredit',
         'pending_debit': 'pendingDebit',
         'confirmed_debit': 'confirmedDebit',
-        'timestamp': 'timestamp',
-        'addr': 'addr',
-        'script': 'script',
-        'withdrawal_lock': 'withdrawalLock'
+        'timestamp': 'timestamp'
     }
 
-    def __init__(self, account=None, currency=None, prev_deposited=None, prev_withdrawn=None, prev_transfer_in=None, prev_transfer_out=None, prev_amount=None, prev_timestamp=None, delta_deposited=None, delta_withdrawn=None, delta_transfer_in=None, delta_transfer_out=None, delta_amount=None, deposited=None, withdrawn=None, transfer_in=None, transfer_out=None, amount=None, pending_credit=None, pending_debit=None, confirmed_debit=None, timestamp=None, addr=None, script=None, withdrawal_lock=None):  # noqa: E501
+    def __init__(self, account=None, currency=None, deposited=None, withdrawn=None, transfer_in=None, transfer_out=None, amount=None, pending_credit=None, pending_debit=None, confirmed_debit=None, timestamp=None, _configuration=None):  # noqa: E501
         """Wallet - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._account = None
         self._currency = None
-        self._prev_deposited = None
-        self._prev_withdrawn = None
-        self._prev_transfer_in = None
-        self._prev_transfer_out = None
-        self._prev_amount = None
-        self._prev_timestamp = None
-        self._delta_deposited = None
-        self._delta_withdrawn = None
-        self._delta_transfer_in = None
-        self._delta_transfer_out = None
-        self._delta_amount = None
         self._deposited = None
         self._withdrawn = None
         self._transfer_in = None
@@ -111,35 +77,10 @@ class Wallet(object):
         self._pending_debit = None
         self._confirmed_debit = None
         self._timestamp = None
-        self._addr = None
-        self._script = None
-        self._withdrawal_lock = None
         self.discriminator = None
 
         self.account = account
         self.currency = currency
-        if prev_deposited is not None:
-            self.prev_deposited = prev_deposited
-        if prev_withdrawn is not None:
-            self.prev_withdrawn = prev_withdrawn
-        if prev_transfer_in is not None:
-            self.prev_transfer_in = prev_transfer_in
-        if prev_transfer_out is not None:
-            self.prev_transfer_out = prev_transfer_out
-        if prev_amount is not None:
-            self.prev_amount = prev_amount
-        if prev_timestamp is not None:
-            self.prev_timestamp = prev_timestamp
-        if delta_deposited is not None:
-            self.delta_deposited = delta_deposited
-        if delta_withdrawn is not None:
-            self.delta_withdrawn = delta_withdrawn
-        if delta_transfer_in is not None:
-            self.delta_transfer_in = delta_transfer_in
-        if delta_transfer_out is not None:
-            self.delta_transfer_out = delta_transfer_out
-        if delta_amount is not None:
-            self.delta_amount = delta_amount
         if deposited is not None:
             self.deposited = deposited
         if withdrawn is not None:
@@ -158,12 +99,6 @@ class Wallet(object):
             self.confirmed_debit = confirmed_debit
         if timestamp is not None:
             self.timestamp = timestamp
-        if addr is not None:
-            self.addr = addr
-        if script is not None:
-            self.script = script
-        if withdrawal_lock is not None:
-            self.withdrawal_lock = withdrawal_lock
 
     @property
     def account(self):
@@ -183,7 +118,7 @@ class Wallet(object):
         :param account: The account of this Wallet.  # noqa: E501
         :type: float
         """
-        if account is None:
+        if self._configuration.client_side_validation and account is None:
             raise ValueError("Invalid value for `account`, must not be `None`")  # noqa: E501
 
         self._account = account
@@ -206,241 +141,10 @@ class Wallet(object):
         :param currency: The currency of this Wallet.  # noqa: E501
         :type: str
         """
-        if currency is None:
+        if self._configuration.client_side_validation and currency is None:
             raise ValueError("Invalid value for `currency`, must not be `None`")  # noqa: E501
 
         self._currency = currency
-
-    @property
-    def prev_deposited(self):
-        """Gets the prev_deposited of this Wallet.  # noqa: E501
-
-
-        :return: The prev_deposited of this Wallet.  # noqa: E501
-        :rtype: float
-        """
-        return self._prev_deposited
-
-    @prev_deposited.setter
-    def prev_deposited(self, prev_deposited):
-        """Sets the prev_deposited of this Wallet.
-
-
-        :param prev_deposited: The prev_deposited of this Wallet.  # noqa: E501
-        :type: float
-        """
-
-        self._prev_deposited = prev_deposited
-
-    @property
-    def prev_withdrawn(self):
-        """Gets the prev_withdrawn of this Wallet.  # noqa: E501
-
-
-        :return: The prev_withdrawn of this Wallet.  # noqa: E501
-        :rtype: float
-        """
-        return self._prev_withdrawn
-
-    @prev_withdrawn.setter
-    def prev_withdrawn(self, prev_withdrawn):
-        """Sets the prev_withdrawn of this Wallet.
-
-
-        :param prev_withdrawn: The prev_withdrawn of this Wallet.  # noqa: E501
-        :type: float
-        """
-
-        self._prev_withdrawn = prev_withdrawn
-
-    @property
-    def prev_transfer_in(self):
-        """Gets the prev_transfer_in of this Wallet.  # noqa: E501
-
-
-        :return: The prev_transfer_in of this Wallet.  # noqa: E501
-        :rtype: float
-        """
-        return self._prev_transfer_in
-
-    @prev_transfer_in.setter
-    def prev_transfer_in(self, prev_transfer_in):
-        """Sets the prev_transfer_in of this Wallet.
-
-
-        :param prev_transfer_in: The prev_transfer_in of this Wallet.  # noqa: E501
-        :type: float
-        """
-
-        self._prev_transfer_in = prev_transfer_in
-
-    @property
-    def prev_transfer_out(self):
-        """Gets the prev_transfer_out of this Wallet.  # noqa: E501
-
-
-        :return: The prev_transfer_out of this Wallet.  # noqa: E501
-        :rtype: float
-        """
-        return self._prev_transfer_out
-
-    @prev_transfer_out.setter
-    def prev_transfer_out(self, prev_transfer_out):
-        """Sets the prev_transfer_out of this Wallet.
-
-
-        :param prev_transfer_out: The prev_transfer_out of this Wallet.  # noqa: E501
-        :type: float
-        """
-
-        self._prev_transfer_out = prev_transfer_out
-
-    @property
-    def prev_amount(self):
-        """Gets the prev_amount of this Wallet.  # noqa: E501
-
-
-        :return: The prev_amount of this Wallet.  # noqa: E501
-        :rtype: float
-        """
-        return self._prev_amount
-
-    @prev_amount.setter
-    def prev_amount(self, prev_amount):
-        """Sets the prev_amount of this Wallet.
-
-
-        :param prev_amount: The prev_amount of this Wallet.  # noqa: E501
-        :type: float
-        """
-
-        self._prev_amount = prev_amount
-
-    @property
-    def prev_timestamp(self):
-        """Gets the prev_timestamp of this Wallet.  # noqa: E501
-
-
-        :return: The prev_timestamp of this Wallet.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._prev_timestamp
-
-    @prev_timestamp.setter
-    def prev_timestamp(self, prev_timestamp):
-        """Sets the prev_timestamp of this Wallet.
-
-
-        :param prev_timestamp: The prev_timestamp of this Wallet.  # noqa: E501
-        :type: datetime
-        """
-
-        self._prev_timestamp = prev_timestamp
-
-    @property
-    def delta_deposited(self):
-        """Gets the delta_deposited of this Wallet.  # noqa: E501
-
-
-        :return: The delta_deposited of this Wallet.  # noqa: E501
-        :rtype: float
-        """
-        return self._delta_deposited
-
-    @delta_deposited.setter
-    def delta_deposited(self, delta_deposited):
-        """Sets the delta_deposited of this Wallet.
-
-
-        :param delta_deposited: The delta_deposited of this Wallet.  # noqa: E501
-        :type: float
-        """
-
-        self._delta_deposited = delta_deposited
-
-    @property
-    def delta_withdrawn(self):
-        """Gets the delta_withdrawn of this Wallet.  # noqa: E501
-
-
-        :return: The delta_withdrawn of this Wallet.  # noqa: E501
-        :rtype: float
-        """
-        return self._delta_withdrawn
-
-    @delta_withdrawn.setter
-    def delta_withdrawn(self, delta_withdrawn):
-        """Sets the delta_withdrawn of this Wallet.
-
-
-        :param delta_withdrawn: The delta_withdrawn of this Wallet.  # noqa: E501
-        :type: float
-        """
-
-        self._delta_withdrawn = delta_withdrawn
-
-    @property
-    def delta_transfer_in(self):
-        """Gets the delta_transfer_in of this Wallet.  # noqa: E501
-
-
-        :return: The delta_transfer_in of this Wallet.  # noqa: E501
-        :rtype: float
-        """
-        return self._delta_transfer_in
-
-    @delta_transfer_in.setter
-    def delta_transfer_in(self, delta_transfer_in):
-        """Sets the delta_transfer_in of this Wallet.
-
-
-        :param delta_transfer_in: The delta_transfer_in of this Wallet.  # noqa: E501
-        :type: float
-        """
-
-        self._delta_transfer_in = delta_transfer_in
-
-    @property
-    def delta_transfer_out(self):
-        """Gets the delta_transfer_out of this Wallet.  # noqa: E501
-
-
-        :return: The delta_transfer_out of this Wallet.  # noqa: E501
-        :rtype: float
-        """
-        return self._delta_transfer_out
-
-    @delta_transfer_out.setter
-    def delta_transfer_out(self, delta_transfer_out):
-        """Sets the delta_transfer_out of this Wallet.
-
-
-        :param delta_transfer_out: The delta_transfer_out of this Wallet.  # noqa: E501
-        :type: float
-        """
-
-        self._delta_transfer_out = delta_transfer_out
-
-    @property
-    def delta_amount(self):
-        """Gets the delta_amount of this Wallet.  # noqa: E501
-
-
-        :return: The delta_amount of this Wallet.  # noqa: E501
-        :rtype: float
-        """
-        return self._delta_amount
-
-    @delta_amount.setter
-    def delta_amount(self, delta_amount):
-        """Sets the delta_amount of this Wallet.
-
-
-        :param delta_amount: The delta_amount of this Wallet.  # noqa: E501
-        :type: float
-        """
-
-        self._delta_amount = delta_amount
 
     @property
     def deposited(self):
@@ -631,69 +335,6 @@ class Wallet(object):
 
         self._timestamp = timestamp
 
-    @property
-    def addr(self):
-        """Gets the addr of this Wallet.  # noqa: E501
-
-
-        :return: The addr of this Wallet.  # noqa: E501
-        :rtype: str
-        """
-        return self._addr
-
-    @addr.setter
-    def addr(self, addr):
-        """Sets the addr of this Wallet.
-
-
-        :param addr: The addr of this Wallet.  # noqa: E501
-        :type: str
-        """
-
-        self._addr = addr
-
-    @property
-    def script(self):
-        """Gets the script of this Wallet.  # noqa: E501
-
-
-        :return: The script of this Wallet.  # noqa: E501
-        :rtype: str
-        """
-        return self._script
-
-    @script.setter
-    def script(self, script):
-        """Sets the script of this Wallet.
-
-
-        :param script: The script of this Wallet.  # noqa: E501
-        :type: str
-        """
-
-        self._script = script
-
-    @property
-    def withdrawal_lock(self):
-        """Gets the withdrawal_lock of this Wallet.  # noqa: E501
-
-
-        :return: The withdrawal_lock of this Wallet.  # noqa: E501
-        :rtype: list[str]
-        """
-        return self._withdrawal_lock
-
-    @withdrawal_lock.setter
-    def withdrawal_lock(self, withdrawal_lock):
-        """Sets the withdrawal_lock of this Wallet.
-
-
-        :param withdrawal_lock: The withdrawal_lock of this Wallet.  # noqa: E501
-        :type: list[str]
-        """
-
-        self._withdrawal_lock = withdrawal_lock
-
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -734,8 +375,11 @@ class Wallet(object):
         if not isinstance(other, Wallet):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, Wallet):
+            return True
+
+        return self.to_dict() != other.to_dict()

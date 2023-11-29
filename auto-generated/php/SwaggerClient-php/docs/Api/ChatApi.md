@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**chatGet**](ChatApi.md#chatGet) | **GET** /chat | Get chat messages.
 [**chatGetChannels**](ChatApi.md#chatGetChannels) | **GET** /chat/channels | Get available channels.
 [**chatGetConnected**](ChatApi.md#chatGetConnected) | **GET** /chat/connected | Get connected users.
+[**chatGetPinnedMessage**](ChatApi.md#chatGetPinnedMessage) | **GET** /chat/pinned | Get pinned message for a channel.
 [**chatNew**](ChatApi.md#chatNew) | **POST** /chat | Send a chat message.
 
 
@@ -28,7 +29,7 @@ $apiInstance = new Swagger\Client\Api\ChatApi(
 $count = 100; // float | Number of results to fetch.
 $start = 0; // float | Starting ID for results.
 $reverse = true; // bool | If true, will sort results newest first.
-$channel_id = 1.2; // double | Channel id. GET /chat/channels for ids. Leave blank for all.
+$channel_id = 1; // double | Channel id. GET /chat/channels for ids. Global English by default
 
 try {
     $result = $apiInstance->chatGet($count, $start, $reverse, $channel_id);
@@ -46,7 +47,7 @@ Name | Type | Description  | Notes
  **count** | **float**| Number of results to fetch. | [optional] [default to 100]
  **start** | **float**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to true]
- **channel_id** | **double**| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional]
+ **channel_id** | **double**| Channel id. GET /chat/channels for ids. Global English by default | [optional] [default to 1]
 
 ### Return type
 
@@ -139,6 +140,53 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**\Swagger\Client\Model\ConnectedUsers**](../Model/ConnectedUsers.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **chatGetPinnedMessage**
+> \Swagger\Client\Model\PinnedMessage chatGetPinnedMessage($channel_id)
+
+Get pinned message for a channel.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new Swagger\Client\Api\ChatApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$channel_id = 1.2; // double | 
+
+try {
+    $result = $apiInstance->chatGetPinnedMessage($channel_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ChatApi->chatGetPinnedMessage: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **channel_id** | **double**|  |
+
+### Return type
+
+[**\Swagger\Client\Model\PinnedMessage**](../Model/PinnedMessage.md)
 
 ### Authorization
 

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -23,6 +23,8 @@ public class ChatChannel {
   private BigDecimal id = null;
   @SerializedName("name")
   private String name = null;
+  @SerializedName("isPrivate")
+  private Boolean isPrivate = null;
 
   /**
    **/
@@ -44,6 +46,16 @@ public class ChatChannel {
     this.name = name;
   }
 
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public Boolean getIsPrivate() {
+    return isPrivate;
+  }
+  public void setIsPrivate(Boolean isPrivate) {
+    this.isPrivate = isPrivate;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -55,7 +67,8 @@ public class ChatChannel {
     }
     ChatChannel chatChannel = (ChatChannel) o;
     return (this.id == null ? chatChannel.id == null : this.id.equals(chatChannel.id)) &&
-        (this.name == null ? chatChannel.name == null : this.name.equals(chatChannel.name));
+        (this.name == null ? chatChannel.name == null : this.name.equals(chatChannel.name)) &&
+        (this.isPrivate == null ? chatChannel.isPrivate == null : this.isPrivate.equals(chatChannel.isPrivate));
   }
 
   @Override
@@ -63,6 +76,7 @@ public class ChatChannel {
     int result = 17;
     result = 31 * result + (this.id == null ? 0: this.id.hashCode());
     result = 31 * result + (this.name == null ? 0: this.name.hashCode());
+    result = 31 * result + (this.isPrivate == null ? 0: this.isPrivate.hashCode());
     return result;
   }
 
@@ -73,6 +87,7 @@ public class ChatChannel {
     
     sb.append("  id: ").append(id).append("\n");
     sb.append("  name: ").append(name).append("\n");
+    sb.append("  isPrivate: ").append(isPrivate).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -6,6 +6,7 @@
   self = [super init];
   if (self) {
     // initialize property's default value, if any
+    self.isUser = @(YES);
     
   }
   return self;
@@ -17,7 +18,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"ownerId": @"ownerId", @"firstname": @"firstname", @"lastname": @"lastname", @"username": @"username", @"email": @"email", @"phone": @"phone", @"created": @"created", @"lastUpdated": @"lastUpdated", @"preferences": @"preferences", @"tFAEnabled": @"TFAEnabled", @"affiliateID": @"affiliateID", @"pgpPubKey": @"pgpPubKey", @"country": @"country", @"geoipCountry": @"geoipCountry", @"geoipRegion": @"geoipRegion", @"typ": @"typ" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"firstname": @"firstname", @"lastname": @"lastname", @"username": @"username", @"accountName": @"accountName", @"isUser": @"isUser", @"email": @"email", @"dateOfBirth": @"dateOfBirth", @"phone": @"phone", @"created": @"created", @"lastUpdated": @"lastUpdated", @"preferences": @"preferences", @"tFAEnabled": @"TFAEnabled", @"affiliateID": @"affiliateID", @"country": @"country", @"geoipCountry": @"geoipCountry", @"geoipRegion": @"geoipRegion", @"firstTradeTimestamp": @"firstTradeTimestamp", @"typ": @"typ" }];
 }
 
 /**
@@ -27,7 +28,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"_id", @"ownerId", @"firstname", @"lastname", @"phone", @"created", @"lastUpdated", @"preferences", @"tFAEnabled", @"affiliateID", @"pgpPubKey", @"country", @"geoipCountry", @"geoipRegion", @"typ"];
+  NSArray *optionalProperties = @[@"_id", @"firstname", @"lastname", @"accountName", @"email", @"dateOfBirth", @"phone", @"created", @"lastUpdated", @"preferences", @"tFAEnabled", @"affiliateID", @"country", @"geoipCountry", @"geoipRegion", @"firstTradeTimestamp", @"typ"];
   return [optionalProperties containsObject:propertyName];
 }
 

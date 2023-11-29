@@ -17,17 +17,21 @@ public struct APIKey: Codable {
     public var name: String
     public var nonce: Double
     public var cidr: String?
+    public var cidrs: [XAny]?
+    public var targetAccountId: Double?
     public var permissions: [XAny]?
     public var enabled: Bool?
     public var userId: Double
     public var created: Date?
 
-    public init(_id: String, secret: String, name: String, nonce: Double, cidr: String?, permissions: [XAny]?, enabled: Bool?, userId: Double, created: Date?) {
+    public init(_id: String, secret: String, name: String, nonce: Double, cidr: String?, cidrs: [XAny]?, targetAccountId: Double?, permissions: [XAny]?, enabled: Bool?, userId: Double, created: Date?) {
         self._id = _id
         self.secret = secret
         self.name = name
         self.nonce = nonce
         self.cidr = cidr
+        self.cidrs = cidrs
+        self.targetAccountId = targetAccountId
         self.permissions = permissions
         self.enabled = enabled
         self.userId = userId
@@ -40,6 +44,8 @@ public struct APIKey: Codable {
         case name
         case nonce
         case cidr
+        case cidrs
+        case targetAccountId
         case permissions
         case enabled
         case userId

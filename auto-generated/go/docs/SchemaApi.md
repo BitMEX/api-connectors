@@ -17,10 +17,10 @@ Get model schemata for data objects returned by this API.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***SchemaGetOpts** | optional parameters | nil if no parameters
+ **optional** | ***SchemaApiSchemaGetOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a SchemaGetOpts struct
+Optional parameters are passed through a pointer to a SchemaApiSchemaGetOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -28,7 +28,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**interface{}**](interface{}.md)
+**interface{}**
 
 ### Authorization
 
@@ -50,7 +50,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**interface{}**](interface{}.md)
+**interface{}**
 
 ### Authorization
 

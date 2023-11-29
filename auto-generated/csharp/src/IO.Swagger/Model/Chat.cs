@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -41,11 +41,11 @@ namespace IO.Swagger.Model
         /// <param name="id">id.</param>
         /// <param name="date">date (required).</param>
         /// <param name="user">user (required).</param>
+        /// <param name="userColor">userColor.</param>
         /// <param name="message">message (required).</param>
         /// <param name="html">html (required).</param>
-        /// <param name="fromBot">fromBot (default to false).</param>
         /// <param name="channelID">channelID.</param>
-        public Chat(decimal? id = default(decimal?), DateTime? date = default(DateTime?), string user = default(string), string message = default(string), string html = default(string), bool? fromBot = false, double? channelID = default(double?))
+        public Chat(decimal? id = default(decimal?), DateTime? date = default(DateTime?), string user = default(string), string userColor = default(string), string message = default(string), string html = default(string), double? channelID = default(double?))
         {
             // to ensure "date" is required (not null)
             if (date == null)
@@ -84,15 +84,7 @@ namespace IO.Swagger.Model
                 this.Html = html;
             }
             this.Id = id;
-            // use default value if no "fromBot" provided
-            if (fromBot == null)
-            {
-                this.FromBot = false;
-            }
-            else
-            {
-                this.FromBot = fromBot;
-            }
+            this.UserColor = userColor;
             this.ChannelID = channelID;
         }
         
@@ -115,6 +107,12 @@ namespace IO.Swagger.Model
         public string User { get; set; }
 
         /// <summary>
+        /// Gets or Sets UserColor
+        /// </summary>
+        [DataMember(Name="userColor", EmitDefaultValue=false)]
+        public string UserColor { get; set; }
+
+        /// <summary>
         /// Gets or Sets Message
         /// </summary>
         [DataMember(Name="message", EmitDefaultValue=false)]
@@ -125,12 +123,6 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="html", EmitDefaultValue=false)]
         public string Html { get; set; }
-
-        /// <summary>
-        /// Gets or Sets FromBot
-        /// </summary>
-        [DataMember(Name="fromBot", EmitDefaultValue=false)]
-        public bool? FromBot { get; set; }
 
         /// <summary>
         /// Gets or Sets ChannelID
@@ -149,9 +141,9 @@ namespace IO.Swagger.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Date: ").Append(Date).Append("\n");
             sb.Append("  User: ").Append(User).Append("\n");
+            sb.Append("  UserColor: ").Append(UserColor).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Html: ").Append(Html).Append("\n");
-            sb.Append("  FromBot: ").Append(FromBot).Append("\n");
             sb.Append("  ChannelID: ").Append(ChannelID).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -203,6 +195,11 @@ namespace IO.Swagger.Model
                     this.User.Equals(input.User))
                 ) && 
                 (
+                    this.UserColor == input.UserColor ||
+                    (this.UserColor != null &&
+                    this.UserColor.Equals(input.UserColor))
+                ) && 
+                (
                     this.Message == input.Message ||
                     (this.Message != null &&
                     this.Message.Equals(input.Message))
@@ -211,11 +208,6 @@ namespace IO.Swagger.Model
                     this.Html == input.Html ||
                     (this.Html != null &&
                     this.Html.Equals(input.Html))
-                ) && 
-                (
-                    this.FromBot == input.FromBot ||
-                    (this.FromBot != null &&
-                    this.FromBot.Equals(input.FromBot))
                 ) && 
                 (
                     this.ChannelID == input.ChannelID ||
@@ -239,12 +231,12 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Date.GetHashCode();
                 if (this.User != null)
                     hashCode = hashCode * 59 + this.User.GetHashCode();
+                if (this.UserColor != null)
+                    hashCode = hashCode * 59 + this.UserColor.GetHashCode();
                 if (this.Message != null)
                     hashCode = hashCode * 59 + this.Message.GetHashCode();
                 if (this.Html != null)
                     hashCode = hashCode * 59 + this.Html.GetHashCode();
-                if (this.FromBot != null)
-                    hashCode = hashCode * 59 + this.FromBot.GetHashCode();
                 if (this.ChannelID != null)
                     hashCode = hashCode * 59 + this.ChannelID.GetHashCode();
                 return hashCode;

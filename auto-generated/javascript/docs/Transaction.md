@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **transactID** | **String** |  | 
 **account** | **Number** |  | [optional] 
 **currency** | **String** |  | [optional] 
+**network** | **String** |  | [optional] 
 **transactType** | **String** |  | [optional] 
 **amount** | **Number** |  | [optional] 
 **fee** | **Number** |  | [optional] 
@@ -15,5 +16,6 @@ Name | Type | Description | Notes
 **text** | **String** |  | [optional] 
 **transactTime** | **Date** |  | [optional] 
 **timestamp** | **Date** |  | [optional] 
+**walletBalance** | **Number** |  | [optional] 
 
 

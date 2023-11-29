@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class AccessToken(object):
@@ -31,6 +33,8 @@ class AccessToken(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'updated': 'datetime',
+        'authorized_accounts': 'object',
         'id': 'str',
         'ttl': 'float',
         'created': 'datetime',
@@ -38,21 +42,31 @@ class AccessToken(object):
     }
 
     attribute_map = {
+        'updated': 'updated',
+        'authorized_accounts': 'authorizedAccounts',
         'id': 'id',
         'ttl': 'ttl',
         'created': 'created',
         'user_id': 'userId'
     }
 
-    def __init__(self, id=None, ttl=1209600.0, created=None, user_id=None):  # noqa: E501
+    def __init__(self, updated=None, authorized_accounts=None, id=None, ttl=1209600.0, created=None, user_id=None, _configuration=None):  # noqa: E501
         """AccessToken - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
+        self._updated = None
+        self._authorized_accounts = None
         self._id = None
         self._ttl = None
         self._created = None
         self._user_id = None
         self.discriminator = None
 
+        self.updated = updated
+        if authorized_accounts is not None:
+            self.authorized_accounts = authorized_accounts
         self.id = id
         if ttl is not None:
             self.ttl = ttl
@@ -60,6 +74,50 @@ class AccessToken(object):
             self.created = created
         if user_id is not None:
             self.user_id = user_id
+
+    @property
+    def updated(self):
+        """Gets the updated of this AccessToken.  # noqa: E501
+
+
+        :return: The updated of this AccessToken.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._updated
+
+    @updated.setter
+    def updated(self, updated):
+        """Sets the updated of this AccessToken.
+
+
+        :param updated: The updated of this AccessToken.  # noqa: E501
+        :type: datetime
+        """
+        if self._configuration.client_side_validation and updated is None:
+            raise ValueError("Invalid value for `updated`, must not be `None`")  # noqa: E501
+
+        self._updated = updated
+
+    @property
+    def authorized_accounts(self):
+        """Gets the authorized_accounts of this AccessToken.  # noqa: E501
+
+
+        :return: The authorized_accounts of this AccessToken.  # noqa: E501
+        :rtype: object
+        """
+        return self._authorized_accounts
+
+    @authorized_accounts.setter
+    def authorized_accounts(self, authorized_accounts):
+        """Sets the authorized_accounts of this AccessToken.
+
+
+        :param authorized_accounts: The authorized_accounts of this AccessToken.  # noqa: E501
+        :type: object
+        """
+
+        self._authorized_accounts = authorized_accounts
 
     @property
     def id(self):
@@ -79,7 +137,7 @@ class AccessToken(object):
         :param id: The id of this AccessToken.  # noqa: E501
         :type: str
         """
-        if id is None:
+        if self._configuration.client_side_validation and id is None:
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
@@ -189,8 +247,11 @@ class AccessToken(object):
         if not isinstance(other, AccessToken):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, AccessToken):
+            return True
+
+        return self.to_dict() != other.to_dict()

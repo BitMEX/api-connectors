@@ -9,20 +9,32 @@ Method | HTTP request | Description
 [**UserCommunicationToken**](UserApi.md#UserCommunicationToken) | **Post** /user/communicationToken | Register your communication token for mobile clients
 [**UserConfirm**](UserApi.md#UserConfirm) | **Post** /user/confirmEmail | Confirm your email address with a token.
 [**UserConfirmWithdrawal**](UserApi.md#UserConfirmWithdrawal) | **Post** /user/confirmWithdrawal | Confirm a withdrawal.
+[**UserCreateSubAccount**](UserApi.md#UserCreateSubAccount) | **Post** /user/addSubaccount | Creates a new sub-account.
+[**UserCreateUnstakingRequests**](UserApi.md#UserCreateUnstakingRequests) | **Post** /user/unstakingRequests | Create unstaking request
+[**UserDeleteUnstakingRequests**](UserApi.md#UserDeleteUnstakingRequests) | **Delete** /user/unstakingRequests | Cancel unstaking request
 [**UserGet**](UserApi.md#UserGet) | **Get** /user | Get your user model.
 [**UserGetAffiliateStatus**](UserApi.md#UserGetAffiliateStatus) | **Get** /user/affiliateStatus | Get your current affiliate/referral status.
+[**UserGetCSA**](UserApi.md#UserGetCSA) | **Get** /user/csa | Get your account&#39;s CSA status.
 [**UserGetCommission**](UserApi.md#UserGetCommission) | **Get** /user/commission | Get your account&#39;s commission status.
 [**UserGetDepositAddress**](UserApi.md#UserGetDepositAddress) | **Get** /user/depositAddress | Get a deposit address.
 [**UserGetExecutionHistory**](UserApi.md#UserGetExecutionHistory) | **Get** /user/executionHistory | Get the execution history by day.
 [**UserGetMargin**](UserApi.md#UserGetMargin) | **Get** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**UserGetQuoteFillRatio**](UserApi.md#UserGetQuoteFillRatio) | **Get** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
+[**UserGetQuoteValueRatio**](UserApi.md#UserGetQuoteValueRatio) | **Get** /user/quoteValueRatio | Get Quote Value Ratio statistics over the last 3 days
+[**UserGetStaking**](UserApi.md#UserGetStaking) | **Get** /user/staking | Get the current user staking amount.
+[**UserGetStakingInstruments**](UserApi.md#UserGetStakingInstruments) | **Get** /user/staking/instruments | List staking instruments
+[**UserGetStakingTiers**](UserApi.md#UserGetStakingTiers) | **Get** /user/staking/tiers | List staking tiers for a given currency
+[**UserGetTradingVolume**](UserApi.md#UserGetTradingVolume) | **Get** /user/tradingVolume | Get your 30 days USD average trading volume
+[**UserGetUnstakingRequests**](UserApi.md#UserGetUnstakingRequests) | **Get** /user/unstakingRequests | Get the current user unstaking requests
 [**UserGetWallet**](UserApi.md#UserGetWallet) | **Get** /user/wallet | Get your current wallet information.
 [**UserGetWalletHistory**](UserApi.md#UserGetWalletHistory) | **Get** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**UserGetWalletSummary**](UserApi.md#UserGetWalletSummary) | **Get** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+[**UserGetWalletTransferAccounts**](UserApi.md#UserGetWalletTransferAccounts) | **Get** /user/getWalletTransferAccounts | Get the list of accounts you can transfer funds between.
 [**UserLogout**](UserApi.md#UserLogout) | **Post** /user/logout | Log out of BitMEX.
-[**UserMinWithdrawalFee**](UserApi.md#UserMinWithdrawalFee) | **Get** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
 [**UserRequestWithdrawal**](UserApi.md#UserRequestWithdrawal) | **Post** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**UserSavePreferences**](UserApi.md#UserSavePreferences) | **Post** /user/preferences | Save user preferences.
+[**UserUpdateSubAccount**](UserApi.md#UserUpdateSubAccount) | **Post** /user/updateSubaccount | Updates the sub-account name.
+[**UserWalletTransfer**](UserApi.md#UserWalletTransfer) | **Post** /user/walletTransfer | Execute a transfer to a paired account.
 
 
 # **UserCancelWithdrawal**
@@ -52,7 +64,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserCheckReferralCode**
-> float64 UserCheckReferralCode(ctx, optional)
+> interface{} UserCheckReferralCode(ctx, optional)
 Check if a referral code is valid.
 
 If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404 or 451 if invalid.
@@ -62,10 +74,10 @@ If the code is valid, responds with the referral code's discount (e.g. `0.1` for
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UserCheckReferralCodeOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserCheckReferralCodeOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserCheckReferralCodeOpts struct
+Optional parameters are passed through a pointer to a UserApiUserCheckReferralCodeOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -73,7 +85,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**float64**
+**interface{}**
 
 ### Authorization
 
@@ -165,6 +177,85 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **UserCreateSubAccount**
+> interface{} UserCreateSubAccount(ctx, accountName)
+Creates a new sub-account.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **accountName** | **string**|  | 
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UserCreateUnstakingRequests**
+> interface{} UserCreateUnstakingRequests(ctx, symbol, amount)
+Create unstaking request
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **symbol** | **string**|  | 
+  **amount** | **float64**|  | 
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UserDeleteUnstakingRequests**
+> interface{} UserDeleteUnstakingRequests(ctx, redemptionID)
+Cancel unstaking request
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **redemptionID** | **string**|  | 
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **UserGet**
 > User UserGet(ctx, )
 Get your user model.
@@ -188,15 +279,48 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserGetAffiliateStatus**
-> Affiliate UserGetAffiliateStatus(ctx, )
+> Affiliate UserGetAffiliateStatus(ctx, optional)
 Get your current affiliate/referral status.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***UserApiUserGetAffiliateStatusOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a UserApiUserGetAffiliateStatusOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **optional.String**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [default to XBt]
+
+### Return type
+
+[**Affiliate**](Affiliate.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UserGetCSA**
+> CollateralSupportAgreement UserGetCSA(ctx, )
+Get your account's CSA status.
 
 ### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**Affiliate**](Affiliate.md)
+[**CollateralSupportAgreement**](CollateralSupportAgreement.md)
 
 ### Authorization
 
@@ -232,7 +356,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserGetDepositAddress**
-> string UserGetDepositAddress(ctx, optional)
+> string UserGetDepositAddress(ctx, currency, network)
 Get a deposit address.
 
 ### Required Parameters
@@ -240,14 +364,8 @@ Get a deposit address.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UserGetDepositAddressOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a UserGetDepositAddressOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **currency** | **optional.String**|  | [default to XBt]
+  **currency** | **string**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
+  **network** | **string**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
 
 ### Return type
 
@@ -265,7 +383,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserGetExecutionHistory**
-> interface{} UserGetExecutionHistory(ctx, symbol, timestamp)
+> []Execution UserGetExecutionHistory(ctx, symbol, timestamp)
 Get the execution history by day.
 
 ### Required Parameters
@@ -278,7 +396,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**interface{}**](interface{}.md)
+[**[]Execution**](Execution.md)
 
 ### Authorization
 
@@ -300,14 +418,14 @@ Get your account's margin status. Send a currency of \"all\" to receive an array
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UserGetMarginOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserGetMarginOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserGetMarginOpts struct
+Optional parameters are passed through a pointer to a UserApiUserGetMarginOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **optional.String**|  | [default to XBt]
+ **currency** | **optional.String**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [default to XBt]
 
 ### Return type
 
@@ -325,15 +443,200 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserGetQuoteFillRatio**
-> QuoteFillRatio UserGetQuoteFillRatio(ctx, )
+> QuoteFillRatio UserGetQuoteFillRatio(ctx, optional)
 Get 7 days worth of Quote Fill Ratio statistics.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***UserApiUserGetQuoteFillRatioOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a UserApiUserGetQuoteFillRatioOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **targetAccountId** | **optional.Float64**| AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user | 
+
+### Return type
+
+[**QuoteFillRatio**](QuoteFillRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UserGetQuoteValueRatio**
+> QuoteValueRatio UserGetQuoteValueRatio(ctx, optional)
+Get Quote Value Ratio statistics over the last 3 days
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***UserApiUserGetQuoteValueRatioOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a UserApiUserGetQuoteValueRatioOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **targetAccountId** | **optional.Float64**| AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user | 
+
+### Return type
+
+[**QuoteValueRatio**](QuoteValueRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UserGetStaking**
+> []StakingRecord UserGetStaking(ctx, optional)
+Get the current user staking amount.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***UserApiUserGetStakingOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a UserApiUserGetStakingOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **optional.String**|  | 
+
+### Return type
+
+[**[]StakingRecord**](StakingRecord.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UserGetStakingInstruments**
+> []XAny UserGetStakingInstruments(ctx, optional)
+List staking instruments
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***UserApiUserGetStakingInstrumentsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a UserApiUserGetStakingInstrumentsOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **optional.String**|  | 
+ **currency** | **optional.String**|  | 
+
+### Return type
+
+[**[]XAny**](x-any.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UserGetStakingTiers**
+> []XAny UserGetStakingTiers(ctx, currency)
+List staking tiers for a given currency
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **currency** | **string**|  | 
+
+### Return type
+
+[**[]XAny**](x-any.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UserGetTradingVolume**
+> []TradingVolume UserGetTradingVolume(ctx, )
+Get your 30 days USD average trading volume
 
 ### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**QuoteFillRatio**](QuoteFillRatio.md)
+[**[]TradingVolume**](TradingVolume.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UserGetUnstakingRequests**
+> []StakingRecord UserGetUnstakingRequests(ctx, status)
+Get the current user unstaking requests
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **status** | **string**|  | 
+
+### Return type
+
+[**[]StakingRecord**](StakingRecord.md)
 
 ### Authorization
 
@@ -355,14 +658,14 @@ Get your current wallet information.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UserGetWalletOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserGetWalletOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserGetWalletOpts struct
+Optional parameters are passed through a pointer to a UserApiUserGetWalletOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **optional.String**|  | [default to XBt]
+ **currency** | **optional.String**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [default to XBt]
 
 ### Return type
 
@@ -388,16 +691,17 @@ Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UserGetWalletHistoryOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserGetWalletHistoryOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserGetWalletHistoryOpts struct
+Optional parameters are passed through a pointer to a UserApiUserGetWalletHistoryOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **optional.String**|  | [default to XBt]
+ **currency** | **optional.String**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [default to XBt]
  **count** | **optional.Float64**| Number of results to fetch. | [default to 100]
  **start** | **optional.Float64**| Starting point for results. | [default to 0]
+ **targetAccountId** | **optional.Float64**| AccountId to view the history of, must be a paired account with the authorised user requesting the history. | 
 
 ### Return type
 
@@ -423,18 +727,40 @@ Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UserGetWalletSummaryOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserGetWalletSummaryOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserGetWalletSummaryOpts struct
+Optional parameters are passed through a pointer to a UserApiUserGetWalletSummaryOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **optional.String**|  | [default to XBt]
+ **currency** | **optional.String**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [default to XBt]
 
 ### Return type
 
 [**[]Transaction**](Transaction.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UserGetWalletTransferAccounts**
+> []XAny UserGetWalletTransferAccounts(ctx, )
+Get the list of accounts you can transfer funds between.
+
+### Required Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**[]XAny**](x-any.md)
 
 ### Authorization
 
@@ -469,43 +795,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **UserMinWithdrawalFee**
-> interface{} UserMinWithdrawalFee(ctx, optional)
-Get the minimum withdrawal fee for a currency.
-
-This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UserMinWithdrawalFeeOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a UserMinWithdrawalFeeOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **currency** | **optional.String**|  | [default to XBt]
-
-### Return type
-
-[**interface{}**](interface{}.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **UserRequestWithdrawal**
-> Transaction UserRequestWithdrawal(ctx, currency, amount, address, optional)
+> Transaction UserRequestWithdrawal(ctx, currency, network, amount, optional)
 Request a withdrawal to an external wallet.
 
 This will send a confirmation email to the email address on record.
@@ -515,20 +806,23 @@ This will send a confirmation email to the email address on record.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **currency** | **string**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; | [default to XBt]
+  **currency** | **string**| Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | [default to XBt]
+  **network** | **string**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
   **amount** | **float32**| Amount of withdrawal currency. | 
-  **address** | **string**| Destination Address. | 
- **optional** | ***UserRequestWithdrawalOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserRequestWithdrawalOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserRequestWithdrawalOpts struct
+Optional parameters are passed through a pointer to a UserApiUserRequestWithdrawalOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
 
- **otpToken** | **optional.String**| 2FA token. Required if 2FA is enabled on your account. | 
+ **otpToken** | **optional.String**| 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. | 
+ **address** | **optional.String**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | 
+ **addressId** | **optional.Float64**| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | 
+ **targetUserId** | **optional.Float64**| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | 
  **fee** | **optional.Float64**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | 
  **text** | **optional.String**| Optional annotation, e.g. &#39;Transfer to home wallet&#39;. | 
 
@@ -557,10 +851,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **prefs** | **string**|  | 
- **optional** | ***UserSavePreferencesOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserSavePreferencesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserSavePreferencesOpts struct
+Optional parameters are passed through a pointer to a UserApiUserSavePreferencesOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -570,6 +864,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**User**](User.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UserUpdateSubAccount**
+> interface{} UserUpdateSubAccount(ctx, targetAccountId, accountName)
+Updates the sub-account name.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **targetAccountId** | **float64**|  | 
+  **accountName** | **string**|  | 
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UserWalletTransfer**
+> Transaction UserWalletTransfer(ctx, currency, amount, targetAccountId, optional)
+Execute a transfer to a paired account.
+
+This will send a confirmation email to the email address on record.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **currency** | **string**| Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
+  **amount** | **float32**| Amount of transfer. | 
+  **targetAccountId** | **float64**| AccountId to send the transfer to, must be a paired account with the user sending the transfer. | 
+ **optional** | ***UserApiUserWalletTransferOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a UserApiUserWalletTransferOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **fromAccountId** | **optional.Float64**| AccountID to send the transfer from. Must be paired account with the authenticated user. | 
+
+### Return type
+
+[**Transaction**](Transaction.md)
 
 ### Authorization
 

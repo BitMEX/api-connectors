@@ -14,10 +14,10 @@ open class TradeAPI {
     /**
      Get Trades.
      
-     - parameter symbol: (query) Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;. (optional)
+     - parameter symbol: (query) Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. (optional)
      - parameter filter: (query) Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
      - parameter columns: (query) Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
-     - parameter count: (query) Number of results to fetch. (optional, default to 100)
+     - parameter count: (query) Number of results to fetch. Must be a positive integer. (optional, default to 100)
      - parameter start: (query) Starting point for results. (optional, default to 0)
      - parameter reverse: (query) If true, will sort results newest first. (optional, default to false)
      - parameter startTime: (query) Starting date filter for results. (optional)
@@ -35,34 +35,12 @@ open class TradeAPI {
      Get Trades.
      - GET /trade
      - Please note that indices (symbols starting with `.`) post trades at intervals to the trade feed. These have a `size` of 0 and are used only to indicate a changing price.  See [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.html) for explanations of these fields.
-     - examples: [{contentType=application/json, example=[ {
-  "foreignNotional" : 5.637376656633329,
-  "symbol" : "symbol",
-  "side" : "side",
-  "tickDirection" : "tickDirection",
-  "size" : 0.80082819046101150206595775671303272247314453125,
-  "price" : 6.027456183070403,
-  "grossValue" : 1.46581298050294517310021547018550336360931396484375,
-  "trdMatchID" : "trdMatchID",
-  "homeNotional" : 5.962133916683182,
-  "timestamp" : "2000-01-23T04:56:07.000+00:00"
-}, {
-  "foreignNotional" : 5.637376656633329,
-  "symbol" : "symbol",
-  "side" : "side",
-  "tickDirection" : "tickDirection",
-  "size" : 0.80082819046101150206595775671303272247314453125,
-  "price" : 6.027456183070403,
-  "grossValue" : 1.46581298050294517310021547018550336360931396484375,
-  "trdMatchID" : "trdMatchID",
-  "homeNotional" : 5.962133916683182,
-  "timestamp" : "2000-01-23T04:56:07.000+00:00"
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
      
-     - parameter symbol: (query) Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;. (optional)
+     - parameter symbol: (query) Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. (optional)
      - parameter filter: (query) Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
      - parameter columns: (query) Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
-     - parameter count: (query) Number of results to fetch. (optional, default to 100)
+     - parameter count: (query) Number of results to fetch. Must be a positive integer. (optional, default to 100)
      - parameter start: (query) Starting point for results. (optional, default to 0)
      - parameter reverse: (query) If true, will sort results newest first. (optional, default to false)
      - parameter startTime: (query) Starting date filter for results. (optional)
@@ -97,10 +75,10 @@ open class TradeAPI {
      
      - parameter binSize: (query) Time interval to bucket by. Available options: [1m,5m,1h,1d]. (optional, default to 1m)
      - parameter partial: (query) If true, will send in-progress (incomplete) bins for the current time period. (optional, default to false)
-     - parameter symbol: (query) Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;. (optional)
+     - parameter symbol: (query) Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. (optional)
      - parameter filter: (query) Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
      - parameter columns: (query) Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
-     - parameter count: (query) Number of results to fetch. (optional, default to 100)
+     - parameter count: (query) Number of results to fetch. Must be a positive integer. (optional, default to 100)
      - parameter start: (query) Starting point for results. (optional, default to 0)
      - parameter reverse: (query) If true, will sort results newest first. (optional, default to false)
      - parameter startTime: (query) Starting date filter for results. (optional)
@@ -118,42 +96,14 @@ open class TradeAPI {
      Get previous trades in time buckets.
      - GET /trade/bucketed
      - Timestamps returned by our bucketed endpoints are the **end** of the period, indicating when the bucket was written to disk. Some other common systems use the timestamp as the beginning of the period. Please be aware of this when using this endpoint.  Also note the `open` price is equal to the `close` price of the previous timeframe bucket.
-     - examples: [{contentType=application/json, example=[ {
-  "symbol" : "symbol",
-  "vwap" : 7.061401241503109,
-  "trades" : 5.63737665663332876420099637471139430999755859375,
-  "homeNotional" : 2.027123023002322,
-  "volume" : 2.3021358869347654518833223846741020679473876953125,
-  "foreignNotional" : 4.145608029883936,
-  "high" : 6.027456183070403,
-  "low" : 1.4658129805029452,
-  "lastSize" : 9.301444243932575517419536481611430644989013671875,
-  "close" : 5.962133916683182,
-  "turnover" : 3.61607674925191080461672754609026014804840087890625,
-  "open" : 0.8008281904610115,
-  "timestamp" : "2000-01-23T04:56:07.000+00:00"
-}, {
-  "symbol" : "symbol",
-  "vwap" : 7.061401241503109,
-  "trades" : 5.63737665663332876420099637471139430999755859375,
-  "homeNotional" : 2.027123023002322,
-  "volume" : 2.3021358869347654518833223846741020679473876953125,
-  "foreignNotional" : 4.145608029883936,
-  "high" : 6.027456183070403,
-  "low" : 1.4658129805029452,
-  "lastSize" : 9.301444243932575517419536481611430644989013671875,
-  "close" : 5.962133916683182,
-  "turnover" : 3.61607674925191080461672754609026014804840087890625,
-  "open" : 0.8008281904610115,
-  "timestamp" : "2000-01-23T04:56:07.000+00:00"
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
      
      - parameter binSize: (query) Time interval to bucket by. Available options: [1m,5m,1h,1d]. (optional, default to 1m)
      - parameter partial: (query) If true, will send in-progress (incomplete) bins for the current time period. (optional, default to false)
-     - parameter symbol: (query) Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;. (optional)
+     - parameter symbol: (query) Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. (optional)
      - parameter filter: (query) Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
      - parameter columns: (query) Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
-     - parameter count: (query) Number of results to fetch. (optional, default to 100)
+     - parameter count: (query) Number of results to fetch. Must be a positive integer. (optional, default to 100)
      - parameter start: (query) Starting point for results. (optional, default to 0)
      - parameter reverse: (query) If true, will sort results newest first. (optional, default to false)
      - parameter startTime: (query) Starting date filter for results. (optional)

@@ -84,22 +84,34 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *APIKeyApi* | [**aPIKeyGet**](docs/APIKeyApi.md#aPIKeyGet) | **GET** /apiKey | Get your API Keys.
+*AddressApi* | [**addressGet**](docs/AddressApi.md#addressGet) | **GET** /address | Get your addresses.
+*AddressApi* | [**addressNew**](docs/AddressApi.md#addressNew) | **POST** /address | Creates a new saved address.
 *AnnouncementApi* | [**announcementGet**](docs/AnnouncementApi.md#announcementGet) | **GET** /announcement | Get site announcements.
 *AnnouncementApi* | [**announcementGetUrgent**](docs/AnnouncementApi.md#announcementGetUrgent) | **GET** /announcement/urgent | Get urgent (banner) announcements.
 *ChatApi* | [**chatGet**](docs/ChatApi.md#chatGet) | **GET** /chat | Get chat messages.
 *ChatApi* | [**chatGetChannels**](docs/ChatApi.md#chatGetChannels) | **GET** /chat/channels | Get available channels.
 *ChatApi* | [**chatGetConnected**](docs/ChatApi.md#chatGetConnected) | **GET** /chat/connected | Get connected users.
+*ChatApi* | [**chatGetPinnedMessage**](docs/ChatApi.md#chatGetPinnedMessage) | **GET** /chat/pinned | Get pinned message for a channel.
 *ChatApi* | [**chatNew**](docs/ChatApi.md#chatNew) | **POST** /chat | Send a chat message.
 *ExecutionApi* | [**executionGet**](docs/ExecutionApi.md#executionGet) | **GET** /execution | Get all raw executions for your account.
-*ExecutionApi* | [**executionGetTradeHistory**](docs/ExecutionApi.md#executionGetTradeHistory) | **GET** /execution/tradeHistory | Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
+*ExecutionApi* | [**executionGetTradeHistory**](docs/ExecutionApi.md#executionGetTradeHistory) | **GET** /execution/tradeHistory | Get all balance-affecting executions.
 *FundingApi* | [**fundingGet**](docs/FundingApi.md#fundingGet) | **GET** /funding | Get funding history.
 *GlobalNotificationApi* | [**globalNotificationGet**](docs/GlobalNotificationApi.md#globalNotificationGet) | **GET** /globalNotification | Get your current GlobalNotifications.
+*GuildApi* | [**guildArchive**](docs/GuildApi.md#guildArchive) | **POST** /guild/archive | Archive a guild
+*GuildApi* | [**guildEdit**](docs/GuildApi.md#guildEdit) | **PUT** /guild | Edit guild new guild
+*GuildApi* | [**guildGet**](docs/GuildApi.md#guildGet) | **GET** /guild | Get all guilds
+*GuildApi* | [**guildJoin**](docs/GuildApi.md#guildJoin) | **POST** /guild/join | Request to Join a private guild or join a public guild
+*GuildApi* | [**guildKick**](docs/GuildApi.md#guildKick) | **POST** /guild/kick | Kick member from guild
+*GuildApi* | [**guildLeave**](docs/GuildApi.md#guildLeave) | **POST** /guild/leave | Leave guild or cancel guild join request
+*GuildApi* | [**guildNew**](docs/GuildApi.md#guildNew) | **POST** /guild | Creates a new guild
+*GuildApi* | [**guildShareTrades**](docs/GuildApi.md#guildShareTrades) | **POST** /guild/shareTrades | Toggle share trades for your account, which controls whether your guild members can see your orders and positions in their UI
 *InstrumentApi* | [**instrumentGet**](docs/InstrumentApi.md#instrumentGet) | **GET** /instrument | Get instruments.
 *InstrumentApi* | [**instrumentGetActive**](docs/InstrumentApi.md#instrumentGetActive) | **GET** /instrument/active | Get all active instruments and instruments that have expired in &lt;24hrs.
 *InstrumentApi* | [**instrumentGetActiveAndIndices**](docs/InstrumentApi.md#instrumentGetActiveAndIndices) | **GET** /instrument/activeAndIndices | Helper method. Gets all active instruments and all indices. This is a join of the result of /indices and /active.
 *InstrumentApi* | [**instrumentGetActiveIntervals**](docs/InstrumentApi.md#instrumentGetActiveIntervals) | **GET** /instrument/activeIntervals | Return all active contract series and interval pairs.
 *InstrumentApi* | [**instrumentGetCompositeIndex**](docs/InstrumentApi.md#instrumentGetCompositeIndex) | **GET** /instrument/compositeIndex | Show constituent parts of an index.
 *InstrumentApi* | [**instrumentGetIndices**](docs/InstrumentApi.md#instrumentGetIndices) | **GET** /instrument/indices | Get all price indices.
+*InstrumentApi* | [**instrumentGetUsdVolume**](docs/InstrumentApi.md#instrumentGetUsdVolume) | **GET** /instrument/usdVolume | Get a summary of exchange statistics in USD.
 *InsuranceApi* | [**insuranceGet**](docs/InsuranceApi.md#insuranceGet) | **GET** /insurance | Get insurance fund history.
 *LeaderboardApi* | [**leaderboardGet**](docs/LeaderboardApi.md#leaderboardGet) | **GET** /leaderboard | Get current leaderboard.
 *LeaderboardApi* | [**leaderboardGetName**](docs/LeaderboardApi.md#leaderboardGetName) | **GET** /leaderboard/name | Get your alias on the leaderboard.
@@ -112,6 +124,8 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**orderGetOrders**](docs/OrderApi.md#orderGetOrders) | **GET** /order | Get your orders.
 *OrderApi* | [**orderNew**](docs/OrderApi.md#orderNew) | **POST** /order | Create a new order.
 *OrderBookApi* | [**orderBookGetL2**](docs/OrderBookApi.md#orderBookGetL2) | **GET** /orderBook/L2 | Get current orderbook in vertical format.
+*PorlApi* | [**porlGetNonce**](docs/PorlApi.md#porlGetNonce) | **GET** /porl/nonce | Get your Proof of Reserves nonce and data.
+*PorlApi* | [**porlGetSnapshots**](docs/PorlApi.md#porlGetSnapshots) | **GET** /porl/snapshots | Get Proof of Reserves historical snapshots
 *PositionApi* | [**positionGet**](docs/PositionApi.md#positionGet) | **GET** /position | Get your positions.
 *PositionApi* | [**positionIsolateMargin**](docs/PositionApi.md#positionIsolateMargin) | **POST** /position/isolate | Enable isolated margin or cross margin per-position.
 *PositionApi* | [**positionTransferIsolatedMargin**](docs/PositionApi.md#positionTransferIsolatedMargin) | **POST** /position/transferMargin | Transfer equity in or out of a position.
@@ -132,31 +146,50 @@ Class | Method | HTTP request | Description
 *UserApi* | [**userCommunicationToken**](docs/UserApi.md#userCommunicationToken) | **POST** /user/communicationToken | Register your communication token for mobile clients
 *UserApi* | [**userConfirm**](docs/UserApi.md#userConfirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
 *UserApi* | [**userConfirmWithdrawal**](docs/UserApi.md#userConfirmWithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
+*UserApi* | [**userCreateSubAccount**](docs/UserApi.md#userCreateSubAccount) | **POST** /user/addSubaccount | Creates a new sub-account.
+*UserApi* | [**userCreateUnstakingRequests**](docs/UserApi.md#userCreateUnstakingRequests) | **POST** /user/unstakingRequests | Create unstaking request
+*UserApi* | [**userDeleteUnstakingRequests**](docs/UserApi.md#userDeleteUnstakingRequests) | **DELETE** /user/unstakingRequests | Cancel unstaking request
 *UserApi* | [**userGet**](docs/UserApi.md#userGet) | **GET** /user | Get your user model.
 *UserApi* | [**userGetAffiliateStatus**](docs/UserApi.md#userGetAffiliateStatus) | **GET** /user/affiliateStatus | Get your current affiliate/referral status.
+*UserApi* | [**userGetCSA**](docs/UserApi.md#userGetCSA) | **GET** /user/csa | Get your account&#39;s CSA status.
 *UserApi* | [**userGetCommission**](docs/UserApi.md#userGetCommission) | **GET** /user/commission | Get your account&#39;s commission status.
 *UserApi* | [**userGetDepositAddress**](docs/UserApi.md#userGetDepositAddress) | **GET** /user/depositAddress | Get a deposit address.
 *UserApi* | [**userGetExecutionHistory**](docs/UserApi.md#userGetExecutionHistory) | **GET** /user/executionHistory | Get the execution history by day.
 *UserApi* | [**userGetMargin**](docs/UserApi.md#userGetMargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 *UserApi* | [**userGetQuoteFillRatio**](docs/UserApi.md#userGetQuoteFillRatio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
+*UserApi* | [**userGetQuoteValueRatio**](docs/UserApi.md#userGetQuoteValueRatio) | **GET** /user/quoteValueRatio | Get Quote Value Ratio statistics over the last 3 days
+*UserApi* | [**userGetStaking**](docs/UserApi.md#userGetStaking) | **GET** /user/staking | Get the current user staking amount.
+*UserApi* | [**userGetStakingInstruments**](docs/UserApi.md#userGetStakingInstruments) | **GET** /user/staking/instruments | List staking instruments
+*UserApi* | [**userGetStakingTiers**](docs/UserApi.md#userGetStakingTiers) | **GET** /user/staking/tiers | List staking tiers for a given currency
+*UserApi* | [**userGetTradingVolume**](docs/UserApi.md#userGetTradingVolume) | **GET** /user/tradingVolume | Get your 30 days USD average trading volume
+*UserApi* | [**userGetUnstakingRequests**](docs/UserApi.md#userGetUnstakingRequests) | **GET** /user/unstakingRequests | Get the current user unstaking requests
 *UserApi* | [**userGetWallet**](docs/UserApi.md#userGetWallet) | **GET** /user/wallet | Get your current wallet information.
 *UserApi* | [**userGetWalletHistory**](docs/UserApi.md#userGetWalletHistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 *UserApi* | [**userGetWalletSummary**](docs/UserApi.md#userGetWalletSummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+*UserApi* | [**userGetWalletTransferAccounts**](docs/UserApi.md#userGetWalletTransferAccounts) | **GET** /user/getWalletTransferAccounts | Get the list of accounts you can transfer funds between.
 *UserApi* | [**userLogout**](docs/UserApi.md#userLogout) | **POST** /user/logout | Log out of BitMEX.
-*UserApi* | [**userMinWithdrawalFee**](docs/UserApi.md#userMinWithdrawalFee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
 *UserApi* | [**userRequestWithdrawal**](docs/UserApi.md#userRequestWithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 *UserApi* | [**userSavePreferences**](docs/UserApi.md#userSavePreferences) | **POST** /user/preferences | Save user preferences.
+*UserApi* | [**userUpdateSubAccount**](docs/UserApi.md#userUpdateSubAccount) | **POST** /user/updateSubaccount | Updates the sub-account name.
+*UserApi* | [**userWalletTransfer**](docs/UserApi.md#userWalletTransfer) | **POST** /user/walletTransfer | Execute a transfer to a paired account.
+*UserAffiliatesApi* | [**userAffiliatesGet**](docs/UserAffiliatesApi.md#userAffiliatesGet) | **GET** /userAffiliates | Get user&#39;s affiliates to a given depth
 *UserEventApi* | [**userEventGet**](docs/UserEventApi.md#userEventGet) | **GET** /userEvent | Get your user events
+*WalletApi* | [**walletGetAssetsConfig**](docs/WalletApi.md#walletGetAssetsConfig) | **GET** /wallet/assets | Get Assets Config
+*WalletApi* | [**walletGetNetworksConfig**](docs/WalletApi.md#walletGetNetworksConfig) | **GET** /wallet/networks | Get Networks Config
 
 
 ## Documentation for Models
 
  - [APIKey](docs/APIKey.md)
  - [AccessToken](docs/AccessToken.md)
+ - [Address](docs/Address.md)
  - [Affiliate](docs/Affiliate.md)
  - [Announcement](docs/Announcement.md)
+ - [AssetsConfig](docs/AssetsConfig.md)
+ - [AssetsConfigNetworkItem](docs/AssetsConfigNetworkItem.md)
  - [Chat](docs/Chat.md)
  - [ChatChannel](docs/ChatChannel.md)
+ - [CollateralSupportAgreement](docs/CollateralSupportAgreement.md)
  - [CommunicationToken](docs/CommunicationToken.md)
  - [ConnectedUsers](docs/ConnectedUsers.md)
  - [Error](docs/Error.md)
@@ -164,6 +197,7 @@ Class | Method | HTTP request | Description
  - [Execution](docs/Execution.md)
  - [Funding](docs/Funding.md)
  - [GlobalNotification](docs/GlobalNotification.md)
+ - [Guild](docs/Guild.md)
  - [IndexComposite](docs/IndexComposite.md)
  - [InlineResponse200](docs/InlineResponse200.md)
  - [Instrument](docs/Instrument.md)
@@ -172,17 +206,24 @@ Class | Method | HTTP request | Description
  - [Leaderboard](docs/Leaderboard.md)
  - [Liquidation](docs/Liquidation.md)
  - [Margin](docs/Margin.md)
+ - [NetworksConfig](docs/NetworksConfig.md)
  - [Order](docs/Order.md)
  - [OrderBookL2](docs/OrderBookL2.md)
+ - [PinnedMessage](docs/PinnedMessage.md)
+ - [Porl](docs/Porl.md)
  - [Position](docs/Position.md)
  - [Quote](docs/Quote.md)
  - [QuoteFillRatio](docs/QuoteFillRatio.md)
+ - [QuoteValueRatio](docs/QuoteValueRatio.md)
  - [Settlement](docs/Settlement.md)
+ - [StakingRecord](docs/StakingRecord.md)
  - [Stats](docs/Stats.md)
  - [StatsHistory](docs/StatsHistory.md)
  - [StatsUSD](docs/StatsUSD.md)
+ - [StatsUSDBySymbol](docs/StatsUSDBySymbol.md)
  - [Trade](docs/Trade.md)
  - [TradeBin](docs/TradeBin.md)
+ - [TradingVolume](docs/TradingVolume.md)
  - [Transaction](docs/Transaction.md)
  - [User](docs/User.md)
  - [UserCommissionsBySymbol](docs/UserCommissionsBySymbol.md)

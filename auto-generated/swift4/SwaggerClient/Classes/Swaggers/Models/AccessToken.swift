@@ -11,13 +11,17 @@ import Foundation
 
 public struct AccessToken: Codable {
 
+    public var updated: Date
+    public var authorizedAccounts: Any?
     public var _id: String
     /** time to live in seconds (2 weeks by default) */
     public var ttl: Double?
     public var created: Date?
     public var userId: Double?
 
-    public init(_id: String, ttl: Double?, created: Date?, userId: Double?) {
+    public init(updated: Date, authorizedAccounts: Any?, _id: String, ttl: Double?, created: Date?, userId: Double?) {
+        self.updated = updated
+        self.authorizedAccounts = authorizedAccounts
         self._id = _id
         self.ttl = ttl
         self.created = created
@@ -25,6 +29,8 @@ public struct AccessToken: Codable {
     }
 
     public enum CodingKeys: String, CodingKey { 
+        case updated
+        case authorizedAccounts
         case _id = "id"
         case ttl
         case created

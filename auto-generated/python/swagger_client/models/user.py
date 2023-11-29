@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class User(object):
@@ -32,76 +34,89 @@ class User(object):
     """
     swagger_types = {
         'id': 'float',
-        'owner_id': 'float',
         'firstname': 'str',
         'lastname': 'str',
         'username': 'str',
+        'account_name': 'str',
+        'is_user': 'bool',
         'email': 'str',
+        'date_of_birth': 'str',
         'phone': 'str',
         'created': 'datetime',
         'last_updated': 'datetime',
         'preferences': 'UserPreferences',
         'tfa_enabled': 'str',
         'affiliate_id': 'str',
-        'pgp_pub_key': 'str',
         'country': 'str',
         'geoip_country': 'str',
         'geoip_region': 'str',
+        'first_trade_timestamp': 'datetime',
         'typ': 'str'
     }
 
     attribute_map = {
         'id': 'id',
-        'owner_id': 'ownerId',
         'firstname': 'firstname',
         'lastname': 'lastname',
         'username': 'username',
+        'account_name': 'accountName',
+        'is_user': 'isUser',
         'email': 'email',
+        'date_of_birth': 'dateOfBirth',
         'phone': 'phone',
         'created': 'created',
         'last_updated': 'lastUpdated',
         'preferences': 'preferences',
         'tfa_enabled': 'TFAEnabled',
         'affiliate_id': 'affiliateID',
-        'pgp_pub_key': 'pgpPubKey',
         'country': 'country',
         'geoip_country': 'geoipCountry',
         'geoip_region': 'geoipRegion',
+        'first_trade_timestamp': 'firstTradeTimestamp',
         'typ': 'typ'
     }
 
-    def __init__(self, id=None, owner_id=None, firstname=None, lastname=None, username=None, email=None, phone=None, created=None, last_updated=None, preferences=None, tfa_enabled=None, affiliate_id=None, pgp_pub_key=None, country=None, geoip_country=None, geoip_region=None, typ=None):  # noqa: E501
+    def __init__(self, id=None, firstname=None, lastname=None, username=None, account_name=None, is_user=True, email=None, date_of_birth=None, phone=None, created=None, last_updated=None, preferences=None, tfa_enabled=None, affiliate_id=None, country=None, geoip_country=None, geoip_region=None, first_trade_timestamp=None, typ=None, _configuration=None):  # noqa: E501
         """User - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._id = None
-        self._owner_id = None
         self._firstname = None
         self._lastname = None
         self._username = None
+        self._account_name = None
+        self._is_user = None
         self._email = None
+        self._date_of_birth = None
         self._phone = None
         self._created = None
         self._last_updated = None
         self._preferences = None
         self._tfa_enabled = None
         self._affiliate_id = None
-        self._pgp_pub_key = None
         self._country = None
         self._geoip_country = None
         self._geoip_region = None
+        self._first_trade_timestamp = None
         self._typ = None
         self.discriminator = None
 
         if id is not None:
             self.id = id
-        if owner_id is not None:
-            self.owner_id = owner_id
         if firstname is not None:
             self.firstname = firstname
         if lastname is not None:
             self.lastname = lastname
         self.username = username
-        self.email = email
+        if account_name is not None:
+            self.account_name = account_name
+        self.is_user = is_user
+        if email is not None:
+            self.email = email
+        if date_of_birth is not None:
+            self.date_of_birth = date_of_birth
         if phone is not None:
             self.phone = phone
         if created is not None:
@@ -114,14 +129,14 @@ class User(object):
             self.tfa_enabled = tfa_enabled
         if affiliate_id is not None:
             self.affiliate_id = affiliate_id
-        if pgp_pub_key is not None:
-            self.pgp_pub_key = pgp_pub_key
         if country is not None:
             self.country = country
         if geoip_country is not None:
             self.geoip_country = geoip_country
         if geoip_region is not None:
             self.geoip_region = geoip_region
+        if first_trade_timestamp is not None:
+            self.first_trade_timestamp = first_trade_timestamp
         if typ is not None:
             self.typ = typ
 
@@ -145,27 +160,6 @@ class User(object):
         """
 
         self._id = id
-
-    @property
-    def owner_id(self):
-        """Gets the owner_id of this User.  # noqa: E501
-
-
-        :return: The owner_id of this User.  # noqa: E501
-        :rtype: float
-        """
-        return self._owner_id
-
-    @owner_id.setter
-    def owner_id(self, owner_id):
-        """Sets the owner_id of this User.
-
-
-        :param owner_id: The owner_id of this User.  # noqa: E501
-        :type: float
-        """
-
-        self._owner_id = owner_id
 
     @property
     def firstname(self):
@@ -227,10 +221,54 @@ class User(object):
         :param username: The username of this User.  # noqa: E501
         :type: str
         """
-        if username is None:
+        if self._configuration.client_side_validation and username is None:
             raise ValueError("Invalid value for `username`, must not be `None`")  # noqa: E501
 
         self._username = username
+
+    @property
+    def account_name(self):
+        """Gets the account_name of this User.  # noqa: E501
+
+
+        :return: The account_name of this User.  # noqa: E501
+        :rtype: str
+        """
+        return self._account_name
+
+    @account_name.setter
+    def account_name(self, account_name):
+        """Sets the account_name of this User.
+
+
+        :param account_name: The account_name of this User.  # noqa: E501
+        :type: str
+        """
+
+        self._account_name = account_name
+
+    @property
+    def is_user(self):
+        """Gets the is_user of this User.  # noqa: E501
+
+
+        :return: The is_user of this User.  # noqa: E501
+        :rtype: bool
+        """
+        return self._is_user
+
+    @is_user.setter
+    def is_user(self, is_user):
+        """Sets the is_user of this User.
+
+
+        :param is_user: The is_user of this User.  # noqa: E501
+        :type: bool
+        """
+        if self._configuration.client_side_validation and is_user is None:
+            raise ValueError("Invalid value for `is_user`, must not be `None`")  # noqa: E501
+
+        self._is_user = is_user
 
     @property
     def email(self):
@@ -250,10 +288,29 @@ class User(object):
         :param email: The email of this User.  # noqa: E501
         :type: str
         """
-        if email is None:
-            raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
 
         self._email = email
+
+    @property
+    def date_of_birth(self):
+        """Gets the date_of_birth of this User.  # noqa: E501
+
+
+        :return: The date_of_birth of this User.  # noqa: E501
+        :rtype: str
+        """
+        return self._date_of_birth
+
+    @date_of_birth.setter
+    def date_of_birth(self, date_of_birth):
+        """Sets the date_of_birth of this User.
+
+
+        :param date_of_birth: The date_of_birth of this User.  # noqa: E501
+        :type: str
+        """
+
+        self._date_of_birth = date_of_birth
 
     @property
     def phone(self):
@@ -378,33 +435,11 @@ class User(object):
         :param affiliate_id: The affiliate_id of this User.  # noqa: E501
         :type: str
         """
-        if affiliate_id is not None and len(affiliate_id) > 6:
+        if (self._configuration.client_side_validation and
+                affiliate_id is not None and len(affiliate_id) > 6):
             raise ValueError("Invalid value for `affiliate_id`, length must be less than or equal to `6`")  # noqa: E501
 
         self._affiliate_id = affiliate_id
-
-    @property
-    def pgp_pub_key(self):
-        """Gets the pgp_pub_key of this User.  # noqa: E501
-
-
-        :return: The pgp_pub_key of this User.  # noqa: E501
-        :rtype: str
-        """
-        return self._pgp_pub_key
-
-    @pgp_pub_key.setter
-    def pgp_pub_key(self, pgp_pub_key):
-        """Sets the pgp_pub_key of this User.
-
-
-        :param pgp_pub_key: The pgp_pub_key of this User.  # noqa: E501
-        :type: str
-        """
-        if pgp_pub_key is not None and len(pgp_pub_key) > 16384:
-            raise ValueError("Invalid value for `pgp_pub_key`, length must be less than or equal to `16384`")  # noqa: E501
-
-        self._pgp_pub_key = pgp_pub_key
 
     @property
     def country(self):
@@ -424,7 +459,8 @@ class User(object):
         :param country: The country of this User.  # noqa: E501
         :type: str
         """
-        if country is not None and len(country) > 3:
+        if (self._configuration.client_side_validation and
+                country is not None and len(country) > 3):
             raise ValueError("Invalid value for `country`, length must be less than or equal to `3`")  # noqa: E501
 
         self._country = country
@@ -447,7 +483,8 @@ class User(object):
         :param geoip_country: The geoip_country of this User.  # noqa: E501
         :type: str
         """
-        if geoip_country is not None and len(geoip_country) > 2:
+        if (self._configuration.client_side_validation and
+                geoip_country is not None and len(geoip_country) > 2):
             raise ValueError("Invalid value for `geoip_country`, length must be less than or equal to `2`")  # noqa: E501
 
         self._geoip_country = geoip_country
@@ -470,10 +507,32 @@ class User(object):
         :param geoip_region: The geoip_region of this User.  # noqa: E501
         :type: str
         """
-        if geoip_region is not None and len(geoip_region) > 2:
+        if (self._configuration.client_side_validation and
+                geoip_region is not None and len(geoip_region) > 2):
             raise ValueError("Invalid value for `geoip_region`, length must be less than or equal to `2`")  # noqa: E501
 
         self._geoip_region = geoip_region
+
+    @property
+    def first_trade_timestamp(self):
+        """Gets the first_trade_timestamp of this User.  # noqa: E501
+
+
+        :return: The first_trade_timestamp of this User.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._first_trade_timestamp
+
+    @first_trade_timestamp.setter
+    def first_trade_timestamp(self, first_trade_timestamp):
+        """Sets the first_trade_timestamp of this User.
+
+
+        :param first_trade_timestamp: The first_trade_timestamp of this User.  # noqa: E501
+        :type: datetime
+        """
+
+        self._first_trade_timestamp = first_trade_timestamp
 
     @property
     def typ(self):
@@ -536,8 +595,11 @@ class User(object):
         if not isinstance(other, User):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, User):
+            return True
+
+        return self.to_dict() != other.to_dict()
