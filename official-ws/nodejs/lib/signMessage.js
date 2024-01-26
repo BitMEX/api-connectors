@@ -18,14 +18,13 @@ module.exports = function signMessage(secret, verb, url, nonce, data) {
   return crypto.createHmac('sha256', secret).update(verb + url + nonce + data).digest('hex');
 };
 
-var nonceCounter = 0;
 
 module.exports.getWSAuthQuery = function getWSAuthQuery(apiKey, apiSecret) {
-  const nonce = Date.now() * 1000 + (nonceCounter++ % 1000); // prevents colliding nonces. Otherwise, use expires
+  const expires = Date.now() / 1000 + 5;
   const query = {
-    'api-nonce': nonce,
+    'api-expires': expires,
     'api-key': apiKey,
-    'api-signature': module.exports(apiSecret, 'GET', '/realtime', nonce)
+    'api-signature': module.exports(apiSecret, 'GET', '/realtime', expires)
   };
 
   return querystring.stringify(query);

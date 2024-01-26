@@ -12,12 +12,12 @@
 
 Sub placeorder()
 Dim Json, httpObject As Object
-Dim nonce As Double
-Dim verb, apiKey, apiSecret, Signature, symbol, price, qty, url, postdata, replytext, nonceStr As String
+Dim expires As Double
+Dim verb, apiKey, apiSecret, Signature, symbol, price, qty, url, postdata, replytext, expiresStr As String
 Dim jsoncount As Long
 
-' Set monotonically (w time) increasing nonce
-nonce = DateDiff("s", "1/1/1970", Now)
+' Set expiration time 5 minutes from now
+expires = DateDiff("s", "1/1/1970", DateAdd("n", 5, Now))
 
 ' Set api key and secret
 apiKey = "key"
@@ -32,17 +32,17 @@ verb = "POST"
 url = "/api/v1/order"
 postdata = "symbol=" & symbol & "&price=" & price & "&quantity=" & qty
 
-' Stringize nonce
-nonceStr = nonce
+' Stringize expires
+expiresStr = expires
 
 ' Compute signature using hexhash script
-Signature = HexHash(verb + url + nonceStr + postdata, apiSecret, "SHA256")
+Signature = HexHash(verb + url + expiresStr + postdata, apiSecret, "SHA256")
 
 ' Set up HTTP req with headers
 Set httpObject = CreateObject("MSXML2.XMLHTTP")
 httpObject.Open "POST", "https://testnet.bitmex.com" & url, False
 httpObject.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
-httpObject.setRequestHeader "api-nonce", nonceStr
+httpObject.setRequestHeader "api-expires", expiresStr
 httpObject.setRequestHeader "api-key", apiKey
 httpObject.setRequestHeader "api-signature", Signature
 httpObject.Send (postdata)

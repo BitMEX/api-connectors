@@ -48,15 +48,15 @@ on *:sockopen:btc.*:{
   var %api_key = API_KEY
   var %secret = API_SECRET
 
-  var %nonce = $nonce
-  var %data = GET/api/v1/position $+ %nonce
+  var %expires = $ctime + 5 ; // Current UNIX timestamp plus 5 seconds
+  var %data = GET/api/v1/position $+ %expires
   var %sign = $hmac-sha-256(%secret,%data)
 
   var %a = sockwrite -n $sockname
 
   %a GET /api/v1/position HTTP/1.0
   %a Content-Type: application/x-www-form-urlencoded
-  %a api-nonce: %nonce
+  %a api-expires: %expires
   %a api-key: %api_key
   %a api-signature: %sign
   %a $+($crlf,%data)
