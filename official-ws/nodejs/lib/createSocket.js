@@ -31,7 +31,8 @@ module.exports = function createSocket(options, bmexClient) {
     bmexClient.emit('close');
   };
 
-  wsClient.onmessage = function(data) {
+  wsClient.onmessage = function(input, isBinary) {
+    let data = isBinary ? input : input.toString();
     try {
       if (data === "pong") {
         return;
