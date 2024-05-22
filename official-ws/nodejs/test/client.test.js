@@ -3,6 +3,7 @@ const data = require('./fixtures/data');
 const sinon = require('sinon');
 const sandbox = sinon.createSandbox();
 const superagent = require('superagent');
+const querystring = require('querystring')
 
 //
 // Helpers
@@ -130,4 +131,15 @@ test('Partial handling multiple stream', async () => {
 
   expect(client._data['orderBookL2_25']['XBTUSD']).toHaveLength(2)
   expect(client._data['orderBookL2_25']['ETHYLDH23']).toHaveLength(0)
+});
+
+test('getWSAuthQuery', async () => {
+  const signMessage = require('../lib/signMessage');
+  const getWSAuthQuery = require('../lib/signMessage').getWSAuthQuery;
+  const query = querystring.parse(getWSAuthQuery('API_KEY', 'API_SECRET'));
+  expect(parseInt(query['api-expires'], 10)).toEqual(Number(query['api-expires']));
+  expect(query['api-key']).toEqual('API_KEY');
+  expect(query['api-signature']).toEqual(
+    signMessage('API_SECRET', 'GET', '/realtime', parseInt(query['api-expires'], 10))
+  );
 });
