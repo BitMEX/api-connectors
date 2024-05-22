@@ -20,7 +20,7 @@ module.exports = function signMessage(secret, verb, url, nonce, data) {
 
 
 module.exports.getWSAuthQuery = function getWSAuthQuery(apiKey, apiSecret) {
-  const expires = Date.now() / 1000 + 5;
+  const expires = Math.round(Date.now() / 1000) + 5;
   const query = {
     'api-expires': expires,
     'api-key': apiKey,

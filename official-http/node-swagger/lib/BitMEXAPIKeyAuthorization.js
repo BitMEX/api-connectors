@@ -14,7 +14,7 @@ var BitMEXAPIKeyAuthorization = function (apiKey, apiSecret) {
 var nonceCounter = 0;
 BitMEXAPIKeyAuthorization.prototype.apply = function (req) {
   if (req.loadSpec) return true;
-  var expires = (Date.now() / 1000) + 5; // expires in 5s
+  var expires = Math.round(Date.now() / 1000) + 5; // expires in 5s
   var parsedURL = url.parse(req.url);
   var thisPath = parsedURL.pathname + (parsedURL.search || '');
   var signature = this.sign(req.method.toUpperCase(), thisPath, expires, req.body);
