@@ -38,7 +38,7 @@ describe 'PositionApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [String] :filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}.
   # @option opts [String] :columns Which columns to fetch. For example, send [\&quot;columnName\&quot;].
-  # @option opts [Float] :count Number of rows to fetch.
+  # @option opts [Integer] :count Number of rows to fetch.
   # @return [Array<Position>]
   describe 'position_get test' do
     it 'should work' do

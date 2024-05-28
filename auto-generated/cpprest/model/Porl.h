@@ -56,8 +56,8 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getAccount() const;
-        void setAccount(double value);
+    int32_t getAccount() const;
+        void setAccount(int32_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -99,7 +99,7 @@ public:
         void setCreated(utility::datetime value);
 
 protected:
-    double m_Account;
+    int32_t m_Account;
         utility::string_t m_Nonce;
     bool m_NonceIsSet;
     utility::string_t m_AccountNonce;

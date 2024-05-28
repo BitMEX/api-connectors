@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -30,17 +29,17 @@ public class Order {
   @SerializedName("clOrdLinkID")
   private String clOrdLinkID = null;
   @SerializedName("account")
-  private BigDecimal account = null;
+  private Long account = null;
   @SerializedName("symbol")
   private String symbol = null;
   @SerializedName("side")
   private String side = null;
   @SerializedName("orderQty")
-  private BigDecimal orderQty = null;
+  private Long orderQty = null;
   @SerializedName("price")
   private Double price = null;
   @SerializedName("displayQty")
-  private BigDecimal displayQty = null;
+  private Long displayQty = null;
   @SerializedName("stopPx")
   private Double stopPx = null;
   @SerializedName("pegOffsetValue")
@@ -68,9 +67,9 @@ public class Order {
   @SerializedName("ordRejReason")
   private String ordRejReason = null;
   @SerializedName("leavesQty")
-  private BigDecimal leavesQty = null;
+  private Long leavesQty = null;
   @SerializedName("cumQty")
-  private BigDecimal cumQty = null;
+  private Long cumQty = null;
   @SerializedName("avgPx")
   private Double avgPx = null;
   @SerializedName("text")
@@ -113,10 +112,10 @@ public class Order {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAccount() {
+  public Long getAccount() {
     return account;
   }
-  public void setAccount(BigDecimal account) {
+  public void setAccount(Long account) {
     this.account = account;
   }
 
@@ -143,10 +142,10 @@ public class Order {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOrderQty() {
+  public Long getOrderQty() {
     return orderQty;
   }
-  public void setOrderQty(BigDecimal orderQty) {
+  public void setOrderQty(Long orderQty) {
     this.orderQty = orderQty;
   }
 
@@ -163,10 +162,10 @@ public class Order {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getDisplayQty() {
+  public Long getDisplayQty() {
     return displayQty;
   }
-  public void setDisplayQty(BigDecimal displayQty) {
+  public void setDisplayQty(Long displayQty) {
     this.displayQty = displayQty;
   }
 
@@ -303,20 +302,20 @@ public class Order {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getLeavesQty() {
+  public Long getLeavesQty() {
     return leavesQty;
   }
-  public void setLeavesQty(BigDecimal leavesQty) {
+  public void setLeavesQty(Long leavesQty) {
     this.leavesQty = leavesQty;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getCumQty() {
+  public Long getCumQty() {
     return cumQty;
   }
-  public void setCumQty(BigDecimal cumQty) {
+  public void setCumQty(Long cumQty) {
     this.cumQty = cumQty;
   }
 

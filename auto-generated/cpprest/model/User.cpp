@@ -21,7 +21,7 @@ namespace model {
 
 User::User()
 {
-    m_Id = 0.0;
+    m_Id = 0;
     m_IdIsSet = false;
     m_Firstname = utility::conversions::to_string_t("");
     m_FirstnameIsSet = false;
@@ -158,7 +158,7 @@ void User::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("id")];
         if(!fieldValue.is_null())
         {
-            setId(ModelBase::doubleFromJson(fieldValue));
+            setId(ModelBase::int32_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("firstname")))
@@ -417,7 +417,7 @@ void User::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
 
     if(multipart->hasContent(utility::conversions::to_string_t("id")))
     {
-        setId(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
+        setId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("firstname")))
     {
@@ -496,13 +496,13 @@ void User::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
 }
 
-double User::getId() const
+int32_t User::getId() const
 {
     return m_Id;
 }
 
 
-void User::setId(double value)
+void User::setId(int32_t value)
 {
     m_Id = value;
     m_IdIsSet = true;

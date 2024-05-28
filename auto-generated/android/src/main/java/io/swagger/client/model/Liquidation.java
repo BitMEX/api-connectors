@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
@@ -31,7 +30,7 @@ public class Liquidation {
   @SerializedName("price")
   private Double price = null;
   @SerializedName("leavesQty")
-  private BigDecimal leavesQty = null;
+  private Long leavesQty = null;
 
   /**
    **/
@@ -76,10 +75,10 @@ public class Liquidation {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getLeavesQty() {
+  public Long getLeavesQty() {
     return leavesQty;
   }
-  public void setLeavesQty(BigDecimal leavesQty) {
+  public void setLeavesQty(Long leavesQty) {
     this.leavesQty = leavesQty;
   }
 

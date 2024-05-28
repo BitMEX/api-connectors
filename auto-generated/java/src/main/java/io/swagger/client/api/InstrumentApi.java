@@ -27,7 +27,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.IndexComposite;
 import io.swagger.client.model.Instrument;
@@ -75,7 +74,7 @@ public class InstrumentApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call instrumentGetCall(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call instrumentGetCall(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -133,7 +132,7 @@ public class InstrumentApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call instrumentGetValidateBeforeCall(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call instrumentGetValidateBeforeCall(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
         com.squareup.okhttp.Call call = instrumentGetCall(symbol, filter, columns, count, start, reverse, startTime, endTime, progressListener, progressRequestListener);
@@ -155,7 +154,7 @@ public class InstrumentApi {
      * @return List&lt;Instrument&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Instrument> instrumentGet(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public List<Instrument> instrumentGet(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         ApiResponse<List<Instrument>> resp = instrumentGetWithHttpInfo(symbol, filter, columns, count, start, reverse, startTime, endTime);
         return resp.getData();
     }
@@ -174,7 +173,7 @@ public class InstrumentApi {
      * @return ApiResponse&lt;List&lt;Instrument&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Instrument>> instrumentGetWithHttpInfo(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public ApiResponse<List<Instrument>> instrumentGetWithHttpInfo(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         com.squareup.okhttp.Call call = instrumentGetValidateBeforeCall(symbol, filter, columns, count, start, reverse, startTime, endTime, null, null);
         Type localVarReturnType = new TypeToken<List<Instrument>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -195,7 +194,7 @@ public class InstrumentApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call instrumentGetAsync(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<Instrument>> callback) throws ApiException {
+    public com.squareup.okhttp.Call instrumentGetAsync(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<Instrument>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -575,7 +574,7 @@ public class InstrumentApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call instrumentGetCompositeIndexCall(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call instrumentGetCompositeIndexCall(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -633,7 +632,7 @@ public class InstrumentApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call instrumentGetCompositeIndexValidateBeforeCall(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call instrumentGetCompositeIndexValidateBeforeCall(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
         com.squareup.okhttp.Call call = instrumentGetCompositeIndexCall(symbol, filter, columns, count, start, reverse, startTime, endTime, progressListener, progressRequestListener);
@@ -655,7 +654,7 @@ public class InstrumentApi {
      * @return List&lt;IndexComposite&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<IndexComposite> instrumentGetCompositeIndex(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public List<IndexComposite> instrumentGetCompositeIndex(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         ApiResponse<List<IndexComposite>> resp = instrumentGetCompositeIndexWithHttpInfo(symbol, filter, columns, count, start, reverse, startTime, endTime);
         return resp.getData();
     }
@@ -674,7 +673,7 @@ public class InstrumentApi {
      * @return ApiResponse&lt;List&lt;IndexComposite&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<IndexComposite>> instrumentGetCompositeIndexWithHttpInfo(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public ApiResponse<List<IndexComposite>> instrumentGetCompositeIndexWithHttpInfo(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         com.squareup.okhttp.Call call = instrumentGetCompositeIndexValidateBeforeCall(symbol, filter, columns, count, start, reverse, startTime, endTime, null, null);
         Type localVarReturnType = new TypeToken<List<IndexComposite>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -695,7 +694,7 @@ public class InstrumentApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call instrumentGetCompositeIndexAsync(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<IndexComposite>> callback) throws ApiException {
+    public com.squareup.okhttp.Call instrumentGetCompositeIndexAsync(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<IndexComposite>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

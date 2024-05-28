@@ -4,13 +4,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CsaID** | **string** |  | 
-**Account** | **decimal?** |  | [optional] 
+**Account** | **long?** |  | [optional] 
 **Currency** | **string** |  | [optional] 
-**Amount** | **decimal?** |  | [optional] 
-**MinAmount** | **decimal?** |  | [optional] 
-**Threshold** | **decimal?** |  | [optional] 
-**MmRatioMarginCall** | **decimal?** |  | [optional] 
-**MmRatioLiquidation** | **decimal?** |  | [optional] 
+**Amount** | **long?** |  | [optional] 
+**MinAmount** | **long?** |  | [optional] 
+**Threshold** | **long?** |  | [optional] 
+**MmRatioMarginCall** | **long?** |  | [optional] 
+**MmRatioLiquidation** | **long?** |  | [optional] 
 **StartTime** | **string** |  | [optional] 
 **MaturityTime** | **string** |  | [optional] 
 **MaturityInstruction** | **string** |  | [optional] 

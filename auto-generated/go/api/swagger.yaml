@@ -251,20 +251,20 @@ paths:
         in: "query"
         description: "Number of results to fetch."
         required: false
-        type: "number"
-        default: 100.0
+        type: "integer"
+        default: 100
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "start"
         in: "query"
         description: "Starting ID for results."
         required: false
-        type: "number"
-        default: 0.0
+        type: "integer"
+        default: 0
         format: "int32"
         x-exportParamName: "Start"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "reverse"
         in: "query"
         description: "If true, will sort results newest first."
@@ -463,20 +463,20 @@ paths:
         in: "query"
         description: "Number of results to fetch. Must be a positive integer."
         required: false
-        type: "number"
-        default: 100.0
+        type: "integer"
+        default: 100
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "start"
         in: "query"
         description: "Starting point for results."
         required: false
-        type: "number"
-        default: 0.0
+        type: "integer"
+        default: 0
         format: "int32"
         x-exportParamName: "Start"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "reverse"
         in: "query"
         description: "If true, will sort results newest first."
@@ -587,20 +587,20 @@ paths:
         in: "query"
         description: "Number of results to fetch. Must be a positive integer."
         required: false
-        type: "number"
-        default: 100.0
+        type: "integer"
+        default: 100
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "start"
         in: "query"
         description: "Starting point for results."
         required: false
-        type: "number"
-        default: 0.0
+        type: "integer"
+        default: 0
         format: "int32"
         x-exportParamName: "Start"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "reverse"
         in: "query"
         description: "If true, will sort results newest first."
@@ -692,20 +692,20 @@ paths:
         in: "query"
         description: "Number of results to fetch. Must be a positive integer."
         required: false
-        type: "number"
-        default: 100.0
+        type: "integer"
+        default: 100
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "start"
         in: "query"
         description: "Starting point for results."
         required: false
-        type: "number"
-        default: 0.0
+        type: "integer"
+        default: 0
         format: "int32"
         x-exportParamName: "Start"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "reverse"
         in: "query"
         description: "If true, will sort results newest first."
@@ -807,20 +807,20 @@ paths:
         in: "query"
         description: "Number of results to fetch. Must be a positive integer."
         required: false
-        type: "number"
-        default: 100.0
+        type: "integer"
+        default: 100
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "start"
         in: "query"
         description: "Starting point for results."
         required: false
-        type: "number"
-        default: 0.0
+        type: "integer"
+        default: 0
         format: "int32"
         x-exportParamName: "Start"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "reverse"
         in: "query"
         description: "If true, will sort results newest first."
@@ -1046,20 +1046,20 @@ paths:
         in: "query"
         description: "Number of results to fetch. Must be a positive integer."
         required: false
-        type: "number"
-        default: 100.0
+        type: "integer"
+        default: 100
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "start"
         in: "query"
         description: "Starting point for results."
         required: false
-        type: "number"
-        default: 0.0
+        type: "integer"
+        default: 0
         format: "int32"
         x-exportParamName: "Start"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "reverse"
         in: "query"
         description: "If true, will sort results newest first."
@@ -1199,20 +1199,20 @@ paths:
         in: "query"
         description: "Number of results to fetch. Must be a positive integer."
         required: false
-        type: "number"
-        default: 100.0
+        type: "integer"
+        default: 100
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "start"
         in: "query"
         description: "Starting point for results."
         required: false
-        type: "number"
-        default: 0.0
+        type: "integer"
+        default: 0
         format: "int32"
         x-exportParamName: "Start"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "reverse"
         in: "query"
         description: "If true, will sort results newest first."
@@ -1374,20 +1374,20 @@ paths:
         in: "query"
         description: "Number of results to fetch. Must be a positive integer."
         required: false
-        type: "number"
-        default: 100.0
+        type: "integer"
+        default: 100
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "start"
         in: "query"
         description: "Starting point for results."
         required: false
-        type: "number"
-        default: 0.0
+        type: "integer"
+        default: 0
         format: "int32"
         x-exportParamName: "Start"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "reverse"
         in: "query"
         description: "If true, will sort results newest first."
@@ -1515,20 +1515,20 @@ paths:
         in: "query"
         description: "Number of results to fetch. Must be a positive integer."
         required: false
-        type: "number"
-        default: 100.0
+        type: "integer"
+        default: 100
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "start"
         in: "query"
         description: "Starting point for results."
         required: false
-        type: "number"
-        default: 0.0
+        type: "integer"
+        default: 0
         format: "int32"
         x-exportParamName: "Start"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "reverse"
         in: "query"
         description: "If true, will sort results newest first."
@@ -1717,10 +1717,10 @@ paths:
           \ spot it is base currency in minor currency for spot (e.g. XBt quantity\
           \ for XBT))."
         required: false
-        type: "number"
+        type: "integer"
         format: "int32"
         x-exportParamName: "OrderQty"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "price"
         in: "formData"
         description: "Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched'\
@@ -1735,10 +1735,10 @@ paths:
         description: "Optional quantity to display in the book. Use 0 for a fully\
           \ hidden order."
         required: false
-        type: "number"
+        type: "integer"
         format: "int32"
         x-exportParamName: "DisplayQty"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "stopPx"
         in: "formData"
         description: "Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched',\
@@ -1904,10 +1904,10 @@ paths:
           \ for spot it is the base currency in minor currency (e.g. XBt quantity\
           \ for XBT))."
         required: false
-        type: "number"
+        type: "integer"
         format: "int32"
         x-exportParamName: "OrderQty"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "simpleLeavesQty"
         in: "formData"
         description: "Deprecated: simple orders are not supported after 2018/10/26"
@@ -1922,10 +1922,10 @@ paths:
           \ for spot it is the base currency in minor currency (e.g. XBt quantity\
           \ for XBT)). Useful for amending partially filled orders."
         required: false
-        type: "number"
+        type: "integer"
         format: "int32"
         x-exportParamName: "LeavesQty"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "price"
         in: "formData"
         description: "Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched'\
@@ -2209,12 +2209,12 @@ paths:
         in: "query"
         description: "Orderbook depth per side. Send 0 for full depth."
         required: false
-        type: "number"
-        default: 25.0
+        type: "integer"
+        default: 25
         minimum: 0
         format: "int32"
         x-exportParamName: "Depth"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       security: []
       deprecated: false
       responses:
@@ -2304,10 +2304,10 @@ paths:
         in: "query"
         description: "Number of rows to fetch."
         required: false
-        type: "number"
+        type: "integer"
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       deprecated: false
       responses:
         "200":
@@ -2397,7 +2397,7 @@ paths:
         in: "formData"
         description: "New Risk Limit, in Satoshis."
         required: true
-        type: "number"
+        type: "integer"
         format: "int64"
         x-exportParamName: "RiskLimit"
       - name: "targetAccountId"
@@ -2451,7 +2451,7 @@ paths:
         in: "formData"
         description: "Amount to transfer, in Satoshis. May be negative."
         required: true
-        type: "number"
+        type: "integer"
         format: "int64"
         x-exportParamName: "Amount"
       - name: "targetAccountId"
@@ -2582,20 +2582,20 @@ paths:
         in: "query"
         description: "Number of results to fetch. Must be a positive integer."
         required: false
-        type: "number"
-        default: 100.0
+        type: "integer"
+        default: 100
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "start"
         in: "query"
         description: "Starting point for results."
         required: false
-        type: "number"
-        default: 0.0
+        type: "integer"
+        default: 0
         format: "int32"
         x-exportParamName: "Start"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "reverse"
         in: "query"
         description: "If true, will sort results newest first."
@@ -2709,20 +2709,20 @@ paths:
         in: "query"
         description: "Number of results to fetch. Must be a positive integer."
         required: false
-        type: "number"
-        default: 100.0
+        type: "integer"
+        default: 100
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "start"
         in: "query"
         description: "Starting point for results."
         required: false
-        type: "number"
-        default: 0.0
+        type: "integer"
+        default: 0
         format: "int32"
         x-exportParamName: "Start"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "reverse"
         in: "query"
         description: "If true, will sort results newest first."
@@ -2882,20 +2882,20 @@ paths:
         in: "query"
         description: "Number of results to fetch. Must be a positive integer."
         required: false
-        type: "number"
-        default: 100.0
+        type: "integer"
+        default: 100
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "start"
         in: "query"
         description: "Starting point for results."
         required: false
-        type: "number"
-        default: 0.0
+        type: "integer"
+        default: 0
         format: "int32"
         x-exportParamName: "Start"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "reverse"
         in: "query"
         description: "If true, will sort results newest first."
@@ -3088,20 +3088,20 @@ paths:
         in: "query"
         description: "Number of results to fetch. Must be a positive integer."
         required: false
-        type: "number"
-        default: 100.0
+        type: "integer"
+        default: 100
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "start"
         in: "query"
         description: "Starting point for results."
         required: false
-        type: "number"
-        default: 0.0
+        type: "integer"
+        default: 0
         format: "int32"
         x-exportParamName: "Start"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "reverse"
         in: "query"
         description: "If true, will sort results newest first."
@@ -3216,20 +3216,20 @@ paths:
         in: "query"
         description: "Number of results to fetch. Must be a positive integer."
         required: false
-        type: "number"
-        default: 100.0
+        type: "integer"
+        default: 100
         format: "int32"
         x-exportParamName: "Count"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "start"
         in: "query"
         description: "Starting point for results."
         required: false
-        type: "number"
-        default: 0.0
+        type: "integer"
+        default: 0
         format: "int32"
         x-exportParamName: "Start"
-        x-optionalDataType: "Float32"
+        x-optionalDataType: "Int32"
       - name: "reverse"
         in: "query"
         description: "If true, will sort results newest first."
@@ -3831,7 +3831,7 @@ paths:
         in: "formData"
         description: "Amount of transfer."
         required: true
-        type: "number"
+        type: "integer"
         format: "int64"
         x-exportParamName: "Amount"
       - name: "fromAccountId"
@@ -3910,7 +3910,7 @@ paths:
         in: "formData"
         description: "Amount of withdrawal currency."
         required: true
-        type: "number"
+        type: "integer"
         format: "int64"
         x-exportParamName: "Amount"
       - name: "address"
@@ -5429,7 +5429,7 @@ definitions:
     - "id"
     properties:
       id:
-        type: "number"
+        type: "integer"
         format: "int32"
       link:
         type: "string"
@@ -5444,7 +5444,7 @@ definitions:
     example:
       date: "2000-01-23T04:56:07.000+00:00"
       link: "link"
-      id: 0.80082819046101150206595775671303272247314453125
+      id: 0
       title: "title"
       content: "content"
   Error:
@@ -5473,8 +5473,9 @@ definitions:
         type: "string"
         maxLength: 64
       nonce:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       cidr:
         type: "string"
         maxLength: 18
@@ -5483,7 +5484,7 @@ definitions:
         items:
           $ref: "#/definitions/x-any"
       targetAccountId:
-        type: "number"
+        type: "integer"
         format: "int32"
       permissions:
         type: "array"
@@ -5493,14 +5494,14 @@ definitions:
         type: "boolean"
         default: false
       userId:
-        type: "number"
+        type: "integer"
         format: "int32"
       created:
         type: "string"
         format: "date-time"
     description: "Persistent API Keys for Developers"
     example:
-      targetAccountId: 6.02745618307040320615897144307382404804229736328125
+      targetAccountId: 6
       permissions:
       - null
       - null
@@ -5512,8 +5513,8 @@ definitions:
       cidrs:
       - {}
       - {}
-      nonce: 0.80082819046101150206595775671303272247314453125
-      userId: 1.46581298050294517310021547018550336360931396484375
+      nonce: 0
+      userId: 1
       enabled: false
   PinnedMessage:
     type: "object"
@@ -5523,13 +5524,13 @@ definitions:
     - "messageId"
     properties:
       id:
-        type: "number"
+        type: "integer"
         format: "int32"
       channelID:
-        type: "number"
+        type: "integer"
         format: "int32"
       messageId:
-        type: "number"
+        type: "integer"
         format: "int32"
       created:
         type: "string"
@@ -5548,10 +5549,10 @@ definitions:
       createdUserId: 5.962133916683182
       created: "2000-01-23T04:56:07.000+00:00"
       ended: "2000-01-23T04:56:07.000+00:00"
-      messageId: 1.46581298050294517310021547018550336360931396484375
+      messageId: 1
       endedUserId: 5.637376656633329
-      id: 0.80082819046101150206595775671303272247314453125
-      channelID: 6.02745618307040320615897144307382404804229736328125
+      id: 0
+      channelID: 6
   Chat:
     type: "object"
     required:
@@ -5561,7 +5562,7 @@ definitions:
     - "user"
     properties:
       id:
-        type: "number"
+        type: "integer"
         format: "int32"
       date:
         type: "string"
@@ -5582,7 +5583,7 @@ definitions:
       date: "2000-01-23T04:56:07.000+00:00"
       userColor: "userColor"
       html: "html"
-      id: 0.80082819046101150206595775671303272247314453125
+      id: 0
       message: "message"
       user: "user"
       channelID: 6.027456183070403
@@ -5593,7 +5594,7 @@ definitions:
     - "name"
     properties:
       id:
-        type: "number"
+        type: "integer"
         format: "int32"
       name:
         type: "string"
@@ -5601,20 +5602,20 @@ definitions:
         type: "boolean"
     example:
       name: "name"
-      id: 0.80082819046101150206595775671303272247314453125
+      id: 0
       isPrivate: true
   ConnectedUsers:
     type: "object"
     properties:
       users:
-        type: "number"
+        type: "integer"
         format: "int32"
       bots:
-        type: "number"
+        type: "integer"
         format: "int32"
     example:
-      bots: 6.02745618307040320615897144307382404804229736328125
-      users: 0.80082819046101150206595775671303272247314453125
+      bots: 6
+      users: 0
   Execution:
     type: "object"
     required:
@@ -5632,14 +5633,14 @@ definitions:
       clOrdLinkID:
         type: "string"
       account:
-        type: "number"
+        type: "integer"
         format: "int64"
       symbol:
         type: "string"
       side:
         type: "string"
       lastQty:
-        type: "number"
+        type: "integer"
         format: "int64"
       lastPx:
         type: "number"
@@ -5647,13 +5648,13 @@ definitions:
       lastLiquidityInd:
         type: "string"
       orderQty:
-        type: "number"
+        type: "integer"
         format: "int64"
       price:
         type: "number"
         format: "double"
       displayQty:
-        type: "number"
+        type: "integer"
         format: "int64"
       stopPx:
         type: "number"
@@ -5686,10 +5687,10 @@ definitions:
       ordRejReason:
         type: "string"
       leavesQty:
-        type: "number"
+        type: "integer"
         format: "int64"
       cumQty:
-        type: "number"
+        type: "integer"
         format: "int64"
       avgPx:
         type: "number"
@@ -5697,6 +5698,8 @@ definitions:
       commission:
         type: "number"
         format: "double"
+      feeType:
+        type: "string"
       tradePublishIndicator:
         type: "string"
       text:
@@ -5705,10 +5708,10 @@ definitions:
         type: "string"
         format: "guid"
       execCost:
-        type: "number"
+        type: "integer"
         format: "int64"
       execComm:
-        type: "number"
+        type: "integer"
         format: "int64"
       homeNotional:
         type: "number"
@@ -5722,8 +5725,6 @@ definitions:
       timestamp:
         type: "string"
         format: "date-time"
-      feeType:
-        type: "string"
     description: "Raw Order and Balance Data"
     example:
       symbol: "symbol"
@@ -5736,13 +5737,13 @@ definitions:
       execID: "execID"
       contingencyType: "contingencyType"
       foreignNotional: 6.84685269835264
-      execCost: 1.231513536777255612975068288506008684635162353515625
-      execComm: 1.024645700144157789424070870154537260532379150390625
+      execCost: 1
+      execComm: 1
       settlCurrency: "settlCurrency"
       ordRejReason: "ordRejReason"
       price: 5.637376656633329
       trdMatchID: "trdMatchID"
-      orderQty: 5.962133916683182377482808078639209270477294921875
+      orderQty: 5
       currency: "currency"
       commission: 7.386281948385884
       text: "text"
@@ -5753,18 +5754,18 @@ definitions:
       side: "side"
       orderID: "orderID"
       lastPx: 1.4658129805029452
-      leavesQty: 3.61607674925191080461672754609026014804840087890625
-      cumQty: 2.027123023002321833274663731572218239307403564453125
+      leavesQty: 3
+      cumQty: 2
       tradePublishIndicator: "tradePublishIndicator"
-      displayQty: 2.3021358869347654518833223846741020679473876953125
+      displayQty: 2
       feeType: "feeType"
       clOrdID: "clOrdID"
-      lastQty: 6.02745618307040320615897144307382404804229736328125
+      lastQty: 6
       avgPx: 4.145608029883936
       workingIndicator: true
       lastLiquidityInd: "lastLiquidityInd"
       transactTime: "2000-01-23T04:56:07.000+00:00"
-      account: 0.80082819046101150206595775671303272247314453125
+      account: 0
       stopPx: 7.061401241503109
       ordType: "ordType"
   x-any:
@@ -5846,30 +5847,30 @@ definitions:
         type: "string"
         format: "date-time"
       maxOrderQty:
-        type: "number"
+        type: "integer"
         format: "int64"
       maxPrice:
         type: "number"
         format: "double"
       lotSize:
-        type: "number"
+        type: "integer"
         format: "int64"
       tickSize:
         type: "number"
         format: "double"
       multiplier:
-        type: "number"
+        type: "integer"
         format: "int64"
       settlCurrency:
         type: "string"
       underlyingToPositionMultiplier:
-        type: "number"
+        type: "integer"
         format: "int64"
       underlyingToSettleMultiplier:
-        type: "number"
+        type: "integer"
         format: "int64"
       quoteToSettleMultiplier:
-        type: "number"
+        type: "integer"
         format: "int64"
       isQuanto:
         type: "boolean"
@@ -5882,10 +5883,10 @@ definitions:
         type: "number"
         format: "double"
       riskLimit:
-        type: "number"
+        type: "integer"
         format: "int64"
       riskStep:
-        type: "number"
+        type: "integer"
         format: "int64"
       limit:
         type: "number"
@@ -5937,25 +5938,25 @@ definitions:
         type: "number"
         format: "double"
       totalVolume:
-        type: "number"
+        type: "integer"
         format: "int64"
       volume:
-        type: "number"
+        type: "integer"
         format: "int64"
       volume24h:
-        type: "number"
+        type: "integer"
         format: "int64"
       prevTotalTurnover:
-        type: "number"
+        type: "integer"
         format: "int64"
       totalTurnover:
-        type: "number"
+        type: "integer"
         format: "int64"
       turnover:
-        type: "number"
+        type: "integer"
         format: "int64"
       turnover24h:
-        type: "number"
+        type: "integer"
         format: "int64"
       homeNotional24h:
         type: "number"
@@ -6007,10 +6008,10 @@ definitions:
       hasLiquidity:
         type: "boolean"
       openInterest:
-        type: "number"
+        type: "integer"
         format: "int64"
       openValue:
-        type: "number"
+        type: "integer"
         format: "int64"
       fairMethod:
         type: "string"
@@ -6047,15 +6048,15 @@ definitions:
         format: "date-time"
     description: "Tradeable Contracts, Indices, and History"
     example:
-      totalVolume: 9.3693102714106686335071572102606296539306640625
+      totalVolume: 9
       symbol: "symbol"
       listedSettle: "2000-01-23T04:56:07.000+00:00"
       vwap: 6.878052220127876
       typ: "typ"
       reference: "reference"
       deleverage: true
-      prevTotalTurnover: 9.0183481860707832566959041287191212177276611328125
-      riskLimit: 4.1456080298839363962315474054776132106781005859375
+      prevTotalTurnover: 9
+      riskLimit: 4
       fundingBaseSymbol: "fundingBaseSymbol"
       prevPrice24h: 6.778324963048013
       limit: 1.2315135367772556
@@ -6072,30 +6073,30 @@ definitions:
       askPrice: 6.519180951018382
       maintMargin: 2.027123023002322
       takerFee: 1.4894159098541704
-      multiplier: 5.63737665663332876420099637471139430999755859375
+      multiplier: 5
       fairBasis: 7.04836565559697
-      volume24h: 8.7620420127490010742121739895083010196685791015625
+      volume24h: 8
       settlementFee: 6.84685269835264
-      totalTurnover: 6.438423552598546706349225132726132869720458984375
-      turnover24h: 6.96511769763884558415156789124011993408203125
+      totalTurnover: 6
+      turnover24h: 6
       underlying: "underlying"
-      quoteToSettleMultiplier: 9.301444243932575517419536481611430644989013671875
+      quoteToSettleMultiplier: 9
       fairPrice: 5.533258397034986
       bidPrice: 0.8851374739011653
       fundingQuoteSymbol: "fundingQuoteSymbol"
       quoteCurrency: "quoteCurrency"
-      volume: 6.683562403749608193948006373830139636993408203125
+      volume: 6
       impactMidPrice: 4.652396432933246
       indicativeSettlePrice: 4.078845849666752
       settledPrice: 6.628464275087742
-      maxOrderQty: 0.80082819046101150206595775671303272247314453125
+      maxOrderQty: 0
       prevClosePrice: 4.965218492984954
       maxPrice: 6.027456183070403
-      underlyingToPositionMultiplier: 2.3021358869347654518833223846741020679473876953125
+      underlyingToPositionMultiplier: 2
       hasLiquidity: true
-      openInterest: 7.7403518187411730622216055053286254405975341796875
+      openInterest: 7
       instantPnl: true
-      riskStep: 7.3862819483858839220147274318151175975799560546875
+      riskStep: 7
       settle: "2000-01-23T04:56:07.000+00:00"
       isQuanto: true
       rootSymbol: "rootSymbol"
@@ -6107,11 +6108,11 @@ definitions:
       settlCurrency: "settlCurrency"
       makerFee: 1.0246457001441578
       lowPrice: 6.704019297950036
-      underlyingToSettleMultiplier: 7.061401241503109105224211816675961017608642578125
+      underlyingToSettleMultiplier: 7
       fundingInterval: "2000-01-23T04:56:07.000+00:00"
       listing: "2000-01-23T04:56:07.000+00:00"
       indicativeFundingRate: 1.1730742509559433
-      turnover: 3.557195227068097320710649000830017030239105224609375
+      turnover: 3
       positionCurrency: "positionCurrency"
       timestamp: "2000-01-23T04:56:07.000+00:00"
       impactAskPrice: 8.969578798196912
@@ -6119,9 +6120,9 @@ definitions:
       limitDownPrice: 5.025004791520295
       lastTickDirection: "lastTickDirection"
       homeNotional24h: 1.284659006116532
-      openValue: 3.02057969929162428712743349024094641208648681640625
+      openValue: 3
       isInverse: true
-      lotSize: 1.46581298050294517310021547018550336360931396484375
+      lotSize: 1
       minTick: 4.258773108174356
       settledPriceAdjustmentRate: 0.2025324113236393
       rebalanceTimestamp: "2000-01-23T04:56:07.000+00:00"
@@ -6213,24 +6214,24 @@ definitions:
       currency:
         type: "string"
       turnover24h:
-        type: "number"
+        type: "integer"
         format: "int64"
       turnover30d:
-        type: "number"
+        type: "integer"
         format: "int64"
       turnover365d:
-        type: "number"
+        type: "integer"
         format: "int64"
       turnover:
-        type: "number"
+        type: "integer"
         format: "int64"
     example:
       symbol: "symbol"
-      turnover30d: 6.02745618307040320615897144307382404804229736328125
-      turnover365d: 1.46581298050294517310021547018550336360931396484375
+      turnover30d: 6
+      turnover365d: 1
       currency: "currency"
-      turnover24h: 0.80082819046101150206595775671303272247314453125
-      turnover: 5.962133916683182377482808078639209270477294921875
+      turnover24h: 0
+      turnover: 5
   Insurance:
     type: "object"
     required:
@@ -6243,11 +6244,11 @@ definitions:
         type: "string"
         format: "date-time"
       walletBalance:
-        type: "number"
+        type: "integer"
         format: "int64"
     description: "Insurance Fund Data"
     example:
-      walletBalance: 0.80082819046101150206595775671303272247314453125
+      walletBalance: 0
       currency: "currency"
       timestamp: "2000-01-23T04:56:07.000+00:00"
   Leaderboard:
@@ -6283,7 +6284,7 @@ definitions:
         type: "number"
         format: "double"
       leavesQty:
-        type: "number"
+        type: "integer"
         format: "int64"
     description: "Active Liquidations"
     example:
@@ -6291,7 +6292,7 @@ definitions:
       side: "side"
       orderID: "orderID"
       price: 0.8008281904610115
-      leavesQty: 6.02745618307040320615897144307382404804229736328125
+      leavesQty: 6
   GlobalNotification:
     type: "object"
     required:
@@ -6301,7 +6302,7 @@ definitions:
     - "ttl"
     properties:
       id:
-        type: "number"
+        type: "integer"
         format: "int32"
       date:
         type: "string"
@@ -6311,7 +6312,7 @@ definitions:
       body:
         type: "string"
       ttl:
-        type: "number"
+        type: "integer"
         format: "int32"
       type:
         type: "string"
@@ -6336,12 +6337,12 @@ definitions:
       waitForVisibility: true
       closable: true
       sound: "sound"
-      id: 0.80082819046101150206595775671303272247314453125
+      id: 0
       persist: true
       title: "title"
       body: "body"
       type: "success"
-      ttl: 6.02745618307040320615897144307382404804229736328125
+      ttl: 6
   Order:
     type: "object"
     required:
@@ -6355,20 +6356,20 @@ definitions:
       clOrdLinkID:
         type: "string"
       account:
-        type: "number"
+        type: "integer"
         format: "int64"
       symbol:
         type: "string"
       side:
         type: "string"
       orderQty:
-        type: "number"
+        type: "integer"
         format: "int64"
       price:
         type: "number"
         format: "double"
       displayQty:
-        type: "number"
+        type: "integer"
         format: "int64"
       stopPx:
         type: "number"
@@ -6399,10 +6400,10 @@ definitions:
       ordRejReason:
         type: "string"
       leavesQty:
-        type: "number"
+        type: "integer"
         format: "int64"
       cumQty:
-        type: "number"
+        type: "integer"
         format: "int64"
       avgPx:
         type: "number"
@@ -6427,7 +6428,7 @@ definitions:
       settlCurrency: "settlCurrency"
       ordRejReason: "ordRejReason"
       price: 1.4658129805029452
-      orderQty: 6.02745618307040320615897144307382404804229736328125
+      orderQty: 6
       currency: "currency"
       text: "text"
       timeInForce: "timeInForce"
@@ -6435,14 +6436,14 @@ definitions:
       ordStatus: "ordStatus"
       side: "side"
       orderID: "orderID"
-      leavesQty: 7.061401241503109105224211816675961017608642578125
-      cumQty: 9.301444243932575517419536481611430644989013671875
-      displayQty: 5.962133916683182377482808078639209270477294921875
+      leavesQty: 7
+      cumQty: 9
+      displayQty: 5
       clOrdID: "clOrdID"
       avgPx: 3.616076749251911
       workingIndicator: true
       transactTime: "2000-01-23T04:56:07.000+00:00"
-      account: 0.80082819046101150206595775671303272247314453125
+      account: 0
       stopPx: 5.637376656633329
       ordType: "ordType"
   OrderBookL2:
@@ -6455,12 +6456,12 @@ definitions:
       symbol:
         type: "string"
       id:
-        type: "number"
+        type: "integer"
         format: "int64"
       side:
         type: "string"
       size:
-        type: "number"
+        type: "integer"
         format: "int64"
       price:
         type: "number"
@@ -6471,9 +6472,9 @@ definitions:
     example:
       symbol: "symbol"
       side: "side"
-      size: 6.02745618307040320615897144307382404804229736328125
+      size: 6
       price: 1.4658129805029452
-      id: 0.80082819046101150206595775671303272247314453125
+      id: 0
       timestamp: "2000-01-23T04:56:07.000+00:00"
   Position:
     type: "object"
@@ -6482,8 +6483,9 @@ definitions:
     - "symbol"
     properties:
       account:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       symbol:
         type: "string"
       currency:
@@ -6505,8 +6507,9 @@ definitions:
         format: "double"
         default: 0.0
       riskLimit:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       leverage:
         type: "number"
         format: "double"
@@ -6518,53 +6521,69 @@ definitions:
         format: "double"
         default: 0.0
       rebalancedPnl:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       prevRealisedPnl:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       prevUnrealisedPnl:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       openingQty:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       openOrderBuyQty:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       openOrderBuyCost:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       openOrderBuyPremium:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       openOrderSellQty:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       openOrderSellCost:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       openOrderSellPremium:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       currentQty:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       currentCost:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       currentComm:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       realisedCost:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       unrealisedCost:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       grossOpenPremium:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       isOpen:
         type: "boolean"
       markPrice:
@@ -6572,11 +6591,13 @@ definitions:
         format: "double"
         default: 0.0
       markValue:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       riskValue:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       homeNotional:
         type: "number"
         format: "double"
@@ -6588,35 +6609,45 @@ definitions:
       posState:
         type: "string"
       posCost:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       posCross:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       posComm:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       posLoss:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       posMargin:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       posMaint:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       initMargin:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       maintMargin:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       realisedPnl:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       unrealisedPnl:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       unrealisedPnlPcnt:
         type: "number"
         format: "double"
@@ -6657,57 +6688,57 @@ definitions:
       symbol: "symbol"
       breakEvenPrice: 8.969578798196912
       avgCostPrice: 0.10263654006109402
-      posLoss: 6.87805222012787620400331434211693704128265380859375
-      openOrderSellQty: 1.489415909854170383397331534069962799549102783203125
+      posLoss: 6
+      openOrderSellQty: 1
       avgEntryPrice: 4.652396432933246
       foreignNotional: 6.965117697638846
-      riskLimit: 5.63737665663332876420099637471139430999755859375
-      prevUnrealisedPnl: 2.027123023002321833274663731572218239307403564453125
+      riskLimit: 5
+      prevUnrealisedPnl: 2
       marginCallPrice: 7.740351818741173
-      unrealisedCost: 9.3693102714106686335071572102606296539306640625
-      posComm: 6.77832496304801335185175048536621034145355224609375
-      posMaint: 6.70401929795003592715829654480330646038055419921875
-      realisedCost: 9.965781217890562260208753286860883235931396484375
-      maintMargin: 3.093745262666447448651751983561553061008453369140625
-      riskValue: 6.438423552598546706349225132726132869720458984375
-      grossOpenPremium: 6.683562403749608193948006373830139636993408203125
-      currentCost: 4.9652184929849543237878606305457651615142822265625
+      unrealisedCost: 9
+      posComm: 6
+      posMaint: 6
+      realisedCost: 9
+      maintMargin: 3
+      riskValue: 6
+      grossOpenPremium: 6
+      currentCost: 4
       underlying: "underlying"
       quoteCurrency: "quoteCurrency"
       initMarginReq: 1.4658129805029452
       isOpen: true
-      posCross: 2.884162126668780246063761296682059764862060546875
+      posCross: 2
       unrealisedPnlPcnt: 7.058770351582356
       leverage: 2.3021358869347655
       posState: "posState"
-      openOrderSellPremium: 7.4577447736837658709418974467553198337554931640625
-      openingQty: 4.1456080298839363962315474054776132106781005859375
+      openOrderSellPremium: 7
+      openingQty: 4
       homeNotional: 3.5571952270680973
       liquidationPrice: 3.0205796992916243
-      openOrderBuyQty: 7.3862819483858839220147274318151175975799560546875
-      unrealisedPnl: 0.885137473901165261480628032586537301540374755859375
+      openOrderBuyQty: 7
+      unrealisedPnl: 0
       markPrice: 8.762042012749001
-      posMargin: 5.94489560761401580890606055618263781070709228515625
+      posMargin: 5
       crossMargin: true
       deleveragePercentile: 7.061401241503109
-      openOrderBuyCost: 1.231513536777255612975068288506008684635162353515625
-      posCost: 1.2846590061165319429647979632136411964893341064453125
+      openOrderBuyCost: 1
+      posCost: 1
       currency: "currency"
       commission: 6.027456183070403
       maintMarginReq: 5.962133916683182
       bankruptPrice: 3.0576100241049344
-      openOrderSellCost: 6.8468526983526398765889098285697400569915771484375
-      markValue: 9.0183481860707832566959041287191212177276611328125
+      openOrderSellCost: 6
+      markValue: 9
       timestamp: "2000-01-23T04:56:07.000+00:00"
-      realisedPnl: 7.14353804701230643559028976596891880035400390625
-      rebalancedPnl: 9.301444243932575517419536481611430644989013671875
-      openOrderBuyPremium: 1.024645700144157789424070870154537260532379150390625
-      currentQty: 1.173074250955943309548956676735542714595794677734375
-      currentComm: 5.02500479152029466689555192715488374233245849609375
-      prevRealisedPnl: 3.61607674925191080461672754609026014804840087890625
-      initMargin: 3.35319334701124294184637619764544069766998291015625
+      realisedPnl: 7
+      rebalancedPnl: 9
+      openOrderBuyPremium: 1
+      currentQty: 1
+      currentComm: 5
+      prevRealisedPnl: 3
+      initMargin: 3
       unrealisedRoePcnt: 6.519180951018382
-      account: 0.80082819046101150206595775671303272247314453125
+      account: 0
   Quote:
     type: "object"
     required:
@@ -6720,7 +6751,7 @@ definitions:
       symbol:
         type: "string"
       bidSize:
-        type: "number"
+        type: "integer"
         format: "int64"
       bidPrice:
         type: "number"
@@ -6729,15 +6760,15 @@ definitions:
         type: "number"
         format: "double"
       askSize:
-        type: "number"
+        type: "integer"
         format: "int64"
     description: "Best Bid/Offer Snapshots & Historical Bins"
     example:
       symbol: "symbol"
       askPrice: 1.4658129805029452
-      bidSize: 0.80082819046101150206595775671303272247314453125
+      bidSize: 0
       bidPrice: 6.027456183070403
-      askSize: 5.962133916683182377482808078639209270477294921875
+      askSize: 5
       timestamp: "2000-01-23T04:56:07.000+00:00"
   Settlement:
     type: "object"
@@ -6762,10 +6793,10 @@ definitions:
         type: "number"
         format: "double"
       bankrupt:
-        type: "number"
+        type: "integer"
         format: "int64"
       taxBase:
-        type: "number"
+        type: "integer"
         format: "int64"
       taxRate:
         type: "number"
@@ -6778,9 +6809,9 @@ definitions:
       optionStrikePrice: 6.027456183070403
       settledPrice: 0.8008281904610115
       optionUnderlyingPrice: 1.4658129805029452
-      bankrupt: 5.962133916683182377482808078639209270477294921875
+      bankrupt: 5
       timestamp: "2000-01-23T04:56:07.000+00:00"
-      taxBase: 5.63737665663332876420099637471139430999755859375
+      taxBase: 5
   Stats:
     type: "object"
     required:
@@ -6791,24 +6822,24 @@ definitions:
       currency:
         type: "string"
       volume24h:
-        type: "number"
+        type: "integer"
         format: "int64"
       turnover24h:
-        type: "number"
+        type: "integer"
         format: "int64"
       openInterest:
-        type: "number"
+        type: "integer"
         format: "int64"
       openValue:
-        type: "number"
+        type: "integer"
         format: "int64"
     description: "Exchange Statistics"
     example:
-      openInterest: 1.46581298050294517310021547018550336360931396484375
-      openValue: 5.962133916683182377482808078639209270477294921875
-      volume24h: 0.80082819046101150206595775671303272247314453125
+      openInterest: 1
+      openValue: 5
+      volume24h: 0
       currency: "currency"
-      turnover24h: 6.02745618307040320615897144307382404804229736328125
+      turnover24h: 6
       rootSymbol: "rootSymbol"
   StatsHistory:
     type: "object"
@@ -6824,16 +6855,16 @@ definitions:
       currency:
         type: "string"
       volume:
-        type: "number"
+        type: "integer"
         format: "int64"
       turnover:
-        type: "number"
+        type: "integer"
         format: "int64"
     example:
       date: "2000-01-23T04:56:07.000+00:00"
-      volume: 0.80082819046101150206595775671303272247314453125
+      volume: 0
       currency: "currency"
-      turnover: 6.02745618307040320615897144307382404804229736328125
+      turnover: 6
       rootSymbol: "rootSymbol"
   StatsUSD:
     type: "object"
@@ -6845,23 +6876,23 @@ definitions:
       currency:
         type: "string"
       turnover24h:
-        type: "number"
+        type: "integer"
         format: "int64"
       turnover30d:
-        type: "number"
+        type: "integer"
         format: "int64"
       turnover365d:
-        type: "number"
+        type: "integer"
         format: "int64"
       turnover:
-        type: "number"
+        type: "integer"
         format: "int64"
     example:
-      turnover30d: 6.02745618307040320615897144307382404804229736328125
-      turnover365d: 1.46581298050294517310021547018550336360931396484375
+      turnover30d: 6
+      turnover365d: 1
       currency: "currency"
-      turnover24h: 0.80082819046101150206595775671303272247314453125
-      turnover: 5.962133916683182377482808078639209270477294921875
+      turnover24h: 0
+      turnover: 5
       rootSymbol: "rootSymbol"
   Trade:
     type: "object"
@@ -6877,7 +6908,7 @@ definitions:
       side:
         type: "string"
       size:
-        type: "number"
+        type: "integer"
         format: "int64"
       price:
         type: "number"
@@ -6888,7 +6919,7 @@ definitions:
         type: "string"
         format: "guid"
       grossValue:
-        type: "number"
+        type: "integer"
         format: "int64"
       homeNotional:
         type: "number"
@@ -6904,10 +6935,10 @@ definitions:
       symbol: "symbol"
       side: "side"
       tickDirection: "tickDirection"
-      size: 0.80082819046101150206595775671303272247314453125
+      size: 0
       trdType: "trdType"
       price: 6.027456183070403
-      grossValue: 1.46581298050294517310021547018550336360931396484375
+      grossValue: 1
       trdMatchID: "trdMatchID"
       homeNotional: 5.962133916683182
       timestamp: "2000-01-23T04:56:07.000+00:00"
@@ -6935,19 +6966,19 @@ definitions:
         type: "number"
         format: "double"
       trades:
-        type: "number"
+        type: "integer"
         format: "int64"
       volume:
-        type: "number"
+        type: "integer"
         format: "int64"
       vwap:
         type: "number"
         format: "double"
       lastSize:
-        type: "number"
+        type: "integer"
         format: "int64"
       turnover:
-        type: "number"
+        type: "integer"
         format: "int64"
       homeNotional:
         type: "number"
@@ -6958,15 +6989,15 @@ definitions:
     example:
       symbol: "symbol"
       vwap: 7.061401241503109
-      trades: 5.63737665663332876420099637471139430999755859375
+      trades: 5
       homeNotional: 2.027123023002322
-      volume: 2.3021358869347654518833223846741020679473876953125
+      volume: 2
       foreignNotional: 4.145608029883936
       high: 6.027456183070403
       low: 1.4658129805029452
-      lastSize: 9.301444243932575517419536481611430644989013671875
+      lastSize: 9
       close: 5.962133916683182
-      turnover: 3.61607674925191080461672754609026014804840087890625
+      turnover: 3
       open: 0.8008281904610115
       timestamp: "2000-01-23T04:56:07.000+00:00"
   DepositAddress:
@@ -6989,49 +7020,49 @@ definitions:
     - "currency"
     properties:
       account:
-        type: "number"
+        type: "integer"
         format: "int64"
       currency:
         type: "string"
       deposited:
-        type: "number"
+        type: "integer"
         format: "int64"
       withdrawn:
-        type: "number"
+        type: "integer"
         format: "int64"
       transferIn:
-        type: "number"
+        type: "integer"
         format: "int64"
       transferOut:
-        type: "number"
+        type: "integer"
         format: "int64"
       amount:
-        type: "number"
+        type: "integer"
         format: "int64"
       pendingCredit:
-        type: "number"
+        type: "integer"
         format: "int64"
       pendingDebit:
-        type: "number"
+        type: "integer"
         format: "int64"
       confirmedDebit:
-        type: "number"
+        type: "integer"
         format: "int64"
       timestamp:
         type: "string"
         format: "date-time"
     description: "Assets and Networks Data"
     example:
-      transferOut: 5.63737665663332876420099637471139430999755859375
-      amount: 2.3021358869347654518833223846741020679473876953125
-      pendingDebit: 9.301444243932575517419536481611430644989013671875
-      confirmedDebit: 3.61607674925191080461672754609026014804840087890625
-      deposited: 6.02745618307040320615897144307382404804229736328125
-      withdrawn: 1.46581298050294517310021547018550336360931396484375
+      transferOut: 5
+      amount: 2
+      pendingDebit: 9
+      confirmedDebit: 3
+      deposited: 6
+      withdrawn: 1
       currency: "currency"
-      transferIn: 5.962133916683182377482808078639209270477294921875
-      pendingCredit: 7.061401241503109105224211816675961017608642578125
-      account: 0.80082819046101150206595775671303272247314453125
+      transferIn: 5
+      pendingCredit: 7
+      account: 0
       timestamp: "2000-01-23T04:56:07.000+00:00"
   Transaction:
     type: "object"
@@ -7042,7 +7073,7 @@ definitions:
         type: "string"
         format: "guid"
       account:
-        type: "number"
+        type: "integer"
         format: "int64"
       currency:
         type: "string"
@@ -7051,10 +7082,10 @@ definitions:
       transactType:
         type: "string"
       amount:
-        type: "number"
+        type: "integer"
         format: "int64"
       fee:
-        type: "number"
+        type: "integer"
         format: "int64"
       transactStatus:
         type: "string"
@@ -7071,22 +7102,22 @@ definitions:
         type: "string"
         format: "date-time"
       walletBalance:
-        type: "number"
+        type: "integer"
         format: "int64"
     example:
-      amount: 6.02745618307040320615897144307382404804229736328125
+      amount: 6
       address: "address"
       tx: "tx"
       transactID: "transactID"
-      fee: 1.46581298050294517310021547018550336360931396484375
+      fee: 1
       transactStatus: "transactStatus"
       network: "network"
       transactType: "transactType"
-      walletBalance: 5.962133916683182377482808078639209270477294921875
+      walletBalance: 5
       transactTime: "2000-01-23T04:56:07.000+00:00"
       currency: "currency"
       text: "text"
-      account: 0.80082819046101150206595775671303272247314453125
+      account: 0
       timestamp: "2000-01-23T04:56:07.000+00:00"
   WalletSummaryRecord:
     type: "object"
@@ -7197,42 +7228,42 @@ definitions:
     - "currency"
     properties:
       account:
-        type: "number"
+        type: "integer"
         format: "int64"
       currency:
         type: "string"
       prevPayout:
-        type: "number"
+        type: "integer"
         format: "int64"
       prevTurnover:
-        type: "number"
+        type: "integer"
         format: "int64"
       prevComm:
-        type: "number"
+        type: "integer"
         format: "int64"
       prevTimestamp:
         type: "string"
         format: "date-time"
       execTurnover:
-        type: "number"
+        type: "integer"
         format: "int64"
       execComm:
-        type: "number"
+        type: "integer"
         format: "int64"
       totalReferrals:
-        type: "number"
+        type: "integer"
         format: "int64"
       totalTurnover:
-        type: "number"
+        type: "integer"
         format: "int64"
       totalComm:
-        type: "number"
+        type: "integer"
         format: "int64"
       payoutPcnt:
         type: "number"
         format: "double"
       pendingPayout:
-        type: "number"
+        type: "integer"
         format: "int64"
       timestamp:
         type: "string"
@@ -7248,19 +7279,19 @@ definitions:
         format: "double"
     example:
       referralDiscount: 1.2315135367772556
-      execTurnover: 5.63737665663332876420099637471139430999755859375
-      totalTurnover: 9.301444243932575517419536481611430644989013671875
+      execTurnover: 5
+      totalTurnover: 9
       referrerAccount: 7.386281948385884
-      execComm: 2.3021358869347654518833223846741020679473876953125
-      totalReferrals: 7.061401241503109105224211816675961017608642578125
+      execComm: 2
+      totalReferrals: 7
       currency: "currency"
-      pendingPayout: 4.1456080298839363962315474054776132106781005859375
-      prevPayout: 6.02745618307040320615897144307382404804229736328125
-      prevComm: 5.962133916683182377482808078639209270477294921875
+      pendingPayout: 4
+      prevPayout: 6
+      prevComm: 5
       prevTimestamp: "2000-01-23T04:56:07.000+00:00"
-      account: 0.80082819046101150206595775671303272247314453125
-      prevTurnover: 1.46581298050294517310021547018550336360931396484375
-      totalComm: 3.61607674925191080461672754609026014804840087890625
+      account: 0
+      prevTurnover: 1
+      totalComm: 3
       payoutPcnt: 2.027123023002322
       timestamp: "2000-01-23T04:56:07.000+00:00"
       affiliatePayout: 1.0246457001441578
@@ -7357,7 +7388,7 @@ definitions:
     - "username"
     properties:
       id:
-        type: "number"
+        type: "integer"
         format: "int32"
       firstname:
         type: "string"
@@ -7497,7 +7528,7 @@ definitions:
       lastUpdated: "2000-01-23T04:56:07.000+00:00"
       phone: "phone"
       TFAEnabled: "TFAEnabled"
-      id: 0.80082819046101150206595775671303272247314453125
+      id: 0
       isUser: true
       email: "email"
       username: "username"
@@ -7510,60 +7541,77 @@ definitions:
     - "currency"
     properties:
       account:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       currency:
         type: "string"
       riskLimit:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       state:
         type: "string"
       amount:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       prevRealisedPnl:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       grossComm:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       grossOpenCost:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       grossOpenPremium:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       grossExecCost:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       grossMarkValue:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       riskValue:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       initMargin:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       maintMargin:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       targetExcessMargin:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       realisedPnl:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       unrealisedPnl:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       walletBalance:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       marginBalance:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       marginLeverage:
         type: "number"
         format: "double"
@@ -7573,14 +7621,17 @@ definitions:
         format: "double"
         default: 0.0
       excessMargin:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       availableMargin:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       withdrawableMargin:
-        type: "number"
+        type: "integer"
         format: "int64"
+        default: 0
       makerFeeDiscount:
         type: "number"
         format: "double"
@@ -7593,33 +7644,33 @@ definitions:
         type: "string"
         format: "date-time"
     example:
-      grossMarkValue: 3.61607674925191080461672754609026014804840087890625
+      grossMarkValue: 3
       marginUsedPcnt: 4.965218492984954
       marginLeverage: 1.1730742509559433
-      unrealisedPnl: 1.489415909854170383397331534069962799549102783203125
-      riskLimit: 6.02745618307040320615897144307382404804229736328125
-      walletBalance: 6.8468526983526398765889098285697400569915771484375
+      unrealisedPnl: 1
+      riskLimit: 6
+      walletBalance: 6
       currency: "currency"
       state: "state"
-      marginBalance: 7.4577447736837658709418974467553198337554931640625
+      marginBalance: 7
       timestamp: "2000-01-23T04:56:07.000+00:00"
-      grossExecCost: 9.301444243932575517419536481611430644989013671875
-      targetExcessMargin: 1.231513536777255612975068288506008684635162353515625
-      realisedPnl: 1.024645700144157789424070870154537260532379150390625
-      amount: 1.46581298050294517310021547018550336360931396484375
-      maintMargin: 7.3862819483858839220147274318151175975799560546875
-      riskValue: 2.027123023002321833274663731572218239307403564453125
-      grossComm: 5.63737665663332876420099637471139430999755859375
-      grossOpenPremium: 7.061401241503109105224211816675961017608642578125
+      grossExecCost: 9
+      targetExcessMargin: 1
+      realisedPnl: 1
+      amount: 1
+      maintMargin: 7
+      riskValue: 2
+      grossComm: 5
+      grossOpenPremium: 7
       makerFeeDiscount: 6.683562403749608
-      withdrawableMargin: 9.3693102714106686335071572102606296539306640625
-      grossOpenCost: 2.3021358869347654518833223846741020679473876953125
-      prevRealisedPnl: 5.962133916683182377482808078639209270477294921875
-      excessMargin: 5.02500479152029466689555192715488374233245849609375
-      initMargin: 4.1456080298839363962315474054776132106781005859375
+      withdrawableMargin: 9
+      grossOpenCost: 2
+      prevRealisedPnl: 5
+      excessMargin: 5
+      initMargin: 4
       takerFeeDiscount: 8.762042012749001
-      account: 0.80082819046101150206595775671303272247314453125
-      availableMargin: 9.965781217890562260208753286860883235931396484375
+      account: 0
+      availableMargin: 9
   CollateralSupportAgreement:
     type: "object"
     required:
@@ -7628,24 +7679,24 @@ definitions:
       csaID:
         type: "string"
       account:
-        type: "number"
+        type: "integer"
         format: "int64"
       currency:
         type: "string"
       amount:
-        type: "number"
+        type: "integer"
         format: "int64"
       minAmount:
-        type: "number"
+        type: "integer"
         format: "int64"
       threshold:
-        type: "number"
+        type: "integer"
         format: "int64"
       mmRatioMarginCall:
-        type: "number"
+        type: "integer"
         format: "int64"
       mmRatioLiquidation:
-        type: "number"
+        type: "integer"
         format: "int64"
       startTime:
         type: "string"
@@ -7665,20 +7716,20 @@ definitions:
         type: "string"
     example:
       requester: "requester"
-      minAmount: 1.46581298050294517310021547018550336360931396484375
-      amount: 6.02745618307040320615897144307382404804229736328125
+      minAmount: 1
+      amount: 6
       csaID: "csaID"
       maturityInstruction: "maturityInstruction"
-      threshold: 5.962133916683182377482808078639209270477294921875
+      threshold: 5
       maturityTime: "maturityTime"
       csaStatus: "csaStatus"
       clientDetails: "clientDetails"
       currency: "currency"
-      mmRatioMarginCall: 5.63737665663332876420099637471139430999755859375
+      mmRatioMarginCall: 5
       startTime: "startTime"
       text: "text"
-      mmRatioLiquidation: 2.3021358869347654518833223846741020679473876953125
-      account: 0.80082819046101150206595775671303272247314453125
+      mmRatioLiquidation: 2
+      account: 0
       timestamp: "timestamp"
   CommunicationToken:
     type: "object"
@@ -7691,7 +7742,7 @@ definitions:
       id:
         type: "string"
       userId:
-        type: "number"
+        type: "integer"
         format: "int32"
       deviceToken:
         type: "string"
@@ -7701,7 +7752,7 @@ definitions:
     example:
       channel: "channel"
       id: "id"
-      userId: 0.80082819046101150206595775671303272247314453125
+      userId: 0
       deviceToken: "deviceToken"
   UserEvent:
     type: "object"
@@ -7881,13 +7932,13 @@ definitions:
         type: "string"
         default: "https://etherscan.io/token/"
       depositConfirmations:
-        type: "number"
+        type: "integer"
         format: "int32"
       enabled:
         type: "boolean"
         default: true
     example:
-      depositConfirmations: 0.80082819046101150206595775671303272247314453125
+      depositConfirmations: 0
       networkSymbol: "ETH"
       transactionExplorer: "https://etherscan.io/tx/"
       tokenExplorer: "https://etherscan.io/token/"
@@ -7903,7 +7954,7 @@ definitions:
     - "network"
     properties:
       id:
-        type: "number"
+        type: "integer"
         format: "int32"
       currency:
         type: "string"
@@ -7944,7 +7995,7 @@ definitions:
       skip2FA: true
       name: "name"
       currency: "currency"
-      id: 0.80082819046101150206595775671303272247314453125
+      id: 0
   Guild:
     type: "object"
     required:
@@ -7955,7 +8006,7 @@ definitions:
     - "updated"
     properties:
       id:
-        type: "number"
+        type: "integer"
         format: "int32"
       created:
         type: "string"
@@ -8004,7 +8055,7 @@ definitions:
       deleted: true
       name: "name"
       mobileHeroImgUrl: "mobileHeroImgUrl"
-      id: 0.80082819046101150206595775671303272247314453125
+      id: 0
       socials: "{}"
       updated: "2000-01-23T04:56:07.000+00:00"
       chatChannelId: 6.027456183070403
@@ -8020,7 +8071,7 @@ definitions:
     - "total"
     properties:
       account:
-        type: "number"
+        type: "integer"
         format: "int32"
       nonce:
         type: "string"
@@ -8047,7 +8098,7 @@ definitions:
       balance: 1.4658129805029452
       created: "2000-01-23T04:56:07.000+00:00"
       nonce: "nonce"
-      account: 0.80082819046101150206595775671303272247314453125
+      account: 0
       accountNonce: "accountNonce"
       height: 5.962133916683182
   UserPreferences:

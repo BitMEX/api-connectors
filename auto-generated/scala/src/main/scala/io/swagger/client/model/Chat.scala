@@ -15,7 +15,7 @@ package io.swagger.client.model
 import java.util.Date
 
 case class Chat (
-  id: Option[Number] = None,
+  id: Option[Integer] = None,
   date: Date,
   user: String,
   userColor: Option[String] = None,

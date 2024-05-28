@@ -58,19 +58,19 @@ class Transaction implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'transact_id' => 'string',
-        'account' => 'float',
+        'account' => 'int',
         'currency' => 'string',
         'network' => 'string',
         'transact_type' => 'string',
-        'amount' => 'float',
-        'fee' => 'float',
+        'amount' => 'int',
+        'fee' => 'int',
         'transact_status' => 'string',
         'address' => 'string',
         'tx' => 'string',
         'text' => 'string',
         'transact_time' => '\DateTime',
         'timestamp' => '\DateTime',
-        'wallet_balance' => 'float'
+        'wallet_balance' => 'int'
     ];
 
     /**
@@ -312,7 +312,7 @@ class Transaction implements ModelInterface, ArrayAccess
     /**
      * Gets account
      *
-     * @return float
+     * @return int
      */
     public function getAccount()
     {
@@ -322,7 +322,7 @@ class Transaction implements ModelInterface, ArrayAccess
     /**
      * Sets account
      *
-     * @param float $account account
+     * @param int $account account
      *
      * @return $this
      */
@@ -408,7 +408,7 @@ class Transaction implements ModelInterface, ArrayAccess
     /**
      * Gets amount
      *
-     * @return float
+     * @return int
      */
     public function getAmount()
     {
@@ -418,7 +418,7 @@ class Transaction implements ModelInterface, ArrayAccess
     /**
      * Sets amount
      *
-     * @param float $amount amount
+     * @param int $amount amount
      *
      * @return $this
      */
@@ -432,7 +432,7 @@ class Transaction implements ModelInterface, ArrayAccess
     /**
      * Gets fee
      *
-     * @return float
+     * @return int
      */
     public function getFee()
     {
@@ -442,7 +442,7 @@ class Transaction implements ModelInterface, ArrayAccess
     /**
      * Sets fee
      *
-     * @param float $fee fee
+     * @param int $fee fee
      *
      * @return $this
      */
@@ -600,7 +600,7 @@ class Transaction implements ModelInterface, ArrayAccess
     /**
      * Gets wallet_balance
      *
-     * @return float
+     * @return int
      */
     public function getWalletBalance()
     {
@@ -610,7 +610,7 @@ class Transaction implements ModelInterface, ArrayAccess
     /**
      * Sets wallet_balance
      *
-     * @param float $wallet_balance wallet_balance
+     * @param int $wallet_balance wallet_balance
      *
      * @return $this
      */

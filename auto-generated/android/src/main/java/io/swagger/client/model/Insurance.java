@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -28,7 +27,7 @@ public class Insurance {
   @SerializedName("timestamp")
   private Date timestamp = null;
   @SerializedName("walletBalance")
-  private BigDecimal walletBalance = null;
+  private Long walletBalance = null;
 
   /**
    **/
@@ -53,10 +52,10 @@ public class Insurance {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getWalletBalance() {
+  public Long getWalletBalance() {
     return walletBalance;
   }
-  public void setWalletBalance(BigDecimal walletBalance) {
+  public void setWalletBalance(Long walletBalance) {
     this.walletBalance = walletBalance;
   }
 

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Float** |  | 
+**id** | **Integer** |  | 
 **link** | **String** |  | [optional] 
 **title** | **String** |  | [optional] 
 **content** | **String** |  | [optional] 

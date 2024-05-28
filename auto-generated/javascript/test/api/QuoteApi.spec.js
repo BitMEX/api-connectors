@@ -67,13 +67,13 @@
               expect(data.symbol).to.be.a('string');
               expect(data.symbol).to.be("");
               expect(data.bidSize).to.be.a('number');
-              expect(data.bidSize).to.be();
+              expect(data.bidSize).to.be("0");
               expect(data.bidPrice).to.be.a('number');
               expect(data.bidPrice).to.be(0.0);
               expect(data.askPrice).to.be.a('number');
               expect(data.askPrice).to.be(0.0);
               expect(data.askSize).to.be.a('number');
-              expect(data.askSize).to.be();
+              expect(data.askSize).to.be("0");
             }
 
             done();
@@ -116,13 +116,13 @@
               expect(data.symbol).to.be.a('string');
               expect(data.symbol).to.be("");
               expect(data.bidSize).to.be.a('number');
-              expect(data.bidSize).to.be();
+              expect(data.bidSize).to.be("0");
               expect(data.bidPrice).to.be.a('number');
               expect(data.bidPrice).to.be(0.0);
               expect(data.askPrice).to.be.a('number');
               expect(data.askPrice).to.be(0.0);
               expect(data.askSize).to.be.a('number');
-              expect(data.askSize).to.be();
+              expect(data.askSize).to.be("0");
             }
 
             done();

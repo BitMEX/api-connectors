@@ -23,7 +23,6 @@ import io.swagger.client.model.DepositAddress
 import io.swagger.client.model.Error
 import io.swagger.client.model.Execution
 import io.swagger.client.model.Margin
-import io.swagger.client.model.Number
 import io.swagger.client.model.QuoteFillRatio
 import io.swagger.client.model.QuoteValueRatio
 import io.swagger.client.model.StakingRecord
@@ -880,7 +879,7 @@ class UserApi(
    * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)
    * @return Transaction
    */
-  def userRequestWithdrawal(currency: String = "XBt", network: String, amount: Number, otpToken: Option[String] = None, address: Option[String] = None, memo: Option[String] = None, addressId: Option[Double] = None, targetUserId: Option[Double] = None, fee: Option[Double] = None, text: Option[String] = None): Option[Transaction] = {
+  def userRequestWithdrawal(currency: String = "XBt", network: String, amount: Long, otpToken: Option[String] = None, address: Option[String] = None, memo: Option[String] = None, addressId: Option[Double] = None, targetUserId: Option[Double] = None, fee: Option[Double] = None, text: Option[String] = None): Option[Transaction] = {
     val await = Try(Await.result(userRequestWithdrawalAsync(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -904,7 +903,7 @@ class UserApi(
    * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)
    * @return Future(Transaction)
    */
-  def userRequestWithdrawalAsync(currency: String = "XBt", network: String, amount: Number, otpToken: Option[String] = None, address: Option[String] = None, memo: Option[String] = None, addressId: Option[Double] = None, targetUserId: Option[Double] = None, fee: Option[Double] = None, text: Option[String] = None): Future[Transaction] = {
+  def userRequestWithdrawalAsync(currency: String = "XBt", network: String, amount: Long, otpToken: Option[String] = None, address: Option[String] = None, memo: Option[String] = None, addressId: Option[Double] = None, targetUserId: Option[Double] = None, fee: Option[Double] = None, text: Option[String] = None): Future[Transaction] = {
       helper.userRequestWithdrawal(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text)
   }
 
@@ -974,7 +973,7 @@ class UserApi(
    * @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
    * @return Transaction
    */
-  def userWalletTransfer(currency: String, amount: Number, targetAccountId: Double, fromAccountId: Option[Double] = None): Option[Transaction] = {
+  def userWalletTransfer(currency: String, amount: Long, targetAccountId: Double, fromAccountId: Option[Double] = None): Option[Transaction] = {
     val await = Try(Await.result(userWalletTransferAsync(currency, amount, targetAccountId, fromAccountId), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -992,7 +991,7 @@ class UserApi(
    * @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
    * @return Future(Transaction)
    */
-  def userWalletTransferAsync(currency: String, amount: Number, targetAccountId: Double, fromAccountId: Option[Double] = None): Future[Transaction] = {
+  def userWalletTransferAsync(currency: String, amount: Long, targetAccountId: Double, fromAccountId: Option[Double] = None): Future[Transaction] = {
       helper.userWalletTransfer(currency, amount, targetAccountId, fromAccountId)
   }
 
@@ -1567,7 +1566,7 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
 
   def userRequestWithdrawal(currency: String = "XBt",
     network: String,
-    amount: Number,
+    amount: Long,
     otpToken: Option[String] = None,
     address: Option[String] = None,
     memo: Option[String] = None,
@@ -1632,7 +1631,7 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
   }
 
   def userWalletTransfer(currency: String,
-    amount: Number,
+    amount: Long,
     targetAccountId: Double,
     fromAccountId: Option[Double] = None
     )(implicit reader: ClientResponseReader[Transaction]): Future[Transaction] = {

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **symbol** | **string** |  | [optional] 
 **side** | **string** |  | [optional] 
 **price** | **double** |  | [optional] 
-**leaves_qty** | **float** |  | [optional] 
+**leaves_qty** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

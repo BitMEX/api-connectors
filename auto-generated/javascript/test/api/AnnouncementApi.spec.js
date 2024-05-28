@@ -56,7 +56,7 @@
               let data = dataCtr[p];
               expect(data).to.be.a(BitMexApi.Announcement);
               expect(data.id).to.be.a('number');
-              expect(data.id).to.be();
+              expect(data.id).to.be(0);
               expect(data.link).to.be.a('string');
               expect(data.link).to.be("");
               expect(data.title).to.be.a('string');
@@ -92,7 +92,7 @@
               let data = dataCtr[p];
               expect(data).to.be.a(BitMexApi.Announcement);
               expect(data.id).to.be.a('number');
-              expect(data.id).to.be();
+              expect(data.id).to.be(0);
               expect(data.link).to.be.a('string');
               expect(data.link).to.be("");
               expect(data.title).to.be.a('string');

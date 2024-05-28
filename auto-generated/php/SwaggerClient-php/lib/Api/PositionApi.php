@@ -94,7 +94,7 @@ class PositionApi
      *
      * @param  string $filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)
      * @param  string $columns Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)
-     * @param  float $count Number of rows to fetch. (optional)
+     * @param  int $count Number of rows to fetch. (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -113,7 +113,7 @@ class PositionApi
      *
      * @param  string $filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)
      * @param  string $columns Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)
-     * @param  float $count Number of rows to fetch. (optional)
+     * @param  int $count Number of rows to fetch. (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -222,7 +222,7 @@ class PositionApi
      *
      * @param  string $filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)
      * @param  string $columns Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)
-     * @param  float $count Number of rows to fetch. (optional)
+     * @param  int $count Number of rows to fetch. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -244,7 +244,7 @@ class PositionApi
      *
      * @param  string $filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)
      * @param  string $columns Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)
-     * @param  float $count Number of rows to fetch. (optional)
+     * @param  int $count Number of rows to fetch. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -296,7 +296,7 @@ class PositionApi
      *
      * @param  string $filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)
      * @param  string $columns Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)
-     * @param  float $count Number of rows to fetch. (optional)
+     * @param  int $count Number of rows to fetch. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -738,7 +738,7 @@ class PositionApi
      * Transfer equity in or out of a position.
      *
      * @param  string $symbol Symbol of position to isolate. (required)
-     * @param  float $amount Amount to transfer, in Satoshis. May be negative. (required)
+     * @param  int $amount Amount to transfer, in Satoshis. May be negative. (required)
      * @param  double $target_account_id AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
@@ -757,7 +757,7 @@ class PositionApi
      * Transfer equity in or out of a position.
      *
      * @param  string $symbol Symbol of position to isolate. (required)
-     * @param  float $amount Amount to transfer, in Satoshis. May be negative. (required)
+     * @param  int $amount Amount to transfer, in Satoshis. May be negative. (required)
      * @param  double $target_account_id AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
@@ -866,7 +866,7 @@ class PositionApi
      * Transfer equity in or out of a position.
      *
      * @param  string $symbol Symbol of position to isolate. (required)
-     * @param  float $amount Amount to transfer, in Satoshis. May be negative. (required)
+     * @param  int $amount Amount to transfer, in Satoshis. May be negative. (required)
      * @param  double $target_account_id AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)
      *
      * @throws \InvalidArgumentException
@@ -888,7 +888,7 @@ class PositionApi
      * Transfer equity in or out of a position.
      *
      * @param  string $symbol Symbol of position to isolate. (required)
-     * @param  float $amount Amount to transfer, in Satoshis. May be negative. (required)
+     * @param  int $amount Amount to transfer, in Satoshis. May be negative. (required)
      * @param  double $target_account_id AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)
      *
      * @throws \InvalidArgumentException
@@ -940,7 +940,7 @@ class PositionApi
      * Create request for operation 'positionTransferIsolatedMargin'
      *
      * @param  string $symbol Symbol of position to isolate. (required)
-     * @param  float $amount Amount to transfer, in Satoshis. May be negative. (required)
+     * @param  int $amount Amount to transfer, in Satoshis. May be negative. (required)
      * @param  double $target_account_id AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)
      *
      * @throws \InvalidArgumentException
@@ -1410,7 +1410,7 @@ class PositionApi
      * Update your risk limit.
      *
      * @param  string $symbol Symbol of position to update risk limit on. (required)
-     * @param  float $risk_limit New Risk Limit, in Satoshis. (required)
+     * @param  int $risk_limit New Risk Limit, in Satoshis. (required)
      * @param  double $target_account_id AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
@@ -1429,7 +1429,7 @@ class PositionApi
      * Update your risk limit.
      *
      * @param  string $symbol Symbol of position to update risk limit on. (required)
-     * @param  float $risk_limit New Risk Limit, in Satoshis. (required)
+     * @param  int $risk_limit New Risk Limit, in Satoshis. (required)
      * @param  double $target_account_id AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
@@ -1538,7 +1538,7 @@ class PositionApi
      * Update your risk limit.
      *
      * @param  string $symbol Symbol of position to update risk limit on. (required)
-     * @param  float $risk_limit New Risk Limit, in Satoshis. (required)
+     * @param  int $risk_limit New Risk Limit, in Satoshis. (required)
      * @param  double $target_account_id AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)
      *
      * @throws \InvalidArgumentException
@@ -1560,7 +1560,7 @@ class PositionApi
      * Update your risk limit.
      *
      * @param  string $symbol Symbol of position to update risk limit on. (required)
-     * @param  float $risk_limit New Risk Limit, in Satoshis. (required)
+     * @param  int $risk_limit New Risk Limit, in Satoshis. (required)
      * @param  double $target_account_id AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)
      *
      * @throws \InvalidArgumentException
@@ -1612,7 +1612,7 @@ class PositionApi
      * Create request for operation 'positionUpdateRiskLimit'
      *
      * @param  string $symbol Symbol of position to update risk limit on. (required)
-     * @param  float $risk_limit New Risk Limit, in Satoshis. (required)
+     * @param  int $risk_limit New Risk Limit, in Satoshis. (required)
      * @param  double $target_account_id AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)
      *
      * @throws \InvalidArgumentException

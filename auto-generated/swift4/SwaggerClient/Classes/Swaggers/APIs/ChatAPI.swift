@@ -20,7 +20,7 @@ open class ChatAPI {
      - parameter channelID: (query) Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func chatGet(count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, channelID: Double? = nil, completion: @escaping ((_ data: [Chat]?,_ error: Error?) -> Void)) {
+    open class func chatGet(count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, channelID: Double? = nil, completion: @escaping ((_ data: [Chat]?,_ error: Error?) -> Void)) {
         chatGetWithRequestBuilder(count: count, start: start, reverse: reverse, channelID: channelID).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -39,15 +39,15 @@ open class ChatAPI {
 
      - returns: RequestBuilder<[Chat]> 
      */
-    open class func chatGetWithRequestBuilder(count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, channelID: Double? = nil) -> RequestBuilder<[Chat]> {
+    open class func chatGetWithRequestBuilder(count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, channelID: Double? = nil) -> RequestBuilder<[Chat]> {
         let path = "/chat"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "count": count, 
-            "start": start, 
+            "count": count?.encodeToJSON(), 
+            "start": start?.encodeToJSON(), 
             "reverse": reverse, 
             "channelID": channelID
         ])

@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **settled_price** | **float** |  | [optional] 
 **option_strike_price** | **float** |  | [optional] 
 **option_underlying_price** | **float** |  | [optional] 
-**bankrupt** | **float** |  | [optional] 
-**tax_base** | **float** |  | [optional] 
+**bankrupt** | **int** |  | [optional] 
+**tax_base** | **int** |  | [optional] 
 **tax_rate** | **float** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

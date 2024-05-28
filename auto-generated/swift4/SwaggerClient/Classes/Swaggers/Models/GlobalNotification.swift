@@ -17,18 +17,18 @@ public struct GlobalNotification: Codable {
         case error = "error"
         case info = "info"
     }
-    public var _id: Double?
+    public var _id: Int?
     public var date: Date
     public var title: String
     public var body: String
-    public var ttl: Double
+    public var ttl: Int
     public var type: ModelType?
     public var closable: Bool?
     public var persist: Bool?
     public var waitForVisibility: Bool?
     public var sound: String?
 
-    public init(_id: Double?, date: Date, title: String, body: String, ttl: Double, type: ModelType?, closable: Bool?, persist: Bool?, waitForVisibility: Bool?, sound: String?) {
+    public init(_id: Int?, date: Date, title: String, body: String, ttl: Int, type: ModelType?, closable: Bool?, persist: Bool?, waitForVisibility: Bool?, sound: String?) {
         self._id = _id
         self.date = date
         self.title = title

@@ -73,23 +73,23 @@ SWGInstrument::init() {
     m_publish_interval_isSet = false;
     publish_time = NULL;
     m_publish_time_isSet = false;
-    max_order_qty = 0.0;
+    max_order_qty = 0L;
     m_max_order_qty_isSet = false;
     max_price = 0.0;
     m_max_price_isSet = false;
-    lot_size = 0.0;
+    lot_size = 0L;
     m_lot_size_isSet = false;
     tick_size = 0.0;
     m_tick_size_isSet = false;
-    multiplier = 0.0;
+    multiplier = 0L;
     m_multiplier_isSet = false;
     settl_currency = new QString("");
     m_settl_currency_isSet = false;
-    underlying_to_position_multiplier = 0.0;
+    underlying_to_position_multiplier = 0L;
     m_underlying_to_position_multiplier_isSet = false;
-    underlying_to_settle_multiplier = 0.0;
+    underlying_to_settle_multiplier = 0L;
     m_underlying_to_settle_multiplier_isSet = false;
-    quote_to_settle_multiplier = 0.0;
+    quote_to_settle_multiplier = 0L;
     m_quote_to_settle_multiplier_isSet = false;
     is_quanto = false;
     m_is_quanto_isSet = false;
@@ -99,9 +99,9 @@ SWGInstrument::init() {
     m_init_margin_isSet = false;
     maint_margin = 0.0;
     m_maint_margin_isSet = false;
-    risk_limit = 0.0;
+    risk_limit = 0L;
     m_risk_limit_isSet = false;
-    risk_step = 0.0;
+    risk_step = 0L;
     m_risk_step_isSet = false;
     limit = 0.0;
     m_limit_isSet = false;
@@ -139,19 +139,19 @@ SWGInstrument::init() {
     m_limit_down_price_isSet = false;
     limit_up_price = 0.0;
     m_limit_up_price_isSet = false;
-    total_volume = 0.0;
+    total_volume = 0L;
     m_total_volume_isSet = false;
-    volume = 0.0;
+    volume = 0L;
     m_volume_isSet = false;
-    volume24h = 0.0;
+    volume24h = 0L;
     m_volume24h_isSet = false;
-    prev_total_turnover = 0.0;
+    prev_total_turnover = 0L;
     m_prev_total_turnover_isSet = false;
-    total_turnover = 0.0;
+    total_turnover = 0L;
     m_total_turnover_isSet = false;
-    turnover = 0.0;
+    turnover = 0L;
     m_turnover_isSet = false;
-    turnover24h = 0.0;
+    turnover24h = 0L;
     m_turnover24h_isSet = false;
     home_notional24h = 0.0;
     m_home_notional24h_isSet = false;
@@ -187,9 +187,9 @@ SWGInstrument::init() {
     m_impact_ask_price_isSet = false;
     has_liquidity = false;
     m_has_liquidity_isSet = false;
-    open_interest = 0.0;
+    open_interest = 0L;
     m_open_interest_isSet = false;
-    open_value = 0.0;
+    open_value = 0L;
     m_open_value_isSet = false;
     fair_method = new QString("");
     m_fair_method_isSet = false;
@@ -273,39 +273,23 @@ SWGInstrument::cleanup() {
     if(publish_time != nullptr) { 
         delete publish_time;
     }
-    if(max_order_qty != nullptr) { 
-        delete max_order_qty;
-    }
 
-    if(lot_size != nullptr) { 
-        delete lot_size;
-    }
 
-    if(multiplier != nullptr) { 
-        delete multiplier;
-    }
+
+
+
     if(settl_currency != nullptr) { 
         delete settl_currency;
     }
-    if(underlying_to_position_multiplier != nullptr) { 
-        delete underlying_to_position_multiplier;
-    }
-    if(underlying_to_settle_multiplier != nullptr) { 
-        delete underlying_to_settle_multiplier;
-    }
-    if(quote_to_settle_multiplier != nullptr) { 
-        delete quote_to_settle_multiplier;
-    }
 
 
 
 
-    if(risk_limit != nullptr) { 
-        delete risk_limit;
-    }
-    if(risk_step != nullptr) { 
-        delete risk_step;
-    }
+
+
+
+
+
 
 
 
@@ -338,27 +322,13 @@ SWGInstrument::cleanup() {
 
 
 
-    if(total_volume != nullptr) { 
-        delete total_volume;
-    }
-    if(volume != nullptr) { 
-        delete volume;
-    }
-    if(volume24h != nullptr) { 
-        delete volume24h;
-    }
-    if(prev_total_turnover != nullptr) { 
-        delete prev_total_turnover;
-    }
-    if(total_turnover != nullptr) { 
-        delete total_turnover;
-    }
-    if(turnover != nullptr) { 
-        delete turnover;
-    }
-    if(turnover24h != nullptr) { 
-        delete turnover24h;
-    }
+
+
+
+
+
+
+
 
 
 
@@ -378,12 +348,8 @@ SWGInstrument::cleanup() {
 
 
 
-    if(open_interest != nullptr) { 
-        delete open_interest;
-    }
-    if(open_value != nullptr) { 
-        delete open_value;
-    }
+
+
     if(fair_method != nullptr) { 
         delete fair_method;
     }
@@ -451,23 +417,23 @@ SWGInstrument::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&publish_time, pJson["publishTime"], "QDateTime", "QDateTime");
     
-    ::Swagger::setValue(&max_order_qty, pJson["maxOrderQty"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&max_order_qty, pJson["maxOrderQty"], "qint64", "");
     
     ::Swagger::setValue(&max_price, pJson["maxPrice"], "double", "");
     
-    ::Swagger::setValue(&lot_size, pJson["lotSize"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&lot_size, pJson["lotSize"], "qint64", "");
     
     ::Swagger::setValue(&tick_size, pJson["tickSize"], "double", "");
     
-    ::Swagger::setValue(&multiplier, pJson["multiplier"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&multiplier, pJson["multiplier"], "qint64", "");
     
     ::Swagger::setValue(&settl_currency, pJson["settlCurrency"], "QString", "QString");
     
-    ::Swagger::setValue(&underlying_to_position_multiplier, pJson["underlyingToPositionMultiplier"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&underlying_to_position_multiplier, pJson["underlyingToPositionMultiplier"], "qint64", "");
     
-    ::Swagger::setValue(&underlying_to_settle_multiplier, pJson["underlyingToSettleMultiplier"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&underlying_to_settle_multiplier, pJson["underlyingToSettleMultiplier"], "qint64", "");
     
-    ::Swagger::setValue(&quote_to_settle_multiplier, pJson["quoteToSettleMultiplier"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&quote_to_settle_multiplier, pJson["quoteToSettleMultiplier"], "qint64", "");
     
     ::Swagger::setValue(&is_quanto, pJson["isQuanto"], "bool", "");
     
@@ -477,9 +443,9 @@ SWGInstrument::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&maint_margin, pJson["maintMargin"], "double", "");
     
-    ::Swagger::setValue(&risk_limit, pJson["riskLimit"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&risk_limit, pJson["riskLimit"], "qint64", "");
     
-    ::Swagger::setValue(&risk_step, pJson["riskStep"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&risk_step, pJson["riskStep"], "qint64", "");
     
     ::Swagger::setValue(&limit, pJson["limit"], "double", "");
     
@@ -517,19 +483,19 @@ SWGInstrument::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&limit_up_price, pJson["limitUpPrice"], "double", "");
     
-    ::Swagger::setValue(&total_volume, pJson["totalVolume"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&total_volume, pJson["totalVolume"], "qint64", "");
     
-    ::Swagger::setValue(&volume, pJson["volume"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&volume, pJson["volume"], "qint64", "");
     
-    ::Swagger::setValue(&volume24h, pJson["volume24h"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&volume24h, pJson["volume24h"], "qint64", "");
     
-    ::Swagger::setValue(&prev_total_turnover, pJson["prevTotalTurnover"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&prev_total_turnover, pJson["prevTotalTurnover"], "qint64", "");
     
-    ::Swagger::setValue(&total_turnover, pJson["totalTurnover"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&total_turnover, pJson["totalTurnover"], "qint64", "");
     
-    ::Swagger::setValue(&turnover, pJson["turnover"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&turnover, pJson["turnover"], "qint64", "");
     
-    ::Swagger::setValue(&turnover24h, pJson["turnover24h"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&turnover24h, pJson["turnover24h"], "qint64", "");
     
     ::Swagger::setValue(&home_notional24h, pJson["homeNotional24h"], "double", "");
     
@@ -565,9 +531,9 @@ SWGInstrument::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&has_liquidity, pJson["hasLiquidity"], "bool", "");
     
-    ::Swagger::setValue(&open_interest, pJson["openInterest"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&open_interest, pJson["openInterest"], "qint64", "");
     
-    ::Swagger::setValue(&open_value, pJson["openValue"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&open_value, pJson["openValue"], "qint64", "");
     
     ::Swagger::setValue(&fair_method, pJson["fairMethod"], "QString", "QString");
     
@@ -661,32 +627,32 @@ SWGInstrument::asJsonObject() {
     if(publish_time != nullptr) { 
         toJsonValue(QString("publishTime"), publish_time, obj, QString("QDateTime"));
     }
-    if((max_order_qty != nullptr) && (max_order_qty->isSet())){
-        toJsonValue(QString("maxOrderQty"), max_order_qty, obj, QString("SWGNumber"));
+    if(m_max_order_qty_isSet){
+        obj.insert("maxOrderQty", QJsonValue(max_order_qty));
     }
     if(m_max_price_isSet){
         obj.insert("maxPrice", QJsonValue(max_price));
     }
-    if((lot_size != nullptr) && (lot_size->isSet())){
-        toJsonValue(QString("lotSize"), lot_size, obj, QString("SWGNumber"));
+    if(m_lot_size_isSet){
+        obj.insert("lotSize", QJsonValue(lot_size));
     }
     if(m_tick_size_isSet){
         obj.insert("tickSize", QJsonValue(tick_size));
     }
-    if((multiplier != nullptr) && (multiplier->isSet())){
-        toJsonValue(QString("multiplier"), multiplier, obj, QString("SWGNumber"));
+    if(m_multiplier_isSet){
+        obj.insert("multiplier", QJsonValue(multiplier));
     }
     if(settl_currency != nullptr && *settl_currency != QString("")){
         toJsonValue(QString("settlCurrency"), settl_currency, obj, QString("QString"));
     }
-    if((underlying_to_position_multiplier != nullptr) && (underlying_to_position_multiplier->isSet())){
-        toJsonValue(QString("underlyingToPositionMultiplier"), underlying_to_position_multiplier, obj, QString("SWGNumber"));
+    if(m_underlying_to_position_multiplier_isSet){
+        obj.insert("underlyingToPositionMultiplier", QJsonValue(underlying_to_position_multiplier));
     }
-    if((underlying_to_settle_multiplier != nullptr) && (underlying_to_settle_multiplier->isSet())){
-        toJsonValue(QString("underlyingToSettleMultiplier"), underlying_to_settle_multiplier, obj, QString("SWGNumber"));
+    if(m_underlying_to_settle_multiplier_isSet){
+        obj.insert("underlyingToSettleMultiplier", QJsonValue(underlying_to_settle_multiplier));
     }
-    if((quote_to_settle_multiplier != nullptr) && (quote_to_settle_multiplier->isSet())){
-        toJsonValue(QString("quoteToSettleMultiplier"), quote_to_settle_multiplier, obj, QString("SWGNumber"));
+    if(m_quote_to_settle_multiplier_isSet){
+        obj.insert("quoteToSettleMultiplier", QJsonValue(quote_to_settle_multiplier));
     }
     if(m_is_quanto_isSet){
         obj.insert("isQuanto", QJsonValue(is_quanto));
@@ -700,11 +666,11 @@ SWGInstrument::asJsonObject() {
     if(m_maint_margin_isSet){
         obj.insert("maintMargin", QJsonValue(maint_margin));
     }
-    if((risk_limit != nullptr) && (risk_limit->isSet())){
-        toJsonValue(QString("riskLimit"), risk_limit, obj, QString("SWGNumber"));
+    if(m_risk_limit_isSet){
+        obj.insert("riskLimit", QJsonValue(risk_limit));
     }
-    if((risk_step != nullptr) && (risk_step->isSet())){
-        toJsonValue(QString("riskStep"), risk_step, obj, QString("SWGNumber"));
+    if(m_risk_step_isSet){
+        obj.insert("riskStep", QJsonValue(risk_step));
     }
     if(m_limit_isSet){
         obj.insert("limit", QJsonValue(limit));
@@ -760,26 +726,26 @@ SWGInstrument::asJsonObject() {
     if(m_limit_up_price_isSet){
         obj.insert("limitUpPrice", QJsonValue(limit_up_price));
     }
-    if((total_volume != nullptr) && (total_volume->isSet())){
-        toJsonValue(QString("totalVolume"), total_volume, obj, QString("SWGNumber"));
+    if(m_total_volume_isSet){
+        obj.insert("totalVolume", QJsonValue(total_volume));
     }
-    if((volume != nullptr) && (volume->isSet())){
-        toJsonValue(QString("volume"), volume, obj, QString("SWGNumber"));
+    if(m_volume_isSet){
+        obj.insert("volume", QJsonValue(volume));
     }
-    if((volume24h != nullptr) && (volume24h->isSet())){
-        toJsonValue(QString("volume24h"), volume24h, obj, QString("SWGNumber"));
+    if(m_volume24h_isSet){
+        obj.insert("volume24h", QJsonValue(volume24h));
     }
-    if((prev_total_turnover != nullptr) && (prev_total_turnover->isSet())){
-        toJsonValue(QString("prevTotalTurnover"), prev_total_turnover, obj, QString("SWGNumber"));
+    if(m_prev_total_turnover_isSet){
+        obj.insert("prevTotalTurnover", QJsonValue(prev_total_turnover));
     }
-    if((total_turnover != nullptr) && (total_turnover->isSet())){
-        toJsonValue(QString("totalTurnover"), total_turnover, obj, QString("SWGNumber"));
+    if(m_total_turnover_isSet){
+        obj.insert("totalTurnover", QJsonValue(total_turnover));
     }
-    if((turnover != nullptr) && (turnover->isSet())){
-        toJsonValue(QString("turnover"), turnover, obj, QString("SWGNumber"));
+    if(m_turnover_isSet){
+        obj.insert("turnover", QJsonValue(turnover));
     }
-    if((turnover24h != nullptr) && (turnover24h->isSet())){
-        toJsonValue(QString("turnover24h"), turnover24h, obj, QString("SWGNumber"));
+    if(m_turnover24h_isSet){
+        obj.insert("turnover24h", QJsonValue(turnover24h));
     }
     if(m_home_notional24h_isSet){
         obj.insert("homeNotional24h", QJsonValue(home_notional24h));
@@ -832,11 +798,11 @@ SWGInstrument::asJsonObject() {
     if(m_has_liquidity_isSet){
         obj.insert("hasLiquidity", QJsonValue(has_liquidity));
     }
-    if((open_interest != nullptr) && (open_interest->isSet())){
-        toJsonValue(QString("openInterest"), open_interest, obj, QString("SWGNumber"));
+    if(m_open_interest_isSet){
+        obj.insert("openInterest", QJsonValue(open_interest));
     }
-    if((open_value != nullptr) && (open_value->isSet())){
-        toJsonValue(QString("openValue"), open_value, obj, QString("SWGNumber"));
+    if(m_open_value_isSet){
+        obj.insert("openValue", QJsonValue(open_value));
     }
     if(fair_method != nullptr && *fair_method != QString("")){
         toJsonValue(QString("fairMethod"), fair_method, obj, QString("QString"));
@@ -1058,12 +1024,12 @@ SWGInstrument::setPublishTime(QDateTime* publish_time) {
     this->m_publish_time_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getMaxOrderQty() {
     return max_order_qty;
 }
 void
-SWGInstrument::setMaxOrderQty(SWGNumber* max_order_qty) {
+SWGInstrument::setMaxOrderQty(qint64 max_order_qty) {
     this->max_order_qty = max_order_qty;
     this->m_max_order_qty_isSet = true;
 }
@@ -1078,12 +1044,12 @@ SWGInstrument::setMaxPrice(double max_price) {
     this->m_max_price_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getLotSize() {
     return lot_size;
 }
 void
-SWGInstrument::setLotSize(SWGNumber* lot_size) {
+SWGInstrument::setLotSize(qint64 lot_size) {
     this->lot_size = lot_size;
     this->m_lot_size_isSet = true;
 }
@@ -1098,12 +1064,12 @@ SWGInstrument::setTickSize(double tick_size) {
     this->m_tick_size_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getMultiplier() {
     return multiplier;
 }
 void
-SWGInstrument::setMultiplier(SWGNumber* multiplier) {
+SWGInstrument::setMultiplier(qint64 multiplier) {
     this->multiplier = multiplier;
     this->m_multiplier_isSet = true;
 }
@@ -1118,32 +1084,32 @@ SWGInstrument::setSettlCurrency(QString* settl_currency) {
     this->m_settl_currency_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getUnderlyingToPositionMultiplier() {
     return underlying_to_position_multiplier;
 }
 void
-SWGInstrument::setUnderlyingToPositionMultiplier(SWGNumber* underlying_to_position_multiplier) {
+SWGInstrument::setUnderlyingToPositionMultiplier(qint64 underlying_to_position_multiplier) {
     this->underlying_to_position_multiplier = underlying_to_position_multiplier;
     this->m_underlying_to_position_multiplier_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getUnderlyingToSettleMultiplier() {
     return underlying_to_settle_multiplier;
 }
 void
-SWGInstrument::setUnderlyingToSettleMultiplier(SWGNumber* underlying_to_settle_multiplier) {
+SWGInstrument::setUnderlyingToSettleMultiplier(qint64 underlying_to_settle_multiplier) {
     this->underlying_to_settle_multiplier = underlying_to_settle_multiplier;
     this->m_underlying_to_settle_multiplier_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getQuoteToSettleMultiplier() {
     return quote_to_settle_multiplier;
 }
 void
-SWGInstrument::setQuoteToSettleMultiplier(SWGNumber* quote_to_settle_multiplier) {
+SWGInstrument::setQuoteToSettleMultiplier(qint64 quote_to_settle_multiplier) {
     this->quote_to_settle_multiplier = quote_to_settle_multiplier;
     this->m_quote_to_settle_multiplier_isSet = true;
 }
@@ -1188,22 +1154,22 @@ SWGInstrument::setMaintMargin(double maint_margin) {
     this->m_maint_margin_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getRiskLimit() {
     return risk_limit;
 }
 void
-SWGInstrument::setRiskLimit(SWGNumber* risk_limit) {
+SWGInstrument::setRiskLimit(qint64 risk_limit) {
     this->risk_limit = risk_limit;
     this->m_risk_limit_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getRiskStep() {
     return risk_step;
 }
 void
-SWGInstrument::setRiskStep(SWGNumber* risk_step) {
+SWGInstrument::setRiskStep(qint64 risk_step) {
     this->risk_step = risk_step;
     this->m_risk_step_isSet = true;
 }
@@ -1388,72 +1354,72 @@ SWGInstrument::setLimitUpPrice(double limit_up_price) {
     this->m_limit_up_price_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getTotalVolume() {
     return total_volume;
 }
 void
-SWGInstrument::setTotalVolume(SWGNumber* total_volume) {
+SWGInstrument::setTotalVolume(qint64 total_volume) {
     this->total_volume = total_volume;
     this->m_total_volume_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getVolume() {
     return volume;
 }
 void
-SWGInstrument::setVolume(SWGNumber* volume) {
+SWGInstrument::setVolume(qint64 volume) {
     this->volume = volume;
     this->m_volume_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getVolume24h() {
     return volume24h;
 }
 void
-SWGInstrument::setVolume24h(SWGNumber* volume24h) {
+SWGInstrument::setVolume24h(qint64 volume24h) {
     this->volume24h = volume24h;
     this->m_volume24h_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getPrevTotalTurnover() {
     return prev_total_turnover;
 }
 void
-SWGInstrument::setPrevTotalTurnover(SWGNumber* prev_total_turnover) {
+SWGInstrument::setPrevTotalTurnover(qint64 prev_total_turnover) {
     this->prev_total_turnover = prev_total_turnover;
     this->m_prev_total_turnover_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getTotalTurnover() {
     return total_turnover;
 }
 void
-SWGInstrument::setTotalTurnover(SWGNumber* total_turnover) {
+SWGInstrument::setTotalTurnover(qint64 total_turnover) {
     this->total_turnover = total_turnover;
     this->m_total_turnover_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getTurnover() {
     return turnover;
 }
 void
-SWGInstrument::setTurnover(SWGNumber* turnover) {
+SWGInstrument::setTurnover(qint64 turnover) {
     this->turnover = turnover;
     this->m_turnover_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getTurnover24h() {
     return turnover24h;
 }
 void
-SWGInstrument::setTurnover24h(SWGNumber* turnover24h) {
+SWGInstrument::setTurnover24h(qint64 turnover24h) {
     this->turnover24h = turnover24h;
     this->m_turnover24h_isSet = true;
 }
@@ -1628,22 +1594,22 @@ SWGInstrument::setHasLiquidity(bool has_liquidity) {
     this->m_has_liquidity_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getOpenInterest() {
     return open_interest;
 }
 void
-SWGInstrument::setOpenInterest(SWGNumber* open_interest) {
+SWGInstrument::setOpenInterest(qint64 open_interest) {
     this->open_interest = open_interest;
     this->m_open_interest_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInstrument::getOpenValue() {
     return open_value;
 }
 void
-SWGInstrument::setOpenValue(SWGNumber* open_value) {
+SWGInstrument::setOpenValue(qint64 open_value) {
     this->open_value = open_value;
     this->m_open_value_isSet = true;
 }
@@ -1791,21 +1757,21 @@ SWGInstrument::isSet(){
         
         
         
-        if(max_order_qty != nullptr && max_order_qty->isSet()){ isObjectUpdated = true; break;}
+        if(m_max_order_qty_isSet){ isObjectUpdated = true; break;}
         if(m_max_price_isSet){ isObjectUpdated = true; break;}
-        if(lot_size != nullptr && lot_size->isSet()){ isObjectUpdated = true; break;}
+        if(m_lot_size_isSet){ isObjectUpdated = true; break;}
         if(m_tick_size_isSet){ isObjectUpdated = true; break;}
-        if(multiplier != nullptr && multiplier->isSet()){ isObjectUpdated = true; break;}
+        if(m_multiplier_isSet){ isObjectUpdated = true; break;}
         if(settl_currency != nullptr && *settl_currency != QString("")){ isObjectUpdated = true; break;}
-        if(underlying_to_position_multiplier != nullptr && underlying_to_position_multiplier->isSet()){ isObjectUpdated = true; break;}
-        if(underlying_to_settle_multiplier != nullptr && underlying_to_settle_multiplier->isSet()){ isObjectUpdated = true; break;}
-        if(quote_to_settle_multiplier != nullptr && quote_to_settle_multiplier->isSet()){ isObjectUpdated = true; break;}
+        if(m_underlying_to_position_multiplier_isSet){ isObjectUpdated = true; break;}
+        if(m_underlying_to_settle_multiplier_isSet){ isObjectUpdated = true; break;}
+        if(m_quote_to_settle_multiplier_isSet){ isObjectUpdated = true; break;}
         if(m_is_quanto_isSet){ isObjectUpdated = true; break;}
         if(m_is_inverse_isSet){ isObjectUpdated = true; break;}
         if(m_init_margin_isSet){ isObjectUpdated = true; break;}
         if(m_maint_margin_isSet){ isObjectUpdated = true; break;}
-        if(risk_limit != nullptr && risk_limit->isSet()){ isObjectUpdated = true; break;}
-        if(risk_step != nullptr && risk_step->isSet()){ isObjectUpdated = true; break;}
+        if(m_risk_limit_isSet){ isObjectUpdated = true; break;}
+        if(m_risk_step_isSet){ isObjectUpdated = true; break;}
         if(m_limit_isSet){ isObjectUpdated = true; break;}
         if(m_taxed_isSet){ isObjectUpdated = true; break;}
         if(m_deleverage_isSet){ isObjectUpdated = true; break;}
@@ -1824,13 +1790,13 @@ SWGInstrument::isSet(){
         if(m_prev_close_price_isSet){ isObjectUpdated = true; break;}
         if(m_limit_down_price_isSet){ isObjectUpdated = true; break;}
         if(m_limit_up_price_isSet){ isObjectUpdated = true; break;}
-        if(total_volume != nullptr && total_volume->isSet()){ isObjectUpdated = true; break;}
-        if(volume != nullptr && volume->isSet()){ isObjectUpdated = true; break;}
-        if(volume24h != nullptr && volume24h->isSet()){ isObjectUpdated = true; break;}
-        if(prev_total_turnover != nullptr && prev_total_turnover->isSet()){ isObjectUpdated = true; break;}
-        if(total_turnover != nullptr && total_turnover->isSet()){ isObjectUpdated = true; break;}
-        if(turnover != nullptr && turnover->isSet()){ isObjectUpdated = true; break;}
-        if(turnover24h != nullptr && turnover24h->isSet()){ isObjectUpdated = true; break;}
+        if(m_total_volume_isSet){ isObjectUpdated = true; break;}
+        if(m_volume_isSet){ isObjectUpdated = true; break;}
+        if(m_volume24h_isSet){ isObjectUpdated = true; break;}
+        if(m_prev_total_turnover_isSet){ isObjectUpdated = true; break;}
+        if(m_total_turnover_isSet){ isObjectUpdated = true; break;}
+        if(m_turnover_isSet){ isObjectUpdated = true; break;}
+        if(m_turnover24h_isSet){ isObjectUpdated = true; break;}
         if(m_home_notional24h_isSet){ isObjectUpdated = true; break;}
         if(m_foreign_notional24h_isSet){ isObjectUpdated = true; break;}
         if(m_prev_price24h_isSet){ isObjectUpdated = true; break;}
@@ -1848,8 +1814,8 @@ SWGInstrument::isSet(){
         if(m_impact_mid_price_isSet){ isObjectUpdated = true; break;}
         if(m_impact_ask_price_isSet){ isObjectUpdated = true; break;}
         if(m_has_liquidity_isSet){ isObjectUpdated = true; break;}
-        if(open_interest != nullptr && open_interest->isSet()){ isObjectUpdated = true; break;}
-        if(open_value != nullptr && open_value->isSet()){ isObjectUpdated = true; break;}
+        if(m_open_interest_isSet){ isObjectUpdated = true; break;}
+        if(m_open_value_isSet){ isObjectUpdated = true; break;}
         if(fair_method != nullptr && *fair_method != QString("")){ isObjectUpdated = true; break;}
         if(m_fair_basis_rate_isSet){ isObjectUpdated = true; break;}
         if(m_fair_basis_isSet){ isObjectUpdated = true; break;}

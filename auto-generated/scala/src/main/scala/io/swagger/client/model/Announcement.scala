@@ -15,7 +15,7 @@ package io.swagger.client.model
 import java.util.Date
 
 case class Announcement (
-  id: Number,
+  id: Integer,
   link: Option[String] = None,
   title: Option[String] = None,
   content: Option[String] = None,

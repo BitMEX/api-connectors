@@ -52,7 +52,7 @@ namespace IO.Swagger.Model
         /// <param name="transactTime">transactTime.</param>
         /// <param name="timestamp">timestamp.</param>
         /// <param name="walletBalance">walletBalance.</param>
-        public Transaction(string transactID = default(string), decimal? account = default(decimal?), string currency = default(string), string network = default(string), string transactType = default(string), decimal? amount = default(decimal?), decimal? fee = default(decimal?), string transactStatus = default(string), string address = default(string), string tx = default(string), string text = default(string), DateTime? transactTime = default(DateTime?), DateTime? timestamp = default(DateTime?), decimal? walletBalance = default(decimal?))
+        public Transaction(string transactID = default(string), long? account = default(long?), string currency = default(string), string network = default(string), string transactType = default(string), long? amount = default(long?), long? fee = default(long?), string transactStatus = default(string), string address = default(string), string tx = default(string), string text = default(string), DateTime? transactTime = default(DateTime?), DateTime? timestamp = default(DateTime?), long? walletBalance = default(long?))
         {
             // to ensure "transactID" is required (not null)
             if (transactID == null)
@@ -88,7 +88,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name="account", EmitDefaultValue=false)]
-        public decimal? Account { get; set; }
+        public long? Account { get; set; }
 
         /// <summary>
         /// Gets or Sets Currency
@@ -112,13 +112,13 @@ namespace IO.Swagger.Model
         /// Gets or Sets Amount
         /// </summary>
         [DataMember(Name="amount", EmitDefaultValue=false)]
-        public decimal? Amount { get; set; }
+        public long? Amount { get; set; }
 
         /// <summary>
         /// Gets or Sets Fee
         /// </summary>
         [DataMember(Name="fee", EmitDefaultValue=false)]
-        public decimal? Fee { get; set; }
+        public long? Fee { get; set; }
 
         /// <summary>
         /// Gets or Sets TransactStatus
@@ -160,7 +160,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets WalletBalance
         /// </summary>
         [DataMember(Name="walletBalance", EmitDefaultValue=false)]
-        public decimal? WalletBalance { get; set; }
+        public long? WalletBalance { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

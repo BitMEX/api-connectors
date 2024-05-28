@@ -13,7 +13,6 @@
 package io.swagger.client.model;
 
 import io.swagger.client.model.XAny;
-import java.math.BigDecimal;
 import java.util.*;
 import java.util.Date;
 import io.swagger.annotations.*;
@@ -32,19 +31,19 @@ public class APIKey {
   @SerializedName("name")
   private String name = null;
   @SerializedName("nonce")
-  private BigDecimal nonce = null;
+  private Long nonce = 0;
   @SerializedName("cidr")
   private String cidr = null;
   @SerializedName("cidrs")
   private List<XAny> cidrs = null;
   @SerializedName("targetAccountId")
-  private BigDecimal targetAccountId = null;
+  private Integer targetAccountId = null;
   @SerializedName("permissions")
   private List<XAny> permissions = null;
   @SerializedName("enabled")
   private Boolean enabled = null;
   @SerializedName("userId")
-  private BigDecimal userId = null;
+  private Integer userId = null;
   @SerializedName("created")
   private Date created = null;
 
@@ -81,10 +80,10 @@ public class APIKey {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getNonce() {
+  public Long getNonce() {
     return nonce;
   }
-  public void setNonce(BigDecimal nonce) {
+  public void setNonce(Long nonce) {
     this.nonce = nonce;
   }
 
@@ -111,10 +110,10 @@ public class APIKey {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTargetAccountId() {
+  public Integer getTargetAccountId() {
     return targetAccountId;
   }
-  public void setTargetAccountId(BigDecimal targetAccountId) {
+  public void setTargetAccountId(Integer targetAccountId) {
     this.targetAccountId = targetAccountId;
   }
 
@@ -141,10 +140,10 @@ public class APIKey {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getUserId() {
+  public Integer getUserId() {
     return userId;
   }
-  public void setUserId(BigDecimal userId) {
+  public void setUserId(Integer userId) {
     this.userId = userId;
   }
 

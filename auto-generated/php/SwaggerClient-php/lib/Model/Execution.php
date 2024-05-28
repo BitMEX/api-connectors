@@ -62,15 +62,15 @@ class Execution implements ModelInterface, ArrayAccess
         'order_id' => 'string',
         'cl_ord_id' => 'string',
         'cl_ord_link_id' => 'string',
-        'account' => 'float',
+        'account' => 'int',
         'symbol' => 'string',
         'side' => 'string',
-        'last_qty' => 'float',
+        'last_qty' => 'int',
         'last_px' => 'double',
         'last_liquidity_ind' => 'string',
-        'order_qty' => 'float',
+        'order_qty' => 'int',
         'price' => 'double',
-        'display_qty' => 'float',
+        'display_qty' => 'int',
         'stop_px' => 'double',
         'peg_offset_value' => 'double',
         'peg_price_type' => 'string',
@@ -85,20 +85,20 @@ class Execution implements ModelInterface, ArrayAccess
         'triggered' => 'string',
         'working_indicator' => 'bool',
         'ord_rej_reason' => 'string',
-        'leaves_qty' => 'float',
-        'cum_qty' => 'float',
+        'leaves_qty' => 'int',
+        'cum_qty' => 'int',
         'avg_px' => 'double',
         'commission' => 'double',
+        'fee_type' => 'string',
         'trade_publish_indicator' => 'string',
         'text' => 'string',
         'trd_match_id' => 'string',
-        'exec_cost' => 'float',
-        'exec_comm' => 'float',
+        'exec_cost' => 'int',
+        'exec_comm' => 'int',
         'home_notional' => 'double',
         'foreign_notional' => 'double',
         'transact_time' => '\DateTime',
-        'timestamp' => '\DateTime',
-        'fee_type' => 'string'
+        'timestamp' => '\DateTime'
     ];
 
     /**
@@ -138,6 +138,7 @@ class Execution implements ModelInterface, ArrayAccess
         'cum_qty' => 'int64',
         'avg_px' => 'double',
         'commission' => 'double',
+        'fee_type' => null,
         'trade_publish_indicator' => null,
         'text' => null,
         'trd_match_id' => 'guid',
@@ -146,8 +147,7 @@ class Execution implements ModelInterface, ArrayAccess
         'home_notional' => 'double',
         'foreign_notional' => 'double',
         'transact_time' => 'date-time',
-        'timestamp' => 'date-time',
-        'fee_type' => null
+        'timestamp' => 'date-time'
     ];
 
     /**
@@ -208,6 +208,7 @@ class Execution implements ModelInterface, ArrayAccess
         'cum_qty' => 'cumQty',
         'avg_px' => 'avgPx',
         'commission' => 'commission',
+        'fee_type' => 'feeType',
         'trade_publish_indicator' => 'tradePublishIndicator',
         'text' => 'text',
         'trd_match_id' => 'trdMatchID',
@@ -216,8 +217,7 @@ class Execution implements ModelInterface, ArrayAccess
         'home_notional' => 'homeNotional',
         'foreign_notional' => 'foreignNotional',
         'transact_time' => 'transactTime',
-        'timestamp' => 'timestamp',
-        'fee_type' => 'feeType'
+        'timestamp' => 'timestamp'
     ];
 
     /**
@@ -257,6 +257,7 @@ class Execution implements ModelInterface, ArrayAccess
         'cum_qty' => 'setCumQty',
         'avg_px' => 'setAvgPx',
         'commission' => 'setCommission',
+        'fee_type' => 'setFeeType',
         'trade_publish_indicator' => 'setTradePublishIndicator',
         'text' => 'setText',
         'trd_match_id' => 'setTrdMatchId',
@@ -265,8 +266,7 @@ class Execution implements ModelInterface, ArrayAccess
         'home_notional' => 'setHomeNotional',
         'foreign_notional' => 'setForeignNotional',
         'transact_time' => 'setTransactTime',
-        'timestamp' => 'setTimestamp',
-        'fee_type' => 'setFeeType'
+        'timestamp' => 'setTimestamp'
     ];
 
     /**
@@ -306,6 +306,7 @@ class Execution implements ModelInterface, ArrayAccess
         'cum_qty' => 'getCumQty',
         'avg_px' => 'getAvgPx',
         'commission' => 'getCommission',
+        'fee_type' => 'getFeeType',
         'trade_publish_indicator' => 'getTradePublishIndicator',
         'text' => 'getText',
         'trd_match_id' => 'getTrdMatchId',
@@ -314,8 +315,7 @@ class Execution implements ModelInterface, ArrayAccess
         'home_notional' => 'getHomeNotional',
         'foreign_notional' => 'getForeignNotional',
         'transact_time' => 'getTransactTime',
-        'timestamp' => 'getTimestamp',
-        'fee_type' => 'getFeeType'
+        'timestamp' => 'getTimestamp'
     ];
 
     /**
@@ -409,6 +409,7 @@ class Execution implements ModelInterface, ArrayAccess
         $this->container['cum_qty'] = isset($data['cum_qty']) ? $data['cum_qty'] : null;
         $this->container['avg_px'] = isset($data['avg_px']) ? $data['avg_px'] : null;
         $this->container['commission'] = isset($data['commission']) ? $data['commission'] : null;
+        $this->container['fee_type'] = isset($data['fee_type']) ? $data['fee_type'] : null;
         $this->container['trade_publish_indicator'] = isset($data['trade_publish_indicator']) ? $data['trade_publish_indicator'] : null;
         $this->container['text'] = isset($data['text']) ? $data['text'] : null;
         $this->container['trd_match_id'] = isset($data['trd_match_id']) ? $data['trd_match_id'] : null;
@@ -418,7 +419,6 @@ class Execution implements ModelInterface, ArrayAccess
         $this->container['foreign_notional'] = isset($data['foreign_notional']) ? $data['foreign_notional'] : null;
         $this->container['transact_time'] = isset($data['transact_time']) ? $data['transact_time'] : null;
         $this->container['timestamp'] = isset($data['timestamp']) ? $data['timestamp'] : null;
-        $this->container['fee_type'] = isset($data['fee_type']) ? $data['fee_type'] : null;
     }
 
     /**
@@ -550,7 +550,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Gets account
      *
-     * @return float
+     * @return int
      */
     public function getAccount()
     {
@@ -560,7 +560,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Sets account
      *
-     * @param float $account account
+     * @param int $account account
      *
      * @return $this
      */
@@ -622,7 +622,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Gets last_qty
      *
-     * @return float
+     * @return int
      */
     public function getLastQty()
     {
@@ -632,7 +632,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Sets last_qty
      *
-     * @param float $last_qty last_qty
+     * @param int $last_qty last_qty
      *
      * @return $this
      */
@@ -694,7 +694,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Gets order_qty
      *
-     * @return float
+     * @return int
      */
     public function getOrderQty()
     {
@@ -704,7 +704,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Sets order_qty
      *
-     * @param float $order_qty order_qty
+     * @param int $order_qty order_qty
      *
      * @return $this
      */
@@ -742,7 +742,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Gets display_qty
      *
-     * @return float
+     * @return int
      */
     public function getDisplayQty()
     {
@@ -752,7 +752,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Sets display_qty
      *
-     * @param float $display_qty display_qty
+     * @param int $display_qty display_qty
      *
      * @return $this
      */
@@ -1102,7 +1102,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Gets leaves_qty
      *
-     * @return float
+     * @return int
      */
     public function getLeavesQty()
     {
@@ -1112,7 +1112,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Sets leaves_qty
      *
-     * @param float $leaves_qty leaves_qty
+     * @param int $leaves_qty leaves_qty
      *
      * @return $this
      */
@@ -1126,7 +1126,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Gets cum_qty
      *
-     * @return float
+     * @return int
      */
     public function getCumQty()
     {
@@ -1136,7 +1136,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Sets cum_qty
      *
-     * @param float $cum_qty cum_qty
+     * @param int $cum_qty cum_qty
      *
      * @return $this
      */
@@ -1191,6 +1191,30 @@ class Execution implements ModelInterface, ArrayAccess
     public function setCommission($commission)
     {
         $this->container['commission'] = $commission;
+
+        return $this;
+    }
+
+    /**
+     * Gets fee_type
+     *
+     * @return string
+     */
+    public function getFeeType()
+    {
+        return $this->container['fee_type'];
+    }
+
+    /**
+     * Sets fee_type
+     *
+     * @param string $fee_type fee_type
+     *
+     * @return $this
+     */
+    public function setFeeType($fee_type)
+    {
+        $this->container['fee_type'] = $fee_type;
 
         return $this;
     }
@@ -1270,7 +1294,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Gets exec_cost
      *
-     * @return float
+     * @return int
      */
     public function getExecCost()
     {
@@ -1280,7 +1304,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Sets exec_cost
      *
-     * @param float $exec_cost exec_cost
+     * @param int $exec_cost exec_cost
      *
      * @return $this
      */
@@ -1294,7 +1318,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Gets exec_comm
      *
-     * @return float
+     * @return int
      */
     public function getExecComm()
     {
@@ -1304,7 +1328,7 @@ class Execution implements ModelInterface, ArrayAccess
     /**
      * Sets exec_comm
      *
-     * @param float $exec_comm exec_comm
+     * @param int $exec_comm exec_comm
      *
      * @return $this
      */
@@ -1407,30 +1431,6 @@ class Execution implements ModelInterface, ArrayAccess
     public function setTimestamp($timestamp)
     {
         $this->container['timestamp'] = $timestamp;
-
-        return $this;
-    }
-
-    /**
-     * Gets fee_type
-     *
-     * @return string
-     */
-    public function getFeeType()
-    {
-        return $this->container['fee_type'];
-    }
-
-    /**
-     * Sets fee_type
-     *
-     * @param string $fee_type fee_type
-     *
-     * @return $this
-     */
-    public function setFeeType($fee_type)
-    {
-        $this->container['fee_type'] = $fee_type;
 
         return $this;
     }

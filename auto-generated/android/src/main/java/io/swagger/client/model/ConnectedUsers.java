@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
@@ -20,27 +19,27 @@ import com.google.gson.annotations.SerializedName;
 public class ConnectedUsers {
   
   @SerializedName("users")
-  private BigDecimal users = null;
+  private Integer users = null;
   @SerializedName("bots")
-  private BigDecimal bots = null;
+  private Integer bots = null;
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getUsers() {
+  public Integer getUsers() {
     return users;
   }
-  public void setUsers(BigDecimal users) {
+  public void setUsers(Integer users) {
     this.users = users;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getBots() {
+  public Integer getBots() {
     return bots;
   }
-  public void setBots(BigDecimal bots) {
+  public void setBots(Integer bots) {
     this.bots = bots;
   }
 

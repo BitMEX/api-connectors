@@ -15,7 +15,7 @@ import (
 )
 
 type Address struct {
-	Id float32 `json:"id,omitempty"`
+	Id int32 `json:"id,omitempty"`
 	Currency string `json:"currency,omitempty"`
 	Created time.Time `json:"created,omitempty"`
 	UserId float64 `json:"userId,omitempty"`

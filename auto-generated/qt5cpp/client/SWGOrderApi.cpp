@@ -30,7 +30,7 @@ SWGOrderApi::SWGOrderApi(QString host, QString basePath) {
 }
 
 void
-SWGOrderApi::order_amend(QString* order_id, QString* orig_cl_ord_id, QString* cl_ord_id, double simple_order_qty, SWGNumber* order_qty, double simple_leaves_qty, SWGNumber* leaves_qty, double price, double stop_px, double peg_offset_value, QString* text) {
+SWGOrderApi::order_amend(QString* order_id, QString* orig_cl_ord_id, QString* cl_ord_id, double simple_order_qty, qint32 order_qty, double simple_leaves_qty, qint32 leaves_qty, double price, double stop_px, double peg_offset_value, QString* text) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/order");
 
@@ -382,7 +382,7 @@ SWGOrderApi::order_closePositionCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGOrderApi::order_getOrders(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
+SWGOrderApi::order_getOrders(QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/order");
 
@@ -511,7 +511,7 @@ SWGOrderApi::order_getOrdersCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGOrderApi::order_new(QString* symbol, QString* side, double simple_order_qty, SWGNumber* order_qty, double price, SWGNumber* display_qty, double stop_px, QString* cl_ord_id, QString* cl_ord_link_id, double peg_offset_value, QString* peg_price_type, QString* ord_type, QString* time_in_force, QString* exec_inst, QString* contingency_type, QString* text) {
+SWGOrderApi::order_new(QString* symbol, QString* side, double simple_order_qty, qint32 order_qty, double price, qint32 display_qty, double stop_px, QString* cl_ord_id, QString* cl_ord_link_id, double peg_offset_value, QString* peg_price_type, QString* ord_type, QString* time_in_force, QString* exec_inst, QString* contingency_type, QString* text) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/order");
 

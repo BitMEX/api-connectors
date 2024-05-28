@@ -49,7 +49,7 @@ SWGNetworksConfig::init() {
     m_transaction_explorer_isSet = false;
     token_explorer = new QString("");
     m_token_explorer_isSet = false;
-    deposit_confirmations = 0.0;
+    deposit_confirmations = 0;
     m_deposit_confirmations_isSet = false;
     enabled = false;
     m_enabled_isSet = false;
@@ -75,9 +75,7 @@ SWGNetworksConfig::cleanup() {
     if(token_explorer != nullptr) { 
         delete token_explorer;
     }
-    if(deposit_confirmations != nullptr) { 
-        delete deposit_confirmations;
-    }
+
 
 }
 
@@ -104,7 +102,7 @@ SWGNetworksConfig::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&token_explorer, pJson["tokenExplorer"], "QString", "QString");
     
-    ::Swagger::setValue(&deposit_confirmations, pJson["depositConfirmations"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&deposit_confirmations, pJson["depositConfirmations"], "qint32", "");
     
     ::Swagger::setValue(&enabled, pJson["enabled"], "bool", "");
     
@@ -140,8 +138,8 @@ SWGNetworksConfig::asJsonObject() {
     if(token_explorer != nullptr && *token_explorer != QString("")){
         toJsonValue(QString("tokenExplorer"), token_explorer, obj, QString("QString"));
     }
-    if((deposit_confirmations != nullptr) && (deposit_confirmations->isSet())){
-        toJsonValue(QString("depositConfirmations"), deposit_confirmations, obj, QString("SWGNumber"));
+    if(m_deposit_confirmations_isSet){
+        obj.insert("depositConfirmations", QJsonValue(deposit_confirmations));
     }
     if(m_enabled_isSet){
         obj.insert("enabled", QJsonValue(enabled));
@@ -210,12 +208,12 @@ SWGNetworksConfig::setTokenExplorer(QString* token_explorer) {
     this->m_token_explorer_isSet = true;
 }
 
-SWGNumber*
+qint32
 SWGNetworksConfig::getDepositConfirmations() {
     return deposit_confirmations;
 }
 void
-SWGNetworksConfig::setDepositConfirmations(SWGNumber* deposit_confirmations) {
+SWGNetworksConfig::setDepositConfirmations(qint32 deposit_confirmations) {
     this->deposit_confirmations = deposit_confirmations;
     this->m_deposit_confirmations_isSet = true;
 }
@@ -241,7 +239,7 @@ SWGNetworksConfig::isSet(){
         if(network_symbol != nullptr && *network_symbol != QString("")){ isObjectUpdated = true; break;}
         if(transaction_explorer != nullptr && *transaction_explorer != QString("")){ isObjectUpdated = true; break;}
         if(token_explorer != nullptr && *token_explorer != QString("")){ isObjectUpdated = true; break;}
-        if(deposit_confirmations != nullptr && deposit_confirmations->isSet()){ isObjectUpdated = true; break;}
+        if(m_deposit_confirmations_isSet){ isObjectUpdated = true; break;}
         if(m_enabled_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;

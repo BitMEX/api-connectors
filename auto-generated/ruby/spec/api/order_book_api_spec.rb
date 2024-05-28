@@ -36,7 +36,7 @@ describe 'OrderBookApi' do
   # Get current orderbook in vertical format.
   # @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
   # @param [Hash] opts the optional parameters
-  # @option opts [Float] :depth Orderbook depth per side. Send 0 for full depth.
+  # @option opts [Integer] :depth Orderbook depth per side. Send 0 for full depth.
   # @return [Array<OrderBookL2>]
   describe 'order_book_get_l2 test' do
     it 'should work' do

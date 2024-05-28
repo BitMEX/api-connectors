@@ -45,7 +45,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 NSString* filter = @"filter_example"; // Table filter. For example, send {\"symbol\": \"XBTUSD\"}. (optional)
 NSString* columns = @"columns_example"; // Which columns to fetch. For example, send [\"columnName\"]. (optional)
-NSNumber* count = @8.14; // Number of rows to fetch. (optional)
+NSNumber* count = @56; // Number of rows to fetch. (optional)
 
 SWGPositionApi*apiInstance = [[SWGPositionApi alloc] init];
 
@@ -190,7 +190,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 
 NSString* symbol = @"symbol_example"; // Symbol of position to isolate.
-NSNumber* amount = @8.14; // Amount to transfer, in Satoshis. May be negative.
+NSNumber* amount = @789; // Amount to transfer, in Satoshis. May be negative.
 NSNumber* targetAccountId = @1.2; // AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)
 
 SWGPositionApi*apiInstance = [[SWGPositionApi alloc] init];
@@ -340,7 +340,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 
 NSString* symbol = @"symbol_example"; // Symbol of position to update risk limit on.
-NSNumber* riskLimit = @8.14; // New Risk Limit, in Satoshis.
+NSNumber* riskLimit = @789; // New Risk Limit, in Satoshis.
 NSNumber* targetAccountId = @1.2; // AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)
 
 SWGPositionApi*apiInstance = [[SWGPositionApi alloc] init];

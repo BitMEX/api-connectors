@@ -58,9 +58,9 @@ class OrderBookL2 implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'symbol' => 'string',
-        'id' => 'float',
+        'id' => 'int',
         'side' => 'string',
-        'size' => 'float',
+        'size' => 'int',
         'price' => 'double',
         'timestamp' => '\DateTime'
     ];
@@ -270,7 +270,7 @@ class OrderBookL2 implements ModelInterface, ArrayAccess
     /**
      * Gets id
      *
-     * @return float
+     * @return int
      */
     public function getId()
     {
@@ -280,7 +280,7 @@ class OrderBookL2 implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param float $id id
+     * @param int $id id
      *
      * @return $this
      */
@@ -318,7 +318,7 @@ class OrderBookL2 implements ModelInterface, ArrayAccess
     /**
      * Gets size
      *
-     * @return float
+     * @return int
      */
     public function getSize()
     {
@@ -328,7 +328,7 @@ class OrderBookL2 implements ModelInterface, ArrayAccess
     /**
      * Sets size
      *
-     * @param float $size size
+     * @param int $size size
      *
      * @return $this
      */

@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **settled_price** | **Float** |  | [optional] 
 **option_strike_price** | **Float** |  | [optional] 
 **option_underlying_price** | **Float** |  | [optional] 
-**bankrupt** | **Float** |  | [optional] 
-**tax_base** | **Float** |  | [optional] 
+**bankrupt** | **Integer** |  | [optional] 
+**tax_base** | **Integer** |  | [optional] 
 **tax_rate** | **Float** |  | [optional] 
 
 

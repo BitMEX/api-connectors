@@ -94,17 +94,17 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getBankrupt() const;
+    int64_t getBankrupt() const;
     bool bankruptIsSet() const;
     void unsetBankrupt();
-    void setBankrupt(double value);
+    void setBankrupt(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getTaxBase() const;
+    int64_t getTaxBase() const;
     bool taxBaseIsSet() const;
     void unsetTaxBase();
-    void setTaxBase(double value);
+    void setTaxBase(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -124,9 +124,9 @@ protected:
     bool m_OptionStrikePriceIsSet;
     double m_OptionUnderlyingPrice;
     bool m_OptionUnderlyingPriceIsSet;
-    double m_Bankrupt;
+    int64_t m_Bankrupt;
     bool m_BankruptIsSet;
-    double m_TaxBase;
+    int64_t m_TaxBase;
     bool m_TaxBaseIsSet;
     double m_TaxRate;
     bool m_TaxRateIsSet;

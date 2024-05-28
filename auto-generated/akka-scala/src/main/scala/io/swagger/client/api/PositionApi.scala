@@ -38,7 +38,7 @@ object PositionApi {
    * @param columns Which columns to fetch. For example, send [\&quot;columnName\&quot;].
    * @param count Number of rows to fetch.
    */
-  def position.get(filter: Option[String] = None, columns: Option[String] = None, count: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Position]] =
+  def position.get(filter: Option[String] = None, columns: Option[String] = None, count: Option[Int] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Position]] =
     ApiRequest[Seq[Position]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/position", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
@@ -100,7 +100,7 @@ object PositionApi {
    * @param amount Amount to transfer, in Satoshis. May be negative.
    * @param targetAccountId AccountId for the position that the margin would be transfered to, must be a paired account with main user.
    */
-  def position.transferIsolatedMargin(symbol: String, amount: Double, targetAccountId: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Position] =
+  def position.transferIsolatedMargin(symbol: String, amount: Long, targetAccountId: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Position] =
     ApiRequest[Position](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/position/transferMargin", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
@@ -164,7 +164,7 @@ object PositionApi {
    * @param riskLimit New Risk Limit, in Satoshis.
    * @param targetAccountId AccountId for the position that the risk limit would be updated on, must be a paired account with main user.
    */
-  def position.updateRiskLimit(symbol: String, riskLimit: Double, targetAccountId: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Position] =
+  def position.updateRiskLimit(symbol: String, riskLimit: Long, targetAccountId: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Position] =
     ApiRequest[Position](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/position/riskLimit", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)

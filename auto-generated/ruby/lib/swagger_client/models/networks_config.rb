@@ -53,7 +53,7 @@ module SwaggerClient
         :'network_symbol' => :'String',
         :'transaction_explorer' => :'String',
         :'token_explorer' => :'String',
-        :'deposit_confirmations' => :'Float',
+        :'deposit_confirmations' => :'Integer',
         :'enabled' => :'BOOLEAN'
       }
     end

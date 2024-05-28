@@ -75,10 +75,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getAccount() const;
+    int64_t getAccount() const;
     bool accountIsSet() const;
     void unsetAccount();
-    void setAccount(double value);
+    void setAccount(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -96,10 +96,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getOrderQty() const;
+    int64_t getOrderQty() const;
     bool orderQtyIsSet() const;
     void unsetOrderQty();
-    void setOrderQty(double value);
+    void setOrderQty(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -110,10 +110,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getDisplayQty() const;
+    int64_t getDisplayQty() const;
     bool displayQtyIsSet() const;
     void unsetDisplayQty();
-    void setDisplayQty(double value);
+    void setDisplayQty(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -208,17 +208,17 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getLeavesQty() const;
+    int64_t getLeavesQty() const;
     bool leavesQtyIsSet() const;
     void unsetLeavesQty();
-    void setLeavesQty(double value);
+    void setLeavesQty(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getCumQty() const;
+    int64_t getCumQty() const;
     bool cumQtyIsSet() const;
     void unsetCumQty();
-    void setCumQty(double value);
+    void setCumQty(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -254,17 +254,17 @@ protected:
     bool m_ClOrdIDIsSet;
     utility::string_t m_ClOrdLinkID;
     bool m_ClOrdLinkIDIsSet;
-    double m_Account;
+    int64_t m_Account;
     bool m_AccountIsSet;
     utility::string_t m_Symbol;
     bool m_SymbolIsSet;
     utility::string_t m_Side;
     bool m_SideIsSet;
-    double m_OrderQty;
+    int64_t m_OrderQty;
     bool m_OrderQtyIsSet;
     double m_Price;
     bool m_PriceIsSet;
-    double m_DisplayQty;
+    int64_t m_DisplayQty;
     bool m_DisplayQtyIsSet;
     double m_StopPx;
     bool m_StopPxIsSet;
@@ -292,9 +292,9 @@ protected:
     bool m_WorkingIndicatorIsSet;
     utility::string_t m_OrdRejReason;
     bool m_OrdRejReasonIsSet;
-    double m_LeavesQty;
+    int64_t m_LeavesQty;
     bool m_LeavesQtyIsSet;
-    double m_CumQty;
+    int64_t m_CumQty;
     bool m_CumQtyIsSet;
     double m_AvgPx;
     bool m_AvgPxIsSet;

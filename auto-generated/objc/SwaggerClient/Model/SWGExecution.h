@@ -85,6 +85,8 @@
 
 @property(nonatomic) NSNumber* commission;
 
+@property(nonatomic) NSString* feeType;
+
 @property(nonatomic) NSString* tradePublishIndicator;
 
 @property(nonatomic) NSString* text;
@@ -102,7 +104,5 @@
 @property(nonatomic) NSDate* transactTime;
 
 @property(nonatomic) NSDate* timestamp;
-
-@property(nonatomic) NSString* feeType;
 
 @end

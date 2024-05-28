@@ -25,7 +25,6 @@
 #include "SWGError.h"
 #include "SWGExecution.h"
 #include "SWGMargin.h"
-#include "SWGNumber.h"
 #include "SWGObject.h"
 #include "SWGQuoteFillRatio.h"
 #include "SWGQuoteValueRatio.h"
@@ -83,10 +82,10 @@ public:
     void user_getWalletSummary(QString* currency, QDateTime* start_time, QDateTime* end_time);
     void user_getWalletTransferAccounts();
     void user_logout();
-    void user_requestWithdrawal(QString* currency, QString* network, SWGNumber* amount, QString* otp_token, QString* address, QString* memo, double address_id, double target_user_id, double fee, QString* text);
+    void user_requestWithdrawal(QString* currency, QString* network, qint64 amount, QString* otp_token, QString* address, QString* memo, double address_id, double target_user_id, double fee, QString* text);
     void user_savePreferences(QString* prefs, bool overwrite);
     void user_updateSubAccount(double target_account_id, QString* account_name);
-    void user_walletTransfer(QString* currency, SWGNumber* amount, double target_account_id, double from_account_id);
+    void user_walletTransfer(QString* currency, qint64 amount, double target_account_id, double from_account_id);
     
 private:
     void user_cancelPendingWithdrawalCallback (SWGHttpRequestWorker * worker);

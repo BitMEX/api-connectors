@@ -17,7 +17,6 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import io.swagger.client.model.Error
 import io.swagger.client.model.Liquidation
-import io.swagger.client.model.Number
 import io.swagger.client.{ApiInvoker, ApiException}
 
 import com.sun.jersey.multipart.FormDataMultiPart
@@ -96,7 +95,7 @@ class LiquidationApi(
    * @param endTime Ending date filter for results. (optional)
    * @return List[Liquidation]
    */
-  def liquidationGet(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Liquidation]] = {
+  def liquidationGet(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Liquidation]] = {
     val await = Try(Await.result(liquidationGetAsync(symbol, filter, columns, count, start, reverse, startTime, endTime), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -118,7 +117,7 @@ class LiquidationApi(
    * @param endTime Ending date filter for results. (optional)
    * @return Future(List[Liquidation])
    */
-  def liquidationGetAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Liquidation]] = {
+  def liquidationGetAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Liquidation]] = {
       helper.liquidationGet(symbol, filter, columns, count, start, reverse, startTime, endTime)
   }
 
@@ -129,8 +128,8 @@ class LiquidationApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
   def liquidationGet(symbol: Option[String] = None,
     filter: Option[String] = None,
     columns: Option[String] = None,
-    count: Option[Number] = Option(100),
-    start: Option[Number] = Option(0),
+    count: Option[Integer] = Option(100),
+    start: Option[Integer] = Option(0),
     reverse: Option[Boolean] = Option(false),
     startTime: Option[Date] = None,
     endTime: Option[Date] = None

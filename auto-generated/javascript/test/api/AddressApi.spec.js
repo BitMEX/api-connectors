@@ -54,7 +54,7 @@
               let data = dataCtr[p];
               expect(data).to.be.a(BitMexApi.Address);
               expect(data.id).to.be.a('number');
-              expect(data.id).to.be();
+              expect(data.id).to.be(0);
               expect(data.currency).to.be.a('string');
               expect(data.currency).to.be("");
               expect(data.created).to.be.a(Date);
@@ -110,7 +110,7 @@
             // TODO: update response assertions
             expect(data).to.be.a(BitMexApi.Address);
             expect(data.id).to.be.a('number');
-            expect(data.id).to.be();
+            expect(data.id).to.be(0);
             expect(data.currency).to.be.a('string');
             expect(data.currency).to.be("");
             expect(data.created).to.be.a(Date);

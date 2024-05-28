@@ -280,15 +280,15 @@ paths:
         in: query
         description: Number of results to fetch.
         required: false
-        type: number
-        default: 100.0
+        type: integer
+        default: 100
         format: int32
       - name: start
         in: query
         description: Starting ID for results.
         required: false
-        type: number
-        default: 0.0
+        type: integer
+        default: 0
         format: int32
       - name: reverse
         in: query
@@ -474,15 +474,15 @@ paths:
         in: query
         description: Number of results to fetch. Must be a positive integer.
         required: false
-        type: number
-        default: 100.0
+        type: integer
+        default: 100
         format: int32
       - name: start
         in: query
         description: Starting point for results.
         required: false
-        type: number
-        default: 0.0
+        type: integer
+        default: 0
         format: int32
       - name: reverse
         in: query
@@ -574,15 +574,15 @@ paths:
         in: query
         description: Number of results to fetch. Must be a positive integer.
         required: false
-        type: number
-        default: 100.0
+        type: integer
+        default: 100
         format: int32
       - name: start
         in: query
         description: Starting point for results.
         required: false
-        type: number
-        default: 0.0
+        type: integer
+        default: 0
         format: int32
       - name: reverse
         in: query
@@ -662,15 +662,15 @@ paths:
         in: query
         description: Number of results to fetch. Must be a positive integer.
         required: false
-        type: number
-        default: 100.0
+        type: integer
+        default: 100
         format: int32
       - name: start
         in: query
         description: Starting point for results.
         required: false
-        type: number
-        default: 0.0
+        type: integer
+        default: 0
         format: int32
       - name: reverse
         in: query
@@ -767,15 +767,15 @@ paths:
         in: query
         description: Number of results to fetch. Must be a positive integer.
         required: false
-        type: number
-        default: 100.0
+        type: integer
+        default: 100
         format: int32
       - name: start
         in: query
         description: Starting point for results.
         required: false
-        type: number
-        default: 0.0
+        type: integer
+        default: 0
         format: int32
       - name: reverse
         in: query
@@ -986,15 +986,15 @@ paths:
         in: query
         description: Number of results to fetch. Must be a positive integer.
         required: false
-        type: number
-        default: 100.0
+        type: integer
+        default: 100
         format: int32
       - name: start
         in: query
         description: Starting point for results.
         required: false
-        type: number
-        default: 0.0
+        type: integer
+        default: 0
         format: int32
       - name: reverse
         in: query
@@ -1118,15 +1118,15 @@ paths:
         in: query
         description: Number of results to fetch. Must be a positive integer.
         required: false
-        type: number
-        default: 100.0
+        type: integer
+        default: 100
         format: int32
       - name: start
         in: query
         description: Starting point for results.
         required: false
-        type: number
-        default: 0.0
+        type: integer
+        default: 0
         format: int32
       - name: reverse
         in: query
@@ -1274,15 +1274,15 @@ paths:
         in: query
         description: Number of results to fetch. Must be a positive integer.
         required: false
-        type: number
-        default: 100.0
+        type: integer
+        default: 100
         format: int32
       - name: start
         in: query
         description: Starting point for results.
         required: false
-        type: number
-        default: 0.0
+        type: integer
+        default: 0
         format: int32
       - name: reverse
         in: query
@@ -1399,15 +1399,15 @@ paths:
         in: query
         description: Number of results to fetch. Must be a positive integer.
         required: false
-        type: number
-        default: 100.0
+        type: integer
+        default: 100
         format: int32
       - name: start
         in: query
         description: Starting point for results.
         required: false
-        type: number
-        default: 0.0
+        type: integer
+        default: 0
         format: int32
       - name: reverse
         in: query
@@ -1610,7 +1610,7 @@ paths:
         in: formData
         description: "Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT))."
         required: false
-        type: number
+        type: integer
         format: int32
       - name: price
         in: formData
@@ -1622,7 +1622,7 @@ paths:
         in: formData
         description: Optional quantity to display in the book. Use 0 for a fully hidden order.
         required: false
-        type: number
+        type: integer
         format: int32
       - name: stopPx
         in: formData
@@ -1740,7 +1740,7 @@ paths:
         in: formData
         description: "Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT))."
         required: false
-        type: number
+        type: integer
         format: int32
       - name: simpleLeavesQty
         in: formData
@@ -1752,7 +1752,7 @@ paths:
         in: formData
         description: "Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders."
         required: false
-        type: number
+        type: integer
         format: int32
       - name: price
         in: formData
@@ -2000,8 +2000,8 @@ paths:
         in: query
         description: Orderbook depth per side. Send 0 for full depth.
         required: false
-        type: number
-        default: 25.0
+        type: integer
+        default: 25
         minimum: 0
         format: int32
       security: []
@@ -2087,7 +2087,7 @@ paths:
         in: query
         description: Number of rows to fetch.
         required: false
-        type: number
+        type: integer
         format: int32
       deprecated: false
       responses:
@@ -2171,7 +2171,7 @@ paths:
         in: formData
         description: "New Risk Limit, in Satoshis."
         required: true
-        type: number
+        type: integer
         format: int64
       - name: targetAccountId
         in: formData
@@ -2218,7 +2218,7 @@ paths:
         in: formData
         description: "Amount to transfer, in Satoshis. May be negative."
         required: true
-        type: number
+        type: integer
         format: int64
       - name: targetAccountId
         in: formData
@@ -2331,15 +2331,15 @@ paths:
         in: query
         description: Number of results to fetch. Must be a positive integer.
         required: false
-        type: number
-        default: 100.0
+        type: integer
+        default: 100
         format: int32
       - name: start
         in: query
         description: Starting point for results.
         required: false
-        type: number
-        default: 0.0
+        type: integer
+        default: 0
         format: int32
       - name: reverse
         in: query
@@ -2433,15 +2433,15 @@ paths:
         in: query
         description: Number of results to fetch. Must be a positive integer.
         required: false
-        type: number
-        default: 100.0
+        type: integer
+        default: 100
         format: int32
       - name: start
         in: query
         description: Starting point for results.
         required: false
-        type: number
-        default: 0.0
+        type: integer
+        default: 0
         format: int32
       - name: reverse
         in: query
@@ -2587,15 +2587,15 @@ paths:
         in: query
         description: Number of results to fetch. Must be a positive integer.
         required: false
-        type: number
-        default: 100.0
+        type: integer
+        default: 100
         format: int32
       - name: start
         in: query
         description: Starting point for results.
         required: false
-        type: number
-        default: 0.0
+        type: integer
+        default: 0
         format: int32
       - name: reverse
         in: query
@@ -2776,15 +2776,15 @@ paths:
         in: query
         description: Number of results to fetch. Must be a positive integer.
         required: false
-        type: number
-        default: 100.0
+        type: integer
+        default: 100
         format: int32
       - name: start
         in: query
         description: Starting point for results.
         required: false
-        type: number
-        default: 0.0
+        type: integer
+        default: 0
         format: int32
       - name: reverse
         in: query
@@ -2881,15 +2881,15 @@ paths:
         in: query
         description: Number of results to fetch. Must be a positive integer.
         required: false
-        type: number
-        default: 100.0
+        type: integer
+        default: 100
         format: int32
       - name: start
         in: query
         description: Starting point for results.
         required: false
-        type: number
-        default: 0.0
+        type: integer
+        default: 0
         format: int32
       - name: reverse
         in: query
@@ -3433,7 +3433,7 @@ paths:
         in: formData
         description: Amount of transfer.
         required: true
-        type: number
+        type: integer
         format: int64
       - name: fromAccountId
         in: formData
@@ -3497,7 +3497,7 @@ paths:
         in: formData
         description: Amount of withdrawal currency.
         required: true
-        type: number
+        type: integer
         format: int64
       - name: address
         in: formData
@@ -4892,7 +4892,7 @@ definitions:
     - id
     properties:
       id:
-        type: number
+        type: integer
         format: int32
       link:
         type: string
@@ -4930,8 +4930,9 @@ definitions:
         type: string
         maxLength: 64
       nonce:
-        type: number
+        type: integer
         format: int64
+        default: 0
       cidr:
         type: string
         maxLength: 18
@@ -4940,7 +4941,7 @@ definitions:
         items:
           $ref: "#/definitions/x-any"
       targetAccountId:
-        type: number
+        type: integer
         format: int32
       permissions:
         type: array
@@ -4950,7 +4951,7 @@ definitions:
         type: boolean
         default: false
       userId:
-        type: number
+        type: integer
         format: int32
       created:
         type: string
@@ -4964,13 +4965,13 @@ definitions:
     - messageId
     properties:
       id:
-        type: number
+        type: integer
         format: int32
       channelID:
-        type: number
+        type: integer
         format: int32
       messageId:
-        type: number
+        type: integer
         format: int32
       created:
         type: string
@@ -4994,7 +4995,7 @@ definitions:
     - user
     properties:
       id:
-        type: number
+        type: integer
         format: int32
       date:
         type: string
@@ -5018,7 +5019,7 @@ definitions:
     - name
     properties:
       id:
-        type: number
+        type: integer
         format: int32
       name:
         type: string
@@ -5028,10 +5029,10 @@ definitions:
     type: object
     properties:
       users:
-        type: number
+        type: integer
         format: int32
       bots:
-        type: number
+        type: integer
         format: int32
   Execution:
     type: object
@@ -5050,14 +5051,14 @@ definitions:
       clOrdLinkID:
         type: string
       account:
-        type: number
+        type: integer
         format: int64
       symbol:
         type: string
       side:
         type: string
       lastQty:
-        type: number
+        type: integer
         format: int64
       lastPx:
         type: number
@@ -5065,13 +5066,13 @@ definitions:
       lastLiquidityInd:
         type: string
       orderQty:
-        type: number
+        type: integer
         format: int64
       price:
         type: number
         format: double
       displayQty:
-        type: number
+        type: integer
         format: int64
       stopPx:
         type: number
@@ -5104,10 +5105,10 @@ definitions:
       ordRejReason:
         type: string
       leavesQty:
-        type: number
+        type: integer
         format: int64
       cumQty:
-        type: number
+        type: integer
         format: int64
       avgPx:
         type: number
@@ -5115,6 +5116,8 @@ definitions:
       commission:
         type: number
         format: double
+      feeType:
+        type: string
       tradePublishIndicator:
         type: string
       text:
@@ -5123,10 +5126,10 @@ definitions:
         type: string
         format: guid
       execCost:
-        type: number
+        type: integer
         format: int64
       execComm:
-        type: number
+        type: integer
         format: int64
       homeNotional:
         type: number
@@ -5140,8 +5143,6 @@ definitions:
       timestamp:
         type: string
         format: date-time
-      feeType:
-        type: string
     description: Raw Order and Balance Data
   x-any:
     type: object
@@ -5216,30 +5217,30 @@ definitions:
         type: string
         format: date-time
       maxOrderQty:
-        type: number
+        type: integer
         format: int64
       maxPrice:
         type: number
         format: double
       lotSize:
-        type: number
+        type: integer
         format: int64
       tickSize:
         type: number
         format: double
       multiplier:
-        type: number
+        type: integer
         format: int64
       settlCurrency:
         type: string
       underlyingToPositionMultiplier:
-        type: number
+        type: integer
         format: int64
       underlyingToSettleMultiplier:
-        type: number
+        type: integer
         format: int64
       quoteToSettleMultiplier:
-        type: number
+        type: integer
         format: int64
       isQuanto:
         type: boolean
@@ -5252,10 +5253,10 @@ definitions:
         type: number
         format: double
       riskLimit:
-        type: number
+        type: integer
         format: int64
       riskStep:
-        type: number
+        type: integer
         format: int64
       limit:
         type: number
@@ -5307,25 +5308,25 @@ definitions:
         type: number
         format: double
       totalVolume:
-        type: number
+        type: integer
         format: int64
       volume:
-        type: number
+        type: integer
         format: int64
       volume24h:
-        type: number
+        type: integer
         format: int64
       prevTotalTurnover:
-        type: number
+        type: integer
         format: int64
       totalTurnover:
-        type: number
+        type: integer
         format: int64
       turnover:
-        type: number
+        type: integer
         format: int64
       turnover24h:
-        type: number
+        type: integer
         format: int64
       homeNotional24h:
         type: number
@@ -5377,10 +5378,10 @@ definitions:
       hasLiquidity:
         type: boolean
       openInterest:
-        type: number
+        type: integer
         format: int64
       openValue:
-        type: number
+        type: integer
         format: int64
       fairMethod:
         type: string
@@ -5474,16 +5475,16 @@ definitions:
       currency:
         type: string
       turnover24h:
-        type: number
+        type: integer
         format: int64
       turnover30d:
-        type: number
+        type: integer
         format: int64
       turnover365d:
-        type: number
+        type: integer
         format: int64
       turnover:
-        type: number
+        type: integer
         format: int64
   Insurance:
     type: object
@@ -5497,7 +5498,7 @@ definitions:
         type: string
         format: date-time
       walletBalance:
-        type: number
+        type: integer
         format: int64
     description: Insurance Fund Data
   Leaderboard:
@@ -5529,7 +5530,7 @@ definitions:
         type: number
         format: double
       leavesQty:
-        type: number
+        type: integer
         format: int64
     description: Active Liquidations
   GlobalNotification:
@@ -5541,7 +5542,7 @@ definitions:
     - ttl
     properties:
       id:
-        type: number
+        type: integer
         format: int32
       date:
         type: string
@@ -5551,7 +5552,7 @@ definitions:
       body:
         type: string
       ttl:
-        type: number
+        type: integer
         format: int32
       type:
         type: string
@@ -5584,20 +5585,20 @@ definitions:
       clOrdLinkID:
         type: string
       account:
-        type: number
+        type: integer
         format: int64
       symbol:
         type: string
       side:
         type: string
       orderQty:
-        type: number
+        type: integer
         format: int64
       price:
         type: number
         format: double
       displayQty:
-        type: number
+        type: integer
         format: int64
       stopPx:
         type: number
@@ -5628,10 +5629,10 @@ definitions:
       ordRejReason:
         type: string
       leavesQty:
-        type: number
+        type: integer
         format: int64
       cumQty:
-        type: number
+        type: integer
         format: int64
       avgPx:
         type: number
@@ -5655,12 +5656,12 @@ definitions:
       symbol:
         type: string
       id:
-        type: number
+        type: integer
         format: int64
       side:
         type: string
       size:
-        type: number
+        type: integer
         format: int64
       price:
         type: number
@@ -5675,8 +5676,9 @@ definitions:
     - symbol
     properties:
       account:
-        type: number
+        type: integer
         format: int64
+        default: 0
       symbol:
         type: string
       currency:
@@ -5698,8 +5700,9 @@ definitions:
         format: double
         default: 0.0
       riskLimit:
-        type: number
+        type: integer
         format: int64
+        default: 0
       leverage:
         type: number
         format: double
@@ -5711,53 +5714,69 @@ definitions:
         format: double
         default: 0.0
       rebalancedPnl:
-        type: number
+        type: integer
         format: int64
+        default: 0
       prevRealisedPnl:
-        type: number
+        type: integer
         format: int64
+        default: 0
       prevUnrealisedPnl:
-        type: number
+        type: integer
         format: int64
+        default: 0
       openingQty:
-        type: number
+        type: integer
         format: int64
+        default: 0
       openOrderBuyQty:
-        type: number
+        type: integer
         format: int64
+        default: 0
       openOrderBuyCost:
-        type: number
+        type: integer
         format: int64
+        default: 0
       openOrderBuyPremium:
-        type: number
+        type: integer
         format: int64
+        default: 0
       openOrderSellQty:
-        type: number
+        type: integer
         format: int64
+        default: 0
       openOrderSellCost:
-        type: number
+        type: integer
         format: int64
+        default: 0
       openOrderSellPremium:
-        type: number
+        type: integer
         format: int64
+        default: 0
       currentQty:
-        type: number
+        type: integer
         format: int64
+        default: 0
       currentCost:
-        type: number
+        type: integer
         format: int64
+        default: 0
       currentComm:
-        type: number
+        type: integer
         format: int64
+        default: 0
       realisedCost:
-        type: number
+        type: integer
         format: int64
+        default: 0
       unrealisedCost:
-        type: number
+        type: integer
         format: int64
+        default: 0
       grossOpenPremium:
-        type: number
+        type: integer
         format: int64
+        default: 0
       isOpen:
         type: boolean
       markPrice:
@@ -5765,11 +5784,13 @@ definitions:
         format: double
         default: 0.0
       markValue:
-        type: number
+        type: integer
         format: int64
+        default: 0
       riskValue:
-        type: number
+        type: integer
         format: int64
+        default: 0
       homeNotional:
         type: number
         format: double
@@ -5781,35 +5802,45 @@ definitions:
       posState:
         type: string
       posCost:
-        type: number
+        type: integer
         format: int64
+        default: 0
       posCross:
-        type: number
+        type: integer
         format: int64
+        default: 0
       posComm:
-        type: number
+        type: integer
         format: int64
+        default: 0
       posLoss:
-        type: number
+        type: integer
         format: int64
+        default: 0
       posMargin:
-        type: number
+        type: integer
         format: int64
+        default: 0
       posMaint:
-        type: number
+        type: integer
         format: int64
+        default: 0
       initMargin:
-        type: number
+        type: integer
         format: int64
+        default: 0
       maintMargin:
-        type: number
+        type: integer
         format: int64
+        default: 0
       realisedPnl:
-        type: number
+        type: integer
         format: int64
+        default: 0
       unrealisedPnl:
-        type: number
+        type: integer
         format: int64
+        default: 0
       unrealisedPnlPcnt:
         type: number
         format: double
@@ -5858,7 +5889,7 @@ definitions:
       symbol:
         type: string
       bidSize:
-        type: number
+        type: integer
         format: int64
       bidPrice:
         type: number
@@ -5867,7 +5898,7 @@ definitions:
         type: number
         format: double
       askSize:
-        type: number
+        type: integer
         format: int64
     description: Best Bid/Offer Snapshots & Historical Bins
   Settlement:
@@ -5893,10 +5924,10 @@ definitions:
         type: number
         format: double
       bankrupt:
-        type: number
+        type: integer
         format: int64
       taxBase:
-        type: number
+        type: integer
         format: int64
       taxRate:
         type: number
@@ -5912,16 +5943,16 @@ definitions:
       currency:
         type: string
       volume24h:
-        type: number
+        type: integer
         format: int64
       turnover24h:
-        type: number
+        type: integer
         format: int64
       openInterest:
-        type: number
+        type: integer
         format: int64
       openValue:
-        type: number
+        type: integer
         format: int64
     description: Exchange Statistics
   StatsHistory:
@@ -5938,10 +5969,10 @@ definitions:
       currency:
         type: string
       volume:
-        type: number
+        type: integer
         format: int64
       turnover:
-        type: number
+        type: integer
         format: int64
   StatsUSD:
     type: object
@@ -5953,16 +5984,16 @@ definitions:
       currency:
         type: string
       turnover24h:
-        type: number
+        type: integer
         format: int64
       turnover30d:
-        type: number
+        type: integer
         format: int64
       turnover365d:
-        type: number
+        type: integer
         format: int64
       turnover:
-        type: number
+        type: integer
         format: int64
   Trade:
     type: object
@@ -5978,7 +6009,7 @@ definitions:
       side:
         type: string
       size:
-        type: number
+        type: integer
         format: int64
       price:
         type: number
@@ -5989,7 +6020,7 @@ definitions:
         type: string
         format: guid
       grossValue:
-        type: number
+        type: integer
         format: int64
       homeNotional:
         type: number
@@ -6024,19 +6055,19 @@ definitions:
         type: number
         format: double
       trades:
-        type: number
+        type: integer
         format: int64
       volume:
-        type: number
+        type: integer
         format: int64
       vwap:
         type: number
         format: double
       lastSize:
-        type: number
+        type: integer
         format: int64
       turnover:
-        type: number
+        type: integer
         format: int64
       homeNotional:
         type: number
@@ -6061,33 +6092,33 @@ definitions:
     - currency
     properties:
       account:
-        type: number
+        type: integer
         format: int64
       currency:
         type: string
       deposited:
-        type: number
+        type: integer
         format: int64
       withdrawn:
-        type: number
+        type: integer
         format: int64
       transferIn:
-        type: number
+        type: integer
         format: int64
       transferOut:
-        type: number
+        type: integer
         format: int64
       amount:
-        type: number
+        type: integer
         format: int64
       pendingCredit:
-        type: number
+        type: integer
         format: int64
       pendingDebit:
-        type: number
+        type: integer
         format: int64
       confirmedDebit:
-        type: number
+        type: integer
         format: int64
       timestamp:
         type: string
@@ -6102,7 +6133,7 @@ definitions:
         type: string
         format: guid
       account:
-        type: number
+        type: integer
         format: int64
       currency:
         type: string
@@ -6111,10 +6142,10 @@ definitions:
       transactType:
         type: string
       amount:
-        type: number
+        type: integer
         format: int64
       fee:
-        type: number
+        type: integer
         format: int64
       transactStatus:
         type: string
@@ -6131,7 +6162,7 @@ definitions:
         type: string
         format: date-time
       walletBalance:
-        type: number
+        type: integer
         format: int64
   WalletSummaryRecord:
     type: object
@@ -6220,42 +6251,42 @@ definitions:
     - currency
     properties:
       account:
-        type: number
+        type: integer
         format: int64
       currency:
         type: string
       prevPayout:
-        type: number
+        type: integer
         format: int64
       prevTurnover:
-        type: number
+        type: integer
         format: int64
       prevComm:
-        type: number
+        type: integer
         format: int64
       prevTimestamp:
         type: string
         format: date-time
       execTurnover:
-        type: number
+        type: integer
         format: int64
       execComm:
-        type: number
+        type: integer
         format: int64
       totalReferrals:
-        type: number
+        type: integer
         format: int64
       totalTurnover:
-        type: number
+        type: integer
         format: int64
       totalComm:
-        type: number
+        type: integer
         format: int64
       payoutPcnt:
         type: number
         format: double
       pendingPayout:
-        type: number
+        type: integer
         format: int64
       timestamp:
         type: string
@@ -6342,7 +6373,7 @@ definitions:
     - username
     properties:
       id:
-        type: number
+        type: integer
         format: int32
       firstname:
         type: string
@@ -6401,60 +6432,77 @@ definitions:
     - currency
     properties:
       account:
-        type: number
+        type: integer
         format: int64
+        default: 0
       currency:
         type: string
       riskLimit:
-        type: number
+        type: integer
         format: int64
+        default: 0
       state:
         type: string
       amount:
-        type: number
+        type: integer
         format: int64
+        default: 0
       prevRealisedPnl:
-        type: number
+        type: integer
         format: int64
+        default: 0
       grossComm:
-        type: number
+        type: integer
         format: int64
+        default: 0
       grossOpenCost:
-        type: number
+        type: integer
         format: int64
+        default: 0
       grossOpenPremium:
-        type: number
+        type: integer
         format: int64
+        default: 0
       grossExecCost:
-        type: number
+        type: integer
         format: int64
+        default: 0
       grossMarkValue:
-        type: number
+        type: integer
         format: int64
+        default: 0
       riskValue:
-        type: number
+        type: integer
         format: int64
+        default: 0
       initMargin:
-        type: number
+        type: integer
         format: int64
+        default: 0
       maintMargin:
-        type: number
+        type: integer
         format: int64
+        default: 0
       targetExcessMargin:
-        type: number
+        type: integer
         format: int64
+        default: 0
       realisedPnl:
-        type: number
+        type: integer
         format: int64
+        default: 0
       unrealisedPnl:
-        type: number
+        type: integer
         format: int64
+        default: 0
       walletBalance:
-        type: number
+        type: integer
         format: int64
+        default: 0
       marginBalance:
-        type: number
+        type: integer
         format: int64
+        default: 0
       marginLeverage:
         type: number
         format: double
@@ -6464,14 +6512,17 @@ definitions:
         format: double
         default: 0.0
       excessMargin:
-        type: number
+        type: integer
         format: int64
+        default: 0
       availableMargin:
-        type: number
+        type: integer
         format: int64
+        default: 0
       withdrawableMargin:
-        type: number
+        type: integer
         format: int64
+        default: 0
       makerFeeDiscount:
         type: number
         format: double
@@ -6491,24 +6542,24 @@ definitions:
       csaID:
         type: string
       account:
-        type: number
+        type: integer
         format: int64
       currency:
         type: string
       amount:
-        type: number
+        type: integer
         format: int64
       minAmount:
-        type: number
+        type: integer
         format: int64
       threshold:
-        type: number
+        type: integer
         format: int64
       mmRatioMarginCall:
-        type: number
+        type: integer
         format: int64
       mmRatioLiquidation:
-        type: number
+        type: integer
         format: int64
       startTime:
         type: string
@@ -6537,7 +6588,7 @@ definitions:
       id:
         type: string
       userId:
-        type: number
+        type: integer
         format: int32
       deviceToken:
         type: string
@@ -6685,7 +6736,7 @@ definitions:
         type: string
         default: https://etherscan.io/token/
       depositConfirmations:
-        type: number
+        type: integer
         format: int32
       enabled:
         type: boolean
@@ -6698,7 +6749,7 @@ definitions:
     - network
     properties:
       id:
-        type: number
+        type: integer
         format: int32
       currency:
         type: string
@@ -6736,7 +6787,7 @@ definitions:
     - updated
     properties:
       id:
-        type: number
+        type: integer
         format: int32
       created:
         type: string
@@ -6784,7 +6835,7 @@ definitions:
     - total
     properties:
       account:
-        type: number
+        type: integer
         format: int32
       nonce:
         type: string

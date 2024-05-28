@@ -37,53 +37,53 @@ SWGMargin::~SWGMargin() {
 
 void
 SWGMargin::init() {
-    account = 0.0;
+    account = 0L;
     m_account_isSet = false;
     currency = new QString("");
     m_currency_isSet = false;
-    risk_limit = 0.0;
+    risk_limit = 0L;
     m_risk_limit_isSet = false;
     state = new QString("");
     m_state_isSet = false;
-    amount = 0.0;
+    amount = 0L;
     m_amount_isSet = false;
-    prev_realised_pnl = 0.0;
+    prev_realised_pnl = 0L;
     m_prev_realised_pnl_isSet = false;
-    gross_comm = 0.0;
+    gross_comm = 0L;
     m_gross_comm_isSet = false;
-    gross_open_cost = 0.0;
+    gross_open_cost = 0L;
     m_gross_open_cost_isSet = false;
-    gross_open_premium = 0.0;
+    gross_open_premium = 0L;
     m_gross_open_premium_isSet = false;
-    gross_exec_cost = 0.0;
+    gross_exec_cost = 0L;
     m_gross_exec_cost_isSet = false;
-    gross_mark_value = 0.0;
+    gross_mark_value = 0L;
     m_gross_mark_value_isSet = false;
-    risk_value = 0.0;
+    risk_value = 0L;
     m_risk_value_isSet = false;
-    init_margin = 0.0;
+    init_margin = 0L;
     m_init_margin_isSet = false;
-    maint_margin = 0.0;
+    maint_margin = 0L;
     m_maint_margin_isSet = false;
-    target_excess_margin = 0.0;
+    target_excess_margin = 0L;
     m_target_excess_margin_isSet = false;
-    realised_pnl = 0.0;
+    realised_pnl = 0L;
     m_realised_pnl_isSet = false;
-    unrealised_pnl = 0.0;
+    unrealised_pnl = 0L;
     m_unrealised_pnl_isSet = false;
-    wallet_balance = 0.0;
+    wallet_balance = 0L;
     m_wallet_balance_isSet = false;
-    margin_balance = 0.0;
+    margin_balance = 0L;
     m_margin_balance_isSet = false;
     margin_leverage = 0.0;
     m_margin_leverage_isSet = false;
     margin_used_pcnt = 0.0;
     m_margin_used_pcnt_isSet = false;
-    excess_margin = 0.0;
+    excess_margin = 0L;
     m_excess_margin_isSet = false;
-    available_margin = 0.0;
+    available_margin = 0L;
     m_available_margin_isSet = false;
-    withdrawable_margin = 0.0;
+    withdrawable_margin = 0L;
     m_withdrawable_margin_isSet = false;
     maker_fee_discount = 0.0;
     m_maker_fee_discount_isSet = false;
@@ -95,74 +95,34 @@ SWGMargin::init() {
 
 void
 SWGMargin::cleanup() {
-    if(account != nullptr) { 
-        delete account;
-    }
+
     if(currency != nullptr) { 
         delete currency;
     }
-    if(risk_limit != nullptr) { 
-        delete risk_limit;
-    }
+
     if(state != nullptr) { 
         delete state;
     }
-    if(amount != nullptr) { 
-        delete amount;
-    }
-    if(prev_realised_pnl != nullptr) { 
-        delete prev_realised_pnl;
-    }
-    if(gross_comm != nullptr) { 
-        delete gross_comm;
-    }
-    if(gross_open_cost != nullptr) { 
-        delete gross_open_cost;
-    }
-    if(gross_open_premium != nullptr) { 
-        delete gross_open_premium;
-    }
-    if(gross_exec_cost != nullptr) { 
-        delete gross_exec_cost;
-    }
-    if(gross_mark_value != nullptr) { 
-        delete gross_mark_value;
-    }
-    if(risk_value != nullptr) { 
-        delete risk_value;
-    }
-    if(init_margin != nullptr) { 
-        delete init_margin;
-    }
-    if(maint_margin != nullptr) { 
-        delete maint_margin;
-    }
-    if(target_excess_margin != nullptr) { 
-        delete target_excess_margin;
-    }
-    if(realised_pnl != nullptr) { 
-        delete realised_pnl;
-    }
-    if(unrealised_pnl != nullptr) { 
-        delete unrealised_pnl;
-    }
-    if(wallet_balance != nullptr) { 
-        delete wallet_balance;
-    }
-    if(margin_balance != nullptr) { 
-        delete margin_balance;
-    }
 
 
-    if(excess_margin != nullptr) { 
-        delete excess_margin;
-    }
-    if(available_margin != nullptr) { 
-        delete available_margin;
-    }
-    if(withdrawable_margin != nullptr) { 
-        delete withdrawable_margin;
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     if(timestamp != nullptr) { 
@@ -181,53 +141,53 @@ SWGMargin::fromJson(QString json) {
 
 void
 SWGMargin::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&account, pJson["account"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&account, pJson["account"], "qint64", "");
     
     ::Swagger::setValue(&currency, pJson["currency"], "QString", "QString");
     
-    ::Swagger::setValue(&risk_limit, pJson["riskLimit"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&risk_limit, pJson["riskLimit"], "qint64", "");
     
     ::Swagger::setValue(&state, pJson["state"], "QString", "QString");
     
-    ::Swagger::setValue(&amount, pJson["amount"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&amount, pJson["amount"], "qint64", "");
     
-    ::Swagger::setValue(&prev_realised_pnl, pJson["prevRealisedPnl"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&prev_realised_pnl, pJson["prevRealisedPnl"], "qint64", "");
     
-    ::Swagger::setValue(&gross_comm, pJson["grossComm"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&gross_comm, pJson["grossComm"], "qint64", "");
     
-    ::Swagger::setValue(&gross_open_cost, pJson["grossOpenCost"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&gross_open_cost, pJson["grossOpenCost"], "qint64", "");
     
-    ::Swagger::setValue(&gross_open_premium, pJson["grossOpenPremium"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&gross_open_premium, pJson["grossOpenPremium"], "qint64", "");
     
-    ::Swagger::setValue(&gross_exec_cost, pJson["grossExecCost"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&gross_exec_cost, pJson["grossExecCost"], "qint64", "");
     
-    ::Swagger::setValue(&gross_mark_value, pJson["grossMarkValue"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&gross_mark_value, pJson["grossMarkValue"], "qint64", "");
     
-    ::Swagger::setValue(&risk_value, pJson["riskValue"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&risk_value, pJson["riskValue"], "qint64", "");
     
-    ::Swagger::setValue(&init_margin, pJson["initMargin"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&init_margin, pJson["initMargin"], "qint64", "");
     
-    ::Swagger::setValue(&maint_margin, pJson["maintMargin"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&maint_margin, pJson["maintMargin"], "qint64", "");
     
-    ::Swagger::setValue(&target_excess_margin, pJson["targetExcessMargin"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&target_excess_margin, pJson["targetExcessMargin"], "qint64", "");
     
-    ::Swagger::setValue(&realised_pnl, pJson["realisedPnl"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&realised_pnl, pJson["realisedPnl"], "qint64", "");
     
-    ::Swagger::setValue(&unrealised_pnl, pJson["unrealisedPnl"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&unrealised_pnl, pJson["unrealisedPnl"], "qint64", "");
     
-    ::Swagger::setValue(&wallet_balance, pJson["walletBalance"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&wallet_balance, pJson["walletBalance"], "qint64", "");
     
-    ::Swagger::setValue(&margin_balance, pJson["marginBalance"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&margin_balance, pJson["marginBalance"], "qint64", "");
     
     ::Swagger::setValue(&margin_leverage, pJson["marginLeverage"], "double", "");
     
     ::Swagger::setValue(&margin_used_pcnt, pJson["marginUsedPcnt"], "double", "");
     
-    ::Swagger::setValue(&excess_margin, pJson["excessMargin"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&excess_margin, pJson["excessMargin"], "qint64", "");
     
-    ::Swagger::setValue(&available_margin, pJson["availableMargin"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&available_margin, pJson["availableMargin"], "qint64", "");
     
-    ::Swagger::setValue(&withdrawable_margin, pJson["withdrawableMargin"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&withdrawable_margin, pJson["withdrawableMargin"], "qint64", "");
     
     ::Swagger::setValue(&maker_fee_discount, pJson["makerFeeDiscount"], "double", "");
     
@@ -249,62 +209,62 @@ SWGMargin::asJson ()
 QJsonObject
 SWGMargin::asJsonObject() {
     QJsonObject obj;
-    if((account != nullptr) && (account->isSet())){
-        toJsonValue(QString("account"), account, obj, QString("SWGNumber"));
+    if(m_account_isSet){
+        obj.insert("account", QJsonValue(account));
     }
     if(currency != nullptr && *currency != QString("")){
         toJsonValue(QString("currency"), currency, obj, QString("QString"));
     }
-    if((risk_limit != nullptr) && (risk_limit->isSet())){
-        toJsonValue(QString("riskLimit"), risk_limit, obj, QString("SWGNumber"));
+    if(m_risk_limit_isSet){
+        obj.insert("riskLimit", QJsonValue(risk_limit));
     }
     if(state != nullptr && *state != QString("")){
         toJsonValue(QString("state"), state, obj, QString("QString"));
     }
-    if((amount != nullptr) && (amount->isSet())){
-        toJsonValue(QString("amount"), amount, obj, QString("SWGNumber"));
+    if(m_amount_isSet){
+        obj.insert("amount", QJsonValue(amount));
     }
-    if((prev_realised_pnl != nullptr) && (prev_realised_pnl->isSet())){
-        toJsonValue(QString("prevRealisedPnl"), prev_realised_pnl, obj, QString("SWGNumber"));
+    if(m_prev_realised_pnl_isSet){
+        obj.insert("prevRealisedPnl", QJsonValue(prev_realised_pnl));
     }
-    if((gross_comm != nullptr) && (gross_comm->isSet())){
-        toJsonValue(QString("grossComm"), gross_comm, obj, QString("SWGNumber"));
+    if(m_gross_comm_isSet){
+        obj.insert("grossComm", QJsonValue(gross_comm));
     }
-    if((gross_open_cost != nullptr) && (gross_open_cost->isSet())){
-        toJsonValue(QString("grossOpenCost"), gross_open_cost, obj, QString("SWGNumber"));
+    if(m_gross_open_cost_isSet){
+        obj.insert("grossOpenCost", QJsonValue(gross_open_cost));
     }
-    if((gross_open_premium != nullptr) && (gross_open_premium->isSet())){
-        toJsonValue(QString("grossOpenPremium"), gross_open_premium, obj, QString("SWGNumber"));
+    if(m_gross_open_premium_isSet){
+        obj.insert("grossOpenPremium", QJsonValue(gross_open_premium));
     }
-    if((gross_exec_cost != nullptr) && (gross_exec_cost->isSet())){
-        toJsonValue(QString("grossExecCost"), gross_exec_cost, obj, QString("SWGNumber"));
+    if(m_gross_exec_cost_isSet){
+        obj.insert("grossExecCost", QJsonValue(gross_exec_cost));
     }
-    if((gross_mark_value != nullptr) && (gross_mark_value->isSet())){
-        toJsonValue(QString("grossMarkValue"), gross_mark_value, obj, QString("SWGNumber"));
+    if(m_gross_mark_value_isSet){
+        obj.insert("grossMarkValue", QJsonValue(gross_mark_value));
     }
-    if((risk_value != nullptr) && (risk_value->isSet())){
-        toJsonValue(QString("riskValue"), risk_value, obj, QString("SWGNumber"));
+    if(m_risk_value_isSet){
+        obj.insert("riskValue", QJsonValue(risk_value));
     }
-    if((init_margin != nullptr) && (init_margin->isSet())){
-        toJsonValue(QString("initMargin"), init_margin, obj, QString("SWGNumber"));
+    if(m_init_margin_isSet){
+        obj.insert("initMargin", QJsonValue(init_margin));
     }
-    if((maint_margin != nullptr) && (maint_margin->isSet())){
-        toJsonValue(QString("maintMargin"), maint_margin, obj, QString("SWGNumber"));
+    if(m_maint_margin_isSet){
+        obj.insert("maintMargin", QJsonValue(maint_margin));
     }
-    if((target_excess_margin != nullptr) && (target_excess_margin->isSet())){
-        toJsonValue(QString("targetExcessMargin"), target_excess_margin, obj, QString("SWGNumber"));
+    if(m_target_excess_margin_isSet){
+        obj.insert("targetExcessMargin", QJsonValue(target_excess_margin));
     }
-    if((realised_pnl != nullptr) && (realised_pnl->isSet())){
-        toJsonValue(QString("realisedPnl"), realised_pnl, obj, QString("SWGNumber"));
+    if(m_realised_pnl_isSet){
+        obj.insert("realisedPnl", QJsonValue(realised_pnl));
     }
-    if((unrealised_pnl != nullptr) && (unrealised_pnl->isSet())){
-        toJsonValue(QString("unrealisedPnl"), unrealised_pnl, obj, QString("SWGNumber"));
+    if(m_unrealised_pnl_isSet){
+        obj.insert("unrealisedPnl", QJsonValue(unrealised_pnl));
     }
-    if((wallet_balance != nullptr) && (wallet_balance->isSet())){
-        toJsonValue(QString("walletBalance"), wallet_balance, obj, QString("SWGNumber"));
+    if(m_wallet_balance_isSet){
+        obj.insert("walletBalance", QJsonValue(wallet_balance));
     }
-    if((margin_balance != nullptr) && (margin_balance->isSet())){
-        toJsonValue(QString("marginBalance"), margin_balance, obj, QString("SWGNumber"));
+    if(m_margin_balance_isSet){
+        obj.insert("marginBalance", QJsonValue(margin_balance));
     }
     if(m_margin_leverage_isSet){
         obj.insert("marginLeverage", QJsonValue(margin_leverage));
@@ -312,14 +272,14 @@ SWGMargin::asJsonObject() {
     if(m_margin_used_pcnt_isSet){
         obj.insert("marginUsedPcnt", QJsonValue(margin_used_pcnt));
     }
-    if((excess_margin != nullptr) && (excess_margin->isSet())){
-        toJsonValue(QString("excessMargin"), excess_margin, obj, QString("SWGNumber"));
+    if(m_excess_margin_isSet){
+        obj.insert("excessMargin", QJsonValue(excess_margin));
     }
-    if((available_margin != nullptr) && (available_margin->isSet())){
-        toJsonValue(QString("availableMargin"), available_margin, obj, QString("SWGNumber"));
+    if(m_available_margin_isSet){
+        obj.insert("availableMargin", QJsonValue(available_margin));
     }
-    if((withdrawable_margin != nullptr) && (withdrawable_margin->isSet())){
-        toJsonValue(QString("withdrawableMargin"), withdrawable_margin, obj, QString("SWGNumber"));
+    if(m_withdrawable_margin_isSet){
+        obj.insert("withdrawableMargin", QJsonValue(withdrawable_margin));
     }
     if(m_maker_fee_discount_isSet){
         obj.insert("makerFeeDiscount", QJsonValue(maker_fee_discount));
@@ -334,12 +294,12 @@ SWGMargin::asJsonObject() {
     return obj;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getAccount() {
     return account;
 }
 void
-SWGMargin::setAccount(SWGNumber* account) {
+SWGMargin::setAccount(qint64 account) {
     this->account = account;
     this->m_account_isSet = true;
 }
@@ -354,12 +314,12 @@ SWGMargin::setCurrency(QString* currency) {
     this->m_currency_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getRiskLimit() {
     return risk_limit;
 }
 void
-SWGMargin::setRiskLimit(SWGNumber* risk_limit) {
+SWGMargin::setRiskLimit(qint64 risk_limit) {
     this->risk_limit = risk_limit;
     this->m_risk_limit_isSet = true;
 }
@@ -374,152 +334,152 @@ SWGMargin::setState(QString* state) {
     this->m_state_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getAmount() {
     return amount;
 }
 void
-SWGMargin::setAmount(SWGNumber* amount) {
+SWGMargin::setAmount(qint64 amount) {
     this->amount = amount;
     this->m_amount_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getPrevRealisedPnl() {
     return prev_realised_pnl;
 }
 void
-SWGMargin::setPrevRealisedPnl(SWGNumber* prev_realised_pnl) {
+SWGMargin::setPrevRealisedPnl(qint64 prev_realised_pnl) {
     this->prev_realised_pnl = prev_realised_pnl;
     this->m_prev_realised_pnl_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getGrossComm() {
     return gross_comm;
 }
 void
-SWGMargin::setGrossComm(SWGNumber* gross_comm) {
+SWGMargin::setGrossComm(qint64 gross_comm) {
     this->gross_comm = gross_comm;
     this->m_gross_comm_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getGrossOpenCost() {
     return gross_open_cost;
 }
 void
-SWGMargin::setGrossOpenCost(SWGNumber* gross_open_cost) {
+SWGMargin::setGrossOpenCost(qint64 gross_open_cost) {
     this->gross_open_cost = gross_open_cost;
     this->m_gross_open_cost_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getGrossOpenPremium() {
     return gross_open_premium;
 }
 void
-SWGMargin::setGrossOpenPremium(SWGNumber* gross_open_premium) {
+SWGMargin::setGrossOpenPremium(qint64 gross_open_premium) {
     this->gross_open_premium = gross_open_premium;
     this->m_gross_open_premium_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getGrossExecCost() {
     return gross_exec_cost;
 }
 void
-SWGMargin::setGrossExecCost(SWGNumber* gross_exec_cost) {
+SWGMargin::setGrossExecCost(qint64 gross_exec_cost) {
     this->gross_exec_cost = gross_exec_cost;
     this->m_gross_exec_cost_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getGrossMarkValue() {
     return gross_mark_value;
 }
 void
-SWGMargin::setGrossMarkValue(SWGNumber* gross_mark_value) {
+SWGMargin::setGrossMarkValue(qint64 gross_mark_value) {
     this->gross_mark_value = gross_mark_value;
     this->m_gross_mark_value_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getRiskValue() {
     return risk_value;
 }
 void
-SWGMargin::setRiskValue(SWGNumber* risk_value) {
+SWGMargin::setRiskValue(qint64 risk_value) {
     this->risk_value = risk_value;
     this->m_risk_value_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getInitMargin() {
     return init_margin;
 }
 void
-SWGMargin::setInitMargin(SWGNumber* init_margin) {
+SWGMargin::setInitMargin(qint64 init_margin) {
     this->init_margin = init_margin;
     this->m_init_margin_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getMaintMargin() {
     return maint_margin;
 }
 void
-SWGMargin::setMaintMargin(SWGNumber* maint_margin) {
+SWGMargin::setMaintMargin(qint64 maint_margin) {
     this->maint_margin = maint_margin;
     this->m_maint_margin_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getTargetExcessMargin() {
     return target_excess_margin;
 }
 void
-SWGMargin::setTargetExcessMargin(SWGNumber* target_excess_margin) {
+SWGMargin::setTargetExcessMargin(qint64 target_excess_margin) {
     this->target_excess_margin = target_excess_margin;
     this->m_target_excess_margin_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getRealisedPnl() {
     return realised_pnl;
 }
 void
-SWGMargin::setRealisedPnl(SWGNumber* realised_pnl) {
+SWGMargin::setRealisedPnl(qint64 realised_pnl) {
     this->realised_pnl = realised_pnl;
     this->m_realised_pnl_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getUnrealisedPnl() {
     return unrealised_pnl;
 }
 void
-SWGMargin::setUnrealisedPnl(SWGNumber* unrealised_pnl) {
+SWGMargin::setUnrealisedPnl(qint64 unrealised_pnl) {
     this->unrealised_pnl = unrealised_pnl;
     this->m_unrealised_pnl_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getWalletBalance() {
     return wallet_balance;
 }
 void
-SWGMargin::setWalletBalance(SWGNumber* wallet_balance) {
+SWGMargin::setWalletBalance(qint64 wallet_balance) {
     this->wallet_balance = wallet_balance;
     this->m_wallet_balance_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getMarginBalance() {
     return margin_balance;
 }
 void
-SWGMargin::setMarginBalance(SWGNumber* margin_balance) {
+SWGMargin::setMarginBalance(qint64 margin_balance) {
     this->margin_balance = margin_balance;
     this->m_margin_balance_isSet = true;
 }
@@ -544,32 +504,32 @@ SWGMargin::setMarginUsedPcnt(double margin_used_pcnt) {
     this->m_margin_used_pcnt_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getExcessMargin() {
     return excess_margin;
 }
 void
-SWGMargin::setExcessMargin(SWGNumber* excess_margin) {
+SWGMargin::setExcessMargin(qint64 excess_margin) {
     this->excess_margin = excess_margin;
     this->m_excess_margin_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getAvailableMargin() {
     return available_margin;
 }
 void
-SWGMargin::setAvailableMargin(SWGNumber* available_margin) {
+SWGMargin::setAvailableMargin(qint64 available_margin) {
     this->available_margin = available_margin;
     this->m_available_margin_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGMargin::getWithdrawableMargin() {
     return withdrawable_margin;
 }
 void
-SWGMargin::setWithdrawableMargin(SWGNumber* withdrawable_margin) {
+SWGMargin::setWithdrawableMargin(qint64 withdrawable_margin) {
     this->withdrawable_margin = withdrawable_margin;
     this->m_withdrawable_margin_isSet = true;
 }
@@ -609,30 +569,30 @@ bool
 SWGMargin::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(account != nullptr && account->isSet()){ isObjectUpdated = true; break;}
+        if(m_account_isSet){ isObjectUpdated = true; break;}
         if(currency != nullptr && *currency != QString("")){ isObjectUpdated = true; break;}
-        if(risk_limit != nullptr && risk_limit->isSet()){ isObjectUpdated = true; break;}
+        if(m_risk_limit_isSet){ isObjectUpdated = true; break;}
         if(state != nullptr && *state != QString("")){ isObjectUpdated = true; break;}
-        if(amount != nullptr && amount->isSet()){ isObjectUpdated = true; break;}
-        if(prev_realised_pnl != nullptr && prev_realised_pnl->isSet()){ isObjectUpdated = true; break;}
-        if(gross_comm != nullptr && gross_comm->isSet()){ isObjectUpdated = true; break;}
-        if(gross_open_cost != nullptr && gross_open_cost->isSet()){ isObjectUpdated = true; break;}
-        if(gross_open_premium != nullptr && gross_open_premium->isSet()){ isObjectUpdated = true; break;}
-        if(gross_exec_cost != nullptr && gross_exec_cost->isSet()){ isObjectUpdated = true; break;}
-        if(gross_mark_value != nullptr && gross_mark_value->isSet()){ isObjectUpdated = true; break;}
-        if(risk_value != nullptr && risk_value->isSet()){ isObjectUpdated = true; break;}
-        if(init_margin != nullptr && init_margin->isSet()){ isObjectUpdated = true; break;}
-        if(maint_margin != nullptr && maint_margin->isSet()){ isObjectUpdated = true; break;}
-        if(target_excess_margin != nullptr && target_excess_margin->isSet()){ isObjectUpdated = true; break;}
-        if(realised_pnl != nullptr && realised_pnl->isSet()){ isObjectUpdated = true; break;}
-        if(unrealised_pnl != nullptr && unrealised_pnl->isSet()){ isObjectUpdated = true; break;}
-        if(wallet_balance != nullptr && wallet_balance->isSet()){ isObjectUpdated = true; break;}
-        if(margin_balance != nullptr && margin_balance->isSet()){ isObjectUpdated = true; break;}
+        if(m_amount_isSet){ isObjectUpdated = true; break;}
+        if(m_prev_realised_pnl_isSet){ isObjectUpdated = true; break;}
+        if(m_gross_comm_isSet){ isObjectUpdated = true; break;}
+        if(m_gross_open_cost_isSet){ isObjectUpdated = true; break;}
+        if(m_gross_open_premium_isSet){ isObjectUpdated = true; break;}
+        if(m_gross_exec_cost_isSet){ isObjectUpdated = true; break;}
+        if(m_gross_mark_value_isSet){ isObjectUpdated = true; break;}
+        if(m_risk_value_isSet){ isObjectUpdated = true; break;}
+        if(m_init_margin_isSet){ isObjectUpdated = true; break;}
+        if(m_maint_margin_isSet){ isObjectUpdated = true; break;}
+        if(m_target_excess_margin_isSet){ isObjectUpdated = true; break;}
+        if(m_realised_pnl_isSet){ isObjectUpdated = true; break;}
+        if(m_unrealised_pnl_isSet){ isObjectUpdated = true; break;}
+        if(m_wallet_balance_isSet){ isObjectUpdated = true; break;}
+        if(m_margin_balance_isSet){ isObjectUpdated = true; break;}
         if(m_margin_leverage_isSet){ isObjectUpdated = true; break;}
         if(m_margin_used_pcnt_isSet){ isObjectUpdated = true; break;}
-        if(excess_margin != nullptr && excess_margin->isSet()){ isObjectUpdated = true; break;}
-        if(available_margin != nullptr && available_margin->isSet()){ isObjectUpdated = true; break;}
-        if(withdrawable_margin != nullptr && withdrawable_margin->isSet()){ isObjectUpdated = true; break;}
+        if(m_excess_margin_isSet){ isObjectUpdated = true; break;}
+        if(m_available_margin_isSet){ isObjectUpdated = true; break;}
+        if(m_withdrawable_margin_isSet){ isObjectUpdated = true; break;}
         if(m_maker_fee_discount_isSet){ isObjectUpdated = true; break;}
         if(m_taker_fee_discount_isSet){ isObjectUpdated = true; break;}
         

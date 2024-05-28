@@ -15,16 +15,16 @@ public struct APIKey: Codable {
     public var _id: String
     public var secret: String
     public var name: String
-    public var nonce: Double
+    public var nonce: Int64
     public var cidr: String?
     public var cidrs: [XAny]?
-    public var targetAccountId: Double?
+    public var targetAccountId: Int?
     public var permissions: [XAny]?
     public var enabled: Bool?
-    public var userId: Double
+    public var userId: Int
     public var created: Date?
 
-    public init(_id: String, secret: String, name: String, nonce: Double, cidr: String?, cidrs: [XAny]?, targetAccountId: Double?, permissions: [XAny]?, enabled: Bool?, userId: Double, created: Date?) {
+    public init(_id: String, secret: String, name: String, nonce: Int64, cidr: String?, cidrs: [XAny]?, targetAccountId: Int?, permissions: [XAny]?, enabled: Bool?, userId: Int, created: Date?) {
         self._id = _id
         self.secret = secret
         self.name = name

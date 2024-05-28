@@ -15,7 +15,7 @@ package io.swagger.client.model
 import java.util.Date
 
 case class User (
-  id: Option[Number] = None,
+  id: Option[Integer] = None,
   firstname: Option[String] = None,
   lastname: Option[String] = None,
   username: String,

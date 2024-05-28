@@ -14,8 +14,8 @@ package swagger
 type Stats struct {
 	RootSymbol string `json:"rootSymbol"`
 	Currency string `json:"currency,omitempty"`
-	Volume24h float32 `json:"volume24h,omitempty"`
-	Turnover24h float32 `json:"turnover24h,omitempty"`
-	OpenInterest float32 `json:"openInterest,omitempty"`
-	OpenValue float32 `json:"openValue,omitempty"`
+	Volume24h int64 `json:"volume24h,omitempty"`
+	Turnover24h int64 `json:"turnover24h,omitempty"`
+	OpenInterest int64 `json:"openInterest,omitempty"`
+	OpenValue int64 `json:"openValue,omitempty"`
 }

@@ -39,7 +39,7 @@ object FundingApi {
    * @param startTime Starting date filter for results.
    * @param endTime Ending date filter for results.
    */
-  def funding.get(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Double], start: Option[Double], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None): ApiRequest[Seq[Funding]] =
+  def funding.get(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Int], start: Option[Int], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None): ApiRequest[Seq[Funding]] =
     ApiRequest[Seq[Funding]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/funding", "application/json")
       .withQueryParam("symbol", symbol)
       .withQueryParam("filter", filter)

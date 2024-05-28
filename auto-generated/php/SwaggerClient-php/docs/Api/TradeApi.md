@@ -28,8 +28,8 @@ $apiInstance = new Swagger\Client\Api\TradeApi(
 $symbol = "symbol_example"; // string | Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive.
 $filter = "filter_example"; // string | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
 $columns = "columns_example"; // string | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-$count = 100; // float | Number of results to fetch. Must be a positive integer.
-$start = 0; // float | Starting point for results.
+$count = 100; // int | Number of results to fetch. Must be a positive integer.
+$start = 0; // int | Starting point for results.
 $reverse = false; // bool | If true, will sort results newest first.
 $start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Starting date filter for results.
 $end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Ending date filter for results.
@@ -50,8 +50,8 @@ Name | Type | Description  | Notes
  **symbol** | **string**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. | [optional]
  **filter** | **string**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional]
  **columns** | **string**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional]
- **count** | **float**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
- **start** | **float**| Starting point for results. | [optional] [default to 0]
+ **count** | **int**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
+ **start** | **int**| Starting point for results. | [optional] [default to 0]
  **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to false]
  **start_time** | **\DateTime**| Starting date filter for results. | [optional]
  **end_time** | **\DateTime**| Ending date filter for results. | [optional]
@@ -93,8 +93,8 @@ $partial = false; // bool | If true, will send in-progress (incomplete) bins for
 $symbol = "symbol_example"; // string | Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive.
 $filter = "filter_example"; // string | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
 $columns = "columns_example"; // string | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-$count = 100; // float | Number of results to fetch. Must be a positive integer.
-$start = 0; // float | Starting point for results.
+$count = 100; // int | Number of results to fetch. Must be a positive integer.
+$start = 0; // int | Starting point for results.
 $reverse = false; // bool | If true, will sort results newest first.
 $start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Starting date filter for results.
 $end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Ending date filter for results.
@@ -117,8 +117,8 @@ Name | Type | Description  | Notes
  **symbol** | **string**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. | [optional]
  **filter** | **string**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional]
  **columns** | **string**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional]
- **count** | **float**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
- **start** | **float**| Starting point for results. | [optional] [default to 0]
+ **count** | **int**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
+ **start** | **int**| Starting point for results. | [optional] [default to 0]
  **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to false]
  **start_time** | **\DateTime**| Starting date filter for results. | [optional]
  **end_time** | **\DateTime**| Ending date filter for results. | [optional]

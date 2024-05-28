@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -24,7 +23,7 @@ import com.google.gson.annotations.SerializedName;
 public class GlobalNotification {
   
   @SerializedName("id")
-  private BigDecimal id = null;
+  private Integer id = null;
   @SerializedName("date")
   private Date date = null;
   @SerializedName("title")
@@ -32,7 +31,7 @@ public class GlobalNotification {
   @SerializedName("body")
   private String body = null;
   @SerializedName("ttl")
-  private BigDecimal ttl = null;
+  private Integer ttl = null;
   public enum TypeEnum {
      success,  error,  info, 
   };
@@ -50,10 +49,10 @@ public class GlobalNotification {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getId() {
+  public Integer getId() {
     return id;
   }
-  public void setId(BigDecimal id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -90,10 +89,10 @@ public class GlobalNotification {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getTtl() {
+  public Integer getTtl() {
     return ttl;
   }
-  public void setTtl(BigDecimal ttl) {
+  public void setTtl(Integer ttl) {
     this.ttl = ttl;
   }
 

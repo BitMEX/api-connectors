@@ -18,7 +18,7 @@ import java.util.UUID
 case class Insurance (
   currency: String,
   timestamp: DateTime,
-  walletBalance: Option[Double] = None
+  walletBalance: Option[Long] = None
 ) extends ApiModel
 
 

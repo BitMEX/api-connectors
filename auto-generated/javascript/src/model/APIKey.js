@@ -109,8 +109,9 @@
 
   /**
    * @member {Number} nonce
+   * @default 0
    */
-  exports.prototype.nonce = undefined;
+  exports.prototype.nonce = 0;
 
   /**
    * @member {String} cidr

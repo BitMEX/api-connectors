@@ -127,7 +127,7 @@ namespace IO.Swagger.Model
         /// <param name="instantPnl">instantPnl.</param>
         /// <param name="minTick">minTick.</param>
         /// <param name="timestamp">timestamp.</param>
-        public Instrument(string symbol = default(string), string rootSymbol = default(string), string state = default(string), string typ = default(string), DateTime? listing = default(DateTime?), DateTime? front = default(DateTime?), DateTime? expiry = default(DateTime?), DateTime? settle = default(DateTime?), DateTime? listedSettle = default(DateTime?), string positionCurrency = default(string), string underlying = default(string), string quoteCurrency = default(string), string underlyingSymbol = default(string), string reference = default(string), string referenceSymbol = default(string), DateTime? calcInterval = default(DateTime?), DateTime? publishInterval = default(DateTime?), DateTime? publishTime = default(DateTime?), decimal? maxOrderQty = default(decimal?), double? maxPrice = default(double?), decimal? lotSize = default(decimal?), double? tickSize = default(double?), decimal? multiplier = default(decimal?), string settlCurrency = default(string), decimal? underlyingToPositionMultiplier = default(decimal?), decimal? underlyingToSettleMultiplier = default(decimal?), decimal? quoteToSettleMultiplier = default(decimal?), bool? isQuanto = default(bool?), bool? isInverse = default(bool?), double? initMargin = default(double?), double? maintMargin = default(double?), decimal? riskLimit = default(decimal?), decimal? riskStep = default(decimal?), double? limit = default(double?), bool? taxed = default(bool?), bool? deleverage = default(bool?), double? makerFee = default(double?), double? takerFee = default(double?), double? settlementFee = default(double?), string fundingBaseSymbol = default(string), string fundingQuoteSymbol = default(string), string fundingPremiumSymbol = default(string), DateTime? fundingTimestamp = default(DateTime?), DateTime? fundingInterval = default(DateTime?), double? fundingRate = default(double?), double? indicativeFundingRate = default(double?), DateTime? rebalanceTimestamp = default(DateTime?), DateTime? rebalanceInterval = default(DateTime?), double? prevClosePrice = default(double?), double? limitDownPrice = default(double?), double? limitUpPrice = default(double?), decimal? totalVolume = default(decimal?), decimal? volume = default(decimal?), decimal? volume24h = default(decimal?), decimal? prevTotalTurnover = default(decimal?), decimal? totalTurnover = default(decimal?), decimal? turnover = default(decimal?), decimal? turnover24h = default(decimal?), double? homeNotional24h = default(double?), double? foreignNotional24h = default(double?), double? prevPrice24h = default(double?), double? vwap = default(double?), double? highPrice = default(double?), double? lowPrice = default(double?), double? lastPrice = default(double?), double? lastPriceProtected = default(double?), string lastTickDirection = default(string), double? lastChangePcnt = default(double?), double? bidPrice = default(double?), double? midPrice = default(double?), double? askPrice = default(double?), double? impactBidPrice = default(double?), double? impactMidPrice = default(double?), double? impactAskPrice = default(double?), bool? hasLiquidity = default(bool?), decimal? openInterest = default(decimal?), decimal? openValue = default(decimal?), string fairMethod = default(string), double? fairBasisRate = default(double?), double? fairBasis = default(double?), double? fairPrice = default(double?), string markMethod = default(string), double? markPrice = default(double?), double? indicativeSettlePrice = default(double?), double? settledPriceAdjustmentRate = default(double?), double? settledPrice = default(double?), bool? instantPnl = default(bool?), double? minTick = default(double?), DateTime? timestamp = default(DateTime?))
+        public Instrument(string symbol = default(string), string rootSymbol = default(string), string state = default(string), string typ = default(string), DateTime? listing = default(DateTime?), DateTime? front = default(DateTime?), DateTime? expiry = default(DateTime?), DateTime? settle = default(DateTime?), DateTime? listedSettle = default(DateTime?), string positionCurrency = default(string), string underlying = default(string), string quoteCurrency = default(string), string underlyingSymbol = default(string), string reference = default(string), string referenceSymbol = default(string), DateTime? calcInterval = default(DateTime?), DateTime? publishInterval = default(DateTime?), DateTime? publishTime = default(DateTime?), long? maxOrderQty = default(long?), double? maxPrice = default(double?), long? lotSize = default(long?), double? tickSize = default(double?), long? multiplier = default(long?), string settlCurrency = default(string), long? underlyingToPositionMultiplier = default(long?), long? underlyingToSettleMultiplier = default(long?), long? quoteToSettleMultiplier = default(long?), bool? isQuanto = default(bool?), bool? isInverse = default(bool?), double? initMargin = default(double?), double? maintMargin = default(double?), long? riskLimit = default(long?), long? riskStep = default(long?), double? limit = default(double?), bool? taxed = default(bool?), bool? deleverage = default(bool?), double? makerFee = default(double?), double? takerFee = default(double?), double? settlementFee = default(double?), string fundingBaseSymbol = default(string), string fundingQuoteSymbol = default(string), string fundingPremiumSymbol = default(string), DateTime? fundingTimestamp = default(DateTime?), DateTime? fundingInterval = default(DateTime?), double? fundingRate = default(double?), double? indicativeFundingRate = default(double?), DateTime? rebalanceTimestamp = default(DateTime?), DateTime? rebalanceInterval = default(DateTime?), double? prevClosePrice = default(double?), double? limitDownPrice = default(double?), double? limitUpPrice = default(double?), long? totalVolume = default(long?), long? volume = default(long?), long? volume24h = default(long?), long? prevTotalTurnover = default(long?), long? totalTurnover = default(long?), long? turnover = default(long?), long? turnover24h = default(long?), double? homeNotional24h = default(double?), double? foreignNotional24h = default(double?), double? prevPrice24h = default(double?), double? vwap = default(double?), double? highPrice = default(double?), double? lowPrice = default(double?), double? lastPrice = default(double?), double? lastPriceProtected = default(double?), string lastTickDirection = default(string), double? lastChangePcnt = default(double?), double? bidPrice = default(double?), double? midPrice = default(double?), double? askPrice = default(double?), double? impactBidPrice = default(double?), double? impactMidPrice = default(double?), double? impactAskPrice = default(double?), bool? hasLiquidity = default(bool?), long? openInterest = default(long?), long? openValue = default(long?), string fairMethod = default(string), double? fairBasisRate = default(double?), double? fairBasis = default(double?), double? fairPrice = default(double?), string markMethod = default(string), double? markPrice = default(double?), double? indicativeSettlePrice = default(double?), double? settledPriceAdjustmentRate = default(double?), double? settledPrice = default(double?), bool? instantPnl = default(bool?), double? minTick = default(double?), DateTime? timestamp = default(DateTime?))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -340,7 +340,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets MaxOrderQty
         /// </summary>
         [DataMember(Name="maxOrderQty", EmitDefaultValue=false)]
-        public decimal? MaxOrderQty { get; set; }
+        public long? MaxOrderQty { get; set; }
 
         /// <summary>
         /// Gets or Sets MaxPrice
@@ -352,7 +352,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets LotSize
         /// </summary>
         [DataMember(Name="lotSize", EmitDefaultValue=false)]
-        public decimal? LotSize { get; set; }
+        public long? LotSize { get; set; }
 
         /// <summary>
         /// Gets or Sets TickSize
@@ -364,7 +364,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Multiplier
         /// </summary>
         [DataMember(Name="multiplier", EmitDefaultValue=false)]
-        public decimal? Multiplier { get; set; }
+        public long? Multiplier { get; set; }
 
         /// <summary>
         /// Gets or Sets SettlCurrency
@@ -376,19 +376,19 @@ namespace IO.Swagger.Model
         /// Gets or Sets UnderlyingToPositionMultiplier
         /// </summary>
         [DataMember(Name="underlyingToPositionMultiplier", EmitDefaultValue=false)]
-        public decimal? UnderlyingToPositionMultiplier { get; set; }
+        public long? UnderlyingToPositionMultiplier { get; set; }
 
         /// <summary>
         /// Gets or Sets UnderlyingToSettleMultiplier
         /// </summary>
         [DataMember(Name="underlyingToSettleMultiplier", EmitDefaultValue=false)]
-        public decimal? UnderlyingToSettleMultiplier { get; set; }
+        public long? UnderlyingToSettleMultiplier { get; set; }
 
         /// <summary>
         /// Gets or Sets QuoteToSettleMultiplier
         /// </summary>
         [DataMember(Name="quoteToSettleMultiplier", EmitDefaultValue=false)]
-        public decimal? QuoteToSettleMultiplier { get; set; }
+        public long? QuoteToSettleMultiplier { get; set; }
 
         /// <summary>
         /// Gets or Sets IsQuanto
@@ -418,13 +418,13 @@ namespace IO.Swagger.Model
         /// Gets or Sets RiskLimit
         /// </summary>
         [DataMember(Name="riskLimit", EmitDefaultValue=false)]
-        public decimal? RiskLimit { get; set; }
+        public long? RiskLimit { get; set; }
 
         /// <summary>
         /// Gets or Sets RiskStep
         /// </summary>
         [DataMember(Name="riskStep", EmitDefaultValue=false)]
-        public decimal? RiskStep { get; set; }
+        public long? RiskStep { get; set; }
 
         /// <summary>
         /// Gets or Sets Limit
@@ -538,43 +538,43 @@ namespace IO.Swagger.Model
         /// Gets or Sets TotalVolume
         /// </summary>
         [DataMember(Name="totalVolume", EmitDefaultValue=false)]
-        public decimal? TotalVolume { get; set; }
+        public long? TotalVolume { get; set; }
 
         /// <summary>
         /// Gets or Sets Volume
         /// </summary>
         [DataMember(Name="volume", EmitDefaultValue=false)]
-        public decimal? Volume { get; set; }
+        public long? Volume { get; set; }
 
         /// <summary>
         /// Gets or Sets Volume24h
         /// </summary>
         [DataMember(Name="volume24h", EmitDefaultValue=false)]
-        public decimal? Volume24h { get; set; }
+        public long? Volume24h { get; set; }
 
         /// <summary>
         /// Gets or Sets PrevTotalTurnover
         /// </summary>
         [DataMember(Name="prevTotalTurnover", EmitDefaultValue=false)]
-        public decimal? PrevTotalTurnover { get; set; }
+        public long? PrevTotalTurnover { get; set; }
 
         /// <summary>
         /// Gets or Sets TotalTurnover
         /// </summary>
         [DataMember(Name="totalTurnover", EmitDefaultValue=false)]
-        public decimal? TotalTurnover { get; set; }
+        public long? TotalTurnover { get; set; }
 
         /// <summary>
         /// Gets or Sets Turnover
         /// </summary>
         [DataMember(Name="turnover", EmitDefaultValue=false)]
-        public decimal? Turnover { get; set; }
+        public long? Turnover { get; set; }
 
         /// <summary>
         /// Gets or Sets Turnover24h
         /// </summary>
         [DataMember(Name="turnover24h", EmitDefaultValue=false)]
-        public decimal? Turnover24h { get; set; }
+        public long? Turnover24h { get; set; }
 
         /// <summary>
         /// Gets or Sets HomeNotional24h
@@ -682,13 +682,13 @@ namespace IO.Swagger.Model
         /// Gets or Sets OpenInterest
         /// </summary>
         [DataMember(Name="openInterest", EmitDefaultValue=false)]
-        public decimal? OpenInterest { get; set; }
+        public long? OpenInterest { get; set; }
 
         /// <summary>
         /// Gets or Sets OpenValue
         /// </summary>
         [DataMember(Name="openValue", EmitDefaultValue=false)]
-        public decimal? OpenValue { get; set; }
+        public long? OpenValue { get; set; }
 
         /// <summary>
         /// Gets or Sets FairMethod

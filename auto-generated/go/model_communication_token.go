@@ -13,7 +13,7 @@ package swagger
 // User communication SNS token
 type CommunicationToken struct {
 	Id string `json:"id"`
-	UserId float32 `json:"userId"`
+	UserId int32 `json:"userId"`
 	DeviceToken string `json:"deviceToken"`
 	Channel string `json:"channel"`
 }

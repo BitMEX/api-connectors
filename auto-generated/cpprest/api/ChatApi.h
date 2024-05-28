@@ -54,8 +54,8 @@ public:
     /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
     /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
     pplx::task<std::vector<std::shared_ptr<Chat>>> chat_get(
-        boost::optional<double> count,
-        boost::optional<double> start,
+        boost::optional<int32_t> count,
+        boost::optional<int32_t> start,
         boost::optional<bool> reverse,
         boost::optional<double> channelID
     );

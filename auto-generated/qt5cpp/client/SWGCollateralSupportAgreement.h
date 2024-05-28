@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QString>
 
 #include "SWGObject.h"
@@ -45,26 +44,26 @@ public:
     QString* getCsaId();
     void setCsaId(QString* csa_id);
 
-    SWGNumber* getAccount();
-    void setAccount(SWGNumber* account);
+    qint64 getAccount();
+    void setAccount(qint64 account);
 
     QString* getCurrency();
     void setCurrency(QString* currency);
 
-    SWGNumber* getAmount();
-    void setAmount(SWGNumber* amount);
+    qint64 getAmount();
+    void setAmount(qint64 amount);
 
-    SWGNumber* getMinAmount();
-    void setMinAmount(SWGNumber* min_amount);
+    qint64 getMinAmount();
+    void setMinAmount(qint64 min_amount);
 
-    SWGNumber* getThreshold();
-    void setThreshold(SWGNumber* threshold);
+    qint64 getThreshold();
+    void setThreshold(qint64 threshold);
 
-    SWGNumber* getMmRatioMarginCall();
-    void setMmRatioMarginCall(SWGNumber* mm_ratio_margin_call);
+    qint64 getMmRatioMarginCall();
+    void setMmRatioMarginCall(qint64 mm_ratio_margin_call);
 
-    SWGNumber* getMmRatioLiquidation();
-    void setMmRatioLiquidation(SWGNumber* mm_ratio_liquidation);
+    qint64 getMmRatioLiquidation();
+    void setMmRatioLiquidation(qint64 mm_ratio_liquidation);
 
     QString* getStartTime();
     void setStartTime(QString* start_time);
@@ -97,25 +96,25 @@ private:
     QString* csa_id;
     bool m_csa_id_isSet;
 
-    SWGNumber* account;
+    qint64 account;
     bool m_account_isSet;
 
     QString* currency;
     bool m_currency_isSet;
 
-    SWGNumber* amount;
+    qint64 amount;
     bool m_amount_isSet;
 
-    SWGNumber* min_amount;
+    qint64 min_amount;
     bool m_min_amount_isSet;
 
-    SWGNumber* threshold;
+    qint64 threshold;
     bool m_threshold_isSet;
 
-    SWGNumber* mm_ratio_margin_call;
+    qint64 mm_ratio_margin_call;
     bool m_mm_ratio_margin_call_isSet;
 
-    SWGNumber* mm_ratio_liquidation;
+    qint64 mm_ratio_liquidation;
     bool m_mm_ratio_liquidation_isSet;
 
     QString* start_time;

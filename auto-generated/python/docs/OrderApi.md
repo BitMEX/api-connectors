@@ -50,9 +50,9 @@ order_id = 'order_id_example' # str | Order ID (optional)
 orig_cl_ord_id = 'orig_cl_ord_id_example' # str | Client Order ID. See POST /order. (optional)
 cl_ord_id = 'cl_ord_id_example' # str | Optional new Client Order ID, requires `origClOrdID`. (optional)
 simple_order_qty = 1.2 # float | Deprecated: simple orders are not supported after 2018/10/26 (optional)
-order_qty = 8.14 # float | Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). (optional)
+order_qty = 56 # int | Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). (optional)
 simple_leaves_qty = 1.2 # float | Deprecated: simple orders are not supported after 2018/10/26 (optional)
-leaves_qty = 8.14 # float | Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders. (optional)
+leaves_qty = 56 # int | Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders. (optional)
 price = 1.2 # float | Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders. (optional)
 stop_px = 1.2 # float | Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. (optional)
 peg_offset_value = 1.2 # float | Optional trailing offset from the current price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for 'Pegged' orders. (optional)
@@ -74,9 +74,9 @@ Name | Type | Description  | Notes
  **orig_cl_ord_id** | **str**| Client Order ID. See POST /order. | [optional] 
  **cl_ord_id** | **str**| Optional new Client Order ID, requires &#x60;origClOrdID&#x60;. | [optional] 
  **simple_order_qty** | **float**| Deprecated: simple orders are not supported after 2018/10/26 | [optional] 
- **order_qty** | **float**| Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). | [optional] 
+ **order_qty** | **int**| Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). | [optional] 
  **simple_leaves_qty** | **float**| Deprecated: simple orders are not supported after 2018/10/26 | [optional] 
- **leaves_qty** | **float**| Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders. | [optional] 
+ **leaves_qty** | **int**| Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders. | [optional] 
  **price** | **float**| Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders. | [optional] 
  **stop_px** | **float**| Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. | [optional] 
  **peg_offset_value** | **float**| Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. | [optional] 
@@ -399,8 +399,8 @@ api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str | Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive. (optional)
 filter = 'filter_example' # str | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
 columns = 'columns_example' # str | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
-count = 100 # float | Number of results to fetch. Must be a positive integer. (optional) (default to 100)
-start = 0 # float | Starting point for results. (optional) (default to 0)
+count = 100 # int | Number of results to fetch. Must be a positive integer. (optional) (default to 100)
+start = 0 # int | Starting point for results. (optional) (default to 0)
 reverse = false # bool | If true, will sort results newest first. (optional) (default to false)
 start_time = '2013-10-20T19:20:30+01:00' # datetime | Starting date filter for results. (optional)
 end_time = '2013-10-20T19:20:30+01:00' # datetime | Ending date filter for results. (optional)
@@ -420,8 +420,8 @@ Name | Type | Description  | Notes
  **symbol** | **str**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. | [optional] 
  **filter** | **str**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional] 
  **columns** | **str**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 
- **count** | **float**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
- **start** | **float**| Starting point for results. | [optional] [default to 0]
+ **count** | **int**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
+ **start** | **int**| Starting point for results. | [optional] [default to 0]
  **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to false]
  **start_time** | **datetime**| Starting date filter for results. | [optional] 
  **end_time** | **datetime**| Ending date filter for results. | [optional] 
@@ -477,9 +477,9 @@ api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str | Instrument symbol. e.g. 'XBTUSD'.
 side = 'side_example' # str | Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless `orderQty` is negative. (optional)
 simple_order_qty = 1.2 # float | Deprecated: simple orders are not supported after 2018/10/26 (optional)
-order_qty = 8.14 # float | Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)). (optional)
+order_qty = 56 # int | Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)). (optional)
 price = 1.2 # float | Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders. (optional)
-display_qty = 8.14 # float | Optional quantity to display in the book. Use 0 for a fully hidden order. (optional)
+display_qty = 56 # int | Optional quantity to display in the book. Use 0 for a fully hidden order. (optional)
 stop_px = 1.2 # float | Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use `execInst` of 'MarkPrice' or 'LastPrice' to define the current price used for triggering. (optional)
 cl_ord_id = 'cl_ord_id_example' # str | Optional Client Order ID. This clOrdID will come back on the order and any related executions. (optional)
 cl_ord_link_id = 'cl_ord_link_id_example' # str | Optional Client Order Link ID for contingent orders (optional)
@@ -506,9 +506,9 @@ Name | Type | Description  | Notes
  **symbol** | **str**| Instrument symbol. e.g. &#39;XBTUSD&#39;. | 
  **side** | **str**| Order side. Valid options: Buy, Sell. Defaults to &#39;Buy&#39; unless &#x60;orderQty&#x60; is negative. | [optional] 
  **simple_order_qty** | **float**| Deprecated: simple orders are not supported after 2018/10/26 | [optional] 
- **order_qty** | **float**| Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)). | [optional] 
+ **order_qty** | **int**| Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)). | [optional] 
  **price** | **float**| Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders. | [optional] 
- **display_qty** | **float**| Optional quantity to display in the book. Use 0 for a fully hidden order. | [optional] 
+ **display_qty** | **int**| Optional quantity to display in the book. Use 0 for a fully hidden order. | [optional] 
  **stop_px** | **float**| Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use &#x60;execInst&#x60; of &#39;MarkPrice&#39; or &#39;LastPrice&#39; to define the current price used for triggering. | [optional] 
  **cl_ord_id** | **str**| Optional Client Order ID. This clOrdID will come back on the order and any related executions. | [optional] 
  **cl_ord_link_id** | **str**| Optional Client Order Link ID for contingent orders | [optional] 

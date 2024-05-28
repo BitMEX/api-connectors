@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **SettledPrice** | **float64** |  | [optional] [default to null]
 **OptionStrikePrice** | **float64** |  | [optional] [default to null]
 **OptionUnderlyingPrice** | **float64** |  | [optional] [default to null]
-**Bankrupt** | **float32** |  | [optional] [default to null]
-**TaxBase** | **float32** |  | [optional] [default to null]
+**Bankrupt** | **int64** |  | [optional] [default to null]
+**TaxBase** | **int64** |  | [optional] [default to null]
 **TaxRate** | **float64** |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -51,21 +51,21 @@ class Instrument(object):
         'calc_interval': 'datetime',
         'publish_interval': 'datetime',
         'publish_time': 'datetime',
-        'max_order_qty': 'float',
+        'max_order_qty': 'int',
         'max_price': 'float',
-        'lot_size': 'float',
+        'lot_size': 'int',
         'tick_size': 'float',
-        'multiplier': 'float',
+        'multiplier': 'int',
         'settl_currency': 'str',
-        'underlying_to_position_multiplier': 'float',
-        'underlying_to_settle_multiplier': 'float',
-        'quote_to_settle_multiplier': 'float',
+        'underlying_to_position_multiplier': 'int',
+        'underlying_to_settle_multiplier': 'int',
+        'quote_to_settle_multiplier': 'int',
         'is_quanto': 'bool',
         'is_inverse': 'bool',
         'init_margin': 'float',
         'maint_margin': 'float',
-        'risk_limit': 'float',
-        'risk_step': 'float',
+        'risk_limit': 'int',
+        'risk_step': 'int',
         'limit': 'float',
         'taxed': 'bool',
         'deleverage': 'bool',
@@ -84,13 +84,13 @@ class Instrument(object):
         'prev_close_price': 'float',
         'limit_down_price': 'float',
         'limit_up_price': 'float',
-        'total_volume': 'float',
-        'volume': 'float',
-        'volume24h': 'float',
-        'prev_total_turnover': 'float',
-        'total_turnover': 'float',
-        'turnover': 'float',
-        'turnover24h': 'float',
+        'total_volume': 'int',
+        'volume': 'int',
+        'volume24h': 'int',
+        'prev_total_turnover': 'int',
+        'total_turnover': 'int',
+        'turnover': 'int',
+        'turnover24h': 'int',
         'home_notional24h': 'float',
         'foreign_notional24h': 'float',
         'prev_price24h': 'float',
@@ -108,8 +108,8 @@ class Instrument(object):
         'impact_mid_price': 'float',
         'impact_ask_price': 'float',
         'has_liquidity': 'bool',
-        'open_interest': 'float',
-        'open_value': 'float',
+        'open_interest': 'int',
+        'open_value': 'int',
         'fair_method': 'str',
         'fair_basis_rate': 'float',
         'fair_basis': 'float',
@@ -877,7 +877,7 @@ class Instrument(object):
 
 
         :return: The max_order_qty of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._max_order_qty
 
@@ -887,7 +887,7 @@ class Instrument(object):
 
 
         :param max_order_qty: The max_order_qty of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._max_order_qty = max_order_qty
@@ -919,7 +919,7 @@ class Instrument(object):
 
 
         :return: The lot_size of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._lot_size
 
@@ -929,7 +929,7 @@ class Instrument(object):
 
 
         :param lot_size: The lot_size of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._lot_size = lot_size
@@ -961,7 +961,7 @@ class Instrument(object):
 
 
         :return: The multiplier of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._multiplier
 
@@ -971,7 +971,7 @@ class Instrument(object):
 
 
         :param multiplier: The multiplier of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._multiplier = multiplier
@@ -1003,7 +1003,7 @@ class Instrument(object):
 
 
         :return: The underlying_to_position_multiplier of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._underlying_to_position_multiplier
 
@@ -1013,7 +1013,7 @@ class Instrument(object):
 
 
         :param underlying_to_position_multiplier: The underlying_to_position_multiplier of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._underlying_to_position_multiplier = underlying_to_position_multiplier
@@ -1024,7 +1024,7 @@ class Instrument(object):
 
 
         :return: The underlying_to_settle_multiplier of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._underlying_to_settle_multiplier
 
@@ -1034,7 +1034,7 @@ class Instrument(object):
 
 
         :param underlying_to_settle_multiplier: The underlying_to_settle_multiplier of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._underlying_to_settle_multiplier = underlying_to_settle_multiplier
@@ -1045,7 +1045,7 @@ class Instrument(object):
 
 
         :return: The quote_to_settle_multiplier of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._quote_to_settle_multiplier
 
@@ -1055,7 +1055,7 @@ class Instrument(object):
 
 
         :param quote_to_settle_multiplier: The quote_to_settle_multiplier of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._quote_to_settle_multiplier = quote_to_settle_multiplier
@@ -1150,7 +1150,7 @@ class Instrument(object):
 
 
         :return: The risk_limit of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._risk_limit
 
@@ -1160,7 +1160,7 @@ class Instrument(object):
 
 
         :param risk_limit: The risk_limit of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._risk_limit = risk_limit
@@ -1171,7 +1171,7 @@ class Instrument(object):
 
 
         :return: The risk_step of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._risk_step
 
@@ -1181,7 +1181,7 @@ class Instrument(object):
 
 
         :param risk_step: The risk_step of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._risk_step = risk_step
@@ -1570,7 +1570,7 @@ class Instrument(object):
 
 
         :return: The total_volume of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._total_volume
 
@@ -1580,7 +1580,7 @@ class Instrument(object):
 
 
         :param total_volume: The total_volume of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._total_volume = total_volume
@@ -1591,7 +1591,7 @@ class Instrument(object):
 
 
         :return: The volume of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._volume
 
@@ -1601,7 +1601,7 @@ class Instrument(object):
 
 
         :param volume: The volume of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._volume = volume
@@ -1612,7 +1612,7 @@ class Instrument(object):
 
 
         :return: The volume24h of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._volume24h
 
@@ -1622,7 +1622,7 @@ class Instrument(object):
 
 
         :param volume24h: The volume24h of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._volume24h = volume24h
@@ -1633,7 +1633,7 @@ class Instrument(object):
 
 
         :return: The prev_total_turnover of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._prev_total_turnover
 
@@ -1643,7 +1643,7 @@ class Instrument(object):
 
 
         :param prev_total_turnover: The prev_total_turnover of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._prev_total_turnover = prev_total_turnover
@@ -1654,7 +1654,7 @@ class Instrument(object):
 
 
         :return: The total_turnover of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._total_turnover
 
@@ -1664,7 +1664,7 @@ class Instrument(object):
 
 
         :param total_turnover: The total_turnover of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._total_turnover = total_turnover
@@ -1675,7 +1675,7 @@ class Instrument(object):
 
 
         :return: The turnover of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._turnover
 
@@ -1685,7 +1685,7 @@ class Instrument(object):
 
 
         :param turnover: The turnover of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._turnover = turnover
@@ -1696,7 +1696,7 @@ class Instrument(object):
 
 
         :return: The turnover24h of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._turnover24h
 
@@ -1706,7 +1706,7 @@ class Instrument(object):
 
 
         :param turnover24h: The turnover24h of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._turnover24h = turnover24h
@@ -2074,7 +2074,7 @@ class Instrument(object):
 
 
         :return: The open_interest of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._open_interest
 
@@ -2084,7 +2084,7 @@ class Instrument(object):
 
 
         :param open_interest: The open_interest of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._open_interest = open_interest
@@ -2095,7 +2095,7 @@ class Instrument(object):
 
 
         :return: The open_value of this Instrument.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._open_value
 
@@ -2105,7 +2105,7 @@ class Instrument(object):
 
 
         :param open_value: The open_value of this Instrument.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._open_value = open_value

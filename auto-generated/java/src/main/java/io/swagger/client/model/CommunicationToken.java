@@ -23,19 +23,18 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * User communication SNS token
  */
 @ApiModel(description = "User communication SNS token")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class CommunicationToken {
   @SerializedName("id")
   private String id = null;
 
   @SerializedName("userId")
-  private BigDecimal userId = null;
+  private Integer userId = null;
 
   @SerializedName("deviceToken")
   private String deviceToken = null;
@@ -61,7 +60,7 @@ public class CommunicationToken {
     this.id = id;
   }
 
-  public CommunicationToken userId(BigDecimal userId) {
+  public CommunicationToken userId(Integer userId) {
     this.userId = userId;
     return this;
   }
@@ -71,11 +70,11 @@ public class CommunicationToken {
    * @return userId
   **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getUserId() {
+  public Integer getUserId() {
     return userId;
   }
 
-  public void setUserId(BigDecimal userId) {
+  public void setUserId(Integer userId) {
     this.userId = userId;
   }
 

@@ -24,17 +24,16 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.client.model.UserPreferences;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Account Operations
  */
 @ApiModel(description = "Account Operations")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class User {
   @SerializedName("id")
-  private BigDecimal id = null;
+  private Integer id = null;
 
   @SerializedName("firstname")
   private String firstname = null;
@@ -93,7 +92,7 @@ public class User {
   @SerializedName("typ")
   private String typ = null;
 
-  public User id(BigDecimal id) {
+  public User id(Integer id) {
     this.id = id;
     return this;
   }
@@ -103,11 +102,11 @@ public class User {
    * @return id
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(BigDecimal id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

@@ -30,21 +30,21 @@ public struct Instrument: Codable {
     public var calcInterval: Date?
     public var publishInterval: Date?
     public var publishTime: Date?
-    public var maxOrderQty: Double?
+    public var maxOrderQty: Int64?
     public var maxPrice: Double?
-    public var lotSize: Double?
+    public var lotSize: Int64?
     public var tickSize: Double?
-    public var multiplier: Double?
+    public var multiplier: Int64?
     public var settlCurrency: String?
-    public var underlyingToPositionMultiplier: Double?
-    public var underlyingToSettleMultiplier: Double?
-    public var quoteToSettleMultiplier: Double?
+    public var underlyingToPositionMultiplier: Int64?
+    public var underlyingToSettleMultiplier: Int64?
+    public var quoteToSettleMultiplier: Int64?
     public var isQuanto: Bool?
     public var isInverse: Bool?
     public var initMargin: Double?
     public var maintMargin: Double?
-    public var riskLimit: Double?
-    public var riskStep: Double?
+    public var riskLimit: Int64?
+    public var riskStep: Int64?
     public var limit: Double?
     public var taxed: Bool?
     public var deleverage: Bool?
@@ -63,13 +63,13 @@ public struct Instrument: Codable {
     public var prevClosePrice: Double?
     public var limitDownPrice: Double?
     public var limitUpPrice: Double?
-    public var totalVolume: Double?
-    public var volume: Double?
-    public var volume24h: Double?
-    public var prevTotalTurnover: Double?
-    public var totalTurnover: Double?
-    public var turnover: Double?
-    public var turnover24h: Double?
+    public var totalVolume: Int64?
+    public var volume: Int64?
+    public var volume24h: Int64?
+    public var prevTotalTurnover: Int64?
+    public var totalTurnover: Int64?
+    public var turnover: Int64?
+    public var turnover24h: Int64?
     public var homeNotional24h: Double?
     public var foreignNotional24h: Double?
     public var prevPrice24h: Double?
@@ -87,8 +87,8 @@ public struct Instrument: Codable {
     public var impactMidPrice: Double?
     public var impactAskPrice: Double?
     public var hasLiquidity: Bool?
-    public var openInterest: Double?
-    public var openValue: Double?
+    public var openInterest: Int64?
+    public var openValue: Int64?
     public var fairMethod: String?
     public var fairBasisRate: Double?
     public var fairBasis: Double?
@@ -102,7 +102,7 @@ public struct Instrument: Codable {
     public var minTick: Double?
     public var timestamp: Date?
 
-    public init(symbol: String, rootSymbol: String?, state: String?, typ: String?, listing: Date?, front: Date?, expiry: Date?, settle: Date?, listedSettle: Date?, positionCurrency: String?, underlying: String?, quoteCurrency: String?, underlyingSymbol: String?, reference: String?, referenceSymbol: String?, calcInterval: Date?, publishInterval: Date?, publishTime: Date?, maxOrderQty: Double?, maxPrice: Double?, lotSize: Double?, tickSize: Double?, multiplier: Double?, settlCurrency: String?, underlyingToPositionMultiplier: Double?, underlyingToSettleMultiplier: Double?, quoteToSettleMultiplier: Double?, isQuanto: Bool?, isInverse: Bool?, initMargin: Double?, maintMargin: Double?, riskLimit: Double?, riskStep: Double?, limit: Double?, taxed: Bool?, deleverage: Bool?, makerFee: Double?, takerFee: Double?, settlementFee: Double?, fundingBaseSymbol: String?, fundingQuoteSymbol: String?, fundingPremiumSymbol: String?, fundingTimestamp: Date?, fundingInterval: Date?, fundingRate: Double?, indicativeFundingRate: Double?, rebalanceTimestamp: Date?, rebalanceInterval: Date?, prevClosePrice: Double?, limitDownPrice: Double?, limitUpPrice: Double?, totalVolume: Double?, volume: Double?, volume24h: Double?, prevTotalTurnover: Double?, totalTurnover: Double?, turnover: Double?, turnover24h: Double?, homeNotional24h: Double?, foreignNotional24h: Double?, prevPrice24h: Double?, vwap: Double?, highPrice: Double?, lowPrice: Double?, lastPrice: Double?, lastPriceProtected: Double?, lastTickDirection: String?, lastChangePcnt: Double?, bidPrice: Double?, midPrice: Double?, askPrice: Double?, impactBidPrice: Double?, impactMidPrice: Double?, impactAskPrice: Double?, hasLiquidity: Bool?, openInterest: Double?, openValue: Double?, fairMethod: String?, fairBasisRate: Double?, fairBasis: Double?, fairPrice: Double?, markMethod: String?, markPrice: Double?, indicativeSettlePrice: Double?, settledPriceAdjustmentRate: Double?, settledPrice: Double?, instantPnl: Bool?, minTick: Double?, timestamp: Date?) {
+    public init(symbol: String, rootSymbol: String?, state: String?, typ: String?, listing: Date?, front: Date?, expiry: Date?, settle: Date?, listedSettle: Date?, positionCurrency: String?, underlying: String?, quoteCurrency: String?, underlyingSymbol: String?, reference: String?, referenceSymbol: String?, calcInterval: Date?, publishInterval: Date?, publishTime: Date?, maxOrderQty: Int64?, maxPrice: Double?, lotSize: Int64?, tickSize: Double?, multiplier: Int64?, settlCurrency: String?, underlyingToPositionMultiplier: Int64?, underlyingToSettleMultiplier: Int64?, quoteToSettleMultiplier: Int64?, isQuanto: Bool?, isInverse: Bool?, initMargin: Double?, maintMargin: Double?, riskLimit: Int64?, riskStep: Int64?, limit: Double?, taxed: Bool?, deleverage: Bool?, makerFee: Double?, takerFee: Double?, settlementFee: Double?, fundingBaseSymbol: String?, fundingQuoteSymbol: String?, fundingPremiumSymbol: String?, fundingTimestamp: Date?, fundingInterval: Date?, fundingRate: Double?, indicativeFundingRate: Double?, rebalanceTimestamp: Date?, rebalanceInterval: Date?, prevClosePrice: Double?, limitDownPrice: Double?, limitUpPrice: Double?, totalVolume: Int64?, volume: Int64?, volume24h: Int64?, prevTotalTurnover: Int64?, totalTurnover: Int64?, turnover: Int64?, turnover24h: Int64?, homeNotional24h: Double?, foreignNotional24h: Double?, prevPrice24h: Double?, vwap: Double?, highPrice: Double?, lowPrice: Double?, lastPrice: Double?, lastPriceProtected: Double?, lastTickDirection: String?, lastChangePcnt: Double?, bidPrice: Double?, midPrice: Double?, askPrice: Double?, impactBidPrice: Double?, impactMidPrice: Double?, impactAskPrice: Double?, hasLiquidity: Bool?, openInterest: Int64?, openValue: Int64?, fairMethod: String?, fairBasisRate: Double?, fairBasis: Double?, fairPrice: Double?, markMethod: String?, markPrice: Double?, indicativeSettlePrice: Double?, settledPriceAdjustmentRate: Double?, settledPrice: Double?, instantPnl: Bool?, minTick: Double?, timestamp: Date?) {
         self.symbol = symbol
         self.rootSymbol = rootSymbol
         self.state = state

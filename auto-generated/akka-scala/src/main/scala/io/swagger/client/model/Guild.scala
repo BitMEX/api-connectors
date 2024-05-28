@@ -16,7 +16,7 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class Guild (
-  id: Option[Double] = None,
+  id: Option[Int] = None,
   created: DateTime,
   updated: DateTime,
   archived: Option[Boolean] = None,

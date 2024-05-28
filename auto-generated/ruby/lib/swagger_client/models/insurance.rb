@@ -35,7 +35,7 @@ module SwaggerClient
       {
         :'currency' => :'String',
         :'timestamp' => :'DateTime',
-        :'wallet_balance' => :'Float'
+        :'wallet_balance' => :'Integer'
       }
     end
 

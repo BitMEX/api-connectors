@@ -71,7 +71,7 @@ module SwaggerClient
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'id' => :'Float',
+        :'id' => :'Integer',
         :'created' => :'DateTime',
         :'updated' => :'DateTime',
         :'archived' => :'BOOLEAN',

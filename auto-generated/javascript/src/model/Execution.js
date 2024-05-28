@@ -122,6 +122,8 @@
         obj.avgPx = ApiClient.convertToType(data['avgPx'], 'Number');
       if (data.hasOwnProperty('commission'))
         obj.commission = ApiClient.convertToType(data['commission'], 'Number');
+      if (data.hasOwnProperty('feeType'))
+        obj.feeType = ApiClient.convertToType(data['feeType'], 'String');
       if (data.hasOwnProperty('tradePublishIndicator'))
         obj.tradePublishIndicator = ApiClient.convertToType(data['tradePublishIndicator'], 'String');
       if (data.hasOwnProperty('text'))
@@ -140,8 +142,6 @@
         obj.transactTime = ApiClient.convertToType(data['transactTime'], 'Date');
       if (data.hasOwnProperty('timestamp'))
         obj.timestamp = ApiClient.convertToType(data['timestamp'], 'Date');
-      if (data.hasOwnProperty('feeType'))
-        obj.feeType = ApiClient.convertToType(data['feeType'], 'String');
     }
     return obj;
   }
@@ -302,6 +302,11 @@
   exports.prototype.commission = undefined;
 
   /**
+   * @member {String} feeType
+   */
+  exports.prototype.feeType = undefined;
+
+  /**
    * @member {String} tradePublishIndicator
    */
   exports.prototype.tradePublishIndicator = undefined;
@@ -345,11 +350,6 @@
    * @member {Date} timestamp
    */
   exports.prototype.timestamp = undefined;
-
-  /**
-   * @member {String} feeType
-   */
-  exports.prototype.feeType = undefined;
 
 
   return exports;

@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -23,7 +22,7 @@ public class Transaction {
   @SerializedName("transactID")
   private String transactID = null;
   @SerializedName("account")
-  private BigDecimal account = null;
+  private Long account = null;
   @SerializedName("currency")
   private String currency = null;
   @SerializedName("network")
@@ -31,9 +30,9 @@ public class Transaction {
   @SerializedName("transactType")
   private String transactType = null;
   @SerializedName("amount")
-  private BigDecimal amount = null;
+  private Long amount = null;
   @SerializedName("fee")
-  private BigDecimal fee = null;
+  private Long fee = null;
   @SerializedName("transactStatus")
   private String transactStatus = null;
   @SerializedName("address")
@@ -47,7 +46,7 @@ public class Transaction {
   @SerializedName("timestamp")
   private Date timestamp = null;
   @SerializedName("walletBalance")
-  private BigDecimal walletBalance = null;
+  private Long walletBalance = null;
 
   /**
    **/
@@ -62,10 +61,10 @@ public class Transaction {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAccount() {
+  public Long getAccount() {
     return account;
   }
-  public void setAccount(BigDecimal account) {
+  public void setAccount(Long account) {
     this.account = account;
   }
 
@@ -102,20 +101,20 @@ public class Transaction {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAmount() {
+  public Long getAmount() {
     return amount;
   }
-  public void setAmount(BigDecimal amount) {
+  public void setAmount(Long amount) {
     this.amount = amount;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getFee() {
+  public Long getFee() {
     return fee;
   }
-  public void setFee(BigDecimal fee) {
+  public void setFee(Long fee) {
     this.fee = fee;
   }
 
@@ -182,10 +181,10 @@ public class Transaction {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getWalletBalance() {
+  public Long getWalletBalance() {
     return walletBalance;
   }
-  public void setWalletBalance(BigDecimal walletBalance) {
+  public void setWalletBalance(Long walletBalance) {
     this.walletBalance = walletBalance;
   }
 

@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 **timestamp** | [**\DateTime**](\DateTime.md) |  | 
 **symbol** | **string** |  | 
 **side** | **string** |  | [optional] 
-**size** | **float** |  | [optional] 
+**size** | **int** |  | [optional] 
 **price** | **double** |  | [optional] 
 **tick_direction** | **string** |  | [optional] 
 **trd_match_id** | **string** |  | [optional] 
-**gross_value** | **float** |  | [optional] 
+**gross_value** | **int** |  | [optional] 
 **home_notional** | **double** |  | [optional] 
 **foreign_notional** | **double** |  | [optional] 
 **trd_type** | **string** |  | [optional] 

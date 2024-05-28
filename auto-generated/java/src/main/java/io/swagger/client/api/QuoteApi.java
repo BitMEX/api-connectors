@@ -27,7 +27,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import org.threeten.bp.OffsetDateTime;
 import io.swagger.client.model.Quote;
@@ -72,7 +71,7 @@ public class QuoteApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call quoteGetCall(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call quoteGetCall(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -130,7 +129,7 @@ public class QuoteApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call quoteGetValidateBeforeCall(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call quoteGetValidateBeforeCall(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
         com.squareup.okhttp.Call call = quoteGetCall(symbol, filter, columns, count, start, reverse, startTime, endTime, progressListener, progressRequestListener);
@@ -152,7 +151,7 @@ public class QuoteApi {
      * @return List&lt;Quote&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Quote> quoteGet(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public List<Quote> quoteGet(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         ApiResponse<List<Quote>> resp = quoteGetWithHttpInfo(symbol, filter, columns, count, start, reverse, startTime, endTime);
         return resp.getData();
     }
@@ -171,7 +170,7 @@ public class QuoteApi {
      * @return ApiResponse&lt;List&lt;Quote&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Quote>> quoteGetWithHttpInfo(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public ApiResponse<List<Quote>> quoteGetWithHttpInfo(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         com.squareup.okhttp.Call call = quoteGetValidateBeforeCall(symbol, filter, columns, count, start, reverse, startTime, endTime, null, null);
         Type localVarReturnType = new TypeToken<List<Quote>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -192,7 +191,7 @@ public class QuoteApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call quoteGetAsync(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<Quote>> callback) throws ApiException {
+    public com.squareup.okhttp.Call quoteGetAsync(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<Quote>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -235,7 +234,7 @@ public class QuoteApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call quoteGetBucketedCall(String binSize, Boolean partial, String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call quoteGetBucketedCall(String binSize, Boolean partial, String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -297,7 +296,7 @@ public class QuoteApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call quoteGetBucketedValidateBeforeCall(String binSize, Boolean partial, String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call quoteGetBucketedValidateBeforeCall(String binSize, Boolean partial, String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
         com.squareup.okhttp.Call call = quoteGetBucketedCall(binSize, partial, symbol, filter, columns, count, start, reverse, startTime, endTime, progressListener, progressRequestListener);
@@ -321,7 +320,7 @@ public class QuoteApi {
      * @return List&lt;Quote&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Quote> quoteGetBucketed(String binSize, Boolean partial, String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public List<Quote> quoteGetBucketed(String binSize, Boolean partial, String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         ApiResponse<List<Quote>> resp = quoteGetBucketedWithHttpInfo(binSize, partial, symbol, filter, columns, count, start, reverse, startTime, endTime);
         return resp.getData();
     }
@@ -342,7 +341,7 @@ public class QuoteApi {
      * @return ApiResponse&lt;List&lt;Quote&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Quote>> quoteGetBucketedWithHttpInfo(String binSize, Boolean partial, String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public ApiResponse<List<Quote>> quoteGetBucketedWithHttpInfo(String binSize, Boolean partial, String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         com.squareup.okhttp.Call call = quoteGetBucketedValidateBeforeCall(binSize, partial, symbol, filter, columns, count, start, reverse, startTime, endTime, null, null);
         Type localVarReturnType = new TypeToken<List<Quote>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -365,7 +364,7 @@ public class QuoteApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call quoteGetBucketedAsync(String binSize, Boolean partial, String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<Quote>> callback) throws ApiException {
+    public com.squareup.okhttp.Call quoteGetBucketedAsync(String binSize, Boolean partial, String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<Quote>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

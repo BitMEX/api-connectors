@@ -34,7 +34,7 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</param>
         /// <param name="depth">Orderbook depth per side. Send 0 for full depth. (optional, default to 25)</param>
         /// <returns>List&lt;OrderBookL2&gt;</returns>
-        List<OrderBookL2> OrderBookGetL2 (string symbol, decimal? depth = null);
+        List<OrderBookL2> OrderBookGetL2 (string symbol, int? depth = null);
 
         /// <summary>
         /// Get current orderbook in vertical format.
@@ -46,7 +46,7 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</param>
         /// <param name="depth">Orderbook depth per side. Send 0 for full depth. (optional, default to 25)</param>
         /// <returns>ApiResponse of List&lt;OrderBookL2&gt;</returns>
-        ApiResponse<List<OrderBookL2>> OrderBookGetL2WithHttpInfo (string symbol, decimal? depth = null);
+        ApiResponse<List<OrderBookL2>> OrderBookGetL2WithHttpInfo (string symbol, int? depth = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -59,7 +59,7 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</param>
         /// <param name="depth">Orderbook depth per side. Send 0 for full depth. (optional, default to 25)</param>
         /// <returns>Task of List&lt;OrderBookL2&gt;</returns>
-        System.Threading.Tasks.Task<List<OrderBookL2>> OrderBookGetL2Async (string symbol, decimal? depth = null);
+        System.Threading.Tasks.Task<List<OrderBookL2>> OrderBookGetL2Async (string symbol, int? depth = null);
 
         /// <summary>
         /// Get current orderbook in vertical format.
@@ -71,7 +71,7 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</param>
         /// <param name="depth">Orderbook depth per side. Send 0 for full depth. (optional, default to 25)</param>
         /// <returns>Task of ApiResponse (List&lt;OrderBookL2&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<OrderBookL2>>> OrderBookGetL2AsyncWithHttpInfo (string symbol, decimal? depth = null);
+        System.Threading.Tasks.Task<ApiResponse<List<OrderBookL2>>> OrderBookGetL2AsyncWithHttpInfo (string symbol, int? depth = null);
         #endregion Asynchronous Operations
     }
 
@@ -179,7 +179,7 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</param>
         /// <param name="depth">Orderbook depth per side. Send 0 for full depth. (optional, default to 25)</param>
         /// <returns>List&lt;OrderBookL2&gt;</returns>
-        public List<OrderBookL2> OrderBookGetL2 (string symbol, decimal? depth = null)
+        public List<OrderBookL2> OrderBookGetL2 (string symbol, int? depth = null)
         {
              ApiResponse<List<OrderBookL2>> localVarResponse = OrderBookGetL2WithHttpInfo(symbol, depth);
              return localVarResponse.Data;
@@ -192,7 +192,7 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</param>
         /// <param name="depth">Orderbook depth per side. Send 0 for full depth. (optional, default to 25)</param>
         /// <returns>ApiResponse of List&lt;OrderBookL2&gt;</returns>
-        public ApiResponse< List<OrderBookL2> > OrderBookGetL2WithHttpInfo (string symbol, decimal? depth = null)
+        public ApiResponse< List<OrderBookL2> > OrderBookGetL2WithHttpInfo (string symbol, int? depth = null)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)
@@ -254,7 +254,7 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</param>
         /// <param name="depth">Orderbook depth per side. Send 0 for full depth. (optional, default to 25)</param>
         /// <returns>Task of List&lt;OrderBookL2&gt;</returns>
-        public async System.Threading.Tasks.Task<List<OrderBookL2>> OrderBookGetL2Async (string symbol, decimal? depth = null)
+        public async System.Threading.Tasks.Task<List<OrderBookL2>> OrderBookGetL2Async (string symbol, int? depth = null)
         {
              ApiResponse<List<OrderBookL2>> localVarResponse = await OrderBookGetL2AsyncWithHttpInfo(symbol, depth);
              return localVarResponse.Data;
@@ -268,7 +268,7 @@ namespace IO.Swagger.Api
         /// <param name="symbol">Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</param>
         /// <param name="depth">Orderbook depth per side. Send 0 for full depth. (optional, default to 25)</param>
         /// <returns>Task of ApiResponse (List&lt;OrderBookL2&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<OrderBookL2>>> OrderBookGetL2AsyncWithHttpInfo (string symbol, decimal? depth = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<OrderBookL2>>> OrderBookGetL2AsyncWithHttpInfo (string symbol, int? depth = null)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)

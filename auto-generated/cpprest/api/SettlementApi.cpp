@@ -36,7 +36,7 @@ SettlementApi::~SettlementApi()
 {
 }
 
-pplx::task<std::vector<std::shared_ptr<Settlement>>> SettlementApi::settlement_get(boost::optional<utility::string_t> symbol, boost::optional<utility::string_t> filter, boost::optional<utility::string_t> columns, boost::optional<double> count, boost::optional<double> start, boost::optional<bool> reverse, boost::optional<utility::datetime> startTime, boost::optional<utility::datetime> endTime)
+pplx::task<std::vector<std::shared_ptr<Settlement>>> SettlementApi::settlement_get(boost::optional<utility::string_t> symbol, boost::optional<utility::string_t> filter, boost::optional<utility::string_t> columns, boost::optional<int32_t> count, boost::optional<int32_t> start, boost::optional<bool> reverse, boost::optional<utility::datetime> startTime, boost::optional<utility::datetime> endTime)
 {
 
 

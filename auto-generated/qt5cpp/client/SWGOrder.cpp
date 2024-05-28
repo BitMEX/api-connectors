@@ -43,17 +43,17 @@ SWGOrder::init() {
     m_cl_ord_id_isSet = false;
     cl_ord_link_id = new QString("");
     m_cl_ord_link_id_isSet = false;
-    account = 0.0;
+    account = 0L;
     m_account_isSet = false;
     symbol = new QString("");
     m_symbol_isSet = false;
     side = new QString("");
     m_side_isSet = false;
-    order_qty = 0.0;
+    order_qty = 0L;
     m_order_qty_isSet = false;
     price = 0.0;
     m_price_isSet = false;
-    display_qty = 0.0;
+    display_qty = 0L;
     m_display_qty_isSet = false;
     stop_px = 0.0;
     m_stop_px_isSet = false;
@@ -81,9 +81,9 @@ SWGOrder::init() {
     m_working_indicator_isSet = false;
     ord_rej_reason = new QString("");
     m_ord_rej_reason_isSet = false;
-    leaves_qty = 0.0;
+    leaves_qty = 0L;
     m_leaves_qty_isSet = false;
-    cum_qty = 0.0;
+    cum_qty = 0L;
     m_cum_qty_isSet = false;
     avg_px = 0.0;
     m_avg_px_isSet = false;
@@ -106,22 +106,16 @@ SWGOrder::cleanup() {
     if(cl_ord_link_id != nullptr) { 
         delete cl_ord_link_id;
     }
-    if(account != nullptr) { 
-        delete account;
-    }
+
     if(symbol != nullptr) { 
         delete symbol;
     }
     if(side != nullptr) { 
         delete side;
     }
-    if(order_qty != nullptr) { 
-        delete order_qty;
-    }
 
-    if(display_qty != nullptr) { 
-        delete display_qty;
-    }
+
+
 
 
     if(peg_price_type != nullptr) { 
@@ -155,12 +149,8 @@ SWGOrder::cleanup() {
     if(ord_rej_reason != nullptr) { 
         delete ord_rej_reason;
     }
-    if(leaves_qty != nullptr) { 
-        delete leaves_qty;
-    }
-    if(cum_qty != nullptr) { 
-        delete cum_qty;
-    }
+
+
 
     if(text != nullptr) { 
         delete text;
@@ -190,17 +180,17 @@ SWGOrder::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&cl_ord_link_id, pJson["clOrdLinkID"], "QString", "QString");
     
-    ::Swagger::setValue(&account, pJson["account"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&account, pJson["account"], "qint64", "");
     
     ::Swagger::setValue(&symbol, pJson["symbol"], "QString", "QString");
     
     ::Swagger::setValue(&side, pJson["side"], "QString", "QString");
     
-    ::Swagger::setValue(&order_qty, pJson["orderQty"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&order_qty, pJson["orderQty"], "qint64", "");
     
     ::Swagger::setValue(&price, pJson["price"], "double", "");
     
-    ::Swagger::setValue(&display_qty, pJson["displayQty"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&display_qty, pJson["displayQty"], "qint64", "");
     
     ::Swagger::setValue(&stop_px, pJson["stopPx"], "double", "");
     
@@ -228,9 +218,9 @@ SWGOrder::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&ord_rej_reason, pJson["ordRejReason"], "QString", "QString");
     
-    ::Swagger::setValue(&leaves_qty, pJson["leavesQty"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&leaves_qty, pJson["leavesQty"], "qint64", "");
     
-    ::Swagger::setValue(&cum_qty, pJson["cumQty"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&cum_qty, pJson["cumQty"], "qint64", "");
     
     ::Swagger::setValue(&avg_px, pJson["avgPx"], "double", "");
     
@@ -263,8 +253,8 @@ SWGOrder::asJsonObject() {
     if(cl_ord_link_id != nullptr && *cl_ord_link_id != QString("")){
         toJsonValue(QString("clOrdLinkID"), cl_ord_link_id, obj, QString("QString"));
     }
-    if((account != nullptr) && (account->isSet())){
-        toJsonValue(QString("account"), account, obj, QString("SWGNumber"));
+    if(m_account_isSet){
+        obj.insert("account", QJsonValue(account));
     }
     if(symbol != nullptr && *symbol != QString("")){
         toJsonValue(QString("symbol"), symbol, obj, QString("QString"));
@@ -272,14 +262,14 @@ SWGOrder::asJsonObject() {
     if(side != nullptr && *side != QString("")){
         toJsonValue(QString("side"), side, obj, QString("QString"));
     }
-    if((order_qty != nullptr) && (order_qty->isSet())){
-        toJsonValue(QString("orderQty"), order_qty, obj, QString("SWGNumber"));
+    if(m_order_qty_isSet){
+        obj.insert("orderQty", QJsonValue(order_qty));
     }
     if(m_price_isSet){
         obj.insert("price", QJsonValue(price));
     }
-    if((display_qty != nullptr) && (display_qty->isSet())){
-        toJsonValue(QString("displayQty"), display_qty, obj, QString("SWGNumber"));
+    if(m_display_qty_isSet){
+        obj.insert("displayQty", QJsonValue(display_qty));
     }
     if(m_stop_px_isSet){
         obj.insert("stopPx", QJsonValue(stop_px));
@@ -320,11 +310,11 @@ SWGOrder::asJsonObject() {
     if(ord_rej_reason != nullptr && *ord_rej_reason != QString("")){
         toJsonValue(QString("ordRejReason"), ord_rej_reason, obj, QString("QString"));
     }
-    if((leaves_qty != nullptr) && (leaves_qty->isSet())){
-        toJsonValue(QString("leavesQty"), leaves_qty, obj, QString("SWGNumber"));
+    if(m_leaves_qty_isSet){
+        obj.insert("leavesQty", QJsonValue(leaves_qty));
     }
-    if((cum_qty != nullptr) && (cum_qty->isSet())){
-        toJsonValue(QString("cumQty"), cum_qty, obj, QString("SWGNumber"));
+    if(m_cum_qty_isSet){
+        obj.insert("cumQty", QJsonValue(cum_qty));
     }
     if(m_avg_px_isSet){
         obj.insert("avgPx", QJsonValue(avg_px));
@@ -372,12 +362,12 @@ SWGOrder::setClOrdLinkId(QString* cl_ord_link_id) {
     this->m_cl_ord_link_id_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGOrder::getAccount() {
     return account;
 }
 void
-SWGOrder::setAccount(SWGNumber* account) {
+SWGOrder::setAccount(qint64 account) {
     this->account = account;
     this->m_account_isSet = true;
 }
@@ -402,12 +392,12 @@ SWGOrder::setSide(QString* side) {
     this->m_side_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGOrder::getOrderQty() {
     return order_qty;
 }
 void
-SWGOrder::setOrderQty(SWGNumber* order_qty) {
+SWGOrder::setOrderQty(qint64 order_qty) {
     this->order_qty = order_qty;
     this->m_order_qty_isSet = true;
 }
@@ -422,12 +412,12 @@ SWGOrder::setPrice(double price) {
     this->m_price_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGOrder::getDisplayQty() {
     return display_qty;
 }
 void
-SWGOrder::setDisplayQty(SWGNumber* display_qty) {
+SWGOrder::setDisplayQty(qint64 display_qty) {
     this->display_qty = display_qty;
     this->m_display_qty_isSet = true;
 }
@@ -562,22 +552,22 @@ SWGOrder::setOrdRejReason(QString* ord_rej_reason) {
     this->m_ord_rej_reason_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGOrder::getLeavesQty() {
     return leaves_qty;
 }
 void
-SWGOrder::setLeavesQty(SWGNumber* leaves_qty) {
+SWGOrder::setLeavesQty(qint64 leaves_qty) {
     this->leaves_qty = leaves_qty;
     this->m_leaves_qty_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGOrder::getCumQty() {
     return cum_qty;
 }
 void
-SWGOrder::setCumQty(SWGNumber* cum_qty) {
+SWGOrder::setCumQty(qint64 cum_qty) {
     this->cum_qty = cum_qty;
     this->m_cum_qty_isSet = true;
 }
@@ -630,12 +620,12 @@ SWGOrder::isSet(){
         if(order_id != nullptr && *order_id != QString("")){ isObjectUpdated = true; break;}
         if(cl_ord_id != nullptr && *cl_ord_id != QString("")){ isObjectUpdated = true; break;}
         if(cl_ord_link_id != nullptr && *cl_ord_link_id != QString("")){ isObjectUpdated = true; break;}
-        if(account != nullptr && account->isSet()){ isObjectUpdated = true; break;}
+        if(m_account_isSet){ isObjectUpdated = true; break;}
         if(symbol != nullptr && *symbol != QString("")){ isObjectUpdated = true; break;}
         if(side != nullptr && *side != QString("")){ isObjectUpdated = true; break;}
-        if(order_qty != nullptr && order_qty->isSet()){ isObjectUpdated = true; break;}
+        if(m_order_qty_isSet){ isObjectUpdated = true; break;}
         if(m_price_isSet){ isObjectUpdated = true; break;}
-        if(display_qty != nullptr && display_qty->isSet()){ isObjectUpdated = true; break;}
+        if(m_display_qty_isSet){ isObjectUpdated = true; break;}
         if(m_stop_px_isSet){ isObjectUpdated = true; break;}
         if(m_peg_offset_value_isSet){ isObjectUpdated = true; break;}
         if(peg_price_type != nullptr && *peg_price_type != QString("")){ isObjectUpdated = true; break;}
@@ -649,8 +639,8 @@ SWGOrder::isSet(){
         if(triggered != nullptr && *triggered != QString("")){ isObjectUpdated = true; break;}
         if(m_working_indicator_isSet){ isObjectUpdated = true; break;}
         if(ord_rej_reason != nullptr && *ord_rej_reason != QString("")){ isObjectUpdated = true; break;}
-        if(leaves_qty != nullptr && leaves_qty->isSet()){ isObjectUpdated = true; break;}
-        if(cum_qty != nullptr && cum_qty->isSet()){ isObjectUpdated = true; break;}
+        if(m_leaves_qty_isSet){ isObjectUpdated = true; break;}
+        if(m_cum_qty_isSet){ isObjectUpdated = true; break;}
         if(m_avg_px_isSet){ isObjectUpdated = true; break;}
         if(text != nullptr && *text != QString("")){ isObjectUpdated = true; break;}
         

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **networkSymbol** | **String** |  |  [optional]
 **transactionExplorer** | **String** |  |  [optional]
 **tokenExplorer** | **String** |  |  [optional]
-**depositConfirmations** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**depositConfirmations** | **Integer** |  |  [optional]
 **enabled** | **Boolean** |  |  [optional]
 
 

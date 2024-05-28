@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**account** | [**BigDecimal**](BigDecimal.md) |  | 
+**account** | **Integer** |  | 
 **nonce** | **String** |  |  [optional]
 **accountNonce** | **String** |  | 
 **total** | **Double** |  | 

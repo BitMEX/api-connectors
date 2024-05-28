@@ -27,7 +27,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Chat;
 import io.swagger.client.model.ChatChannel;
 import io.swagger.client.model.ConnectedUsers;
@@ -70,7 +69,7 @@ public class ChatApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call chatGetCall(BigDecimal count, BigDecimal start, Boolean reverse, Double channelID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call chatGetCall(Integer count, Integer start, Boolean reverse, Double channelID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -120,7 +119,7 @@ public class ChatApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call chatGetValidateBeforeCall(BigDecimal count, BigDecimal start, Boolean reverse, Double channelID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call chatGetValidateBeforeCall(Integer count, Integer start, Boolean reverse, Double channelID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
         com.squareup.okhttp.Call call = chatGetCall(count, start, reverse, channelID, progressListener, progressRequestListener);
@@ -138,7 +137,7 @@ public class ChatApi {
      * @return List&lt;Chat&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Chat> chatGet(BigDecimal count, BigDecimal start, Boolean reverse, Double channelID) throws ApiException {
+    public List<Chat> chatGet(Integer count, Integer start, Boolean reverse, Double channelID) throws ApiException {
         ApiResponse<List<Chat>> resp = chatGetWithHttpInfo(count, start, reverse, channelID);
         return resp.getData();
     }
@@ -153,7 +152,7 @@ public class ChatApi {
      * @return ApiResponse&lt;List&lt;Chat&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Chat>> chatGetWithHttpInfo(BigDecimal count, BigDecimal start, Boolean reverse, Double channelID) throws ApiException {
+    public ApiResponse<List<Chat>> chatGetWithHttpInfo(Integer count, Integer start, Boolean reverse, Double channelID) throws ApiException {
         com.squareup.okhttp.Call call = chatGetValidateBeforeCall(count, start, reverse, channelID, null, null);
         Type localVarReturnType = new TypeToken<List<Chat>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -170,7 +169,7 @@ public class ChatApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call chatGetAsync(BigDecimal count, BigDecimal start, Boolean reverse, Double channelID, final ApiCallback<List<Chat>> callback) throws ApiException {
+    public com.squareup.okhttp.Call chatGetAsync(Integer count, Integer start, Boolean reverse, Double channelID, final ApiCallback<List<Chat>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

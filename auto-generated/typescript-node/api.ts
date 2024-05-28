@@ -973,6 +973,7 @@ export class Execution {
     'cumQty'?: number;
     'avgPx'?: number;
     'commission'?: number;
+    'feeType'?: string;
     'tradePublishIndicator'?: string;
     'text'?: string;
     'trdMatchID'?: string;
@@ -982,7 +983,6 @@ export class Execution {
     'foreignNotional'?: number;
     'transactTime'?: Date;
     'timestamp': Date;
-    'feeType'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -1143,6 +1143,11 @@ export class Execution {
             "type": "number"
         },
         {
+            "name": "feeType",
+            "baseName": "feeType",
+            "type": "string"
+        },
+        {
             "name": "tradePublishIndicator",
             "baseName": "tradePublishIndicator",
             "type": "string"
@@ -1186,11 +1191,6 @@ export class Execution {
             "name": "timestamp",
             "baseName": "timestamp",
             "type": "Date"
-        },
-        {
-            "name": "feeType",
-            "baseName": "feeType",
-            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

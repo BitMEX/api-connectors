@@ -34,6 +34,7 @@ Name | Type | Description | Notes
 **cumQty** | **NSNumber*** |  | [optional] 
 **avgPx** | **NSNumber*** |  | [optional] 
 **commission** | **NSNumber*** |  | [optional] 
+**feeType** | **NSString*** |  | [optional] 
 **tradePublishIndicator** | **NSString*** |  | [optional] 
 **text** | **NSString*** |  | [optional] 
 **trdMatchID** | **NSString*** |  | [optional] 
@@ -43,7 +44,6 @@ Name | Type | Description | Notes
 **foreignNotional** | **NSNumber*** |  | [optional] 
 **transactTime** | **NSDate*** |  | [optional] 
 **timestamp** | **NSDate*** |  | 
-**feeType** | **NSString*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

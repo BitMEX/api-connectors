@@ -14,12 +14,12 @@ public struct Quote: Codable {
 
     public var timestamp: Date
     public var symbol: String
-    public var bidSize: Double?
+    public var bidSize: Int64?
     public var bidPrice: Double?
     public var askPrice: Double?
-    public var askSize: Double?
+    public var askSize: Int64?
 
-    public init(timestamp: Date, symbol: String, bidSize: Double?, bidPrice: Double?, askPrice: Double?, askSize: Double?) {
+    public init(timestamp: Date, symbol: String, bidSize: Int64?, bidPrice: Double?, askPrice: Double?, askSize: Int64?) {
         self.timestamp = timestamp
         self.symbol = symbol
         self.bidSize = bidSize

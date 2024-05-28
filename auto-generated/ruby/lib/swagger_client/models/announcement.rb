@@ -39,7 +39,7 @@ module SwaggerClient
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'id' => :'Float',
+        :'id' => :'Integer',
         :'link' => :'String',
         :'title' => :'String',
         :'content' => :'String',

@@ -34,7 +34,7 @@ class CommunicationToken(object):
     """
     swagger_types = {
         'id': 'str',
-        'user_id': 'float',
+        'user_id': 'int',
         'device_token': 'str',
         'channel': 'str'
     }
@@ -92,7 +92,7 @@ class CommunicationToken(object):
 
 
         :return: The user_id of this CommunicationToken.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._user_id
 
@@ -102,7 +102,7 @@ class CommunicationToken(object):
 
 
         :param user_id: The user_id of this CommunicationToken.  # noqa: E501
-        :type: float
+        :type: int
         """
         if self._configuration.client_side_validation and user_id is None:
             raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501

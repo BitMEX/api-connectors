@@ -33,7 +33,7 @@ class Guild(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'float',
+        'id': 'int',
         'created': 'datetime',
         'updated': 'datetime',
         'archived': 'bool',
@@ -128,7 +128,7 @@ class Guild(object):
 
 
         :return: The id of this Guild.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._id
 
@@ -138,7 +138,7 @@ class Guild(object):
 
 
         :param id: The id of this Guild.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._id = id

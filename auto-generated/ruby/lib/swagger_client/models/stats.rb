@@ -44,10 +44,10 @@ module SwaggerClient
       {
         :'root_symbol' => :'String',
         :'currency' => :'String',
-        :'volume24h' => :'Float',
-        :'turnover24h' => :'Float',
-        :'open_interest' => :'Float',
-        :'open_value' => :'Float'
+        :'volume24h' => :'Integer',
+        :'turnover24h' => :'Integer',
+        :'open_interest' => :'Integer',
+        :'open_value' => :'Integer'
       }
     end
 

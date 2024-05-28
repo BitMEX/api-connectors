@@ -44,7 +44,7 @@ namespace IO.Swagger.Model
         /// <param name="size">size.</param>
         /// <param name="price">price.</param>
         /// <param name="timestamp">timestamp.</param>
-        public OrderBookL2(string symbol = default(string), decimal? id = default(decimal?), string side = default(string), decimal? size = default(decimal?), double? price = default(double?), DateTime? timestamp = default(DateTime?))
+        public OrderBookL2(string symbol = default(string), long? id = default(long?), string side = default(string), long? size = default(long?), double? price = default(double?), DateTime? timestamp = default(DateTime?))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -88,7 +88,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public decimal? Id { get; set; }
+        public long? Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Side
@@ -100,7 +100,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Size
         /// </summary>
         [DataMember(Name="size", EmitDefaultValue=false)]
-        public decimal? Size { get; set; }
+        public long? Size { get; set; }
 
         /// <summary>
         /// Gets or Sets Price

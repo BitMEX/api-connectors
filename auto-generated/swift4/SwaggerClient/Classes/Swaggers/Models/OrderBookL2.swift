@@ -12,13 +12,13 @@ import Foundation
 public struct OrderBookL2: Codable {
 
     public var symbol: String
-    public var _id: Double
+    public var _id: Int64
     public var side: String
-    public var size: Double?
+    public var size: Int64?
     public var price: Double?
     public var timestamp: Date?
 
-    public init(symbol: String, _id: Double, side: String, size: Double?, price: Double?, timestamp: Date?) {
+    public init(symbol: String, _id: Int64, side: String, size: Int64?, price: Double?, timestamp: Date?) {
         self.symbol = symbol
         self._id = _id
         self.side = side

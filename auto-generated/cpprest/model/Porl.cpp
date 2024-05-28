@@ -21,7 +21,7 @@ namespace model {
 
 Porl::Porl()
 {
-    m_Account = 0.0;
+    m_Account = 0;
     m_Nonce = utility::conversions::to_string_t("");
     m_NonceIsSet = false;
     m_AccountNonce = utility::conversions::to_string_t("");
@@ -66,7 +66,7 @@ web::json::value Porl::toJson() const
 
 void Porl::fromJson(web::json::value& val)
 {
-    setAccount(ModelBase::doubleFromJson(val[utility::conversions::to_string_t("account")]));
+    setAccount(ModelBase::int32_tFromJson(val[utility::conversions::to_string_t("account")]));
     if(val.has_field(utility::conversions::to_string_t("nonce")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("nonce")];
@@ -125,7 +125,7 @@ void Porl::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
         namePrefix += utility::conversions::to_string_t(".");
     }
 
-    setAccount(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("account"))));
+    setAccount(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("account"))));
     if(multipart->hasContent(utility::conversions::to_string_t("nonce")))
     {
         setNonce(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("nonce"))));
@@ -141,13 +141,13 @@ void Porl::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     setCreated(ModelBase::dateFromHttpContent(multipart->getContent(utility::conversions::to_string_t("created"))));
 }
 
-double Porl::getAccount() const
+int32_t Porl::getAccount() const
 {
     return m_Account;
 }
 
 
-void Porl::setAccount(double value)
+void Porl::setAccount(int32_t value)
 {
     m_Account = value;
     

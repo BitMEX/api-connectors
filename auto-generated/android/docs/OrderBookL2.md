@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **symbol** | **String** |  | 
-**id** | [**BigDecimal**](BigDecimal.md) |  | 
+**id** | **Long** |  | 
 **side** | **String** |  | 
-**size** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**size** | **Long** |  |  [optional]
 **price** | **Double** |  |  [optional]
 **timestamp** | [**Date**](Date.md) |  |  [optional]
 

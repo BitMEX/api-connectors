@@ -32,7 +32,7 @@ object OrderBookApi {
    * @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
    * @param depth Orderbook depth per side. Send 0 for full depth.
    */
-  def orderBook.getL2(symbol: String, depth: Option[Double]): ApiRequest[Seq[OrderBookL2]] =
+  def orderBook.getL2(symbol: String, depth: Option[Int]): ApiRequest[Seq[OrderBookL2]] =
     ApiRequest[Seq[OrderBookL2]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/orderBook/L2", "application/json")
       .withQueryParam("symbol", symbol)
       .withQueryParam("depth", depth)

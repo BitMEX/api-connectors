@@ -52,7 +52,7 @@ public:
     pplx::task<std::vector<std::shared_ptr<Position>>> position_get(
         boost::optional<utility::string_t> filter,
         boost::optional<utility::string_t> columns,
-        boost::optional<double> count
+        boost::optional<int32_t> count
     );
     /// <summary>
     /// Enable isolated margin or cross margin per-position.
@@ -77,7 +77,7 @@ public:
     /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
     pplx::task<std::shared_ptr<Position>> position_transferIsolatedMargin(
         utility::string_t symbol,
-        double amount,
+        int64_t amount,
         boost::optional<double> targetAccountId
     );
     /// <summary>
@@ -105,7 +105,7 @@ public:
     /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
     pplx::task<std::shared_ptr<Position>> position_updateRiskLimit(
         utility::string_t symbol,
-        double riskLimit,
+        int64_t riskLimit,
         boost::optional<double> targetAccountId
     );
 

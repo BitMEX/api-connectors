@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -24,7 +23,7 @@ import com.google.gson.annotations.SerializedName;
 public class Position {
   
   @SerializedName("account")
-  private BigDecimal account = null;
+  private Long account = 0;
   @SerializedName("symbol")
   private String symbol = null;
   @SerializedName("currency")
@@ -40,7 +39,7 @@ public class Position {
   @SerializedName("maintMarginReq")
   private Double maintMarginReq = 0.0;
   @SerializedName("riskLimit")
-  private BigDecimal riskLimit = null;
+  private Long riskLimit = 0;
   @SerializedName("leverage")
   private Double leverage = 0.0;
   @SerializedName("crossMargin")
@@ -48,45 +47,45 @@ public class Position {
   @SerializedName("deleveragePercentile")
   private Double deleveragePercentile = 0.0;
   @SerializedName("rebalancedPnl")
-  private BigDecimal rebalancedPnl = null;
+  private Long rebalancedPnl = 0;
   @SerializedName("prevRealisedPnl")
-  private BigDecimal prevRealisedPnl = null;
+  private Long prevRealisedPnl = 0;
   @SerializedName("prevUnrealisedPnl")
-  private BigDecimal prevUnrealisedPnl = null;
+  private Long prevUnrealisedPnl = 0;
   @SerializedName("openingQty")
-  private BigDecimal openingQty = null;
+  private Long openingQty = 0;
   @SerializedName("openOrderBuyQty")
-  private BigDecimal openOrderBuyQty = null;
+  private Long openOrderBuyQty = 0;
   @SerializedName("openOrderBuyCost")
-  private BigDecimal openOrderBuyCost = null;
+  private Long openOrderBuyCost = 0;
   @SerializedName("openOrderBuyPremium")
-  private BigDecimal openOrderBuyPremium = null;
+  private Long openOrderBuyPremium = 0;
   @SerializedName("openOrderSellQty")
-  private BigDecimal openOrderSellQty = null;
+  private Long openOrderSellQty = 0;
   @SerializedName("openOrderSellCost")
-  private BigDecimal openOrderSellCost = null;
+  private Long openOrderSellCost = 0;
   @SerializedName("openOrderSellPremium")
-  private BigDecimal openOrderSellPremium = null;
+  private Long openOrderSellPremium = 0;
   @SerializedName("currentQty")
-  private BigDecimal currentQty = null;
+  private Long currentQty = 0;
   @SerializedName("currentCost")
-  private BigDecimal currentCost = null;
+  private Long currentCost = 0;
   @SerializedName("currentComm")
-  private BigDecimal currentComm = null;
+  private Long currentComm = 0;
   @SerializedName("realisedCost")
-  private BigDecimal realisedCost = null;
+  private Long realisedCost = 0;
   @SerializedName("unrealisedCost")
-  private BigDecimal unrealisedCost = null;
+  private Long unrealisedCost = 0;
   @SerializedName("grossOpenPremium")
-  private BigDecimal grossOpenPremium = null;
+  private Long grossOpenPremium = 0;
   @SerializedName("isOpen")
   private Boolean isOpen = null;
   @SerializedName("markPrice")
   private Double markPrice = 0.0;
   @SerializedName("markValue")
-  private BigDecimal markValue = null;
+  private Long markValue = 0;
   @SerializedName("riskValue")
-  private BigDecimal riskValue = null;
+  private Long riskValue = 0;
   @SerializedName("homeNotional")
   private Double homeNotional = 0.0;
   @SerializedName("foreignNotional")
@@ -94,25 +93,25 @@ public class Position {
   @SerializedName("posState")
   private String posState = null;
   @SerializedName("posCost")
-  private BigDecimal posCost = null;
+  private Long posCost = 0;
   @SerializedName("posCross")
-  private BigDecimal posCross = null;
+  private Long posCross = 0;
   @SerializedName("posComm")
-  private BigDecimal posComm = null;
+  private Long posComm = 0;
   @SerializedName("posLoss")
-  private BigDecimal posLoss = null;
+  private Long posLoss = 0;
   @SerializedName("posMargin")
-  private BigDecimal posMargin = null;
+  private Long posMargin = 0;
   @SerializedName("posMaint")
-  private BigDecimal posMaint = null;
+  private Long posMaint = 0;
   @SerializedName("initMargin")
-  private BigDecimal initMargin = null;
+  private Long initMargin = 0;
   @SerializedName("maintMargin")
-  private BigDecimal maintMargin = null;
+  private Long maintMargin = 0;
   @SerializedName("realisedPnl")
-  private BigDecimal realisedPnl = null;
+  private Long realisedPnl = 0;
   @SerializedName("unrealisedPnl")
-  private BigDecimal unrealisedPnl = null;
+  private Long unrealisedPnl = 0;
   @SerializedName("unrealisedPnlPcnt")
   private Double unrealisedPnlPcnt = 0.0;
   @SerializedName("unrealisedRoePcnt")
@@ -135,10 +134,10 @@ public class Position {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getAccount() {
+  public Long getAccount() {
     return account;
   }
-  public void setAccount(BigDecimal account) {
+  public void setAccount(Long account) {
     this.account = account;
   }
 
@@ -215,10 +214,10 @@ public class Position {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getRiskLimit() {
+  public Long getRiskLimit() {
     return riskLimit;
   }
-  public void setRiskLimit(BigDecimal riskLimit) {
+  public void setRiskLimit(Long riskLimit) {
     this.riskLimit = riskLimit;
   }
 
@@ -255,160 +254,160 @@ public class Position {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getRebalancedPnl() {
+  public Long getRebalancedPnl() {
     return rebalancedPnl;
   }
-  public void setRebalancedPnl(BigDecimal rebalancedPnl) {
+  public void setRebalancedPnl(Long rebalancedPnl) {
     this.rebalancedPnl = rebalancedPnl;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPrevRealisedPnl() {
+  public Long getPrevRealisedPnl() {
     return prevRealisedPnl;
   }
-  public void setPrevRealisedPnl(BigDecimal prevRealisedPnl) {
+  public void setPrevRealisedPnl(Long prevRealisedPnl) {
     this.prevRealisedPnl = prevRealisedPnl;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPrevUnrealisedPnl() {
+  public Long getPrevUnrealisedPnl() {
     return prevUnrealisedPnl;
   }
-  public void setPrevUnrealisedPnl(BigDecimal prevUnrealisedPnl) {
+  public void setPrevUnrealisedPnl(Long prevUnrealisedPnl) {
     this.prevUnrealisedPnl = prevUnrealisedPnl;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOpeningQty() {
+  public Long getOpeningQty() {
     return openingQty;
   }
-  public void setOpeningQty(BigDecimal openingQty) {
+  public void setOpeningQty(Long openingQty) {
     this.openingQty = openingQty;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOpenOrderBuyQty() {
+  public Long getOpenOrderBuyQty() {
     return openOrderBuyQty;
   }
-  public void setOpenOrderBuyQty(BigDecimal openOrderBuyQty) {
+  public void setOpenOrderBuyQty(Long openOrderBuyQty) {
     this.openOrderBuyQty = openOrderBuyQty;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOpenOrderBuyCost() {
+  public Long getOpenOrderBuyCost() {
     return openOrderBuyCost;
   }
-  public void setOpenOrderBuyCost(BigDecimal openOrderBuyCost) {
+  public void setOpenOrderBuyCost(Long openOrderBuyCost) {
     this.openOrderBuyCost = openOrderBuyCost;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOpenOrderBuyPremium() {
+  public Long getOpenOrderBuyPremium() {
     return openOrderBuyPremium;
   }
-  public void setOpenOrderBuyPremium(BigDecimal openOrderBuyPremium) {
+  public void setOpenOrderBuyPremium(Long openOrderBuyPremium) {
     this.openOrderBuyPremium = openOrderBuyPremium;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOpenOrderSellQty() {
+  public Long getOpenOrderSellQty() {
     return openOrderSellQty;
   }
-  public void setOpenOrderSellQty(BigDecimal openOrderSellQty) {
+  public void setOpenOrderSellQty(Long openOrderSellQty) {
     this.openOrderSellQty = openOrderSellQty;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOpenOrderSellCost() {
+  public Long getOpenOrderSellCost() {
     return openOrderSellCost;
   }
-  public void setOpenOrderSellCost(BigDecimal openOrderSellCost) {
+  public void setOpenOrderSellCost(Long openOrderSellCost) {
     this.openOrderSellCost = openOrderSellCost;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOpenOrderSellPremium() {
+  public Long getOpenOrderSellPremium() {
     return openOrderSellPremium;
   }
-  public void setOpenOrderSellPremium(BigDecimal openOrderSellPremium) {
+  public void setOpenOrderSellPremium(Long openOrderSellPremium) {
     this.openOrderSellPremium = openOrderSellPremium;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getCurrentQty() {
+  public Long getCurrentQty() {
     return currentQty;
   }
-  public void setCurrentQty(BigDecimal currentQty) {
+  public void setCurrentQty(Long currentQty) {
     this.currentQty = currentQty;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getCurrentCost() {
+  public Long getCurrentCost() {
     return currentCost;
   }
-  public void setCurrentCost(BigDecimal currentCost) {
+  public void setCurrentCost(Long currentCost) {
     this.currentCost = currentCost;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getCurrentComm() {
+  public Long getCurrentComm() {
     return currentComm;
   }
-  public void setCurrentComm(BigDecimal currentComm) {
+  public void setCurrentComm(Long currentComm) {
     this.currentComm = currentComm;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getRealisedCost() {
+  public Long getRealisedCost() {
     return realisedCost;
   }
-  public void setRealisedCost(BigDecimal realisedCost) {
+  public void setRealisedCost(Long realisedCost) {
     this.realisedCost = realisedCost;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getUnrealisedCost() {
+  public Long getUnrealisedCost() {
     return unrealisedCost;
   }
-  public void setUnrealisedCost(BigDecimal unrealisedCost) {
+  public void setUnrealisedCost(Long unrealisedCost) {
     this.unrealisedCost = unrealisedCost;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getGrossOpenPremium() {
+  public Long getGrossOpenPremium() {
     return grossOpenPremium;
   }
-  public void setGrossOpenPremium(BigDecimal grossOpenPremium) {
+  public void setGrossOpenPremium(Long grossOpenPremium) {
     this.grossOpenPremium = grossOpenPremium;
   }
 
@@ -435,20 +434,20 @@ public class Position {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getMarkValue() {
+  public Long getMarkValue() {
     return markValue;
   }
-  public void setMarkValue(BigDecimal markValue) {
+  public void setMarkValue(Long markValue) {
     this.markValue = markValue;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getRiskValue() {
+  public Long getRiskValue() {
     return riskValue;
   }
-  public void setRiskValue(BigDecimal riskValue) {
+  public void setRiskValue(Long riskValue) {
     this.riskValue = riskValue;
   }
 
@@ -485,100 +484,100 @@ public class Position {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPosCost() {
+  public Long getPosCost() {
     return posCost;
   }
-  public void setPosCost(BigDecimal posCost) {
+  public void setPosCost(Long posCost) {
     this.posCost = posCost;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPosCross() {
+  public Long getPosCross() {
     return posCross;
   }
-  public void setPosCross(BigDecimal posCross) {
+  public void setPosCross(Long posCross) {
     this.posCross = posCross;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPosComm() {
+  public Long getPosComm() {
     return posComm;
   }
-  public void setPosComm(BigDecimal posComm) {
+  public void setPosComm(Long posComm) {
     this.posComm = posComm;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPosLoss() {
+  public Long getPosLoss() {
     return posLoss;
   }
-  public void setPosLoss(BigDecimal posLoss) {
+  public void setPosLoss(Long posLoss) {
     this.posLoss = posLoss;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPosMargin() {
+  public Long getPosMargin() {
     return posMargin;
   }
-  public void setPosMargin(BigDecimal posMargin) {
+  public void setPosMargin(Long posMargin) {
     this.posMargin = posMargin;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPosMaint() {
+  public Long getPosMaint() {
     return posMaint;
   }
-  public void setPosMaint(BigDecimal posMaint) {
+  public void setPosMaint(Long posMaint) {
     this.posMaint = posMaint;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getInitMargin() {
+  public Long getInitMargin() {
     return initMargin;
   }
-  public void setInitMargin(BigDecimal initMargin) {
+  public void setInitMargin(Long initMargin) {
     this.initMargin = initMargin;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getMaintMargin() {
+  public Long getMaintMargin() {
     return maintMargin;
   }
-  public void setMaintMargin(BigDecimal maintMargin) {
+  public void setMaintMargin(Long maintMargin) {
     this.maintMargin = maintMargin;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getRealisedPnl() {
+  public Long getRealisedPnl() {
     return realisedPnl;
   }
-  public void setRealisedPnl(BigDecimal realisedPnl) {
+  public void setRealisedPnl(Long realisedPnl) {
     this.realisedPnl = realisedPnl;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getUnrealisedPnl() {
+  public Long getUnrealisedPnl() {
     return unrealisedPnl;
   }
-  public void setUnrealisedPnl(BigDecimal unrealisedPnl) {
+  public void setUnrealisedPnl(Long unrealisedPnl) {
     this.unrealisedPnl = unrealisedPnl;
   }
 

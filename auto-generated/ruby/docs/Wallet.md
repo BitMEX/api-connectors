@@ -3,16 +3,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**account** | **Float** |  | 
+**account** | **Integer** |  | 
 **currency** | **String** |  | 
-**deposited** | **Float** |  | [optional] 
-**withdrawn** | **Float** |  | [optional] 
-**transfer_in** | **Float** |  | [optional] 
-**transfer_out** | **Float** |  | [optional] 
-**amount** | **Float** |  | [optional] 
-**pending_credit** | **Float** |  | [optional] 
-**pending_debit** | **Float** |  | [optional] 
-**confirmed_debit** | **Float** |  | [optional] 
+**deposited** | **Integer** |  | [optional] 
+**withdrawn** | **Integer** |  | [optional] 
+**transfer_in** | **Integer** |  | [optional] 
+**transfer_out** | **Integer** |  | [optional] 
+**amount** | **Integer** |  | [optional] 
+**pending_credit** | **Integer** |  | [optional] 
+**pending_debit** | **Integer** |  | [optional] 
+**confirmed_debit** | **Integer** |  | [optional] 
 **timestamp** | **DateTime** |  | [optional] 
 
 

@@ -37,7 +37,7 @@ SWGChat::~SWGChat() {
 
 void
 SWGChat::init() {
-    id = 0.0;
+    id = 0;
     m_id_isSet = false;
     date = NULL;
     m_date_isSet = false;
@@ -55,9 +55,7 @@ SWGChat::init() {
 
 void
 SWGChat::cleanup() {
-    if(id != nullptr) { 
-        delete id;
-    }
+
     if(date != nullptr) { 
         delete date;
     }
@@ -87,7 +85,7 @@ SWGChat::fromJson(QString json) {
 
 void
 SWGChat::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&id, pJson["id"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&id, pJson["id"], "qint32", "");
     
     ::Swagger::setValue(&date, pJson["date"], "QDateTime", "QDateTime");
     
@@ -115,8 +113,8 @@ SWGChat::asJson ()
 QJsonObject
 SWGChat::asJsonObject() {
     QJsonObject obj;
-    if((id != nullptr) && (id->isSet())){
-        toJsonValue(QString("id"), id, obj, QString("SWGNumber"));
+    if(m_id_isSet){
+        obj.insert("id", QJsonValue(id));
     }
     if(date != nullptr) { 
         toJsonValue(QString("date"), date, obj, QString("QDateTime"));
@@ -140,12 +138,12 @@ SWGChat::asJsonObject() {
     return obj;
 }
 
-SWGNumber*
+qint32
 SWGChat::getId() {
     return id;
 }
 void
-SWGChat::setId(SWGNumber* id) {
+SWGChat::setId(qint32 id) {
     this->id = id;
     this->m_id_isSet = true;
 }
@@ -215,7 +213,7 @@ bool
 SWGChat::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(id != nullptr && id->isSet()){ isObjectUpdated = true; break;}
+        if(m_id_isSet){ isObjectUpdated = true; break;}
         
         if(user != nullptr && *user != QString("")){ isObjectUpdated = true; break;}
         if(user_color != nullptr && *user_color != QString("")){ isObjectUpdated = true; break;}

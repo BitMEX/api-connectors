@@ -24,7 +24,7 @@ open class SettlementAPI {
      - parameter endTime: (query) Ending date filter for results. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func settlementGet(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [Settlement]?,_ error: Error?) -> Void)) {
+    open class func settlementGet(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [Settlement]?,_ error: Error?) -> Void)) {
         settlementGetWithRequestBuilder(symbol: symbol, filter: filter, columns: columns, count: count, start: start, reverse: reverse, startTime: startTime, endTime: endTime).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -47,7 +47,7 @@ open class SettlementAPI {
 
      - returns: RequestBuilder<[Settlement]> 
      */
-    open class func settlementGetWithRequestBuilder(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[Settlement]> {
+    open class func settlementGetWithRequestBuilder(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[Settlement]> {
         let path = "/settlement"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -57,8 +57,8 @@ open class SettlementAPI {
             "symbol": symbol, 
             "filter": filter, 
             "columns": columns, 
-            "count": count, 
-            "start": start, 
+            "count": count?.encodeToJSON(), 
+            "start": start?.encodeToJSON(), 
             "reverse": reverse, 
             "startTime": startTime?.encodeToJSON(), 
             "endTime": endTime?.encodeToJSON()

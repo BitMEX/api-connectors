@@ -868,7 +868,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **currency** | **string**| Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | [default to XBt]
   **network** | **string**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
-  **amount** | **float32**| Amount of withdrawal currency. | 
+  **amount** | **int64**| Amount of withdrawal currency. | 
  **optional** | ***UserApiUserRequestWithdrawalOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -976,7 +976,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **currency** | **string**| Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
-  **amount** | **float32**| Amount of transfer. | 
+  **amount** | **int64**| Amount of transfer. | 
   **targetAccountId** | **float64**| AccountId to send the transfer to, must be a paired account with the user sending the transfer. | 
  **optional** | ***UserApiUserWalletTransferOpts** | optional parameters | nil if no parameters
 

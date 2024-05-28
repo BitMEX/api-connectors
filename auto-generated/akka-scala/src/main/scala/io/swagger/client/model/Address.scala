@@ -16,7 +16,7 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class Address (
-  id: Option[Double] = None,
+  id: Option[Int] = None,
   currency: Option[String] = None,
   created: Option[DateTime] = None,
   userId: Option[Double] = None,

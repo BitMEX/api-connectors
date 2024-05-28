@@ -75,9 +75,9 @@
               expect(data.optionUnderlyingPrice).to.be.a('number');
               expect(data.optionUnderlyingPrice).to.be(0.0);
               expect(data.bankrupt).to.be.a('number');
-              expect(data.bankrupt).to.be();
+              expect(data.bankrupt).to.be("0");
               expect(data.taxBase).to.be.a('number');
-              expect(data.taxBase).to.be();
+              expect(data.taxBase).to.be("0");
               expect(data.taxRate).to.be.a('number');
               expect(data.taxRate).to.be(0.0);
             }

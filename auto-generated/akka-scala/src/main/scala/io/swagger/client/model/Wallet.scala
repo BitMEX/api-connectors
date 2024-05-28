@@ -16,16 +16,16 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class Wallet (
-  account: Double,
+  account: Long,
   currency: String,
-  deposited: Option[Double] = None,
-  withdrawn: Option[Double] = None,
-  transferIn: Option[Double] = None,
-  transferOut: Option[Double] = None,
-  amount: Option[Double] = None,
-  pendingCredit: Option[Double] = None,
-  pendingDebit: Option[Double] = None,
-  confirmedDebit: Option[Double] = None,
+  deposited: Option[Long] = None,
+  withdrawn: Option[Long] = None,
+  transferIn: Option[Long] = None,
+  transferOut: Option[Long] = None,
+  amount: Option[Long] = None,
+  pendingCredit: Option[Long] = None,
+  pendingDebit: Option[Long] = None,
+  confirmedDebit: Option[Long] = None,
   timestamp: Option[DateTime] = None
 ) extends ApiModel
 

@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
@@ -22,19 +21,19 @@ public class CollateralSupportAgreement {
   @SerializedName("csaID")
   private String csaID = null;
   @SerializedName("account")
-  private BigDecimal account = null;
+  private Long account = null;
   @SerializedName("currency")
   private String currency = null;
   @SerializedName("amount")
-  private BigDecimal amount = null;
+  private Long amount = null;
   @SerializedName("minAmount")
-  private BigDecimal minAmount = null;
+  private Long minAmount = null;
   @SerializedName("threshold")
-  private BigDecimal threshold = null;
+  private Long threshold = null;
   @SerializedName("mmRatioMarginCall")
-  private BigDecimal mmRatioMarginCall = null;
+  private Long mmRatioMarginCall = null;
   @SerializedName("mmRatioLiquidation")
-  private BigDecimal mmRatioLiquidation = null;
+  private Long mmRatioLiquidation = null;
   @SerializedName("startTime")
   private String startTime = null;
   @SerializedName("maturityTime")
@@ -65,10 +64,10 @@ public class CollateralSupportAgreement {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAccount() {
+  public Long getAccount() {
     return account;
   }
-  public void setAccount(BigDecimal account) {
+  public void setAccount(Long account) {
     this.account = account;
   }
 
@@ -85,50 +84,50 @@ public class CollateralSupportAgreement {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAmount() {
+  public Long getAmount() {
     return amount;
   }
-  public void setAmount(BigDecimal amount) {
+  public void setAmount(Long amount) {
     this.amount = amount;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getMinAmount() {
+  public Long getMinAmount() {
     return minAmount;
   }
-  public void setMinAmount(BigDecimal minAmount) {
+  public void setMinAmount(Long minAmount) {
     this.minAmount = minAmount;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getThreshold() {
+  public Long getThreshold() {
     return threshold;
   }
-  public void setThreshold(BigDecimal threshold) {
+  public void setThreshold(Long threshold) {
     this.threshold = threshold;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getMmRatioMarginCall() {
+  public Long getMmRatioMarginCall() {
     return mmRatioMarginCall;
   }
-  public void setMmRatioMarginCall(BigDecimal mmRatioMarginCall) {
+  public void setMmRatioMarginCall(Long mmRatioMarginCall) {
     this.mmRatioMarginCall = mmRatioMarginCall;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getMmRatioLiquidation() {
+  public Long getMmRatioLiquidation() {
     return mmRatioLiquidation;
   }
-  public void setMmRatioLiquidation(BigDecimal mmRatioLiquidation) {
+  public void setMmRatioLiquidation(Long mmRatioLiquidation) {
     this.mmRatioLiquidation = mmRatioLiquidation;
   }
 

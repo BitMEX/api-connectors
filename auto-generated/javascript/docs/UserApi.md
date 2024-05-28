@@ -1796,7 +1796,7 @@ var currency = "XBt"; // String | Currency you're withdrawing. Any currency. For
 
 var network = "network_example"; // String | The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
 
-var amount = 8.14; // Number | Amount of withdrawal currency.
+var amount = 789; // Number | Amount of withdrawal currency.
 
 var opts = { 
   'otpToken': "otpToken_example", // String | 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
@@ -2014,7 +2014,7 @@ var apiInstance = new BitMexApi.UserApi();
 
 var currency = "currency_example"; // String | Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
 
-var amount = 8.14; // Number | Amount of transfer.
+var amount = 789; // Number | Amount of transfer.
 
 var targetAccountId = 1.2; // Number | AccountId to send the transfer to, must be a paired account with the user sending the transfer.
 

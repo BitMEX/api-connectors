@@ -71,7 +71,7 @@
               expect(data.price).to.be.a('number');
               expect(data.price).to.be(0.0);
               expect(data.leavesQty).to.be.a('number');
-              expect(data.leavesQty).to.be();
+              expect(data.leavesQty).to.be("0");
             }
 
             done();

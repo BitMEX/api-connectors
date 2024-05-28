@@ -13,7 +13,6 @@
 
 package io.swagger.client.api;
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.Position;
 import org.junit.Test;
@@ -46,7 +45,7 @@ public class PositionApiTest {
     public void positionGetTest() throws Exception {
         String filter = null;
         String columns = null;
-        BigDecimal count = null;
+        Integer count = null;
         List<Position> response = api.positionGet(filter, columns, count);
 
         // TODO: test validations
@@ -80,7 +79,7 @@ public class PositionApiTest {
     @Test
     public void positionTransferIsolatedMarginTest() throws Exception {
         String symbol = null;
-        BigDecimal amount = null;
+        Long amount = null;
         Double targetAccountId = null;
         Position response = api.positionTransferIsolatedMargin(symbol, amount, targetAccountId);
 
@@ -116,7 +115,7 @@ public class PositionApiTest {
     @Test
     public void positionUpdateRiskLimitTest() throws Exception {
         String symbol = null;
-        BigDecimal riskLimit = null;
+        Long riskLimit = null;
         Double targetAccountId = null;
         Position response = api.positionUpdateRiskLimit(symbol, riskLimit, targetAccountId);
 

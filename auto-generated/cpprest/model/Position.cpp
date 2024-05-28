@@ -21,7 +21,7 @@ namespace model {
 
 Position::Position()
 {
-    m_Account = 0.0;
+    m_Account = 0L;
     m_Symbol = utility::conversions::to_string_t("");
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
@@ -35,7 +35,7 @@ Position::Position()
     m_InitMarginReqIsSet = false;
     m_MaintMarginReq = 0.0;
     m_MaintMarginReqIsSet = false;
-    m_RiskLimit = 0.0;
+    m_RiskLimit = 0L;
     m_RiskLimitIsSet = false;
     m_Leverage = 0.0;
     m_LeverageIsSet = false;
@@ -43,45 +43,45 @@ Position::Position()
     m_CrossMarginIsSet = false;
     m_DeleveragePercentile = 0.0;
     m_DeleveragePercentileIsSet = false;
-    m_RebalancedPnl = 0.0;
+    m_RebalancedPnl = 0L;
     m_RebalancedPnlIsSet = false;
-    m_PrevRealisedPnl = 0.0;
+    m_PrevRealisedPnl = 0L;
     m_PrevRealisedPnlIsSet = false;
-    m_PrevUnrealisedPnl = 0.0;
+    m_PrevUnrealisedPnl = 0L;
     m_PrevUnrealisedPnlIsSet = false;
-    m_OpeningQty = 0.0;
+    m_OpeningQty = 0L;
     m_OpeningQtyIsSet = false;
-    m_OpenOrderBuyQty = 0.0;
+    m_OpenOrderBuyQty = 0L;
     m_OpenOrderBuyQtyIsSet = false;
-    m_OpenOrderBuyCost = 0.0;
+    m_OpenOrderBuyCost = 0L;
     m_OpenOrderBuyCostIsSet = false;
-    m_OpenOrderBuyPremium = 0.0;
+    m_OpenOrderBuyPremium = 0L;
     m_OpenOrderBuyPremiumIsSet = false;
-    m_OpenOrderSellQty = 0.0;
+    m_OpenOrderSellQty = 0L;
     m_OpenOrderSellQtyIsSet = false;
-    m_OpenOrderSellCost = 0.0;
+    m_OpenOrderSellCost = 0L;
     m_OpenOrderSellCostIsSet = false;
-    m_OpenOrderSellPremium = 0.0;
+    m_OpenOrderSellPremium = 0L;
     m_OpenOrderSellPremiumIsSet = false;
-    m_CurrentQty = 0.0;
+    m_CurrentQty = 0L;
     m_CurrentQtyIsSet = false;
-    m_CurrentCost = 0.0;
+    m_CurrentCost = 0L;
     m_CurrentCostIsSet = false;
-    m_CurrentComm = 0.0;
+    m_CurrentComm = 0L;
     m_CurrentCommIsSet = false;
-    m_RealisedCost = 0.0;
+    m_RealisedCost = 0L;
     m_RealisedCostIsSet = false;
-    m_UnrealisedCost = 0.0;
+    m_UnrealisedCost = 0L;
     m_UnrealisedCostIsSet = false;
-    m_GrossOpenPremium = 0.0;
+    m_GrossOpenPremium = 0L;
     m_GrossOpenPremiumIsSet = false;
     m_IsOpen = false;
     m_IsOpenIsSet = false;
     m_MarkPrice = 0.0;
     m_MarkPriceIsSet = false;
-    m_MarkValue = 0.0;
+    m_MarkValue = 0L;
     m_MarkValueIsSet = false;
-    m_RiskValue = 0.0;
+    m_RiskValue = 0L;
     m_RiskValueIsSet = false;
     m_HomeNotional = 0.0;
     m_HomeNotionalIsSet = false;
@@ -89,25 +89,25 @@ Position::Position()
     m_ForeignNotionalIsSet = false;
     m_PosState = utility::conversions::to_string_t("");
     m_PosStateIsSet = false;
-    m_PosCost = 0.0;
+    m_PosCost = 0L;
     m_PosCostIsSet = false;
-    m_PosCross = 0.0;
+    m_PosCross = 0L;
     m_PosCrossIsSet = false;
-    m_PosComm = 0.0;
+    m_PosComm = 0L;
     m_PosCommIsSet = false;
-    m_PosLoss = 0.0;
+    m_PosLoss = 0L;
     m_PosLossIsSet = false;
-    m_PosMargin = 0.0;
+    m_PosMargin = 0L;
     m_PosMarginIsSet = false;
-    m_PosMaint = 0.0;
+    m_PosMaint = 0L;
     m_PosMaintIsSet = false;
-    m_InitMargin = 0.0;
+    m_InitMargin = 0L;
     m_InitMarginIsSet = false;
-    m_MaintMargin = 0.0;
+    m_MaintMargin = 0L;
     m_MaintMarginIsSet = false;
-    m_RealisedPnl = 0.0;
+    m_RealisedPnl = 0L;
     m_RealisedPnlIsSet = false;
-    m_UnrealisedPnl = 0.0;
+    m_UnrealisedPnl = 0L;
     m_UnrealisedPnlIsSet = false;
     m_UnrealisedPnlPcnt = 0.0;
     m_UnrealisedPnlPcntIsSet = false;
@@ -358,7 +358,7 @@ web::json::value Position::toJson() const
 
 void Position::fromJson(web::json::value& val)
 {
-    setAccount(ModelBase::doubleFromJson(val[utility::conversions::to_string_t("account")]));
+    setAccount(ModelBase::int64_tFromJson(val[utility::conversions::to_string_t("account")]));
     setSymbol(ModelBase::stringFromJson(val[utility::conversions::to_string_t("symbol")]));
     if(val.has_field(utility::conversions::to_string_t("currency")))
     {
@@ -413,7 +413,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("riskLimit")];
         if(!fieldValue.is_null())
         {
-            setRiskLimit(ModelBase::doubleFromJson(fieldValue));
+            setRiskLimit(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("leverage")))
@@ -445,7 +445,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("rebalancedPnl")];
         if(!fieldValue.is_null())
         {
-            setRebalancedPnl(ModelBase::doubleFromJson(fieldValue));
+            setRebalancedPnl(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("prevRealisedPnl")))
@@ -453,7 +453,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("prevRealisedPnl")];
         if(!fieldValue.is_null())
         {
-            setPrevRealisedPnl(ModelBase::doubleFromJson(fieldValue));
+            setPrevRealisedPnl(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("prevUnrealisedPnl")))
@@ -461,7 +461,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("prevUnrealisedPnl")];
         if(!fieldValue.is_null())
         {
-            setPrevUnrealisedPnl(ModelBase::doubleFromJson(fieldValue));
+            setPrevUnrealisedPnl(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("openingQty")))
@@ -469,7 +469,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("openingQty")];
         if(!fieldValue.is_null())
         {
-            setOpeningQty(ModelBase::doubleFromJson(fieldValue));
+            setOpeningQty(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("openOrderBuyQty")))
@@ -477,7 +477,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("openOrderBuyQty")];
         if(!fieldValue.is_null())
         {
-            setOpenOrderBuyQty(ModelBase::doubleFromJson(fieldValue));
+            setOpenOrderBuyQty(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("openOrderBuyCost")))
@@ -485,7 +485,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("openOrderBuyCost")];
         if(!fieldValue.is_null())
         {
-            setOpenOrderBuyCost(ModelBase::doubleFromJson(fieldValue));
+            setOpenOrderBuyCost(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("openOrderBuyPremium")))
@@ -493,7 +493,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("openOrderBuyPremium")];
         if(!fieldValue.is_null())
         {
-            setOpenOrderBuyPremium(ModelBase::doubleFromJson(fieldValue));
+            setOpenOrderBuyPremium(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("openOrderSellQty")))
@@ -501,7 +501,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("openOrderSellQty")];
         if(!fieldValue.is_null())
         {
-            setOpenOrderSellQty(ModelBase::doubleFromJson(fieldValue));
+            setOpenOrderSellQty(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("openOrderSellCost")))
@@ -509,7 +509,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("openOrderSellCost")];
         if(!fieldValue.is_null())
         {
-            setOpenOrderSellCost(ModelBase::doubleFromJson(fieldValue));
+            setOpenOrderSellCost(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("openOrderSellPremium")))
@@ -517,7 +517,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("openOrderSellPremium")];
         if(!fieldValue.is_null())
         {
-            setOpenOrderSellPremium(ModelBase::doubleFromJson(fieldValue));
+            setOpenOrderSellPremium(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("currentQty")))
@@ -525,7 +525,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("currentQty")];
         if(!fieldValue.is_null())
         {
-            setCurrentQty(ModelBase::doubleFromJson(fieldValue));
+            setCurrentQty(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("currentCost")))
@@ -533,7 +533,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("currentCost")];
         if(!fieldValue.is_null())
         {
-            setCurrentCost(ModelBase::doubleFromJson(fieldValue));
+            setCurrentCost(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("currentComm")))
@@ -541,7 +541,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("currentComm")];
         if(!fieldValue.is_null())
         {
-            setCurrentComm(ModelBase::doubleFromJson(fieldValue));
+            setCurrentComm(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("realisedCost")))
@@ -549,7 +549,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("realisedCost")];
         if(!fieldValue.is_null())
         {
-            setRealisedCost(ModelBase::doubleFromJson(fieldValue));
+            setRealisedCost(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("unrealisedCost")))
@@ -557,7 +557,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("unrealisedCost")];
         if(!fieldValue.is_null())
         {
-            setUnrealisedCost(ModelBase::doubleFromJson(fieldValue));
+            setUnrealisedCost(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("grossOpenPremium")))
@@ -565,7 +565,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("grossOpenPremium")];
         if(!fieldValue.is_null())
         {
-            setGrossOpenPremium(ModelBase::doubleFromJson(fieldValue));
+            setGrossOpenPremium(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("isOpen")))
@@ -589,7 +589,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("markValue")];
         if(!fieldValue.is_null())
         {
-            setMarkValue(ModelBase::doubleFromJson(fieldValue));
+            setMarkValue(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("riskValue")))
@@ -597,7 +597,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("riskValue")];
         if(!fieldValue.is_null())
         {
-            setRiskValue(ModelBase::doubleFromJson(fieldValue));
+            setRiskValue(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("homeNotional")))
@@ -629,7 +629,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("posCost")];
         if(!fieldValue.is_null())
         {
-            setPosCost(ModelBase::doubleFromJson(fieldValue));
+            setPosCost(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("posCross")))
@@ -637,7 +637,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("posCross")];
         if(!fieldValue.is_null())
         {
-            setPosCross(ModelBase::doubleFromJson(fieldValue));
+            setPosCross(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("posComm")))
@@ -645,7 +645,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("posComm")];
         if(!fieldValue.is_null())
         {
-            setPosComm(ModelBase::doubleFromJson(fieldValue));
+            setPosComm(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("posLoss")))
@@ -653,7 +653,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("posLoss")];
         if(!fieldValue.is_null())
         {
-            setPosLoss(ModelBase::doubleFromJson(fieldValue));
+            setPosLoss(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("posMargin")))
@@ -661,7 +661,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("posMargin")];
         if(!fieldValue.is_null())
         {
-            setPosMargin(ModelBase::doubleFromJson(fieldValue));
+            setPosMargin(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("posMaint")))
@@ -669,7 +669,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("posMaint")];
         if(!fieldValue.is_null())
         {
-            setPosMaint(ModelBase::doubleFromJson(fieldValue));
+            setPosMaint(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("initMargin")))
@@ -677,7 +677,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("initMargin")];
         if(!fieldValue.is_null())
         {
-            setInitMargin(ModelBase::doubleFromJson(fieldValue));
+            setInitMargin(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("maintMargin")))
@@ -685,7 +685,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("maintMargin")];
         if(!fieldValue.is_null())
         {
-            setMaintMargin(ModelBase::doubleFromJson(fieldValue));
+            setMaintMargin(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("realisedPnl")))
@@ -693,7 +693,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("realisedPnl")];
         if(!fieldValue.is_null())
         {
-            setRealisedPnl(ModelBase::doubleFromJson(fieldValue));
+            setRealisedPnl(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("unrealisedPnl")))
@@ -701,7 +701,7 @@ void Position::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("unrealisedPnl")];
         if(!fieldValue.is_null())
         {
-            setUnrealisedPnl(ModelBase::doubleFromJson(fieldValue));
+            setUnrealisedPnl(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("unrealisedPnlPcnt")))
@@ -1011,7 +1011,7 @@ void Position::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
         namePrefix += utility::conversions::to_string_t(".");
     }
 
-    setAccount(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("account"))));
+    setAccount(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("account"))));
     setSymbol(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("symbol"))));
     if(multipart->hasContent(utility::conversions::to_string_t("currency")))
     {
@@ -1039,7 +1039,7 @@ void Position::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t("riskLimit")))
     {
-        setRiskLimit(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("riskLimit"))));
+        setRiskLimit(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("riskLimit"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("leverage")))
     {
@@ -1055,67 +1055,67 @@ void Position::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t("rebalancedPnl")))
     {
-        setRebalancedPnl(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("rebalancedPnl"))));
+        setRebalancedPnl(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("rebalancedPnl"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("prevRealisedPnl")))
     {
-        setPrevRealisedPnl(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("prevRealisedPnl"))));
+        setPrevRealisedPnl(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("prevRealisedPnl"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("prevUnrealisedPnl")))
     {
-        setPrevUnrealisedPnl(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("prevUnrealisedPnl"))));
+        setPrevUnrealisedPnl(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("prevUnrealisedPnl"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("openingQty")))
     {
-        setOpeningQty(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("openingQty"))));
+        setOpeningQty(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("openingQty"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("openOrderBuyQty")))
     {
-        setOpenOrderBuyQty(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("openOrderBuyQty"))));
+        setOpenOrderBuyQty(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("openOrderBuyQty"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("openOrderBuyCost")))
     {
-        setOpenOrderBuyCost(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("openOrderBuyCost"))));
+        setOpenOrderBuyCost(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("openOrderBuyCost"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("openOrderBuyPremium")))
     {
-        setOpenOrderBuyPremium(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("openOrderBuyPremium"))));
+        setOpenOrderBuyPremium(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("openOrderBuyPremium"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("openOrderSellQty")))
     {
-        setOpenOrderSellQty(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("openOrderSellQty"))));
+        setOpenOrderSellQty(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("openOrderSellQty"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("openOrderSellCost")))
     {
-        setOpenOrderSellCost(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("openOrderSellCost"))));
+        setOpenOrderSellCost(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("openOrderSellCost"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("openOrderSellPremium")))
     {
-        setOpenOrderSellPremium(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("openOrderSellPremium"))));
+        setOpenOrderSellPremium(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("openOrderSellPremium"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("currentQty")))
     {
-        setCurrentQty(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("currentQty"))));
+        setCurrentQty(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("currentQty"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("currentCost")))
     {
-        setCurrentCost(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("currentCost"))));
+        setCurrentCost(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("currentCost"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("currentComm")))
     {
-        setCurrentComm(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("currentComm"))));
+        setCurrentComm(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("currentComm"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("realisedCost")))
     {
-        setRealisedCost(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("realisedCost"))));
+        setRealisedCost(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("realisedCost"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("unrealisedCost")))
     {
-        setUnrealisedCost(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("unrealisedCost"))));
+        setUnrealisedCost(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("unrealisedCost"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("grossOpenPremium")))
     {
-        setGrossOpenPremium(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grossOpenPremium"))));
+        setGrossOpenPremium(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grossOpenPremium"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("isOpen")))
     {
@@ -1127,11 +1127,11 @@ void Position::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t("markValue")))
     {
-        setMarkValue(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("markValue"))));
+        setMarkValue(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("markValue"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("riskValue")))
     {
-        setRiskValue(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("riskValue"))));
+        setRiskValue(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("riskValue"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("homeNotional")))
     {
@@ -1147,43 +1147,43 @@ void Position::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t("posCost")))
     {
-        setPosCost(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("posCost"))));
+        setPosCost(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("posCost"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("posCross")))
     {
-        setPosCross(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("posCross"))));
+        setPosCross(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("posCross"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("posComm")))
     {
-        setPosComm(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("posComm"))));
+        setPosComm(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("posComm"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("posLoss")))
     {
-        setPosLoss(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("posLoss"))));
+        setPosLoss(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("posLoss"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("posMargin")))
     {
-        setPosMargin(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("posMargin"))));
+        setPosMargin(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("posMargin"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("posMaint")))
     {
-        setPosMaint(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("posMaint"))));
+        setPosMaint(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("posMaint"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("initMargin")))
     {
-        setInitMargin(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("initMargin"))));
+        setInitMargin(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("initMargin"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("maintMargin")))
     {
-        setMaintMargin(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("maintMargin"))));
+        setMaintMargin(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("maintMargin"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("realisedPnl")))
     {
-        setRealisedPnl(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("realisedPnl"))));
+        setRealisedPnl(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("realisedPnl"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("unrealisedPnl")))
     {
-        setUnrealisedPnl(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("unrealisedPnl"))));
+        setUnrealisedPnl(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("unrealisedPnl"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("unrealisedPnlPcnt")))
     {
@@ -1223,13 +1223,13 @@ void Position::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
 }
 
-double Position::getAccount() const
+int64_t Position::getAccount() const
 {
     return m_Account;
 }
 
 
-void Position::setAccount(double value)
+void Position::setAccount(int64_t value)
 {
     m_Account = value;
     
@@ -1371,13 +1371,13 @@ void Position::unsetMaintMarginReq()
     m_MaintMarginReqIsSet = false;
 }
 
-double Position::getRiskLimit() const
+int64_t Position::getRiskLimit() const
 {
     return m_RiskLimit;
 }
 
 
-void Position::setRiskLimit(double value)
+void Position::setRiskLimit(int64_t value)
 {
     m_RiskLimit = value;
     m_RiskLimitIsSet = true;
@@ -1455,13 +1455,13 @@ void Position::unsetDeleveragePercentile()
     m_DeleveragePercentileIsSet = false;
 }
 
-double Position::getRebalancedPnl() const
+int64_t Position::getRebalancedPnl() const
 {
     return m_RebalancedPnl;
 }
 
 
-void Position::setRebalancedPnl(double value)
+void Position::setRebalancedPnl(int64_t value)
 {
     m_RebalancedPnl = value;
     m_RebalancedPnlIsSet = true;
@@ -1476,13 +1476,13 @@ void Position::unsetRebalancedPnl()
     m_RebalancedPnlIsSet = false;
 }
 
-double Position::getPrevRealisedPnl() const
+int64_t Position::getPrevRealisedPnl() const
 {
     return m_PrevRealisedPnl;
 }
 
 
-void Position::setPrevRealisedPnl(double value)
+void Position::setPrevRealisedPnl(int64_t value)
 {
     m_PrevRealisedPnl = value;
     m_PrevRealisedPnlIsSet = true;
@@ -1497,13 +1497,13 @@ void Position::unsetPrevRealisedPnl()
     m_PrevRealisedPnlIsSet = false;
 }
 
-double Position::getPrevUnrealisedPnl() const
+int64_t Position::getPrevUnrealisedPnl() const
 {
     return m_PrevUnrealisedPnl;
 }
 
 
-void Position::setPrevUnrealisedPnl(double value)
+void Position::setPrevUnrealisedPnl(int64_t value)
 {
     m_PrevUnrealisedPnl = value;
     m_PrevUnrealisedPnlIsSet = true;
@@ -1518,13 +1518,13 @@ void Position::unsetPrevUnrealisedPnl()
     m_PrevUnrealisedPnlIsSet = false;
 }
 
-double Position::getOpeningQty() const
+int64_t Position::getOpeningQty() const
 {
     return m_OpeningQty;
 }
 
 
-void Position::setOpeningQty(double value)
+void Position::setOpeningQty(int64_t value)
 {
     m_OpeningQty = value;
     m_OpeningQtyIsSet = true;
@@ -1539,13 +1539,13 @@ void Position::unsetOpeningQty()
     m_OpeningQtyIsSet = false;
 }
 
-double Position::getOpenOrderBuyQty() const
+int64_t Position::getOpenOrderBuyQty() const
 {
     return m_OpenOrderBuyQty;
 }
 
 
-void Position::setOpenOrderBuyQty(double value)
+void Position::setOpenOrderBuyQty(int64_t value)
 {
     m_OpenOrderBuyQty = value;
     m_OpenOrderBuyQtyIsSet = true;
@@ -1560,13 +1560,13 @@ void Position::unsetOpenOrderBuyQty()
     m_OpenOrderBuyQtyIsSet = false;
 }
 
-double Position::getOpenOrderBuyCost() const
+int64_t Position::getOpenOrderBuyCost() const
 {
     return m_OpenOrderBuyCost;
 }
 
 
-void Position::setOpenOrderBuyCost(double value)
+void Position::setOpenOrderBuyCost(int64_t value)
 {
     m_OpenOrderBuyCost = value;
     m_OpenOrderBuyCostIsSet = true;
@@ -1581,13 +1581,13 @@ void Position::unsetOpenOrderBuyCost()
     m_OpenOrderBuyCostIsSet = false;
 }
 
-double Position::getOpenOrderBuyPremium() const
+int64_t Position::getOpenOrderBuyPremium() const
 {
     return m_OpenOrderBuyPremium;
 }
 
 
-void Position::setOpenOrderBuyPremium(double value)
+void Position::setOpenOrderBuyPremium(int64_t value)
 {
     m_OpenOrderBuyPremium = value;
     m_OpenOrderBuyPremiumIsSet = true;
@@ -1602,13 +1602,13 @@ void Position::unsetOpenOrderBuyPremium()
     m_OpenOrderBuyPremiumIsSet = false;
 }
 
-double Position::getOpenOrderSellQty() const
+int64_t Position::getOpenOrderSellQty() const
 {
     return m_OpenOrderSellQty;
 }
 
 
-void Position::setOpenOrderSellQty(double value)
+void Position::setOpenOrderSellQty(int64_t value)
 {
     m_OpenOrderSellQty = value;
     m_OpenOrderSellQtyIsSet = true;
@@ -1623,13 +1623,13 @@ void Position::unsetOpenOrderSellQty()
     m_OpenOrderSellQtyIsSet = false;
 }
 
-double Position::getOpenOrderSellCost() const
+int64_t Position::getOpenOrderSellCost() const
 {
     return m_OpenOrderSellCost;
 }
 
 
-void Position::setOpenOrderSellCost(double value)
+void Position::setOpenOrderSellCost(int64_t value)
 {
     m_OpenOrderSellCost = value;
     m_OpenOrderSellCostIsSet = true;
@@ -1644,13 +1644,13 @@ void Position::unsetOpenOrderSellCost()
     m_OpenOrderSellCostIsSet = false;
 }
 
-double Position::getOpenOrderSellPremium() const
+int64_t Position::getOpenOrderSellPremium() const
 {
     return m_OpenOrderSellPremium;
 }
 
 
-void Position::setOpenOrderSellPremium(double value)
+void Position::setOpenOrderSellPremium(int64_t value)
 {
     m_OpenOrderSellPremium = value;
     m_OpenOrderSellPremiumIsSet = true;
@@ -1665,13 +1665,13 @@ void Position::unsetOpenOrderSellPremium()
     m_OpenOrderSellPremiumIsSet = false;
 }
 
-double Position::getCurrentQty() const
+int64_t Position::getCurrentQty() const
 {
     return m_CurrentQty;
 }
 
 
-void Position::setCurrentQty(double value)
+void Position::setCurrentQty(int64_t value)
 {
     m_CurrentQty = value;
     m_CurrentQtyIsSet = true;
@@ -1686,13 +1686,13 @@ void Position::unsetCurrentQty()
     m_CurrentQtyIsSet = false;
 }
 
-double Position::getCurrentCost() const
+int64_t Position::getCurrentCost() const
 {
     return m_CurrentCost;
 }
 
 
-void Position::setCurrentCost(double value)
+void Position::setCurrentCost(int64_t value)
 {
     m_CurrentCost = value;
     m_CurrentCostIsSet = true;
@@ -1707,13 +1707,13 @@ void Position::unsetCurrentCost()
     m_CurrentCostIsSet = false;
 }
 
-double Position::getCurrentComm() const
+int64_t Position::getCurrentComm() const
 {
     return m_CurrentComm;
 }
 
 
-void Position::setCurrentComm(double value)
+void Position::setCurrentComm(int64_t value)
 {
     m_CurrentComm = value;
     m_CurrentCommIsSet = true;
@@ -1728,13 +1728,13 @@ void Position::unsetCurrentComm()
     m_CurrentCommIsSet = false;
 }
 
-double Position::getRealisedCost() const
+int64_t Position::getRealisedCost() const
 {
     return m_RealisedCost;
 }
 
 
-void Position::setRealisedCost(double value)
+void Position::setRealisedCost(int64_t value)
 {
     m_RealisedCost = value;
     m_RealisedCostIsSet = true;
@@ -1749,13 +1749,13 @@ void Position::unsetRealisedCost()
     m_RealisedCostIsSet = false;
 }
 
-double Position::getUnrealisedCost() const
+int64_t Position::getUnrealisedCost() const
 {
     return m_UnrealisedCost;
 }
 
 
-void Position::setUnrealisedCost(double value)
+void Position::setUnrealisedCost(int64_t value)
 {
     m_UnrealisedCost = value;
     m_UnrealisedCostIsSet = true;
@@ -1770,13 +1770,13 @@ void Position::unsetUnrealisedCost()
     m_UnrealisedCostIsSet = false;
 }
 
-double Position::getGrossOpenPremium() const
+int64_t Position::getGrossOpenPremium() const
 {
     return m_GrossOpenPremium;
 }
 
 
-void Position::setGrossOpenPremium(double value)
+void Position::setGrossOpenPremium(int64_t value)
 {
     m_GrossOpenPremium = value;
     m_GrossOpenPremiumIsSet = true;
@@ -1833,13 +1833,13 @@ void Position::unsetMarkPrice()
     m_MarkPriceIsSet = false;
 }
 
-double Position::getMarkValue() const
+int64_t Position::getMarkValue() const
 {
     return m_MarkValue;
 }
 
 
-void Position::setMarkValue(double value)
+void Position::setMarkValue(int64_t value)
 {
     m_MarkValue = value;
     m_MarkValueIsSet = true;
@@ -1854,13 +1854,13 @@ void Position::unsetMarkValue()
     m_MarkValueIsSet = false;
 }
 
-double Position::getRiskValue() const
+int64_t Position::getRiskValue() const
 {
     return m_RiskValue;
 }
 
 
-void Position::setRiskValue(double value)
+void Position::setRiskValue(int64_t value)
 {
     m_RiskValue = value;
     m_RiskValueIsSet = true;
@@ -1938,13 +1938,13 @@ void Position::unsetPosState()
     m_PosStateIsSet = false;
 }
 
-double Position::getPosCost() const
+int64_t Position::getPosCost() const
 {
     return m_PosCost;
 }
 
 
-void Position::setPosCost(double value)
+void Position::setPosCost(int64_t value)
 {
     m_PosCost = value;
     m_PosCostIsSet = true;
@@ -1959,13 +1959,13 @@ void Position::unsetPosCost()
     m_PosCostIsSet = false;
 }
 
-double Position::getPosCross() const
+int64_t Position::getPosCross() const
 {
     return m_PosCross;
 }
 
 
-void Position::setPosCross(double value)
+void Position::setPosCross(int64_t value)
 {
     m_PosCross = value;
     m_PosCrossIsSet = true;
@@ -1980,13 +1980,13 @@ void Position::unsetPosCross()
     m_PosCrossIsSet = false;
 }
 
-double Position::getPosComm() const
+int64_t Position::getPosComm() const
 {
     return m_PosComm;
 }
 
 
-void Position::setPosComm(double value)
+void Position::setPosComm(int64_t value)
 {
     m_PosComm = value;
     m_PosCommIsSet = true;
@@ -2001,13 +2001,13 @@ void Position::unsetPosComm()
     m_PosCommIsSet = false;
 }
 
-double Position::getPosLoss() const
+int64_t Position::getPosLoss() const
 {
     return m_PosLoss;
 }
 
 
-void Position::setPosLoss(double value)
+void Position::setPosLoss(int64_t value)
 {
     m_PosLoss = value;
     m_PosLossIsSet = true;
@@ -2022,13 +2022,13 @@ void Position::unsetPosLoss()
     m_PosLossIsSet = false;
 }
 
-double Position::getPosMargin() const
+int64_t Position::getPosMargin() const
 {
     return m_PosMargin;
 }
 
 
-void Position::setPosMargin(double value)
+void Position::setPosMargin(int64_t value)
 {
     m_PosMargin = value;
     m_PosMarginIsSet = true;
@@ -2043,13 +2043,13 @@ void Position::unsetPosMargin()
     m_PosMarginIsSet = false;
 }
 
-double Position::getPosMaint() const
+int64_t Position::getPosMaint() const
 {
     return m_PosMaint;
 }
 
 
-void Position::setPosMaint(double value)
+void Position::setPosMaint(int64_t value)
 {
     m_PosMaint = value;
     m_PosMaintIsSet = true;
@@ -2064,13 +2064,13 @@ void Position::unsetPosMaint()
     m_PosMaintIsSet = false;
 }
 
-double Position::getInitMargin() const
+int64_t Position::getInitMargin() const
 {
     return m_InitMargin;
 }
 
 
-void Position::setInitMargin(double value)
+void Position::setInitMargin(int64_t value)
 {
     m_InitMargin = value;
     m_InitMarginIsSet = true;
@@ -2085,13 +2085,13 @@ void Position::unsetInitMargin()
     m_InitMarginIsSet = false;
 }
 
-double Position::getMaintMargin() const
+int64_t Position::getMaintMargin() const
 {
     return m_MaintMargin;
 }
 
 
-void Position::setMaintMargin(double value)
+void Position::setMaintMargin(int64_t value)
 {
     m_MaintMargin = value;
     m_MaintMarginIsSet = true;
@@ -2106,13 +2106,13 @@ void Position::unsetMaintMargin()
     m_MaintMarginIsSet = false;
 }
 
-double Position::getRealisedPnl() const
+int64_t Position::getRealisedPnl() const
 {
     return m_RealisedPnl;
 }
 
 
-void Position::setRealisedPnl(double value)
+void Position::setRealisedPnl(int64_t value)
 {
     m_RealisedPnl = value;
     m_RealisedPnlIsSet = true;
@@ -2127,13 +2127,13 @@ void Position::unsetRealisedPnl()
     m_RealisedPnlIsSet = false;
 }
 
-double Position::getUnrealisedPnl() const
+int64_t Position::getUnrealisedPnl() const
 {
     return m_UnrealisedPnl;
 }
 
 
-void Position::setUnrealisedPnl(double value)
+void Position::setUnrealisedPnl(int64_t value)
 {
     m_UnrealisedPnl = value;
     m_UnrealisedPnlIsSet = true;

@@ -61,13 +61,13 @@ class APIKey implements ModelInterface, ArrayAccess
         'id' => 'string',
         'secret' => 'string',
         'name' => 'string',
-        'nonce' => 'float',
+        'nonce' => 'int',
         'cidr' => 'string',
         'cidrs' => '\Swagger\Client\Model\XAny[]',
-        'target_account_id' => 'float',
+        'target_account_id' => 'int',
         'permissions' => '\Swagger\Client\Model\XAny[]',
         'enabled' => 'bool',
-        'user_id' => 'float',
+        'user_id' => 'int',
         'created' => '\DateTime'
     ];
 
@@ -231,7 +231,7 @@ class APIKey implements ModelInterface, ArrayAccess
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['secret'] = isset($data['secret']) ? $data['secret'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['nonce'] = isset($data['nonce']) ? $data['nonce'] : null;
+        $this->container['nonce'] = isset($data['nonce']) ? $data['nonce'] : 0;
         $this->container['cidr'] = isset($data['cidr']) ? $data['cidr'] : null;
         $this->container['cidrs'] = isset($data['cidrs']) ? $data['cidrs'] : null;
         $this->container['target_account_id'] = isset($data['target_account_id']) ? $data['target_account_id'] : null;
@@ -383,7 +383,7 @@ class APIKey implements ModelInterface, ArrayAccess
     /**
      * Gets nonce
      *
-     * @return float
+     * @return int
      */
     public function getNonce()
     {
@@ -393,7 +393,7 @@ class APIKey implements ModelInterface, ArrayAccess
     /**
      * Sets nonce
      *
-     * @param float $nonce nonce
+     * @param int $nonce nonce
      *
      * @return $this
      */
@@ -459,7 +459,7 @@ class APIKey implements ModelInterface, ArrayAccess
     /**
      * Gets target_account_id
      *
-     * @return float
+     * @return int
      */
     public function getTargetAccountId()
     {
@@ -469,7 +469,7 @@ class APIKey implements ModelInterface, ArrayAccess
     /**
      * Sets target_account_id
      *
-     * @param float $target_account_id target_account_id
+     * @param int $target_account_id target_account_id
      *
      * @return $this
      */
@@ -531,7 +531,7 @@ class APIKey implements ModelInterface, ArrayAccess
     /**
      * Gets user_id
      *
-     * @return float
+     * @return int
      */
     public function getUserId()
     {
@@ -541,7 +541,7 @@ class APIKey implements ModelInterface, ArrayAccess
     /**
      * Sets user_id
      *
-     * @param float $user_id user_id
+     * @param int $user_id user_id
      *
      * @return $this
      */

@@ -21,7 +21,7 @@ namespace model {
 
 Address::Address()
 {
-    m_Id = 0.0;
+    m_Id = 0;
     m_IdIsSet = false;
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
@@ -113,7 +113,7 @@ void Address::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("id")];
         if(!fieldValue.is_null())
         {
-            setId(ModelBase::doubleFromJson(fieldValue));
+            setId(ModelBase::int32_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("currency")))
@@ -260,7 +260,7 @@ void Address::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
 
     if(multipart->hasContent(utility::conversions::to_string_t("id")))
     {
-        setId(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
+        setId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("currency")))
     {
@@ -303,13 +303,13 @@ void Address::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const 
     }
 }
 
-double Address::getId() const
+int32_t Address::getId() const
 {
     return m_Id;
 }
 
 
-void Address::setId(double value)
+void Address::setId(int32_t value)
 {
     m_Id = value;
     m_IdIsSet = true;

@@ -832,7 +832,7 @@ object UserApi {
    * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
    * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
    */
-  def user.requestWithdrawal(currency: String, network: String, amount: Double, otpToken: Option[String] = None, address: Option[String] = None, memo: Option[String] = None, addressId: Option[Double] = None, targetUserId: Option[Double] = None, fee: Option[Double] = None, text: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Transaction] =
+  def user.requestWithdrawal(currency: String, network: String, amount: Long, otpToken: Option[String] = None, address: Option[String] = None, memo: Option[String] = None, addressId: Option[Double] = None, targetUserId: Option[Double] = None, fee: Option[Double] = None, text: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Transaction] =
     ApiRequest[Transaction](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/user/requestWithdrawal", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
@@ -932,7 +932,7 @@ object UserApi {
    * @param targetAccountId AccountId to send the transfer to, must be a paired account with the user sending the transfer.
    * @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user.
    */
-  def user.walletTransfer(currency: String, amount: Double, targetAccountId: Double, fromAccountId: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Transaction] =
+  def user.walletTransfer(currency: String, amount: Long, targetAccountId: Double, fromAccountId: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Transaction] =
     ApiRequest[Transaction](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/user/walletTransfer", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)

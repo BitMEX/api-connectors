@@ -2054,7 +2054,7 @@ No authorization required
 
 <a name="userrequestwithdrawal"></a>
 # **UserRequestWithdrawal**
-> Transaction UserRequestWithdrawal (string currency, string network, decimal? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
+> Transaction UserRequestWithdrawal (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
 
 Request a withdrawal to an external wallet.
 
@@ -2090,7 +2090,7 @@ namespace Example
             var apiInstance = new UserApi();
             var currency = currency_example;  // string | Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (default to XBt)
             var network = network_example;  // string | The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
-            var amount = 8.14;  // decimal? | Amount of withdrawal currency.
+            var amount = 789;  // long? | Amount of withdrawal currency.
             var otpToken = otpToken_example;  // string | 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional) 
             var address = address_example;  // string | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional) 
             var memo = memo_example;  // string | Destination Memo. If `address`, is specified, Destination Memo can also be specified (optional) 
@@ -2120,7 +2120,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **string**| Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | [default to XBt]
  **network** | **string**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
- **amount** | **decimal?**| Amount of withdrawal currency. | 
+ **amount** | **long?**| Amount of withdrawal currency. | 
  **otpToken** | **string**| 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. | [optional] 
  **address** | **string**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
  **memo** | **string**| Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified | [optional] 
@@ -2294,7 +2294,7 @@ Name | Type | Description  | Notes
 
 <a name="userwallettransfer"></a>
 # **UserWalletTransfer**
-> Transaction UserWalletTransfer (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+> Transaction UserWalletTransfer (string currency, long? amount, double? targetAccountId, double? fromAccountId = null)
 
 Execute a transfer to a paired account.
 
@@ -2329,7 +2329,7 @@ namespace Example
 
             var apiInstance = new UserApi();
             var currency = currency_example;  // string | Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
-            var amount = 8.14;  // decimal? | Amount of transfer.
+            var amount = 789;  // long? | Amount of transfer.
             var targetAccountId = 1.2;  // double? | AccountId to send the transfer to, must be a paired account with the user sending the transfer.
             var fromAccountId = 1.2;  // double? | AccountID to send the transfer from. Must be paired account with the authenticated user. (optional) 
 
@@ -2353,7 +2353,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **string**| Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
- **amount** | **decimal?**| Amount of transfer. | 
+ **amount** | **long?**| Amount of transfer. | 
  **targetAccountId** | **double?**| AccountId to send the transfer to, must be a paired account with the user sending the transfer. | 
  **fromAccountId** | **double?**| AccountID to send the transfer from. Must be paired account with the authenticated user. | [optional] 
 

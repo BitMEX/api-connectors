@@ -16,9 +16,9 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class PinnedMessage (
-  id: Double,
-  channelID: Double,
-  messageId: Double,
+  id: Int,
+  channelID: Int,
+  messageId: Int,
   created: Option[DateTime] = None,
   ended: Option[DateTime] = None,
   createdUserId: Option[Double] = None,

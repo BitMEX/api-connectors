@@ -51,9 +51,9 @@ var opts = {
   'origClOrdID': "origClOrdID_example", // String | Client Order ID. See POST /order.
   'clOrdID': "clOrdID_example", // String | Optional new Client Order ID, requires `origClOrdID`.
   'simpleOrderQty': 1.2, // Number | Deprecated: simple orders are not supported after 2018/10/26
-  'orderQty': 8.14, // Number | Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)).
+  'orderQty': 56, // Number | Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)).
   'simpleLeavesQty': 1.2, // Number | Deprecated: simple orders are not supported after 2018/10/26
-  'leavesQty': 8.14, // Number | Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders.
+  'leavesQty': 56, // Number | Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders.
   'price': 1.2, // Number | Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.
   'stopPx': 1.2, // Number | Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders.
   'pegOffsetValue': 1.2, // Number | Optional trailing offset from the current price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for 'Pegged' orders.
@@ -491,9 +491,9 @@ var symbol = "symbol_example"; // String | Instrument symbol. e.g. 'XBTUSD'.
 var opts = { 
   'side': "side_example", // String | Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless `orderQty` is negative.
   'simpleOrderQty': 1.2, // Number | Deprecated: simple orders are not supported after 2018/10/26
-  'orderQty': 8.14, // Number | Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)).
+  'orderQty': 56, // Number | Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)).
   'price': 1.2, // Number | Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.
-  'displayQty': 8.14, // Number | Optional quantity to display in the book. Use 0 for a fully hidden order.
+  'displayQty': 56, // Number | Optional quantity to display in the book. Use 0 for a fully hidden order.
   'stopPx': 1.2, // Number | Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use `execInst` of 'MarkPrice' or 'LastPrice' to define the current price used for triggering.
   'clOrdID': "clOrdID_example", // String | Optional Client Order ID. This clOrdID will come back on the order and any related executions.
   'clOrdLinkID': "clOrdLinkID_example", // String | Optional Client Order Link ID for contingent orders

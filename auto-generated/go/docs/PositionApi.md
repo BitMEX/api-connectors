@@ -31,7 +31,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter** | **optional.String**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. | 
  **columns** | **optional.String**| Which columns to fetch. For example, send [\&quot;columnName\&quot;]. | 
- **count** | **optional.Float32**| Number of rows to fetch. | 
+ **count** | **optional.Int32**| Number of rows to fetch. | 
 
 ### Return type
 
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **symbol** | **string**| Symbol of position to isolate. | 
-  **amount** | **float32**| Amount to transfer, in Satoshis. May be negative. | 
+  **amount** | **int64**| Amount to transfer, in Satoshis. May be negative. | 
  **optional** | ***PositionApiPositionTransferIsolatedMarginOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **symbol** | **string**| Symbol of position to update risk limit on. | 
-  **riskLimit** | **float32**| New Risk Limit, in Satoshis. | 
+  **riskLimit** | **int64**| New Risk Limit, in Satoshis. | 
  **optional** | ***PositionApiPositionUpdateRiskLimitOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters

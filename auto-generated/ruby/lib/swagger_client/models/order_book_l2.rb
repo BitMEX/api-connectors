@@ -42,9 +42,9 @@ module SwaggerClient
     def self.swagger_types
       {
         :'symbol' => :'String',
-        :'id' => :'Float',
+        :'id' => :'Integer',
         :'side' => :'String',
-        :'size' => :'Float',
+        :'size' => :'Integer',
         :'price' => :'Float',
         :'timestamp' => :'DateTime'
       }

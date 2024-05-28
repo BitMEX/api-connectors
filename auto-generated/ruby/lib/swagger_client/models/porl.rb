@@ -48,7 +48,7 @@ module SwaggerClient
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'account' => :'Float',
+        :'account' => :'Integer',
         :'nonce' => :'String',
         :'account_nonce' => :'String',
         :'total' => :'Float',

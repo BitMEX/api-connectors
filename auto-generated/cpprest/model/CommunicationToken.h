@@ -61,8 +61,8 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getUserId() const;
-        void setUserId(double value);
+    int32_t getUserId() const;
+        void setUserId(int32_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -76,7 +76,7 @@ public:
 
 protected:
     utility::string_t m_Id;
-        double m_UserId;
+        int32_t m_UserId;
         utility::string_t m_DeviceToken;
         utility::string_t m_Channel;
     };

@@ -58,7 +58,7 @@ class Chat implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'float',
+        'id' => 'int',
         'date' => '\DateTime',
         'user' => 'string',
         'user_color' => 'string',
@@ -256,7 +256,7 @@ class Chat implements ModelInterface, ArrayAccess
     /**
      * Gets id
      *
-     * @return float
+     * @return int
      */
     public function getId()
     {
@@ -266,7 +266,7 @@ class Chat implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param float $id id
+     * @param int $id id
      *
      * @return $this
      */

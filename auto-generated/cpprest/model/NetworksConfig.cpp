@@ -32,7 +32,7 @@ NetworksConfig::NetworksConfig()
     m_TransactionExplorerIsSet = false;
     m_TokenExplorer = utility::conversions::to_string_t("");
     m_TokenExplorerIsSet = false;
-    m_DepositConfirmations = 0.0;
+    m_DepositConfirmations = 0;
     m_DepositConfirmationsIsSet = false;
     m_Enabled = false;
     m_EnabledIsSet = false;
@@ -132,7 +132,7 @@ void NetworksConfig::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("depositConfirmations")];
         if(!fieldValue.is_null())
         {
-            setDepositConfirmations(ModelBase::doubleFromJson(fieldValue));
+            setDepositConfirmations(ModelBase::int32_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("enabled")))
@@ -220,7 +220,7 @@ void NetworksConfig::fromMultiPart(std::shared_ptr<MultipartFormData> multipart,
     }
     if(multipart->hasContent(utility::conversions::to_string_t("depositConfirmations")))
     {
-        setDepositConfirmations(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("depositConfirmations"))));
+        setDepositConfirmations(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("depositConfirmations"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("enabled")))
     {
@@ -344,13 +344,13 @@ void NetworksConfig::unsetTokenExplorer()
     m_TokenExplorerIsSet = false;
 }
 
-double NetworksConfig::getDepositConfirmations() const
+int32_t NetworksConfig::getDepositConfirmations() const
 {
     return m_DepositConfirmations;
 }
 
 
-void NetworksConfig::setDepositConfirmations(double value)
+void NetworksConfig::setDepositConfirmations(int32_t value)
 {
     m_DepositConfirmations = value;
     m_DepositConfirmationsIsSet = true;

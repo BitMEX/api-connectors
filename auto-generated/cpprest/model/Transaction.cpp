@@ -22,7 +22,7 @@ namespace model {
 Transaction::Transaction()
 {
     m_TransactID = utility::conversions::to_string_t("");
-    m_Account = 0.0;
+    m_Account = 0L;
     m_AccountIsSet = false;
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
@@ -30,9 +30,9 @@ Transaction::Transaction()
     m_NetworkIsSet = false;
     m_TransactType = utility::conversions::to_string_t("");
     m_TransactTypeIsSet = false;
-    m_Amount = 0.0;
+    m_Amount = 0L;
     m_AmountIsSet = false;
-    m_Fee = 0.0;
+    m_Fee = 0L;
     m_FeeIsSet = false;
     m_TransactStatus = utility::conversions::to_string_t("");
     m_TransactStatusIsSet = false;
@@ -46,7 +46,7 @@ Transaction::Transaction()
     m_TransactTimeIsSet = false;
     m_Timestamp = utility::datetime();
     m_TimestampIsSet = false;
-    m_WalletBalance = 0.0;
+    m_WalletBalance = 0L;
     m_WalletBalanceIsSet = false;
 }
 
@@ -128,7 +128,7 @@ void Transaction::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("account")];
         if(!fieldValue.is_null())
         {
-            setAccount(ModelBase::doubleFromJson(fieldValue));
+            setAccount(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("currency")))
@@ -160,7 +160,7 @@ void Transaction::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("amount")];
         if(!fieldValue.is_null())
         {
-            setAmount(ModelBase::doubleFromJson(fieldValue));
+            setAmount(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("fee")))
@@ -168,7 +168,7 @@ void Transaction::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("fee")];
         if(!fieldValue.is_null())
         {
-            setFee(ModelBase::doubleFromJson(fieldValue));
+            setFee(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("transactStatus")))
@@ -224,7 +224,7 @@ void Transaction::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("walletBalance")];
         if(!fieldValue.is_null())
         {
-            setWalletBalance(ModelBase::doubleFromJson(fieldValue));
+            setWalletBalance(ModelBase::int64_tFromJson(fieldValue));
         }
     }
 }
@@ -312,7 +312,7 @@ void Transaction::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     setTransactID(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("transactID"))));
     if(multipart->hasContent(utility::conversions::to_string_t("account")))
     {
-        setAccount(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("account"))));
+        setAccount(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("account"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("currency")))
     {
@@ -328,11 +328,11 @@ void Transaction::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t("amount")))
     {
-        setAmount(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("amount"))));
+        setAmount(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("amount"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("fee")))
     {
-        setFee(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("fee"))));
+        setFee(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("fee"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("transactStatus")))
     {
@@ -360,7 +360,7 @@ void Transaction::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t("walletBalance")))
     {
-        setWalletBalance(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("walletBalance"))));
+        setWalletBalance(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("walletBalance"))));
     }
 }
 
@@ -375,13 +375,13 @@ void Transaction::setTransactID(utility::string_t value)
     m_TransactID = value;
     
 }
-double Transaction::getAccount() const
+int64_t Transaction::getAccount() const
 {
     return m_Account;
 }
 
 
-void Transaction::setAccount(double value)
+void Transaction::setAccount(int64_t value)
 {
     m_Account = value;
     m_AccountIsSet = true;
@@ -459,13 +459,13 @@ void Transaction::unsetTransactType()
     m_TransactTypeIsSet = false;
 }
 
-double Transaction::getAmount() const
+int64_t Transaction::getAmount() const
 {
     return m_Amount;
 }
 
 
-void Transaction::setAmount(double value)
+void Transaction::setAmount(int64_t value)
 {
     m_Amount = value;
     m_AmountIsSet = true;
@@ -480,13 +480,13 @@ void Transaction::unsetAmount()
     m_AmountIsSet = false;
 }
 
-double Transaction::getFee() const
+int64_t Transaction::getFee() const
 {
     return m_Fee;
 }
 
 
-void Transaction::setFee(double value)
+void Transaction::setFee(int64_t value)
 {
     m_Fee = value;
     m_FeeIsSet = true;
@@ -627,13 +627,13 @@ void Transaction::unsetTimestamp()
     m_TimestampIsSet = false;
 }
 
-double Transaction::getWalletBalance() const
+int64_t Transaction::getWalletBalance() const
 {
     return m_WalletBalance;
 }
 
 
-void Transaction::setWalletBalance(double value)
+void Transaction::setWalletBalance(int64_t value)
 {
     m_WalletBalance = value;
     m_WalletBalanceIsSet = true;

@@ -47,7 +47,7 @@ var apiInstance = new BitMexApi.PositionApi();
 var opts = { 
   'filter': "filter_example", // String | Table filter. For example, send {\"symbol\": \"XBTUSD\"}.
   'columns': "columns_example", // String | Which columns to fetch. For example, send [\"columnName\"].
-  'count': 8.14 // Number | Number of rows to fetch.
+  'count': 56 // Number | Number of rows to fetch.
 };
 
 var callback = function(error, data, response) {
@@ -185,7 +185,7 @@ var apiInstance = new BitMexApi.PositionApi();
 
 var symbol = "symbol_example"; // String | Symbol of position to isolate.
 
-var amount = 8.14; // Number | Amount to transfer, in Satoshis. May be negative.
+var amount = 789; // Number | Amount to transfer, in Satoshis. May be negative.
 
 var opts = { 
   'targetAccountId': 1.2 // Number | AccountId for the position that the margin would be transfered to, must be a paired account with main user.
@@ -329,7 +329,7 @@ var apiInstance = new BitMexApi.PositionApi();
 
 var symbol = "symbol_example"; // String | Symbol of position to update risk limit on.
 
-var riskLimit = 8.14; // Number | New Risk Limit, in Satoshis.
+var riskLimit = 789; // Number | New Risk Limit, in Satoshis.
 
 var opts = { 
   'targetAccountId': 1.2 // Number | AccountId for the position that the risk limit would be updated on, must be a paired account with main user.

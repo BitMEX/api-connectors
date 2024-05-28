@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QString>
 
 #include "SWGObject.h"
@@ -45,8 +44,8 @@ public:
     QString* getId();
     void setId(QString* id);
 
-    SWGNumber* getUserId();
-    void setUserId(SWGNumber* user_id);
+    qint32 getUserId();
+    void setUserId(qint32 user_id);
 
     QString* getDeviceToken();
     void setDeviceToken(QString* device_token);
@@ -61,7 +60,7 @@ private:
     QString* id;
     bool m_id_isSet;
 
-    SWGNumber* user_id;
+    qint32 user_id;
     bool m_user_id_isSet;
 
     QString* device_token;

@@ -30,7 +30,7 @@ SWGTradeApi::SWGTradeApi(QString host, QString basePath) {
 }
 
 void
-SWGTradeApi::trade_get(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
+SWGTradeApi::trade_get(QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/trade");
 
@@ -159,7 +159,7 @@ SWGTradeApi::trade_getCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGTradeApi::trade_getBucketed(QString* bin_size, bool partial, QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
+SWGTradeApi::trade_getBucketed(QString* bin_size, bool partial, QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/trade/bucketed");
 

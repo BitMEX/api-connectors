@@ -58,7 +58,7 @@ class User implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'float',
+        'id' => 'int',
         'firstname' => 'string',
         'lastname' => 'string',
         'username' => 'string',
@@ -344,7 +344,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Gets id
      *
-     * @return float
+     * @return int
      */
     public function getId()
     {
@@ -354,7 +354,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param float $id id
+     * @param int $id id
      *
      * @return $this
      */

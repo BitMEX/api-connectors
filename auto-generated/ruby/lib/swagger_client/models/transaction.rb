@@ -66,19 +66,19 @@ module SwaggerClient
     def self.swagger_types
       {
         :'transact_id' => :'String',
-        :'account' => :'Float',
+        :'account' => :'Integer',
         :'currency' => :'String',
         :'network' => :'String',
         :'transact_type' => :'String',
-        :'amount' => :'Float',
-        :'fee' => :'Float',
+        :'amount' => :'Integer',
+        :'fee' => :'Integer',
         :'transact_status' => :'String',
         :'address' => :'String',
         :'tx' => :'String',
         :'text' => :'String',
         :'transact_time' => :'DateTime',
         :'timestamp' => :'DateTime',
-        :'wallet_balance' => :'Float'
+        :'wallet_balance' => :'Integer'
       }
     end
 

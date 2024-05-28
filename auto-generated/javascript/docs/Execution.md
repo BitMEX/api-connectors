@@ -34,6 +34,7 @@ Name | Type | Description | Notes
 **cumQty** | **Number** |  | [optional] 
 **avgPx** | **Number** |  | [optional] 
 **commission** | **Number** |  | [optional] 
+**feeType** | **String** |  | [optional] 
 **tradePublishIndicator** | **String** |  | [optional] 
 **text** | **String** |  | [optional] 
 **trdMatchID** | **String** |  | [optional] 
@@ -43,6 +44,5 @@ Name | Type | Description | Notes
 **foreignNotional** | **Number** |  | [optional] 
 **transactTime** | **Date** |  | [optional] 
 **timestamp** | **Date** |  | 
-**feeType** | **String** |  | [optional] 
 
 

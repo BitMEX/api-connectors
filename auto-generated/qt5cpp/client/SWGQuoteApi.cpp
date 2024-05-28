@@ -30,7 +30,7 @@ SWGQuoteApi::SWGQuoteApi(QString host, QString basePath) {
 }
 
 void
-SWGQuoteApi::quote_get(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
+SWGQuoteApi::quote_get(QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/quote");
 
@@ -159,7 +159,7 @@ SWGQuoteApi::quote_getCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGQuoteApi::quote_getBucketed(QString* bin_size, bool partial, QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
+SWGQuoteApi::quote_getBucketed(QString* bin_size, bool partial, QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/quote/bucketed");
 

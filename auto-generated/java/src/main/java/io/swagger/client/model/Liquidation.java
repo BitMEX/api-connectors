@@ -23,13 +23,12 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * Active Liquidations
  */
 @ApiModel(description = "Active Liquidations")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Liquidation {
   @SerializedName("orderID")
   private String orderID = null;
@@ -44,7 +43,7 @@ public class Liquidation {
   private Double price = null;
 
   @SerializedName("leavesQty")
-  private BigDecimal leavesQty = null;
+  private Long leavesQty = null;
 
   public Liquidation orderID(String orderID) {
     this.orderID = orderID;
@@ -118,7 +117,7 @@ public class Liquidation {
     this.price = price;
   }
 
-  public Liquidation leavesQty(BigDecimal leavesQty) {
+  public Liquidation leavesQty(Long leavesQty) {
     this.leavesQty = leavesQty;
     return this;
   }
@@ -128,11 +127,11 @@ public class Liquidation {
    * @return leavesQty
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getLeavesQty() {
+  public Long getLeavesQty() {
     return leavesQty;
   }
 
-  public void setLeavesQty(BigDecimal leavesQty) {
+  public void setLeavesQty(Long leavesQty) {
     this.leavesQty = leavesQty;
   }
 

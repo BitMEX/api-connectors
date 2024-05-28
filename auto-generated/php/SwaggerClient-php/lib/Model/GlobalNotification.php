@@ -58,11 +58,11 @@ class GlobalNotification implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'float',
+        'id' => 'int',
         'date' => '\DateTime',
         'title' => 'string',
         'body' => 'string',
-        'ttl' => 'float',
+        'ttl' => 'int',
         'type' => 'string',
         'closable' => 'bool',
         'persist' => 'bool',
@@ -299,7 +299,7 @@ class GlobalNotification implements ModelInterface, ArrayAccess
     /**
      * Gets id
      *
-     * @return float
+     * @return int
      */
     public function getId()
     {
@@ -309,7 +309,7 @@ class GlobalNotification implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param float $id id
+     * @param int $id id
      *
      * @return $this
      */
@@ -395,7 +395,7 @@ class GlobalNotification implements ModelInterface, ArrayAccess
     /**
      * Gets ttl
      *
-     * @return float
+     * @return int
      */
     public function getTtl()
     {
@@ -405,7 +405,7 @@ class GlobalNotification implements ModelInterface, ArrayAccess
     /**
      * Sets ttl
      *
-     * @param float $ttl ttl
+     * @param int $ttl ttl
      *
      * @return $this
      */

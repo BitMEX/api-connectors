@@ -21,7 +21,6 @@
 #include "SWGIndexComposite.h"
 #include "SWGInstrument.h"
 #include "SWGInstrumentInterval.h"
-#include "SWGNumber.h"
 #include "SWGStatsUSDBySymbol.h"
 
 #include <QObject>
@@ -40,11 +39,11 @@ public:
     QString basePath;
     QMap<QString, QString> defaultHeaders;
 
-    void instrument_get(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time);
+    void instrument_get(QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time);
     void instrument_getActive();
     void instrument_getActiveAndIndices();
     void instrument_getActiveIntervals();
-    void instrument_getCompositeIndex(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time);
+    void instrument_getCompositeIndex(QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time);
     void instrument_getIndices();
     void instrument_getUsdVolume(QString* symbol, QString* columns);
     

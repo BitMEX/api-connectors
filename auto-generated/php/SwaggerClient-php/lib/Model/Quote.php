@@ -60,10 +60,10 @@ class Quote implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'timestamp' => '\DateTime',
         'symbol' => 'string',
-        'bid_size' => 'float',
+        'bid_size' => 'int',
         'bid_price' => 'double',
         'ask_price' => 'double',
-        'ask_size' => 'float'
+        'ask_size' => 'int'
     ];
 
     /**
@@ -292,7 +292,7 @@ class Quote implements ModelInterface, ArrayAccess
     /**
      * Gets bid_size
      *
-     * @return float
+     * @return int
      */
     public function getBidSize()
     {
@@ -302,7 +302,7 @@ class Quote implements ModelInterface, ArrayAccess
     /**
      * Sets bid_size
      *
-     * @param float $bid_size bid_size
+     * @param int $bid_size bid_size
      *
      * @return $this
      */
@@ -364,7 +364,7 @@ class Quote implements ModelInterface, ArrayAccess
     /**
      * Gets ask_size
      *
-     * @return float
+     * @return int
      */
     public function getAskSize()
     {
@@ -374,7 +374,7 @@ class Quote implements ModelInterface, ArrayAccess
     /**
      * Sets ask_size
      *
-     * @param float $ask_size ask_size
+     * @param int $ask_size ask_size
      *
      * @return $this
      */

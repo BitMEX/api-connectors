@@ -58,7 +58,7 @@ namespace IO.Swagger.Model
         /// <param name="firstTradeTimestamp">firstTradeTimestamp.</param>
         /// <param name="firstDepositTimestamp">firstDepositTimestamp.</param>
         /// <param name="typ">typ.</param>
-        public User(decimal? id = default(decimal?), string firstname = default(string), string lastname = default(string), string username = default(string), string accountName = default(string), bool? isUser = true, string email = default(string), string dateOfBirth = default(string), string phone = default(string), DateTime? created = default(DateTime?), DateTime? lastUpdated = default(DateTime?), UserPreferences preferences = default(UserPreferences), string tFAEnabled = default(string), string affiliateID = default(string), string country = default(string), string geoipCountry = default(string), string geoipRegion = default(string), DateTime? firstTradeTimestamp = default(DateTime?), DateTime? firstDepositTimestamp = default(DateTime?), string typ = default(string))
+        public User(int? id = default(int?), string firstname = default(string), string lastname = default(string), string username = default(string), string accountName = default(string), bool? isUser = true, string email = default(string), string dateOfBirth = default(string), string phone = default(string), DateTime? created = default(DateTime?), DateTime? lastUpdated = default(DateTime?), UserPreferences preferences = default(UserPreferences), string tFAEnabled = default(string), string affiliateID = default(string), string country = default(string), string geoipCountry = default(string), string geoipRegion = default(string), DateTime? firstTradeTimestamp = default(DateTime?), DateTime? firstDepositTimestamp = default(DateTime?), string typ = default(string))
         {
             // to ensure "username" is required (not null)
             if (username == null)
@@ -102,7 +102,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public decimal? Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Firstname

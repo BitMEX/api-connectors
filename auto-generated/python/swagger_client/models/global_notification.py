@@ -33,11 +33,11 @@ class GlobalNotification(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'float',
+        'id': 'int',
         '_date': 'datetime',
         'title': 'str',
         'body': 'str',
-        'ttl': 'float',
+        'ttl': 'int',
         'type': 'str',
         'closable': 'bool',
         'persist': 'bool',
@@ -99,7 +99,7 @@ class GlobalNotification(object):
 
 
         :return: The id of this GlobalNotification.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._id
 
@@ -109,7 +109,7 @@ class GlobalNotification(object):
 
 
         :param id: The id of this GlobalNotification.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._id = id
@@ -189,7 +189,7 @@ class GlobalNotification(object):
 
 
         :return: The ttl of this GlobalNotification.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._ttl
 
@@ -199,7 +199,7 @@ class GlobalNotification(object):
 
 
         :param ttl: The ttl of this GlobalNotification.  # noqa: E501
-        :type: float
+        :type: int
         """
         if self._configuration.client_side_validation and ttl is None:
             raise ValueError("Invalid value for `ttl`, must not be `None`")  # noqa: E501

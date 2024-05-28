@@ -45,7 +45,7 @@ api_instance = SwaggerClient::PositionApi.new
 opts = { 
   filter: 'filter_example', # String | Table filter. For example, send {\"symbol\": \"XBTUSD\"}.
   columns: 'columns_example', # String | Which columns to fetch. For example, send [\"columnName\"].
-  count: 8.14 # Float | Number of rows to fetch.
+  count: 56 # Integer | Number of rows to fetch.
 }
 
 begin
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter** | **String**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. | [optional] 
  **columns** | **String**| Which columns to fetch. For example, send [\&quot;columnName\&quot;]. | [optional] 
- **count** | **Float**| Number of rows to fetch. | [optional] 
+ **count** | **Integer**| Number of rows to fetch. | [optional] 
 
 ### Return type
 
@@ -181,7 +181,7 @@ api_instance = SwaggerClient::PositionApi.new
 
 symbol = 'symbol_example' # String | Symbol of position to isolate.
 
-amount = 8.14 # Float | Amount to transfer, in Satoshis. May be negative.
+amount = 789 # Integer | Amount to transfer, in Satoshis. May be negative.
 
 opts = { 
   target_account_id: 1.2 # Float | AccountId for the position that the margin would be transfered to, must be a paired account with main user.
@@ -201,7 +201,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **String**| Symbol of position to isolate. | 
- **amount** | **Float**| Amount to transfer, in Satoshis. May be negative. | 
+ **amount** | **Integer**| Amount to transfer, in Satoshis. May be negative. | 
  **target_account_id** | **Float**| AccountId for the position that the margin would be transfered to, must be a paired account with main user. | [optional] 
 
 ### Return type
@@ -323,7 +323,7 @@ api_instance = SwaggerClient::PositionApi.new
 
 symbol = 'symbol_example' # String | Symbol of position to update risk limit on.
 
-risk_limit = 8.14 # Float | New Risk Limit, in Satoshis.
+risk_limit = 789 # Integer | New Risk Limit, in Satoshis.
 
 opts = { 
   target_account_id: 1.2 # Float | AccountId for the position that the risk limit would be updated on, must be a paired account with main user.
@@ -343,7 +343,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **String**| Symbol of position to update risk limit on. | 
- **risk_limit** | **Float**| New Risk Limit, in Satoshis. | 
+ **risk_limit** | **Integer**| New Risk Limit, in Satoshis. | 
  **target_account_id** | **Float**| AccountId for the position that the risk limit would be updated on, must be a paired account with main user. | [optional] 
 
 ### Return type

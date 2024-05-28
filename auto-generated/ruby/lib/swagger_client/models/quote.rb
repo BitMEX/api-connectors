@@ -44,10 +44,10 @@ module SwaggerClient
       {
         :'timestamp' => :'DateTime',
         :'symbol' => :'String',
-        :'bid_size' => :'Float',
+        :'bid_size' => :'Integer',
         :'bid_price' => :'Float',
         :'ask_price' => :'Float',
-        :'ask_size' => :'Float'
+        :'ask_size' => :'Integer'
       }
     end
 

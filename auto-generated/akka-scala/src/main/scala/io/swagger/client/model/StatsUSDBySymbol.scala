@@ -18,10 +18,10 @@ import java.util.UUID
 case class StatsUSDBySymbol (
   symbol: String,
   currency: Option[String] = None,
-  turnover24h: Option[Double] = None,
-  turnover30d: Option[Double] = None,
-  turnover365d: Option[Double] = None,
-  turnover: Option[Double] = None
+  turnover24h: Option[Long] = None,
+  turnover30d: Option[Long] = None,
+  turnover365d: Option[Long] = None,
+  turnover: Option[Long] = None
 ) extends ApiModel
 
 

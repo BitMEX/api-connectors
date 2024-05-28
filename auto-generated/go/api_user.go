@@ -4823,7 +4823,7 @@ type UserApiUserRequestWithdrawalOpts struct {
 	Text optional.String
 }
 
-func (a *UserApiService) UserRequestWithdrawal(ctx context.Context, currency string, network string, amount float32, localVarOptionals *UserApiUserRequestWithdrawalOpts) (Transaction, *http.Response, error) {
+func (a *UserApiService) UserRequestWithdrawal(ctx context.Context, currency string, network string, amount int64, localVarOptionals *UserApiUserRequestWithdrawalOpts) (Transaction, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -5375,7 +5375,7 @@ type UserApiUserWalletTransferOpts struct {
 	FromAccountId optional.Float64
 }
 
-func (a *UserApiService) UserWalletTransfer(ctx context.Context, currency string, amount float32, targetAccountId float64, localVarOptionals *UserApiUserWalletTransferOpts) (Transaction, *http.Response, error) {
+func (a *UserApiService) UserWalletTransfer(ctx context.Context, currency string, amount int64, targetAccountId float64, localVarOptionals *UserApiUserWalletTransferOpts) (Transaction, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}

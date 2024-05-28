@@ -24,7 +24,7 @@ open class ExecutionAPI {
      - parameter endTime: (query) Ending date filter for results. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func executionGet(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [Execution]?,_ error: Error?) -> Void)) {
+    open class func executionGet(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [Execution]?,_ error: Error?) -> Void)) {
         executionGetWithRequestBuilder(symbol: symbol, filter: filter, columns: columns, count: count, start: start, reverse: reverse, startTime: startTime, endTime: endTime).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -57,7 +57,7 @@ open class ExecutionAPI {
 
      - returns: RequestBuilder<[Execution]> 
      */
-    open class func executionGetWithRequestBuilder(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[Execution]> {
+    open class func executionGetWithRequestBuilder(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[Execution]> {
         let path = "/execution"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -67,8 +67,8 @@ open class ExecutionAPI {
             "symbol": symbol, 
             "filter": filter, 
             "columns": columns, 
-            "count": count, 
-            "start": start, 
+            "count": count?.encodeToJSON(), 
+            "start": start?.encodeToJSON(), 
             "reverse": reverse, 
             "startTime": startTime?.encodeToJSON(), 
             "endTime": endTime?.encodeToJSON()
@@ -94,7 +94,7 @@ open class ExecutionAPI {
      - parameter endTime: (query) Ending date filter for results. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func executionGetTradeHistory(targetAccountId: Double? = nil, targetAccountIds: String? = nil, symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [Execution]?,_ error: Error?) -> Void)) {
+    open class func executionGetTradeHistory(targetAccountId: Double? = nil, targetAccountIds: String? = nil, symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [Execution]?,_ error: Error?) -> Void)) {
         executionGetTradeHistoryWithRequestBuilder(targetAccountId: targetAccountId, targetAccountIds: targetAccountIds, symbol: symbol, filter: filter, columns: columns, count: count, start: start, reverse: reverse, startTime: startTime, endTime: endTime).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -128,7 +128,7 @@ open class ExecutionAPI {
 
      - returns: RequestBuilder<[Execution]> 
      */
-    open class func executionGetTradeHistoryWithRequestBuilder(targetAccountId: Double? = nil, targetAccountIds: String? = nil, symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[Execution]> {
+    open class func executionGetTradeHistoryWithRequestBuilder(targetAccountId: Double? = nil, targetAccountIds: String? = nil, symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[Execution]> {
         let path = "/execution/tradeHistory"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -140,8 +140,8 @@ open class ExecutionAPI {
             "symbol": symbol, 
             "filter": filter, 
             "columns": columns, 
-            "count": count, 
-            "start": start, 
+            "count": count?.encodeToJSON(), 
+            "start": start?.encodeToJSON(), 
             "reverse": reverse, 
             "startTime": startTime?.encodeToJSON(), 
             "endTime": endTime?.encodeToJSON()

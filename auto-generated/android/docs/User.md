@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**id** | **Integer** |  |  [optional]
 **firstname** | **String** |  |  [optional]
 **lastname** | **String** |  |  [optional]
 **username** | **String** |  | 

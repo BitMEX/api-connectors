@@ -23,14 +23,13 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Historical Settlement Data
  */
 @ApiModel(description = "Historical Settlement Data")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Settlement {
   @SerializedName("timestamp")
   private OffsetDateTime timestamp = null;
@@ -51,10 +50,10 @@ public class Settlement {
   private Double optionUnderlyingPrice = null;
 
   @SerializedName("bankrupt")
-  private BigDecimal bankrupt = null;
+  private Long bankrupt = null;
 
   @SerializedName("taxBase")
-  private BigDecimal taxBase = null;
+  private Long taxBase = null;
 
   @SerializedName("taxRate")
   private Double taxRate = null;
@@ -167,7 +166,7 @@ public class Settlement {
     this.optionUnderlyingPrice = optionUnderlyingPrice;
   }
 
-  public Settlement bankrupt(BigDecimal bankrupt) {
+  public Settlement bankrupt(Long bankrupt) {
     this.bankrupt = bankrupt;
     return this;
   }
@@ -177,15 +176,15 @@ public class Settlement {
    * @return bankrupt
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getBankrupt() {
+  public Long getBankrupt() {
     return bankrupt;
   }
 
-  public void setBankrupt(BigDecimal bankrupt) {
+  public void setBankrupt(Long bankrupt) {
     this.bankrupt = bankrupt;
   }
 
-  public Settlement taxBase(BigDecimal taxBase) {
+  public Settlement taxBase(Long taxBase) {
     this.taxBase = taxBase;
     return this;
   }
@@ -195,11 +194,11 @@ public class Settlement {
    * @return taxBase
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTaxBase() {
+  public Long getTaxBase() {
     return taxBase;
   }
 
-  public void setTaxBase(BigDecimal taxBase) {
+  public void setTaxBase(Long taxBase) {
     this.taxBase = taxBase;
   }
 

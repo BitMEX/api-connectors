@@ -17,9 +17,9 @@ import java.util.UUID
 
 case class OrderBookL2 (
   symbol: String,
-  id: Double,
+  id: Long,
   side: String,
-  size: Option[Double] = None,
+  size: Option[Long] = None,
   price: Option[Double] = None,
   timestamp: Option[DateTime] = None
 ) extends ApiModel

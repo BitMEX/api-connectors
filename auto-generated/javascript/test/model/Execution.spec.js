@@ -227,6 +227,12 @@
         // expect(instance.commission).to.be(expectedValueLiteral);
       });
 
+      it('should have the property feeType (base name: "feeType")', function() {
+        // TODO: update the code to test the property feeType
+        expect(instance).to.have.property('feeType');
+        // expect(instance.feeType).to.be(expectedValueLiteral);
+      });
+
       it('should have the property tradePublishIndicator (base name: "tradePublishIndicator")', function() {
         // TODO: update the code to test the property tradePublishIndicator
         expect(instance).to.have.property('tradePublishIndicator');
@@ -279,12 +285,6 @@
         // TODO: update the code to test the property timestamp
         expect(instance).to.have.property('timestamp');
         // expect(instance.timestamp).to.be(expectedValueLiteral);
-      });
-
-      it('should have the property feeType (base name: "feeType")', function() {
-        // TODO: update the code to test the property feeType
-        expect(instance).to.have.property('feeType');
-        // expect(instance.feeType).to.be(expectedValueLiteral);
       });
 
     });

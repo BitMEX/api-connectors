@@ -17,7 +17,6 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import io.swagger.client.model.Error
 import io.swagger.client.model.Execution
-import io.swagger.client.model.Number
 import io.swagger.client.{ApiInvoker, ApiException}
 
 import com.sun.jersey.multipart.FormDataMultiPart
@@ -96,7 +95,7 @@ class ExecutionApi(
    * @param endTime Ending date filter for results. (optional)
    * @return List[Execution]
    */
-  def executionGet(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Execution]] = {
+  def executionGet(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Execution]] = {
     val await = Try(Await.result(executionGetAsync(symbol, filter, columns, count, start, reverse, startTime, endTime), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -118,7 +117,7 @@ class ExecutionApi(
    * @param endTime Ending date filter for results. (optional)
    * @return Future(List[Execution])
    */
-  def executionGetAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Execution]] = {
+  def executionGetAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Execution]] = {
       helper.executionGet(symbol, filter, columns, count, start, reverse, startTime, endTime)
   }
 
@@ -138,7 +137,7 @@ class ExecutionApi(
    * @param endTime Ending date filter for results. (optional)
    * @return List[Execution]
    */
-  def executionGetTradeHistory(targetAccountId: Option[Double] = None, targetAccountIds: Option[String] = None, symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Execution]] = {
+  def executionGetTradeHistory(targetAccountId: Option[Double] = None, targetAccountIds: Option[String] = None, symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Execution]] = {
     val await = Try(Await.result(executionGetTradeHistoryAsync(targetAccountId, targetAccountIds, symbol, filter, columns, count, start, reverse, startTime, endTime), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -162,7 +161,7 @@ class ExecutionApi(
    * @param endTime Ending date filter for results. (optional)
    * @return Future(List[Execution])
    */
-  def executionGetTradeHistoryAsync(targetAccountId: Option[Double] = None, targetAccountIds: Option[String] = None, symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Execution]] = {
+  def executionGetTradeHistoryAsync(targetAccountId: Option[Double] = None, targetAccountIds: Option[String] = None, symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Execution]] = {
       helper.executionGetTradeHistory(targetAccountId, targetAccountIds, symbol, filter, columns, count, start, reverse, startTime, endTime)
   }
 
@@ -173,8 +172,8 @@ class ExecutionApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ex
   def executionGet(symbol: Option[String] = None,
     filter: Option[String] = None,
     columns: Option[String] = None,
-    count: Option[Number] = Option(100),
-    start: Option[Number] = Option(0),
+    count: Option[Integer] = Option(100),
+    start: Option[Integer] = Option(0),
     reverse: Option[Boolean] = Option(false),
     startTime: Option[Date] = None,
     endTime: Option[Date] = None
@@ -230,8 +229,8 @@ class ExecutionApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ex
     symbol: Option[String] = None,
     filter: Option[String] = None,
     columns: Option[String] = None,
-    count: Option[Number] = Option(100),
-    start: Option[Number] = Option(0),
+    count: Option[Integer] = Option(100),
+    start: Option[Integer] = Option(0),
     reverse: Option[Boolean] = Option(false),
     startTime: Option[Date] = None,
     endTime: Option[Date] = None

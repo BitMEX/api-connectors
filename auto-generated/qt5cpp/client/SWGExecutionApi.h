@@ -19,7 +19,6 @@
 #include <QString>
 #include "SWGError.h"
 #include "SWGExecution.h"
-#include "SWGNumber.h"
 
 #include <QObject>
 
@@ -37,8 +36,8 @@ public:
     QString basePath;
     QMap<QString, QString> defaultHeaders;
 
-    void execution_get(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time);
-    void execution_getTradeHistory(double target_account_id, QString* target_account_ids, QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time);
+    void execution_get(QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time);
+    void execution_getTradeHistory(double target_account_id, QString* target_account_ids, QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time);
     
 private:
     void execution_getCallback (SWGHttpRequestWorker * worker);

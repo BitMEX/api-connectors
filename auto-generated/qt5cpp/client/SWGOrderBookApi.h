@@ -17,7 +17,6 @@
 
 #include <QString>
 #include "SWGError.h"
-#include "SWGNumber.h"
 #include "SWGOrderBookL2.h"
 
 #include <QObject>
@@ -36,7 +35,7 @@ public:
     QString basePath;
     QMap<QString, QString> defaultHeaders;
 
-    void orderBook_getL2(QString* symbol, SWGNumber* depth);
+    void orderBook_getL2(QString* symbol, qint32 depth);
     
 private:
     void orderBook_getL2Callback (SWGHttpRequestWorker * worker);

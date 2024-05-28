@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**id** | **Integer** |  |  [optional]
 **currency** | **String** |  |  [optional]
 **created** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **userId** | **Double** |  |  [optional]

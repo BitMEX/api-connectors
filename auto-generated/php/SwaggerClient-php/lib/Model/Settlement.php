@@ -64,8 +64,8 @@ class Settlement implements ModelInterface, ArrayAccess
         'settled_price' => 'double',
         'option_strike_price' => 'double',
         'option_underlying_price' => 'double',
-        'bankrupt' => 'float',
-        'tax_base' => 'float',
+        'bankrupt' => 'int',
+        'tax_base' => 'int',
         'tax_rate' => 'double'
     ];
 
@@ -406,7 +406,7 @@ class Settlement implements ModelInterface, ArrayAccess
     /**
      * Gets bankrupt
      *
-     * @return float
+     * @return int
      */
     public function getBankrupt()
     {
@@ -416,7 +416,7 @@ class Settlement implements ModelInterface, ArrayAccess
     /**
      * Sets bankrupt
      *
-     * @param float $bankrupt bankrupt
+     * @param int $bankrupt bankrupt
      *
      * @return $this
      */
@@ -430,7 +430,7 @@ class Settlement implements ModelInterface, ArrayAccess
     /**
      * Gets tax_base
      *
-     * @return float
+     * @return int
      */
     public function getTaxBase()
     {
@@ -440,7 +440,7 @@ class Settlement implements ModelInterface, ArrayAccess
     /**
      * Sets tax_base
      *
-     * @param float $tax_base tax_base
+     * @param int $tax_base tax_base
      *
      * @return $this
      */

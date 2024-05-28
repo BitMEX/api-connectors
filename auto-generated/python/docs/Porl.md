@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**account** | **float** |  | 
+**account** | **int** |  | 
 **nonce** | **str** |  | [optional] 
 **account_nonce** | **str** |  | 
 **total** | **float** |  | 

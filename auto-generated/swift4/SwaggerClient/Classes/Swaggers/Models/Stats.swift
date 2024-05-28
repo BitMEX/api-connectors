@@ -14,12 +14,12 @@ public struct Stats: Codable {
 
     public var rootSymbol: String
     public var currency: String?
-    public var volume24h: Double?
-    public var turnover24h: Double?
-    public var openInterest: Double?
-    public var openValue: Double?
+    public var volume24h: Int64?
+    public var turnover24h: Int64?
+    public var openInterest: Int64?
+    public var openValue: Int64?
 
-    public init(rootSymbol: String, currency: String?, volume24h: Double?, turnover24h: Double?, openInterest: Double?, openValue: Double?) {
+    public init(rootSymbol: String, currency: String?, volume24h: Int64?, turnover24h: Int64?, openInterest: Int64?, openValue: Int64?) {
         self.rootSymbol = rootSymbol
         self.currency = currency
         self.volume24h = volume24h

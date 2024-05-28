@@ -66,15 +66,15 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getWalletBalance() const;
+    int64_t getWalletBalance() const;
     bool walletBalanceIsSet() const;
     void unsetWalletBalance();
-    void setWalletBalance(double value);
+    void setWalletBalance(int64_t value);
 
 protected:
     utility::string_t m_Currency;
         utility::datetime m_Timestamp;
-        double m_WalletBalance;
+        int64_t m_WalletBalance;
     bool m_WalletBalanceIsSet;
 };
 

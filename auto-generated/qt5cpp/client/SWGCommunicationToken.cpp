@@ -39,7 +39,7 @@ void
 SWGCommunicationToken::init() {
     id = new QString("");
     m_id_isSet = false;
-    user_id = 0.0;
+    user_id = 0;
     m_user_id_isSet = false;
     device_token = new QString("");
     m_device_token_isSet = false;
@@ -52,9 +52,7 @@ SWGCommunicationToken::cleanup() {
     if(id != nullptr) { 
         delete id;
     }
-    if(user_id != nullptr) { 
-        delete user_id;
-    }
+
     if(device_token != nullptr) { 
         delete device_token;
     }
@@ -76,7 +74,7 @@ void
 SWGCommunicationToken::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&id, pJson["id"], "QString", "QString");
     
-    ::Swagger::setValue(&user_id, pJson["userId"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&user_id, pJson["userId"], "qint32", "");
     
     ::Swagger::setValue(&device_token, pJson["deviceToken"], "QString", "QString");
     
@@ -99,8 +97,8 @@ SWGCommunicationToken::asJsonObject() {
     if(id != nullptr && *id != QString("")){
         toJsonValue(QString("id"), id, obj, QString("QString"));
     }
-    if((user_id != nullptr) && (user_id->isSet())){
-        toJsonValue(QString("userId"), user_id, obj, QString("SWGNumber"));
+    if(m_user_id_isSet){
+        obj.insert("userId", QJsonValue(user_id));
     }
     if(device_token != nullptr && *device_token != QString("")){
         toJsonValue(QString("deviceToken"), device_token, obj, QString("QString"));
@@ -122,12 +120,12 @@ SWGCommunicationToken::setId(QString* id) {
     this->m_id_isSet = true;
 }
 
-SWGNumber*
+qint32
 SWGCommunicationToken::getUserId() {
     return user_id;
 }
 void
-SWGCommunicationToken::setUserId(SWGNumber* user_id) {
+SWGCommunicationToken::setUserId(qint32 user_id) {
     this->user_id = user_id;
     this->m_user_id_isSet = true;
 }
@@ -158,7 +156,7 @@ SWGCommunicationToken::isSet(){
     bool isObjectUpdated = false;
     do{
         if(id != nullptr && *id != QString("")){ isObjectUpdated = true; break;}
-        if(user_id != nullptr && user_id->isSet()){ isObjectUpdated = true; break;}
+        if(m_user_id_isSet){ isObjectUpdated = true; break;}
         if(device_token != nullptr && *device_token != QString("")){ isObjectUpdated = true; break;}
         if(channel != nullptr && *channel != QString("")){ isObjectUpdated = true; break;}
     }while(false);

@@ -84,10 +84,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getAccount() const;
+    int64_t getAccount() const;
     bool accountIsSet() const;
     void unsetAccount();
-    void setAccount(double value);
+    void setAccount(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -103,10 +103,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getLastQty() const;
+    int64_t getLastQty() const;
     bool lastQtyIsSet() const;
     void unsetLastQty();
-    void setLastQty(double value);
+    void setLastQty(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -124,10 +124,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getOrderQty() const;
+    int64_t getOrderQty() const;
     bool orderQtyIsSet() const;
     void unsetOrderQty();
-    void setOrderQty(double value);
+    void setOrderQty(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -138,10 +138,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getDisplayQty() const;
+    int64_t getDisplayQty() const;
     bool displayQtyIsSet() const;
     void unsetDisplayQty();
-    void setDisplayQty(double value);
+    void setDisplayQty(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -243,17 +243,17 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getLeavesQty() const;
+    int64_t getLeavesQty() const;
     bool leavesQtyIsSet() const;
     void unsetLeavesQty();
-    void setLeavesQty(double value);
+    void setLeavesQty(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getCumQty() const;
+    int64_t getCumQty() const;
     bool cumQtyIsSet() const;
     void unsetCumQty();
-    void setCumQty(double value);
+    void setCumQty(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -268,6 +268,13 @@ public:
     bool commissionIsSet() const;
     void unsetCommission();
     void setCommission(double value);
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getFeeType() const;
+    bool feeTypeIsSet() const;
+    void unsetFeeType();
+    void setFeeType(utility::string_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -292,17 +299,17 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getExecCost() const;
+    int64_t getExecCost() const;
     bool execCostIsSet() const;
     void unsetExecCost();
-    void setExecCost(double value);
+    void setExecCost(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getExecComm() const;
+    int64_t getExecComm() const;
     bool execCommIsSet() const;
     void unsetExecComm();
-    void setExecComm(double value);
+    void setExecComm(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -329,13 +336,6 @@ public:
     /// </summary>
     utility::datetime getTimestamp() const;
         void setTimestamp(utility::datetime value);
-    /// <summary>
-    /// 
-    /// </summary>
-    utility::string_t getFeeType() const;
-    bool feeTypeIsSet() const;
-    void unsetFeeType();
-    void setFeeType(utility::string_t value);
 
 protected:
     utility::string_t m_ExecID;
@@ -346,22 +346,22 @@ protected:
     bool m_ClOrdIDIsSet;
     utility::string_t m_ClOrdLinkID;
     bool m_ClOrdLinkIDIsSet;
-    double m_Account;
+    int64_t m_Account;
     bool m_AccountIsSet;
     utility::string_t m_Symbol;
         utility::string_t m_Side;
     bool m_SideIsSet;
-    double m_LastQty;
+    int64_t m_LastQty;
     bool m_LastQtyIsSet;
     double m_LastPx;
     bool m_LastPxIsSet;
     utility::string_t m_LastLiquidityInd;
     bool m_LastLiquidityIndIsSet;
-    double m_OrderQty;
+    int64_t m_OrderQty;
     bool m_OrderQtyIsSet;
     double m_Price;
     bool m_PriceIsSet;
-    double m_DisplayQty;
+    int64_t m_DisplayQty;
     bool m_DisplayQtyIsSet;
     double m_StopPx;
     bool m_StopPxIsSet;
@@ -391,23 +391,25 @@ protected:
     bool m_WorkingIndicatorIsSet;
     utility::string_t m_OrdRejReason;
     bool m_OrdRejReasonIsSet;
-    double m_LeavesQty;
+    int64_t m_LeavesQty;
     bool m_LeavesQtyIsSet;
-    double m_CumQty;
+    int64_t m_CumQty;
     bool m_CumQtyIsSet;
     double m_AvgPx;
     bool m_AvgPxIsSet;
     double m_Commission;
     bool m_CommissionIsSet;
+    utility::string_t m_FeeType;
+    bool m_FeeTypeIsSet;
     utility::string_t m_TradePublishIndicator;
     bool m_TradePublishIndicatorIsSet;
     utility::string_t m_Text;
     bool m_TextIsSet;
     utility::string_t m_TrdMatchID;
     bool m_TrdMatchIDIsSet;
-    double m_ExecCost;
+    int64_t m_ExecCost;
     bool m_ExecCostIsSet;
-    double m_ExecComm;
+    int64_t m_ExecComm;
     bool m_ExecCommIsSet;
     double m_HomeNotional;
     bool m_HomeNotionalIsSet;
@@ -416,9 +418,7 @@ protected:
     utility::datetime m_TransactTime;
     bool m_TransactTimeIsSet;
     utility::datetime m_Timestamp;
-        utility::string_t m_FeeType;
-    bool m_FeeTypeIsSet;
-};
+    };
 
 }
 }

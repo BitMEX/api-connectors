@@ -1913,7 +1913,7 @@ SWGUserApi::user_logoutCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGUserApi::user_requestWithdrawal(QString* currency, QString* network, SWGNumber* amount, QString* otp_token, QString* address, QString* memo, double address_id, double target_user_id, double fee, QString* text) {
+SWGUserApi::user_requestWithdrawal(QString* currency, QString* network, qint64 amount, QString* otp_token, QString* address, QString* memo, double address_id, double target_user_id, double fee, QString* text) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/requestWithdrawal");
 
@@ -2114,7 +2114,7 @@ SWGUserApi::user_updateSubAccountCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGUserApi::user_walletTransfer(QString* currency, SWGNumber* amount, double target_account_id, double from_account_id) {
+SWGUserApi::user_walletTransfer(QString* currency, qint64 amount, double target_account_id, double from_account_id) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/walletTransfer");
 

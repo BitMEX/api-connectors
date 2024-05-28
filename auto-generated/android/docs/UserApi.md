@@ -1247,7 +1247,7 @@ This will send a confirmation email to the email address on record.
 UserApi apiInstance = new UserApi();
 String currency = "XBt"; // String | Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
 String network = "network_example"; // String | The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
-BigDecimal amount = new BigDecimal(); // BigDecimal | Amount of withdrawal currency.
+Long amount = 789L; // Long | Amount of withdrawal currency.
 String otpToken = "otpToken_example"; // String | 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
 String address = "address_example"; // String | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
 String memo = "memo_example"; // String | Destination Memo. If `address`, is specified, Destination Memo can also be specified
@@ -1270,7 +1270,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **String**| Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | [default to XBt]
  **network** | **String**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. |
- **amount** | **BigDecimal**| Amount of withdrawal currency. |
+ **amount** | **Long**| Amount of withdrawal currency. |
  **otpToken** | **String**| 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. | [optional]
  **address** | **String**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional]
  **memo** | **String**| Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified | [optional]
@@ -1393,7 +1393,7 @@ This will send a confirmation email to the email address on record.
 
 UserApi apiInstance = new UserApi();
 String currency = "currency_example"; // String | Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
-BigDecimal amount = new BigDecimal(); // BigDecimal | Amount of transfer.
+Long amount = 789L; // Long | Amount of transfer.
 Double targetAccountId = 3.4D; // Double | AccountId to send the transfer to, must be a paired account with the user sending the transfer.
 Double fromAccountId = 3.4D; // Double | AccountID to send the transfer from. Must be paired account with the authenticated user.
 try {
@@ -1410,7 +1410,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **String**| Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; |
- **amount** | **BigDecimal**| Amount of transfer. |
+ **amount** | **Long**| Amount of transfer. |
  **targetAccountId** | **Double**| AccountId to send the transfer to, must be a paired account with the user sending the transfer. |
  **fromAccountId** | **Double**| AccountID to send the transfer from. Must be paired account with the authenticated user. | [optional]
 

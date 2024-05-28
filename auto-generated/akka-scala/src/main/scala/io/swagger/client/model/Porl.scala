@@ -16,7 +16,7 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class Porl (
-  account: Double,
+  account: Int,
   nonce: Option[String] = None,
   accountNonce: String,
   total: Double,

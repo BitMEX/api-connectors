@@ -45,7 +45,7 @@ class PositionApi(object):
         :param async_req bool
         :param str filter: Table filter. For example, send {\"symbol\": \"XBTUSD\"}.
         :param str columns: Which columns to fetch. For example, send [\"columnName\"].
-        :param float count: Number of rows to fetch.
+        :param int count: Number of rows to fetch.
         :return: list[Position]
                  If the method is called asynchronously,
                  returns the request thread.
@@ -69,7 +69,7 @@ class PositionApi(object):
         :param async_req bool
         :param str filter: Table filter. For example, send {\"symbol\": \"XBTUSD\"}.
         :param str columns: Which columns to fetch. For example, send [\"columnName\"].
-        :param float count: Number of rows to fetch.
+        :param int count: Number of rows to fetch.
         :return: list[Position]
                  If the method is called asynchronously,
                  returns the request thread.
@@ -250,7 +250,7 @@ class PositionApi(object):
 
         :param async_req bool
         :param str symbol: Symbol of position to isolate. (required)
-        :param float amount: Amount to transfer, in Satoshis. May be negative. (required)
+        :param int amount: Amount to transfer, in Satoshis. May be negative. (required)
         :param float target_account_id: AccountId for the position that the margin would be transfered to, must be a paired account with main user.
         :return: Position
                  If the method is called asynchronously,
@@ -274,7 +274,7 @@ class PositionApi(object):
 
         :param async_req bool
         :param str symbol: Symbol of position to isolate. (required)
-        :param float amount: Amount to transfer, in Satoshis. May be negative. (required)
+        :param int amount: Amount to transfer, in Satoshis. May be negative. (required)
         :param float target_account_id: AccountId for the position that the margin would be transfered to, must be a paired account with main user.
         :return: Position
                  If the method is called asynchronously,
@@ -472,7 +472,7 @@ class PositionApi(object):
 
         :param async_req bool
         :param str symbol: Symbol of position to update risk limit on. (required)
-        :param float risk_limit: New Risk Limit, in Satoshis. (required)
+        :param int risk_limit: New Risk Limit, in Satoshis. (required)
         :param float target_account_id: AccountId for the position that the risk limit would be updated on, must be a paired account with main user.
         :return: Position
                  If the method is called asynchronously,
@@ -496,7 +496,7 @@ class PositionApi(object):
 
         :param async_req bool
         :param str symbol: Symbol of position to update risk limit on. (required)
-        :param float risk_limit: New Risk Limit, in Satoshis. (required)
+        :param int risk_limit: New Risk Limit, in Satoshis. (required)
         :param float target_account_id: AccountId for the position that the risk limit would be updated on, must be a paired account with main user.
         :return: Position
                  If the method is called asynchronously,

@@ -16,7 +16,7 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class User (
-  id: Option[Double] = None,
+  id: Option[Int] = None,
   firstname: Option[String] = None,
   lastname: Option[String] = None,
   username: String,

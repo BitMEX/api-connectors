@@ -15,16 +15,16 @@ package io.swagger.client.model
 import java.util.Date
 
 case class Wallet (
-  account: Number,
+  account: Long,
   currency: String,
-  deposited: Option[Number] = None,
-  withdrawn: Option[Number] = None,
-  transferIn: Option[Number] = None,
-  transferOut: Option[Number] = None,
-  amount: Option[Number] = None,
-  pendingCredit: Option[Number] = None,
-  pendingDebit: Option[Number] = None,
-  confirmedDebit: Option[Number] = None,
+  deposited: Option[Long] = None,
+  withdrawn: Option[Long] = None,
+  transferIn: Option[Long] = None,
+  transferOut: Option[Long] = None,
+  amount: Option[Long] = None,
+  pendingCredit: Option[Long] = None,
+  pendingDebit: Option[Long] = None,
+  confirmedDebit: Option[Long] = None,
   timestamp: Option[Date] = None
 )
 

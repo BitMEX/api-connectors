@@ -61,8 +61,8 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getId() const;
-        void setId(double value);
+    int64_t getId() const;
+        void setId(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -71,10 +71,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getSize() const;
+    int64_t getSize() const;
     bool sizeIsSet() const;
     void unsetSize();
-    void setSize(double value);
+    void setSize(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -92,9 +92,9 @@ public:
 
 protected:
     utility::string_t m_Symbol;
-        double m_Id;
+        int64_t m_Id;
         utility::string_t m_Side;
-        double m_Size;
+        int64_t m_Size;
     bool m_SizeIsSet;
     double m_Price;
     bool m_PriceIsSet;

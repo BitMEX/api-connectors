@@ -61,10 +61,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getAccount() const;
+    int64_t getAccount() const;
     bool accountIsSet() const;
     void unsetAccount();
-    void setAccount(double value);
+    void setAccount(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -89,17 +89,17 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getAmount() const;
+    int64_t getAmount() const;
     bool amountIsSet() const;
     void unsetAmount();
-    void setAmount(double value);
+    void setAmount(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getFee() const;
+    int64_t getFee() const;
     bool feeIsSet() const;
     void unsetFee();
-    void setFee(double value);
+    void setFee(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -145,14 +145,14 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getWalletBalance() const;
+    int64_t getWalletBalance() const;
     bool walletBalanceIsSet() const;
     void unsetWalletBalance();
-    void setWalletBalance(double value);
+    void setWalletBalance(int64_t value);
 
 protected:
     utility::string_t m_TransactID;
-        double m_Account;
+        int64_t m_Account;
     bool m_AccountIsSet;
     utility::string_t m_Currency;
     bool m_CurrencyIsSet;
@@ -160,9 +160,9 @@ protected:
     bool m_NetworkIsSet;
     utility::string_t m_TransactType;
     bool m_TransactTypeIsSet;
-    double m_Amount;
+    int64_t m_Amount;
     bool m_AmountIsSet;
-    double m_Fee;
+    int64_t m_Fee;
     bool m_FeeIsSet;
     utility::string_t m_TransactStatus;
     bool m_TransactStatusIsSet;
@@ -176,7 +176,7 @@ protected:
     bool m_TransactTimeIsSet;
     utility::datetime m_Timestamp;
     bool m_TimestampIsSet;
-    double m_WalletBalance;
+    int64_t m_WalletBalance;
     bool m_WalletBalanceIsSet;
 };
 

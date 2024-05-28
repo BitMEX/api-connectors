@@ -4,19 +4,19 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**account** | [**BigDecimal**](BigDecimal.md) |  | 
+**account** | **Long** |  | 
 **currency** | **String** |  | 
-**prevPayout** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**prevTurnover** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**prevComm** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**prevPayout** | **Long** |  |  [optional]
+**prevTurnover** | **Long** |  |  [optional]
+**prevComm** | **Long** |  |  [optional]
 **prevTimestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
-**execTurnover** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**execComm** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**totalReferrals** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**totalTurnover** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**totalComm** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**execTurnover** | **Long** |  |  [optional]
+**execComm** | **Long** |  |  [optional]
+**totalReferrals** | **Long** |  |  [optional]
+**totalTurnover** | **Long** |  |  [optional]
+**totalComm** | **Long** |  |  [optional]
 **payoutPcnt** | **Double** |  |  [optional]
-**pendingPayout** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**pendingPayout** | **Long** |  |  [optional]
 **timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **referrerAccount** | **Double** |  |  [optional]
 **referralDiscount** | **Double** |  |  [optional]

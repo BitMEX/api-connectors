@@ -49,7 +49,7 @@
             // TODO: update response assertions
             expect(data).to.be.a(BitMexApi.Porl);
             expect(data.account).to.be.a('number');
-            expect(data.account).to.be();
+            expect(data.account).to.be(0);
             expect(data.nonce).to.be.a('string');
             expect(data.nonce).to.be("");
             expect(data.accountNonce).to.be.a('string');

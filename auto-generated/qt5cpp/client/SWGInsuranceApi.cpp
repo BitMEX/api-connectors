@@ -30,7 +30,7 @@ SWGInsuranceApi::SWGInsuranceApi(QString host, QString basePath) {
 }
 
 void
-SWGInsuranceApi::insurance_get(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
+SWGInsuranceApi::insurance_get(QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/insurance");
 

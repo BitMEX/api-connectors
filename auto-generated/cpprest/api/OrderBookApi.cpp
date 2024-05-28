@@ -36,7 +36,7 @@ OrderBookApi::~OrderBookApi()
 {
 }
 
-pplx::task<std::vector<std::shared_ptr<OrderBookL2>>> OrderBookApi::orderBook_getL2(utility::string_t symbol, boost::optional<double> depth)
+pplx::task<std::vector<std::shared_ptr<OrderBookL2>>> OrderBookApi::orderBook_getL2(utility::string_t symbol, boost::optional<int32_t> depth)
 {
 
 

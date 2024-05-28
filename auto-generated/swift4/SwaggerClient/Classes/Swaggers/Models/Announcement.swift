@@ -12,13 +12,13 @@ import Foundation
 
 public struct Announcement: Codable {
 
-    public var _id: Double
+    public var _id: Int
     public var link: String?
     public var title: String?
     public var content: String?
     public var date: Date?
 
-    public init(_id: Double, link: String?, title: String?, content: String?, date: Date?) {
+    public init(_id: Int, link: String?, title: String?, content: String?, date: Date?) {
         self._id = _id
         self.link = link
         self.title = title

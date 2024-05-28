@@ -43,9 +43,9 @@ SWGStatsHistory::init() {
     m_root_symbol_isSet = false;
     currency = new QString("");
     m_currency_isSet = false;
-    volume = 0.0;
+    volume = 0L;
     m_volume_isSet = false;
-    turnover = 0.0;
+    turnover = 0L;
     m_turnover_isSet = false;
 }
 
@@ -60,12 +60,8 @@ SWGStatsHistory::cleanup() {
     if(currency != nullptr) { 
         delete currency;
     }
-    if(volume != nullptr) { 
-        delete volume;
-    }
-    if(turnover != nullptr) { 
-        delete turnover;
-    }
+
+
 }
 
 SWGStatsHistory*
@@ -85,9 +81,9 @@ SWGStatsHistory::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&currency, pJson["currency"], "QString", "QString");
     
-    ::Swagger::setValue(&volume, pJson["volume"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&volume, pJson["volume"], "qint64", "");
     
-    ::Swagger::setValue(&turnover, pJson["turnover"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&turnover, pJson["turnover"], "qint64", "");
     
 }
 
@@ -112,11 +108,11 @@ SWGStatsHistory::asJsonObject() {
     if(currency != nullptr && *currency != QString("")){
         toJsonValue(QString("currency"), currency, obj, QString("QString"));
     }
-    if((volume != nullptr) && (volume->isSet())){
-        toJsonValue(QString("volume"), volume, obj, QString("SWGNumber"));
+    if(m_volume_isSet){
+        obj.insert("volume", QJsonValue(volume));
     }
-    if((turnover != nullptr) && (turnover->isSet())){
-        toJsonValue(QString("turnover"), turnover, obj, QString("SWGNumber"));
+    if(m_turnover_isSet){
+        obj.insert("turnover", QJsonValue(turnover));
     }
 
     return obj;
@@ -152,22 +148,22 @@ SWGStatsHistory::setCurrency(QString* currency) {
     this->m_currency_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGStatsHistory::getVolume() {
     return volume;
 }
 void
-SWGStatsHistory::setVolume(SWGNumber* volume) {
+SWGStatsHistory::setVolume(qint64 volume) {
     this->volume = volume;
     this->m_volume_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGStatsHistory::getTurnover() {
     return turnover;
 }
 void
-SWGStatsHistory::setTurnover(SWGNumber* turnover) {
+SWGStatsHistory::setTurnover(qint64 turnover) {
     this->turnover = turnover;
     this->m_turnover_isSet = true;
 }
@@ -180,8 +176,8 @@ SWGStatsHistory::isSet(){
         
         if(root_symbol != nullptr && *root_symbol != QString("")){ isObjectUpdated = true; break;}
         if(currency != nullptr && *currency != QString("")){ isObjectUpdated = true; break;}
-        if(volume != nullptr && volume->isSet()){ isObjectUpdated = true; break;}
-        if(turnover != nullptr && turnover->isSet()){ isObjectUpdated = true; break;}
+        if(m_volume_isSet){ isObjectUpdated = true; break;}
+        if(m_turnover_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

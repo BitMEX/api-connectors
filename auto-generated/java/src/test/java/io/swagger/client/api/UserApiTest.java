@@ -15,7 +15,6 @@ package io.swagger.client.api;
 
 import io.swagger.client.model.AccessToken;
 import io.swagger.client.model.Affiliate;
-import java.math.BigDecimal;
 import io.swagger.client.model.CollateralSupportAgreement;
 import io.swagger.client.model.CommunicationToken;
 import io.swagger.client.model.DepositAddress;
@@ -533,7 +532,7 @@ public class UserApiTest {
     public void userRequestWithdrawalTest() throws Exception {
         String currency = null;
         String network = null;
-        BigDecimal amount = null;
+        Long amount = null;
         String otpToken = null;
         String address = null;
         String memo = null;
@@ -591,7 +590,7 @@ public class UserApiTest {
     @Test
     public void userWalletTransferTest() throws Exception {
         String currency = null;
-        BigDecimal amount = null;
+        Long amount = null;
         Double targetAccountId = null;
         Double fromAccountId = null;
         Transaction response = api.userWalletTransfer(currency, amount, targetAccountId, fromAccountId);

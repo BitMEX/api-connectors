@@ -57,16 +57,16 @@ module SwaggerClient
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'account' => :'Float',
+        :'account' => :'Integer',
         :'currency' => :'String',
-        :'deposited' => :'Float',
-        :'withdrawn' => :'Float',
-        :'transfer_in' => :'Float',
-        :'transfer_out' => :'Float',
-        :'amount' => :'Float',
-        :'pending_credit' => :'Float',
-        :'pending_debit' => :'Float',
-        :'confirmed_debit' => :'Float',
+        :'deposited' => :'Integer',
+        :'withdrawn' => :'Integer',
+        :'transfer_in' => :'Integer',
+        :'transfer_out' => :'Integer',
+        :'amount' => :'Integer',
+        :'pending_credit' => :'Integer',
+        :'pending_debit' => :'Integer',
+        :'confirmed_debit' => :'Integer',
         :'timestamp' => :'DateTime'
       }
     end

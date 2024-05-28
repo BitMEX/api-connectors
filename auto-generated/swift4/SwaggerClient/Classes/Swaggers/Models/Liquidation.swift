@@ -16,9 +16,9 @@ public struct Liquidation: Codable {
     public var symbol: String?
     public var side: String?
     public var price: Double?
-    public var leavesQty: Double?
+    public var leavesQty: Int64?
 
-    public init(orderID: String, symbol: String?, side: String?, price: Double?, leavesQty: Double?) {
+    public init(orderID: String, symbol: String?, side: String?, price: Double?, leavesQty: Int64?) {
         self.orderID = orderID
         self.symbol = symbol
         self.side = side

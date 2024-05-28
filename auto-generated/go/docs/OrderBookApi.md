@@ -25,7 +25,7 @@ Optional parameters are passed through a pointer to a OrderBookApiOrderBookGetL2
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **depth** | **optional.Float32**| Orderbook depth per side. Send 0 for full depth. | [default to 25]
+ **depth** | **optional.Int32**| Orderbook depth per side. Send 0 for full depth. | [default to 25]
 
 ### Return type
 

@@ -29,7 +29,6 @@ import java.io.IOException;
 
 import io.swagger.client.model.AccessToken;
 import io.swagger.client.model.Affiliate;
-import java.math.BigDecimal;
 import io.swagger.client.model.CollateralSupportAgreement;
 import io.swagger.client.model.CommunicationToken;
 import io.swagger.client.model.DepositAddress;
@@ -3663,7 +3662,7 @@ public class UserApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userRequestWithdrawalCall(String currency, String network, BigDecimal amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userRequestWithdrawalCall(String currency, String network, Long amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3725,7 +3724,7 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userRequestWithdrawalValidateBeforeCall(String currency, String network, BigDecimal amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userRequestWithdrawalValidateBeforeCall(String currency, String network, Long amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'currency' is set
         if (currency == null) {
@@ -3764,7 +3763,7 @@ public class UserApi {
      * @return Transaction
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Transaction userRequestWithdrawal(String currency, String network, BigDecimal amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text) throws ApiException {
+    public Transaction userRequestWithdrawal(String currency, String network, Long amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text) throws ApiException {
         ApiResponse<Transaction> resp = userRequestWithdrawalWithHttpInfo(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text);
         return resp.getData();
     }
@@ -3785,7 +3784,7 @@ public class UserApi {
      * @return ApiResponse&lt;Transaction&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Transaction> userRequestWithdrawalWithHttpInfo(String currency, String network, BigDecimal amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text) throws ApiException {
+    public ApiResponse<Transaction> userRequestWithdrawalWithHttpInfo(String currency, String network, Long amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text) throws ApiException {
         com.squareup.okhttp.Call call = userRequestWithdrawalValidateBeforeCall(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text, null, null);
         Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -3808,7 +3807,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userRequestWithdrawalAsync(String currency, String network, BigDecimal amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text, final ApiCallback<Transaction> callback) throws ApiException {
+    public com.squareup.okhttp.Call userRequestWithdrawalAsync(String currency, String network, Long amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text, final ApiCallback<Transaction> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4110,7 +4109,7 @@ public class UserApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userWalletTransferCall(String currency, BigDecimal amount, Double targetAccountId, Double fromAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userWalletTransferCall(String currency, Long amount, Double targetAccountId, Double fromAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4160,7 +4159,7 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userWalletTransferValidateBeforeCall(String currency, BigDecimal amount, Double targetAccountId, Double fromAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userWalletTransferValidateBeforeCall(String currency, Long amount, Double targetAccountId, Double fromAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'currency' is set
         if (currency == null) {
@@ -4193,7 +4192,7 @@ public class UserApi {
      * @return Transaction
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Transaction userWalletTransfer(String currency, BigDecimal amount, Double targetAccountId, Double fromAccountId) throws ApiException {
+    public Transaction userWalletTransfer(String currency, Long amount, Double targetAccountId, Double fromAccountId) throws ApiException {
         ApiResponse<Transaction> resp = userWalletTransferWithHttpInfo(currency, amount, targetAccountId, fromAccountId);
         return resp.getData();
     }
@@ -4208,7 +4207,7 @@ public class UserApi {
      * @return ApiResponse&lt;Transaction&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Transaction> userWalletTransferWithHttpInfo(String currency, BigDecimal amount, Double targetAccountId, Double fromAccountId) throws ApiException {
+    public ApiResponse<Transaction> userWalletTransferWithHttpInfo(String currency, Long amount, Double targetAccountId, Double fromAccountId) throws ApiException {
         com.squareup.okhttp.Call call = userWalletTransferValidateBeforeCall(currency, amount, targetAccountId, fromAccountId, null, null);
         Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -4225,7 +4224,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userWalletTransferAsync(String currency, BigDecimal amount, Double targetAccountId, Double fromAccountId, final ApiCallback<Transaction> callback) throws ApiException {
+    public com.squareup.okhttp.Call userWalletTransferAsync(String currency, Long amount, Double targetAccountId, Double fromAccountId, final ApiCallback<Transaction> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

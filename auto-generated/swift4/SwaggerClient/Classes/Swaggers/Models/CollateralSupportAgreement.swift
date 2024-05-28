@@ -12,13 +12,13 @@ import Foundation
 public struct CollateralSupportAgreement: Codable {
 
     public var csaID: String
-    public var account: Double?
+    public var account: Int64?
     public var currency: String?
-    public var amount: Double?
-    public var minAmount: Double?
-    public var threshold: Double?
-    public var mmRatioMarginCall: Double?
-    public var mmRatioLiquidation: Double?
+    public var amount: Int64?
+    public var minAmount: Int64?
+    public var threshold: Int64?
+    public var mmRatioMarginCall: Int64?
+    public var mmRatioLiquidation: Int64?
     public var startTime: String?
     public var maturityTime: String?
     public var maturityInstruction: String?
@@ -28,7 +28,7 @@ public struct CollateralSupportAgreement: Codable {
     public var text: String?
     public var timestamp: String?
 
-    public init(csaID: String, account: Double?, currency: String?, amount: Double?, minAmount: Double?, threshold: Double?, mmRatioMarginCall: Double?, mmRatioLiquidation: Double?, startTime: String?, maturityTime: String?, maturityInstruction: String?, csaStatus: String?, requester: String?, clientDetails: String?, text: String?, timestamp: String?) {
+    public init(csaID: String, account: Int64?, currency: String?, amount: Int64?, minAmount: Int64?, threshold: Int64?, mmRatioMarginCall: Int64?, mmRatioLiquidation: Int64?, startTime: String?, maturityTime: String?, maturityInstruction: String?, csaStatus: String?, requester: String?, clientDetails: String?, text: String?, timestamp: String?) {
         self.csaID = csaID
         self.account = account
         self.currency = currency

@@ -315,6 +315,14 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'Commission'
         }
         /// <summary>
+        /// Test the property 'FeeType'
+        /// </summary>
+        [Test]
+        public void FeeTypeTest()
+        {
+            // TODO unit test for the property 'FeeType'
+        }
+        /// <summary>
         /// Test the property 'TradePublishIndicator'
         /// </summary>
         [Test]
@@ -385,14 +393,6 @@ namespace IO.Swagger.Test
         public void TimestampTest()
         {
             // TODO unit test for the property 'Timestamp'
-        }
-        /// <summary>
-        /// Test the property 'FeeType'
-        /// </summary>
-        [Test]
-        public void FeeTypeTest()
-        {
-            // TODO unit test for the property 'FeeType'
         }
 
     }

@@ -28,7 +28,7 @@ Liquidation::Liquidation()
     m_SideIsSet = false;
     m_Price = 0.0;
     m_PriceIsSet = false;
-    m_LeavesQty = 0.0;
+    m_LeavesQty = 0L;
     m_LeavesQtyIsSet = false;
 }
 
@@ -98,7 +98,7 @@ void Liquidation::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("leavesQty")];
         if(!fieldValue.is_null())
         {
-            setLeavesQty(ModelBase::doubleFromJson(fieldValue));
+            setLeavesQty(ModelBase::int64_tFromJson(fieldValue));
         }
     }
 }
@@ -155,7 +155,7 @@ void Liquidation::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t("leavesQty")))
     {
-        setLeavesQty(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("leavesQty"))));
+        setLeavesQty(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("leavesQty"))));
     }
 }
 
@@ -233,13 +233,13 @@ void Liquidation::unsetPrice()
     m_PriceIsSet = false;
 }
 
-double Liquidation::getLeavesQty() const
+int64_t Liquidation::getLeavesQty() const
 {
     return m_LeavesQty;
 }
 
 
-void Liquidation::setLeavesQty(double value)
+void Liquidation::setLeavesQty(int64_t value)
 {
     m_LeavesQty = value;
     m_LeavesQtyIsSet = true;

@@ -35,7 +35,7 @@ namespace IO.Swagger.Model
         /// </summary>
         /// <param name="users">users.</param>
         /// <param name="bots">bots.</param>
-        public ConnectedUsers(decimal? users = default(decimal?), decimal? bots = default(decimal?))
+        public ConnectedUsers(int? users = default(int?), int? bots = default(int?))
         {
             this.Users = users;
             this.Bots = bots;
@@ -45,13 +45,13 @@ namespace IO.Swagger.Model
         /// Gets or Sets Users
         /// </summary>
         [DataMember(Name="users", EmitDefaultValue=false)]
-        public decimal? Users { get; set; }
+        public int? Users { get; set; }
 
         /// <summary>
         /// Gets or Sets Bots
         /// </summary>
         [DataMember(Name="bots", EmitDefaultValue=false)]
-        public decimal? Bots { get; set; }
+        public int? Bots { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

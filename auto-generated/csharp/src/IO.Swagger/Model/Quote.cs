@@ -44,7 +44,7 @@ namespace IO.Swagger.Model
         /// <param name="bidPrice">bidPrice.</param>
         /// <param name="askPrice">askPrice.</param>
         /// <param name="askSize">askSize.</param>
-        public Quote(DateTime? timestamp = default(DateTime?), string symbol = default(string), decimal? bidSize = default(decimal?), double? bidPrice = default(double?), double? askPrice = default(double?), decimal? askSize = default(decimal?))
+        public Quote(DateTime? timestamp = default(DateTime?), string symbol = default(string), long? bidSize = default(long?), double? bidPrice = default(double?), double? askPrice = default(double?), long? askSize = default(long?))
         {
             // to ensure "timestamp" is required (not null)
             if (timestamp == null)
@@ -86,7 +86,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets BidSize
         /// </summary>
         [DataMember(Name="bidSize", EmitDefaultValue=false)]
-        public decimal? BidSize { get; set; }
+        public long? BidSize { get; set; }
 
         /// <summary>
         /// Gets or Sets BidPrice
@@ -104,7 +104,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets AskSize
         /// </summary>
         [DataMember(Name="askSize", EmitDefaultValue=false)]
-        public decimal? AskSize { get; set; }
+        public long? AskSize { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

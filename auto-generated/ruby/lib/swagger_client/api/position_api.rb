@@ -24,7 +24,7 @@ module SwaggerClient
     # @param [Hash] opts the optional parameters
     # @option opts [String] :filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}.
     # @option opts [String] :columns Which columns to fetch. For example, send [\&quot;columnName\&quot;].
-    # @option opts [Float] :count Number of rows to fetch.
+    # @option opts [Integer] :count Number of rows to fetch.
     # @return [Array<Position>]
     def position_get(opts = {})
       data, _status_code, _headers = position_get_with_http_info(opts)
@@ -36,7 +36,7 @@ module SwaggerClient
     # @param [Hash] opts the optional parameters
     # @option opts [String] :filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}.
     # @option opts [String] :columns Which columns to fetch. For example, send [\&quot;columnName\&quot;].
-    # @option opts [Float] :count Number of rows to fetch.
+    # @option opts [Integer] :count Number of rows to fetch.
     # @return [Array<(Array<Position>, Fixnum, Hash)>] Array<Position> data, response status code and response headers
     def position_get_with_http_info(opts = {})
       if @api_client.config.debugging

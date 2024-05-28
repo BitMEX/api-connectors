@@ -60,7 +60,7 @@ class Insurance implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'currency' => 'string',
         'timestamp' => '\DateTime',
-        'wallet_balance' => 'float'
+        'wallet_balance' => 'int'
     ];
 
     /**
@@ -274,7 +274,7 @@ class Insurance implements ModelInterface, ArrayAccess
     /**
      * Gets wallet_balance
      *
-     * @return float
+     * @return int
      */
     public function getWalletBalance()
     {
@@ -284,7 +284,7 @@ class Insurance implements ModelInterface, ArrayAccess
     /**
      * Sets wallet_balance
      *
-     * @param float $wallet_balance wallet_balance
+     * @param int $wallet_balance wallet_balance
      *
      * @return $this
      */

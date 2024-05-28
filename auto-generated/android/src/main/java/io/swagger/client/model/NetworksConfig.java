@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
@@ -32,7 +31,7 @@ public class NetworksConfig {
   @SerializedName("tokenExplorer")
   private String tokenExplorer = null;
   @SerializedName("depositConfirmations")
-  private BigDecimal depositConfirmations = null;
+  private Integer depositConfirmations = null;
   @SerializedName("enabled")
   private Boolean enabled = null;
 
@@ -99,10 +98,10 @@ public class NetworksConfig {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getDepositConfirmations() {
+  public Integer getDepositConfirmations() {
     return depositConfirmations;
   }
-  public void setDepositConfirmations(BigDecimal depositConfirmations) {
+  public void setDepositConfirmations(Integer depositConfirmations) {
     this.depositConfirmations = depositConfirmations;
   }
 

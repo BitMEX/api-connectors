@@ -37,7 +37,7 @@ SWGUser::~SWGUser() {
 
 void
 SWGUser::init() {
-    id = 0.0;
+    id = 0;
     m_id_isSet = false;
     firstname = new QString("");
     m_firstname_isSet = false;
@@ -81,9 +81,7 @@ SWGUser::init() {
 
 void
 SWGUser::cleanup() {
-    if(id != nullptr) { 
-        delete id;
-    }
+
     if(firstname != nullptr) { 
         delete firstname;
     }
@@ -152,7 +150,7 @@ SWGUser::fromJson(QString json) {
 
 void
 SWGUser::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&id, pJson["id"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&id, pJson["id"], "qint32", "");
     
     ::Swagger::setValue(&firstname, pJson["firstname"], "QString", "QString");
     
@@ -206,8 +204,8 @@ SWGUser::asJson ()
 QJsonObject
 SWGUser::asJsonObject() {
     QJsonObject obj;
-    if((id != nullptr) && (id->isSet())){
-        toJsonValue(QString("id"), id, obj, QString("SWGNumber"));
+    if(m_id_isSet){
+        obj.insert("id", QJsonValue(id));
     }
     if(firstname != nullptr && *firstname != QString("")){
         toJsonValue(QString("firstname"), firstname, obj, QString("QString"));
@@ -270,12 +268,12 @@ SWGUser::asJsonObject() {
     return obj;
 }
 
-SWGNumber*
+qint32
 SWGUser::getId() {
     return id;
 }
 void
-SWGUser::setId(SWGNumber* id) {
+SWGUser::setId(qint32 id) {
     this->id = id;
     this->m_id_isSet = true;
 }
@@ -475,7 +473,7 @@ bool
 SWGUser::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(id != nullptr && id->isSet()){ isObjectUpdated = true; break;}
+        if(m_id_isSet){ isObjectUpdated = true; break;}
         if(firstname != nullptr && *firstname != QString("")){ isObjectUpdated = true; break;}
         if(lastname != nullptr && *lastname != QString("")){ isObjectUpdated = true; break;}
         if(username != nullptr && *username != QString("")){ isObjectUpdated = true; break;}

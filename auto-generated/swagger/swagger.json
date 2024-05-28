@@ -297,16 +297,16 @@
           "in" : "query",
           "description" : "Number of results to fetch.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting ID for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -534,16 +534,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -649,16 +649,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -750,16 +750,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -853,16 +853,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -1135,16 +1135,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -1295,16 +1295,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -1490,16 +1490,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -1638,16 +1638,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -1737,7 +1737,7 @@
           "in" : "formData",
           "description" : "Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)).",
           "required" : false,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         }, {
           "name" : "price",
@@ -1751,7 +1751,7 @@
           "in" : "formData",
           "description" : "Optional quantity to display in the book. Use 0 for a fully hidden order.",
           "required" : false,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         }, {
           "name" : "stopPx",
@@ -1886,7 +1886,7 @@
           "in" : "formData",
           "description" : "Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)).",
           "required" : false,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         }, {
           "name" : "simpleLeavesQty",
@@ -1900,7 +1900,7 @@
           "in" : "formData",
           "description" : "Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders.",
           "required" : false,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         }, {
           "name" : "price",
@@ -2218,8 +2218,8 @@
           "in" : "query",
           "description" : "Orderbook depth per side. Send 0 for full depth.",
           "required" : false,
-          "type" : "number",
-          "default" : 25.0,
+          "type" : "integer",
+          "default" : 25,
           "minimum" : 0,
           "format" : "int32"
         } ],
@@ -2287,7 +2287,7 @@
           "in" : "query",
           "description" : "Number of rows to fetch.",
           "required" : false,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         } ],
         "deprecated" : false,
@@ -2400,7 +2400,7 @@
           "in" : "formData",
           "description" : "New Risk Limit, in Satoshis.",
           "required" : true,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }, {
           "name" : "targetAccountId",
@@ -2462,7 +2462,7 @@
           "in" : "formData",
           "description" : "Amount to transfer, in Satoshis. May be negative.",
           "required" : true,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }, {
           "name" : "targetAccountId",
@@ -2599,16 +2599,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -2716,16 +2716,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -2908,16 +2908,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -3146,16 +3146,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -3263,16 +3263,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -4006,7 +4006,7 @@
           "in" : "formData",
           "description" : "Amount of transfer.",
           "required" : true,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }, {
           "name" : "fromAccountId",
@@ -4088,7 +4088,7 @@
           "in" : "formData",
           "description" : "Amount of withdrawal currency.",
           "required" : true,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }, {
           "name" : "address",
@@ -5982,7 +5982,7 @@
       "required" : [ "id" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "link" : {
@@ -6027,8 +6027,9 @@
           "maxLength" : 64
         },
         "nonce" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "cidr" : {
           "type" : "string",
@@ -6041,7 +6042,7 @@
           }
         },
         "targetAccountId" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "permissions" : {
@@ -6055,7 +6056,7 @@
           "default" : false
         },
         "userId" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "created" : {
@@ -6070,15 +6071,15 @@
       "required" : [ "channelID", "id", "messageId" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "channelID" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "messageId" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "created" : {
@@ -6105,7 +6106,7 @@
       "required" : [ "date", "html", "message", "user" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "date" : {
@@ -6136,7 +6137,7 @@
       "required" : [ "isPrivate", "name" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "name" : {
@@ -6151,11 +6152,11 @@
       "type" : "object",
       "properties" : {
         "users" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "bots" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         }
       }
@@ -6179,7 +6180,7 @@
           "type" : "string"
         },
         "account" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "symbol" : {
@@ -6189,7 +6190,7 @@
           "type" : "string"
         },
         "lastQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "lastPx" : {
@@ -6200,7 +6201,7 @@
           "type" : "string"
         },
         "orderQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "price" : {
@@ -6208,7 +6209,7 @@
           "format" : "double"
         },
         "displayQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "stopPx" : {
@@ -6256,11 +6257,11 @@
           "type" : "string"
         },
         "leavesQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "cumQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "avgPx" : {
@@ -6270,6 +6271,9 @@
         "commission" : {
           "type" : "number",
           "format" : "double"
+        },
+        "feeType" : {
+          "type" : "string"
         },
         "tradePublishIndicator" : {
           "type" : "string"
@@ -6282,11 +6286,11 @@
           "format" : "guid"
         },
         "execCost" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "execComm" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "homeNotional" : {
@@ -6304,9 +6308,6 @@
         "timestamp" : {
           "type" : "string",
           "format" : "date-time"
-        },
-        "feeType" : {
-          "type" : "string"
         }
       },
       "description" : "Raw Order and Balance Data"
@@ -6407,7 +6408,7 @@
           "format" : "date-time"
         },
         "maxOrderQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "maxPrice" : {
@@ -6415,7 +6416,7 @@
           "format" : "double"
         },
         "lotSize" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "tickSize" : {
@@ -6423,22 +6424,22 @@
           "format" : "double"
         },
         "multiplier" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "settlCurrency" : {
           "type" : "string"
         },
         "underlyingToPositionMultiplier" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "underlyingToSettleMultiplier" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "quoteToSettleMultiplier" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "isQuanto" : {
@@ -6456,11 +6457,11 @@
           "format" : "double"
         },
         "riskLimit" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "riskStep" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "limit" : {
@@ -6531,31 +6532,31 @@
           "format" : "double"
         },
         "totalVolume" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "volume" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "volume24h" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "prevTotalTurnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "totalTurnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover24h" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "homeNotional24h" : {
@@ -6625,11 +6626,11 @@
           "type" : "boolean"
         },
         "openInterest" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "openValue" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "fairMethod" : {
@@ -6755,19 +6756,19 @@
           "type" : "string"
         },
         "turnover24h" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover30d" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover365d" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       }
@@ -6784,7 +6785,7 @@
           "format" : "date-time"
         },
         "walletBalance" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       },
@@ -6826,7 +6827,7 @@
           "format" : "double"
         },
         "leavesQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       },
@@ -6837,7 +6838,7 @@
       "required" : [ "body", "date", "title", "ttl" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "date" : {
@@ -6851,7 +6852,7 @@
           "type" : "string"
         },
         "ttl" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "type" : {
@@ -6891,7 +6892,7 @@
           "type" : "string"
         },
         "account" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "symbol" : {
@@ -6901,7 +6902,7 @@
           "type" : "string"
         },
         "orderQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "price" : {
@@ -6909,7 +6910,7 @@
           "format" : "double"
         },
         "displayQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "stopPx" : {
@@ -6954,11 +6955,11 @@
           "type" : "string"
         },
         "leavesQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "cumQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "avgPx" : {
@@ -6987,14 +6988,14 @@
           "type" : "string"
         },
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "side" : {
           "type" : "string"
         },
         "size" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "price" : {
@@ -7012,8 +7013,9 @@
       "required" : [ "account", "symbol" ],
       "properties" : {
         "account" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "symbol" : {
           "type" : "string"
@@ -7043,8 +7045,9 @@
           "default" : 0.0
         },
         "riskLimit" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "leverage" : {
           "type" : "number",
@@ -7060,68 +7063,84 @@
           "default" : 0.0
         },
         "rebalancedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "prevRealisedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "prevUnrealisedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "openingQty" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "openOrderBuyQty" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "openOrderBuyCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "openOrderBuyPremium" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "openOrderSellQty" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "openOrderSellCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "openOrderSellPremium" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "currentQty" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "currentCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "currentComm" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "realisedCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "unrealisedCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "grossOpenPremium" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "isOpen" : {
           "type" : "boolean"
@@ -7132,12 +7151,14 @@
           "default" : 0.0
         },
         "markValue" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "riskValue" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "homeNotional" : {
           "type" : "number",
@@ -7153,44 +7174,54 @@
           "type" : "string"
         },
         "posCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "posCross" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "posComm" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "posLoss" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "posMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "posMaint" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "initMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "maintMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "realisedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "unrealisedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "unrealisedPnlPcnt" : {
           "type" : "number",
@@ -7251,7 +7282,7 @@
           "type" : "string"
         },
         "bidSize" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "bidPrice" : {
@@ -7263,7 +7294,7 @@
           "format" : "double"
         },
         "askSize" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       },
@@ -7296,11 +7327,11 @@
           "format" : "double"
         },
         "bankrupt" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "taxBase" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "taxRate" : {
@@ -7321,19 +7352,19 @@
           "type" : "string"
         },
         "volume24h" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover24h" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "openInterest" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "openValue" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       },
@@ -7354,11 +7385,11 @@
           "type" : "string"
         },
         "volume" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       }
@@ -7374,19 +7405,19 @@
           "type" : "string"
         },
         "turnover24h" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover30d" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover365d" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       }
@@ -7406,7 +7437,7 @@
           "type" : "string"
         },
         "size" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "price" : {
@@ -7421,7 +7452,7 @@
           "format" : "guid"
         },
         "grossValue" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "homeNotional" : {
@@ -7466,11 +7497,11 @@
           "format" : "double"
         },
         "trades" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "volume" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "vwap" : {
@@ -7478,11 +7509,11 @@
           "format" : "double"
         },
         "lastSize" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "homeNotional" : {
@@ -7513,42 +7544,42 @@
       "required" : [ "account", "currency" ],
       "properties" : {
         "account" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "currency" : {
           "type" : "string"
         },
         "deposited" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "withdrawn" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "transferIn" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "transferOut" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "amount" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "pendingCredit" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "pendingDebit" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "confirmedDebit" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "timestamp" : {
@@ -7567,7 +7598,7 @@
           "format" : "guid"
         },
         "account" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "currency" : {
@@ -7580,11 +7611,11 @@
           "type" : "string"
         },
         "amount" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "fee" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "transactStatus" : {
@@ -7608,7 +7639,7 @@
           "format" : "date-time"
         },
         "walletBalance" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       }
@@ -7719,22 +7750,22 @@
       "required" : [ "account", "currency" ],
       "properties" : {
         "account" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "currency" : {
           "type" : "string"
         },
         "prevPayout" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "prevTurnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "prevComm" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "prevTimestamp" : {
@@ -7742,23 +7773,23 @@
           "format" : "date-time"
         },
         "execTurnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "execComm" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "totalReferrals" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "totalTurnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "totalComm" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "payoutPcnt" : {
@@ -7766,7 +7797,7 @@
           "format" : "double"
         },
         "pendingPayout" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "timestamp" : {
@@ -7879,7 +7910,7 @@
       "required" : [ "isUser", "username" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "firstname" : {
@@ -7959,78 +7990,95 @@
       "required" : [ "account", "currency" ],
       "properties" : {
         "account" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "currency" : {
           "type" : "string"
         },
         "riskLimit" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "state" : {
           "type" : "string"
         },
         "amount" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "prevRealisedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "grossComm" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "grossOpenCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "grossOpenPremium" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "grossExecCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "grossMarkValue" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "riskValue" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "initMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "maintMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "targetExcessMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "realisedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "unrealisedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "walletBalance" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "marginBalance" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "marginLeverage" : {
           "type" : "number",
@@ -8043,16 +8091,19 @@
           "default" : 0.0
         },
         "excessMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "availableMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "withdrawableMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "makerFeeDiscount" : {
           "type" : "number",
@@ -8078,30 +8129,30 @@
           "type" : "string"
         },
         "account" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "currency" : {
           "type" : "string"
         },
         "amount" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "minAmount" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "threshold" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "mmRatioMarginCall" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "mmRatioLiquidation" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "startTime" : {
@@ -8138,7 +8189,7 @@
           "type" : "string"
         },
         "userId" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "deviceToken" : {
@@ -8278,7 +8329,7 @@
           "default" : "https://etherscan.io/token/"
         },
         "depositConfirmations" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "enabled" : {
@@ -8292,7 +8343,7 @@
       "required" : [ "address", "name", "network" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "currency" : {
@@ -8340,7 +8391,7 @@
       "required" : [ "chatChannelId", "created", "isPrivate", "name", "updated" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "created" : {
@@ -8400,7 +8451,7 @@
       "required" : [ "account", "accountNonce", "balance", "created", "height", "total" ],
       "properties" : {
         "account" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "nonce" : {

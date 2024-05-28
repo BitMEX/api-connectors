@@ -13,7 +13,6 @@
 
 package io.swagger.client.api;
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.IndexComposite;
 import io.swagger.client.model.Instrument;
@@ -51,8 +50,8 @@ public class InstrumentApiTest {
         String symbol = null;
         String filter = null;
         String columns = null;
-        BigDecimal count = null;
-        BigDecimal start = null;
+        Integer count = null;
+        Integer start = null;
         Boolean reverse = null;
         OffsetDateTime startTime = null;
         OffsetDateTime endTime = null;
@@ -119,8 +118,8 @@ public class InstrumentApiTest {
         String symbol = null;
         String filter = null;
         String columns = null;
-        BigDecimal count = null;
-        BigDecimal start = null;
+        Integer count = null;
+        Integer start = null;
         Boolean reverse = null;
         OffsetDateTime startTime = null;
         OffsetDateTime endTime = null;

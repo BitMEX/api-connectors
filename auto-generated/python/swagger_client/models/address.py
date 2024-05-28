@@ -33,7 +33,7 @@ class Address(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'float',
+        'id': 'int',
         'currency': 'str',
         'created': 'datetime',
         'user_id': 'float',
@@ -115,7 +115,7 @@ class Address(object):
 
 
         :return: The id of this Address.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._id
 
@@ -125,7 +125,7 @@ class Address(object):
 
 
         :param id: The id of this Address.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._id = id

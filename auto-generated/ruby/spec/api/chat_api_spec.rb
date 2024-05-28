@@ -35,8 +35,8 @@ describe 'ChatApi' do
   # unit tests for chat_get
   # Get chat messages.
   # @param [Hash] opts the optional parameters
-  # @option opts [Float] :count Number of results to fetch.
-  # @option opts [Float] :start Starting ID for results.
+  # @option opts [Integer] :count Number of results to fetch.
+  # @option opts [Integer] :start Starting ID for results.
   # @option opts [BOOLEAN] :reverse If true, will sort results newest first.
   # @option opts [Float] :channel_id Channel id. GET /chat/channels for ids. Global English by default
   # @return [Array<Chat>]

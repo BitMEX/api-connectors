@@ -15,7 +15,7 @@ package io.swagger.client.model
 import java.util.Date
 
 case class Address (
-  id: Option[Number] = None,
+  id: Option[Integer] = None,
   currency: Option[String] = None,
   created: Option[Date] = None,
   userId: Option[Double] = None,

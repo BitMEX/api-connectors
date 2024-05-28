@@ -58,13 +58,13 @@
               expect(data.currency).to.be.a('string');
               expect(data.currency).to.be("");
               expect(data.volume24h).to.be.a('number');
-              expect(data.volume24h).to.be();
+              expect(data.volume24h).to.be("0");
               expect(data.turnover24h).to.be.a('number');
-              expect(data.turnover24h).to.be();
+              expect(data.turnover24h).to.be("0");
               expect(data.openInterest).to.be.a('number');
-              expect(data.openInterest).to.be();
+              expect(data.openInterest).to.be("0");
               expect(data.openValue).to.be.a('number');
-              expect(data.openValue).to.be();
+              expect(data.openValue).to.be("0");
             }
 
             done();
@@ -98,9 +98,9 @@
               expect(data.currency).to.be.a('string');
               expect(data.currency).to.be("");
               expect(data.volume).to.be.a('number');
-              expect(data.volume).to.be();
+              expect(data.volume).to.be("0");
               expect(data.turnover).to.be.a('number');
-              expect(data.turnover).to.be();
+              expect(data.turnover).to.be("0");
             }
 
             done();
@@ -132,13 +132,13 @@
               expect(data.currency).to.be.a('string');
               expect(data.currency).to.be("");
               expect(data.turnover24h).to.be.a('number');
-              expect(data.turnover24h).to.be();
+              expect(data.turnover24h).to.be("0");
               expect(data.turnover30d).to.be.a('number');
-              expect(data.turnover30d).to.be();
+              expect(data.turnover30d).to.be("0");
               expect(data.turnover365d).to.be.a('number');
-              expect(data.turnover365d).to.be();
+              expect(data.turnover365d).to.be("0");
               expect(data.turnover).to.be.a('number');
-              expect(data.turnover).to.be();
+              expect(data.turnover).to.be("0");
             }
 
             done();

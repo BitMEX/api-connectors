@@ -69,7 +69,7 @@
               expect(data.side).to.be.a('string');
               expect(data.side).to.be("");
               expect(data.size).to.be.a('number');
-              expect(data.size).to.be();
+              expect(data.size).to.be("0");
               expect(data.price).to.be.a('number');
               expect(data.price).to.be(0.0);
               expect(data.tickDirection).to.be.a('string');
@@ -77,7 +77,7 @@
               expect(data.trdMatchID).to.be.a('string');
               expect(data.trdMatchID).to.be("");
               expect(data.grossValue).to.be.a('number');
-              expect(data.grossValue).to.be();
+              expect(data.grossValue).to.be("0");
               expect(data.homeNotional).to.be.a('number');
               expect(data.homeNotional).to.be(0.0);
               expect(data.foreignNotional).to.be.a('number');
@@ -134,15 +134,15 @@
               expect(data.close).to.be.a('number');
               expect(data.close).to.be(0.0);
               expect(data.trades).to.be.a('number');
-              expect(data.trades).to.be();
+              expect(data.trades).to.be("0");
               expect(data.volume).to.be.a('number');
-              expect(data.volume).to.be();
+              expect(data.volume).to.be("0");
               expect(data.vwap).to.be.a('number');
               expect(data.vwap).to.be(0.0);
               expect(data.lastSize).to.be.a('number');
-              expect(data.lastSize).to.be();
+              expect(data.lastSize).to.be("0");
               expect(data.turnover).to.be.a('number');
-              expect(data.turnover).to.be();
+              expect(data.turnover).to.be("0");
               expect(data.homeNotional).to.be.a('number');
               expect(data.homeNotional).to.be(0.0);
               expect(data.foreignNotional).to.be.a('number');

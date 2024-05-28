@@ -51,7 +51,7 @@ apiSignature.setApiKey("YOUR API KEY");
 PositionApi apiInstance = new PositionApi();
 String filter = "filter_example"; // String | Table filter. For example, send {\"symbol\": \"XBTUSD\"}.
 String columns = "columns_example"; // String | Which columns to fetch. For example, send [\"columnName\"].
-BigDecimal count = new BigDecimal(); // BigDecimal | Number of rows to fetch.
+Integer count = 56; // Integer | Number of rows to fetch.
 try {
     List<Position> result = apiInstance.positionGet(filter, columns, count);
     System.out.println(result);
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter** | **String**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. | [optional]
  **columns** | **String**| Which columns to fetch. For example, send [\&quot;columnName\&quot;]. | [optional]
- **count** | **BigDecimal**| Number of rows to fetch. | [optional]
+ **count** | **Integer**| Number of rows to fetch. | [optional]
 
 ### Return type
 
@@ -190,7 +190,7 @@ apiSignature.setApiKey("YOUR API KEY");
 
 PositionApi apiInstance = new PositionApi();
 String symbol = "symbol_example"; // String | Symbol of position to isolate.
-BigDecimal amount = new BigDecimal(); // BigDecimal | Amount to transfer, in Satoshis. May be negative.
+Long amount = 789L; // Long | Amount to transfer, in Satoshis. May be negative.
 Double targetAccountId = 3.4D; // Double | AccountId for the position that the margin would be transfered to, must be a paired account with main user.
 try {
     Position result = apiInstance.positionTransferIsolatedMargin(symbol, amount, targetAccountId);
@@ -206,7 +206,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **String**| Symbol of position to isolate. |
- **amount** | **BigDecimal**| Amount to transfer, in Satoshis. May be negative. |
+ **amount** | **Long**| Amount to transfer, in Satoshis. May be negative. |
  **targetAccountId** | **Double**| AccountId for the position that the margin would be transfered to, must be a paired account with main user. | [optional]
 
 ### Return type
@@ -332,7 +332,7 @@ apiSignature.setApiKey("YOUR API KEY");
 
 PositionApi apiInstance = new PositionApi();
 String symbol = "symbol_example"; // String | Symbol of position to update risk limit on.
-BigDecimal riskLimit = new BigDecimal(); // BigDecimal | New Risk Limit, in Satoshis.
+Long riskLimit = 789L; // Long | New Risk Limit, in Satoshis.
 Double targetAccountId = 3.4D; // Double | AccountId for the position that the risk limit would be updated on, must be a paired account with main user.
 try {
     Position result = apiInstance.positionUpdateRiskLimit(symbol, riskLimit, targetAccountId);
@@ -348,7 +348,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **String**| Symbol of position to update risk limit on. |
- **riskLimit** | **BigDecimal**| New Risk Limit, in Satoshis. |
+ **riskLimit** | **Long**| New Risk Limit, in Satoshis. |
  **targetAccountId** | **Double**| AccountId for the position that the risk limit would be updated on, must be a paired account with main user. | [optional]
 
 ### Return type

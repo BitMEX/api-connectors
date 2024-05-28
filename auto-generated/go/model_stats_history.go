@@ -18,6 +18,6 @@ type StatsHistory struct {
 	Date time.Time `json:"date"`
 	RootSymbol string `json:"rootSymbol"`
 	Currency string `json:"currency,omitempty"`
-	Volume float32 `json:"volume,omitempty"`
-	Turnover float32 `json:"turnover,omitempty"`
+	Volume int64 `json:"volume,omitempty"`
+	Turnover int64 `json:"turnover,omitempty"`
 }

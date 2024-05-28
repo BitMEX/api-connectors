@@ -54,7 +54,7 @@ namespace IO.Swagger.Model
         /// <param name="clientDetails">clientDetails.</param>
         /// <param name="text">text.</param>
         /// <param name="timestamp">timestamp.</param>
-        public CollateralSupportAgreement(string csaID = default(string), decimal? account = default(decimal?), string currency = default(string), decimal? amount = default(decimal?), decimal? minAmount = default(decimal?), decimal? threshold = default(decimal?), decimal? mmRatioMarginCall = default(decimal?), decimal? mmRatioLiquidation = default(decimal?), string startTime = default(string), string maturityTime = default(string), string maturityInstruction = default(string), string csaStatus = default(string), string requester = default(string), string clientDetails = default(string), string text = default(string), string timestamp = default(string))
+        public CollateralSupportAgreement(string csaID = default(string), long? account = default(long?), string currency = default(string), long? amount = default(long?), long? minAmount = default(long?), long? threshold = default(long?), long? mmRatioMarginCall = default(long?), long? mmRatioLiquidation = default(long?), string startTime = default(string), string maturityTime = default(string), string maturityInstruction = default(string), string csaStatus = default(string), string requester = default(string), string clientDetails = default(string), string text = default(string), string timestamp = default(string))
         {
             // to ensure "csaID" is required (not null)
             if (csaID == null)
@@ -92,7 +92,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name="account", EmitDefaultValue=false)]
-        public decimal? Account { get; set; }
+        public long? Account { get; set; }
 
         /// <summary>
         /// Gets or Sets Currency
@@ -104,31 +104,31 @@ namespace IO.Swagger.Model
         /// Gets or Sets Amount
         /// </summary>
         [DataMember(Name="amount", EmitDefaultValue=false)]
-        public decimal? Amount { get; set; }
+        public long? Amount { get; set; }
 
         /// <summary>
         /// Gets or Sets MinAmount
         /// </summary>
         [DataMember(Name="minAmount", EmitDefaultValue=false)]
-        public decimal? MinAmount { get; set; }
+        public long? MinAmount { get; set; }
 
         /// <summary>
         /// Gets or Sets Threshold
         /// </summary>
         [DataMember(Name="threshold", EmitDefaultValue=false)]
-        public decimal? Threshold { get; set; }
+        public long? Threshold { get; set; }
 
         /// <summary>
         /// Gets or Sets MmRatioMarginCall
         /// </summary>
         [DataMember(Name="mmRatioMarginCall", EmitDefaultValue=false)]
-        public decimal? MmRatioMarginCall { get; set; }
+        public long? MmRatioMarginCall { get; set; }
 
         /// <summary>
         /// Gets or Sets MmRatioLiquidation
         /// </summary>
         [DataMember(Name="mmRatioLiquidation", EmitDefaultValue=false)]
-        public decimal? MmRatioLiquidation { get; set; }
+        public long? MmRatioLiquidation { get; set; }
 
         /// <summary>
         /// Gets or Sets StartTime

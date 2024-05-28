@@ -23,17 +23,16 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Proof of Reserves/Liabilities
  */
 @ApiModel(description = "Proof of Reserves/Liabilities")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Porl {
   @SerializedName("account")
-  private BigDecimal account = null;
+  private Integer account = null;
 
   @SerializedName("nonce")
   private String nonce = null;
@@ -56,7 +55,7 @@ public class Porl {
   @SerializedName("created")
   private OffsetDateTime created = null;
 
-  public Porl account(BigDecimal account) {
+  public Porl account(Integer account) {
     this.account = account;
     return this;
   }
@@ -66,11 +65,11 @@ public class Porl {
    * @return account
   **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getAccount() {
+  public Integer getAccount() {
     return account;
   }
 
-  public void setAccount(BigDecimal account) {
+  public void setAccount(Integer account) {
     this.account = account;
   }
 

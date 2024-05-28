@@ -76,21 +76,21 @@ class Instrument implements ModelInterface, ArrayAccess
         'calc_interval' => '\DateTime',
         'publish_interval' => '\DateTime',
         'publish_time' => '\DateTime',
-        'max_order_qty' => 'float',
+        'max_order_qty' => 'int',
         'max_price' => 'double',
-        'lot_size' => 'float',
+        'lot_size' => 'int',
         'tick_size' => 'double',
-        'multiplier' => 'float',
+        'multiplier' => 'int',
         'settl_currency' => 'string',
-        'underlying_to_position_multiplier' => 'float',
-        'underlying_to_settle_multiplier' => 'float',
-        'quote_to_settle_multiplier' => 'float',
+        'underlying_to_position_multiplier' => 'int',
+        'underlying_to_settle_multiplier' => 'int',
+        'quote_to_settle_multiplier' => 'int',
         'is_quanto' => 'bool',
         'is_inverse' => 'bool',
         'init_margin' => 'double',
         'maint_margin' => 'double',
-        'risk_limit' => 'float',
-        'risk_step' => 'float',
+        'risk_limit' => 'int',
+        'risk_step' => 'int',
         'limit' => 'double',
         'taxed' => 'bool',
         'deleverage' => 'bool',
@@ -109,13 +109,13 @@ class Instrument implements ModelInterface, ArrayAccess
         'prev_close_price' => 'double',
         'limit_down_price' => 'double',
         'limit_up_price' => 'double',
-        'total_volume' => 'float',
-        'volume' => 'float',
-        'volume24h' => 'float',
-        'prev_total_turnover' => 'float',
-        'total_turnover' => 'float',
-        'turnover' => 'float',
-        'turnover24h' => 'float',
+        'total_volume' => 'int',
+        'volume' => 'int',
+        'volume24h' => 'int',
+        'prev_total_turnover' => 'int',
+        'total_turnover' => 'int',
+        'turnover' => 'int',
+        'turnover24h' => 'int',
         'home_notional24h' => 'double',
         'foreign_notional24h' => 'double',
         'prev_price24h' => 'double',
@@ -133,8 +133,8 @@ class Instrument implements ModelInterface, ArrayAccess
         'impact_mid_price' => 'double',
         'impact_ask_price' => 'double',
         'has_liquidity' => 'bool',
-        'open_interest' => 'float',
-        'open_value' => 'float',
+        'open_interest' => 'int',
+        'open_value' => 'int',
         'fair_method' => 'string',
         'fair_basis_rate' => 'double',
         'fair_basis' => 'double',
@@ -1171,7 +1171,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets max_order_qty
      *
-     * @return float
+     * @return int
      */
     public function getMaxOrderQty()
     {
@@ -1181,7 +1181,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets max_order_qty
      *
-     * @param float $max_order_qty max_order_qty
+     * @param int $max_order_qty max_order_qty
      *
      * @return $this
      */
@@ -1219,7 +1219,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets lot_size
      *
-     * @return float
+     * @return int
      */
     public function getLotSize()
     {
@@ -1229,7 +1229,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets lot_size
      *
-     * @param float $lot_size lot_size
+     * @param int $lot_size lot_size
      *
      * @return $this
      */
@@ -1267,7 +1267,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets multiplier
      *
-     * @return float
+     * @return int
      */
     public function getMultiplier()
     {
@@ -1277,7 +1277,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets multiplier
      *
-     * @param float $multiplier multiplier
+     * @param int $multiplier multiplier
      *
      * @return $this
      */
@@ -1315,7 +1315,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets underlying_to_position_multiplier
      *
-     * @return float
+     * @return int
      */
     public function getUnderlyingToPositionMultiplier()
     {
@@ -1325,7 +1325,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets underlying_to_position_multiplier
      *
-     * @param float $underlying_to_position_multiplier underlying_to_position_multiplier
+     * @param int $underlying_to_position_multiplier underlying_to_position_multiplier
      *
      * @return $this
      */
@@ -1339,7 +1339,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets underlying_to_settle_multiplier
      *
-     * @return float
+     * @return int
      */
     public function getUnderlyingToSettleMultiplier()
     {
@@ -1349,7 +1349,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets underlying_to_settle_multiplier
      *
-     * @param float $underlying_to_settle_multiplier underlying_to_settle_multiplier
+     * @param int $underlying_to_settle_multiplier underlying_to_settle_multiplier
      *
      * @return $this
      */
@@ -1363,7 +1363,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets quote_to_settle_multiplier
      *
-     * @return float
+     * @return int
      */
     public function getQuoteToSettleMultiplier()
     {
@@ -1373,7 +1373,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets quote_to_settle_multiplier
      *
-     * @param float $quote_to_settle_multiplier quote_to_settle_multiplier
+     * @param int $quote_to_settle_multiplier quote_to_settle_multiplier
      *
      * @return $this
      */
@@ -1483,7 +1483,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets risk_limit
      *
-     * @return float
+     * @return int
      */
     public function getRiskLimit()
     {
@@ -1493,7 +1493,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets risk_limit
      *
-     * @param float $risk_limit risk_limit
+     * @param int $risk_limit risk_limit
      *
      * @return $this
      */
@@ -1507,7 +1507,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets risk_step
      *
-     * @return float
+     * @return int
      */
     public function getRiskStep()
     {
@@ -1517,7 +1517,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets risk_step
      *
-     * @param float $risk_step risk_step
+     * @param int $risk_step risk_step
      *
      * @return $this
      */
@@ -1963,7 +1963,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets total_volume
      *
-     * @return float
+     * @return int
      */
     public function getTotalVolume()
     {
@@ -1973,7 +1973,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets total_volume
      *
-     * @param float $total_volume total_volume
+     * @param int $total_volume total_volume
      *
      * @return $this
      */
@@ -1987,7 +1987,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets volume
      *
-     * @return float
+     * @return int
      */
     public function getVolume()
     {
@@ -1997,7 +1997,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets volume
      *
-     * @param float $volume volume
+     * @param int $volume volume
      *
      * @return $this
      */
@@ -2011,7 +2011,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets volume24h
      *
-     * @return float
+     * @return int
      */
     public function getVolume24h()
     {
@@ -2021,7 +2021,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets volume24h
      *
-     * @param float $volume24h volume24h
+     * @param int $volume24h volume24h
      *
      * @return $this
      */
@@ -2035,7 +2035,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets prev_total_turnover
      *
-     * @return float
+     * @return int
      */
     public function getPrevTotalTurnover()
     {
@@ -2045,7 +2045,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets prev_total_turnover
      *
-     * @param float $prev_total_turnover prev_total_turnover
+     * @param int $prev_total_turnover prev_total_turnover
      *
      * @return $this
      */
@@ -2059,7 +2059,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets total_turnover
      *
-     * @return float
+     * @return int
      */
     public function getTotalTurnover()
     {
@@ -2069,7 +2069,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets total_turnover
      *
-     * @param float $total_turnover total_turnover
+     * @param int $total_turnover total_turnover
      *
      * @return $this
      */
@@ -2083,7 +2083,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets turnover
      *
-     * @return float
+     * @return int
      */
     public function getTurnover()
     {
@@ -2093,7 +2093,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets turnover
      *
-     * @param float $turnover turnover
+     * @param int $turnover turnover
      *
      * @return $this
      */
@@ -2107,7 +2107,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets turnover24h
      *
-     * @return float
+     * @return int
      */
     public function getTurnover24h()
     {
@@ -2117,7 +2117,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets turnover24h
      *
-     * @param float $turnover24h turnover24h
+     * @param int $turnover24h turnover24h
      *
      * @return $this
      */
@@ -2539,7 +2539,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets open_interest
      *
-     * @return float
+     * @return int
      */
     public function getOpenInterest()
     {
@@ -2549,7 +2549,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets open_interest
      *
-     * @param float $open_interest open_interest
+     * @param int $open_interest open_interest
      *
      * @return $this
      */
@@ -2563,7 +2563,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Gets open_value
      *
-     * @return float
+     * @return int
      */
     public function getOpenValue()
     {
@@ -2573,7 +2573,7 @@ class Instrument implements ModelInterface, ArrayAccess
     /**
      * Sets open_value
      *
-     * @param float $open_value open_value
+     * @param int $open_value open_value
      *
      * @return $this
      */

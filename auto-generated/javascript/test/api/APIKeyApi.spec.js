@@ -62,7 +62,7 @@
               expect(data.name).to.be.a('string');
               expect(data.name).to.be("");
               expect(data.nonce).to.be.a('number');
-              expect(data.nonce).to.be();
+              expect(data.nonce).to.be("0");
               expect(data.cidr).to.be.a('string');
               expect(data.cidr).to.be("");
               {
@@ -76,7 +76,7 @@
                         }
               }
               expect(data.targetAccountId).to.be.a('number');
-              expect(data.targetAccountId).to.be();
+              expect(data.targetAccountId).to.be(0);
               {
                 let dataCtr = data.permissions;
                 expect(dataCtr).to.be.an(Array);
@@ -90,7 +90,7 @@
               expect(data.enabled).to.be.a('boolean');
               expect(data.enabled).to.be(false);
               expect(data.userId).to.be.a('number');
-              expect(data.userId).to.be();
+              expect(data.userId).to.be(0);
               expect(data.created).to.be.a(Date);
               expect(data.created).to.be(new Date());
             }

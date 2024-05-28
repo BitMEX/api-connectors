@@ -3,7 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **decimal?** |  | [optional] 
+**Id** | **int?** |  | [optional] 
 **Currency** | **string** |  | [optional] 
 **Created** | **DateTime?** |  | [optional] 
 **UserId** | **double?** |  | [optional] 

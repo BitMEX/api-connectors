@@ -16,9 +16,9 @@ import java.util.Date
 
 case class OrderBookL2 (
   symbol: String,
-  id: Number,
+  id: Long,
   side: String,
-  size: Option[Number] = None,
+  size: Option[Long] = None,
   price: Option[Double] = None,
   timestamp: Option[Date] = None
 )

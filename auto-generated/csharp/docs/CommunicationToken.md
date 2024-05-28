@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
-**UserId** | **decimal?** |  | 
+**UserId** | **int?** |  | 
 **DeviceToken** | **string** |  | 
 **Channel** | **string** |  | 
 

@@ -44,7 +44,7 @@ namespace IO.Swagger.Model
         /// <param name="turnover24h">turnover24h.</param>
         /// <param name="openInterest">openInterest.</param>
         /// <param name="openValue">openValue.</param>
-        public Stats(string rootSymbol = default(string), string currency = default(string), decimal? volume24h = default(decimal?), decimal? turnover24h = default(decimal?), decimal? openInterest = default(decimal?), decimal? openValue = default(decimal?))
+        public Stats(string rootSymbol = default(string), string currency = default(string), long? volume24h = default(long?), long? turnover24h = default(long?), long? openInterest = default(long?), long? openValue = default(long?))
         {
             // to ensure "rootSymbol" is required (not null)
             if (rootSymbol == null)
@@ -78,25 +78,25 @@ namespace IO.Swagger.Model
         /// Gets or Sets Volume24h
         /// </summary>
         [DataMember(Name="volume24h", EmitDefaultValue=false)]
-        public decimal? Volume24h { get; set; }
+        public long? Volume24h { get; set; }
 
         /// <summary>
         /// Gets or Sets Turnover24h
         /// </summary>
         [DataMember(Name="turnover24h", EmitDefaultValue=false)]
-        public decimal? Turnover24h { get; set; }
+        public long? Turnover24h { get; set; }
 
         /// <summary>
         /// Gets or Sets OpenInterest
         /// </summary>
         [DataMember(Name="openInterest", EmitDefaultValue=false)]
-        public decimal? OpenInterest { get; set; }
+        public long? OpenInterest { get; set; }
 
         /// <summary>
         /// Gets or Sets OpenValue
         /// </summary>
         [DataMember(Name="openValue", EmitDefaultValue=false)]
-        public decimal? OpenValue { get; set; }
+        public long? OpenValue { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

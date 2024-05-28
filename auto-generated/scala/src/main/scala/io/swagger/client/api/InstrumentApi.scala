@@ -19,7 +19,6 @@ import io.swagger.client.model.Error
 import io.swagger.client.model.IndexComposite
 import io.swagger.client.model.Instrument
 import io.swagger.client.model.InstrumentInterval
-import io.swagger.client.model.Number
 import io.swagger.client.model.StatsUSDBySymbol
 import io.swagger.client.{ApiInvoker, ApiException}
 
@@ -99,7 +98,7 @@ class InstrumentApi(
    * @param endTime Ending date filter for results. (optional)
    * @return List[Instrument]
    */
-  def instrumentGet(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Instrument]] = {
+  def instrumentGet(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Instrument]] = {
     val await = Try(Await.result(instrumentGetAsync(symbol, filter, columns, count, start, reverse, startTime, endTime), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -121,7 +120,7 @@ class InstrumentApi(
    * @param endTime Ending date filter for results. (optional)
    * @return Future(List[Instrument])
    */
-  def instrumentGetAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Instrument]] = {
+  def instrumentGetAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Instrument]] = {
       helper.instrumentGet(symbol, filter, columns, count, start, reverse, startTime, endTime)
   }
 
@@ -211,7 +210,7 @@ class InstrumentApi(
    * @param endTime Ending date filter for results. (optional)
    * @return List[IndexComposite]
    */
-  def instrumentGetCompositeIndex(symbol: Option[String] = Option(".BXBT"), filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[IndexComposite]] = {
+  def instrumentGetCompositeIndex(symbol: Option[String] = Option(".BXBT"), filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[IndexComposite]] = {
     val await = Try(Await.result(instrumentGetCompositeIndexAsync(symbol, filter, columns, count, start, reverse, startTime, endTime), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -233,7 +232,7 @@ class InstrumentApi(
    * @param endTime Ending date filter for results. (optional)
    * @return Future(List[IndexComposite])
    */
-  def instrumentGetCompositeIndexAsync(symbol: Option[String] = Option(".BXBT"), filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[IndexComposite]] = {
+  def instrumentGetCompositeIndexAsync(symbol: Option[String] = Option(".BXBT"), filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[IndexComposite]] = {
       helper.instrumentGetCompositeIndex(symbol, filter, columns, count, start, reverse, startTime, endTime)
   }
 
@@ -296,8 +295,8 @@ class InstrumentApiAsyncHelper(client: TransportClient, config: SwaggerConfig) e
   def instrumentGet(symbol: Option[String] = None,
     filter: Option[String] = None,
     columns: Option[String] = None,
-    count: Option[Number] = Option(100),
-    start: Option[Number] = Option(0),
+    count: Option[Integer] = Option(100),
+    start: Option[Integer] = Option(0),
     reverse: Option[Boolean] = Option(false),
     startTime: Option[Date] = None,
     endTime: Option[Date] = None
@@ -396,8 +395,8 @@ class InstrumentApiAsyncHelper(client: TransportClient, config: SwaggerConfig) e
   def instrumentGetCompositeIndex(symbol: Option[String] = Option(".BXBT"),
     filter: Option[String] = None,
     columns: Option[String] = None,
-    count: Option[Number] = Option(100),
-    start: Option[Number] = Option(0),
+    count: Option[Integer] = Option(100),
+    start: Option[Integer] = Option(0),
     reverse: Option[Boolean] = Option(false),
     startTime: Option[Date] = None,
     endTime: Option[Date] = None

@@ -69,6 +69,7 @@ namespace IO.Swagger.Model
         /// <param name="cumQty">cumQty.</param>
         /// <param name="avgPx">avgPx.</param>
         /// <param name="commission">commission.</param>
+        /// <param name="feeType">feeType.</param>
         /// <param name="tradePublishIndicator">tradePublishIndicator.</param>
         /// <param name="text">text.</param>
         /// <param name="trdMatchID">trdMatchID.</param>
@@ -78,8 +79,7 @@ namespace IO.Swagger.Model
         /// <param name="foreignNotional">foreignNotional.</param>
         /// <param name="transactTime">transactTime.</param>
         /// <param name="timestamp">timestamp (required).</param>
-        /// <param name="feeType">feeType.</param>
-        public Execution(string execID = default(string), string orderID = default(string), string clOrdID = default(string), string clOrdLinkID = default(string), decimal? account = default(decimal?), string symbol = default(string), string side = default(string), decimal? lastQty = default(decimal?), double? lastPx = default(double?), string lastLiquidityInd = default(string), decimal? orderQty = default(decimal?), double? price = default(double?), decimal? displayQty = default(decimal?), double? stopPx = default(double?), double? pegOffsetValue = default(double?), string pegPriceType = default(string), string currency = default(string), string settlCurrency = default(string), string execType = default(string), string ordType = default(string), string timeInForce = default(string), string execInst = default(string), string contingencyType = default(string), string ordStatus = default(string), string triggered = default(string), bool? workingIndicator = default(bool?), string ordRejReason = default(string), decimal? leavesQty = default(decimal?), decimal? cumQty = default(decimal?), double? avgPx = default(double?), double? commission = default(double?), string tradePublishIndicator = default(string), string text = default(string), string trdMatchID = default(string), decimal? execCost = default(decimal?), decimal? execComm = default(decimal?), double? homeNotional = default(double?), double? foreignNotional = default(double?), DateTime? transactTime = default(DateTime?), DateTime? timestamp = default(DateTime?), string feeType = default(string))
+        public Execution(string execID = default(string), string orderID = default(string), string clOrdID = default(string), string clOrdLinkID = default(string), long? account = default(long?), string symbol = default(string), string side = default(string), long? lastQty = default(long?), double? lastPx = default(double?), string lastLiquidityInd = default(string), long? orderQty = default(long?), double? price = default(double?), long? displayQty = default(long?), double? stopPx = default(double?), double? pegOffsetValue = default(double?), string pegPriceType = default(string), string currency = default(string), string settlCurrency = default(string), string execType = default(string), string ordType = default(string), string timeInForce = default(string), string execInst = default(string), string contingencyType = default(string), string ordStatus = default(string), string triggered = default(string), bool? workingIndicator = default(bool?), string ordRejReason = default(string), long? leavesQty = default(long?), long? cumQty = default(long?), double? avgPx = default(double?), double? commission = default(double?), string feeType = default(string), string tradePublishIndicator = default(string), string text = default(string), string trdMatchID = default(string), long? execCost = default(long?), long? execComm = default(long?), double? homeNotional = default(double?), double? foreignNotional = default(double?), DateTime? transactTime = default(DateTime?), DateTime? timestamp = default(DateTime?))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -129,6 +129,7 @@ namespace IO.Swagger.Model
             this.CumQty = cumQty;
             this.AvgPx = avgPx;
             this.Commission = commission;
+            this.FeeType = feeType;
             this.TradePublishIndicator = tradePublishIndicator;
             this.Text = text;
             this.TrdMatchID = trdMatchID;
@@ -137,7 +138,6 @@ namespace IO.Swagger.Model
             this.HomeNotional = homeNotional;
             this.ForeignNotional = foreignNotional;
             this.TransactTime = transactTime;
-            this.FeeType = feeType;
         }
         
         /// <summary>
@@ -168,7 +168,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name="account", EmitDefaultValue=false)]
-        public decimal? Account { get; set; }
+        public long? Account { get; set; }
 
         /// <summary>
         /// Gets or Sets Symbol
@@ -186,7 +186,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets LastQty
         /// </summary>
         [DataMember(Name="lastQty", EmitDefaultValue=false)]
-        public decimal? LastQty { get; set; }
+        public long? LastQty { get; set; }
 
         /// <summary>
         /// Gets or Sets LastPx
@@ -204,7 +204,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets OrderQty
         /// </summary>
         [DataMember(Name="orderQty", EmitDefaultValue=false)]
-        public decimal? OrderQty { get; set; }
+        public long? OrderQty { get; set; }
 
         /// <summary>
         /// Gets or Sets Price
@@ -216,7 +216,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets DisplayQty
         /// </summary>
         [DataMember(Name="displayQty", EmitDefaultValue=false)]
-        public decimal? DisplayQty { get; set; }
+        public long? DisplayQty { get; set; }
 
         /// <summary>
         /// Gets or Sets StopPx
@@ -306,13 +306,13 @@ namespace IO.Swagger.Model
         /// Gets or Sets LeavesQty
         /// </summary>
         [DataMember(Name="leavesQty", EmitDefaultValue=false)]
-        public decimal? LeavesQty { get; set; }
+        public long? LeavesQty { get; set; }
 
         /// <summary>
         /// Gets or Sets CumQty
         /// </summary>
         [DataMember(Name="cumQty", EmitDefaultValue=false)]
-        public decimal? CumQty { get; set; }
+        public long? CumQty { get; set; }
 
         /// <summary>
         /// Gets or Sets AvgPx
@@ -325,6 +325,12 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="commission", EmitDefaultValue=false)]
         public double? Commission { get; set; }
+
+        /// <summary>
+        /// Gets or Sets FeeType
+        /// </summary>
+        [DataMember(Name="feeType", EmitDefaultValue=false)]
+        public string FeeType { get; set; }
 
         /// <summary>
         /// Gets or Sets TradePublishIndicator
@@ -348,13 +354,13 @@ namespace IO.Swagger.Model
         /// Gets or Sets ExecCost
         /// </summary>
         [DataMember(Name="execCost", EmitDefaultValue=false)]
-        public decimal? ExecCost { get; set; }
+        public long? ExecCost { get; set; }
 
         /// <summary>
         /// Gets or Sets ExecComm
         /// </summary>
         [DataMember(Name="execComm", EmitDefaultValue=false)]
-        public decimal? ExecComm { get; set; }
+        public long? ExecComm { get; set; }
 
         /// <summary>
         /// Gets or Sets HomeNotional
@@ -379,12 +385,6 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
         public DateTime? Timestamp { get; set; }
-
-        /// <summary>
-        /// Gets or Sets FeeType
-        /// </summary>
-        [DataMember(Name="feeType", EmitDefaultValue=false)]
-        public string FeeType { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -425,6 +425,7 @@ namespace IO.Swagger.Model
             sb.Append("  CumQty: ").Append(CumQty).Append("\n");
             sb.Append("  AvgPx: ").Append(AvgPx).Append("\n");
             sb.Append("  Commission: ").Append(Commission).Append("\n");
+            sb.Append("  FeeType: ").Append(FeeType).Append("\n");
             sb.Append("  TradePublishIndicator: ").Append(TradePublishIndicator).Append("\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  TrdMatchID: ").Append(TrdMatchID).Append("\n");
@@ -434,7 +435,6 @@ namespace IO.Swagger.Model
             sb.Append("  ForeignNotional: ").Append(ForeignNotional).Append("\n");
             sb.Append("  TransactTime: ").Append(TransactTime).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  FeeType: ").Append(FeeType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -625,6 +625,11 @@ namespace IO.Swagger.Model
                     this.Commission.Equals(input.Commission))
                 ) && 
                 (
+                    this.FeeType == input.FeeType ||
+                    (this.FeeType != null &&
+                    this.FeeType.Equals(input.FeeType))
+                ) && 
+                (
                     this.TradePublishIndicator == input.TradePublishIndicator ||
                     (this.TradePublishIndicator != null &&
                     this.TradePublishIndicator.Equals(input.TradePublishIndicator))
@@ -668,11 +673,6 @@ namespace IO.Swagger.Model
                     this.Timestamp == input.Timestamp ||
                     (this.Timestamp != null &&
                     this.Timestamp.Equals(input.Timestamp))
-                ) && 
-                (
-                    this.FeeType == input.FeeType ||
-                    (this.FeeType != null &&
-                    this.FeeType.Equals(input.FeeType))
                 );
         }
 
@@ -747,6 +747,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.AvgPx.GetHashCode();
                 if (this.Commission != null)
                     hashCode = hashCode * 59 + this.Commission.GetHashCode();
+                if (this.FeeType != null)
+                    hashCode = hashCode * 59 + this.FeeType.GetHashCode();
                 if (this.TradePublishIndicator != null)
                     hashCode = hashCode * 59 + this.TradePublishIndicator.GetHashCode();
                 if (this.Text != null)
@@ -765,8 +767,6 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.TransactTime.GetHashCode();
                 if (this.Timestamp != null)
                     hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
-                if (this.FeeType != null)
-                    hashCode = hashCode * 59 + this.FeeType.GetHashCode();
                 return hashCode;
             }
         }

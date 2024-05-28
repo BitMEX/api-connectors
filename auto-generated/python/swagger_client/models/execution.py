@@ -37,15 +37,15 @@ class Execution(object):
         'order_id': 'str',
         'cl_ord_id': 'str',
         'cl_ord_link_id': 'str',
-        'account': 'float',
+        'account': 'int',
         'symbol': 'str',
         'side': 'str',
-        'last_qty': 'float',
+        'last_qty': 'int',
         'last_px': 'float',
         'last_liquidity_ind': 'str',
-        'order_qty': 'float',
+        'order_qty': 'int',
         'price': 'float',
-        'display_qty': 'float',
+        'display_qty': 'int',
         'stop_px': 'float',
         'peg_offset_value': 'float',
         'peg_price_type': 'str',
@@ -60,20 +60,20 @@ class Execution(object):
         'triggered': 'str',
         'working_indicator': 'bool',
         'ord_rej_reason': 'str',
-        'leaves_qty': 'float',
-        'cum_qty': 'float',
+        'leaves_qty': 'int',
+        'cum_qty': 'int',
         'avg_px': 'float',
         'commission': 'float',
+        'fee_type': 'str',
         'trade_publish_indicator': 'str',
         'text': 'str',
         'trd_match_id': 'str',
-        'exec_cost': 'float',
-        'exec_comm': 'float',
+        'exec_cost': 'int',
+        'exec_comm': 'int',
         'home_notional': 'float',
         'foreign_notional': 'float',
         'transact_time': 'datetime',
-        'timestamp': 'datetime',
-        'fee_type': 'str'
+        'timestamp': 'datetime'
     }
 
     attribute_map = {
@@ -108,6 +108,7 @@ class Execution(object):
         'cum_qty': 'cumQty',
         'avg_px': 'avgPx',
         'commission': 'commission',
+        'fee_type': 'feeType',
         'trade_publish_indicator': 'tradePublishIndicator',
         'text': 'text',
         'trd_match_id': 'trdMatchID',
@@ -116,11 +117,10 @@ class Execution(object):
         'home_notional': 'homeNotional',
         'foreign_notional': 'foreignNotional',
         'transact_time': 'transactTime',
-        'timestamp': 'timestamp',
-        'fee_type': 'feeType'
+        'timestamp': 'timestamp'
     }
 
-    def __init__(self, exec_id=None, order_id=None, cl_ord_id=None, cl_ord_link_id=None, account=None, symbol=None, side=None, last_qty=None, last_px=None, last_liquidity_ind=None, order_qty=None, price=None, display_qty=None, stop_px=None, peg_offset_value=None, peg_price_type=None, currency=None, settl_currency=None, exec_type=None, ord_type=None, time_in_force=None, exec_inst=None, contingency_type=None, ord_status=None, triggered=None, working_indicator=None, ord_rej_reason=None, leaves_qty=None, cum_qty=None, avg_px=None, commission=None, trade_publish_indicator=None, text=None, trd_match_id=None, exec_cost=None, exec_comm=None, home_notional=None, foreign_notional=None, transact_time=None, timestamp=None, fee_type=None, _configuration=None):  # noqa: E501
+    def __init__(self, exec_id=None, order_id=None, cl_ord_id=None, cl_ord_link_id=None, account=None, symbol=None, side=None, last_qty=None, last_px=None, last_liquidity_ind=None, order_qty=None, price=None, display_qty=None, stop_px=None, peg_offset_value=None, peg_price_type=None, currency=None, settl_currency=None, exec_type=None, ord_type=None, time_in_force=None, exec_inst=None, contingency_type=None, ord_status=None, triggered=None, working_indicator=None, ord_rej_reason=None, leaves_qty=None, cum_qty=None, avg_px=None, commission=None, fee_type=None, trade_publish_indicator=None, text=None, trd_match_id=None, exec_cost=None, exec_comm=None, home_notional=None, foreign_notional=None, transact_time=None, timestamp=None, _configuration=None):  # noqa: E501
         """Execution - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -157,6 +157,7 @@ class Execution(object):
         self._cum_qty = None
         self._avg_px = None
         self._commission = None
+        self._fee_type = None
         self._trade_publish_indicator = None
         self._text = None
         self._trd_match_id = None
@@ -166,7 +167,6 @@ class Execution(object):
         self._foreign_notional = None
         self._transact_time = None
         self._timestamp = None
-        self._fee_type = None
         self.discriminator = None
 
         if exec_id is not None:
@@ -230,6 +230,8 @@ class Execution(object):
             self.avg_px = avg_px
         if commission is not None:
             self.commission = commission
+        if fee_type is not None:
+            self.fee_type = fee_type
         if trade_publish_indicator is not None:
             self.trade_publish_indicator = trade_publish_indicator
         if text is not None:
@@ -247,8 +249,6 @@ class Execution(object):
         if transact_time is not None:
             self.transact_time = transact_time
         self.timestamp = timestamp
-        if fee_type is not None:
-            self.fee_type = fee_type
 
     @property
     def exec_id(self):
@@ -340,7 +340,7 @@ class Execution(object):
 
 
         :return: The account of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._account
 
@@ -350,7 +350,7 @@ class Execution(object):
 
 
         :param account: The account of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._account = account
@@ -405,7 +405,7 @@ class Execution(object):
 
 
         :return: The last_qty of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._last_qty
 
@@ -415,7 +415,7 @@ class Execution(object):
 
 
         :param last_qty: The last_qty of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._last_qty = last_qty
@@ -468,7 +468,7 @@ class Execution(object):
 
 
         :return: The order_qty of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._order_qty
 
@@ -478,7 +478,7 @@ class Execution(object):
 
 
         :param order_qty: The order_qty of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._order_qty = order_qty
@@ -510,7 +510,7 @@ class Execution(object):
 
 
         :return: The display_qty of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._display_qty
 
@@ -520,7 +520,7 @@ class Execution(object):
 
 
         :param display_qty: The display_qty of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._display_qty = display_qty
@@ -825,7 +825,7 @@ class Execution(object):
 
 
         :return: The leaves_qty of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._leaves_qty
 
@@ -835,7 +835,7 @@ class Execution(object):
 
 
         :param leaves_qty: The leaves_qty of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._leaves_qty = leaves_qty
@@ -846,7 +846,7 @@ class Execution(object):
 
 
         :return: The cum_qty of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._cum_qty
 
@@ -856,7 +856,7 @@ class Execution(object):
 
 
         :param cum_qty: The cum_qty of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._cum_qty = cum_qty
@@ -902,6 +902,27 @@ class Execution(object):
         """
 
         self._commission = commission
+
+    @property
+    def fee_type(self):
+        """Gets the fee_type of this Execution.  # noqa: E501
+
+
+        :return: The fee_type of this Execution.  # noqa: E501
+        :rtype: str
+        """
+        return self._fee_type
+
+    @fee_type.setter
+    def fee_type(self, fee_type):
+        """Sets the fee_type of this Execution.
+
+
+        :param fee_type: The fee_type of this Execution.  # noqa: E501
+        :type: str
+        """
+
+        self._fee_type = fee_type
 
     @property
     def trade_publish_indicator(self):
@@ -972,7 +993,7 @@ class Execution(object):
 
 
         :return: The exec_cost of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._exec_cost
 
@@ -982,7 +1003,7 @@ class Execution(object):
 
 
         :param exec_cost: The exec_cost of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._exec_cost = exec_cost
@@ -993,7 +1014,7 @@ class Execution(object):
 
 
         :return: The exec_comm of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._exec_comm
 
@@ -1003,7 +1024,7 @@ class Execution(object):
 
 
         :param exec_comm: The exec_comm of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._exec_comm = exec_comm
@@ -1093,27 +1114,6 @@ class Execution(object):
             raise ValueError("Invalid value for `timestamp`, must not be `None`")  # noqa: E501
 
         self._timestamp = timestamp
-
-    @property
-    def fee_type(self):
-        """Gets the fee_type of this Execution.  # noqa: E501
-
-
-        :return: The fee_type of this Execution.  # noqa: E501
-        :rtype: str
-        """
-        return self._fee_type
-
-    @fee_type.setter
-    def fee_type(self, fee_type):
-        """Sets the fee_type of this Execution.
-
-
-        :param fee_type: The fee_type of this Execution.  # noqa: E501
-        :type: str
-        """
-
-        self._fee_type = fee_type
 
     def to_dict(self):
         """Returns the model properties as a dict"""

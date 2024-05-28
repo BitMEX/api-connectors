@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QString>
 
 #include "SWGObject.h"
@@ -42,8 +41,8 @@ public:
     void fromJsonObject(QJsonObject json) override;
     SWGChatChannel* fromJson(QString jsonString) override;
 
-    SWGNumber* getId();
-    void setId(SWGNumber* id);
+    qint32 getId();
+    void setId(qint32 id);
 
     QString* getName();
     void setName(QString* name);
@@ -55,7 +54,7 @@ public:
     virtual bool isSet() override;
 
 private:
-    SWGNumber* id;
+    qint32 id;
     bool m_id_isSet;
 
     QString* name;

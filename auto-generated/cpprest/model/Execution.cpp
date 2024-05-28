@@ -29,22 +29,22 @@ Execution::Execution()
     m_ClOrdIDIsSet = false;
     m_ClOrdLinkID = utility::conversions::to_string_t("");
     m_ClOrdLinkIDIsSet = false;
-    m_Account = 0.0;
+    m_Account = 0L;
     m_AccountIsSet = false;
     m_Symbol = utility::conversions::to_string_t("");
     m_Side = utility::conversions::to_string_t("");
     m_SideIsSet = false;
-    m_LastQty = 0.0;
+    m_LastQty = 0L;
     m_LastQtyIsSet = false;
     m_LastPx = 0.0;
     m_LastPxIsSet = false;
     m_LastLiquidityInd = utility::conversions::to_string_t("");
     m_LastLiquidityIndIsSet = false;
-    m_OrderQty = 0.0;
+    m_OrderQty = 0L;
     m_OrderQtyIsSet = false;
     m_Price = 0.0;
     m_PriceIsSet = false;
-    m_DisplayQty = 0.0;
+    m_DisplayQty = 0L;
     m_DisplayQtyIsSet = false;
     m_StopPx = 0.0;
     m_StopPxIsSet = false;
@@ -74,23 +74,25 @@ Execution::Execution()
     m_WorkingIndicatorIsSet = false;
     m_OrdRejReason = utility::conversions::to_string_t("");
     m_OrdRejReasonIsSet = false;
-    m_LeavesQty = 0.0;
+    m_LeavesQty = 0L;
     m_LeavesQtyIsSet = false;
-    m_CumQty = 0.0;
+    m_CumQty = 0L;
     m_CumQtyIsSet = false;
     m_AvgPx = 0.0;
     m_AvgPxIsSet = false;
     m_Commission = 0.0;
     m_CommissionIsSet = false;
+    m_FeeType = utility::conversions::to_string_t("");
+    m_FeeTypeIsSet = false;
     m_TradePublishIndicator = utility::conversions::to_string_t("");
     m_TradePublishIndicatorIsSet = false;
     m_Text = utility::conversions::to_string_t("");
     m_TextIsSet = false;
     m_TrdMatchID = utility::conversions::to_string_t("");
     m_TrdMatchIDIsSet = false;
-    m_ExecCost = 0.0;
+    m_ExecCost = 0L;
     m_ExecCostIsSet = false;
-    m_ExecComm = 0.0;
+    m_ExecComm = 0L;
     m_ExecCommIsSet = false;
     m_HomeNotional = 0.0;
     m_HomeNotionalIsSet = false;
@@ -99,8 +101,6 @@ Execution::Execution()
     m_TransactTime = utility::datetime();
     m_TransactTimeIsSet = false;
     m_Timestamp = utility::datetime();
-    m_FeeType = utility::conversions::to_string_t("");
-    m_FeeTypeIsSet = false;
 }
 
 Execution::~Execution()
@@ -237,6 +237,10 @@ web::json::value Execution::toJson() const
     {
         val[utility::conversions::to_string_t("commission")] = ModelBase::toJson(m_Commission);
     }
+    if(m_FeeTypeIsSet)
+    {
+        val[utility::conversions::to_string_t("feeType")] = ModelBase::toJson(m_FeeType);
+    }
     if(m_TradePublishIndicatorIsSet)
     {
         val[utility::conversions::to_string_t("tradePublishIndicator")] = ModelBase::toJson(m_TradePublishIndicator);
@@ -270,10 +274,6 @@ web::json::value Execution::toJson() const
         val[utility::conversions::to_string_t("transactTime")] = ModelBase::toJson(m_TransactTime);
     }
     val[utility::conversions::to_string_t("timestamp")] = ModelBase::toJson(m_Timestamp);
-    if(m_FeeTypeIsSet)
-    {
-        val[utility::conversions::to_string_t("feeType")] = ModelBase::toJson(m_FeeType);
-    }
 
     return val;
 }
@@ -317,7 +317,7 @@ void Execution::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("account")];
         if(!fieldValue.is_null())
         {
-            setAccount(ModelBase::doubleFromJson(fieldValue));
+            setAccount(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     setSymbol(ModelBase::stringFromJson(val[utility::conversions::to_string_t("symbol")]));
@@ -334,7 +334,7 @@ void Execution::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("lastQty")];
         if(!fieldValue.is_null())
         {
-            setLastQty(ModelBase::doubleFromJson(fieldValue));
+            setLastQty(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("lastPx")))
@@ -358,7 +358,7 @@ void Execution::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("orderQty")];
         if(!fieldValue.is_null())
         {
-            setOrderQty(ModelBase::doubleFromJson(fieldValue));
+            setOrderQty(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("price")))
@@ -374,7 +374,7 @@ void Execution::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("displayQty")];
         if(!fieldValue.is_null())
         {
-            setDisplayQty(ModelBase::doubleFromJson(fieldValue));
+            setDisplayQty(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("stopPx")))
@@ -494,7 +494,7 @@ void Execution::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("leavesQty")];
         if(!fieldValue.is_null())
         {
-            setLeavesQty(ModelBase::doubleFromJson(fieldValue));
+            setLeavesQty(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("cumQty")))
@@ -502,7 +502,7 @@ void Execution::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("cumQty")];
         if(!fieldValue.is_null())
         {
-            setCumQty(ModelBase::doubleFromJson(fieldValue));
+            setCumQty(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("avgPx")))
@@ -519,6 +519,14 @@ void Execution::fromJson(web::json::value& val)
         if(!fieldValue.is_null())
         {
             setCommission(ModelBase::doubleFromJson(fieldValue));
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t("feeType")))
+    {
+        web::json::value& fieldValue = val[utility::conversions::to_string_t("feeType")];
+        if(!fieldValue.is_null())
+        {
+            setFeeType(ModelBase::stringFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("tradePublishIndicator")))
@@ -550,7 +558,7 @@ void Execution::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("execCost")];
         if(!fieldValue.is_null())
         {
-            setExecCost(ModelBase::doubleFromJson(fieldValue));
+            setExecCost(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("execComm")))
@@ -558,7 +566,7 @@ void Execution::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("execComm")];
         if(!fieldValue.is_null())
         {
-            setExecComm(ModelBase::doubleFromJson(fieldValue));
+            setExecComm(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("homeNotional")))
@@ -587,14 +595,6 @@ void Execution::fromJson(web::json::value& val)
     }
     setTimestamp
     (ModelBase::dateFromJson(val[utility::conversions::to_string_t("timestamp")]));
-    if(val.has_field(utility::conversions::to_string_t("feeType")))
-    {
-        web::json::value& fieldValue = val[utility::conversions::to_string_t("feeType")];
-        if(!fieldValue.is_null())
-        {
-            setFeeType(ModelBase::stringFromJson(fieldValue));
-        }
-    }
 }
 
 void Execution::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
@@ -743,6 +743,11 @@ void Execution::toMultipart(std::shared_ptr<MultipartFormData> multipart, const 
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("commission"), m_Commission));
     }
+    if(m_FeeTypeIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("feeType"), m_FeeType));
+        
+    }
     if(m_TradePublishIndicatorIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("tradePublishIndicator"), m_TradePublishIndicator));
@@ -780,11 +785,6 @@ void Execution::toMultipart(std::shared_ptr<MultipartFormData> multipart, const 
         
     }
     multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("timestamp"), m_Timestamp));
-    if(m_FeeTypeIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("feeType"), m_FeeType));
-        
-    }
 }
 
 void Execution::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
@@ -813,7 +813,7 @@ void Execution::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t("account")))
     {
-        setAccount(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("account"))));
+        setAccount(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("account"))));
     }
     setSymbol(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("symbol"))));
     if(multipart->hasContent(utility::conversions::to_string_t("side")))
@@ -822,7 +822,7 @@ void Execution::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t("lastQty")))
     {
-        setLastQty(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("lastQty"))));
+        setLastQty(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("lastQty"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("lastPx")))
     {
@@ -834,7 +834,7 @@ void Execution::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t("orderQty")))
     {
-        setOrderQty(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("orderQty"))));
+        setOrderQty(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("orderQty"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("price")))
     {
@@ -842,7 +842,7 @@ void Execution::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t("displayQty")))
     {
-        setDisplayQty(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("displayQty"))));
+        setDisplayQty(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("displayQty"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("stopPx")))
     {
@@ -902,11 +902,11 @@ void Execution::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t("leavesQty")))
     {
-        setLeavesQty(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("leavesQty"))));
+        setLeavesQty(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("leavesQty"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("cumQty")))
     {
-        setCumQty(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("cumQty"))));
+        setCumQty(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("cumQty"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("avgPx")))
     {
@@ -915,6 +915,10 @@ void Execution::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     if(multipart->hasContent(utility::conversions::to_string_t("commission")))
     {
         setCommission(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("commission"))));
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("feeType")))
+    {
+        setFeeType(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("feeType"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("tradePublishIndicator")))
     {
@@ -930,11 +934,11 @@ void Execution::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t("execCost")))
     {
-        setExecCost(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("execCost"))));
+        setExecCost(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("execCost"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("execComm")))
     {
-        setExecComm(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("execComm"))));
+        setExecComm(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("execComm"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("homeNotional")))
     {
@@ -949,10 +953,6 @@ void Execution::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         setTransactTime(ModelBase::dateFromHttpContent(multipart->getContent(utility::conversions::to_string_t("transactTime"))));
     }
     setTimestamp(ModelBase::dateFromHttpContent(multipart->getContent(utility::conversions::to_string_t("timestamp"))));
-    if(multipart->hasContent(utility::conversions::to_string_t("feeType")))
-    {
-        setFeeType(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("feeType"))));
-    }
 }
 
 utility::string_t Execution::getExecID() const
@@ -1039,13 +1039,13 @@ void Execution::unsetClOrdLinkID()
     m_ClOrdLinkIDIsSet = false;
 }
 
-double Execution::getAccount() const
+int64_t Execution::getAccount() const
 {
     return m_Account;
 }
 
 
-void Execution::setAccount(double value)
+void Execution::setAccount(int64_t value)
 {
     m_Account = value;
     m_AccountIsSet = true;
@@ -1092,13 +1092,13 @@ void Execution::unsetSide()
     m_SideIsSet = false;
 }
 
-double Execution::getLastQty() const
+int64_t Execution::getLastQty() const
 {
     return m_LastQty;
 }
 
 
-void Execution::setLastQty(double value)
+void Execution::setLastQty(int64_t value)
 {
     m_LastQty = value;
     m_LastQtyIsSet = true;
@@ -1155,13 +1155,13 @@ void Execution::unsetLastLiquidityInd()
     m_LastLiquidityIndIsSet = false;
 }
 
-double Execution::getOrderQty() const
+int64_t Execution::getOrderQty() const
 {
     return m_OrderQty;
 }
 
 
-void Execution::setOrderQty(double value)
+void Execution::setOrderQty(int64_t value)
 {
     m_OrderQty = value;
     m_OrderQtyIsSet = true;
@@ -1197,13 +1197,13 @@ void Execution::unsetPrice()
     m_PriceIsSet = false;
 }
 
-double Execution::getDisplayQty() const
+int64_t Execution::getDisplayQty() const
 {
     return m_DisplayQty;
 }
 
 
-void Execution::setDisplayQty(double value)
+void Execution::setDisplayQty(int64_t value)
 {
     m_DisplayQty = value;
     m_DisplayQtyIsSet = true;
@@ -1512,13 +1512,13 @@ void Execution::unsetOrdRejReason()
     m_OrdRejReasonIsSet = false;
 }
 
-double Execution::getLeavesQty() const
+int64_t Execution::getLeavesQty() const
 {
     return m_LeavesQty;
 }
 
 
-void Execution::setLeavesQty(double value)
+void Execution::setLeavesQty(int64_t value)
 {
     m_LeavesQty = value;
     m_LeavesQtyIsSet = true;
@@ -1533,13 +1533,13 @@ void Execution::unsetLeavesQty()
     m_LeavesQtyIsSet = false;
 }
 
-double Execution::getCumQty() const
+int64_t Execution::getCumQty() const
 {
     return m_CumQty;
 }
 
 
-void Execution::setCumQty(double value)
+void Execution::setCumQty(int64_t value)
 {
     m_CumQty = value;
     m_CumQtyIsSet = true;
@@ -1594,6 +1594,27 @@ bool Execution::commissionIsSet() const
 void Execution::unsetCommission()
 {
     m_CommissionIsSet = false;
+}
+
+utility::string_t Execution::getFeeType() const
+{
+    return m_FeeType;
+}
+
+
+void Execution::setFeeType(utility::string_t value)
+{
+    m_FeeType = value;
+    m_FeeTypeIsSet = true;
+}
+bool Execution::feeTypeIsSet() const
+{
+    return m_FeeTypeIsSet;
+}
+
+void Execution::unsetFeeType()
+{
+    m_FeeTypeIsSet = false;
 }
 
 utility::string_t Execution::getTradePublishIndicator() const
@@ -1659,13 +1680,13 @@ void Execution::unsetTrdMatchID()
     m_TrdMatchIDIsSet = false;
 }
 
-double Execution::getExecCost() const
+int64_t Execution::getExecCost() const
 {
     return m_ExecCost;
 }
 
 
-void Execution::setExecCost(double value)
+void Execution::setExecCost(int64_t value)
 {
     m_ExecCost = value;
     m_ExecCostIsSet = true;
@@ -1680,13 +1701,13 @@ void Execution::unsetExecCost()
     m_ExecCostIsSet = false;
 }
 
-double Execution::getExecComm() const
+int64_t Execution::getExecComm() const
 {
     return m_ExecComm;
 }
 
 
-void Execution::setExecComm(double value)
+void Execution::setExecComm(int64_t value)
 {
     m_ExecComm = value;
     m_ExecCommIsSet = true;
@@ -1775,27 +1796,6 @@ void Execution::setTimestamp(utility::datetime value)
     m_Timestamp = value;
     
 }
-utility::string_t Execution::getFeeType() const
-{
-    return m_FeeType;
-}
-
-
-void Execution::setFeeType(utility::string_t value)
-{
-    m_FeeType = value;
-    m_FeeTypeIsSet = true;
-}
-bool Execution::feeTypeIsSet() const
-{
-    return m_FeeTypeIsSet;
-}
-
-void Execution::unsetFeeType()
-{
-    m_FeeTypeIsSet = false;
-}
-
 }
 }
 }

@@ -11,35 +11,35 @@ import Foundation
 
 public struct Margin: Codable {
 
-    public var account: Double
+    public var account: Int64
     public var currency: String
-    public var riskLimit: Double?
+    public var riskLimit: Int64?
     public var state: String?
-    public var amount: Double?
-    public var prevRealisedPnl: Double?
-    public var grossComm: Double?
-    public var grossOpenCost: Double?
-    public var grossOpenPremium: Double?
-    public var grossExecCost: Double?
-    public var grossMarkValue: Double?
-    public var riskValue: Double?
-    public var initMargin: Double?
-    public var maintMargin: Double?
-    public var targetExcessMargin: Double?
-    public var realisedPnl: Double?
-    public var unrealisedPnl: Double?
-    public var walletBalance: Double?
-    public var marginBalance: Double?
+    public var amount: Int64?
+    public var prevRealisedPnl: Int64?
+    public var grossComm: Int64?
+    public var grossOpenCost: Int64?
+    public var grossOpenPremium: Int64?
+    public var grossExecCost: Int64?
+    public var grossMarkValue: Int64?
+    public var riskValue: Int64?
+    public var initMargin: Int64?
+    public var maintMargin: Int64?
+    public var targetExcessMargin: Int64?
+    public var realisedPnl: Int64?
+    public var unrealisedPnl: Int64?
+    public var walletBalance: Int64?
+    public var marginBalance: Int64?
     public var marginLeverage: Double?
     public var marginUsedPcnt: Double?
-    public var excessMargin: Double?
-    public var availableMargin: Double?
-    public var withdrawableMargin: Double?
+    public var excessMargin: Int64?
+    public var availableMargin: Int64?
+    public var withdrawableMargin: Int64?
     public var makerFeeDiscount: Double?
     public var takerFeeDiscount: Double?
     public var timestamp: Date?
 
-    public init(account: Double, currency: String, riskLimit: Double?, state: String?, amount: Double?, prevRealisedPnl: Double?, grossComm: Double?, grossOpenCost: Double?, grossOpenPremium: Double?, grossExecCost: Double?, grossMarkValue: Double?, riskValue: Double?, initMargin: Double?, maintMargin: Double?, targetExcessMargin: Double?, realisedPnl: Double?, unrealisedPnl: Double?, walletBalance: Double?, marginBalance: Double?, marginLeverage: Double?, marginUsedPcnt: Double?, excessMargin: Double?, availableMargin: Double?, withdrawableMargin: Double?, makerFeeDiscount: Double?, takerFeeDiscount: Double?, timestamp: Date?) {
+    public init(account: Int64, currency: String, riskLimit: Int64?, state: String?, amount: Int64?, prevRealisedPnl: Int64?, grossComm: Int64?, grossOpenCost: Int64?, grossOpenPremium: Int64?, grossExecCost: Int64?, grossMarkValue: Int64?, riskValue: Int64?, initMargin: Int64?, maintMargin: Int64?, targetExcessMargin: Int64?, realisedPnl: Int64?, unrealisedPnl: Int64?, walletBalance: Int64?, marginBalance: Int64?, marginLeverage: Double?, marginUsedPcnt: Double?, excessMargin: Int64?, availableMargin: Int64?, withdrawableMargin: Int64?, makerFeeDiscount: Double?, takerFeeDiscount: Double?, timestamp: Date?) {
         self.account = account
         self.currency = currency
         self.riskLimit = riskLimit

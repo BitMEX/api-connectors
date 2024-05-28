@@ -73,26 +73,26 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getVolume() const;
+    int64_t getVolume() const;
     bool volumeIsSet() const;
     void unsetVolume();
-    void setVolume(double value);
+    void setVolume(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getTurnover() const;
+    int64_t getTurnover() const;
     bool turnoverIsSet() const;
     void unsetTurnover();
-    void setTurnover(double value);
+    void setTurnover(int64_t value);
 
 protected:
     utility::datetime m_date;
         utility::string_t m_RootSymbol;
         utility::string_t m_Currency;
     bool m_CurrencyIsSet;
-    double m_Volume;
+    int64_t m_Volume;
     bool m_VolumeIsSet;
-    double m_Turnover;
+    int64_t m_Turnover;
     bool m_TurnoverIsSet;
 };
 

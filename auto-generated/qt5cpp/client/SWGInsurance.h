@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -49,8 +48,8 @@ public:
     QDateTime* getTimestamp();
     void setTimestamp(QDateTime* timestamp);
 
-    SWGNumber* getWalletBalance();
-    void setWalletBalance(SWGNumber* wallet_balance);
+    qint64 getWalletBalance();
+    void setWalletBalance(qint64 wallet_balance);
 
 
     virtual bool isSet() override;
@@ -62,7 +61,7 @@ private:
     QDateTime* timestamp;
     bool m_timestamp_isSet;
 
-    SWGNumber* wallet_balance;
+    qint64 wallet_balance;
     bool m_wallet_balance_isSet;
 
 };

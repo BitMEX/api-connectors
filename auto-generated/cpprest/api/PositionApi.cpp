@@ -36,7 +36,7 @@ PositionApi::~PositionApi()
 {
 }
 
-pplx::task<std::vector<std::shared_ptr<Position>>> PositionApi::position_get(boost::optional<utility::string_t> filter, boost::optional<utility::string_t> columns, boost::optional<double> count)
+pplx::task<std::vector<std::shared_ptr<Position>>> PositionApi::position_get(boost::optional<utility::string_t> filter, boost::optional<utility::string_t> columns, boost::optional<int32_t> count)
 {
 
 
@@ -348,7 +348,7 @@ pplx::task<std::shared_ptr<Position>> PositionApi::position_isolateMargin(utilit
         return result;
     });
 }
-pplx::task<std::shared_ptr<Position>> PositionApi::position_transferIsolatedMargin(utility::string_t symbol, double amount, boost::optional<double> targetAccountId)
+pplx::task<std::shared_ptr<Position>> PositionApi::position_transferIsolatedMargin(utility::string_t symbol, int64_t amount, boost::optional<double> targetAccountId)
 {
 
 
@@ -654,7 +654,7 @@ pplx::task<std::shared_ptr<Position>> PositionApi::position_updateLeverage(utili
         return result;
     });
 }
-pplx::task<std::shared_ptr<Position>> PositionApi::position_updateRiskLimit(utility::string_t symbol, double riskLimit, boost::optional<double> targetAccountId)
+pplx::task<std::shared_ptr<Position>> PositionApi::position_updateRiskLimit(utility::string_t symbol, int64_t riskLimit, boost::optional<double> targetAccountId)
 {
 
 

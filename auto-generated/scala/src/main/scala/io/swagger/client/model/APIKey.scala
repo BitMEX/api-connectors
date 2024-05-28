@@ -18,13 +18,13 @@ case class APIKey (
   id: String,
   secret: String,
   name: String,
-  nonce: Number,
+  nonce: Long,
   cidr: Option[String] = None,
   cidrs: Option[List[XAny]] = None,
-  targetAccountId: Option[Number] = None,
+  targetAccountId: Option[Integer] = None,
   permissions: Option[List[XAny]] = None,
   enabled: Option[Boolean] = None,
-  userId: Number,
+  userId: Integer,
   created: Option[Date] = None
 )
 

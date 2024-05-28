@@ -49,15 +49,15 @@ SWGTradeBin::init() {
     m_low_isSet = false;
     close = 0.0;
     m_close_isSet = false;
-    trades = 0.0;
+    trades = 0L;
     m_trades_isSet = false;
-    volume = 0.0;
+    volume = 0L;
     m_volume_isSet = false;
     vwap = 0.0;
     m_vwap_isSet = false;
-    last_size = 0.0;
+    last_size = 0L;
     m_last_size_isSet = false;
-    turnover = 0.0;
+    turnover = 0L;
     m_turnover_isSet = false;
     home_notional = 0.0;
     m_home_notional_isSet = false;
@@ -77,19 +77,11 @@ SWGTradeBin::cleanup() {
 
 
 
-    if(trades != nullptr) { 
-        delete trades;
-    }
-    if(volume != nullptr) { 
-        delete volume;
-    }
 
-    if(last_size != nullptr) { 
-        delete last_size;
-    }
-    if(turnover != nullptr) { 
-        delete turnover;
-    }
+
+
+
+
 
 
 }
@@ -117,15 +109,15 @@ SWGTradeBin::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&close, pJson["close"], "double", "");
     
-    ::Swagger::setValue(&trades, pJson["trades"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&trades, pJson["trades"], "qint64", "");
     
-    ::Swagger::setValue(&volume, pJson["volume"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&volume, pJson["volume"], "qint64", "");
     
     ::Swagger::setValue(&vwap, pJson["vwap"], "double", "");
     
-    ::Swagger::setValue(&last_size, pJson["lastSize"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&last_size, pJson["lastSize"], "qint64", "");
     
-    ::Swagger::setValue(&turnover, pJson["turnover"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&turnover, pJson["turnover"], "qint64", "");
     
     ::Swagger::setValue(&home_notional, pJson["homeNotional"], "double", "");
     
@@ -163,20 +155,20 @@ SWGTradeBin::asJsonObject() {
     if(m_close_isSet){
         obj.insert("close", QJsonValue(close));
     }
-    if((trades != nullptr) && (trades->isSet())){
-        toJsonValue(QString("trades"), trades, obj, QString("SWGNumber"));
+    if(m_trades_isSet){
+        obj.insert("trades", QJsonValue(trades));
     }
-    if((volume != nullptr) && (volume->isSet())){
-        toJsonValue(QString("volume"), volume, obj, QString("SWGNumber"));
+    if(m_volume_isSet){
+        obj.insert("volume", QJsonValue(volume));
     }
     if(m_vwap_isSet){
         obj.insert("vwap", QJsonValue(vwap));
     }
-    if((last_size != nullptr) && (last_size->isSet())){
-        toJsonValue(QString("lastSize"), last_size, obj, QString("SWGNumber"));
+    if(m_last_size_isSet){
+        obj.insert("lastSize", QJsonValue(last_size));
     }
-    if((turnover != nullptr) && (turnover->isSet())){
-        toJsonValue(QString("turnover"), turnover, obj, QString("SWGNumber"));
+    if(m_turnover_isSet){
+        obj.insert("turnover", QJsonValue(turnover));
     }
     if(m_home_notional_isSet){
         obj.insert("homeNotional", QJsonValue(home_notional));
@@ -248,22 +240,22 @@ SWGTradeBin::setClose(double close) {
     this->m_close_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGTradeBin::getTrades() {
     return trades;
 }
 void
-SWGTradeBin::setTrades(SWGNumber* trades) {
+SWGTradeBin::setTrades(qint64 trades) {
     this->trades = trades;
     this->m_trades_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGTradeBin::getVolume() {
     return volume;
 }
 void
-SWGTradeBin::setVolume(SWGNumber* volume) {
+SWGTradeBin::setVolume(qint64 volume) {
     this->volume = volume;
     this->m_volume_isSet = true;
 }
@@ -278,22 +270,22 @@ SWGTradeBin::setVwap(double vwap) {
     this->m_vwap_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGTradeBin::getLastSize() {
     return last_size;
 }
 void
-SWGTradeBin::setLastSize(SWGNumber* last_size) {
+SWGTradeBin::setLastSize(qint64 last_size) {
     this->last_size = last_size;
     this->m_last_size_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGTradeBin::getTurnover() {
     return turnover;
 }
 void
-SWGTradeBin::setTurnover(SWGNumber* turnover) {
+SWGTradeBin::setTurnover(qint64 turnover) {
     this->turnover = turnover;
     this->m_turnover_isSet = true;
 }
@@ -329,11 +321,11 @@ SWGTradeBin::isSet(){
         if(m_high_isSet){ isObjectUpdated = true; break;}
         if(m_low_isSet){ isObjectUpdated = true; break;}
         if(m_close_isSet){ isObjectUpdated = true; break;}
-        if(trades != nullptr && trades->isSet()){ isObjectUpdated = true; break;}
-        if(volume != nullptr && volume->isSet()){ isObjectUpdated = true; break;}
+        if(m_trades_isSet){ isObjectUpdated = true; break;}
+        if(m_volume_isSet){ isObjectUpdated = true; break;}
         if(m_vwap_isSet){ isObjectUpdated = true; break;}
-        if(last_size != nullptr && last_size->isSet()){ isObjectUpdated = true; break;}
-        if(turnover != nullptr && turnover->isSet()){ isObjectUpdated = true; break;}
+        if(m_last_size_isSet){ isObjectUpdated = true; break;}
+        if(m_turnover_isSet){ isObjectUpdated = true; break;}
         if(m_home_notional_isSet){ isObjectUpdated = true; break;}
         if(m_foreign_notional_isSet){ isObjectUpdated = true; break;}
     }while(false);

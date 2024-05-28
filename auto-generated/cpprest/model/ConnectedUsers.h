@@ -55,22 +55,22 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getUsers() const;
+    int32_t getUsers() const;
     bool usersIsSet() const;
     void unsetUsers();
-    void setUsers(double value);
+    void setUsers(int32_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getBots() const;
+    int32_t getBots() const;
     bool botsIsSet() const;
     void unsetBots();
-    void setBots(double value);
+    void setBots(int32_t value);
 
 protected:
-    double m_Users;
+    int32_t m_Users;
     bool m_UsersIsSet;
-    double m_Bots;
+    int32_t m_Bots;
     bool m_BotsIsSet;
 };
 

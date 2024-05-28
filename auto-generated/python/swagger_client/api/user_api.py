@@ -2842,7 +2842,7 @@ class UserApi(object):
         :param async_req bool
         :param str currency: Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
         :param str network: The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`. (required)
-        :param float amount: Amount of withdrawal currency. (required)
+        :param int amount: Amount of withdrawal currency. (required)
         :param str otp_token: 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
         :param str address: Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
         :param str memo: Destination Memo. If `address`, is specified, Destination Memo can also be specified
@@ -2873,7 +2873,7 @@ class UserApi(object):
         :param async_req bool
         :param str currency: Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
         :param str network: The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`. (required)
-        :param float amount: Amount of withdrawal currency. (required)
+        :param int amount: Amount of withdrawal currency. (required)
         :param str otp_token: 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
         :param str address: Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
         :param str memo: Destination Memo. If `address`, is specified, Destination Memo can also be specified
@@ -3190,7 +3190,7 @@ class UserApi(object):
 
         :param async_req bool
         :param str currency: Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
-        :param float amount: Amount of transfer. (required)
+        :param int amount: Amount of transfer. (required)
         :param float target_account_id: AccountId to send the transfer to, must be a paired account with the user sending the transfer. (required)
         :param float from_account_id: AccountID to send the transfer from. Must be paired account with the authenticated user.
         :return: Transaction
@@ -3215,7 +3215,7 @@ class UserApi(object):
 
         :param async_req bool
         :param str currency: Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
-        :param float amount: Amount of transfer. (required)
+        :param int amount: Amount of transfer. (required)
         :param float target_account_id: AccountId to send the transfer to, must be a paired account with the user sending the transfer. (required)
         :param float from_account_id: AccountID to send the transfer from. Must be paired account with the authenticated user.
         :return: Transaction

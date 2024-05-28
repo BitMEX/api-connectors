@@ -43,7 +43,7 @@ namespace IO.Swagger.Model
         /// <param name="currency">currency.</param>
         /// <param name="volume">volume.</param>
         /// <param name="turnover">turnover.</param>
-        public StatsHistory(DateTime? date = default(DateTime?), string rootSymbol = default(string), string currency = default(string), decimal? volume = default(decimal?), decimal? turnover = default(decimal?))
+        public StatsHistory(DateTime? date = default(DateTime?), string rootSymbol = default(string), string currency = default(string), long? volume = default(long?), long? turnover = default(long?))
         {
             // to ensure "date" is required (not null)
             if (date == null)
@@ -90,13 +90,13 @@ namespace IO.Swagger.Model
         /// Gets or Sets Volume
         /// </summary>
         [DataMember(Name="volume", EmitDefaultValue=false)]
-        public decimal? Volume { get; set; }
+        public long? Volume { get; set; }
 
         /// <summary>
         /// Gets or Sets Turnover
         /// </summary>
         [DataMember(Name="turnover", EmitDefaultValue=false)]
-        public decimal? Turnover { get; set; }
+        public long? Turnover { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

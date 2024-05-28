@@ -41,7 +41,7 @@ SWGInsurance::init() {
     m_currency_isSet = false;
     timestamp = NULL;
     m_timestamp_isSet = false;
-    wallet_balance = 0.0;
+    wallet_balance = 0L;
     m_wallet_balance_isSet = false;
 }
 
@@ -53,9 +53,7 @@ SWGInsurance::cleanup() {
     if(timestamp != nullptr) { 
         delete timestamp;
     }
-    if(wallet_balance != nullptr) { 
-        delete wallet_balance;
-    }
+
 }
 
 SWGInsurance*
@@ -73,7 +71,7 @@ SWGInsurance::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&timestamp, pJson["timestamp"], "QDateTime", "QDateTime");
     
-    ::Swagger::setValue(&wallet_balance, pJson["walletBalance"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&wallet_balance, pJson["walletBalance"], "qint64", "");
     
 }
 
@@ -95,8 +93,8 @@ SWGInsurance::asJsonObject() {
     if(timestamp != nullptr) { 
         toJsonValue(QString("timestamp"), timestamp, obj, QString("QDateTime"));
     }
-    if((wallet_balance != nullptr) && (wallet_balance->isSet())){
-        toJsonValue(QString("walletBalance"), wallet_balance, obj, QString("SWGNumber"));
+    if(m_wallet_balance_isSet){
+        obj.insert("walletBalance", QJsonValue(wallet_balance));
     }
 
     return obj;
@@ -122,12 +120,12 @@ SWGInsurance::setTimestamp(QDateTime* timestamp) {
     this->m_timestamp_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGInsurance::getWalletBalance() {
     return wallet_balance;
 }
 void
-SWGInsurance::setWalletBalance(SWGNumber* wallet_balance) {
+SWGInsurance::setWalletBalance(qint64 wallet_balance) {
     this->wallet_balance = wallet_balance;
     this->m_wallet_balance_isSet = true;
 }
@@ -139,7 +137,7 @@ SWGInsurance::isSet(){
     do{
         if(currency != nullptr && *currency != QString("")){ isObjectUpdated = true; break;}
         
-        if(wallet_balance != nullptr && wallet_balance->isSet()){ isObjectUpdated = true; break;}
+        if(m_wallet_balance_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

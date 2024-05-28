@@ -23,7 +23,6 @@ import java.util.*;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.IndexComposite;
@@ -74,7 +73,7 @@ public class InstrumentApi {
    * @param endTime Ending date filter for results.
    * @return List<Instrument>
   */
-  public List<Instrument> instrumentGet (String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, Date startTime, Date endTime) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public List<Instrument> instrumentGet (String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, Date startTime, Date endTime) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -140,7 +139,7 @@ public class InstrumentApi {
    * This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use &#x60;/instrument/active&#x60; to return active instruments, or use a filter like &#x60;{\&quot;state\&quot;: \&quot;Open\&quot;}&#x60;.  The instrument type is specified by the &#x60;typ&#x60; param.  - Perpetual Contracts - &#x60;FFWCSX&#x60; - Perpetual Contracts (FX underliers) - &#x60;FFWCSF&#x60; - Spot - &#x60;IFXXXP&#x60; - Futures - &#x60;FFCCSX&#x60; - BitMEX Basket Index - &#x60;MRBXXX&#x60; - BitMEX Crypto Index - &#x60;MRCXXX&#x60; - BitMEX FX Index - &#x60;MRFXXX&#x60; - BitMEX Lending/Premium Index - &#x60;MRRXXX&#x60; - BitMEX Volatility Index - &#x60;MRIXXX&#x60; 
    * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.   * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.   * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.   * @param count Number of results to fetch. Must be a positive integer.   * @param start Starting point for results.   * @param reverse If true, will sort results newest first.   * @param startTime Starting date filter for results.   * @param endTime Ending date filter for results.
   */
-  public void instrumentGet (String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, Date startTime, Date endTime, final Response.Listener<List<Instrument>> responseListener, final Response.ErrorListener errorListener) {
+  public void instrumentGet (String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, Date startTime, Date endTime, final Response.Listener<List<Instrument>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -570,7 +569,7 @@ public class InstrumentApi {
    * @param endTime Ending date filter for results.
    * @return List<IndexComposite>
   */
-  public List<IndexComposite> instrumentGetCompositeIndex (String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, Date startTime, Date endTime) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public List<IndexComposite> instrumentGetCompositeIndex (String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, Date startTime, Date endTime) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -636,7 +635,7 @@ public class InstrumentApi {
    * Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a &#x60;symbol&#x60; of &#x60;.BXBT&#x60; to get the ticks and weights of the constituent exchanges that build the \&quot;.BXBT\&quot; index.  A tick with reference &#x60;\&quot;BMI\&quot;&#x60; and weight &#x60;null&#x60; is the composite index tick. 
    * @param symbol The composite index symbol.   * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;.   * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.   * @param count Number of results to fetch. Must be a positive integer.   * @param start Starting point for results.   * @param reverse If true, will sort results newest first.   * @param startTime Starting date filter for results.   * @param endTime Ending date filter for results.
   */
-  public void instrumentGetCompositeIndex (String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, Date startTime, Date endTime, final Response.Listener<List<IndexComposite>> responseListener, final Response.ErrorListener errorListener) {
+  public void instrumentGetCompositeIndex (String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, Date startTime, Date endTime, final Response.Listener<List<IndexComposite>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 

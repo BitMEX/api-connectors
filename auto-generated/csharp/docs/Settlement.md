@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **SettledPrice** | **double?** |  | [optional] 
 **OptionStrikePrice** | **double?** |  | [optional] 
 **OptionUnderlyingPrice** | **double?** |  | [optional] 
-**Bankrupt** | **decimal?** |  | [optional] 
-**TaxBase** | **decimal?** |  | [optional] 
+**Bankrupt** | **long?** |  | [optional] 
+**TaxBase** | **long?** |  | [optional] 
 **TaxRate** | **double?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

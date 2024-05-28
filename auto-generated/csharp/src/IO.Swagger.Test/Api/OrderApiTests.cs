@@ -75,9 +75,9 @@ namespace IO.Swagger.Test
             //string origClOrdID = null;
             //string clOrdID = null;
             //double? simpleOrderQty = null;
-            //decimal? orderQty = null;
+            //int? orderQty = null;
             //double? simpleLeavesQty = null;
-            //decimal? leavesQty = null;
+            //int? leavesQty = null;
             //double? price = null;
             //double? stopPx = null;
             //double? pegOffsetValue = null;
@@ -150,8 +150,8 @@ namespace IO.Swagger.Test
             //string symbol = null;
             //string filter = null;
             //string columns = null;
-            //decimal? count = null;
-            //decimal? start = null;
+            //int? count = null;
+            //int? start = null;
             //bool? reverse = null;
             //DateTime? startTime = null;
             //DateTime? endTime = null;
@@ -169,9 +169,9 @@ namespace IO.Swagger.Test
             //string symbol = null;
             //string side = null;
             //double? simpleOrderQty = null;
-            //decimal? orderQty = null;
+            //int? orderQty = null;
             //double? price = null;
-            //decimal? displayQty = null;
+            //int? displayQty = null;
             //double? stopPx = null;
             //string clOrdID = null;
             //string clOrdLinkID = null;

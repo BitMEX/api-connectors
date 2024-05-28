@@ -1366,7 +1366,7 @@ open class UserAPI {
      - parameter text: (form) Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func userRequestWithdrawal(currency: String, network: String, amount: Double, otpToken: String? = nil, address: String? = nil, memo: String? = nil, addressId: Double? = nil, targetUserId: Double? = nil, fee: Double? = nil, text: String? = nil, completion: @escaping ((_ data: Transaction?,_ error: Error?) -> Void)) {
+    open class func userRequestWithdrawal(currency: String, network: String, amount: Int64, otpToken: String? = nil, address: String? = nil, memo: String? = nil, addressId: Double? = nil, targetUserId: Double? = nil, fee: Double? = nil, text: String? = nil, completion: @escaping ((_ data: Transaction?,_ error: Error?) -> Void)) {
         userRequestWithdrawalWithRequestBuilder(currency: currency, network: network, amount: amount, otpToken: otpToken, address: address, memo: memo, addressId: addressId, targetUserId: targetUserId, fee: fee, text: text).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -1401,14 +1401,14 @@ open class UserAPI {
 
      - returns: RequestBuilder<Transaction> 
      */
-    open class func userRequestWithdrawalWithRequestBuilder(currency: String, network: String, amount: Double, otpToken: String? = nil, address: String? = nil, memo: String? = nil, addressId: Double? = nil, targetUserId: Double? = nil, fee: Double? = nil, text: String? = nil) -> RequestBuilder<Transaction> {
+    open class func userRequestWithdrawalWithRequestBuilder(currency: String, network: String, amount: Int64, otpToken: String? = nil, address: String? = nil, memo: String? = nil, addressId: Double? = nil, targetUserId: Double? = nil, fee: Double? = nil, text: String? = nil) -> RequestBuilder<Transaction> {
         let path = "/user/requestWithdrawal"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
             "otpToken": otpToken,
             "currency": currency,
             "network": network,
-            "amount": amount,
+            "amount": amount.encodeToJSON(),
             "address": address,
             "memo": memo,
             "addressId": addressId,
@@ -1545,7 +1545,7 @@ open class UserAPI {
      - parameter fromAccountId: (form) AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func userWalletTransfer(currency: String, amount: Double, targetAccountId: Double, fromAccountId: Double? = nil, completion: @escaping ((_ data: Transaction?,_ error: Error?) -> Void)) {
+    open class func userWalletTransfer(currency: String, amount: Int64, targetAccountId: Double, fromAccountId: Double? = nil, completion: @escaping ((_ data: Transaction?,_ error: Error?) -> Void)) {
         userWalletTransferWithRequestBuilder(currency: currency, amount: amount, targetAccountId: targetAccountId, fromAccountId: fromAccountId).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -1574,12 +1574,12 @@ open class UserAPI {
 
      - returns: RequestBuilder<Transaction> 
      */
-    open class func userWalletTransferWithRequestBuilder(currency: String, amount: Double, targetAccountId: Double, fromAccountId: Double? = nil) -> RequestBuilder<Transaction> {
+    open class func userWalletTransferWithRequestBuilder(currency: String, amount: Int64, targetAccountId: Double, fromAccountId: Double? = nil) -> RequestBuilder<Transaction> {
         let path = "/user/walletTransfer"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
             "currency": currency,
-            "amount": amount,
+            "amount": amount.encodeToJSON(),
             "fromAccountId": fromAccountId,
             "targetAccountId": targetAccountId
         ]

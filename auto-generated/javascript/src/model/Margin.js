@@ -119,8 +119,9 @@
 
   /**
    * @member {Number} account
+   * @default 0
    */
-  exports.prototype.account = undefined;
+  exports.prototype.account = 0;
 
   /**
    * @member {String} currency
@@ -129,8 +130,9 @@
 
   /**
    * @member {Number} riskLimit
+   * @default 0
    */
-  exports.prototype.riskLimit = undefined;
+  exports.prototype.riskLimit = 0;
 
   /**
    * @member {String} state
@@ -139,78 +141,93 @@
 
   /**
    * @member {Number} amount
+   * @default 0
    */
-  exports.prototype.amount = undefined;
+  exports.prototype.amount = 0;
 
   /**
    * @member {Number} prevRealisedPnl
+   * @default 0
    */
-  exports.prototype.prevRealisedPnl = undefined;
+  exports.prototype.prevRealisedPnl = 0;
 
   /**
    * @member {Number} grossComm
+   * @default 0
    */
-  exports.prototype.grossComm = undefined;
+  exports.prototype.grossComm = 0;
 
   /**
    * @member {Number} grossOpenCost
+   * @default 0
    */
-  exports.prototype.grossOpenCost = undefined;
+  exports.prototype.grossOpenCost = 0;
 
   /**
    * @member {Number} grossOpenPremium
+   * @default 0
    */
-  exports.prototype.grossOpenPremium = undefined;
+  exports.prototype.grossOpenPremium = 0;
 
   /**
    * @member {Number} grossExecCost
+   * @default 0
    */
-  exports.prototype.grossExecCost = undefined;
+  exports.prototype.grossExecCost = 0;
 
   /**
    * @member {Number} grossMarkValue
+   * @default 0
    */
-  exports.prototype.grossMarkValue = undefined;
+  exports.prototype.grossMarkValue = 0;
 
   /**
    * @member {Number} riskValue
+   * @default 0
    */
-  exports.prototype.riskValue = undefined;
+  exports.prototype.riskValue = 0;
 
   /**
    * @member {Number} initMargin
+   * @default 0
    */
-  exports.prototype.initMargin = undefined;
+  exports.prototype.initMargin = 0;
 
   /**
    * @member {Number} maintMargin
+   * @default 0
    */
-  exports.prototype.maintMargin = undefined;
+  exports.prototype.maintMargin = 0;
 
   /**
    * @member {Number} targetExcessMargin
+   * @default 0
    */
-  exports.prototype.targetExcessMargin = undefined;
+  exports.prototype.targetExcessMargin = 0;
 
   /**
    * @member {Number} realisedPnl
+   * @default 0
    */
-  exports.prototype.realisedPnl = undefined;
+  exports.prototype.realisedPnl = 0;
 
   /**
    * @member {Number} unrealisedPnl
+   * @default 0
    */
-  exports.prototype.unrealisedPnl = undefined;
+  exports.prototype.unrealisedPnl = 0;
 
   /**
    * @member {Number} walletBalance
+   * @default 0
    */
-  exports.prototype.walletBalance = undefined;
+  exports.prototype.walletBalance = 0;
 
   /**
    * @member {Number} marginBalance
+   * @default 0
    */
-  exports.prototype.marginBalance = undefined;
+  exports.prototype.marginBalance = 0;
 
   /**
    * @member {Number} marginLeverage
@@ -226,18 +243,21 @@
 
   /**
    * @member {Number} excessMargin
+   * @default 0
    */
-  exports.prototype.excessMargin = undefined;
+  exports.prototype.excessMargin = 0;
 
   /**
    * @member {Number} availableMargin
+   * @default 0
    */
-  exports.prototype.availableMargin = undefined;
+  exports.prototype.availableMargin = 0;
 
   /**
    * @member {Number} withdrawableMargin
+   * @default 0
    */
-  exports.prototype.withdrawableMargin = undefined;
+  exports.prototype.withdrawableMargin = 0;
 
   /**
    * @member {Number} makerFeeDiscount

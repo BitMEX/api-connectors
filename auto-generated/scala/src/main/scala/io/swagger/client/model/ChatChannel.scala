@@ -14,7 +14,7 @@ package io.swagger.client.model
 
 
 case class ChatChannel (
-  id: Option[Number] = None,
+  id: Option[Integer] = None,
   name: String,
   isPrivate: Boolean
 )

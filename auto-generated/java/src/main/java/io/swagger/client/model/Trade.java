@@ -23,14 +23,13 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Individual &amp; Bucketed Trades
  */
 @ApiModel(description = "Individual & Bucketed Trades")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Trade {
   @SerializedName("timestamp")
   private OffsetDateTime timestamp = null;
@@ -42,7 +41,7 @@ public class Trade {
   private String side = null;
 
   @SerializedName("size")
-  private BigDecimal size = null;
+  private Long size = null;
 
   @SerializedName("price")
   private Double price = null;
@@ -54,7 +53,7 @@ public class Trade {
   private String trdMatchID = null;
 
   @SerializedName("grossValue")
-  private BigDecimal grossValue = null;
+  private Long grossValue = null;
 
   @SerializedName("homeNotional")
   private Double homeNotional = null;
@@ -119,7 +118,7 @@ public class Trade {
     this.side = side;
   }
 
-  public Trade size(BigDecimal size) {
+  public Trade size(Long size) {
     this.size = size;
     return this;
   }
@@ -129,11 +128,11 @@ public class Trade {
    * @return size
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getSize() {
+  public Long getSize() {
     return size;
   }
 
-  public void setSize(BigDecimal size) {
+  public void setSize(Long size) {
     this.size = size;
   }
 
@@ -191,7 +190,7 @@ public class Trade {
     this.trdMatchID = trdMatchID;
   }
 
-  public Trade grossValue(BigDecimal grossValue) {
+  public Trade grossValue(Long grossValue) {
     this.grossValue = grossValue;
     return this;
   }
@@ -201,11 +200,11 @@ public class Trade {
    * @return grossValue
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getGrossValue() {
+  public Long getGrossValue() {
     return grossValue;
   }
 
-  public void setGrossValue(BigDecimal grossValue) {
+  public void setGrossValue(Long grossValue) {
     this.grossValue = grossValue;
   }
 

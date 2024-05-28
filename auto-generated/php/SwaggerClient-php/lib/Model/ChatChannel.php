@@ -57,7 +57,7 @@ class ChatChannel implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'float',
+        'id' => 'int',
         'name' => 'string',
         'is_private' => 'bool'
     ];
@@ -225,7 +225,7 @@ class ChatChannel implements ModelInterface, ArrayAccess
     /**
      * Gets id
      *
-     * @return float
+     * @return int
      */
     public function getId()
     {
@@ -235,7 +235,7 @@ class ChatChannel implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param float $id id
+     * @param int $id id
      *
      * @return $this
      */

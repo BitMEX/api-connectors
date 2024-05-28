@@ -63,7 +63,7 @@ class NetworksConfig implements ModelInterface, ArrayAccess
         'network_symbol' => 'string',
         'transaction_explorer' => 'string',
         'token_explorer' => 'string',
-        'deposit_confirmations' => 'float',
+        'deposit_confirmations' => 'int',
         'enabled' => 'bool'
     ];
 
@@ -396,7 +396,7 @@ class NetworksConfig implements ModelInterface, ArrayAccess
     /**
      * Gets deposit_confirmations
      *
-     * @return float
+     * @return int
      */
     public function getDepositConfirmations()
     {
@@ -406,7 +406,7 @@ class NetworksConfig implements ModelInterface, ArrayAccess
     /**
      * Sets deposit_confirmations
      *
-     * @param float $deposit_confirmations deposit_confirmations
+     * @param int $deposit_confirmations deposit_confirmations
      *
      * @return $this
      */

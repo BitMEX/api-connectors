@@ -56,18 +56,18 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getId() const;
-        void setId(double value);
+    int32_t getId() const;
+        void setId(int32_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getChannelID() const;
-        void setChannelID(double value);
+    int32_t getChannelID() const;
+        void setChannelID(int32_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getMessageId() const;
-        void setMessageId(double value);
+    int32_t getMessageId() const;
+        void setMessageId(int32_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -98,9 +98,9 @@ public:
     void setEndedUserId(double value);
 
 protected:
-    double m_Id;
-        double m_ChannelID;
-        double m_MessageId;
+    int32_t m_Id;
+        int32_t m_ChannelID;
+        int32_t m_MessageId;
         utility::datetime m_Created;
     bool m_CreatedIsSet;
     utility::datetime m_Ended;

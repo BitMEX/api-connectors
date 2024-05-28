@@ -3,7 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **decimal?** |  | 
+**Id** | **int?** |  | 
 **Link** | **string** |  | [optional] 
 **Title** | **string** |  | [optional] 
 **Content** | **string** |  | [optional] 

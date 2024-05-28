@@ -37,7 +37,7 @@ class Liquidation(object):
         'symbol': 'str',
         'side': 'str',
         'price': 'float',
-        'leaves_qty': 'float'
+        'leaves_qty': 'int'
     }
 
     attribute_map = {
@@ -163,7 +163,7 @@ class Liquidation(object):
 
 
         :return: The leaves_qty of this Liquidation.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._leaves_qty
 
@@ -173,7 +173,7 @@ class Liquidation(object):
 
 
         :param leaves_qty: The leaves_qty of this Liquidation.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._leaves_qty = leaves_qty

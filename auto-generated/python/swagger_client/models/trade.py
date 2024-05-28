@@ -36,11 +36,11 @@ class Trade(object):
         'timestamp': 'datetime',
         'symbol': 'str',
         'side': 'str',
-        'size': 'float',
+        'size': 'int',
         'price': 'float',
         'tick_direction': 'str',
         'trd_match_id': 'str',
-        'gross_value': 'float',
+        'gross_value': 'int',
         'home_notional': 'float',
         'foreign_notional': 'float',
         'trd_type': 'str'
@@ -173,7 +173,7 @@ class Trade(object):
 
 
         :return: The size of this Trade.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._size
 
@@ -183,7 +183,7 @@ class Trade(object):
 
 
         :param size: The size of this Trade.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._size = size
@@ -257,7 +257,7 @@ class Trade(object):
 
 
         :return: The gross_value of this Trade.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._gross_value
 
@@ -267,7 +267,7 @@ class Trade(object):
 
 
         :param gross_value: The gross_value of this Trade.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._gross_value = gross_value

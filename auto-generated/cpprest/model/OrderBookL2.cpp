@@ -22,9 +22,9 @@ namespace model {
 OrderBookL2::OrderBookL2()
 {
     m_Symbol = utility::conversions::to_string_t("");
-    m_Id = 0.0;
+    m_Id = 0L;
     m_Side = utility::conversions::to_string_t("");
-    m_Size = 0.0;
+    m_Size = 0L;
     m_SizeIsSet = false;
     m_Price = 0.0;
     m_PriceIsSet = false;
@@ -67,14 +67,14 @@ web::json::value OrderBookL2::toJson() const
 void OrderBookL2::fromJson(web::json::value& val)
 {
     setSymbol(ModelBase::stringFromJson(val[utility::conversions::to_string_t("symbol")]));
-    setId(ModelBase::doubleFromJson(val[utility::conversions::to_string_t("id")]));
+    setId(ModelBase::int64_tFromJson(val[utility::conversions::to_string_t("id")]));
     setSide(ModelBase::stringFromJson(val[utility::conversions::to_string_t("side")]));
     if(val.has_field(utility::conversions::to_string_t("size")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("size")];
         if(!fieldValue.is_null())
         {
-            setSize(ModelBase::doubleFromJson(fieldValue));
+            setSize(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("price")))
@@ -130,11 +130,11 @@ void OrderBookL2::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
 
     setSymbol(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("symbol"))));
-    setId(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
+    setId(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
     setSide(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("side"))));
     if(multipart->hasContent(utility::conversions::to_string_t("size")))
     {
-        setSize(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("size"))));
+        setSize(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("size"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("price")))
     {
@@ -157,13 +157,13 @@ void OrderBookL2::setSymbol(utility::string_t value)
     m_Symbol = value;
     
 }
-double OrderBookL2::getId() const
+int64_t OrderBookL2::getId() const
 {
     return m_Id;
 }
 
 
-void OrderBookL2::setId(double value)
+void OrderBookL2::setId(int64_t value)
 {
     m_Id = value;
     
@@ -179,13 +179,13 @@ void OrderBookL2::setSide(utility::string_t value)
     m_Side = value;
     
 }
-double OrderBookL2::getSize() const
+int64_t OrderBookL2::getSize() const
 {
     return m_Size;
 }
 
 
-void OrderBookL2::setSize(double value)
+void OrderBookL2::setSize(int64_t value)
 {
     m_Size = value;
     m_SizeIsSet = true;

@@ -66,10 +66,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getBidSize() const;
+    int64_t getBidSize() const;
     bool bidSizeIsSet() const;
     void unsetBidSize();
-    void setBidSize(double value);
+    void setBidSize(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -87,21 +87,21 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getAskSize() const;
+    int64_t getAskSize() const;
     bool askSizeIsSet() const;
     void unsetAskSize();
-    void setAskSize(double value);
+    void setAskSize(int64_t value);
 
 protected:
     utility::datetime m_Timestamp;
         utility::string_t m_Symbol;
-        double m_BidSize;
+        int64_t m_BidSize;
     bool m_BidSizeIsSet;
     double m_BidPrice;
     bool m_BidPriceIsSet;
     double m_AskPrice;
     bool m_AskPriceIsSet;
-    double m_AskSize;
+    int64_t m_AskSize;
     bool m_AskSizeIsSet;
 };
 

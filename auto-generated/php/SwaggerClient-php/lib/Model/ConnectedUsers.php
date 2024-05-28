@@ -57,8 +57,8 @@ class ConnectedUsers implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'users' => 'float',
-        'bots' => 'float'
+        'users' => 'int',
+        'bots' => 'int'
     ];
 
     /**
@@ -213,7 +213,7 @@ class ConnectedUsers implements ModelInterface, ArrayAccess
     /**
      * Gets users
      *
-     * @return float
+     * @return int
      */
     public function getUsers()
     {
@@ -223,7 +223,7 @@ class ConnectedUsers implements ModelInterface, ArrayAccess
     /**
      * Sets users
      *
-     * @param float $users users
+     * @param int $users users
      *
      * @return $this
      */
@@ -237,7 +237,7 @@ class ConnectedUsers implements ModelInterface, ArrayAccess
     /**
      * Gets bots
      *
-     * @return float
+     * @return int
      */
     public function getBots()
     {
@@ -247,7 +247,7 @@ class ConnectedUsers implements ModelInterface, ArrayAccess
     /**
      * Sets bots
      *
-     * @param float $bots bots
+     * @param int $bots bots
      *
      * @return $this
      */

@@ -15,7 +15,6 @@ package io.swagger.client.api
 import java.text.SimpleDateFormat
 
 import io.swagger.client.model.Error
-import io.swagger.client.model.Number
 import io.swagger.client.model.OrderBookL2
 import io.swagger.client.{ApiInvoker, ApiException}
 
@@ -89,7 +88,7 @@ class OrderBookApi(
    * @param depth Orderbook depth per side. Send 0 for full depth. (optional, default to 25)
    * @return List[OrderBookL2]
    */
-  def orderBookGetL2(symbol: String, depth: Option[Number] = Option(25)): Option[List[OrderBookL2]] = {
+  def orderBookGetL2(symbol: String, depth: Option[Integer] = Option(25)): Option[List[OrderBookL2]] = {
     val await = Try(Await.result(orderBookGetL2Async(symbol, depth), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -105,7 +104,7 @@ class OrderBookApi(
    * @param depth Orderbook depth per side. Send 0 for full depth. (optional, default to 25)
    * @return Future(List[OrderBookL2])
    */
-  def orderBookGetL2Async(symbol: String, depth: Option[Number] = Option(25)): Future[List[OrderBookL2]] = {
+  def orderBookGetL2Async(symbol: String, depth: Option[Integer] = Option(25)): Future[List[OrderBookL2]] = {
       helper.orderBookGetL2(symbol, depth)
   }
 
@@ -114,7 +113,7 @@ class OrderBookApi(
 class OrderBookApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
   def orderBookGetL2(symbol: String,
-    depth: Option[Number] = Option(25)
+    depth: Option[Integer] = Option(25)
     )(implicit reader: ClientResponseReader[List[OrderBookL2]]): Future[List[OrderBookL2]] = {
     // create path and map variables
     val path = (addFmt("/orderBook/L2"))

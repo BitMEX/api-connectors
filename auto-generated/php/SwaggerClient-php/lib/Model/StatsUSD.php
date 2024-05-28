@@ -59,10 +59,10 @@ class StatsUSD implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'root_symbol' => 'string',
         'currency' => 'string',
-        'turnover24h' => 'float',
-        'turnover30d' => 'float',
-        'turnover365d' => 'float',
-        'turnover' => 'float'
+        'turnover24h' => 'int',
+        'turnover30d' => 'int',
+        'turnover365d' => 'int',
+        'turnover' => 'int'
     ];
 
     /**
@@ -288,7 +288,7 @@ class StatsUSD implements ModelInterface, ArrayAccess
     /**
      * Gets turnover24h
      *
-     * @return float
+     * @return int
      */
     public function getTurnover24h()
     {
@@ -298,7 +298,7 @@ class StatsUSD implements ModelInterface, ArrayAccess
     /**
      * Sets turnover24h
      *
-     * @param float $turnover24h turnover24h
+     * @param int $turnover24h turnover24h
      *
      * @return $this
      */
@@ -312,7 +312,7 @@ class StatsUSD implements ModelInterface, ArrayAccess
     /**
      * Gets turnover30d
      *
-     * @return float
+     * @return int
      */
     public function getTurnover30d()
     {
@@ -322,7 +322,7 @@ class StatsUSD implements ModelInterface, ArrayAccess
     /**
      * Sets turnover30d
      *
-     * @param float $turnover30d turnover30d
+     * @param int $turnover30d turnover30d
      *
      * @return $this
      */
@@ -336,7 +336,7 @@ class StatsUSD implements ModelInterface, ArrayAccess
     /**
      * Gets turnover365d
      *
-     * @return float
+     * @return int
      */
     public function getTurnover365d()
     {
@@ -346,7 +346,7 @@ class StatsUSD implements ModelInterface, ArrayAccess
     /**
      * Sets turnover365d
      *
-     * @param float $turnover365d turnover365d
+     * @param int $turnover365d turnover365d
      *
      * @return $this
      */
@@ -360,7 +360,7 @@ class StatsUSD implements ModelInterface, ArrayAccess
     /**
      * Gets turnover
      *
-     * @return float
+     * @return int
      */
     public function getTurnover()
     {
@@ -370,7 +370,7 @@ class StatsUSD implements ModelInterface, ArrayAccess
     /**
      * Sets turnover
      *
-     * @param float $turnover turnover
+     * @param int $turnover turnover
      *
      * @return $this
      */

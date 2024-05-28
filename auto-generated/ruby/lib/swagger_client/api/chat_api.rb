@@ -21,8 +21,8 @@ module SwaggerClient
     end
     # Get chat messages.
     # @param [Hash] opts the optional parameters
-    # @option opts [Float] :count Number of results to fetch. (default to 100)
-    # @option opts [Float] :start Starting ID for results. (default to 0)
+    # @option opts [Integer] :count Number of results to fetch. (default to 100)
+    # @option opts [Integer] :start Starting ID for results. (default to 0)
     # @option opts [BOOLEAN] :reverse If true, will sort results newest first. (default to true)
     # @option opts [Float] :channel_id Channel id. GET /chat/channels for ids. Global English by default (default to 1)
     # @return [Array<Chat>]
@@ -33,8 +33,8 @@ module SwaggerClient
 
     # Get chat messages.
     # @param [Hash] opts the optional parameters
-    # @option opts [Float] :count Number of results to fetch.
-    # @option opts [Float] :start Starting ID for results.
+    # @option opts [Integer] :count Number of results to fetch.
+    # @option opts [Integer] :start Starting ID for results.
     # @option opts [BOOLEAN] :reverse If true, will sort results newest first.
     # @option opts [Float] :channel_id Channel id. GET /chat/channels for ids. Global English by default
     # @return [Array<(Array<Chat>, Fixnum, Hash)>] Array<Chat> data, response status code and response headers

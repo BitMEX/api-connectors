@@ -25,7 +25,6 @@ import com.android.volley.VolleyError;
 
 import io.swagger.client.model.AccessToken;
 import io.swagger.client.model.Affiliate;
-import java.math.BigDecimal;
 import io.swagger.client.model.CollateralSupportAgreement;
 import io.swagger.client.model.CommunicationToken;
 import java.util.Date;
@@ -3862,7 +3861,7 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
    * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
    * @return Transaction
   */
-  public Transaction userRequestWithdrawal (String currency, String network, BigDecimal amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Transaction userRequestWithdrawal (String currency, String network, Long amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'currency' is set
     if (currency == null) {
@@ -3975,7 +3974,7 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
    * This will send a confirmation email to the email address on record.
    * @param currency Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;   * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.   * @param amount Amount of withdrawal currency.   * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.   * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified   * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.   * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
   */
-  public void userRequestWithdrawal (String currency, String network, BigDecimal amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
+  public void userRequestWithdrawal (String currency, String network, Long amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'currency' is set
@@ -4410,7 +4409,7 @@ formParams.put("accountName", ApiInvoker.parameterToString(accountName));
    * @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user.
    * @return Transaction
   */
-  public Transaction userWalletTransfer (String currency, BigDecimal amount, Double targetAccountId, Double fromAccountId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Transaction userWalletTransfer (String currency, Long amount, Double targetAccountId, Double fromAccountId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'currency' is set
     if (currency == null) {
@@ -4499,7 +4498,7 @@ formParams.put("accountName", ApiInvoker.parameterToString(accountName));
    * This will send a confirmation email to the email address on record.
    * @param currency Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;   * @param amount Amount of transfer.   * @param targetAccountId AccountId to send the transfer to, must be a paired account with the user sending the transfer.   * @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user.
   */
-  public void userWalletTransfer (String currency, BigDecimal amount, Double targetAccountId, Double fromAccountId, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
+  public void userWalletTransfer (String currency, Long amount, Double targetAccountId, Double fromAccountId, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'currency' is set

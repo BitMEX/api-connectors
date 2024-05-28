@@ -19,7 +19,7 @@ open class PositionAPI {
      - parameter count: (query) Number of rows to fetch. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func positionGet(filter: String? = nil, columns: String? = nil, count: Double? = nil, completion: @escaping ((_ data: [Position]?,_ error: Error?) -> Void)) {
+    open class func positionGet(filter: String? = nil, columns: String? = nil, count: Int? = nil, completion: @escaping ((_ data: [Position]?,_ error: Error?) -> Void)) {
         positionGetWithRequestBuilder(filter: filter, columns: columns, count: count).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -47,7 +47,7 @@ open class PositionAPI {
 
      - returns: RequestBuilder<[Position]> 
      */
-    open class func positionGetWithRequestBuilder(filter: String? = nil, columns: String? = nil, count: Double? = nil) -> RequestBuilder<[Position]> {
+    open class func positionGetWithRequestBuilder(filter: String? = nil, columns: String? = nil, count: Int? = nil) -> RequestBuilder<[Position]> {
         let path = "/position"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -56,7 +56,7 @@ open class PositionAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter": filter, 
             "columns": columns, 
-            "count": count
+            "count": count?.encodeToJSON()
         ])
 
         let requestBuilder: RequestBuilder<[Position]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
@@ -124,7 +124,7 @@ open class PositionAPI {
      - parameter targetAccountId: (form) AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func positionTransferIsolatedMargin(symbol: String, amount: Double, targetAccountId: Double? = nil, completion: @escaping ((_ data: Position?,_ error: Error?) -> Void)) {
+    open class func positionTransferIsolatedMargin(symbol: String, amount: Int64, targetAccountId: Double? = nil, completion: @escaping ((_ data: Position?,_ error: Error?) -> Void)) {
         positionTransferIsolatedMarginWithRequestBuilder(symbol: symbol, amount: amount, targetAccountId: targetAccountId).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -152,12 +152,12 @@ open class PositionAPI {
 
      - returns: RequestBuilder<Position> 
      */
-    open class func positionTransferIsolatedMarginWithRequestBuilder(symbol: String, amount: Double, targetAccountId: Double? = nil) -> RequestBuilder<Position> {
+    open class func positionTransferIsolatedMarginWithRequestBuilder(symbol: String, amount: Int64, targetAccountId: Double? = nil) -> RequestBuilder<Position> {
         let path = "/position/transferMargin"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
             "symbol": symbol,
-            "amount": amount,
+            "amount": amount.encodeToJSON(),
             "targetAccountId": targetAccountId
         ]
 
@@ -234,7 +234,7 @@ open class PositionAPI {
      - parameter targetAccountId: (form) AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func positionUpdateRiskLimit(symbol: String, riskLimit: Double, targetAccountId: Double? = nil, completion: @escaping ((_ data: Position?,_ error: Error?) -> Void)) {
+    open class func positionUpdateRiskLimit(symbol: String, riskLimit: Int64, targetAccountId: Double? = nil, completion: @escaping ((_ data: Position?,_ error: Error?) -> Void)) {
         positionUpdateRiskLimitWithRequestBuilder(symbol: symbol, riskLimit: riskLimit, targetAccountId: targetAccountId).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -262,12 +262,12 @@ open class PositionAPI {
 
      - returns: RequestBuilder<Position> 
      */
-    open class func positionUpdateRiskLimitWithRequestBuilder(symbol: String, riskLimit: Double, targetAccountId: Double? = nil) -> RequestBuilder<Position> {
+    open class func positionUpdateRiskLimitWithRequestBuilder(symbol: String, riskLimit: Int64, targetAccountId: Double? = nil) -> RequestBuilder<Position> {
         let path = "/position/riskLimit"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
             "symbol": symbol,
-            "riskLimit": riskLimit,
+            "riskLimit": riskLimit.encodeToJSON(),
             "targetAccountId": targetAccountId
         ]
 

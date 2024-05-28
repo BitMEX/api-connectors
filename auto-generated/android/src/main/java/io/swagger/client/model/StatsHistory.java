@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -27,9 +26,9 @@ public class StatsHistory {
   @SerializedName("currency")
   private String currency = null;
   @SerializedName("volume")
-  private BigDecimal volume = null;
+  private Long volume = null;
   @SerializedName("turnover")
-  private BigDecimal turnover = null;
+  private Long turnover = null;
 
   /**
    **/
@@ -64,20 +63,20 @@ public class StatsHistory {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getVolume() {
+  public Long getVolume() {
     return volume;
   }
-  public void setVolume(BigDecimal volume) {
+  public void setVolume(Long volume) {
     this.volume = volume;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover() {
+  public Long getTurnover() {
     return turnover;
   }
-  public void setTurnover(BigDecimal turnover) {
+  public void setTurnover(Long turnover) {
     this.turnover = turnover;
   }
 

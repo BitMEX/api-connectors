@@ -16,11 +16,11 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class GlobalNotification (
-  id: Option[Double] = None,
+  id: Option[Int] = None,
   date: DateTime,
   title: String,
   body: String,
-  ttl: Double,
+  ttl: Int,
   `type`: Option[GlobalNotificationEnums.`Type`] = None,
   closable: Option[Boolean] = None,
   persist: Option[Boolean] = None,

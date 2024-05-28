@@ -51,7 +51,7 @@ namespace IO.Swagger.Model
         /// <param name="skip2FAVerified">skip2FAVerified.</param>
         /// <param name="network">network (required).</param>
         /// <param name="memo">memo.</param>
-        public Address(decimal? id = default(decimal?), string currency = default(string), DateTime? created = default(DateTime?), double? userId = default(double?), string address = default(string), string name = default(string), string note = default(string), bool? skipConfirm = default(bool?), bool? skipConfirmVerified = default(bool?), bool? skip2FA = default(bool?), bool? skip2FAVerified = default(bool?), string network = default(string), string memo = default(string))
+        public Address(int? id = default(int?), string currency = default(string), DateTime? created = default(DateTime?), double? userId = default(double?), string address = default(string), string name = default(string), string note = default(string), bool? skipConfirm = default(bool?), bool? skipConfirmVerified = default(bool?), bool? skip2FA = default(bool?), bool? skip2FAVerified = default(bool?), string network = default(string), string memo = default(string))
         {
             // to ensure "address" is required (not null)
             if (address == null)
@@ -96,7 +96,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public decimal? Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Currency

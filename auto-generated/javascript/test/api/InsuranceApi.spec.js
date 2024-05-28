@@ -67,7 +67,7 @@
               expect(data.timestamp).to.be.a(Date);
               expect(data.timestamp).to.be(new Date());
               expect(data.walletBalance).to.be.a('number');
-              expect(data.walletBalance).to.be();
+              expect(data.walletBalance).to.be("0");
             }
 
             done();

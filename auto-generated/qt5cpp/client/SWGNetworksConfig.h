@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QString>
 
 #include "SWGObject.h"
@@ -60,8 +59,8 @@ public:
     QString* getTokenExplorer();
     void setTokenExplorer(QString* token_explorer);
 
-    SWGNumber* getDepositConfirmations();
-    void setDepositConfirmations(SWGNumber* deposit_confirmations);
+    qint32 getDepositConfirmations();
+    void setDepositConfirmations(qint32 deposit_confirmations);
 
     bool isEnabled();
     void setEnabled(bool enabled);
@@ -88,7 +87,7 @@ private:
     QString* token_explorer;
     bool m_token_explorer_isSet;
 
-    SWGNumber* deposit_confirmations;
+    qint32 deposit_confirmations;
     bool m_deposit_confirmations_isSet;
 
     bool enabled;

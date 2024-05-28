@@ -57,8 +57,8 @@ module SwaggerClient
         :'settled_price' => :'Float',
         :'option_strike_price' => :'Float',
         :'option_underlying_price' => :'Float',
-        :'bankrupt' => :'Float',
-        :'tax_base' => :'Float',
+        :'bankrupt' => :'Integer',
+        :'tax_base' => :'Integer',
         :'tax_rate' => :'Float'
       }
     end

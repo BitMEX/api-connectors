@@ -43,7 +43,7 @@ namespace IO.Swagger.Api
         /// <param name="pegOffsetValue">Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. (optional)</param>
         /// <param name="text">Optional amend annotation. e.g. &#39;Adjust skew&#39;. (optional)</param>
         /// <returns>Order</returns>
-        Order OrderAmend (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, decimal? orderQty = null, double? simpleLeavesQty = null, decimal? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null);
+        Order OrderAmend (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, int? orderQty = null, double? simpleLeavesQty = null, int? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null);
 
         /// <summary>
         /// Amend the quantity or price of an open order.
@@ -64,7 +64,7 @@ namespace IO.Swagger.Api
         /// <param name="pegOffsetValue">Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. (optional)</param>
         /// <param name="text">Optional amend annotation. e.g. &#39;Adjust skew&#39;. (optional)</param>
         /// <returns>ApiResponse of Order</returns>
-        ApiResponse<Order> OrderAmendWithHttpInfo (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, decimal? orderQty = null, double? simpleLeavesQty = null, decimal? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null);
+        ApiResponse<Order> OrderAmendWithHttpInfo (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, int? orderQty = null, double? simpleLeavesQty = null, int? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null);
         /// <summary>
         /// Cancel order(s). Send multiple order IDs to cancel in bulk.
         /// </summary>
@@ -177,7 +177,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>List&lt;Order&gt;</returns>
-        List<Order> OrderGetOrders (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        List<Order> OrderGetOrders (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
 
         /// <summary>
         /// Get your orders.
@@ -195,7 +195,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>ApiResponse of List&lt;Order&gt;</returns>
-        ApiResponse<List<Order>> OrderGetOrdersWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        ApiResponse<List<Order>> OrderGetOrdersWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
         /// <summary>
         /// Create a new order.
         /// </summary>
@@ -220,7 +220,7 @@ namespace IO.Swagger.Api
         /// <param name="contingencyType">Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther. (optional)</param>
         /// <param name="text">Optional order annotation. e.g. &#39;Take profit&#39;. (optional)</param>
         /// <returns>Order</returns>
-        Order OrderNew (string symbol, string side = null, double? simpleOrderQty = null, decimal? orderQty = null, double? price = null, decimal? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null);
+        Order OrderNew (string symbol, string side = null, double? simpleOrderQty = null, int? orderQty = null, double? price = null, int? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null);
 
         /// <summary>
         /// Create a new order.
@@ -246,7 +246,7 @@ namespace IO.Swagger.Api
         /// <param name="contingencyType">Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther. (optional)</param>
         /// <param name="text">Optional order annotation. e.g. &#39;Take profit&#39;. (optional)</param>
         /// <returns>ApiResponse of Order</returns>
-        ApiResponse<Order> OrderNewWithHttpInfo (string symbol, string side = null, double? simpleOrderQty = null, decimal? orderQty = null, double? price = null, decimal? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null);
+        ApiResponse<Order> OrderNewWithHttpInfo (string symbol, string side = null, double? simpleOrderQty = null, int? orderQty = null, double? price = null, int? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -268,7 +268,7 @@ namespace IO.Swagger.Api
         /// <param name="pegOffsetValue">Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. (optional)</param>
         /// <param name="text">Optional amend annotation. e.g. &#39;Adjust skew&#39;. (optional)</param>
         /// <returns>Task of Order</returns>
-        System.Threading.Tasks.Task<Order> OrderAmendAsync (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, decimal? orderQty = null, double? simpleLeavesQty = null, decimal? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null);
+        System.Threading.Tasks.Task<Order> OrderAmendAsync (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, int? orderQty = null, double? simpleLeavesQty = null, int? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null);
 
         /// <summary>
         /// Amend the quantity or price of an open order.
@@ -289,7 +289,7 @@ namespace IO.Swagger.Api
         /// <param name="pegOffsetValue">Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. (optional)</param>
         /// <param name="text">Optional amend annotation. e.g. &#39;Adjust skew&#39;. (optional)</param>
         /// <returns>Task of ApiResponse (Order)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Order>> OrderAmendAsyncWithHttpInfo (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, decimal? orderQty = null, double? simpleLeavesQty = null, decimal? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null);
+        System.Threading.Tasks.Task<ApiResponse<Order>> OrderAmendAsyncWithHttpInfo (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, int? orderQty = null, double? simpleLeavesQty = null, int? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null);
         /// <summary>
         /// Cancel order(s). Send multiple order IDs to cancel in bulk.
         /// </summary>
@@ -402,7 +402,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of List&lt;Order&gt;</returns>
-        System.Threading.Tasks.Task<List<Order>> OrderGetOrdersAsync (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        System.Threading.Tasks.Task<List<Order>> OrderGetOrdersAsync (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
 
         /// <summary>
         /// Get your orders.
@@ -420,7 +420,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Order&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Order>>> OrderGetOrdersAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Order>>> OrderGetOrdersAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
         /// <summary>
         /// Create a new order.
         /// </summary>
@@ -445,7 +445,7 @@ namespace IO.Swagger.Api
         /// <param name="contingencyType">Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther. (optional)</param>
         /// <param name="text">Optional order annotation. e.g. &#39;Take profit&#39;. (optional)</param>
         /// <returns>Task of Order</returns>
-        System.Threading.Tasks.Task<Order> OrderNewAsync (string symbol, string side = null, double? simpleOrderQty = null, decimal? orderQty = null, double? price = null, decimal? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null);
+        System.Threading.Tasks.Task<Order> OrderNewAsync (string symbol, string side = null, double? simpleOrderQty = null, int? orderQty = null, double? price = null, int? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null);
 
         /// <summary>
         /// Create a new order.
@@ -471,7 +471,7 @@ namespace IO.Swagger.Api
         /// <param name="contingencyType">Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther. (optional)</param>
         /// <param name="text">Optional order annotation. e.g. &#39;Take profit&#39;. (optional)</param>
         /// <returns>Task of ApiResponse (Order)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Order>> OrderNewAsyncWithHttpInfo (string symbol, string side = null, double? simpleOrderQty = null, decimal? orderQty = null, double? price = null, decimal? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null);
+        System.Threading.Tasks.Task<ApiResponse<Order>> OrderNewAsyncWithHttpInfo (string symbol, string side = null, double? simpleOrderQty = null, int? orderQty = null, double? price = null, int? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null);
         #endregion Asynchronous Operations
     }
 
@@ -588,7 +588,7 @@ namespace IO.Swagger.Api
         /// <param name="pegOffsetValue">Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. (optional)</param>
         /// <param name="text">Optional amend annotation. e.g. &#39;Adjust skew&#39;. (optional)</param>
         /// <returns>Order</returns>
-        public Order OrderAmend (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, decimal? orderQty = null, double? simpleLeavesQty = null, decimal? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null)
+        public Order OrderAmend (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, int? orderQty = null, double? simpleLeavesQty = null, int? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null)
         {
              ApiResponse<Order> localVarResponse = OrderAmendWithHttpInfo(orderID, origClOrdID, clOrdID, simpleOrderQty, orderQty, simpleLeavesQty, leavesQty, price, stopPx, pegOffsetValue, text);
              return localVarResponse.Data;
@@ -610,7 +610,7 @@ namespace IO.Swagger.Api
         /// <param name="pegOffsetValue">Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. (optional)</param>
         /// <param name="text">Optional amend annotation. e.g. &#39;Adjust skew&#39;. (optional)</param>
         /// <returns>ApiResponse of Order</returns>
-        public ApiResponse< Order > OrderAmendWithHttpInfo (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, decimal? orderQty = null, double? simpleLeavesQty = null, decimal? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null)
+        public ApiResponse< Order > OrderAmendWithHttpInfo (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, int? orderQty = null, double? simpleLeavesQty = null, int? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null)
         {
 
             var localVarPath = "/order";
@@ -702,7 +702,7 @@ namespace IO.Swagger.Api
         /// <param name="pegOffsetValue">Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. (optional)</param>
         /// <param name="text">Optional amend annotation. e.g. &#39;Adjust skew&#39;. (optional)</param>
         /// <returns>Task of Order</returns>
-        public async System.Threading.Tasks.Task<Order> OrderAmendAsync (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, decimal? orderQty = null, double? simpleLeavesQty = null, decimal? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null)
+        public async System.Threading.Tasks.Task<Order> OrderAmendAsync (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, int? orderQty = null, double? simpleLeavesQty = null, int? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null)
         {
              ApiResponse<Order> localVarResponse = await OrderAmendAsyncWithHttpInfo(orderID, origClOrdID, clOrdID, simpleOrderQty, orderQty, simpleLeavesQty, leavesQty, price, stopPx, pegOffsetValue, text);
              return localVarResponse.Data;
@@ -725,7 +725,7 @@ namespace IO.Swagger.Api
         /// <param name="pegOffsetValue">Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. (optional)</param>
         /// <param name="text">Optional amend annotation. e.g. &#39;Adjust skew&#39;. (optional)</param>
         /// <returns>Task of ApiResponse (Order)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Order>> OrderAmendAsyncWithHttpInfo (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, decimal? orderQty = null, double? simpleLeavesQty = null, decimal? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Order>> OrderAmendAsyncWithHttpInfo (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, int? orderQty = null, double? simpleLeavesQty = null, int? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null)
         {
 
             var localVarPath = "/order";
@@ -1538,7 +1538,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>List&lt;Order&gt;</returns>
-        public List<Order> OrderGetOrders (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public List<Order> OrderGetOrders (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
              ApiResponse<List<Order>> localVarResponse = OrderGetOrdersWithHttpInfo(symbol, filter, columns, count, start, reverse, startTime, endTime);
              return localVarResponse.Data;
@@ -1557,7 +1557,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>ApiResponse of List&lt;Order&gt;</returns>
-        public ApiResponse< List<Order> > OrderGetOrdersWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public ApiResponse< List<Order> > OrderGetOrdersWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
 
             var localVarPath = "/order";
@@ -1643,7 +1643,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of List&lt;Order&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Order>> OrderGetOrdersAsync (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public async System.Threading.Tasks.Task<List<Order>> OrderGetOrdersAsync (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
              ApiResponse<List<Order>> localVarResponse = await OrderGetOrdersAsyncWithHttpInfo(symbol, filter, columns, count, start, reverse, startTime, endTime);
              return localVarResponse.Data;
@@ -1663,7 +1663,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Order&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Order>>> OrderGetOrdersAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Order>>> OrderGetOrdersAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
 
             var localVarPath = "/order";
@@ -1757,7 +1757,7 @@ namespace IO.Swagger.Api
         /// <param name="contingencyType">Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther. (optional)</param>
         /// <param name="text">Optional order annotation. e.g. &#39;Take profit&#39;. (optional)</param>
         /// <returns>Order</returns>
-        public Order OrderNew (string symbol, string side = null, double? simpleOrderQty = null, decimal? orderQty = null, double? price = null, decimal? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null)
+        public Order OrderNew (string symbol, string side = null, double? simpleOrderQty = null, int? orderQty = null, double? price = null, int? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null)
         {
              ApiResponse<Order> localVarResponse = OrderNewWithHttpInfo(symbol, side, simpleOrderQty, orderQty, price, displayQty, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, ordType, timeInForce, execInst, contingencyType, text);
              return localVarResponse.Data;
@@ -1784,7 +1784,7 @@ namespace IO.Swagger.Api
         /// <param name="contingencyType">Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther. (optional)</param>
         /// <param name="text">Optional order annotation. e.g. &#39;Take profit&#39;. (optional)</param>
         /// <returns>ApiResponse of Order</returns>
-        public ApiResponse< Order > OrderNewWithHttpInfo (string symbol, string side = null, double? simpleOrderQty = null, decimal? orderQty = null, double? price = null, decimal? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null)
+        public ApiResponse< Order > OrderNewWithHttpInfo (string symbol, string side = null, double? simpleOrderQty = null, int? orderQty = null, double? price = null, int? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)
@@ -1889,7 +1889,7 @@ namespace IO.Swagger.Api
         /// <param name="contingencyType">Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther. (optional)</param>
         /// <param name="text">Optional order annotation. e.g. &#39;Take profit&#39;. (optional)</param>
         /// <returns>Task of Order</returns>
-        public async System.Threading.Tasks.Task<Order> OrderNewAsync (string symbol, string side = null, double? simpleOrderQty = null, decimal? orderQty = null, double? price = null, decimal? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null)
+        public async System.Threading.Tasks.Task<Order> OrderNewAsync (string symbol, string side = null, double? simpleOrderQty = null, int? orderQty = null, double? price = null, int? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null)
         {
              ApiResponse<Order> localVarResponse = await OrderNewAsyncWithHttpInfo(symbol, side, simpleOrderQty, orderQty, price, displayQty, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, ordType, timeInForce, execInst, contingencyType, text);
              return localVarResponse.Data;
@@ -1917,7 +1917,7 @@ namespace IO.Swagger.Api
         /// <param name="contingencyType">Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther. (optional)</param>
         /// <param name="text">Optional order annotation. e.g. &#39;Take profit&#39;. (optional)</param>
         /// <returns>Task of ApiResponse (Order)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Order>> OrderNewAsyncWithHttpInfo (string symbol, string side = null, double? simpleOrderQty = null, decimal? orderQty = null, double? price = null, decimal? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Order>> OrderNewAsyncWithHttpInfo (string symbol, string side = null, double? simpleOrderQty = null, int? orderQty = null, double? price = null, int? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)

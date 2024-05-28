@@ -36,7 +36,7 @@ ChatApi::~ChatApi()
 {
 }
 
-pplx::task<std::vector<std::shared_ptr<Chat>>> ChatApi::chat_get(boost::optional<double> count, boost::optional<double> start, boost::optional<bool> reverse, boost::optional<double> channelID)
+pplx::task<std::vector<std::shared_ptr<Chat>>> ChatApi::chat_get(boost::optional<int32_t> count, boost::optional<int32_t> start, boost::optional<bool> reverse, boost::optional<double> channelID)
 {
 
 

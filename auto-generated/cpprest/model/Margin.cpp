@@ -21,51 +21,51 @@ namespace model {
 
 Margin::Margin()
 {
-    m_Account = 0.0;
+    m_Account = 0L;
     m_Currency = utility::conversions::to_string_t("");
-    m_RiskLimit = 0.0;
+    m_RiskLimit = 0L;
     m_RiskLimitIsSet = false;
     m_State = utility::conversions::to_string_t("");
     m_StateIsSet = false;
-    m_Amount = 0.0;
+    m_Amount = 0L;
     m_AmountIsSet = false;
-    m_PrevRealisedPnl = 0.0;
+    m_PrevRealisedPnl = 0L;
     m_PrevRealisedPnlIsSet = false;
-    m_GrossComm = 0.0;
+    m_GrossComm = 0L;
     m_GrossCommIsSet = false;
-    m_GrossOpenCost = 0.0;
+    m_GrossOpenCost = 0L;
     m_GrossOpenCostIsSet = false;
-    m_GrossOpenPremium = 0.0;
+    m_GrossOpenPremium = 0L;
     m_GrossOpenPremiumIsSet = false;
-    m_GrossExecCost = 0.0;
+    m_GrossExecCost = 0L;
     m_GrossExecCostIsSet = false;
-    m_GrossMarkValue = 0.0;
+    m_GrossMarkValue = 0L;
     m_GrossMarkValueIsSet = false;
-    m_RiskValue = 0.0;
+    m_RiskValue = 0L;
     m_RiskValueIsSet = false;
-    m_InitMargin = 0.0;
+    m_InitMargin = 0L;
     m_InitMarginIsSet = false;
-    m_MaintMargin = 0.0;
+    m_MaintMargin = 0L;
     m_MaintMarginIsSet = false;
-    m_TargetExcessMargin = 0.0;
+    m_TargetExcessMargin = 0L;
     m_TargetExcessMarginIsSet = false;
-    m_RealisedPnl = 0.0;
+    m_RealisedPnl = 0L;
     m_RealisedPnlIsSet = false;
-    m_UnrealisedPnl = 0.0;
+    m_UnrealisedPnl = 0L;
     m_UnrealisedPnlIsSet = false;
-    m_WalletBalance = 0.0;
+    m_WalletBalance = 0L;
     m_WalletBalanceIsSet = false;
-    m_MarginBalance = 0.0;
+    m_MarginBalance = 0L;
     m_MarginBalanceIsSet = false;
     m_MarginLeverage = 0.0;
     m_MarginLeverageIsSet = false;
     m_MarginUsedPcnt = 0.0;
     m_MarginUsedPcntIsSet = false;
-    m_ExcessMargin = 0.0;
+    m_ExcessMargin = 0L;
     m_ExcessMarginIsSet = false;
-    m_AvailableMargin = 0.0;
+    m_AvailableMargin = 0L;
     m_AvailableMarginIsSet = false;
-    m_WithdrawableMargin = 0.0;
+    m_WithdrawableMargin = 0L;
     m_WithdrawableMarginIsSet = false;
     m_MakerFeeDiscount = 0.0;
     m_MakerFeeDiscountIsSet = false;
@@ -196,14 +196,14 @@ web::json::value Margin::toJson() const
 
 void Margin::fromJson(web::json::value& val)
 {
-    setAccount(ModelBase::doubleFromJson(val[utility::conversions::to_string_t("account")]));
+    setAccount(ModelBase::int64_tFromJson(val[utility::conversions::to_string_t("account")]));
     setCurrency(ModelBase::stringFromJson(val[utility::conversions::to_string_t("currency")]));
     if(val.has_field(utility::conversions::to_string_t("riskLimit")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("riskLimit")];
         if(!fieldValue.is_null())
         {
-            setRiskLimit(ModelBase::doubleFromJson(fieldValue));
+            setRiskLimit(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("state")))
@@ -219,7 +219,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("amount")];
         if(!fieldValue.is_null())
         {
-            setAmount(ModelBase::doubleFromJson(fieldValue));
+            setAmount(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("prevRealisedPnl")))
@@ -227,7 +227,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("prevRealisedPnl")];
         if(!fieldValue.is_null())
         {
-            setPrevRealisedPnl(ModelBase::doubleFromJson(fieldValue));
+            setPrevRealisedPnl(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("grossComm")))
@@ -235,7 +235,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("grossComm")];
         if(!fieldValue.is_null())
         {
-            setGrossComm(ModelBase::doubleFromJson(fieldValue));
+            setGrossComm(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("grossOpenCost")))
@@ -243,7 +243,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("grossOpenCost")];
         if(!fieldValue.is_null())
         {
-            setGrossOpenCost(ModelBase::doubleFromJson(fieldValue));
+            setGrossOpenCost(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("grossOpenPremium")))
@@ -251,7 +251,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("grossOpenPremium")];
         if(!fieldValue.is_null())
         {
-            setGrossOpenPremium(ModelBase::doubleFromJson(fieldValue));
+            setGrossOpenPremium(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("grossExecCost")))
@@ -259,7 +259,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("grossExecCost")];
         if(!fieldValue.is_null())
         {
-            setGrossExecCost(ModelBase::doubleFromJson(fieldValue));
+            setGrossExecCost(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("grossMarkValue")))
@@ -267,7 +267,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("grossMarkValue")];
         if(!fieldValue.is_null())
         {
-            setGrossMarkValue(ModelBase::doubleFromJson(fieldValue));
+            setGrossMarkValue(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("riskValue")))
@@ -275,7 +275,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("riskValue")];
         if(!fieldValue.is_null())
         {
-            setRiskValue(ModelBase::doubleFromJson(fieldValue));
+            setRiskValue(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("initMargin")))
@@ -283,7 +283,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("initMargin")];
         if(!fieldValue.is_null())
         {
-            setInitMargin(ModelBase::doubleFromJson(fieldValue));
+            setInitMargin(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("maintMargin")))
@@ -291,7 +291,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("maintMargin")];
         if(!fieldValue.is_null())
         {
-            setMaintMargin(ModelBase::doubleFromJson(fieldValue));
+            setMaintMargin(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("targetExcessMargin")))
@@ -299,7 +299,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("targetExcessMargin")];
         if(!fieldValue.is_null())
         {
-            setTargetExcessMargin(ModelBase::doubleFromJson(fieldValue));
+            setTargetExcessMargin(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("realisedPnl")))
@@ -307,7 +307,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("realisedPnl")];
         if(!fieldValue.is_null())
         {
-            setRealisedPnl(ModelBase::doubleFromJson(fieldValue));
+            setRealisedPnl(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("unrealisedPnl")))
@@ -315,7 +315,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("unrealisedPnl")];
         if(!fieldValue.is_null())
         {
-            setUnrealisedPnl(ModelBase::doubleFromJson(fieldValue));
+            setUnrealisedPnl(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("walletBalance")))
@@ -323,7 +323,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("walletBalance")];
         if(!fieldValue.is_null())
         {
-            setWalletBalance(ModelBase::doubleFromJson(fieldValue));
+            setWalletBalance(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("marginBalance")))
@@ -331,7 +331,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("marginBalance")];
         if(!fieldValue.is_null())
         {
-            setMarginBalance(ModelBase::doubleFromJson(fieldValue));
+            setMarginBalance(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("marginLeverage")))
@@ -355,7 +355,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("excessMargin")];
         if(!fieldValue.is_null())
         {
-            setExcessMargin(ModelBase::doubleFromJson(fieldValue));
+            setExcessMargin(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("availableMargin")))
@@ -363,7 +363,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("availableMargin")];
         if(!fieldValue.is_null())
         {
-            setAvailableMargin(ModelBase::doubleFromJson(fieldValue));
+            setAvailableMargin(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("withdrawableMargin")))
@@ -371,7 +371,7 @@ void Margin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("withdrawableMargin")];
         if(!fieldValue.is_null())
         {
-            setWithdrawableMargin(ModelBase::doubleFromJson(fieldValue));
+            setWithdrawableMargin(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("makerFeeDiscount")))
@@ -522,11 +522,11 @@ void Margin::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
         namePrefix += utility::conversions::to_string_t(".");
     }
 
-    setAccount(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("account"))));
+    setAccount(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("account"))));
     setCurrency(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("currency"))));
     if(multipart->hasContent(utility::conversions::to_string_t("riskLimit")))
     {
-        setRiskLimit(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("riskLimit"))));
+        setRiskLimit(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("riskLimit"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("state")))
     {
@@ -534,63 +534,63 @@ void Margin::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t("amount")))
     {
-        setAmount(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("amount"))));
+        setAmount(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("amount"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("prevRealisedPnl")))
     {
-        setPrevRealisedPnl(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("prevRealisedPnl"))));
+        setPrevRealisedPnl(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("prevRealisedPnl"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("grossComm")))
     {
-        setGrossComm(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grossComm"))));
+        setGrossComm(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grossComm"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("grossOpenCost")))
     {
-        setGrossOpenCost(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grossOpenCost"))));
+        setGrossOpenCost(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grossOpenCost"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("grossOpenPremium")))
     {
-        setGrossOpenPremium(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grossOpenPremium"))));
+        setGrossOpenPremium(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grossOpenPremium"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("grossExecCost")))
     {
-        setGrossExecCost(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grossExecCost"))));
+        setGrossExecCost(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grossExecCost"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("grossMarkValue")))
     {
-        setGrossMarkValue(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grossMarkValue"))));
+        setGrossMarkValue(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("grossMarkValue"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("riskValue")))
     {
-        setRiskValue(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("riskValue"))));
+        setRiskValue(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("riskValue"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("initMargin")))
     {
-        setInitMargin(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("initMargin"))));
+        setInitMargin(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("initMargin"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("maintMargin")))
     {
-        setMaintMargin(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("maintMargin"))));
+        setMaintMargin(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("maintMargin"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("targetExcessMargin")))
     {
-        setTargetExcessMargin(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("targetExcessMargin"))));
+        setTargetExcessMargin(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("targetExcessMargin"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("realisedPnl")))
     {
-        setRealisedPnl(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("realisedPnl"))));
+        setRealisedPnl(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("realisedPnl"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("unrealisedPnl")))
     {
-        setUnrealisedPnl(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("unrealisedPnl"))));
+        setUnrealisedPnl(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("unrealisedPnl"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("walletBalance")))
     {
-        setWalletBalance(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("walletBalance"))));
+        setWalletBalance(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("walletBalance"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("marginBalance")))
     {
-        setMarginBalance(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("marginBalance"))));
+        setMarginBalance(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("marginBalance"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("marginLeverage")))
     {
@@ -602,15 +602,15 @@ void Margin::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
     if(multipart->hasContent(utility::conversions::to_string_t("excessMargin")))
     {
-        setExcessMargin(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("excessMargin"))));
+        setExcessMargin(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("excessMargin"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("availableMargin")))
     {
-        setAvailableMargin(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("availableMargin"))));
+        setAvailableMargin(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("availableMargin"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("withdrawableMargin")))
     {
-        setWithdrawableMargin(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("withdrawableMargin"))));
+        setWithdrawableMargin(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("withdrawableMargin"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("makerFeeDiscount")))
     {
@@ -626,13 +626,13 @@ void Margin::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const u
     }
 }
 
-double Margin::getAccount() const
+int64_t Margin::getAccount() const
 {
     return m_Account;
 }
 
 
-void Margin::setAccount(double value)
+void Margin::setAccount(int64_t value)
 {
     m_Account = value;
     
@@ -648,13 +648,13 @@ void Margin::setCurrency(utility::string_t value)
     m_Currency = value;
     
 }
-double Margin::getRiskLimit() const
+int64_t Margin::getRiskLimit() const
 {
     return m_RiskLimit;
 }
 
 
-void Margin::setRiskLimit(double value)
+void Margin::setRiskLimit(int64_t value)
 {
     m_RiskLimit = value;
     m_RiskLimitIsSet = true;
@@ -690,13 +690,13 @@ void Margin::unsetState()
     m_StateIsSet = false;
 }
 
-double Margin::getAmount() const
+int64_t Margin::getAmount() const
 {
     return m_Amount;
 }
 
 
-void Margin::setAmount(double value)
+void Margin::setAmount(int64_t value)
 {
     m_Amount = value;
     m_AmountIsSet = true;
@@ -711,13 +711,13 @@ void Margin::unsetAmount()
     m_AmountIsSet = false;
 }
 
-double Margin::getPrevRealisedPnl() const
+int64_t Margin::getPrevRealisedPnl() const
 {
     return m_PrevRealisedPnl;
 }
 
 
-void Margin::setPrevRealisedPnl(double value)
+void Margin::setPrevRealisedPnl(int64_t value)
 {
     m_PrevRealisedPnl = value;
     m_PrevRealisedPnlIsSet = true;
@@ -732,13 +732,13 @@ void Margin::unsetPrevRealisedPnl()
     m_PrevRealisedPnlIsSet = false;
 }
 
-double Margin::getGrossComm() const
+int64_t Margin::getGrossComm() const
 {
     return m_GrossComm;
 }
 
 
-void Margin::setGrossComm(double value)
+void Margin::setGrossComm(int64_t value)
 {
     m_GrossComm = value;
     m_GrossCommIsSet = true;
@@ -753,13 +753,13 @@ void Margin::unsetGrossComm()
     m_GrossCommIsSet = false;
 }
 
-double Margin::getGrossOpenCost() const
+int64_t Margin::getGrossOpenCost() const
 {
     return m_GrossOpenCost;
 }
 
 
-void Margin::setGrossOpenCost(double value)
+void Margin::setGrossOpenCost(int64_t value)
 {
     m_GrossOpenCost = value;
     m_GrossOpenCostIsSet = true;
@@ -774,13 +774,13 @@ void Margin::unsetGrossOpenCost()
     m_GrossOpenCostIsSet = false;
 }
 
-double Margin::getGrossOpenPremium() const
+int64_t Margin::getGrossOpenPremium() const
 {
     return m_GrossOpenPremium;
 }
 
 
-void Margin::setGrossOpenPremium(double value)
+void Margin::setGrossOpenPremium(int64_t value)
 {
     m_GrossOpenPremium = value;
     m_GrossOpenPremiumIsSet = true;
@@ -795,13 +795,13 @@ void Margin::unsetGrossOpenPremium()
     m_GrossOpenPremiumIsSet = false;
 }
 
-double Margin::getGrossExecCost() const
+int64_t Margin::getGrossExecCost() const
 {
     return m_GrossExecCost;
 }
 
 
-void Margin::setGrossExecCost(double value)
+void Margin::setGrossExecCost(int64_t value)
 {
     m_GrossExecCost = value;
     m_GrossExecCostIsSet = true;
@@ -816,13 +816,13 @@ void Margin::unsetGrossExecCost()
     m_GrossExecCostIsSet = false;
 }
 
-double Margin::getGrossMarkValue() const
+int64_t Margin::getGrossMarkValue() const
 {
     return m_GrossMarkValue;
 }
 
 
-void Margin::setGrossMarkValue(double value)
+void Margin::setGrossMarkValue(int64_t value)
 {
     m_GrossMarkValue = value;
     m_GrossMarkValueIsSet = true;
@@ -837,13 +837,13 @@ void Margin::unsetGrossMarkValue()
     m_GrossMarkValueIsSet = false;
 }
 
-double Margin::getRiskValue() const
+int64_t Margin::getRiskValue() const
 {
     return m_RiskValue;
 }
 
 
-void Margin::setRiskValue(double value)
+void Margin::setRiskValue(int64_t value)
 {
     m_RiskValue = value;
     m_RiskValueIsSet = true;
@@ -858,13 +858,13 @@ void Margin::unsetRiskValue()
     m_RiskValueIsSet = false;
 }
 
-double Margin::getInitMargin() const
+int64_t Margin::getInitMargin() const
 {
     return m_InitMargin;
 }
 
 
-void Margin::setInitMargin(double value)
+void Margin::setInitMargin(int64_t value)
 {
     m_InitMargin = value;
     m_InitMarginIsSet = true;
@@ -879,13 +879,13 @@ void Margin::unsetInitMargin()
     m_InitMarginIsSet = false;
 }
 
-double Margin::getMaintMargin() const
+int64_t Margin::getMaintMargin() const
 {
     return m_MaintMargin;
 }
 
 
-void Margin::setMaintMargin(double value)
+void Margin::setMaintMargin(int64_t value)
 {
     m_MaintMargin = value;
     m_MaintMarginIsSet = true;
@@ -900,13 +900,13 @@ void Margin::unsetMaintMargin()
     m_MaintMarginIsSet = false;
 }
 
-double Margin::getTargetExcessMargin() const
+int64_t Margin::getTargetExcessMargin() const
 {
     return m_TargetExcessMargin;
 }
 
 
-void Margin::setTargetExcessMargin(double value)
+void Margin::setTargetExcessMargin(int64_t value)
 {
     m_TargetExcessMargin = value;
     m_TargetExcessMarginIsSet = true;
@@ -921,13 +921,13 @@ void Margin::unsetTargetExcessMargin()
     m_TargetExcessMarginIsSet = false;
 }
 
-double Margin::getRealisedPnl() const
+int64_t Margin::getRealisedPnl() const
 {
     return m_RealisedPnl;
 }
 
 
-void Margin::setRealisedPnl(double value)
+void Margin::setRealisedPnl(int64_t value)
 {
     m_RealisedPnl = value;
     m_RealisedPnlIsSet = true;
@@ -942,13 +942,13 @@ void Margin::unsetRealisedPnl()
     m_RealisedPnlIsSet = false;
 }
 
-double Margin::getUnrealisedPnl() const
+int64_t Margin::getUnrealisedPnl() const
 {
     return m_UnrealisedPnl;
 }
 
 
-void Margin::setUnrealisedPnl(double value)
+void Margin::setUnrealisedPnl(int64_t value)
 {
     m_UnrealisedPnl = value;
     m_UnrealisedPnlIsSet = true;
@@ -963,13 +963,13 @@ void Margin::unsetUnrealisedPnl()
     m_UnrealisedPnlIsSet = false;
 }
 
-double Margin::getWalletBalance() const
+int64_t Margin::getWalletBalance() const
 {
     return m_WalletBalance;
 }
 
 
-void Margin::setWalletBalance(double value)
+void Margin::setWalletBalance(int64_t value)
 {
     m_WalletBalance = value;
     m_WalletBalanceIsSet = true;
@@ -984,13 +984,13 @@ void Margin::unsetWalletBalance()
     m_WalletBalanceIsSet = false;
 }
 
-double Margin::getMarginBalance() const
+int64_t Margin::getMarginBalance() const
 {
     return m_MarginBalance;
 }
 
 
-void Margin::setMarginBalance(double value)
+void Margin::setMarginBalance(int64_t value)
 {
     m_MarginBalance = value;
     m_MarginBalanceIsSet = true;
@@ -1047,13 +1047,13 @@ void Margin::unsetMarginUsedPcnt()
     m_MarginUsedPcntIsSet = false;
 }
 
-double Margin::getExcessMargin() const
+int64_t Margin::getExcessMargin() const
 {
     return m_ExcessMargin;
 }
 
 
-void Margin::setExcessMargin(double value)
+void Margin::setExcessMargin(int64_t value)
 {
     m_ExcessMargin = value;
     m_ExcessMarginIsSet = true;
@@ -1068,13 +1068,13 @@ void Margin::unsetExcessMargin()
     m_ExcessMarginIsSet = false;
 }
 
-double Margin::getAvailableMargin() const
+int64_t Margin::getAvailableMargin() const
 {
     return m_AvailableMargin;
 }
 
 
-void Margin::setAvailableMargin(double value)
+void Margin::setAvailableMargin(int64_t value)
 {
     m_AvailableMargin = value;
     m_AvailableMarginIsSet = true;
@@ -1089,13 +1089,13 @@ void Margin::unsetAvailableMargin()
     m_AvailableMarginIsSet = false;
 }
 
-double Margin::getWithdrawableMargin() const
+int64_t Margin::getWithdrawableMargin() const
 {
     return m_WithdrawableMargin;
 }
 
 
-void Margin::setWithdrawableMargin(double value)
+void Margin::setWithdrawableMargin(int64_t value)
 {
     m_WithdrawableMargin = value;
     m_WithdrawableMarginIsSet = true;

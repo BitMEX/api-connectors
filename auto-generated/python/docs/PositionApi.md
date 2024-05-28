@@ -46,7 +46,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 api_instance = swagger_client.PositionApi(swagger_client.ApiClient(configuration))
 filter = 'filter_example' # str | Table filter. For example, send {\"symbol\": \"XBTUSD\"}. (optional)
 columns = 'columns_example' # str | Which columns to fetch. For example, send [\"columnName\"]. (optional)
-count = 8.14 # float | Number of rows to fetch. (optional)
+count = 56 # int | Number of rows to fetch. (optional)
 
 try:
     # Get your positions.
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter** | **str**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. | [optional] 
  **columns** | **str**| Which columns to fetch. For example, send [\&quot;columnName\&quot;]. | [optional] 
- **count** | **float**| Number of rows to fetch. | [optional] 
+ **count** | **int**| Number of rows to fetch. | [optional] 
 
 ### Return type
 
@@ -179,7 +179,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = swagger_client.PositionApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str | Symbol of position to isolate.
-amount = 8.14 # float | Amount to transfer, in Satoshis. May be negative.
+amount = 789 # int | Amount to transfer, in Satoshis. May be negative.
 target_account_id = 1.2 # float | AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)
 
 try:
@@ -195,7 +195,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **str**| Symbol of position to isolate. | 
- **amount** | **float**| Amount to transfer, in Satoshis. May be negative. | 
+ **amount** | **int**| Amount to transfer, in Satoshis. May be negative. | 
  **target_account_id** | **float**| AccountId for the position that the margin would be transfered to, must be a paired account with main user. | [optional] 
 
 ### Return type
@@ -315,7 +315,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = swagger_client.PositionApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str | Symbol of position to update risk limit on.
-risk_limit = 8.14 # float | New Risk Limit, in Satoshis.
+risk_limit = 789 # int | New Risk Limit, in Satoshis.
 target_account_id = 1.2 # float | AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)
 
 try:
@@ -331,7 +331,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **str**| Symbol of position to update risk limit on. | 
- **risk_limit** | **float**| New Risk Limit, in Satoshis. | 
+ **risk_limit** | **int**| New Risk Limit, in Satoshis. | 
  **target_account_id** | **float**| AccountId for the position that the risk limit would be updated on, must be a paired account with main user. | [optional] 
 
 ### Return type

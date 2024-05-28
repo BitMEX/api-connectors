@@ -60,8 +60,8 @@ class StatsHistory implements ModelInterface, ArrayAccess
         'date' => '\DateTime',
         'root_symbol' => 'string',
         'currency' => 'string',
-        'volume' => 'float',
-        'turnover' => 'float'
+        'volume' => 'int',
+        'turnover' => 'int'
     ];
 
     /**
@@ -309,7 +309,7 @@ class StatsHistory implements ModelInterface, ArrayAccess
     /**
      * Gets volume
      *
-     * @return float
+     * @return int
      */
     public function getVolume()
     {
@@ -319,7 +319,7 @@ class StatsHistory implements ModelInterface, ArrayAccess
     /**
      * Sets volume
      *
-     * @param float $volume volume
+     * @param int $volume volume
      *
      * @return $this
      */
@@ -333,7 +333,7 @@ class StatsHistory implements ModelInterface, ArrayAccess
     /**
      * Gets turnover
      *
-     * @return float
+     * @return int
      */
     public function getTurnover()
     {
@@ -343,7 +343,7 @@ class StatsHistory implements ModelInterface, ArrayAccess
     /**
      * Sets turnover
      *
-     * @param float $turnover turnover
+     * @param int $turnover turnover
      *
      * @return $this
      */

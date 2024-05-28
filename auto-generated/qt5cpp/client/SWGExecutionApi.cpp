@@ -30,7 +30,7 @@ SWGExecutionApi::SWGExecutionApi(QString host, QString basePath) {
 }
 
 void
-SWGExecutionApi::execution_get(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
+SWGExecutionApi::execution_get(QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/execution");
 
@@ -159,7 +159,7 @@ SWGExecutionApi::execution_getCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGExecutionApi::execution_getTradeHistory(double target_account_id, QString* target_account_ids, QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
+SWGExecutionApi::execution_getTradeHistory(double target_account_id, QString* target_account_ids, QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/execution/tradeHistory");
 

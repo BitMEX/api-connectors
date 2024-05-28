@@ -54,7 +54,7 @@
               let data = dataCtr[p];
               expect(data).to.be.a(BitMexApi.GlobalNotification);
               expect(data.id).to.be.a('number');
-              expect(data.id).to.be();
+              expect(data.id).to.be(0);
               expect(data._date).to.be.a(Date);
               expect(data._date).to.be(new Date());
               expect(data.title).to.be.a('string');
@@ -62,7 +62,7 @@
               expect(data.body).to.be.a('string');
               expect(data.body).to.be("");
               expect(data.ttl).to.be.a('number');
-              expect(data.ttl).to.be();
+              expect(data.ttl).to.be(0);
               expect(data.type).to.be.a('string');
               expect(data.type).to.be("success");
               expect(data.closable).to.be.a('boolean');

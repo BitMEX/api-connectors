@@ -74,7 +74,7 @@
             expect(data.transactID).to.be.a('string');
             expect(data.transactID).to.be("");
             expect(data.account).to.be.a('number');
-            expect(data.account).to.be();
+            expect(data.account).to.be("0");
             expect(data.currency).to.be.a('string');
             expect(data.currency).to.be("");
             expect(data.network).to.be.a('string');
@@ -82,9 +82,9 @@
             expect(data.transactType).to.be.a('string');
             expect(data.transactType).to.be("");
             expect(data.amount).to.be.a('number');
-            expect(data.amount).to.be();
+            expect(data.amount).to.be("0");
             expect(data.fee).to.be.a('number');
-            expect(data.fee).to.be();
+            expect(data.fee).to.be("0");
             expect(data.transactStatus).to.be.a('string');
             expect(data.transactStatus).to.be("");
             expect(data.address).to.be.a('string');
@@ -98,7 +98,7 @@
             expect(data.timestamp).to.be.a(Date);
             expect(data.timestamp).to.be(new Date());
             expect(data.walletBalance).to.be.a('number');
-            expect(data.walletBalance).to.be();
+            expect(data.walletBalance).to.be("0");
 
             done();
           });
@@ -152,7 +152,7 @@
               expect(data.id).to.be.a('string');
               expect(data.id).to.be("");
               expect(data.userId).to.be.a('number');
-              expect(data.userId).to.be();
+              expect(data.userId).to.be(0);
               expect(data.deviceToken).to.be.a('string');
               expect(data.deviceToken).to.be("");
               expect(data.channel).to.be.a('string');
@@ -215,7 +215,7 @@
             expect(data.transactID).to.be.a('string');
             expect(data.transactID).to.be("");
             expect(data.account).to.be.a('number');
-            expect(data.account).to.be();
+            expect(data.account).to.be("0");
             expect(data.currency).to.be.a('string');
             expect(data.currency).to.be("");
             expect(data.network).to.be.a('string');
@@ -223,9 +223,9 @@
             expect(data.transactType).to.be.a('string');
             expect(data.transactType).to.be("");
             expect(data.amount).to.be.a('number');
-            expect(data.amount).to.be();
+            expect(data.amount).to.be("0");
             expect(data.fee).to.be.a('number');
-            expect(data.fee).to.be();
+            expect(data.fee).to.be("0");
             expect(data.transactStatus).to.be.a('string');
             expect(data.transactStatus).to.be("");
             expect(data.address).to.be.a('string');
@@ -239,7 +239,7 @@
             expect(data.timestamp).to.be.a(Date);
             expect(data.timestamp).to.be(new Date());
             expect(data.walletBalance).to.be.a('number');
-            expect(data.walletBalance).to.be();
+            expect(data.walletBalance).to.be("0");
 
             done();
           });
@@ -328,7 +328,7 @@
             // TODO: update response assertions
             expect(data).to.be.a(BitMexApi.User);
             expect(data.id).to.be.a('number');
-            expect(data.id).to.be();
+            expect(data.id).to.be(0);
             expect(data.firstname).to.be.a('string');
             expect(data.firstname).to.be("");
             expect(data.lastname).to.be.a('string');
@@ -579,31 +579,31 @@
             // TODO: update response assertions
             expect(data).to.be.a(BitMexApi.Affiliate);
             expect(data.account).to.be.a('number');
-            expect(data.account).to.be();
+            expect(data.account).to.be("0");
             expect(data.currency).to.be.a('string');
             expect(data.currency).to.be("");
             expect(data.prevPayout).to.be.a('number');
-            expect(data.prevPayout).to.be();
+            expect(data.prevPayout).to.be("0");
             expect(data.prevTurnover).to.be.a('number');
-            expect(data.prevTurnover).to.be();
+            expect(data.prevTurnover).to.be("0");
             expect(data.prevComm).to.be.a('number');
-            expect(data.prevComm).to.be();
+            expect(data.prevComm).to.be("0");
             expect(data.prevTimestamp).to.be.a(Date);
             expect(data.prevTimestamp).to.be(new Date());
             expect(data.execTurnover).to.be.a('number');
-            expect(data.execTurnover).to.be();
+            expect(data.execTurnover).to.be("0");
             expect(data.execComm).to.be.a('number');
-            expect(data.execComm).to.be();
+            expect(data.execComm).to.be("0");
             expect(data.totalReferrals).to.be.a('number');
-            expect(data.totalReferrals).to.be();
+            expect(data.totalReferrals).to.be("0");
             expect(data.totalTurnover).to.be.a('number');
-            expect(data.totalTurnover).to.be();
+            expect(data.totalTurnover).to.be("0");
             expect(data.totalComm).to.be.a('number');
-            expect(data.totalComm).to.be();
+            expect(data.totalComm).to.be("0");
             expect(data.payoutPcnt).to.be.a('number');
             expect(data.payoutPcnt).to.be(0.0);
             expect(data.pendingPayout).to.be.a('number');
-            expect(data.pendingPayout).to.be();
+            expect(data.pendingPayout).to.be("0");
             expect(data.timestamp).to.be.a(Date);
             expect(data.timestamp).to.be(new Date());
             expect(data.referrerAccount).to.be.a('number');
@@ -635,19 +635,19 @@
             expect(data.csaID).to.be.a('string');
             expect(data.csaID).to.be("");
             expect(data.account).to.be.a('number');
-            expect(data.account).to.be();
+            expect(data.account).to.be("0");
             expect(data.currency).to.be.a('string');
             expect(data.currency).to.be("");
             expect(data.amount).to.be.a('number');
-            expect(data.amount).to.be();
+            expect(data.amount).to.be("0");
             expect(data.minAmount).to.be.a('number');
-            expect(data.minAmount).to.be();
+            expect(data.minAmount).to.be("0");
             expect(data.threshold).to.be.a('number');
-            expect(data.threshold).to.be();
+            expect(data.threshold).to.be("0");
             expect(data.mmRatioMarginCall).to.be.a('number');
-            expect(data.mmRatioMarginCall).to.be();
+            expect(data.mmRatioMarginCall).to.be("0");
             expect(data.mmRatioLiquidation).to.be.a('number');
-            expect(data.mmRatioLiquidation).to.be();
+            expect(data.mmRatioLiquidation).to.be("0");
             expect(data.startTime).to.be.a('string');
             expect(data.startTime).to.be("");
             expect(data.maturityTime).to.be.a('string');
@@ -769,23 +769,23 @@
               expect(data.clOrdLinkID).to.be.a('string');
               expect(data.clOrdLinkID).to.be("");
               expect(data.account).to.be.a('number');
-              expect(data.account).to.be();
+              expect(data.account).to.be("0");
               expect(data.symbol).to.be.a('string');
               expect(data.symbol).to.be("");
               expect(data.side).to.be.a('string');
               expect(data.side).to.be("");
               expect(data.lastQty).to.be.a('number');
-              expect(data.lastQty).to.be();
+              expect(data.lastQty).to.be("0");
               expect(data.lastPx).to.be.a('number');
               expect(data.lastPx).to.be(0.0);
               expect(data.lastLiquidityInd).to.be.a('string');
               expect(data.lastLiquidityInd).to.be("");
               expect(data.orderQty).to.be.a('number');
-              expect(data.orderQty).to.be();
+              expect(data.orderQty).to.be("0");
               expect(data.price).to.be.a('number');
               expect(data.price).to.be(0.0);
               expect(data.displayQty).to.be.a('number');
-              expect(data.displayQty).to.be();
+              expect(data.displayQty).to.be("0");
               expect(data.stopPx).to.be.a('number');
               expect(data.stopPx).to.be(0.0);
               expect(data.pegOffsetValue).to.be.a('number');
@@ -815,13 +815,15 @@
               expect(data.ordRejReason).to.be.a('string');
               expect(data.ordRejReason).to.be("");
               expect(data.leavesQty).to.be.a('number');
-              expect(data.leavesQty).to.be();
+              expect(data.leavesQty).to.be("0");
               expect(data.cumQty).to.be.a('number');
-              expect(data.cumQty).to.be();
+              expect(data.cumQty).to.be("0");
               expect(data.avgPx).to.be.a('number');
               expect(data.avgPx).to.be(0.0);
               expect(data.commission).to.be.a('number');
               expect(data.commission).to.be(0.0);
+              expect(data.feeType).to.be.a('string');
+              expect(data.feeType).to.be("");
               expect(data.tradePublishIndicator).to.be.a('string');
               expect(data.tradePublishIndicator).to.be("");
               expect(data.text).to.be.a('string');
@@ -829,9 +831,9 @@
               expect(data.trdMatchID).to.be.a('string');
               expect(data.trdMatchID).to.be("");
               expect(data.execCost).to.be.a('number');
-              expect(data.execCost).to.be();
+              expect(data.execCost).to.be("0");
               expect(data.execComm).to.be.a('number');
-              expect(data.execComm).to.be();
+              expect(data.execComm).to.be("0");
               expect(data.homeNotional).to.be.a('number');
               expect(data.homeNotional).to.be(0.0);
               expect(data.foreignNotional).to.be.a('number');
@@ -840,8 +842,6 @@
               expect(data.transactTime).to.be(new Date());
               expect(data.timestamp).to.be.a(Date);
               expect(data.timestamp).to.be(new Date());
-              expect(data.feeType).to.be.a('string');
-              expect(data.feeType).to.be("");
             }
 
             done();
@@ -866,53 +866,53 @@
             // TODO: update response assertions
             expect(data).to.be.a(BitMexApi.Margin);
             expect(data.account).to.be.a('number');
-            expect(data.account).to.be();
+            expect(data.account).to.be("0");
             expect(data.currency).to.be.a('string');
             expect(data.currency).to.be("");
             expect(data.riskLimit).to.be.a('number');
-            expect(data.riskLimit).to.be();
+            expect(data.riskLimit).to.be("0");
             expect(data.state).to.be.a('string');
             expect(data.state).to.be("");
             expect(data.amount).to.be.a('number');
-            expect(data.amount).to.be();
+            expect(data.amount).to.be("0");
             expect(data.prevRealisedPnl).to.be.a('number');
-            expect(data.prevRealisedPnl).to.be();
+            expect(data.prevRealisedPnl).to.be("0");
             expect(data.grossComm).to.be.a('number');
-            expect(data.grossComm).to.be();
+            expect(data.grossComm).to.be("0");
             expect(data.grossOpenCost).to.be.a('number');
-            expect(data.grossOpenCost).to.be();
+            expect(data.grossOpenCost).to.be("0");
             expect(data.grossOpenPremium).to.be.a('number');
-            expect(data.grossOpenPremium).to.be();
+            expect(data.grossOpenPremium).to.be("0");
             expect(data.grossExecCost).to.be.a('number');
-            expect(data.grossExecCost).to.be();
+            expect(data.grossExecCost).to.be("0");
             expect(data.grossMarkValue).to.be.a('number');
-            expect(data.grossMarkValue).to.be();
+            expect(data.grossMarkValue).to.be("0");
             expect(data.riskValue).to.be.a('number');
-            expect(data.riskValue).to.be();
+            expect(data.riskValue).to.be("0");
             expect(data.initMargin).to.be.a('number');
-            expect(data.initMargin).to.be();
+            expect(data.initMargin).to.be("0");
             expect(data.maintMargin).to.be.a('number');
-            expect(data.maintMargin).to.be();
+            expect(data.maintMargin).to.be("0");
             expect(data.targetExcessMargin).to.be.a('number');
-            expect(data.targetExcessMargin).to.be();
+            expect(data.targetExcessMargin).to.be("0");
             expect(data.realisedPnl).to.be.a('number');
-            expect(data.realisedPnl).to.be();
+            expect(data.realisedPnl).to.be("0");
             expect(data.unrealisedPnl).to.be.a('number');
-            expect(data.unrealisedPnl).to.be();
+            expect(data.unrealisedPnl).to.be("0");
             expect(data.walletBalance).to.be.a('number');
-            expect(data.walletBalance).to.be();
+            expect(data.walletBalance).to.be("0");
             expect(data.marginBalance).to.be.a('number');
-            expect(data.marginBalance).to.be();
+            expect(data.marginBalance).to.be("0");
             expect(data.marginLeverage).to.be.a('number');
             expect(data.marginLeverage).to.be(0.0);
             expect(data.marginUsedPcnt).to.be.a('number');
             expect(data.marginUsedPcnt).to.be(0.0);
             expect(data.excessMargin).to.be.a('number');
-            expect(data.excessMargin).to.be();
+            expect(data.excessMargin).to.be("0");
             expect(data.availableMargin).to.be.a('number');
-            expect(data.availableMargin).to.be();
+            expect(data.availableMargin).to.be("0");
             expect(data.withdrawableMargin).to.be.a('number');
-            expect(data.withdrawableMargin).to.be();
+            expect(data.withdrawableMargin).to.be("0");
             expect(data.makerFeeDiscount).to.be.a('number');
             expect(data.makerFeeDiscount).to.be(0.0);
             expect(data.takerFeeDiscount).to.be.a('number');
@@ -1169,25 +1169,25 @@
             // TODO: update response assertions
             expect(data).to.be.a(BitMexApi.Wallet);
             expect(data.account).to.be.a('number');
-            expect(data.account).to.be();
+            expect(data.account).to.be("0");
             expect(data.currency).to.be.a('string');
             expect(data.currency).to.be("");
             expect(data.deposited).to.be.a('number');
-            expect(data.deposited).to.be();
+            expect(data.deposited).to.be("0");
             expect(data.withdrawn).to.be.a('number');
-            expect(data.withdrawn).to.be();
+            expect(data.withdrawn).to.be("0");
             expect(data.transferIn).to.be.a('number');
-            expect(data.transferIn).to.be();
+            expect(data.transferIn).to.be("0");
             expect(data.transferOut).to.be.a('number');
-            expect(data.transferOut).to.be();
+            expect(data.transferOut).to.be("0");
             expect(data.amount).to.be.a('number');
-            expect(data.amount).to.be();
+            expect(data.amount).to.be("0");
             expect(data.pendingCredit).to.be.a('number');
-            expect(data.pendingCredit).to.be();
+            expect(data.pendingCredit).to.be("0");
             expect(data.pendingDebit).to.be.a('number');
-            expect(data.pendingDebit).to.be();
+            expect(data.pendingDebit).to.be("0");
             expect(data.confirmedDebit).to.be.a('number');
-            expect(data.confirmedDebit).to.be();
+            expect(data.confirmedDebit).to.be("0");
             expect(data.timestamp).to.be.a(Date);
             expect(data.timestamp).to.be(new Date());
 
@@ -1224,7 +1224,7 @@
               expect(data.transactID).to.be.a('string');
               expect(data.transactID).to.be("");
               expect(data.account).to.be.a('number');
-              expect(data.account).to.be();
+              expect(data.account).to.be("0");
               expect(data.currency).to.be.a('string');
               expect(data.currency).to.be("");
               expect(data.network).to.be.a('string');
@@ -1232,9 +1232,9 @@
               expect(data.transactType).to.be.a('string');
               expect(data.transactType).to.be("");
               expect(data.amount).to.be.a('number');
-              expect(data.amount).to.be();
+              expect(data.amount).to.be("0");
               expect(data.fee).to.be.a('number');
-              expect(data.fee).to.be();
+              expect(data.fee).to.be("0");
               expect(data.transactStatus).to.be.a('string');
               expect(data.transactStatus).to.be("");
               expect(data.address).to.be.a('string');
@@ -1248,7 +1248,7 @@
               expect(data.timestamp).to.be.a(Date);
               expect(data.timestamp).to.be(new Date());
               expect(data.walletBalance).to.be.a('number');
-              expect(data.walletBalance).to.be();
+              expect(data.walletBalance).to.be("0");
             }
 
             done();
@@ -1358,7 +1358,7 @@
           /*
           var currency = "XBt";
           var network = "network_example";
-          var amount = 8.14;
+          var amount = 789;
           var opts = {};
           opts.otpToken = "otpToken_example";
           opts.address = "address_example";
@@ -1378,7 +1378,7 @@
             expect(data.transactID).to.be.a('string');
             expect(data.transactID).to.be("");
             expect(data.account).to.be.a('number');
-            expect(data.account).to.be();
+            expect(data.account).to.be("0");
             expect(data.currency).to.be.a('string');
             expect(data.currency).to.be("");
             expect(data.network).to.be.a('string');
@@ -1386,9 +1386,9 @@
             expect(data.transactType).to.be.a('string');
             expect(data.transactType).to.be("");
             expect(data.amount).to.be.a('number');
-            expect(data.amount).to.be();
+            expect(data.amount).to.be("0");
             expect(data.fee).to.be.a('number');
-            expect(data.fee).to.be();
+            expect(data.fee).to.be("0");
             expect(data.transactStatus).to.be.a('string');
             expect(data.transactStatus).to.be("");
             expect(data.address).to.be.a('string');
@@ -1402,7 +1402,7 @@
             expect(data.timestamp).to.be.a(Date);
             expect(data.timestamp).to.be(new Date());
             expect(data.walletBalance).to.be.a('number');
-            expect(data.walletBalance).to.be();
+            expect(data.walletBalance).to.be("0");
 
             done();
           });
@@ -1427,7 +1427,7 @@
             // TODO: update response assertions
             expect(data).to.be.a(BitMexApi.User);
             expect(data.id).to.be.a('number');
-            expect(data.id).to.be();
+            expect(data.id).to.be(0);
             expect(data.firstname).to.be.a('string');
             expect(data.firstname).to.be("");
             expect(data.lastname).to.be.a('string');
@@ -1691,7 +1691,7 @@
           // TODO: uncomment, update parameter values for userWalletTransfer call and complete the assertions
           /*
           var currency = "currency_example";
-          var amount = 8.14;
+          var amount = 789;
           var targetAccountId = 1.2;
           var opts = {};
           opts.fromAccountId = 1.2;
@@ -1706,7 +1706,7 @@
             expect(data.transactID).to.be.a('string');
             expect(data.transactID).to.be("");
             expect(data.account).to.be.a('number');
-            expect(data.account).to.be();
+            expect(data.account).to.be("0");
             expect(data.currency).to.be.a('string');
             expect(data.currency).to.be("");
             expect(data.network).to.be.a('string');
@@ -1714,9 +1714,9 @@
             expect(data.transactType).to.be.a('string');
             expect(data.transactType).to.be("");
             expect(data.amount).to.be.a('number');
-            expect(data.amount).to.be();
+            expect(data.amount).to.be("0");
             expect(data.fee).to.be.a('number');
-            expect(data.fee).to.be();
+            expect(data.fee).to.be("0");
             expect(data.transactStatus).to.be.a('string');
             expect(data.transactStatus).to.be("");
             expect(data.address).to.be.a('string');
@@ -1730,7 +1730,7 @@
             expect(data.timestamp).to.be.a(Date);
             expect(data.timestamp).to.be(new Date());
             expect(data.walletBalance).to.be.a('number');
-            expect(data.walletBalance).to.be();
+            expect(data.walletBalance).to.be("0");
 
             done();
           });

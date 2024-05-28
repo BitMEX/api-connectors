@@ -134,7 +134,7 @@
               expect(data.tokenExplorer).to.be.a('string');
               expect(data.tokenExplorer).to.be("");
               expect(data.depositConfirmations).to.be.a('number');
-              expect(data.depositConfirmations).to.be();
+              expect(data.depositConfirmations).to.be(0);
               expect(data.enabled).to.be.a('boolean');
               expect(data.enabled).to.be(false);
             }

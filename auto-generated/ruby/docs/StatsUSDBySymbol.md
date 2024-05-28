@@ -5,9 +5,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **symbol** | **String** |  | 
 **currency** | **String** |  | [optional] 
-**turnover24h** | **Float** |  | [optional] 
-**turnover30d** | **Float** |  | [optional] 
-**turnover365d** | **Float** |  | [optional] 
-**turnover** | **Float** |  | [optional] 
+**turnover24h** | **Integer** |  | [optional] 
+**turnover30d** | **Integer** |  | [optional] 
+**turnover365d** | **Integer** |  | [optional] 
+**turnover** | **Integer** |  | [optional] 
 
 

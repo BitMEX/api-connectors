@@ -58,16 +58,16 @@ class Wallet implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'account' => 'float',
+        'account' => 'int',
         'currency' => 'string',
-        'deposited' => 'float',
-        'withdrawn' => 'float',
-        'transfer_in' => 'float',
-        'transfer_out' => 'float',
-        'amount' => 'float',
-        'pending_credit' => 'float',
-        'pending_debit' => 'float',
-        'confirmed_debit' => 'float',
+        'deposited' => 'int',
+        'withdrawn' => 'int',
+        'transfer_in' => 'int',
+        'transfer_out' => 'int',
+        'amount' => 'int',
+        'pending_credit' => 'int',
+        'pending_debit' => 'int',
+        'confirmed_debit' => 'int',
         'timestamp' => '\DateTime'
     ];
 
@@ -274,7 +274,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Gets account
      *
-     * @return float
+     * @return int
      */
     public function getAccount()
     {
@@ -284,7 +284,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Sets account
      *
-     * @param float $account account
+     * @param int $account account
      *
      * @return $this
      */
@@ -322,7 +322,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Gets deposited
      *
-     * @return float
+     * @return int
      */
     public function getDeposited()
     {
@@ -332,7 +332,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Sets deposited
      *
-     * @param float $deposited deposited
+     * @param int $deposited deposited
      *
      * @return $this
      */
@@ -346,7 +346,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Gets withdrawn
      *
-     * @return float
+     * @return int
      */
     public function getWithdrawn()
     {
@@ -356,7 +356,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Sets withdrawn
      *
-     * @param float $withdrawn withdrawn
+     * @param int $withdrawn withdrawn
      *
      * @return $this
      */
@@ -370,7 +370,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Gets transfer_in
      *
-     * @return float
+     * @return int
      */
     public function getTransferIn()
     {
@@ -380,7 +380,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Sets transfer_in
      *
-     * @param float $transfer_in transfer_in
+     * @param int $transfer_in transfer_in
      *
      * @return $this
      */
@@ -394,7 +394,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Gets transfer_out
      *
-     * @return float
+     * @return int
      */
     public function getTransferOut()
     {
@@ -404,7 +404,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Sets transfer_out
      *
-     * @param float $transfer_out transfer_out
+     * @param int $transfer_out transfer_out
      *
      * @return $this
      */
@@ -418,7 +418,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Gets amount
      *
-     * @return float
+     * @return int
      */
     public function getAmount()
     {
@@ -428,7 +428,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Sets amount
      *
-     * @param float $amount amount
+     * @param int $amount amount
      *
      * @return $this
      */
@@ -442,7 +442,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Gets pending_credit
      *
-     * @return float
+     * @return int
      */
     public function getPendingCredit()
     {
@@ -452,7 +452,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Sets pending_credit
      *
-     * @param float $pending_credit pending_credit
+     * @param int $pending_credit pending_credit
      *
      * @return $this
      */
@@ -466,7 +466,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Gets pending_debit
      *
-     * @return float
+     * @return int
      */
     public function getPendingDebit()
     {
@@ -476,7 +476,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Sets pending_debit
      *
-     * @param float $pending_debit pending_debit
+     * @param int $pending_debit pending_debit
      *
      * @return $this
      */
@@ -490,7 +490,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Gets confirmed_debit
      *
-     * @return float
+     * @return int
      */
     public function getConfirmedDebit()
     {
@@ -500,7 +500,7 @@ class Wallet implements ModelInterface, ArrayAccess
     /**
      * Sets confirmed_debit
      *
-     * @param float $confirmed_debit confirmed_debit
+     * @param int $confirmed_debit confirmed_debit
      *
      * @return $this
      */

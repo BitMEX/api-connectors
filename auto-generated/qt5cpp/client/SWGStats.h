@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QString>
 
 #include "SWGObject.h"
@@ -48,17 +47,17 @@ public:
     QString* getCurrency();
     void setCurrency(QString* currency);
 
-    SWGNumber* getVolume24h();
-    void setVolume24h(SWGNumber* volume24h);
+    qint64 getVolume24h();
+    void setVolume24h(qint64 volume24h);
 
-    SWGNumber* getTurnover24h();
-    void setTurnover24h(SWGNumber* turnover24h);
+    qint64 getTurnover24h();
+    void setTurnover24h(qint64 turnover24h);
 
-    SWGNumber* getOpenInterest();
-    void setOpenInterest(SWGNumber* open_interest);
+    qint64 getOpenInterest();
+    void setOpenInterest(qint64 open_interest);
 
-    SWGNumber* getOpenValue();
-    void setOpenValue(SWGNumber* open_value);
+    qint64 getOpenValue();
+    void setOpenValue(qint64 open_value);
 
 
     virtual bool isSet() override;
@@ -70,16 +69,16 @@ private:
     QString* currency;
     bool m_currency_isSet;
 
-    SWGNumber* volume24h;
+    qint64 volume24h;
     bool m_volume24h_isSet;
 
-    SWGNumber* turnover24h;
+    qint64 turnover24h;
     bool m_turnover24h_isSet;
 
-    SWGNumber* open_interest;
+    qint64 open_interest;
     bool m_open_interest_isSet;
 
-    SWGNumber* open_value;
+    qint64 open_value;
     bool m_open_value_isSet;
 
 };

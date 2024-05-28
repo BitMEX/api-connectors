@@ -21,11 +21,11 @@ case class TradeBin (
   high: Option[Double] = None,
   low: Option[Double] = None,
   close: Option[Double] = None,
-  trades: Option[Number] = None,
-  volume: Option[Number] = None,
+  trades: Option[Long] = None,
+  volume: Option[Long] = None,
   vwap: Option[Double] = None,
-  lastSize: Option[Number] = None,
-  turnover: Option[Number] = None,
+  lastSize: Option[Long] = None,
+  turnover: Option[Long] = None,
   homeNotional: Option[Double] = None,
   foreignNotional: Option[Double] = None
 )

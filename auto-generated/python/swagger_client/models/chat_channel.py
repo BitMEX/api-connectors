@@ -33,7 +33,7 @@ class ChatChannel(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'float',
+        'id': 'int',
         'name': 'str',
         'is_private': 'bool'
     }
@@ -66,7 +66,7 @@ class ChatChannel(object):
 
 
         :return: The id of this ChatChannel.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._id
 
@@ -76,7 +76,7 @@ class ChatChannel(object):
 
 
         :param id: The id of this ChatChannel.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._id = id

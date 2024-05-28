@@ -23,7 +23,7 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.OrderBookApi()
 symbol = 'symbol_example' # str | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-depth = 25 # float | Orderbook depth per side. Send 0 for full depth. (optional) (default to 25)
+depth = 25 # int | Orderbook depth per side. Send 0 for full depth. (optional) (default to 25)
 
 try:
     # Get current orderbook in vertical format.
@@ -38,7 +38,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **str**| Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. | 
- **depth** | **float**| Orderbook depth per side. Send 0 for full depth. | [optional] [default to 25]
+ **depth** | **int**| Orderbook depth per side. Send 0 for full depth. | [optional] [default to 25]
 
 ### Return type
 

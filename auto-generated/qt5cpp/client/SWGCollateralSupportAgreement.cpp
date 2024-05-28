@@ -39,19 +39,19 @@ void
 SWGCollateralSupportAgreement::init() {
     csa_id = new QString("");
     m_csa_id_isSet = false;
-    account = 0.0;
+    account = 0L;
     m_account_isSet = false;
     currency = new QString("");
     m_currency_isSet = false;
-    amount = 0.0;
+    amount = 0L;
     m_amount_isSet = false;
-    min_amount = 0.0;
+    min_amount = 0L;
     m_min_amount_isSet = false;
-    threshold = 0.0;
+    threshold = 0L;
     m_threshold_isSet = false;
-    mm_ratio_margin_call = 0.0;
+    mm_ratio_margin_call = 0L;
     m_mm_ratio_margin_call_isSet = false;
-    mm_ratio_liquidation = 0.0;
+    mm_ratio_liquidation = 0L;
     m_mm_ratio_liquidation_isSet = false;
     start_time = new QString("");
     m_start_time_isSet = false;
@@ -76,27 +76,15 @@ SWGCollateralSupportAgreement::cleanup() {
     if(csa_id != nullptr) { 
         delete csa_id;
     }
-    if(account != nullptr) { 
-        delete account;
-    }
+
     if(currency != nullptr) { 
         delete currency;
     }
-    if(amount != nullptr) { 
-        delete amount;
-    }
-    if(min_amount != nullptr) { 
-        delete min_amount;
-    }
-    if(threshold != nullptr) { 
-        delete threshold;
-    }
-    if(mm_ratio_margin_call != nullptr) { 
-        delete mm_ratio_margin_call;
-    }
-    if(mm_ratio_liquidation != nullptr) { 
-        delete mm_ratio_liquidation;
-    }
+
+
+
+
+
     if(start_time != nullptr) { 
         delete start_time;
     }
@@ -136,19 +124,19 @@ void
 SWGCollateralSupportAgreement::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&csa_id, pJson["csaID"], "QString", "QString");
     
-    ::Swagger::setValue(&account, pJson["account"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&account, pJson["account"], "qint64", "");
     
     ::Swagger::setValue(&currency, pJson["currency"], "QString", "QString");
     
-    ::Swagger::setValue(&amount, pJson["amount"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&amount, pJson["amount"], "qint64", "");
     
-    ::Swagger::setValue(&min_amount, pJson["minAmount"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&min_amount, pJson["minAmount"], "qint64", "");
     
-    ::Swagger::setValue(&threshold, pJson["threshold"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&threshold, pJson["threshold"], "qint64", "");
     
-    ::Swagger::setValue(&mm_ratio_margin_call, pJson["mmRatioMarginCall"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&mm_ratio_margin_call, pJson["mmRatioMarginCall"], "qint64", "");
     
-    ::Swagger::setValue(&mm_ratio_liquidation, pJson["mmRatioLiquidation"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&mm_ratio_liquidation, pJson["mmRatioLiquidation"], "qint64", "");
     
     ::Swagger::setValue(&start_time, pJson["startTime"], "QString", "QString");
     
@@ -183,26 +171,26 @@ SWGCollateralSupportAgreement::asJsonObject() {
     if(csa_id != nullptr && *csa_id != QString("")){
         toJsonValue(QString("csaID"), csa_id, obj, QString("QString"));
     }
-    if((account != nullptr) && (account->isSet())){
-        toJsonValue(QString("account"), account, obj, QString("SWGNumber"));
+    if(m_account_isSet){
+        obj.insert("account", QJsonValue(account));
     }
     if(currency != nullptr && *currency != QString("")){
         toJsonValue(QString("currency"), currency, obj, QString("QString"));
     }
-    if((amount != nullptr) && (amount->isSet())){
-        toJsonValue(QString("amount"), amount, obj, QString("SWGNumber"));
+    if(m_amount_isSet){
+        obj.insert("amount", QJsonValue(amount));
     }
-    if((min_amount != nullptr) && (min_amount->isSet())){
-        toJsonValue(QString("minAmount"), min_amount, obj, QString("SWGNumber"));
+    if(m_min_amount_isSet){
+        obj.insert("minAmount", QJsonValue(min_amount));
     }
-    if((threshold != nullptr) && (threshold->isSet())){
-        toJsonValue(QString("threshold"), threshold, obj, QString("SWGNumber"));
+    if(m_threshold_isSet){
+        obj.insert("threshold", QJsonValue(threshold));
     }
-    if((mm_ratio_margin_call != nullptr) && (mm_ratio_margin_call->isSet())){
-        toJsonValue(QString("mmRatioMarginCall"), mm_ratio_margin_call, obj, QString("SWGNumber"));
+    if(m_mm_ratio_margin_call_isSet){
+        obj.insert("mmRatioMarginCall", QJsonValue(mm_ratio_margin_call));
     }
-    if((mm_ratio_liquidation != nullptr) && (mm_ratio_liquidation->isSet())){
-        toJsonValue(QString("mmRatioLiquidation"), mm_ratio_liquidation, obj, QString("SWGNumber"));
+    if(m_mm_ratio_liquidation_isSet){
+        obj.insert("mmRatioLiquidation", QJsonValue(mm_ratio_liquidation));
     }
     if(start_time != nullptr && *start_time != QString("")){
         toJsonValue(QString("startTime"), start_time, obj, QString("QString"));
@@ -242,12 +230,12 @@ SWGCollateralSupportAgreement::setCsaId(QString* csa_id) {
     this->m_csa_id_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGCollateralSupportAgreement::getAccount() {
     return account;
 }
 void
-SWGCollateralSupportAgreement::setAccount(SWGNumber* account) {
+SWGCollateralSupportAgreement::setAccount(qint64 account) {
     this->account = account;
     this->m_account_isSet = true;
 }
@@ -262,52 +250,52 @@ SWGCollateralSupportAgreement::setCurrency(QString* currency) {
     this->m_currency_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGCollateralSupportAgreement::getAmount() {
     return amount;
 }
 void
-SWGCollateralSupportAgreement::setAmount(SWGNumber* amount) {
+SWGCollateralSupportAgreement::setAmount(qint64 amount) {
     this->amount = amount;
     this->m_amount_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGCollateralSupportAgreement::getMinAmount() {
     return min_amount;
 }
 void
-SWGCollateralSupportAgreement::setMinAmount(SWGNumber* min_amount) {
+SWGCollateralSupportAgreement::setMinAmount(qint64 min_amount) {
     this->min_amount = min_amount;
     this->m_min_amount_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGCollateralSupportAgreement::getThreshold() {
     return threshold;
 }
 void
-SWGCollateralSupportAgreement::setThreshold(SWGNumber* threshold) {
+SWGCollateralSupportAgreement::setThreshold(qint64 threshold) {
     this->threshold = threshold;
     this->m_threshold_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGCollateralSupportAgreement::getMmRatioMarginCall() {
     return mm_ratio_margin_call;
 }
 void
-SWGCollateralSupportAgreement::setMmRatioMarginCall(SWGNumber* mm_ratio_margin_call) {
+SWGCollateralSupportAgreement::setMmRatioMarginCall(qint64 mm_ratio_margin_call) {
     this->mm_ratio_margin_call = mm_ratio_margin_call;
     this->m_mm_ratio_margin_call_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGCollateralSupportAgreement::getMmRatioLiquidation() {
     return mm_ratio_liquidation;
 }
 void
-SWGCollateralSupportAgreement::setMmRatioLiquidation(SWGNumber* mm_ratio_liquidation) {
+SWGCollateralSupportAgreement::setMmRatioLiquidation(qint64 mm_ratio_liquidation) {
     this->mm_ratio_liquidation = mm_ratio_liquidation;
     this->m_mm_ratio_liquidation_isSet = true;
 }
@@ -398,13 +386,13 @@ SWGCollateralSupportAgreement::isSet(){
     bool isObjectUpdated = false;
     do{
         if(csa_id != nullptr && *csa_id != QString("")){ isObjectUpdated = true; break;}
-        if(account != nullptr && account->isSet()){ isObjectUpdated = true; break;}
+        if(m_account_isSet){ isObjectUpdated = true; break;}
         if(currency != nullptr && *currency != QString("")){ isObjectUpdated = true; break;}
-        if(amount != nullptr && amount->isSet()){ isObjectUpdated = true; break;}
-        if(min_amount != nullptr && min_amount->isSet()){ isObjectUpdated = true; break;}
-        if(threshold != nullptr && threshold->isSet()){ isObjectUpdated = true; break;}
-        if(mm_ratio_margin_call != nullptr && mm_ratio_margin_call->isSet()){ isObjectUpdated = true; break;}
-        if(mm_ratio_liquidation != nullptr && mm_ratio_liquidation->isSet()){ isObjectUpdated = true; break;}
+        if(m_amount_isSet){ isObjectUpdated = true; break;}
+        if(m_min_amount_isSet){ isObjectUpdated = true; break;}
+        if(m_threshold_isSet){ isObjectUpdated = true; break;}
+        if(m_mm_ratio_margin_call_isSet){ isObjectUpdated = true; break;}
+        if(m_mm_ratio_liquidation_isSet){ isObjectUpdated = true; break;}
         if(start_time != nullptr && *start_time != QString("")){ isObjectUpdated = true; break;}
         if(maturity_time != nullptr && *maturity_time != QString("")){ isObjectUpdated = true; break;}
         if(maturity_instruction != nullptr && *maturity_instruction != QString("")){ isObjectUpdated = true; break;}

@@ -9003,7 +9003,7 @@ class UserApi
      *
      * @param  string $currency Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (required)
      * @param  string $network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. (required)
-     * @param  float $amount Amount of withdrawal currency. (required)
+     * @param  int $amount Amount of withdrawal currency. (required)
      * @param  string $otp_token 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
      * @param  string $address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      * @param  string $memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)
@@ -9029,7 +9029,7 @@ class UserApi
      *
      * @param  string $currency Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (required)
      * @param  string $network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. (required)
-     * @param  float $amount Amount of withdrawal currency. (required)
+     * @param  int $amount Amount of withdrawal currency. (required)
      * @param  string $otp_token 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
      * @param  string $address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      * @param  string $memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)
@@ -9145,7 +9145,7 @@ class UserApi
      *
      * @param  string $currency Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (required)
      * @param  string $network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. (required)
-     * @param  float $amount Amount of withdrawal currency. (required)
+     * @param  int $amount Amount of withdrawal currency. (required)
      * @param  string $otp_token 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
      * @param  string $address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      * @param  string $memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)
@@ -9174,7 +9174,7 @@ class UserApi
      *
      * @param  string $currency Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (required)
      * @param  string $network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. (required)
-     * @param  float $amount Amount of withdrawal currency. (required)
+     * @param  int $amount Amount of withdrawal currency. (required)
      * @param  string $otp_token 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
      * @param  string $address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      * @param  string $memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)
@@ -9233,7 +9233,7 @@ class UserApi
      *
      * @param  string $currency Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (required)
      * @param  string $network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. (required)
-     * @param  float $amount Amount of withdrawal currency. (required)
+     * @param  int $amount Amount of withdrawal currency. (required)
      * @param  string $otp_token 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
      * @param  string $address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      * @param  string $memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)
@@ -10055,7 +10055,7 @@ class UserApi
      * Execute a transfer to a paired account.
      *
      * @param  string $currency Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (required)
-     * @param  float $amount Amount of transfer. (required)
+     * @param  int $amount Amount of transfer. (required)
      * @param  double $target_account_id AccountId to send the transfer to, must be a paired account with the user sending the transfer. (required)
      * @param  double $from_account_id AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
      *
@@ -10075,7 +10075,7 @@ class UserApi
      * Execute a transfer to a paired account.
      *
      * @param  string $currency Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (required)
-     * @param  float $amount Amount of transfer. (required)
+     * @param  int $amount Amount of transfer. (required)
      * @param  double $target_account_id AccountId to send the transfer to, must be a paired account with the user sending the transfer. (required)
      * @param  double $from_account_id AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
      *
@@ -10185,7 +10185,7 @@ class UserApi
      * Execute a transfer to a paired account.
      *
      * @param  string $currency Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (required)
-     * @param  float $amount Amount of transfer. (required)
+     * @param  int $amount Amount of transfer. (required)
      * @param  double $target_account_id AccountId to send the transfer to, must be a paired account with the user sending the transfer. (required)
      * @param  double $from_account_id AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
      *
@@ -10208,7 +10208,7 @@ class UserApi
      * Execute a transfer to a paired account.
      *
      * @param  string $currency Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (required)
-     * @param  float $amount Amount of transfer. (required)
+     * @param  int $amount Amount of transfer. (required)
      * @param  double $target_account_id AccountId to send the transfer to, must be a paired account with the user sending the transfer. (required)
      * @param  double $from_account_id AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
      *
@@ -10261,7 +10261,7 @@ class UserApi
      * Create request for operation 'userWalletTransfer'
      *
      * @param  string $currency Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (required)
-     * @param  float $amount Amount of transfer. (required)
+     * @param  int $amount Amount of transfer. (required)
      * @param  double $target_account_id AccountId to send the transfer to, must be a paired account with the user sending the transfer. (required)
      * @param  double $from_account_id AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
      *

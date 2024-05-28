@@ -30,7 +30,7 @@ SWGPositionApi::SWGPositionApi(QString host, QString basePath) {
 }
 
 void
-SWGPositionApi::position_get(QString* filter, QString* columns, SWGNumber* count) {
+SWGPositionApi::position_get(QString* filter, QString* columns, qint32 count) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/position");
 
@@ -178,7 +178,7 @@ SWGPositionApi::position_isolateMarginCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGPositionApi::position_transferIsolatedMargin(QString* symbol, SWGNumber* amount, double target_account_id) {
+SWGPositionApi::position_transferIsolatedMargin(QString* symbol, qint64 amount, double target_account_id) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/position/transferMargin");
 
@@ -302,7 +302,7 @@ SWGPositionApi::position_updateLeverageCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGPositionApi::position_updateRiskLimit(QString* symbol, SWGNumber* risk_limit, double target_account_id) {
+SWGPositionApi::position_updateRiskLimit(QString* symbol, qint64 risk_limit, double target_account_id) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/position/riskLimit");
 

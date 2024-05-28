@@ -21,7 +21,7 @@ namespace model {
 
 Guild::Guild()
 {
-    m_Id = 0.0;
+    m_Id = 0;
     m_IdIsSet = false;
     m_Created = utility::datetime();
     m_Updated = utility::datetime();
@@ -121,7 +121,7 @@ void Guild::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("id")];
         if(!fieldValue.is_null())
         {
-            setId(ModelBase::doubleFromJson(fieldValue));
+            setId(ModelBase::int32_tFromJson(fieldValue));
         }
     }
     setCreated
@@ -300,7 +300,7 @@ void Guild::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
 
     if(multipart->hasContent(utility::conversions::to_string_t("id")))
     {
-        setId(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
+        setId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
     }
     setCreated(ModelBase::dateFromHttpContent(multipart->getContent(utility::conversions::to_string_t("created"))));
     setUpdated(ModelBase::dateFromHttpContent(multipart->getContent(utility::conversions::to_string_t("updated"))));
@@ -359,13 +359,13 @@ void Guild::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
 }
 
-double Guild::getId() const
+int32_t Guild::getId() const
 {
     return m_Id;
 }
 
 
-void Guild::setId(double value)
+void Guild::setId(int32_t value)
 {
     m_Id = value;
     m_IdIsSet = true;

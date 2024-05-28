@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 
 #include "SWGObject.h"
@@ -42,14 +41,14 @@ public:
     void fromJsonObject(QJsonObject json) override;
     SWGPinnedMessage* fromJson(QString jsonString) override;
 
-    SWGNumber* getId();
-    void setId(SWGNumber* id);
+    qint32 getId();
+    void setId(qint32 id);
 
-    SWGNumber* getChannelId();
-    void setChannelId(SWGNumber* channel_id);
+    qint32 getChannelId();
+    void setChannelId(qint32 channel_id);
 
-    SWGNumber* getMessageId();
-    void setMessageId(SWGNumber* message_id);
+    qint32 getMessageId();
+    void setMessageId(qint32 message_id);
 
     QDateTime* getCreated();
     void setCreated(QDateTime* created);
@@ -67,13 +66,13 @@ public:
     virtual bool isSet() override;
 
 private:
-    SWGNumber* id;
+    qint32 id;
     bool m_id_isSet;
 
-    SWGNumber* channel_id;
+    qint32 channel_id;
     bool m_channel_id_isSet;
 
-    SWGNumber* message_id;
+    qint32 message_id;
     bool m_message_id_isSet;
 
     QDateTime* created;

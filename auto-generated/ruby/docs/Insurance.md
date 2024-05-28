@@ -5,6 +5,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **currency** | **String** |  | 
 **timestamp** | **DateTime** |  | 
-**wallet_balance** | **Float** |  | [optional] 
+**wallet_balance** | **Integer** |  | [optional] 
 
 

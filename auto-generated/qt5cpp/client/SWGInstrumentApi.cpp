@@ -30,7 +30,7 @@ SWGInstrumentApi::SWGInstrumentApi(QString host, QString basePath) {
 }
 
 void
-SWGInstrumentApi::instrument_get(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
+SWGInstrumentApi::instrument_get(QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/instrument");
 
@@ -342,7 +342,7 @@ SWGInstrumentApi::instrument_getActiveIntervalsCallback(SWGHttpRequestWorker * w
 }
 
 void
-SWGInstrumentApi::instrument_getCompositeIndex(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
+SWGInstrumentApi::instrument_getCompositeIndex(QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/instrument/compositeIndex");
 

@@ -41,8 +41,8 @@ module SwaggerClient
         :'date' => :'DateTime',
         :'root_symbol' => :'String',
         :'currency' => :'String',
-        :'volume' => :'Float',
-        :'turnover' => :'Float'
+        :'volume' => :'Integer',
+        :'turnover' => :'Integer'
       }
     end
 

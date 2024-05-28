@@ -60,11 +60,11 @@ module SwaggerClient
         :'timestamp' => :'DateTime',
         :'symbol' => :'String',
         :'side' => :'String',
-        :'size' => :'Float',
+        :'size' => :'Integer',
         :'price' => :'Float',
         :'tick_direction' => :'String',
         :'trd_match_id' => :'String',
-        :'gross_value' => :'Float',
+        :'gross_value' => :'Integer',
         :'home_notional' => :'Float',
         :'foreign_notional' => :'Float',
         :'trd_type' => :'String'

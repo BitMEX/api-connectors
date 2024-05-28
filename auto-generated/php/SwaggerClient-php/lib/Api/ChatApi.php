@@ -92,8 +92,8 @@ class ChatApi
      *
      * Get chat messages.
      *
-     * @param  float $count Number of results to fetch. (optional, default to 100)
-     * @param  float $start Starting ID for results. (optional, default to 0)
+     * @param  int $count Number of results to fetch. (optional, default to 100)
+     * @param  int $start Starting ID for results. (optional, default to 0)
      * @param  bool $reverse If true, will sort results newest first. (optional, default to true)
      * @param  double $channel_id Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)
      *
@@ -112,8 +112,8 @@ class ChatApi
      *
      * Get chat messages.
      *
-     * @param  float $count Number of results to fetch. (optional, default to 100)
-     * @param  float $start Starting ID for results. (optional, default to 0)
+     * @param  int $count Number of results to fetch. (optional, default to 100)
+     * @param  int $start Starting ID for results. (optional, default to 0)
      * @param  bool $reverse If true, will sort results newest first. (optional, default to true)
      * @param  double $channel_id Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)
      *
@@ -222,8 +222,8 @@ class ChatApi
      *
      * Get chat messages.
      *
-     * @param  float $count Number of results to fetch. (optional, default to 100)
-     * @param  float $start Starting ID for results. (optional, default to 0)
+     * @param  int $count Number of results to fetch. (optional, default to 100)
+     * @param  int $start Starting ID for results. (optional, default to 0)
      * @param  bool $reverse If true, will sort results newest first. (optional, default to true)
      * @param  double $channel_id Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)
      *
@@ -245,8 +245,8 @@ class ChatApi
      *
      * Get chat messages.
      *
-     * @param  float $count Number of results to fetch. (optional, default to 100)
-     * @param  float $start Starting ID for results. (optional, default to 0)
+     * @param  int $count Number of results to fetch. (optional, default to 100)
+     * @param  int $start Starting ID for results. (optional, default to 0)
      * @param  bool $reverse If true, will sort results newest first. (optional, default to true)
      * @param  double $channel_id Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)
      *
@@ -298,8 +298,8 @@ class ChatApi
     /**
      * Create request for operation 'chatGet'
      *
-     * @param  float $count Number of results to fetch. (optional, default to 100)
-     * @param  float $start Starting ID for results. (optional, default to 0)
+     * @param  int $count Number of results to fetch. (optional, default to 100)
+     * @param  int $start Starting ID for results. (optional, default to 0)
      * @param  bool $reverse If true, will sort results newest first. (optional, default to true)
      * @param  double $channel_id Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)
      *

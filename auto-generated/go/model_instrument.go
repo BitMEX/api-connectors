@@ -34,21 +34,21 @@ type Instrument struct {
 	CalcInterval time.Time `json:"calcInterval,omitempty"`
 	PublishInterval time.Time `json:"publishInterval,omitempty"`
 	PublishTime time.Time `json:"publishTime,omitempty"`
-	MaxOrderQty float32 `json:"maxOrderQty,omitempty"`
+	MaxOrderQty int64 `json:"maxOrderQty,omitempty"`
 	MaxPrice float64 `json:"maxPrice,omitempty"`
-	LotSize float32 `json:"lotSize,omitempty"`
+	LotSize int64 `json:"lotSize,omitempty"`
 	TickSize float64 `json:"tickSize,omitempty"`
-	Multiplier float32 `json:"multiplier,omitempty"`
+	Multiplier int64 `json:"multiplier,omitempty"`
 	SettlCurrency string `json:"settlCurrency,omitempty"`
-	UnderlyingToPositionMultiplier float32 `json:"underlyingToPositionMultiplier,omitempty"`
-	UnderlyingToSettleMultiplier float32 `json:"underlyingToSettleMultiplier,omitempty"`
-	QuoteToSettleMultiplier float32 `json:"quoteToSettleMultiplier,omitempty"`
+	UnderlyingToPositionMultiplier int64 `json:"underlyingToPositionMultiplier,omitempty"`
+	UnderlyingToSettleMultiplier int64 `json:"underlyingToSettleMultiplier,omitempty"`
+	QuoteToSettleMultiplier int64 `json:"quoteToSettleMultiplier,omitempty"`
 	IsQuanto bool `json:"isQuanto,omitempty"`
 	IsInverse bool `json:"isInverse,omitempty"`
 	InitMargin float64 `json:"initMargin,omitempty"`
 	MaintMargin float64 `json:"maintMargin,omitempty"`
-	RiskLimit float32 `json:"riskLimit,omitempty"`
-	RiskStep float32 `json:"riskStep,omitempty"`
+	RiskLimit int64 `json:"riskLimit,omitempty"`
+	RiskStep int64 `json:"riskStep,omitempty"`
 	Limit float64 `json:"limit,omitempty"`
 	Taxed bool `json:"taxed,omitempty"`
 	Deleverage bool `json:"deleverage,omitempty"`
@@ -67,13 +67,13 @@ type Instrument struct {
 	PrevClosePrice float64 `json:"prevClosePrice,omitempty"`
 	LimitDownPrice float64 `json:"limitDownPrice,omitempty"`
 	LimitUpPrice float64 `json:"limitUpPrice,omitempty"`
-	TotalVolume float32 `json:"totalVolume,omitempty"`
-	Volume float32 `json:"volume,omitempty"`
-	Volume24h float32 `json:"volume24h,omitempty"`
-	PrevTotalTurnover float32 `json:"prevTotalTurnover,omitempty"`
-	TotalTurnover float32 `json:"totalTurnover,omitempty"`
-	Turnover float32 `json:"turnover,omitempty"`
-	Turnover24h float32 `json:"turnover24h,omitempty"`
+	TotalVolume int64 `json:"totalVolume,omitempty"`
+	Volume int64 `json:"volume,omitempty"`
+	Volume24h int64 `json:"volume24h,omitempty"`
+	PrevTotalTurnover int64 `json:"prevTotalTurnover,omitempty"`
+	TotalTurnover int64 `json:"totalTurnover,omitempty"`
+	Turnover int64 `json:"turnover,omitempty"`
+	Turnover24h int64 `json:"turnover24h,omitempty"`
 	HomeNotional24h float64 `json:"homeNotional24h,omitempty"`
 	ForeignNotional24h float64 `json:"foreignNotional24h,omitempty"`
 	PrevPrice24h float64 `json:"prevPrice24h,omitempty"`
@@ -91,8 +91,8 @@ type Instrument struct {
 	ImpactMidPrice float64 `json:"impactMidPrice,omitempty"`
 	ImpactAskPrice float64 `json:"impactAskPrice,omitempty"`
 	HasLiquidity bool `json:"hasLiquidity,omitempty"`
-	OpenInterest float32 `json:"openInterest,omitempty"`
-	OpenValue float32 `json:"openValue,omitempty"`
+	OpenInterest int64 `json:"openInterest,omitempty"`
+	OpenValue int64 `json:"openValue,omitempty"`
 	FairMethod string `json:"fairMethod,omitempty"`
 	FairBasisRate float64 `json:"fairBasisRate,omitempty"`
 	FairBasis float64 `json:"fairBasis,omitempty"`

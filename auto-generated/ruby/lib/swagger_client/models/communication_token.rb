@@ -37,7 +37,7 @@ module SwaggerClient
     def self.swagger_types
       {
         :'id' => :'String',
-        :'user_id' => :'Float',
+        :'user_id' => :'Integer',
         :'device_token' => :'String',
         :'channel' => :'String'
       }

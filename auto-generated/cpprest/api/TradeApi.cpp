@@ -36,7 +36,7 @@ TradeApi::~TradeApi()
 {
 }
 
-pplx::task<std::vector<std::shared_ptr<Trade>>> TradeApi::trade_get(boost::optional<utility::string_t> symbol, boost::optional<utility::string_t> filter, boost::optional<utility::string_t> columns, boost::optional<double> count, boost::optional<double> start, boost::optional<bool> reverse, boost::optional<utility::datetime> startTime, boost::optional<utility::datetime> endTime)
+pplx::task<std::vector<std::shared_ptr<Trade>>> TradeApi::trade_get(boost::optional<utility::string_t> symbol, boost::optional<utility::string_t> filter, boost::optional<utility::string_t> columns, boost::optional<int32_t> count, boost::optional<int32_t> start, boost::optional<bool> reverse, boost::optional<utility::datetime> startTime, boost::optional<utility::datetime> endTime)
 {
 
 
@@ -194,7 +194,7 @@ pplx::task<std::vector<std::shared_ptr<Trade>>> TradeApi::trade_get(boost::optio
         return result;
     });
 }
-pplx::task<std::vector<std::shared_ptr<TradeBin>>> TradeApi::trade_getBucketed(boost::optional<utility::string_t> binSize, boost::optional<bool> partial, boost::optional<utility::string_t> symbol, boost::optional<utility::string_t> filter, boost::optional<utility::string_t> columns, boost::optional<double> count, boost::optional<double> start, boost::optional<bool> reverse, boost::optional<utility::datetime> startTime, boost::optional<utility::datetime> endTime)
+pplx::task<std::vector<std::shared_ptr<TradeBin>>> TradeApi::trade_getBucketed(boost::optional<utility::string_t> binSize, boost::optional<bool> partial, boost::optional<utility::string_t> symbol, boost::optional<utility::string_t> filter, boost::optional<utility::string_t> columns, boost::optional<int32_t> count, boost::optional<int32_t> start, boost::optional<bool> reverse, boost::optional<utility::datetime> startTime, boost::optional<utility::datetime> endTime)
 {
 
 

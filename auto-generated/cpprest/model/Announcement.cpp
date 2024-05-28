@@ -21,7 +21,7 @@ namespace model {
 
 Announcement::Announcement()
 {
-    m_Id = 0.0;
+    m_Id = 0;
     m_Link = utility::conversions::to_string_t("");
     m_LinkIsSet = false;
     m_Title = utility::conversions::to_string_t("");
@@ -68,7 +68,7 @@ web::json::value Announcement::toJson() const
 
 void Announcement::fromJson(web::json::value& val)
 {
-    setId(ModelBase::doubleFromJson(val[utility::conversions::to_string_t("id")]));
+    setId(ModelBase::int32_tFromJson(val[utility::conversions::to_string_t("id")]));
     if(val.has_field(utility::conversions::to_string_t("link")))
     {
         web::json::value& fieldValue = val[utility::conversions::to_string_t("link")];
@@ -142,7 +142,7 @@ void Announcement::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
         namePrefix += utility::conversions::to_string_t(".");
     }
 
-    setId(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
+    setId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
     if(multipart->hasContent(utility::conversions::to_string_t("link")))
     {
         setLink(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("link"))));
@@ -161,13 +161,13 @@ void Announcement::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
 }
 
-double Announcement::getId() const
+int32_t Announcement::getId() const
 {
     return m_Id;
 }
 
 
-void Announcement::setId(double value)
+void Announcement::setId(int32_t value)
 {
     m_Id = value;
     

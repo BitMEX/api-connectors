@@ -38,7 +38,7 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Position" /> class.
         /// </summary>
-        /// <param name="account">account (required).</param>
+        /// <param name="account">account (required) (default to 0).</param>
         /// <param name="symbol">symbol (required).</param>
         /// <param name="currency">currency.</param>
         /// <param name="underlying">underlying.</param>
@@ -46,43 +46,43 @@ namespace IO.Swagger.Model
         /// <param name="commission">commission (default to 0.0).</param>
         /// <param name="initMarginReq">initMarginReq (default to 0.0).</param>
         /// <param name="maintMarginReq">maintMarginReq (default to 0.0).</param>
-        /// <param name="riskLimit">riskLimit.</param>
+        /// <param name="riskLimit">riskLimit (default to 0).</param>
         /// <param name="leverage">leverage (default to 0.0).</param>
         /// <param name="crossMargin">crossMargin.</param>
         /// <param name="deleveragePercentile">deleveragePercentile (default to 0.0).</param>
-        /// <param name="rebalancedPnl">rebalancedPnl.</param>
-        /// <param name="prevRealisedPnl">prevRealisedPnl.</param>
-        /// <param name="prevUnrealisedPnl">prevUnrealisedPnl.</param>
-        /// <param name="openingQty">openingQty.</param>
-        /// <param name="openOrderBuyQty">openOrderBuyQty.</param>
-        /// <param name="openOrderBuyCost">openOrderBuyCost.</param>
-        /// <param name="openOrderBuyPremium">openOrderBuyPremium.</param>
-        /// <param name="openOrderSellQty">openOrderSellQty.</param>
-        /// <param name="openOrderSellCost">openOrderSellCost.</param>
-        /// <param name="openOrderSellPremium">openOrderSellPremium.</param>
-        /// <param name="currentQty">currentQty.</param>
-        /// <param name="currentCost">currentCost.</param>
-        /// <param name="currentComm">currentComm.</param>
-        /// <param name="realisedCost">realisedCost.</param>
-        /// <param name="unrealisedCost">unrealisedCost.</param>
-        /// <param name="grossOpenPremium">grossOpenPremium.</param>
+        /// <param name="rebalancedPnl">rebalancedPnl (default to 0).</param>
+        /// <param name="prevRealisedPnl">prevRealisedPnl (default to 0).</param>
+        /// <param name="prevUnrealisedPnl">prevUnrealisedPnl (default to 0).</param>
+        /// <param name="openingQty">openingQty (default to 0).</param>
+        /// <param name="openOrderBuyQty">openOrderBuyQty (default to 0).</param>
+        /// <param name="openOrderBuyCost">openOrderBuyCost (default to 0).</param>
+        /// <param name="openOrderBuyPremium">openOrderBuyPremium (default to 0).</param>
+        /// <param name="openOrderSellQty">openOrderSellQty (default to 0).</param>
+        /// <param name="openOrderSellCost">openOrderSellCost (default to 0).</param>
+        /// <param name="openOrderSellPremium">openOrderSellPremium (default to 0).</param>
+        /// <param name="currentQty">currentQty (default to 0).</param>
+        /// <param name="currentCost">currentCost (default to 0).</param>
+        /// <param name="currentComm">currentComm (default to 0).</param>
+        /// <param name="realisedCost">realisedCost (default to 0).</param>
+        /// <param name="unrealisedCost">unrealisedCost (default to 0).</param>
+        /// <param name="grossOpenPremium">grossOpenPremium (default to 0).</param>
         /// <param name="isOpen">isOpen.</param>
         /// <param name="markPrice">markPrice (default to 0.0).</param>
-        /// <param name="markValue">markValue.</param>
-        /// <param name="riskValue">riskValue.</param>
+        /// <param name="markValue">markValue (default to 0).</param>
+        /// <param name="riskValue">riskValue (default to 0).</param>
         /// <param name="homeNotional">homeNotional (default to 0.0).</param>
         /// <param name="foreignNotional">foreignNotional (default to 0.0).</param>
         /// <param name="posState">posState.</param>
-        /// <param name="posCost">posCost.</param>
-        /// <param name="posCross">posCross.</param>
-        /// <param name="posComm">posComm.</param>
-        /// <param name="posLoss">posLoss.</param>
-        /// <param name="posMargin">posMargin.</param>
-        /// <param name="posMaint">posMaint.</param>
-        /// <param name="initMargin">initMargin.</param>
-        /// <param name="maintMargin">maintMargin.</param>
-        /// <param name="realisedPnl">realisedPnl.</param>
-        /// <param name="unrealisedPnl">unrealisedPnl.</param>
+        /// <param name="posCost">posCost (default to 0).</param>
+        /// <param name="posCross">posCross (default to 0).</param>
+        /// <param name="posComm">posComm (default to 0).</param>
+        /// <param name="posLoss">posLoss (default to 0).</param>
+        /// <param name="posMargin">posMargin (default to 0).</param>
+        /// <param name="posMaint">posMaint (default to 0).</param>
+        /// <param name="initMargin">initMargin (default to 0).</param>
+        /// <param name="maintMargin">maintMargin (default to 0).</param>
+        /// <param name="realisedPnl">realisedPnl (default to 0).</param>
+        /// <param name="unrealisedPnl">unrealisedPnl (default to 0).</param>
         /// <param name="unrealisedPnlPcnt">unrealisedPnlPcnt (default to 0.0).</param>
         /// <param name="unrealisedRoePcnt">unrealisedRoePcnt (default to 0.0).</param>
         /// <param name="avgCostPrice">avgCostPrice (default to 0.0).</param>
@@ -92,7 +92,7 @@ namespace IO.Swagger.Model
         /// <param name="liquidationPrice">liquidationPrice (default to 0.0).</param>
         /// <param name="bankruptPrice">bankruptPrice (default to 0.0).</param>
         /// <param name="timestamp">timestamp.</param>
-        public Position(decimal? account = default(decimal?), string symbol = default(string), string currency = default(string), string underlying = default(string), string quoteCurrency = default(string), double? commission = 0.0, double? initMarginReq = 0.0, double? maintMarginReq = 0.0, decimal? riskLimit = default(decimal?), double? leverage = 0.0, bool? crossMargin = default(bool?), double? deleveragePercentile = 0.0, decimal? rebalancedPnl = default(decimal?), decimal? prevRealisedPnl = default(decimal?), decimal? prevUnrealisedPnl = default(decimal?), decimal? openingQty = default(decimal?), decimal? openOrderBuyQty = default(decimal?), decimal? openOrderBuyCost = default(decimal?), decimal? openOrderBuyPremium = default(decimal?), decimal? openOrderSellQty = default(decimal?), decimal? openOrderSellCost = default(decimal?), decimal? openOrderSellPremium = default(decimal?), decimal? currentQty = default(decimal?), decimal? currentCost = default(decimal?), decimal? currentComm = default(decimal?), decimal? realisedCost = default(decimal?), decimal? unrealisedCost = default(decimal?), decimal? grossOpenPremium = default(decimal?), bool? isOpen = default(bool?), double? markPrice = 0.0, decimal? markValue = default(decimal?), decimal? riskValue = default(decimal?), double? homeNotional = 0.0, double? foreignNotional = 0.0, string posState = default(string), decimal? posCost = default(decimal?), decimal? posCross = default(decimal?), decimal? posComm = default(decimal?), decimal? posLoss = default(decimal?), decimal? posMargin = default(decimal?), decimal? posMaint = default(decimal?), decimal? initMargin = default(decimal?), decimal? maintMargin = default(decimal?), decimal? realisedPnl = default(decimal?), decimal? unrealisedPnl = default(decimal?), double? unrealisedPnlPcnt = 0.0, double? unrealisedRoePcnt = 0.0, double? avgCostPrice = 0.0, double? avgEntryPrice = 0.0, double? breakEvenPrice = 0.0, double? marginCallPrice = 0.0, double? liquidationPrice = 0.0, double? bankruptPrice = 0.0, DateTime? timestamp = default(DateTime?))
+        public Position(long? account = 0, string symbol = default(string), string currency = default(string), string underlying = default(string), string quoteCurrency = default(string), double? commission = 0.0, double? initMarginReq = 0.0, double? maintMarginReq = 0.0, long? riskLimit = 0, double? leverage = 0.0, bool? crossMargin = default(bool?), double? deleveragePercentile = 0.0, long? rebalancedPnl = 0, long? prevRealisedPnl = 0, long? prevUnrealisedPnl = 0, long? openingQty = 0, long? openOrderBuyQty = 0, long? openOrderBuyCost = 0, long? openOrderBuyPremium = 0, long? openOrderSellQty = 0, long? openOrderSellCost = 0, long? openOrderSellPremium = 0, long? currentQty = 0, long? currentCost = 0, long? currentComm = 0, long? realisedCost = 0, long? unrealisedCost = 0, long? grossOpenPremium = 0, bool? isOpen = default(bool?), double? markPrice = 0.0, long? markValue = 0, long? riskValue = 0, double? homeNotional = 0.0, double? foreignNotional = 0.0, string posState = default(string), long? posCost = 0, long? posCross = 0, long? posComm = 0, long? posLoss = 0, long? posMargin = 0, long? posMaint = 0, long? initMargin = 0, long? maintMargin = 0, long? realisedPnl = 0, long? unrealisedPnl = 0, double? unrealisedPnlPcnt = 0.0, double? unrealisedRoePcnt = 0.0, double? avgCostPrice = 0.0, double? avgEntryPrice = 0.0, double? breakEvenPrice = 0.0, double? marginCallPrice = 0.0, double? liquidationPrice = 0.0, double? bankruptPrice = 0.0, DateTime? timestamp = default(DateTime?))
         {
             // to ensure "account" is required (not null)
             if (account == null)
@@ -142,7 +142,15 @@ namespace IO.Swagger.Model
             {
                 this.MaintMarginReq = maintMarginReq;
             }
-            this.RiskLimit = riskLimit;
+            // use default value if no "riskLimit" provided
+            if (riskLimit == null)
+            {
+                this.RiskLimit = 0;
+            }
+            else
+            {
+                this.RiskLimit = riskLimit;
+            }
             // use default value if no "leverage" provided
             if (leverage == null)
             {
@@ -162,22 +170,150 @@ namespace IO.Swagger.Model
             {
                 this.DeleveragePercentile = deleveragePercentile;
             }
-            this.RebalancedPnl = rebalancedPnl;
-            this.PrevRealisedPnl = prevRealisedPnl;
-            this.PrevUnrealisedPnl = prevUnrealisedPnl;
-            this.OpeningQty = openingQty;
-            this.OpenOrderBuyQty = openOrderBuyQty;
-            this.OpenOrderBuyCost = openOrderBuyCost;
-            this.OpenOrderBuyPremium = openOrderBuyPremium;
-            this.OpenOrderSellQty = openOrderSellQty;
-            this.OpenOrderSellCost = openOrderSellCost;
-            this.OpenOrderSellPremium = openOrderSellPremium;
-            this.CurrentQty = currentQty;
-            this.CurrentCost = currentCost;
-            this.CurrentComm = currentComm;
-            this.RealisedCost = realisedCost;
-            this.UnrealisedCost = unrealisedCost;
-            this.GrossOpenPremium = grossOpenPremium;
+            // use default value if no "rebalancedPnl" provided
+            if (rebalancedPnl == null)
+            {
+                this.RebalancedPnl = 0;
+            }
+            else
+            {
+                this.RebalancedPnl = rebalancedPnl;
+            }
+            // use default value if no "prevRealisedPnl" provided
+            if (prevRealisedPnl == null)
+            {
+                this.PrevRealisedPnl = 0;
+            }
+            else
+            {
+                this.PrevRealisedPnl = prevRealisedPnl;
+            }
+            // use default value if no "prevUnrealisedPnl" provided
+            if (prevUnrealisedPnl == null)
+            {
+                this.PrevUnrealisedPnl = 0;
+            }
+            else
+            {
+                this.PrevUnrealisedPnl = prevUnrealisedPnl;
+            }
+            // use default value if no "openingQty" provided
+            if (openingQty == null)
+            {
+                this.OpeningQty = 0;
+            }
+            else
+            {
+                this.OpeningQty = openingQty;
+            }
+            // use default value if no "openOrderBuyQty" provided
+            if (openOrderBuyQty == null)
+            {
+                this.OpenOrderBuyQty = 0;
+            }
+            else
+            {
+                this.OpenOrderBuyQty = openOrderBuyQty;
+            }
+            // use default value if no "openOrderBuyCost" provided
+            if (openOrderBuyCost == null)
+            {
+                this.OpenOrderBuyCost = 0;
+            }
+            else
+            {
+                this.OpenOrderBuyCost = openOrderBuyCost;
+            }
+            // use default value if no "openOrderBuyPremium" provided
+            if (openOrderBuyPremium == null)
+            {
+                this.OpenOrderBuyPremium = 0;
+            }
+            else
+            {
+                this.OpenOrderBuyPremium = openOrderBuyPremium;
+            }
+            // use default value if no "openOrderSellQty" provided
+            if (openOrderSellQty == null)
+            {
+                this.OpenOrderSellQty = 0;
+            }
+            else
+            {
+                this.OpenOrderSellQty = openOrderSellQty;
+            }
+            // use default value if no "openOrderSellCost" provided
+            if (openOrderSellCost == null)
+            {
+                this.OpenOrderSellCost = 0;
+            }
+            else
+            {
+                this.OpenOrderSellCost = openOrderSellCost;
+            }
+            // use default value if no "openOrderSellPremium" provided
+            if (openOrderSellPremium == null)
+            {
+                this.OpenOrderSellPremium = 0;
+            }
+            else
+            {
+                this.OpenOrderSellPremium = openOrderSellPremium;
+            }
+            // use default value if no "currentQty" provided
+            if (currentQty == null)
+            {
+                this.CurrentQty = 0;
+            }
+            else
+            {
+                this.CurrentQty = currentQty;
+            }
+            // use default value if no "currentCost" provided
+            if (currentCost == null)
+            {
+                this.CurrentCost = 0;
+            }
+            else
+            {
+                this.CurrentCost = currentCost;
+            }
+            // use default value if no "currentComm" provided
+            if (currentComm == null)
+            {
+                this.CurrentComm = 0;
+            }
+            else
+            {
+                this.CurrentComm = currentComm;
+            }
+            // use default value if no "realisedCost" provided
+            if (realisedCost == null)
+            {
+                this.RealisedCost = 0;
+            }
+            else
+            {
+                this.RealisedCost = realisedCost;
+            }
+            // use default value if no "unrealisedCost" provided
+            if (unrealisedCost == null)
+            {
+                this.UnrealisedCost = 0;
+            }
+            else
+            {
+                this.UnrealisedCost = unrealisedCost;
+            }
+            // use default value if no "grossOpenPremium" provided
+            if (grossOpenPremium == null)
+            {
+                this.GrossOpenPremium = 0;
+            }
+            else
+            {
+                this.GrossOpenPremium = grossOpenPremium;
+            }
             this.IsOpen = isOpen;
             // use default value if no "markPrice" provided
             if (markPrice == null)
@@ -188,8 +324,24 @@ namespace IO.Swagger.Model
             {
                 this.MarkPrice = markPrice;
             }
-            this.MarkValue = markValue;
-            this.RiskValue = riskValue;
+            // use default value if no "markValue" provided
+            if (markValue == null)
+            {
+                this.MarkValue = 0;
+            }
+            else
+            {
+                this.MarkValue = markValue;
+            }
+            // use default value if no "riskValue" provided
+            if (riskValue == null)
+            {
+                this.RiskValue = 0;
+            }
+            else
+            {
+                this.RiskValue = riskValue;
+            }
             // use default value if no "homeNotional" provided
             if (homeNotional == null)
             {
@@ -209,16 +361,96 @@ namespace IO.Swagger.Model
                 this.ForeignNotional = foreignNotional;
             }
             this.PosState = posState;
-            this.PosCost = posCost;
-            this.PosCross = posCross;
-            this.PosComm = posComm;
-            this.PosLoss = posLoss;
-            this.PosMargin = posMargin;
-            this.PosMaint = posMaint;
-            this.InitMargin = initMargin;
-            this.MaintMargin = maintMargin;
-            this.RealisedPnl = realisedPnl;
-            this.UnrealisedPnl = unrealisedPnl;
+            // use default value if no "posCost" provided
+            if (posCost == null)
+            {
+                this.PosCost = 0;
+            }
+            else
+            {
+                this.PosCost = posCost;
+            }
+            // use default value if no "posCross" provided
+            if (posCross == null)
+            {
+                this.PosCross = 0;
+            }
+            else
+            {
+                this.PosCross = posCross;
+            }
+            // use default value if no "posComm" provided
+            if (posComm == null)
+            {
+                this.PosComm = 0;
+            }
+            else
+            {
+                this.PosComm = posComm;
+            }
+            // use default value if no "posLoss" provided
+            if (posLoss == null)
+            {
+                this.PosLoss = 0;
+            }
+            else
+            {
+                this.PosLoss = posLoss;
+            }
+            // use default value if no "posMargin" provided
+            if (posMargin == null)
+            {
+                this.PosMargin = 0;
+            }
+            else
+            {
+                this.PosMargin = posMargin;
+            }
+            // use default value if no "posMaint" provided
+            if (posMaint == null)
+            {
+                this.PosMaint = 0;
+            }
+            else
+            {
+                this.PosMaint = posMaint;
+            }
+            // use default value if no "initMargin" provided
+            if (initMargin == null)
+            {
+                this.InitMargin = 0;
+            }
+            else
+            {
+                this.InitMargin = initMargin;
+            }
+            // use default value if no "maintMargin" provided
+            if (maintMargin == null)
+            {
+                this.MaintMargin = 0;
+            }
+            else
+            {
+                this.MaintMargin = maintMargin;
+            }
+            // use default value if no "realisedPnl" provided
+            if (realisedPnl == null)
+            {
+                this.RealisedPnl = 0;
+            }
+            else
+            {
+                this.RealisedPnl = realisedPnl;
+            }
+            // use default value if no "unrealisedPnl" provided
+            if (unrealisedPnl == null)
+            {
+                this.UnrealisedPnl = 0;
+            }
+            else
+            {
+                this.UnrealisedPnl = unrealisedPnl;
+            }
             // use default value if no "unrealisedPnlPcnt" provided
             if (unrealisedPnlPcnt == null)
             {
@@ -298,7 +530,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name="account", EmitDefaultValue=false)]
-        public decimal? Account { get; set; }
+        public long? Account { get; set; }
 
         /// <summary>
         /// Gets or Sets Symbol
@@ -346,7 +578,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets RiskLimit
         /// </summary>
         [DataMember(Name="riskLimit", EmitDefaultValue=false)]
-        public decimal? RiskLimit { get; set; }
+        public long? RiskLimit { get; set; }
 
         /// <summary>
         /// Gets or Sets Leverage
@@ -370,97 +602,97 @@ namespace IO.Swagger.Model
         /// Gets or Sets RebalancedPnl
         /// </summary>
         [DataMember(Name="rebalancedPnl", EmitDefaultValue=false)]
-        public decimal? RebalancedPnl { get; set; }
+        public long? RebalancedPnl { get; set; }
 
         /// <summary>
         /// Gets or Sets PrevRealisedPnl
         /// </summary>
         [DataMember(Name="prevRealisedPnl", EmitDefaultValue=false)]
-        public decimal? PrevRealisedPnl { get; set; }
+        public long? PrevRealisedPnl { get; set; }
 
         /// <summary>
         /// Gets or Sets PrevUnrealisedPnl
         /// </summary>
         [DataMember(Name="prevUnrealisedPnl", EmitDefaultValue=false)]
-        public decimal? PrevUnrealisedPnl { get; set; }
+        public long? PrevUnrealisedPnl { get; set; }
 
         /// <summary>
         /// Gets or Sets OpeningQty
         /// </summary>
         [DataMember(Name="openingQty", EmitDefaultValue=false)]
-        public decimal? OpeningQty { get; set; }
+        public long? OpeningQty { get; set; }
 
         /// <summary>
         /// Gets or Sets OpenOrderBuyQty
         /// </summary>
         [DataMember(Name="openOrderBuyQty", EmitDefaultValue=false)]
-        public decimal? OpenOrderBuyQty { get; set; }
+        public long? OpenOrderBuyQty { get; set; }
 
         /// <summary>
         /// Gets or Sets OpenOrderBuyCost
         /// </summary>
         [DataMember(Name="openOrderBuyCost", EmitDefaultValue=false)]
-        public decimal? OpenOrderBuyCost { get; set; }
+        public long? OpenOrderBuyCost { get; set; }
 
         /// <summary>
         /// Gets or Sets OpenOrderBuyPremium
         /// </summary>
         [DataMember(Name="openOrderBuyPremium", EmitDefaultValue=false)]
-        public decimal? OpenOrderBuyPremium { get; set; }
+        public long? OpenOrderBuyPremium { get; set; }
 
         /// <summary>
         /// Gets or Sets OpenOrderSellQty
         /// </summary>
         [DataMember(Name="openOrderSellQty", EmitDefaultValue=false)]
-        public decimal? OpenOrderSellQty { get; set; }
+        public long? OpenOrderSellQty { get; set; }
 
         /// <summary>
         /// Gets or Sets OpenOrderSellCost
         /// </summary>
         [DataMember(Name="openOrderSellCost", EmitDefaultValue=false)]
-        public decimal? OpenOrderSellCost { get; set; }
+        public long? OpenOrderSellCost { get; set; }
 
         /// <summary>
         /// Gets or Sets OpenOrderSellPremium
         /// </summary>
         [DataMember(Name="openOrderSellPremium", EmitDefaultValue=false)]
-        public decimal? OpenOrderSellPremium { get; set; }
+        public long? OpenOrderSellPremium { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrentQty
         /// </summary>
         [DataMember(Name="currentQty", EmitDefaultValue=false)]
-        public decimal? CurrentQty { get; set; }
+        public long? CurrentQty { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrentCost
         /// </summary>
         [DataMember(Name="currentCost", EmitDefaultValue=false)]
-        public decimal? CurrentCost { get; set; }
+        public long? CurrentCost { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrentComm
         /// </summary>
         [DataMember(Name="currentComm", EmitDefaultValue=false)]
-        public decimal? CurrentComm { get; set; }
+        public long? CurrentComm { get; set; }
 
         /// <summary>
         /// Gets or Sets RealisedCost
         /// </summary>
         [DataMember(Name="realisedCost", EmitDefaultValue=false)]
-        public decimal? RealisedCost { get; set; }
+        public long? RealisedCost { get; set; }
 
         /// <summary>
         /// Gets or Sets UnrealisedCost
         /// </summary>
         [DataMember(Name="unrealisedCost", EmitDefaultValue=false)]
-        public decimal? UnrealisedCost { get; set; }
+        public long? UnrealisedCost { get; set; }
 
         /// <summary>
         /// Gets or Sets GrossOpenPremium
         /// </summary>
         [DataMember(Name="grossOpenPremium", EmitDefaultValue=false)]
-        public decimal? GrossOpenPremium { get; set; }
+        public long? GrossOpenPremium { get; set; }
 
         /// <summary>
         /// Gets or Sets IsOpen
@@ -478,13 +710,13 @@ namespace IO.Swagger.Model
         /// Gets or Sets MarkValue
         /// </summary>
         [DataMember(Name="markValue", EmitDefaultValue=false)]
-        public decimal? MarkValue { get; set; }
+        public long? MarkValue { get; set; }
 
         /// <summary>
         /// Gets or Sets RiskValue
         /// </summary>
         [DataMember(Name="riskValue", EmitDefaultValue=false)]
-        public decimal? RiskValue { get; set; }
+        public long? RiskValue { get; set; }
 
         /// <summary>
         /// Gets or Sets HomeNotional
@@ -508,61 +740,61 @@ namespace IO.Swagger.Model
         /// Gets or Sets PosCost
         /// </summary>
         [DataMember(Name="posCost", EmitDefaultValue=false)]
-        public decimal? PosCost { get; set; }
+        public long? PosCost { get; set; }
 
         /// <summary>
         /// Gets or Sets PosCross
         /// </summary>
         [DataMember(Name="posCross", EmitDefaultValue=false)]
-        public decimal? PosCross { get; set; }
+        public long? PosCross { get; set; }
 
         /// <summary>
         /// Gets or Sets PosComm
         /// </summary>
         [DataMember(Name="posComm", EmitDefaultValue=false)]
-        public decimal? PosComm { get; set; }
+        public long? PosComm { get; set; }
 
         /// <summary>
         /// Gets or Sets PosLoss
         /// </summary>
         [DataMember(Name="posLoss", EmitDefaultValue=false)]
-        public decimal? PosLoss { get; set; }
+        public long? PosLoss { get; set; }
 
         /// <summary>
         /// Gets or Sets PosMargin
         /// </summary>
         [DataMember(Name="posMargin", EmitDefaultValue=false)]
-        public decimal? PosMargin { get; set; }
+        public long? PosMargin { get; set; }
 
         /// <summary>
         /// Gets or Sets PosMaint
         /// </summary>
         [DataMember(Name="posMaint", EmitDefaultValue=false)]
-        public decimal? PosMaint { get; set; }
+        public long? PosMaint { get; set; }
 
         /// <summary>
         /// Gets or Sets InitMargin
         /// </summary>
         [DataMember(Name="initMargin", EmitDefaultValue=false)]
-        public decimal? InitMargin { get; set; }
+        public long? InitMargin { get; set; }
 
         /// <summary>
         /// Gets or Sets MaintMargin
         /// </summary>
         [DataMember(Name="maintMargin", EmitDefaultValue=false)]
-        public decimal? MaintMargin { get; set; }
+        public long? MaintMargin { get; set; }
 
         /// <summary>
         /// Gets or Sets RealisedPnl
         /// </summary>
         [DataMember(Name="realisedPnl", EmitDefaultValue=false)]
-        public decimal? RealisedPnl { get; set; }
+        public long? RealisedPnl { get; set; }
 
         /// <summary>
         /// Gets or Sets UnrealisedPnl
         /// </summary>
         [DataMember(Name="unrealisedPnl", EmitDefaultValue=false)]
-        public decimal? UnrealisedPnl { get; set; }
+        public long? UnrealisedPnl { get; set; }
 
         /// <summary>
         /// Gets or Sets UnrealisedPnlPcnt

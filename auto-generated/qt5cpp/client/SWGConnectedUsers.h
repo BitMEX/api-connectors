@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 
 #include "SWGObject.h"
 
@@ -41,20 +40,20 @@ public:
     void fromJsonObject(QJsonObject json) override;
     SWGConnectedUsers* fromJson(QString jsonString) override;
 
-    SWGNumber* getUsers();
-    void setUsers(SWGNumber* users);
+    qint32 getUsers();
+    void setUsers(qint32 users);
 
-    SWGNumber* getBots();
-    void setBots(SWGNumber* bots);
+    qint32 getBots();
+    void setBots(qint32 bots);
 
 
     virtual bool isSet() override;
 
 private:
-    SWGNumber* users;
+    qint32 users;
     bool m_users_isSet;
 
-    SWGNumber* bots;
+    qint32 bots;
     bool m_bots_isSet;
 
 };

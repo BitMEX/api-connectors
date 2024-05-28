@@ -58,7 +58,7 @@ class Position implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'account' => 'float',
+        'account' => 'int',
         'symbol' => 'string',
         'currency' => 'string',
         'underlying' => 'string',
@@ -66,43 +66,43 @@ class Position implements ModelInterface, ArrayAccess
         'commission' => 'double',
         'init_margin_req' => 'double',
         'maint_margin_req' => 'double',
-        'risk_limit' => 'float',
+        'risk_limit' => 'int',
         'leverage' => 'double',
         'cross_margin' => 'bool',
         'deleverage_percentile' => 'double',
-        'rebalanced_pnl' => 'float',
-        'prev_realised_pnl' => 'float',
-        'prev_unrealised_pnl' => 'float',
-        'opening_qty' => 'float',
-        'open_order_buy_qty' => 'float',
-        'open_order_buy_cost' => 'float',
-        'open_order_buy_premium' => 'float',
-        'open_order_sell_qty' => 'float',
-        'open_order_sell_cost' => 'float',
-        'open_order_sell_premium' => 'float',
-        'current_qty' => 'float',
-        'current_cost' => 'float',
-        'current_comm' => 'float',
-        'realised_cost' => 'float',
-        'unrealised_cost' => 'float',
-        'gross_open_premium' => 'float',
+        'rebalanced_pnl' => 'int',
+        'prev_realised_pnl' => 'int',
+        'prev_unrealised_pnl' => 'int',
+        'opening_qty' => 'int',
+        'open_order_buy_qty' => 'int',
+        'open_order_buy_cost' => 'int',
+        'open_order_buy_premium' => 'int',
+        'open_order_sell_qty' => 'int',
+        'open_order_sell_cost' => 'int',
+        'open_order_sell_premium' => 'int',
+        'current_qty' => 'int',
+        'current_cost' => 'int',
+        'current_comm' => 'int',
+        'realised_cost' => 'int',
+        'unrealised_cost' => 'int',
+        'gross_open_premium' => 'int',
         'is_open' => 'bool',
         'mark_price' => 'double',
-        'mark_value' => 'float',
-        'risk_value' => 'float',
+        'mark_value' => 'int',
+        'risk_value' => 'int',
         'home_notional' => 'double',
         'foreign_notional' => 'double',
         'pos_state' => 'string',
-        'pos_cost' => 'float',
-        'pos_cross' => 'float',
-        'pos_comm' => 'float',
-        'pos_loss' => 'float',
-        'pos_margin' => 'float',
-        'pos_maint' => 'float',
-        'init_margin' => 'float',
-        'maint_margin' => 'float',
-        'realised_pnl' => 'float',
-        'unrealised_pnl' => 'float',
+        'pos_cost' => 'int',
+        'pos_cross' => 'int',
+        'pos_comm' => 'int',
+        'pos_loss' => 'int',
+        'pos_margin' => 'int',
+        'pos_maint' => 'int',
+        'init_margin' => 'int',
+        'maint_margin' => 'int',
+        'realised_pnl' => 'int',
+        'unrealised_pnl' => 'int',
         'unrealised_pnl_pcnt' => 'double',
         'unrealised_roe_pcnt' => 'double',
         'avg_cost_price' => 'double',
@@ -443,7 +443,7 @@ class Position implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['account'] = isset($data['account']) ? $data['account'] : null;
+        $this->container['account'] = isset($data['account']) ? $data['account'] : 0;
         $this->container['symbol'] = isset($data['symbol']) ? $data['symbol'] : null;
         $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
         $this->container['underlying'] = isset($data['underlying']) ? $data['underlying'] : null;
@@ -451,43 +451,43 @@ class Position implements ModelInterface, ArrayAccess
         $this->container['commission'] = isset($data['commission']) ? $data['commission'] : 0.0;
         $this->container['init_margin_req'] = isset($data['init_margin_req']) ? $data['init_margin_req'] : 0.0;
         $this->container['maint_margin_req'] = isset($data['maint_margin_req']) ? $data['maint_margin_req'] : 0.0;
-        $this->container['risk_limit'] = isset($data['risk_limit']) ? $data['risk_limit'] : null;
+        $this->container['risk_limit'] = isset($data['risk_limit']) ? $data['risk_limit'] : 0;
         $this->container['leverage'] = isset($data['leverage']) ? $data['leverage'] : 0.0;
         $this->container['cross_margin'] = isset($data['cross_margin']) ? $data['cross_margin'] : null;
         $this->container['deleverage_percentile'] = isset($data['deleverage_percentile']) ? $data['deleverage_percentile'] : 0.0;
-        $this->container['rebalanced_pnl'] = isset($data['rebalanced_pnl']) ? $data['rebalanced_pnl'] : null;
-        $this->container['prev_realised_pnl'] = isset($data['prev_realised_pnl']) ? $data['prev_realised_pnl'] : null;
-        $this->container['prev_unrealised_pnl'] = isset($data['prev_unrealised_pnl']) ? $data['prev_unrealised_pnl'] : null;
-        $this->container['opening_qty'] = isset($data['opening_qty']) ? $data['opening_qty'] : null;
-        $this->container['open_order_buy_qty'] = isset($data['open_order_buy_qty']) ? $data['open_order_buy_qty'] : null;
-        $this->container['open_order_buy_cost'] = isset($data['open_order_buy_cost']) ? $data['open_order_buy_cost'] : null;
-        $this->container['open_order_buy_premium'] = isset($data['open_order_buy_premium']) ? $data['open_order_buy_premium'] : null;
-        $this->container['open_order_sell_qty'] = isset($data['open_order_sell_qty']) ? $data['open_order_sell_qty'] : null;
-        $this->container['open_order_sell_cost'] = isset($data['open_order_sell_cost']) ? $data['open_order_sell_cost'] : null;
-        $this->container['open_order_sell_premium'] = isset($data['open_order_sell_premium']) ? $data['open_order_sell_premium'] : null;
-        $this->container['current_qty'] = isset($data['current_qty']) ? $data['current_qty'] : null;
-        $this->container['current_cost'] = isset($data['current_cost']) ? $data['current_cost'] : null;
-        $this->container['current_comm'] = isset($data['current_comm']) ? $data['current_comm'] : null;
-        $this->container['realised_cost'] = isset($data['realised_cost']) ? $data['realised_cost'] : null;
-        $this->container['unrealised_cost'] = isset($data['unrealised_cost']) ? $data['unrealised_cost'] : null;
-        $this->container['gross_open_premium'] = isset($data['gross_open_premium']) ? $data['gross_open_premium'] : null;
+        $this->container['rebalanced_pnl'] = isset($data['rebalanced_pnl']) ? $data['rebalanced_pnl'] : 0;
+        $this->container['prev_realised_pnl'] = isset($data['prev_realised_pnl']) ? $data['prev_realised_pnl'] : 0;
+        $this->container['prev_unrealised_pnl'] = isset($data['prev_unrealised_pnl']) ? $data['prev_unrealised_pnl'] : 0;
+        $this->container['opening_qty'] = isset($data['opening_qty']) ? $data['opening_qty'] : 0;
+        $this->container['open_order_buy_qty'] = isset($data['open_order_buy_qty']) ? $data['open_order_buy_qty'] : 0;
+        $this->container['open_order_buy_cost'] = isset($data['open_order_buy_cost']) ? $data['open_order_buy_cost'] : 0;
+        $this->container['open_order_buy_premium'] = isset($data['open_order_buy_premium']) ? $data['open_order_buy_premium'] : 0;
+        $this->container['open_order_sell_qty'] = isset($data['open_order_sell_qty']) ? $data['open_order_sell_qty'] : 0;
+        $this->container['open_order_sell_cost'] = isset($data['open_order_sell_cost']) ? $data['open_order_sell_cost'] : 0;
+        $this->container['open_order_sell_premium'] = isset($data['open_order_sell_premium']) ? $data['open_order_sell_premium'] : 0;
+        $this->container['current_qty'] = isset($data['current_qty']) ? $data['current_qty'] : 0;
+        $this->container['current_cost'] = isset($data['current_cost']) ? $data['current_cost'] : 0;
+        $this->container['current_comm'] = isset($data['current_comm']) ? $data['current_comm'] : 0;
+        $this->container['realised_cost'] = isset($data['realised_cost']) ? $data['realised_cost'] : 0;
+        $this->container['unrealised_cost'] = isset($data['unrealised_cost']) ? $data['unrealised_cost'] : 0;
+        $this->container['gross_open_premium'] = isset($data['gross_open_premium']) ? $data['gross_open_premium'] : 0;
         $this->container['is_open'] = isset($data['is_open']) ? $data['is_open'] : null;
         $this->container['mark_price'] = isset($data['mark_price']) ? $data['mark_price'] : 0.0;
-        $this->container['mark_value'] = isset($data['mark_value']) ? $data['mark_value'] : null;
-        $this->container['risk_value'] = isset($data['risk_value']) ? $data['risk_value'] : null;
+        $this->container['mark_value'] = isset($data['mark_value']) ? $data['mark_value'] : 0;
+        $this->container['risk_value'] = isset($data['risk_value']) ? $data['risk_value'] : 0;
         $this->container['home_notional'] = isset($data['home_notional']) ? $data['home_notional'] : 0.0;
         $this->container['foreign_notional'] = isset($data['foreign_notional']) ? $data['foreign_notional'] : 0.0;
         $this->container['pos_state'] = isset($data['pos_state']) ? $data['pos_state'] : null;
-        $this->container['pos_cost'] = isset($data['pos_cost']) ? $data['pos_cost'] : null;
-        $this->container['pos_cross'] = isset($data['pos_cross']) ? $data['pos_cross'] : null;
-        $this->container['pos_comm'] = isset($data['pos_comm']) ? $data['pos_comm'] : null;
-        $this->container['pos_loss'] = isset($data['pos_loss']) ? $data['pos_loss'] : null;
-        $this->container['pos_margin'] = isset($data['pos_margin']) ? $data['pos_margin'] : null;
-        $this->container['pos_maint'] = isset($data['pos_maint']) ? $data['pos_maint'] : null;
-        $this->container['init_margin'] = isset($data['init_margin']) ? $data['init_margin'] : null;
-        $this->container['maint_margin'] = isset($data['maint_margin']) ? $data['maint_margin'] : null;
-        $this->container['realised_pnl'] = isset($data['realised_pnl']) ? $data['realised_pnl'] : null;
-        $this->container['unrealised_pnl'] = isset($data['unrealised_pnl']) ? $data['unrealised_pnl'] : null;
+        $this->container['pos_cost'] = isset($data['pos_cost']) ? $data['pos_cost'] : 0;
+        $this->container['pos_cross'] = isset($data['pos_cross']) ? $data['pos_cross'] : 0;
+        $this->container['pos_comm'] = isset($data['pos_comm']) ? $data['pos_comm'] : 0;
+        $this->container['pos_loss'] = isset($data['pos_loss']) ? $data['pos_loss'] : 0;
+        $this->container['pos_margin'] = isset($data['pos_margin']) ? $data['pos_margin'] : 0;
+        $this->container['pos_maint'] = isset($data['pos_maint']) ? $data['pos_maint'] : 0;
+        $this->container['init_margin'] = isset($data['init_margin']) ? $data['init_margin'] : 0;
+        $this->container['maint_margin'] = isset($data['maint_margin']) ? $data['maint_margin'] : 0;
+        $this->container['realised_pnl'] = isset($data['realised_pnl']) ? $data['realised_pnl'] : 0;
+        $this->container['unrealised_pnl'] = isset($data['unrealised_pnl']) ? $data['unrealised_pnl'] : 0;
         $this->container['unrealised_pnl_pcnt'] = isset($data['unrealised_pnl_pcnt']) ? $data['unrealised_pnl_pcnt'] : 0.0;
         $this->container['unrealised_roe_pcnt'] = isset($data['unrealised_roe_pcnt']) ? $data['unrealised_roe_pcnt'] : 0.0;
         $this->container['avg_cost_price'] = isset($data['avg_cost_price']) ? $data['avg_cost_price'] : 0.0;
@@ -532,7 +532,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets account
      *
-     * @return float
+     * @return int
      */
     public function getAccount()
     {
@@ -542,7 +542,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets account
      *
-     * @param float $account account
+     * @param int $account account
      *
      * @return $this
      */
@@ -724,7 +724,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets risk_limit
      *
-     * @return float
+     * @return int
      */
     public function getRiskLimit()
     {
@@ -734,7 +734,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets risk_limit
      *
-     * @param float $risk_limit risk_limit
+     * @param int $risk_limit risk_limit
      *
      * @return $this
      */
@@ -820,7 +820,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets rebalanced_pnl
      *
-     * @return float
+     * @return int
      */
     public function getRebalancedPnl()
     {
@@ -830,7 +830,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets rebalanced_pnl
      *
-     * @param float $rebalanced_pnl rebalanced_pnl
+     * @param int $rebalanced_pnl rebalanced_pnl
      *
      * @return $this
      */
@@ -844,7 +844,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets prev_realised_pnl
      *
-     * @return float
+     * @return int
      */
     public function getPrevRealisedPnl()
     {
@@ -854,7 +854,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets prev_realised_pnl
      *
-     * @param float $prev_realised_pnl prev_realised_pnl
+     * @param int $prev_realised_pnl prev_realised_pnl
      *
      * @return $this
      */
@@ -868,7 +868,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets prev_unrealised_pnl
      *
-     * @return float
+     * @return int
      */
     public function getPrevUnrealisedPnl()
     {
@@ -878,7 +878,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets prev_unrealised_pnl
      *
-     * @param float $prev_unrealised_pnl prev_unrealised_pnl
+     * @param int $prev_unrealised_pnl prev_unrealised_pnl
      *
      * @return $this
      */
@@ -892,7 +892,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets opening_qty
      *
-     * @return float
+     * @return int
      */
     public function getOpeningQty()
     {
@@ -902,7 +902,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets opening_qty
      *
-     * @param float $opening_qty opening_qty
+     * @param int $opening_qty opening_qty
      *
      * @return $this
      */
@@ -916,7 +916,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets open_order_buy_qty
      *
-     * @return float
+     * @return int
      */
     public function getOpenOrderBuyQty()
     {
@@ -926,7 +926,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets open_order_buy_qty
      *
-     * @param float $open_order_buy_qty open_order_buy_qty
+     * @param int $open_order_buy_qty open_order_buy_qty
      *
      * @return $this
      */
@@ -940,7 +940,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets open_order_buy_cost
      *
-     * @return float
+     * @return int
      */
     public function getOpenOrderBuyCost()
     {
@@ -950,7 +950,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets open_order_buy_cost
      *
-     * @param float $open_order_buy_cost open_order_buy_cost
+     * @param int $open_order_buy_cost open_order_buy_cost
      *
      * @return $this
      */
@@ -964,7 +964,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets open_order_buy_premium
      *
-     * @return float
+     * @return int
      */
     public function getOpenOrderBuyPremium()
     {
@@ -974,7 +974,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets open_order_buy_premium
      *
-     * @param float $open_order_buy_premium open_order_buy_premium
+     * @param int $open_order_buy_premium open_order_buy_premium
      *
      * @return $this
      */
@@ -988,7 +988,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets open_order_sell_qty
      *
-     * @return float
+     * @return int
      */
     public function getOpenOrderSellQty()
     {
@@ -998,7 +998,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets open_order_sell_qty
      *
-     * @param float $open_order_sell_qty open_order_sell_qty
+     * @param int $open_order_sell_qty open_order_sell_qty
      *
      * @return $this
      */
@@ -1012,7 +1012,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets open_order_sell_cost
      *
-     * @return float
+     * @return int
      */
     public function getOpenOrderSellCost()
     {
@@ -1022,7 +1022,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets open_order_sell_cost
      *
-     * @param float $open_order_sell_cost open_order_sell_cost
+     * @param int $open_order_sell_cost open_order_sell_cost
      *
      * @return $this
      */
@@ -1036,7 +1036,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets open_order_sell_premium
      *
-     * @return float
+     * @return int
      */
     public function getOpenOrderSellPremium()
     {
@@ -1046,7 +1046,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets open_order_sell_premium
      *
-     * @param float $open_order_sell_premium open_order_sell_premium
+     * @param int $open_order_sell_premium open_order_sell_premium
      *
      * @return $this
      */
@@ -1060,7 +1060,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets current_qty
      *
-     * @return float
+     * @return int
      */
     public function getCurrentQty()
     {
@@ -1070,7 +1070,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets current_qty
      *
-     * @param float $current_qty current_qty
+     * @param int $current_qty current_qty
      *
      * @return $this
      */
@@ -1084,7 +1084,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets current_cost
      *
-     * @return float
+     * @return int
      */
     public function getCurrentCost()
     {
@@ -1094,7 +1094,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets current_cost
      *
-     * @param float $current_cost current_cost
+     * @param int $current_cost current_cost
      *
      * @return $this
      */
@@ -1108,7 +1108,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets current_comm
      *
-     * @return float
+     * @return int
      */
     public function getCurrentComm()
     {
@@ -1118,7 +1118,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets current_comm
      *
-     * @param float $current_comm current_comm
+     * @param int $current_comm current_comm
      *
      * @return $this
      */
@@ -1132,7 +1132,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets realised_cost
      *
-     * @return float
+     * @return int
      */
     public function getRealisedCost()
     {
@@ -1142,7 +1142,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets realised_cost
      *
-     * @param float $realised_cost realised_cost
+     * @param int $realised_cost realised_cost
      *
      * @return $this
      */
@@ -1156,7 +1156,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets unrealised_cost
      *
-     * @return float
+     * @return int
      */
     public function getUnrealisedCost()
     {
@@ -1166,7 +1166,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets unrealised_cost
      *
-     * @param float $unrealised_cost unrealised_cost
+     * @param int $unrealised_cost unrealised_cost
      *
      * @return $this
      */
@@ -1180,7 +1180,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets gross_open_premium
      *
-     * @return float
+     * @return int
      */
     public function getGrossOpenPremium()
     {
@@ -1190,7 +1190,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets gross_open_premium
      *
-     * @param float $gross_open_premium gross_open_premium
+     * @param int $gross_open_premium gross_open_premium
      *
      * @return $this
      */
@@ -1252,7 +1252,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets mark_value
      *
-     * @return float
+     * @return int
      */
     public function getMarkValue()
     {
@@ -1262,7 +1262,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets mark_value
      *
-     * @param float $mark_value mark_value
+     * @param int $mark_value mark_value
      *
      * @return $this
      */
@@ -1276,7 +1276,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets risk_value
      *
-     * @return float
+     * @return int
      */
     public function getRiskValue()
     {
@@ -1286,7 +1286,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets risk_value
      *
-     * @param float $risk_value risk_value
+     * @param int $risk_value risk_value
      *
      * @return $this
      */
@@ -1372,7 +1372,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets pos_cost
      *
-     * @return float
+     * @return int
      */
     public function getPosCost()
     {
@@ -1382,7 +1382,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets pos_cost
      *
-     * @param float $pos_cost pos_cost
+     * @param int $pos_cost pos_cost
      *
      * @return $this
      */
@@ -1396,7 +1396,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets pos_cross
      *
-     * @return float
+     * @return int
      */
     public function getPosCross()
     {
@@ -1406,7 +1406,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets pos_cross
      *
-     * @param float $pos_cross pos_cross
+     * @param int $pos_cross pos_cross
      *
      * @return $this
      */
@@ -1420,7 +1420,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets pos_comm
      *
-     * @return float
+     * @return int
      */
     public function getPosComm()
     {
@@ -1430,7 +1430,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets pos_comm
      *
-     * @param float $pos_comm pos_comm
+     * @param int $pos_comm pos_comm
      *
      * @return $this
      */
@@ -1444,7 +1444,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets pos_loss
      *
-     * @return float
+     * @return int
      */
     public function getPosLoss()
     {
@@ -1454,7 +1454,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets pos_loss
      *
-     * @param float $pos_loss pos_loss
+     * @param int $pos_loss pos_loss
      *
      * @return $this
      */
@@ -1468,7 +1468,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets pos_margin
      *
-     * @return float
+     * @return int
      */
     public function getPosMargin()
     {
@@ -1478,7 +1478,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets pos_margin
      *
-     * @param float $pos_margin pos_margin
+     * @param int $pos_margin pos_margin
      *
      * @return $this
      */
@@ -1492,7 +1492,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets pos_maint
      *
-     * @return float
+     * @return int
      */
     public function getPosMaint()
     {
@@ -1502,7 +1502,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets pos_maint
      *
-     * @param float $pos_maint pos_maint
+     * @param int $pos_maint pos_maint
      *
      * @return $this
      */
@@ -1516,7 +1516,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets init_margin
      *
-     * @return float
+     * @return int
      */
     public function getInitMargin()
     {
@@ -1526,7 +1526,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets init_margin
      *
-     * @param float $init_margin init_margin
+     * @param int $init_margin init_margin
      *
      * @return $this
      */
@@ -1540,7 +1540,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets maint_margin
      *
-     * @return float
+     * @return int
      */
     public function getMaintMargin()
     {
@@ -1550,7 +1550,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets maint_margin
      *
-     * @param float $maint_margin maint_margin
+     * @param int $maint_margin maint_margin
      *
      * @return $this
      */
@@ -1564,7 +1564,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets realised_pnl
      *
-     * @return float
+     * @return int
      */
     public function getRealisedPnl()
     {
@@ -1574,7 +1574,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets realised_pnl
      *
-     * @param float $realised_pnl realised_pnl
+     * @param int $realised_pnl realised_pnl
      *
      * @return $this
      */
@@ -1588,7 +1588,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Gets unrealised_pnl
      *
-     * @return float
+     * @return int
      */
     public function getUnrealisedPnl()
     {
@@ -1598,7 +1598,7 @@ class Position implements ModelInterface, ArrayAccess
     /**
      * Sets unrealised_pnl
      *
-     * @param float $unrealised_pnl unrealised_pnl
+     * @param int $unrealised_pnl unrealised_pnl
      *
      * @return $this
      */

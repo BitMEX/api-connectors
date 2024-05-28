@@ -25,9 +25,9 @@ StatsHistory::StatsHistory()
     m_RootSymbol = utility::conversions::to_string_t("");
     m_Currency = utility::conversions::to_string_t("");
     m_CurrencyIsSet = false;
-    m_Volume = 0.0;
+    m_Volume = 0L;
     m_VolumeIsSet = false;
-    m_Turnover = 0.0;
+    m_Turnover = 0L;
     m_TurnoverIsSet = false;
 }
 
@@ -80,7 +80,7 @@ void StatsHistory::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("volume")];
         if(!fieldValue.is_null())
         {
-            setVolume(ModelBase::doubleFromJson(fieldValue));
+            setVolume(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("turnover")))
@@ -88,7 +88,7 @@ void StatsHistory::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("turnover")];
         if(!fieldValue.is_null())
         {
-            setTurnover(ModelBase::doubleFromJson(fieldValue));
+            setTurnover(ModelBase::int64_tFromJson(fieldValue));
         }
     }
 }
@@ -134,11 +134,11 @@ void StatsHistory::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, c
     }
     if(multipart->hasContent(utility::conversions::to_string_t("volume")))
     {
-        setVolume(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("volume"))));
+        setVolume(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("volume"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("turnover")))
     {
-        setTurnover(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("turnover"))));
+        setTurnover(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("turnover"))));
     }
 }
 
@@ -185,13 +185,13 @@ void StatsHistory::unsetCurrency()
     m_CurrencyIsSet = false;
 }
 
-double StatsHistory::getVolume() const
+int64_t StatsHistory::getVolume() const
 {
     return m_Volume;
 }
 
 
-void StatsHistory::setVolume(double value)
+void StatsHistory::setVolume(int64_t value)
 {
     m_Volume = value;
     m_VolumeIsSet = true;
@@ -206,13 +206,13 @@ void StatsHistory::unsetVolume()
     m_VolumeIsSet = false;
 }
 
-double StatsHistory::getTurnover() const
+int64_t StatsHistory::getTurnover() const
 {
     return m_Turnover;
 }
 
 
-void StatsHistory::setTurnover(double value)
+void StatsHistory::setTurnover(int64_t value)
 {
     m_Turnover = value;
     m_TurnoverIsSet = true;

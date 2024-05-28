@@ -12,7 +12,7 @@ import Foundation
 
 public struct Porl: Codable {
 
-    public var account: Double
+    public var account: Int
     public var nonce: String?
     public var accountNonce: String
     public var total: Double
@@ -21,7 +21,7 @@ public struct Porl: Codable {
     public var height: Double
     public var created: Date
 
-    public init(account: Double, nonce: String?, accountNonce: String, total: Double, balance: Double, filename: String?, height: Double, created: Date) {
+    public init(account: Int, nonce: String?, accountNonce: String, total: Double, balance: Double, filename: String?, height: Double, created: Date) {
         self.account = account
         self.nonce = nonce
         self.accountNonce = accountNonce

@@ -23,7 +23,6 @@ import java.util.*;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.OrderBookL2;
 
@@ -64,7 +63,7 @@ public class OrderBookApi {
    * @param depth Orderbook depth per side. Send 0 for full depth.
    * @return List<OrderBookL2>
   */
-  public List<OrderBookL2> orderBookGetL2 (String symbol, BigDecimal depth) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public List<OrderBookL2> orderBookGetL2 (String symbol, Integer depth) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'symbol' is set
     if (symbol == null) {
@@ -129,7 +128,7 @@ public class OrderBookApi {
    * 
    * @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.   * @param depth Orderbook depth per side. Send 0 for full depth.
   */
-  public void orderBookGetL2 (String symbol, BigDecimal depth, final Response.Listener<List<OrderBookL2>> responseListener, final Response.ErrorListener errorListener) {
+  public void orderBookGetL2 (String symbol, Integer depth, final Response.Listener<List<OrderBookL2>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'symbol' is set

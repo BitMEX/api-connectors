@@ -23,13 +23,12 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * TradeBin
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class TradeBin {
   @SerializedName("timestamp")
   private OffsetDateTime timestamp = null;
@@ -50,19 +49,19 @@ public class TradeBin {
   private Double close = null;
 
   @SerializedName("trades")
-  private BigDecimal trades = null;
+  private Long trades = null;
 
   @SerializedName("volume")
-  private BigDecimal volume = null;
+  private Long volume = null;
 
   @SerializedName("vwap")
   private Double vwap = null;
 
   @SerializedName("lastSize")
-  private BigDecimal lastSize = null;
+  private Long lastSize = null;
 
   @SerializedName("turnover")
-  private BigDecimal turnover = null;
+  private Long turnover = null;
 
   @SerializedName("homeNotional")
   private Double homeNotional = null;
@@ -178,7 +177,7 @@ public class TradeBin {
     this.close = close;
   }
 
-  public TradeBin trades(BigDecimal trades) {
+  public TradeBin trades(Long trades) {
     this.trades = trades;
     return this;
   }
@@ -188,15 +187,15 @@ public class TradeBin {
    * @return trades
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTrades() {
+  public Long getTrades() {
     return trades;
   }
 
-  public void setTrades(BigDecimal trades) {
+  public void setTrades(Long trades) {
     this.trades = trades;
   }
 
-  public TradeBin volume(BigDecimal volume) {
+  public TradeBin volume(Long volume) {
     this.volume = volume;
     return this;
   }
@@ -206,11 +205,11 @@ public class TradeBin {
    * @return volume
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getVolume() {
+  public Long getVolume() {
     return volume;
   }
 
-  public void setVolume(BigDecimal volume) {
+  public void setVolume(Long volume) {
     this.volume = volume;
   }
 
@@ -232,7 +231,7 @@ public class TradeBin {
     this.vwap = vwap;
   }
 
-  public TradeBin lastSize(BigDecimal lastSize) {
+  public TradeBin lastSize(Long lastSize) {
     this.lastSize = lastSize;
     return this;
   }
@@ -242,15 +241,15 @@ public class TradeBin {
    * @return lastSize
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getLastSize() {
+  public Long getLastSize() {
     return lastSize;
   }
 
-  public void setLastSize(BigDecimal lastSize) {
+  public void setLastSize(Long lastSize) {
     this.lastSize = lastSize;
   }
 
-  public TradeBin turnover(BigDecimal turnover) {
+  public TradeBin turnover(Long turnover) {
     this.turnover = turnover;
     return this;
   }
@@ -260,11 +259,11 @@ public class TradeBin {
    * @return turnover
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover() {
+  public Long getTurnover() {
     return turnover;
   }
 
-  public void setTurnover(BigDecimal turnover) {
+  public void setTurnover(Long turnover) {
     this.turnover = turnover;
   }
 

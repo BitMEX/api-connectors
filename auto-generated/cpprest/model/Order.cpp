@@ -26,17 +26,17 @@ Order::Order()
     m_ClOrdIDIsSet = false;
     m_ClOrdLinkID = utility::conversions::to_string_t("");
     m_ClOrdLinkIDIsSet = false;
-    m_Account = 0.0;
+    m_Account = 0L;
     m_AccountIsSet = false;
     m_Symbol = utility::conversions::to_string_t("");
     m_SymbolIsSet = false;
     m_Side = utility::conversions::to_string_t("");
     m_SideIsSet = false;
-    m_OrderQty = 0.0;
+    m_OrderQty = 0L;
     m_OrderQtyIsSet = false;
     m_Price = 0.0;
     m_PriceIsSet = false;
-    m_DisplayQty = 0.0;
+    m_DisplayQty = 0L;
     m_DisplayQtyIsSet = false;
     m_StopPx = 0.0;
     m_StopPxIsSet = false;
@@ -64,9 +64,9 @@ Order::Order()
     m_WorkingIndicatorIsSet = false;
     m_OrdRejReason = utility::conversions::to_string_t("");
     m_OrdRejReasonIsSet = false;
-    m_LeavesQty = 0.0;
+    m_LeavesQty = 0L;
     m_LeavesQtyIsSet = false;
-    m_CumQty = 0.0;
+    m_CumQty = 0L;
     m_CumQtyIsSet = false;
     m_AvgPx = 0.0;
     m_AvgPxIsSet = false;
@@ -228,7 +228,7 @@ void Order::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("account")];
         if(!fieldValue.is_null())
         {
-            setAccount(ModelBase::doubleFromJson(fieldValue));
+            setAccount(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("symbol")))
@@ -252,7 +252,7 @@ void Order::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("orderQty")];
         if(!fieldValue.is_null())
         {
-            setOrderQty(ModelBase::doubleFromJson(fieldValue));
+            setOrderQty(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("price")))
@@ -268,7 +268,7 @@ void Order::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("displayQty")];
         if(!fieldValue.is_null())
         {
-            setDisplayQty(ModelBase::doubleFromJson(fieldValue));
+            setDisplayQty(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("stopPx")))
@@ -380,7 +380,7 @@ void Order::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("leavesQty")];
         if(!fieldValue.is_null())
         {
-            setLeavesQty(ModelBase::doubleFromJson(fieldValue));
+            setLeavesQty(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("cumQty")))
@@ -388,7 +388,7 @@ void Order::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("cumQty")];
         if(!fieldValue.is_null())
         {
-            setCumQty(ModelBase::doubleFromJson(fieldValue));
+            setCumQty(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("avgPx")))
@@ -580,7 +580,7 @@ void Order::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t("account")))
     {
-        setAccount(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("account"))));
+        setAccount(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("account"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("symbol")))
     {
@@ -592,7 +592,7 @@ void Order::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t("orderQty")))
     {
-        setOrderQty(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("orderQty"))));
+        setOrderQty(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("orderQty"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("price")))
     {
@@ -600,7 +600,7 @@ void Order::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t("displayQty")))
     {
-        setDisplayQty(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("displayQty"))));
+        setDisplayQty(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("displayQty"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("stopPx")))
     {
@@ -656,11 +656,11 @@ void Order::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t("leavesQty")))
     {
-        setLeavesQty(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("leavesQty"))));
+        setLeavesQty(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("leavesQty"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("cumQty")))
     {
-        setCumQty(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("cumQty"))));
+        setCumQty(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("cumQty"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("avgPx")))
     {
@@ -733,13 +733,13 @@ void Order::unsetClOrdLinkID()
     m_ClOrdLinkIDIsSet = false;
 }
 
-double Order::getAccount() const
+int64_t Order::getAccount() const
 {
     return m_Account;
 }
 
 
-void Order::setAccount(double value)
+void Order::setAccount(int64_t value)
 {
     m_Account = value;
     m_AccountIsSet = true;
@@ -796,13 +796,13 @@ void Order::unsetSide()
     m_SideIsSet = false;
 }
 
-double Order::getOrderQty() const
+int64_t Order::getOrderQty() const
 {
     return m_OrderQty;
 }
 
 
-void Order::setOrderQty(double value)
+void Order::setOrderQty(int64_t value)
 {
     m_OrderQty = value;
     m_OrderQtyIsSet = true;
@@ -838,13 +838,13 @@ void Order::unsetPrice()
     m_PriceIsSet = false;
 }
 
-double Order::getDisplayQty() const
+int64_t Order::getDisplayQty() const
 {
     return m_DisplayQty;
 }
 
 
-void Order::setDisplayQty(double value)
+void Order::setDisplayQty(int64_t value)
 {
     m_DisplayQty = value;
     m_DisplayQtyIsSet = true;
@@ -1132,13 +1132,13 @@ void Order::unsetOrdRejReason()
     m_OrdRejReasonIsSet = false;
 }
 
-double Order::getLeavesQty() const
+int64_t Order::getLeavesQty() const
 {
     return m_LeavesQty;
 }
 
 
-void Order::setLeavesQty(double value)
+void Order::setLeavesQty(int64_t value)
 {
     m_LeavesQty = value;
     m_LeavesQtyIsSet = true;
@@ -1153,13 +1153,13 @@ void Order::unsetLeavesQty()
     m_LeavesQtyIsSet = false;
 }
 
-double Order::getCumQty() const
+int64_t Order::getCumQty() const
 {
     return m_CumQty;
 }
 
 
-void Order::setCumQty(double value)
+void Order::setCumQty(int64_t value)
 {
     m_CumQty = value;
     m_CumQtyIsSet = true;

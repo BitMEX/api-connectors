@@ -11,7 +11,7 @@ import Foundation
 
 public struct Address: Codable {
 
-    public var _id: Double?
+    public var _id: Int?
     public var currency: String?
     public var created: Date?
     public var userId: Double?
@@ -25,7 +25,7 @@ public struct Address: Codable {
     public var network: String
     public var memo: String?
 
-    public init(_id: Double?, currency: String?, created: Date?, userId: Double?, address: String, name: String, note: String?, skipConfirm: Bool?, skipConfirmVerified: Bool?, skip2FA: Bool?, skip2FAVerified: Bool?, network: String, memo: String?) {
+    public init(_id: Int?, currency: String?, created: Date?, userId: Double?, address: String, name: String, note: String?, skipConfirm: Bool?, skipConfirmVerified: Bool?, skip2FA: Bool?, skip2FAVerified: Bool?, network: String, memo: String?) {
         self._id = _id
         self.currency = currency
         self.created = created

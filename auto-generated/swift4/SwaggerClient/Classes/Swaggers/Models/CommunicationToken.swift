@@ -13,11 +13,11 @@ import Foundation
 public struct CommunicationToken: Codable {
 
     public var _id: String
-    public var userId: Double
+    public var userId: Int
     public var deviceToken: String
     public var channel: String
 
-    public init(_id: String, userId: Double, deviceToken: String, channel: String) {
+    public init(_id: String, userId: Int, deviceToken: String, channel: String) {
         self._id = _id
         self.userId = userId
         self.deviceToken = deviceToken

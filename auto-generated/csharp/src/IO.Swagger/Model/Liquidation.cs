@@ -43,7 +43,7 @@ namespace IO.Swagger.Model
         /// <param name="side">side.</param>
         /// <param name="price">price.</param>
         /// <param name="leavesQty">leavesQty.</param>
-        public Liquidation(string orderID = default(string), string symbol = default(string), string side = default(string), double? price = default(double?), decimal? leavesQty = default(decimal?))
+        public Liquidation(string orderID = default(string), string symbol = default(string), string side = default(string), double? price = default(double?), long? leavesQty = default(long?))
         {
             // to ensure "orderID" is required (not null)
             if (orderID == null)
@@ -88,7 +88,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets LeavesQty
         /// </summary>
         [DataMember(Name="leavesQty", EmitDefaultValue=false)]
-        public decimal? LeavesQty { get; set; }
+        public long? LeavesQty { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

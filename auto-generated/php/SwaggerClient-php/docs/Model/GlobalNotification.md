@@ -3,11 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **float** |  | [optional] 
+**id** | **int** |  | [optional] 
 **date** | [**\DateTime**](\DateTime.md) |  | 
 **title** | **string** |  | 
 **body** | **string** |  | 
-**ttl** | **float** |  | 
+**ttl** | **int** |  | 
 **type** | **string** |  | [optional] 
 **closable** | **bool** |  | [optional] [default to true]
 **persist** | **bool** |  | [optional] [default to true]

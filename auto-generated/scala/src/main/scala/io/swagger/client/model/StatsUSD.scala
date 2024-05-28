@@ -16,9 +16,9 @@ package io.swagger.client.model
 case class StatsUSD (
   rootSymbol: String,
   currency: Option[String] = None,
-  turnover24h: Option[Number] = None,
-  turnover30d: Option[Number] = None,
-  turnover365d: Option[Number] = None,
-  turnover: Option[Number] = None
+  turnover24h: Option[Long] = None,
+  turnover30d: Option[Long] = None,
+  turnover365d: Option[Long] = None,
+  turnover: Option[Long] = None
 )
 

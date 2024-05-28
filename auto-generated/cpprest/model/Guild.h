@@ -57,10 +57,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getId() const;
+    int32_t getId() const;
     bool idIsSet() const;
     void unsetId();
-    void setId(double value);
+    void setId(int32_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -158,7 +158,7 @@ public:
     void setDeleted(bool value);
 
 protected:
-    double m_Id;
+    int32_t m_Id;
     bool m_IdIsSet;
     utility::datetime m_Created;
         utility::datetime m_Updated;

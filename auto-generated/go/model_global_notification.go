@@ -16,11 +16,11 @@ import (
 
 // Account Notifications
 type GlobalNotification struct {
-	Id float32 `json:"id,omitempty"`
+	Id int32 `json:"id,omitempty"`
 	Date time.Time `json:"date"`
 	Title string `json:"title"`
 	Body string `json:"body"`
-	Ttl float32 `json:"ttl"`
+	Ttl int32 `json:"ttl"`
 	Type_ string `json:"type,omitempty"`
 	Closable bool `json:"closable,omitempty"`
 	Persist bool `json:"persist,omitempty"`

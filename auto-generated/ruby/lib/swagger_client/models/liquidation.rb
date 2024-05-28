@@ -43,7 +43,7 @@ module SwaggerClient
         :'symbol' => :'String',
         :'side' => :'String',
         :'price' => :'Float',
-        :'leaves_qty' => :'Float'
+        :'leaves_qty' => :'Integer'
       }
     end
 

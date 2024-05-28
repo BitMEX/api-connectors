@@ -23,17 +23,16 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Account Notifications
  */
 @ApiModel(description = "Account Notifications")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class GlobalNotification {
   @SerializedName("id")
-  private BigDecimal id = null;
+  private Integer id = null;
 
   @SerializedName("date")
   private OffsetDateTime date = null;
@@ -45,7 +44,7 @@ public class GlobalNotification {
   private String body = null;
 
   @SerializedName("ttl")
-  private BigDecimal ttl = null;
+  private Integer ttl = null;
 
   /**
    * Gets or Sets type
@@ -111,7 +110,7 @@ public class GlobalNotification {
   @SerializedName("sound")
   private String sound = null;
 
-  public GlobalNotification id(BigDecimal id) {
+  public GlobalNotification id(Integer id) {
     this.id = id;
     return this;
   }
@@ -121,11 +120,11 @@ public class GlobalNotification {
    * @return id
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(BigDecimal id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -183,7 +182,7 @@ public class GlobalNotification {
     this.body = body;
   }
 
-  public GlobalNotification ttl(BigDecimal ttl) {
+  public GlobalNotification ttl(Integer ttl) {
     this.ttl = ttl;
     return this;
   }
@@ -193,11 +192,11 @@ public class GlobalNotification {
    * @return ttl
   **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getTtl() {
+  public Integer getTtl() {
     return ttl;
   }
 
-  public void setTtl(BigDecimal ttl) {
+  public void setTtl(Integer ttl) {
     this.ttl = ttl;
   }
 

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 <a name="positionget"></a>
 # **PositionGet**
-> List<Position> PositionGet (string filter = null, string columns = null, decimal? count = null)
+> List<Position> PositionGet (string filter = null, string columns = null, int? count = null)
 
 Get your positions.
 
@@ -49,7 +49,7 @@ namespace Example
             var apiInstance = new PositionApi();
             var filter = filter_example;  // string | Table filter. For example, send {\"symbol\": \"XBTUSD\"}. (optional) 
             var columns = columns_example;  // string | Which columns to fetch. For example, send [\"columnName\"]. (optional) 
-            var count = 8.14;  // decimal? | Number of rows to fetch. (optional) 
+            var count = 56;  // int? | Number of rows to fetch. (optional) 
 
             try
             {
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter** | **string**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. | [optional] 
  **columns** | **string**| Which columns to fetch. For example, send [\&quot;columnName\&quot;]. | [optional] 
- **count** | **decimal?**| Number of rows to fetch. | [optional] 
+ **count** | **int?**| Number of rows to fetch. | [optional] 
 
 ### Return type
 
@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 
 <a name="positiontransferisolatedmargin"></a>
 # **PositionTransferIsolatedMargin**
-> Position PositionTransferIsolatedMargin (string symbol, decimal? amount, double? targetAccountId = null)
+> Position PositionTransferIsolatedMargin (string symbol, long? amount, double? targetAccountId = null)
 
 Transfer equity in or out of a position.
 
@@ -202,7 +202,7 @@ namespace Example
 
             var apiInstance = new PositionApi();
             var symbol = symbol_example;  // string | Symbol of position to isolate.
-            var amount = 8.14;  // decimal? | Amount to transfer, in Satoshis. May be negative.
+            var amount = 789;  // long? | Amount to transfer, in Satoshis. May be negative.
             var targetAccountId = 1.2;  // double? | AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional) 
 
             try
@@ -225,7 +225,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string**| Symbol of position to isolate. | 
- **amount** | **decimal?**| Amount to transfer, in Satoshis. May be negative. | 
+ **amount** | **long?**| Amount to transfer, in Satoshis. May be negative. | 
  **targetAccountId** | **double?**| AccountId for the position that the margin would be transfered to, must be a paired account with main user. | [optional] 
 
 ### Return type
@@ -323,7 +323,7 @@ Name | Type | Description  | Notes
 
 <a name="positionupdaterisklimit"></a>
 # **PositionUpdateRiskLimit**
-> Position PositionUpdateRiskLimit (string symbol, decimal? riskLimit, double? targetAccountId = null)
+> Position PositionUpdateRiskLimit (string symbol, long? riskLimit, double? targetAccountId = null)
 
 Update your risk limit.
 
@@ -358,7 +358,7 @@ namespace Example
 
             var apiInstance = new PositionApi();
             var symbol = symbol_example;  // string | Symbol of position to update risk limit on.
-            var riskLimit = 8.14;  // decimal? | New Risk Limit, in Satoshis.
+            var riskLimit = 789;  // long? | New Risk Limit, in Satoshis.
             var targetAccountId = 1.2;  // double? | AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional) 
 
             try
@@ -381,7 +381,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string**| Symbol of position to update risk limit on. | 
- **riskLimit** | **decimal?**| New Risk Limit, in Satoshis. | 
+ **riskLimit** | **long?**| New Risk Limit, in Satoshis. | 
  **targetAccountId** | **double?**| AccountId for the position that the risk limit would be updated on, must be a paired account with main user. | [optional] 
 
 ### Return type

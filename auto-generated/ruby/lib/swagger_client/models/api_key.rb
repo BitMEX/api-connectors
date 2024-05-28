@@ -60,13 +60,13 @@ module SwaggerClient
         :'id' => :'String',
         :'secret' => :'String',
         :'name' => :'String',
-        :'nonce' => :'Float',
+        :'nonce' => :'Integer',
         :'cidr' => :'String',
         :'cidrs' => :'Array<XAny>',
-        :'target_account_id' => :'Float',
+        :'target_account_id' => :'Integer',
         :'permissions' => :'Array<XAny>',
         :'enabled' => :'BOOLEAN',
-        :'user_id' => :'Float',
+        :'user_id' => :'Integer',
         :'created' => :'DateTime'
       }
     end
@@ -93,6 +93,8 @@ module SwaggerClient
 
       if attributes.has_key?(:'nonce')
         self.nonce = attributes[:'nonce']
+      else
+        self.nonce = 0
       end
 
       if attributes.has_key?(:'cidr')

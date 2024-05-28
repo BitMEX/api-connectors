@@ -35,7 +35,7 @@ namespace IO.Swagger.Api
         /// <param name="columns">Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)</param>
         /// <param name="count">Number of rows to fetch. (optional)</param>
         /// <returns>List&lt;Position&gt;</returns>
-        List<Position> PositionGet (string filter = null, string columns = null, decimal? count = null);
+        List<Position> PositionGet (string filter = null, string columns = null, int? count = null);
 
         /// <summary>
         /// Get your positions.
@@ -48,7 +48,7 @@ namespace IO.Swagger.Api
         /// <param name="columns">Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)</param>
         /// <param name="count">Number of rows to fetch. (optional)</param>
         /// <returns>ApiResponse of List&lt;Position&gt;</returns>
-        ApiResponse<List<Position>> PositionGetWithHttpInfo (string filter = null, string columns = null, decimal? count = null);
+        ApiResponse<List<Position>> PositionGetWithHttpInfo (string filter = null, string columns = null, int? count = null);
         /// <summary>
         /// Enable isolated margin or cross margin per-position.
         /// </summary>
@@ -83,7 +83,7 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
         /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>Position</returns>
-        Position PositionTransferIsolatedMargin (string symbol, decimal? amount, double? targetAccountId = null);
+        Position PositionTransferIsolatedMargin (string symbol, long? amount, double? targetAccountId = null);
 
         /// <summary>
         /// Transfer equity in or out of a position.
@@ -96,7 +96,7 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
         /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>ApiResponse of Position</returns>
-        ApiResponse<Position> PositionTransferIsolatedMarginWithHttpInfo (string symbol, decimal? amount, double? targetAccountId = null);
+        ApiResponse<Position> PositionTransferIsolatedMarginWithHttpInfo (string symbol, long? amount, double? targetAccountId = null);
         /// <summary>
         /// Choose leverage for a position.
         /// </summary>
@@ -133,7 +133,7 @@ namespace IO.Swagger.Api
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>Position</returns>
-        Position PositionUpdateRiskLimit (string symbol, decimal? riskLimit, double? targetAccountId = null);
+        Position PositionUpdateRiskLimit (string symbol, long? riskLimit, double? targetAccountId = null);
 
         /// <summary>
         /// Update your risk limit.
@@ -146,7 +146,7 @@ namespace IO.Swagger.Api
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>ApiResponse of Position</returns>
-        ApiResponse<Position> PositionUpdateRiskLimitWithHttpInfo (string symbol, decimal? riskLimit, double? targetAccountId = null);
+        ApiResponse<Position> PositionUpdateRiskLimitWithHttpInfo (string symbol, long? riskLimit, double? targetAccountId = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -160,7 +160,7 @@ namespace IO.Swagger.Api
         /// <param name="columns">Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)</param>
         /// <param name="count">Number of rows to fetch. (optional)</param>
         /// <returns>Task of List&lt;Position&gt;</returns>
-        System.Threading.Tasks.Task<List<Position>> PositionGetAsync (string filter = null, string columns = null, decimal? count = null);
+        System.Threading.Tasks.Task<List<Position>> PositionGetAsync (string filter = null, string columns = null, int? count = null);
 
         /// <summary>
         /// Get your positions.
@@ -173,7 +173,7 @@ namespace IO.Swagger.Api
         /// <param name="columns">Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)</param>
         /// <param name="count">Number of rows to fetch. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Position&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Position>>> PositionGetAsyncWithHttpInfo (string filter = null, string columns = null, decimal? count = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Position>>> PositionGetAsyncWithHttpInfo (string filter = null, string columns = null, int? count = null);
         /// <summary>
         /// Enable isolated margin or cross margin per-position.
         /// </summary>
@@ -208,7 +208,7 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
         /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>Task of Position</returns>
-        System.Threading.Tasks.Task<Position> PositionTransferIsolatedMarginAsync (string symbol, decimal? amount, double? targetAccountId = null);
+        System.Threading.Tasks.Task<Position> PositionTransferIsolatedMarginAsync (string symbol, long? amount, double? targetAccountId = null);
 
         /// <summary>
         /// Transfer equity in or out of a position.
@@ -221,7 +221,7 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
         /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>Task of ApiResponse (Position)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Position>> PositionTransferIsolatedMarginAsyncWithHttpInfo (string symbol, decimal? amount, double? targetAccountId = null);
+        System.Threading.Tasks.Task<ApiResponse<Position>> PositionTransferIsolatedMarginAsyncWithHttpInfo (string symbol, long? amount, double? targetAccountId = null);
         /// <summary>
         /// Choose leverage for a position.
         /// </summary>
@@ -258,7 +258,7 @@ namespace IO.Swagger.Api
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>Task of Position</returns>
-        System.Threading.Tasks.Task<Position> PositionUpdateRiskLimitAsync (string symbol, decimal? riskLimit, double? targetAccountId = null);
+        System.Threading.Tasks.Task<Position> PositionUpdateRiskLimitAsync (string symbol, long? riskLimit, double? targetAccountId = null);
 
         /// <summary>
         /// Update your risk limit.
@@ -271,7 +271,7 @@ namespace IO.Swagger.Api
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>Task of ApiResponse (Position)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateRiskLimitAsyncWithHttpInfo (string symbol, decimal? riskLimit, double? targetAccountId = null);
+        System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateRiskLimitAsyncWithHttpInfo (string symbol, long? riskLimit, double? targetAccountId = null);
         #endregion Asynchronous Operations
     }
 
@@ -380,7 +380,7 @@ namespace IO.Swagger.Api
         /// <param name="columns">Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)</param>
         /// <param name="count">Number of rows to fetch. (optional)</param>
         /// <returns>List&lt;Position&gt;</returns>
-        public List<Position> PositionGet (string filter = null, string columns = null, decimal? count = null)
+        public List<Position> PositionGet (string filter = null, string columns = null, int? count = null)
         {
              ApiResponse<List<Position>> localVarResponse = PositionGetWithHttpInfo(filter, columns, count);
              return localVarResponse.Data;
@@ -394,7 +394,7 @@ namespace IO.Swagger.Api
         /// <param name="columns">Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)</param>
         /// <param name="count">Number of rows to fetch. (optional)</param>
         /// <returns>ApiResponse of List&lt;Position&gt;</returns>
-        public ApiResponse< List<Position> > PositionGetWithHttpInfo (string filter = null, string columns = null, decimal? count = null)
+        public ApiResponse< List<Position> > PositionGetWithHttpInfo (string filter = null, string columns = null, int? count = null)
         {
 
             var localVarPath = "/position";
@@ -470,7 +470,7 @@ namespace IO.Swagger.Api
         /// <param name="columns">Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)</param>
         /// <param name="count">Number of rows to fetch. (optional)</param>
         /// <returns>Task of List&lt;Position&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Position>> PositionGetAsync (string filter = null, string columns = null, decimal? count = null)
+        public async System.Threading.Tasks.Task<List<Position>> PositionGetAsync (string filter = null, string columns = null, int? count = null)
         {
              ApiResponse<List<Position>> localVarResponse = await PositionGetAsyncWithHttpInfo(filter, columns, count);
              return localVarResponse.Data;
@@ -485,7 +485,7 @@ namespace IO.Swagger.Api
         /// <param name="columns">Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)</param>
         /// <param name="count">Number of rows to fetch. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Position&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Position>>> PositionGetAsyncWithHttpInfo (string filter = null, string columns = null, decimal? count = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Position>>> PositionGetAsyncWithHttpInfo (string filter = null, string columns = null, int? count = null)
         {
 
             var localVarPath = "/position";
@@ -742,7 +742,7 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
         /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>Position</returns>
-        public Position PositionTransferIsolatedMargin (string symbol, decimal? amount, double? targetAccountId = null)
+        public Position PositionTransferIsolatedMargin (string symbol, long? amount, double? targetAccountId = null)
         {
              ApiResponse<Position> localVarResponse = PositionTransferIsolatedMarginWithHttpInfo(symbol, amount, targetAccountId);
              return localVarResponse.Data;
@@ -756,7 +756,7 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
         /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>ApiResponse of Position</returns>
-        public ApiResponse< Position > PositionTransferIsolatedMarginWithHttpInfo (string symbol, decimal? amount, double? targetAccountId = null)
+        public ApiResponse< Position > PositionTransferIsolatedMarginWithHttpInfo (string symbol, long? amount, double? targetAccountId = null)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)
@@ -838,7 +838,7 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
         /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>Task of Position</returns>
-        public async System.Threading.Tasks.Task<Position> PositionTransferIsolatedMarginAsync (string symbol, decimal? amount, double? targetAccountId = null)
+        public async System.Threading.Tasks.Task<Position> PositionTransferIsolatedMarginAsync (string symbol, long? amount, double? targetAccountId = null)
         {
              ApiResponse<Position> localVarResponse = await PositionTransferIsolatedMarginAsyncWithHttpInfo(symbol, amount, targetAccountId);
              return localVarResponse.Data;
@@ -853,7 +853,7 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount to transfer, in Satoshis. May be negative.</param>
         /// <param name="targetAccountId">AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)</param>
         /// <returns>Task of ApiResponse (Position)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Position>> PositionTransferIsolatedMarginAsyncWithHttpInfo (string symbol, decimal? amount, double? targetAccountId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Position>> PositionTransferIsolatedMarginAsyncWithHttpInfo (string symbol, long? amount, double? targetAccountId = null)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)
@@ -1128,7 +1128,7 @@ namespace IO.Swagger.Api
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>Position</returns>
-        public Position PositionUpdateRiskLimit (string symbol, decimal? riskLimit, double? targetAccountId = null)
+        public Position PositionUpdateRiskLimit (string symbol, long? riskLimit, double? targetAccountId = null)
         {
              ApiResponse<Position> localVarResponse = PositionUpdateRiskLimitWithHttpInfo(symbol, riskLimit, targetAccountId);
              return localVarResponse.Data;
@@ -1142,7 +1142,7 @@ namespace IO.Swagger.Api
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>ApiResponse of Position</returns>
-        public ApiResponse< Position > PositionUpdateRiskLimitWithHttpInfo (string symbol, decimal? riskLimit, double? targetAccountId = null)
+        public ApiResponse< Position > PositionUpdateRiskLimitWithHttpInfo (string symbol, long? riskLimit, double? targetAccountId = null)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)
@@ -1224,7 +1224,7 @@ namespace IO.Swagger.Api
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>Task of Position</returns>
-        public async System.Threading.Tasks.Task<Position> PositionUpdateRiskLimitAsync (string symbol, decimal? riskLimit, double? targetAccountId = null)
+        public async System.Threading.Tasks.Task<Position> PositionUpdateRiskLimitAsync (string symbol, long? riskLimit, double? targetAccountId = null)
         {
              ApiResponse<Position> localVarResponse = await PositionUpdateRiskLimitAsyncWithHttpInfo(symbol, riskLimit, targetAccountId);
              return localVarResponse.Data;
@@ -1239,7 +1239,7 @@ namespace IO.Swagger.Api
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <param name="targetAccountId">AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)</param>
         /// <returns>Task of ApiResponse (Position)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateRiskLimitAsyncWithHttpInfo (string symbol, decimal? riskLimit, double? targetAccountId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateRiskLimitAsyncWithHttpInfo (string symbol, long? riskLimit, double? targetAccountId = null)
         {
             // verify the required parameter 'symbol' is set
             if (symbol == null)

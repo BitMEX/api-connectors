@@ -33,7 +33,7 @@ class Announcement(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'float',
+        'id': 'int',
         'link': 'str',
         'title': 'str',
         'content': 'str',
@@ -77,7 +77,7 @@ class Announcement(object):
 
 
         :return: The id of this Announcement.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._id
 
@@ -87,7 +87,7 @@ class Announcement(object):
 
 
         :param id: The id of this Announcement.  # noqa: E501
-        :type: float
+        :type: int
         """
         if self._configuration.client_side_validation and id is None:
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501

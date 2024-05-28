@@ -36,7 +36,7 @@ InstrumentApi::~InstrumentApi()
 {
 }
 
-pplx::task<std::vector<std::shared_ptr<Instrument>>> InstrumentApi::instrument_get(boost::optional<utility::string_t> symbol, boost::optional<utility::string_t> filter, boost::optional<utility::string_t> columns, boost::optional<double> count, boost::optional<double> start, boost::optional<bool> reverse, boost::optional<utility::datetime> startTime, boost::optional<utility::datetime> endTime)
+pplx::task<std::vector<std::shared_ptr<Instrument>>> InstrumentApi::instrument_get(boost::optional<utility::string_t> symbol, boost::optional<utility::string_t> filter, boost::optional<utility::string_t> columns, boost::optional<int32_t> count, boost::optional<int32_t> start, boost::optional<bool> reverse, boost::optional<utility::datetime> startTime, boost::optional<utility::datetime> endTime)
 {
 
 
@@ -565,7 +565,7 @@ pplx::task<std::shared_ptr<InstrumentInterval>> InstrumentApi::instrument_getAct
         return result;
     });
 }
-pplx::task<std::vector<std::shared_ptr<IndexComposite>>> InstrumentApi::instrument_getCompositeIndex(boost::optional<utility::string_t> symbol, boost::optional<utility::string_t> filter, boost::optional<utility::string_t> columns, boost::optional<double> count, boost::optional<double> start, boost::optional<bool> reverse, boost::optional<utility::datetime> startTime, boost::optional<utility::datetime> endTime)
+pplx::task<std::vector<std::shared_ptr<IndexComposite>>> InstrumentApi::instrument_getCompositeIndex(boost::optional<utility::string_t> symbol, boost::optional<utility::string_t> filter, boost::optional<utility::string_t> columns, boost::optional<int32_t> count, boost::optional<int32_t> start, boost::optional<bool> reverse, boost::optional<utility::datetime> startTime, boost::optional<utility::datetime> endTime)
 {
 
 

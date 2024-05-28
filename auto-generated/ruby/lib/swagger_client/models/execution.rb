@@ -77,6 +77,8 @@ module SwaggerClient
 
     attr_accessor :commission
 
+    attr_accessor :fee_type
+
     attr_accessor :trade_publish_indicator
 
     attr_accessor :text
@@ -94,8 +96,6 @@ module SwaggerClient
     attr_accessor :transact_time
 
     attr_accessor :timestamp
-
-    attr_accessor :fee_type
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -131,6 +131,7 @@ module SwaggerClient
         :'cum_qty' => :'cumQty',
         :'avg_px' => :'avgPx',
         :'commission' => :'commission',
+        :'fee_type' => :'feeType',
         :'trade_publish_indicator' => :'tradePublishIndicator',
         :'text' => :'text',
         :'trd_match_id' => :'trdMatchID',
@@ -139,8 +140,7 @@ module SwaggerClient
         :'home_notional' => :'homeNotional',
         :'foreign_notional' => :'foreignNotional',
         :'transact_time' => :'transactTime',
-        :'timestamp' => :'timestamp',
-        :'fee_type' => :'feeType'
+        :'timestamp' => :'timestamp'
       }
     end
 
@@ -151,15 +151,15 @@ module SwaggerClient
         :'order_id' => :'String',
         :'cl_ord_id' => :'String',
         :'cl_ord_link_id' => :'String',
-        :'account' => :'Float',
+        :'account' => :'Integer',
         :'symbol' => :'String',
         :'side' => :'String',
-        :'last_qty' => :'Float',
+        :'last_qty' => :'Integer',
         :'last_px' => :'Float',
         :'last_liquidity_ind' => :'String',
-        :'order_qty' => :'Float',
+        :'order_qty' => :'Integer',
         :'price' => :'Float',
-        :'display_qty' => :'Float',
+        :'display_qty' => :'Integer',
         :'stop_px' => :'Float',
         :'peg_offset_value' => :'Float',
         :'peg_price_type' => :'String',
@@ -174,20 +174,20 @@ module SwaggerClient
         :'triggered' => :'String',
         :'working_indicator' => :'BOOLEAN',
         :'ord_rej_reason' => :'String',
-        :'leaves_qty' => :'Float',
-        :'cum_qty' => :'Float',
+        :'leaves_qty' => :'Integer',
+        :'cum_qty' => :'Integer',
         :'avg_px' => :'Float',
         :'commission' => :'Float',
+        :'fee_type' => :'String',
         :'trade_publish_indicator' => :'String',
         :'text' => :'String',
         :'trd_match_id' => :'String',
-        :'exec_cost' => :'Float',
-        :'exec_comm' => :'Float',
+        :'exec_cost' => :'Integer',
+        :'exec_comm' => :'Integer',
         :'home_notional' => :'Float',
         :'foreign_notional' => :'Float',
         :'transact_time' => :'DateTime',
-        :'timestamp' => :'DateTime',
-        :'fee_type' => :'String'
+        :'timestamp' => :'DateTime'
       }
     end
 
@@ -323,6 +323,10 @@ module SwaggerClient
         self.commission = attributes[:'commission']
       end
 
+      if attributes.has_key?(:'feeType')
+        self.fee_type = attributes[:'feeType']
+      end
+
       if attributes.has_key?(:'tradePublishIndicator')
         self.trade_publish_indicator = attributes[:'tradePublishIndicator']
       end
@@ -357,10 +361,6 @@ module SwaggerClient
 
       if attributes.has_key?(:'timestamp')
         self.timestamp = attributes[:'timestamp']
-      end
-
-      if attributes.has_key?(:'feeType')
-        self.fee_type = attributes[:'feeType']
       end
     end
 
@@ -423,6 +423,7 @@ module SwaggerClient
           cum_qty == o.cum_qty &&
           avg_px == o.avg_px &&
           commission == o.commission &&
+          fee_type == o.fee_type &&
           trade_publish_indicator == o.trade_publish_indicator &&
           text == o.text &&
           trd_match_id == o.trd_match_id &&
@@ -431,8 +432,7 @@ module SwaggerClient
           home_notional == o.home_notional &&
           foreign_notional == o.foreign_notional &&
           transact_time == o.transact_time &&
-          timestamp == o.timestamp &&
-          fee_type == o.fee_type
+          timestamp == o.timestamp
     end
 
     # @see the `==` method
@@ -444,7 +444,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [exec_id, order_id, cl_ord_id, cl_ord_link_id, account, symbol, side, last_qty, last_px, last_liquidity_ind, order_qty, price, display_qty, stop_px, peg_offset_value, peg_price_type, currency, settl_currency, exec_type, ord_type, time_in_force, exec_inst, contingency_type, ord_status, triggered, working_indicator, ord_rej_reason, leaves_qty, cum_qty, avg_px, commission, trade_publish_indicator, text, trd_match_id, exec_cost, exec_comm, home_notional, foreign_notional, transact_time, timestamp, fee_type].hash
+      [exec_id, order_id, cl_ord_id, cl_ord_link_id, account, symbol, side, last_qty, last_px, last_liquidity_ind, order_qty, price, display_qty, stop_px, peg_offset_value, peg_price_type, currency, settl_currency, exec_type, ord_type, time_in_force, exec_inst, contingency_type, ord_status, triggered, working_indicator, ord_rej_reason, leaves_qty, cum_qty, avg_px, commission, fee_type, trade_publish_indicator, text, trd_match_id, exec_cost, exec_comm, home_notional, foreign_notional, transact_time, timestamp].hash
     end
 
     # Builds the object from hash

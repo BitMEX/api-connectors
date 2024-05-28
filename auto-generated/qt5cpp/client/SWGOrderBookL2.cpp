@@ -39,11 +39,11 @@ void
 SWGOrderBookL2::init() {
     symbol = new QString("");
     m_symbol_isSet = false;
-    id = 0.0;
+    id = 0L;
     m_id_isSet = false;
     side = new QString("");
     m_side_isSet = false;
-    size = 0.0;
+    size = 0L;
     m_size_isSet = false;
     price = 0.0;
     m_price_isSet = false;
@@ -56,15 +56,11 @@ SWGOrderBookL2::cleanup() {
     if(symbol != nullptr) { 
         delete symbol;
     }
-    if(id != nullptr) { 
-        delete id;
-    }
+
     if(side != nullptr) { 
         delete side;
     }
-    if(size != nullptr) { 
-        delete size;
-    }
+
 
     if(timestamp != nullptr) { 
         delete timestamp;
@@ -84,11 +80,11 @@ void
 SWGOrderBookL2::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&symbol, pJson["symbol"], "QString", "QString");
     
-    ::Swagger::setValue(&id, pJson["id"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&id, pJson["id"], "qint64", "");
     
     ::Swagger::setValue(&side, pJson["side"], "QString", "QString");
     
-    ::Swagger::setValue(&size, pJson["size"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&size, pJson["size"], "qint64", "");
     
     ::Swagger::setValue(&price, pJson["price"], "double", "");
     
@@ -111,14 +107,14 @@ SWGOrderBookL2::asJsonObject() {
     if(symbol != nullptr && *symbol != QString("")){
         toJsonValue(QString("symbol"), symbol, obj, QString("QString"));
     }
-    if((id != nullptr) && (id->isSet())){
-        toJsonValue(QString("id"), id, obj, QString("SWGNumber"));
+    if(m_id_isSet){
+        obj.insert("id", QJsonValue(id));
     }
     if(side != nullptr && *side != QString("")){
         toJsonValue(QString("side"), side, obj, QString("QString"));
     }
-    if((size != nullptr) && (size->isSet())){
-        toJsonValue(QString("size"), size, obj, QString("SWGNumber"));
+    if(m_size_isSet){
+        obj.insert("size", QJsonValue(size));
     }
     if(m_price_isSet){
         obj.insert("price", QJsonValue(price));
@@ -140,12 +136,12 @@ SWGOrderBookL2::setSymbol(QString* symbol) {
     this->m_symbol_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGOrderBookL2::getId() {
     return id;
 }
 void
-SWGOrderBookL2::setId(SWGNumber* id) {
+SWGOrderBookL2::setId(qint64 id) {
     this->id = id;
     this->m_id_isSet = true;
 }
@@ -160,12 +156,12 @@ SWGOrderBookL2::setSide(QString* side) {
     this->m_side_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGOrderBookL2::getSize() {
     return size;
 }
 void
-SWGOrderBookL2::setSize(SWGNumber* size) {
+SWGOrderBookL2::setSize(qint64 size) {
     this->size = size;
     this->m_size_isSet = true;
 }
@@ -196,9 +192,9 @@ SWGOrderBookL2::isSet(){
     bool isObjectUpdated = false;
     do{
         if(symbol != nullptr && *symbol != QString("")){ isObjectUpdated = true; break;}
-        if(id != nullptr && id->isSet()){ isObjectUpdated = true; break;}
+        if(m_id_isSet){ isObjectUpdated = true; break;}
         if(side != nullptr && *side != QString("")){ isObjectUpdated = true; break;}
-        if(size != nullptr && size->isSet()){ isObjectUpdated = true; break;}
+        if(m_size_isSet){ isObjectUpdated = true; break;}
         if(m_price_isSet){ isObjectUpdated = true; break;}
         
     }while(false);

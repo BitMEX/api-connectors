@@ -24,8 +24,8 @@ require 'swagger_client'
 api_instance = SwaggerClient::ChatApi.new
 
 opts = { 
-  count: 100, # Float | Number of results to fetch.
-  start: 0, # Float | Starting ID for results.
+  count: 100, # Integer | Number of results to fetch.
+  start: 0, # Integer | Starting ID for results.
   reverse: true, # BOOLEAN | If true, will sort results newest first.
   channel_id: 1 # Float | Channel id. GET /chat/channels for ids. Global English by default
 }
@@ -43,8 +43,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **Float**| Number of results to fetch. | [optional] [default to 100]
- **start** | **Float**| Starting ID for results. | [optional] [default to 0]
+ **count** | **Integer**| Number of results to fetch. | [optional] [default to 100]
+ **start** | **Integer**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **BOOLEAN**| If true, will sort results newest first. | [optional] [default to true]
  **channel_id** | **Float**| Channel id. GET /chat/channels for ids. Global English by default | [optional] [default to 1]
 

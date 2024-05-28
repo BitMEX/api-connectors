@@ -36,13 +36,13 @@ class APIKey(object):
         'id': 'str',
         'secret': 'str',
         'name': 'str',
-        'nonce': 'float',
+        'nonce': 'int',
         'cidr': 'str',
         'cidrs': 'list[XAny]',
-        'target_account_id': 'float',
+        'target_account_id': 'int',
         'permissions': 'list[XAny]',
         'enabled': 'bool',
-        'user_id': 'float',
+        'user_id': 'int',
         'created': 'datetime'
     }
 
@@ -60,7 +60,7 @@ class APIKey(object):
         'created': 'created'
     }
 
-    def __init__(self, id=None, secret=None, name=None, nonce=None, cidr=None, cidrs=None, target_account_id=None, permissions=None, enabled=False, user_id=None, created=None, _configuration=None):  # noqa: E501
+    def __init__(self, id=None, secret=None, name=None, nonce=0, cidr=None, cidrs=None, target_account_id=None, permissions=None, enabled=False, user_id=None, created=None, _configuration=None):  # noqa: E501
         """APIKey - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -181,7 +181,7 @@ class APIKey(object):
 
 
         :return: The nonce of this APIKey.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._nonce
 
@@ -191,7 +191,7 @@ class APIKey(object):
 
 
         :param nonce: The nonce of this APIKey.  # noqa: E501
-        :type: float
+        :type: int
         """
         if self._configuration.client_side_validation and nonce is None:
             raise ValueError("Invalid value for `nonce`, must not be `None`")  # noqa: E501
@@ -249,7 +249,7 @@ class APIKey(object):
 
 
         :return: The target_account_id of this APIKey.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._target_account_id
 
@@ -259,7 +259,7 @@ class APIKey(object):
 
 
         :param target_account_id: The target_account_id of this APIKey.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._target_account_id = target_account_id
@@ -312,7 +312,7 @@ class APIKey(object):
 
 
         :return: The user_id of this APIKey.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._user_id
 
@@ -322,7 +322,7 @@ class APIKey(object):
 
 
         :param user_id: The user_id of this APIKey.  # noqa: E501
-        :type: float
+        :type: int
         """
         if self._configuration.client_side_validation and user_id is None:
             raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501

@@ -61,12 +61,12 @@ class Order implements ModelInterface, ArrayAccess
         'order_id' => 'string',
         'cl_ord_id' => 'string',
         'cl_ord_link_id' => 'string',
-        'account' => 'float',
+        'account' => 'int',
         'symbol' => 'string',
         'side' => 'string',
-        'order_qty' => 'float',
+        'order_qty' => 'int',
         'price' => 'double',
-        'display_qty' => 'float',
+        'display_qty' => 'int',
         'stop_px' => 'double',
         'peg_offset_value' => 'double',
         'peg_price_type' => 'string',
@@ -80,8 +80,8 @@ class Order implements ModelInterface, ArrayAccess
         'triggered' => 'string',
         'working_indicator' => 'bool',
         'ord_rej_reason' => 'string',
-        'leaves_qty' => 'float',
-        'cum_qty' => 'float',
+        'leaves_qty' => 'int',
+        'cum_qty' => 'int',
         'avg_px' => 'double',
         'text' => 'string',
         'transact_time' => '\DateTime',
@@ -445,7 +445,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Gets account
      *
-     * @return float
+     * @return int
      */
     public function getAccount()
     {
@@ -455,7 +455,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets account
      *
-     * @param float $account account
+     * @param int $account account
      *
      * @return $this
      */
@@ -517,7 +517,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Gets order_qty
      *
-     * @return float
+     * @return int
      */
     public function getOrderQty()
     {
@@ -527,7 +527,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets order_qty
      *
-     * @param float $order_qty order_qty
+     * @param int $order_qty order_qty
      *
      * @return $this
      */
@@ -565,7 +565,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Gets display_qty
      *
-     * @return float
+     * @return int
      */
     public function getDisplayQty()
     {
@@ -575,7 +575,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets display_qty
      *
-     * @param float $display_qty display_qty
+     * @param int $display_qty display_qty
      *
      * @return $this
      */
@@ -901,7 +901,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Gets leaves_qty
      *
-     * @return float
+     * @return int
      */
     public function getLeavesQty()
     {
@@ -911,7 +911,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets leaves_qty
      *
-     * @param float $leaves_qty leaves_qty
+     * @param int $leaves_qty leaves_qty
      *
      * @return $this
      */
@@ -925,7 +925,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Gets cum_qty
      *
-     * @return float
+     * @return int
      */
     public function getCumQty()
     {
@@ -935,7 +935,7 @@ class Order implements ModelInterface, ArrayAccess
     /**
      * Sets cum_qty
      *
-     * @param float $cum_qty cum_qty
+     * @param int $cum_qty cum_qty
      *
      * @return $this
      */

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 <a name="orderamend"></a>
 # **OrderAmend**
-> Order OrderAmend (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, decimal? orderQty = null, double? simpleLeavesQty = null, decimal? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null)
+> Order OrderAmend (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, int? orderQty = null, double? simpleLeavesQty = null, int? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null)
 
 Amend the quantity or price of an open order.
 
@@ -53,9 +53,9 @@ namespace Example
             var origClOrdID = origClOrdID_example;  // string | Client Order ID. See POST /order. (optional) 
             var clOrdID = clOrdID_example;  // string | Optional new Client Order ID, requires `origClOrdID`. (optional) 
             var simpleOrderQty = 1.2;  // double? | Deprecated: simple orders are not supported after 2018/10/26 (optional) 
-            var orderQty = 8.14;  // decimal? | Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). (optional) 
+            var orderQty = 56;  // int? | Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). (optional) 
             var simpleLeavesQty = 1.2;  // double? | Deprecated: simple orders are not supported after 2018/10/26 (optional) 
-            var leavesQty = 8.14;  // decimal? | Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders. (optional) 
+            var leavesQty = 56;  // int? | Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders. (optional) 
             var price = 1.2;  // double? | Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders. (optional) 
             var stopPx = 1.2;  // double? | Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. (optional) 
             var pegOffsetValue = 1.2;  // double? | Optional trailing offset from the current price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for 'Pegged' orders. (optional) 
@@ -84,9 +84,9 @@ Name | Type | Description  | Notes
  **origClOrdID** | **string**| Client Order ID. See POST /order. | [optional] 
  **clOrdID** | **string**| Optional new Client Order ID, requires &#x60;origClOrdID&#x60;. | [optional] 
  **simpleOrderQty** | **double?**| Deprecated: simple orders are not supported after 2018/10/26 | [optional] 
- **orderQty** | **decimal?**| Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). | [optional] 
+ **orderQty** | **int?**| Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). | [optional] 
  **simpleLeavesQty** | **double?**| Deprecated: simple orders are not supported after 2018/10/26 | [optional] 
- **leavesQty** | **decimal?**| Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders. | [optional] 
+ **leavesQty** | **int?**| Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders. | [optional] 
  **price** | **double?**| Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders. | [optional] 
  **stopPx** | **double?**| Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. | [optional] 
  **pegOffsetValue** | **double?**| Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. | [optional] 
@@ -415,7 +415,7 @@ Name | Type | Description  | Notes
 
 <a name="ordergetorders"></a>
 # **OrderGetOrders**
-> List<Order> OrderGetOrders (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+> List<Order> OrderGetOrders (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
 
 Get your orders.
 
@@ -452,8 +452,8 @@ namespace Example
             var symbol = symbol_example;  // string | Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive. (optional) 
             var filter = filter_example;  // string | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional) 
             var columns = columns_example;  // string | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional) 
-            var count = 8.14;  // decimal? | Number of results to fetch. Must be a positive integer. (optional)  (default to 100)
-            var start = 8.14;  // decimal? | Starting point for results. (optional)  (default to 0)
+            var count = 56;  // int? | Number of results to fetch. Must be a positive integer. (optional)  (default to 100)
+            var start = 56;  // int? | Starting point for results. (optional)  (default to 0)
             var reverse = true;  // bool? | If true, will sort results newest first. (optional)  (default to false)
             var startTime = 2013-10-20T19:20:30+01:00;  // DateTime? | Starting date filter for results. (optional) 
             var endTime = 2013-10-20T19:20:30+01:00;  // DateTime? | Ending date filter for results. (optional) 
@@ -480,8 +480,8 @@ Name | Type | Description  | Notes
  **symbol** | **string**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. | [optional] 
  **filter** | **string**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional] 
  **columns** | **string**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 
- **count** | **decimal?**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
- **start** | **decimal?**| Starting point for results. | [optional] [default to 0]
+ **count** | **int?**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
+ **start** | **int?**| Starting point for results. | [optional] [default to 0]
  **reverse** | **bool?**| If true, will sort results newest first. | [optional] [default to false]
  **startTime** | **DateTime?**| Starting date filter for results. | [optional] 
  **endTime** | **DateTime?**| Ending date filter for results. | [optional] 
@@ -503,7 +503,7 @@ Name | Type | Description  | Notes
 
 <a name="ordernew"></a>
 # **OrderNew**
-> Order OrderNew (string symbol, string side = null, double? simpleOrderQty = null, decimal? orderQty = null, double? price = null, decimal? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null)
+> Order OrderNew (string symbol, string side = null, double? simpleOrderQty = null, int? orderQty = null, double? price = null, int? displayQty = null, double? stopPx = null, string clOrdID = null, string clOrdLinkID = null, double? pegOffsetValue = null, string pegPriceType = null, string ordType = null, string timeInForce = null, string execInst = null, string contingencyType = null, string text = null)
 
 Create a new order.
 
@@ -540,9 +540,9 @@ namespace Example
             var symbol = symbol_example;  // string | Instrument symbol. e.g. 'XBTUSD'.
             var side = side_example;  // string | Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless `orderQty` is negative. (optional) 
             var simpleOrderQty = 1.2;  // double? | Deprecated: simple orders are not supported after 2018/10/26 (optional) 
-            var orderQty = 8.14;  // decimal? | Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)). (optional) 
+            var orderQty = 56;  // int? | Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)). (optional) 
             var price = 1.2;  // double? | Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders. (optional) 
-            var displayQty = 8.14;  // decimal? | Optional quantity to display in the book. Use 0 for a fully hidden order. (optional) 
+            var displayQty = 56;  // int? | Optional quantity to display in the book. Use 0 for a fully hidden order. (optional) 
             var stopPx = 1.2;  // double? | Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use `execInst` of 'MarkPrice' or 'LastPrice' to define the current price used for triggering. (optional) 
             var clOrdID = clOrdID_example;  // string | Optional Client Order ID. This clOrdID will come back on the order and any related executions. (optional) 
             var clOrdLinkID = clOrdLinkID_example;  // string | Optional Client Order Link ID for contingent orders (optional) 
@@ -576,9 +576,9 @@ Name | Type | Description  | Notes
  **symbol** | **string**| Instrument symbol. e.g. &#39;XBTUSD&#39;. | 
  **side** | **string**| Order side. Valid options: Buy, Sell. Defaults to &#39;Buy&#39; unless &#x60;orderQty&#x60; is negative. | [optional] 
  **simpleOrderQty** | **double?**| Deprecated: simple orders are not supported after 2018/10/26 | [optional] 
- **orderQty** | **decimal?**| Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)). | [optional] 
+ **orderQty** | **int?**| Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)). | [optional] 
  **price** | **double?**| Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders. | [optional] 
- **displayQty** | **decimal?**| Optional quantity to display in the book. Use 0 for a fully hidden order. | [optional] 
+ **displayQty** | **int?**| Optional quantity to display in the book. Use 0 for a fully hidden order. | [optional] 
  **stopPx** | **double?**| Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use &#x60;execInst&#x60; of &#39;MarkPrice&#39; or &#39;LastPrice&#39; to define the current price used for triggering. | [optional] 
  **clOrdID** | **string**| Optional Client Order ID. This clOrdID will come back on the order and any related executions. | [optional] 
  **clOrdLinkID** | **string**| Optional Client Order Link ID for contingent orders | [optional] 

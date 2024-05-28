@@ -15,9 +15,9 @@ package io.swagger.client.model
 import java.util.Date
 
 case class PinnedMessage (
-  id: Number,
-  channelID: Number,
-  messageId: Number,
+  id: Integer,
+  channelID: Integer,
+  messageId: Integer,
   created: Option[Date] = None,
   ended: Option[Date] = None,
   createdUserId: Option[Double] = None,

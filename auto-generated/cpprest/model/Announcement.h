@@ -56,8 +56,8 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getId() const;
-        void setId(double value);
+    int32_t getId() const;
+        void setId(int32_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -88,7 +88,7 @@ public:
     void setDate(utility::datetime value);
 
 protected:
-    double m_Id;
+    int32_t m_Id;
         utility::string_t m_Link;
     bool m_LinkIsSet;
     utility::string_t m_Title;

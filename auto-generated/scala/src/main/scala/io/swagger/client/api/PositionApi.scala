@@ -15,7 +15,6 @@ package io.swagger.client.api
 import java.text.SimpleDateFormat
 
 import io.swagger.client.model.Error
-import io.swagger.client.model.Number
 import io.swagger.client.model.Position
 import io.swagger.client.{ApiInvoker, ApiException}
 
@@ -90,7 +89,7 @@ class PositionApi(
    * @param count Number of rows to fetch. (optional)
    * @return List[Position]
    */
-  def positionGet(filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = None): Option[List[Position]] = {
+  def positionGet(filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = None): Option[List[Position]] = {
     val await = Try(Await.result(positionGetAsync(filter, columns, count), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -107,7 +106,7 @@ class PositionApi(
    * @param count Number of rows to fetch. (optional)
    * @return Future(List[Position])
    */
-  def positionGetAsync(filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = None): Future[List[Position]] = {
+  def positionGetAsync(filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = None): Future[List[Position]] = {
       helper.positionGet(filter, columns, count)
   }
 
@@ -148,7 +147,7 @@ class PositionApi(
    * @param targetAccountId AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)
    * @return Position
    */
-  def positionTransferIsolatedMargin(symbol: String, amount: Number, targetAccountId: Option[Double] = None): Option[Position] = {
+  def positionTransferIsolatedMargin(symbol: String, amount: Long, targetAccountId: Option[Double] = None): Option[Position] = {
     val await = Try(Await.result(positionTransferIsolatedMarginAsync(symbol, amount, targetAccountId), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -165,7 +164,7 @@ class PositionApi(
    * @param targetAccountId AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional)
    * @return Future(Position)
    */
-  def positionTransferIsolatedMarginAsync(symbol: String, amount: Number, targetAccountId: Option[Double] = None): Future[Position] = {
+  def positionTransferIsolatedMarginAsync(symbol: String, amount: Long, targetAccountId: Option[Double] = None): Future[Position] = {
       helper.positionTransferIsolatedMargin(symbol, amount, targetAccountId)
   }
 
@@ -208,7 +207,7 @@ class PositionApi(
    * @param targetAccountId AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)
    * @return Position
    */
-  def positionUpdateRiskLimit(symbol: String, riskLimit: Number, targetAccountId: Option[Double] = None): Option[Position] = {
+  def positionUpdateRiskLimit(symbol: String, riskLimit: Long, targetAccountId: Option[Double] = None): Option[Position] = {
     val await = Try(Await.result(positionUpdateRiskLimitAsync(symbol, riskLimit, targetAccountId), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -225,7 +224,7 @@ class PositionApi(
    * @param targetAccountId AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional)
    * @return Future(Position)
    */
-  def positionUpdateRiskLimitAsync(symbol: String, riskLimit: Number, targetAccountId: Option[Double] = None): Future[Position] = {
+  def positionUpdateRiskLimitAsync(symbol: String, riskLimit: Long, targetAccountId: Option[Double] = None): Future[Position] = {
       helper.positionUpdateRiskLimit(symbol, riskLimit, targetAccountId)
   }
 
@@ -235,7 +234,7 @@ class PositionApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ext
 
   def positionGet(filter: Option[String] = None,
     columns: Option[String] = None,
-    count: Option[Number] = None
+    count: Option[Integer] = None
     )(implicit reader: ClientResponseReader[List[Position]]): Future[List[Position]] = {
     // create path and map variables
     val path = (addFmt("/position"))
@@ -283,7 +282,7 @@ class PositionApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ext
   }
 
   def positionTransferIsolatedMargin(symbol: String,
-    amount: Number,
+    amount: Long,
     targetAccountId: Option[Double] = None
     )(implicit reader: ClientResponseReader[Position]): Future[Position] = {
     // create path and map variables
@@ -323,7 +322,7 @@ class PositionApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ext
   }
 
   def positionUpdateRiskLimit(symbol: String,
-    riskLimit: Number,
+    riskLimit: Long,
     targetAccountId: Option[Double] = None
     )(implicit reader: ClientResponseReader[Position]): Future[Position] = {
     // create path and map variables

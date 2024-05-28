@@ -41,13 +41,13 @@ SWGQuote::init() {
     m_timestamp_isSet = false;
     symbol = new QString("");
     m_symbol_isSet = false;
-    bid_size = 0.0;
+    bid_size = 0L;
     m_bid_size_isSet = false;
     bid_price = 0.0;
     m_bid_price_isSet = false;
     ask_price = 0.0;
     m_ask_price_isSet = false;
-    ask_size = 0.0;
+    ask_size = 0L;
     m_ask_size_isSet = false;
 }
 
@@ -59,14 +59,10 @@ SWGQuote::cleanup() {
     if(symbol != nullptr) { 
         delete symbol;
     }
-    if(bid_size != nullptr) { 
-        delete bid_size;
-    }
 
 
-    if(ask_size != nullptr) { 
-        delete ask_size;
-    }
+
+
 }
 
 SWGQuote*
@@ -84,13 +80,13 @@ SWGQuote::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&symbol, pJson["symbol"], "QString", "QString");
     
-    ::Swagger::setValue(&bid_size, pJson["bidSize"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&bid_size, pJson["bidSize"], "qint64", "");
     
     ::Swagger::setValue(&bid_price, pJson["bidPrice"], "double", "");
     
     ::Swagger::setValue(&ask_price, pJson["askPrice"], "double", "");
     
-    ::Swagger::setValue(&ask_size, pJson["askSize"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&ask_size, pJson["askSize"], "qint64", "");
     
 }
 
@@ -112,8 +108,8 @@ SWGQuote::asJsonObject() {
     if(symbol != nullptr && *symbol != QString("")){
         toJsonValue(QString("symbol"), symbol, obj, QString("QString"));
     }
-    if((bid_size != nullptr) && (bid_size->isSet())){
-        toJsonValue(QString("bidSize"), bid_size, obj, QString("SWGNumber"));
+    if(m_bid_size_isSet){
+        obj.insert("bidSize", QJsonValue(bid_size));
     }
     if(m_bid_price_isSet){
         obj.insert("bidPrice", QJsonValue(bid_price));
@@ -121,8 +117,8 @@ SWGQuote::asJsonObject() {
     if(m_ask_price_isSet){
         obj.insert("askPrice", QJsonValue(ask_price));
     }
-    if((ask_size != nullptr) && (ask_size->isSet())){
-        toJsonValue(QString("askSize"), ask_size, obj, QString("SWGNumber"));
+    if(m_ask_size_isSet){
+        obj.insert("askSize", QJsonValue(ask_size));
     }
 
     return obj;
@@ -148,12 +144,12 @@ SWGQuote::setSymbol(QString* symbol) {
     this->m_symbol_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGQuote::getBidSize() {
     return bid_size;
 }
 void
-SWGQuote::setBidSize(SWGNumber* bid_size) {
+SWGQuote::setBidSize(qint64 bid_size) {
     this->bid_size = bid_size;
     this->m_bid_size_isSet = true;
 }
@@ -178,12 +174,12 @@ SWGQuote::setAskPrice(double ask_price) {
     this->m_ask_price_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGQuote::getAskSize() {
     return ask_size;
 }
 void
-SWGQuote::setAskSize(SWGNumber* ask_size) {
+SWGQuote::setAskSize(qint64 ask_size) {
     this->ask_size = ask_size;
     this->m_ask_size_isSet = true;
 }
@@ -195,10 +191,10 @@ SWGQuote::isSet(){
     do{
         
         if(symbol != nullptr && *symbol != QString("")){ isObjectUpdated = true; break;}
-        if(bid_size != nullptr && bid_size->isSet()){ isObjectUpdated = true; break;}
+        if(m_bid_size_isSet){ isObjectUpdated = true; break;}
         if(m_bid_price_isSet){ isObjectUpdated = true; break;}
         if(m_ask_price_isSet){ isObjectUpdated = true; break;}
-        if(ask_size != nullptr && ask_size->isSet()){ isObjectUpdated = true; break;}
+        if(m_ask_size_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

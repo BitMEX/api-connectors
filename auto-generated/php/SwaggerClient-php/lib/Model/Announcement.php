@@ -58,7 +58,7 @@ class Announcement implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'float',
+        'id' => 'int',
         'link' => 'string',
         'title' => 'string',
         'content' => 'string',
@@ -235,7 +235,7 @@ class Announcement implements ModelInterface, ArrayAccess
     /**
      * Gets id
      *
-     * @return float
+     * @return int
      */
     public function getId()
     {
@@ -245,7 +245,7 @@ class Announcement implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param float $id id
+     * @param int $id id
      *
      * @return $this
      */

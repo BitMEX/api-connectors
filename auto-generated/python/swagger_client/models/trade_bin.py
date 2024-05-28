@@ -39,11 +39,11 @@ class TradeBin(object):
         'high': 'float',
         'low': 'float',
         'close': 'float',
-        'trades': 'float',
-        'volume': 'float',
+        'trades': 'int',
+        'volume': 'int',
         'vwap': 'float',
-        'last_size': 'float',
-        'turnover': 'float',
+        'last_size': 'int',
+        'turnover': 'int',
         'home_notional': 'float',
         'foreign_notional': 'float'
     }
@@ -246,7 +246,7 @@ class TradeBin(object):
 
 
         :return: The trades of this TradeBin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._trades
 
@@ -256,7 +256,7 @@ class TradeBin(object):
 
 
         :param trades: The trades of this TradeBin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._trades = trades
@@ -267,7 +267,7 @@ class TradeBin(object):
 
 
         :return: The volume of this TradeBin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._volume
 
@@ -277,7 +277,7 @@ class TradeBin(object):
 
 
         :param volume: The volume of this TradeBin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._volume = volume
@@ -309,7 +309,7 @@ class TradeBin(object):
 
 
         :return: The last_size of this TradeBin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._last_size
 
@@ -319,7 +319,7 @@ class TradeBin(object):
 
 
         :param last_size: The last_size of this TradeBin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._last_size = last_size
@@ -330,7 +330,7 @@ class TradeBin(object):
 
 
         :return: The turnover of this TradeBin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._turnover
 
@@ -340,7 +340,7 @@ class TradeBin(object):
 
 
         :param turnover: The turnover of this TradeBin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._turnover = turnover

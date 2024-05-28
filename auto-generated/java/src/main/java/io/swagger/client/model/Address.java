@@ -23,16 +23,15 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Address
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Address {
   @SerializedName("id")
-  private BigDecimal id = null;
+  private Integer id = null;
 
   @SerializedName("currency")
   private String currency = null;
@@ -70,7 +69,7 @@ public class Address {
   @SerializedName("memo")
   private String memo = null;
 
-  public Address id(BigDecimal id) {
+  public Address id(Integer id) {
     this.id = id;
     return this;
   }
@@ -80,11 +79,11 @@ public class Address {
    * @return id
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(BigDecimal id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

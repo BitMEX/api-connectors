@@ -73,10 +73,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getSize() const;
+    int64_t getSize() const;
     bool sizeIsSet() const;
     void unsetSize();
-    void setSize(double value);
+    void setSize(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -101,10 +101,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getGrossValue() const;
+    int64_t getGrossValue() const;
     bool grossValueIsSet() const;
     void unsetGrossValue();
-    void setGrossValue(double value);
+    void setGrossValue(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -132,7 +132,7 @@ protected:
         utility::string_t m_Symbol;
         utility::string_t m_Side;
     bool m_SideIsSet;
-    double m_Size;
+    int64_t m_Size;
     bool m_SizeIsSet;
     double m_Price;
     bool m_PriceIsSet;
@@ -140,7 +140,7 @@ protected:
     bool m_TickDirectionIsSet;
     utility::string_t m_TrdMatchID;
     bool m_TrdMatchIDIsSet;
-    double m_GrossValue;
+    int64_t m_GrossValue;
     bool m_GrossValueIsSet;
     double m_HomeNotional;
     bool m_HomeNotionalIsSet;

@@ -19,7 +19,6 @@
 #include <QString>
 #include "SWGError.h"
 #include "SWGLiquidation.h"
-#include "SWGNumber.h"
 
 #include <QObject>
 
@@ -37,7 +36,7 @@ public:
     QString basePath;
     QMap<QString, QString> defaultHeaders;
 
-    void liquidation_get(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time);
+    void liquidation_get(QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time);
     
 private:
     void liquidation_getCallback (SWGHttpRequestWorker * worker);

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **network_symbol** | **String** |  | [optional] [default to &#39;ETH&#39;]
 **transaction_explorer** | **String** |  | [optional] [default to &#39;https://etherscan.io/tx/&#39;]
 **token_explorer** | **String** |  | [optional] [default to &#39;https://etherscan.io/token/&#39;]
-**deposit_confirmations** | **Float** |  | [optional] 
+**deposit_confirmations** | **Integer** |  | [optional] 
 **enabled** | **BOOLEAN** |  | [optional] [default to true]
 
 

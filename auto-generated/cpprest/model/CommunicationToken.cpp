@@ -22,7 +22,7 @@ namespace model {
 CommunicationToken::CommunicationToken()
 {
     m_Id = utility::conversions::to_string_t("");
-    m_UserId = 0.0;
+    m_UserId = 0;
     m_DeviceToken = utility::conversions::to_string_t("");
     m_Channel = utility::conversions::to_string_t("");
 }
@@ -51,7 +51,7 @@ web::json::value CommunicationToken::toJson() const
 void CommunicationToken::fromJson(web::json::value& val)
 {
     setId(ModelBase::stringFromJson(val[utility::conversions::to_string_t("id")]));
-    setUserId(ModelBase::doubleFromJson(val[utility::conversions::to_string_t("userId")]));
+    setUserId(ModelBase::int32_tFromJson(val[utility::conversions::to_string_t("userId")]));
     setDeviceToken(ModelBase::stringFromJson(val[utility::conversions::to_string_t("deviceToken")]));
     setChannel(ModelBase::stringFromJson(val[utility::conversions::to_string_t("channel")]));
 }
@@ -79,7 +79,7 @@ void CommunicationToken::fromMultiPart(std::shared_ptr<MultipartFormData> multip
     }
 
     setId(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
-    setUserId(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("userId"))));
+    setUserId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("userId"))));
     setDeviceToken(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("deviceToken"))));
     setChannel(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("channel"))));
 }
@@ -95,13 +95,13 @@ void CommunicationToken::setId(utility::string_t value)
     m_Id = value;
     
 }
-double CommunicationToken::getUserId() const
+int32_t CommunicationToken::getUserId() const
 {
     return m_UserId;
 }
 
 
-void CommunicationToken::setUserId(double value)
+void CommunicationToken::setUserId(int32_t value)
 {
     m_UserId = value;
     

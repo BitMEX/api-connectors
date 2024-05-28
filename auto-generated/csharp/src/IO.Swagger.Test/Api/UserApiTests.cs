@@ -427,7 +427,7 @@ namespace IO.Swagger.Test
             // TODO uncomment below to test the method and replace null with proper value
             //string currency = null;
             //string network = null;
-            //decimal? amount = null;
+            //long? amount = null;
             //string otpToken = null;
             //string address = null;
             //string memo = null;
@@ -473,7 +473,7 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string currency = null;
-            //decimal? amount = null;
+            //long? amount = null;
             //double? targetAccountId = null;
             //double? fromAccountId = null;
             //var response = instance.UserWalletTransfer(currency, amount, targetAccountId, fromAccountId);

@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -43,8 +42,8 @@ public:
     void fromJsonObject(QJsonObject json) override;
     SWGAddress* fromJson(QString jsonString) override;
 
-    SWGNumber* getId();
-    void setId(SWGNumber* id);
+    qint32 getId();
+    void setId(qint32 id);
 
     QString* getCurrency();
     void setCurrency(QString* currency);
@@ -86,7 +85,7 @@ public:
     virtual bool isSet() override;
 
 private:
-    SWGNumber* id;
+    qint32 id;
     bool m_id_isSet;
 
     QString* currency;

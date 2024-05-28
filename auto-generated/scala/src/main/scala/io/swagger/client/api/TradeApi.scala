@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat
 
 import java.util.Date
 import io.swagger.client.model.Error
-import io.swagger.client.model.Number
 import io.swagger.client.model.Trade
 import io.swagger.client.model.TradeBin
 import io.swagger.client.{ApiInvoker, ApiException}
@@ -97,7 +96,7 @@ class TradeApi(
    * @param endTime Ending date filter for results. (optional)
    * @return List[Trade]
    */
-  def tradeGet(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Trade]] = {
+  def tradeGet(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Trade]] = {
     val await = Try(Await.result(tradeGetAsync(symbol, filter, columns, count, start, reverse, startTime, endTime), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -119,7 +118,7 @@ class TradeApi(
    * @param endTime Ending date filter for results. (optional)
    * @return Future(List[Trade])
    */
-  def tradeGetAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Trade]] = {
+  def tradeGetAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Trade]] = {
       helper.tradeGet(symbol, filter, columns, count, start, reverse, startTime, endTime)
   }
 
@@ -139,7 +138,7 @@ class TradeApi(
    * @param endTime Ending date filter for results. (optional)
    * @return List[TradeBin]
    */
-  def tradeGetBucketed(binSize: Option[String] = Option("1m"), partial: Option[Boolean] = Option(false), symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[TradeBin]] = {
+  def tradeGetBucketed(binSize: Option[String] = Option("1m"), partial: Option[Boolean] = Option(false), symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[TradeBin]] = {
     val await = Try(Await.result(tradeGetBucketedAsync(binSize, partial, symbol, filter, columns, count, start, reverse, startTime, endTime), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -163,7 +162,7 @@ class TradeApi(
    * @param endTime Ending date filter for results. (optional)
    * @return Future(List[TradeBin])
    */
-  def tradeGetBucketedAsync(binSize: Option[String] = Option("1m"), partial: Option[Boolean] = Option(false), symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[TradeBin]] = {
+  def tradeGetBucketedAsync(binSize: Option[String] = Option("1m"), partial: Option[Boolean] = Option(false), symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[TradeBin]] = {
       helper.tradeGetBucketed(binSize, partial, symbol, filter, columns, count, start, reverse, startTime, endTime)
   }
 
@@ -174,8 +173,8 @@ class TradeApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
   def tradeGet(symbol: Option[String] = None,
     filter: Option[String] = None,
     columns: Option[String] = None,
-    count: Option[Number] = Option(100),
-    start: Option[Number] = Option(0),
+    count: Option[Integer] = Option(100),
+    start: Option[Integer] = Option(0),
     reverse: Option[Boolean] = Option(false),
     startTime: Option[Date] = None,
     endTime: Option[Date] = None
@@ -231,8 +230,8 @@ class TradeApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     symbol: Option[String] = None,
     filter: Option[String] = None,
     columns: Option[String] = None,
-    count: Option[Number] = Option(100),
-    start: Option[Number] = Option(0),
+    count: Option[Integer] = Option(100),
+    start: Option[Integer] = Option(0),
     reverse: Option[Boolean] = Option(false),
     startTime: Option[Date] = None,
     endTime: Option[Date] = None

@@ -23,7 +23,7 @@ $apiInstance = new Swagger\Client\Api\OrderBookApi(
     new GuzzleHttp\Client()
 );
 $symbol = "symbol_example"; // string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-$depth = 25; // float | Orderbook depth per side. Send 0 for full depth.
+$depth = 25; // int | Orderbook depth per side. Send 0 for full depth.
 
 try {
     $result = $apiInstance->orderBookGetL2($symbol, $depth);
@@ -39,7 +39,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string**| Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. |
- **depth** | **float**| Orderbook depth per side. Send 0 for full depth. | [optional] [default to 25]
+ **depth** | **int**| Orderbook depth per side. Send 0 for full depth. | [optional] [default to 25]
 
 ### Return type
 

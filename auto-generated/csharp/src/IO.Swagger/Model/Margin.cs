@@ -38,34 +38,34 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Margin" /> class.
         /// </summary>
-        /// <param name="account">account (required).</param>
+        /// <param name="account">account (required) (default to 0).</param>
         /// <param name="currency">currency (required).</param>
-        /// <param name="riskLimit">riskLimit.</param>
+        /// <param name="riskLimit">riskLimit (default to 0).</param>
         /// <param name="state">state.</param>
-        /// <param name="amount">amount.</param>
-        /// <param name="prevRealisedPnl">prevRealisedPnl.</param>
-        /// <param name="grossComm">grossComm.</param>
-        /// <param name="grossOpenCost">grossOpenCost.</param>
-        /// <param name="grossOpenPremium">grossOpenPremium.</param>
-        /// <param name="grossExecCost">grossExecCost.</param>
-        /// <param name="grossMarkValue">grossMarkValue.</param>
-        /// <param name="riskValue">riskValue.</param>
-        /// <param name="initMargin">initMargin.</param>
-        /// <param name="maintMargin">maintMargin.</param>
-        /// <param name="targetExcessMargin">targetExcessMargin.</param>
-        /// <param name="realisedPnl">realisedPnl.</param>
-        /// <param name="unrealisedPnl">unrealisedPnl.</param>
-        /// <param name="walletBalance">walletBalance.</param>
-        /// <param name="marginBalance">marginBalance.</param>
+        /// <param name="amount">amount (default to 0).</param>
+        /// <param name="prevRealisedPnl">prevRealisedPnl (default to 0).</param>
+        /// <param name="grossComm">grossComm (default to 0).</param>
+        /// <param name="grossOpenCost">grossOpenCost (default to 0).</param>
+        /// <param name="grossOpenPremium">grossOpenPremium (default to 0).</param>
+        /// <param name="grossExecCost">grossExecCost (default to 0).</param>
+        /// <param name="grossMarkValue">grossMarkValue (default to 0).</param>
+        /// <param name="riskValue">riskValue (default to 0).</param>
+        /// <param name="initMargin">initMargin (default to 0).</param>
+        /// <param name="maintMargin">maintMargin (default to 0).</param>
+        /// <param name="targetExcessMargin">targetExcessMargin (default to 0).</param>
+        /// <param name="realisedPnl">realisedPnl (default to 0).</param>
+        /// <param name="unrealisedPnl">unrealisedPnl (default to 0).</param>
+        /// <param name="walletBalance">walletBalance (default to 0).</param>
+        /// <param name="marginBalance">marginBalance (default to 0).</param>
         /// <param name="marginLeverage">marginLeverage (default to 0.0).</param>
         /// <param name="marginUsedPcnt">marginUsedPcnt (default to 0.0).</param>
-        /// <param name="excessMargin">excessMargin.</param>
-        /// <param name="availableMargin">availableMargin.</param>
-        /// <param name="withdrawableMargin">withdrawableMargin.</param>
+        /// <param name="excessMargin">excessMargin (default to 0).</param>
+        /// <param name="availableMargin">availableMargin (default to 0).</param>
+        /// <param name="withdrawableMargin">withdrawableMargin (default to 0).</param>
         /// <param name="makerFeeDiscount">makerFeeDiscount (default to 0.0).</param>
         /// <param name="takerFeeDiscount">takerFeeDiscount (default to 0.0).</param>
         /// <param name="timestamp">timestamp.</param>
-        public Margin(decimal? account = default(decimal?), string currency = default(string), decimal? riskLimit = default(decimal?), string state = default(string), decimal? amount = default(decimal?), decimal? prevRealisedPnl = default(decimal?), decimal? grossComm = default(decimal?), decimal? grossOpenCost = default(decimal?), decimal? grossOpenPremium = default(decimal?), decimal? grossExecCost = default(decimal?), decimal? grossMarkValue = default(decimal?), decimal? riskValue = default(decimal?), decimal? initMargin = default(decimal?), decimal? maintMargin = default(decimal?), decimal? targetExcessMargin = default(decimal?), decimal? realisedPnl = default(decimal?), decimal? unrealisedPnl = default(decimal?), decimal? walletBalance = default(decimal?), decimal? marginBalance = default(decimal?), double? marginLeverage = 0.0, double? marginUsedPcnt = 0.0, decimal? excessMargin = default(decimal?), decimal? availableMargin = default(decimal?), decimal? withdrawableMargin = default(decimal?), double? makerFeeDiscount = 0.0, double? takerFeeDiscount = 0.0, DateTime? timestamp = default(DateTime?))
+        public Margin(long? account = 0, string currency = default(string), long? riskLimit = 0, string state = default(string), long? amount = 0, long? prevRealisedPnl = 0, long? grossComm = 0, long? grossOpenCost = 0, long? grossOpenPremium = 0, long? grossExecCost = 0, long? grossMarkValue = 0, long? riskValue = 0, long? initMargin = 0, long? maintMargin = 0, long? targetExcessMargin = 0, long? realisedPnl = 0, long? unrealisedPnl = 0, long? walletBalance = 0, long? marginBalance = 0, double? marginLeverage = 0.0, double? marginUsedPcnt = 0.0, long? excessMargin = 0, long? availableMargin = 0, long? withdrawableMargin = 0, double? makerFeeDiscount = 0.0, double? takerFeeDiscount = 0.0, DateTime? timestamp = default(DateTime?))
         {
             // to ensure "account" is required (not null)
             if (account == null)
@@ -85,23 +85,151 @@ namespace IO.Swagger.Model
             {
                 this.Currency = currency;
             }
-            this.RiskLimit = riskLimit;
+            // use default value if no "riskLimit" provided
+            if (riskLimit == null)
+            {
+                this.RiskLimit = 0;
+            }
+            else
+            {
+                this.RiskLimit = riskLimit;
+            }
             this.State = state;
-            this.Amount = amount;
-            this.PrevRealisedPnl = prevRealisedPnl;
-            this.GrossComm = grossComm;
-            this.GrossOpenCost = grossOpenCost;
-            this.GrossOpenPremium = grossOpenPremium;
-            this.GrossExecCost = grossExecCost;
-            this.GrossMarkValue = grossMarkValue;
-            this.RiskValue = riskValue;
-            this.InitMargin = initMargin;
-            this.MaintMargin = maintMargin;
-            this.TargetExcessMargin = targetExcessMargin;
-            this.RealisedPnl = realisedPnl;
-            this.UnrealisedPnl = unrealisedPnl;
-            this.WalletBalance = walletBalance;
-            this.MarginBalance = marginBalance;
+            // use default value if no "amount" provided
+            if (amount == null)
+            {
+                this.Amount = 0;
+            }
+            else
+            {
+                this.Amount = amount;
+            }
+            // use default value if no "prevRealisedPnl" provided
+            if (prevRealisedPnl == null)
+            {
+                this.PrevRealisedPnl = 0;
+            }
+            else
+            {
+                this.PrevRealisedPnl = prevRealisedPnl;
+            }
+            // use default value if no "grossComm" provided
+            if (grossComm == null)
+            {
+                this.GrossComm = 0;
+            }
+            else
+            {
+                this.GrossComm = grossComm;
+            }
+            // use default value if no "grossOpenCost" provided
+            if (grossOpenCost == null)
+            {
+                this.GrossOpenCost = 0;
+            }
+            else
+            {
+                this.GrossOpenCost = grossOpenCost;
+            }
+            // use default value if no "grossOpenPremium" provided
+            if (grossOpenPremium == null)
+            {
+                this.GrossOpenPremium = 0;
+            }
+            else
+            {
+                this.GrossOpenPremium = grossOpenPremium;
+            }
+            // use default value if no "grossExecCost" provided
+            if (grossExecCost == null)
+            {
+                this.GrossExecCost = 0;
+            }
+            else
+            {
+                this.GrossExecCost = grossExecCost;
+            }
+            // use default value if no "grossMarkValue" provided
+            if (grossMarkValue == null)
+            {
+                this.GrossMarkValue = 0;
+            }
+            else
+            {
+                this.GrossMarkValue = grossMarkValue;
+            }
+            // use default value if no "riskValue" provided
+            if (riskValue == null)
+            {
+                this.RiskValue = 0;
+            }
+            else
+            {
+                this.RiskValue = riskValue;
+            }
+            // use default value if no "initMargin" provided
+            if (initMargin == null)
+            {
+                this.InitMargin = 0;
+            }
+            else
+            {
+                this.InitMargin = initMargin;
+            }
+            // use default value if no "maintMargin" provided
+            if (maintMargin == null)
+            {
+                this.MaintMargin = 0;
+            }
+            else
+            {
+                this.MaintMargin = maintMargin;
+            }
+            // use default value if no "targetExcessMargin" provided
+            if (targetExcessMargin == null)
+            {
+                this.TargetExcessMargin = 0;
+            }
+            else
+            {
+                this.TargetExcessMargin = targetExcessMargin;
+            }
+            // use default value if no "realisedPnl" provided
+            if (realisedPnl == null)
+            {
+                this.RealisedPnl = 0;
+            }
+            else
+            {
+                this.RealisedPnl = realisedPnl;
+            }
+            // use default value if no "unrealisedPnl" provided
+            if (unrealisedPnl == null)
+            {
+                this.UnrealisedPnl = 0;
+            }
+            else
+            {
+                this.UnrealisedPnl = unrealisedPnl;
+            }
+            // use default value if no "walletBalance" provided
+            if (walletBalance == null)
+            {
+                this.WalletBalance = 0;
+            }
+            else
+            {
+                this.WalletBalance = walletBalance;
+            }
+            // use default value if no "marginBalance" provided
+            if (marginBalance == null)
+            {
+                this.MarginBalance = 0;
+            }
+            else
+            {
+                this.MarginBalance = marginBalance;
+            }
             // use default value if no "marginLeverage" provided
             if (marginLeverage == null)
             {
@@ -120,9 +248,33 @@ namespace IO.Swagger.Model
             {
                 this.MarginUsedPcnt = marginUsedPcnt;
             }
-            this.ExcessMargin = excessMargin;
-            this.AvailableMargin = availableMargin;
-            this.WithdrawableMargin = withdrawableMargin;
+            // use default value if no "excessMargin" provided
+            if (excessMargin == null)
+            {
+                this.ExcessMargin = 0;
+            }
+            else
+            {
+                this.ExcessMargin = excessMargin;
+            }
+            // use default value if no "availableMargin" provided
+            if (availableMargin == null)
+            {
+                this.AvailableMargin = 0;
+            }
+            else
+            {
+                this.AvailableMargin = availableMargin;
+            }
+            // use default value if no "withdrawableMargin" provided
+            if (withdrawableMargin == null)
+            {
+                this.WithdrawableMargin = 0;
+            }
+            else
+            {
+                this.WithdrawableMargin = withdrawableMargin;
+            }
             // use default value if no "makerFeeDiscount" provided
             if (makerFeeDiscount == null)
             {
@@ -148,7 +300,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name="account", EmitDefaultValue=false)]
-        public decimal? Account { get; set; }
+        public long? Account { get; set; }
 
         /// <summary>
         /// Gets or Sets Currency
@@ -160,7 +312,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets RiskLimit
         /// </summary>
         [DataMember(Name="riskLimit", EmitDefaultValue=false)]
-        public decimal? RiskLimit { get; set; }
+        public long? RiskLimit { get; set; }
 
         /// <summary>
         /// Gets or Sets State
@@ -172,91 +324,91 @@ namespace IO.Swagger.Model
         /// Gets or Sets Amount
         /// </summary>
         [DataMember(Name="amount", EmitDefaultValue=false)]
-        public decimal? Amount { get; set; }
+        public long? Amount { get; set; }
 
         /// <summary>
         /// Gets or Sets PrevRealisedPnl
         /// </summary>
         [DataMember(Name="prevRealisedPnl", EmitDefaultValue=false)]
-        public decimal? PrevRealisedPnl { get; set; }
+        public long? PrevRealisedPnl { get; set; }
 
         /// <summary>
         /// Gets or Sets GrossComm
         /// </summary>
         [DataMember(Name="grossComm", EmitDefaultValue=false)]
-        public decimal? GrossComm { get; set; }
+        public long? GrossComm { get; set; }
 
         /// <summary>
         /// Gets or Sets GrossOpenCost
         /// </summary>
         [DataMember(Name="grossOpenCost", EmitDefaultValue=false)]
-        public decimal? GrossOpenCost { get; set; }
+        public long? GrossOpenCost { get; set; }
 
         /// <summary>
         /// Gets or Sets GrossOpenPremium
         /// </summary>
         [DataMember(Name="grossOpenPremium", EmitDefaultValue=false)]
-        public decimal? GrossOpenPremium { get; set; }
+        public long? GrossOpenPremium { get; set; }
 
         /// <summary>
         /// Gets or Sets GrossExecCost
         /// </summary>
         [DataMember(Name="grossExecCost", EmitDefaultValue=false)]
-        public decimal? GrossExecCost { get; set; }
+        public long? GrossExecCost { get; set; }
 
         /// <summary>
         /// Gets or Sets GrossMarkValue
         /// </summary>
         [DataMember(Name="grossMarkValue", EmitDefaultValue=false)]
-        public decimal? GrossMarkValue { get; set; }
+        public long? GrossMarkValue { get; set; }
 
         /// <summary>
         /// Gets or Sets RiskValue
         /// </summary>
         [DataMember(Name="riskValue", EmitDefaultValue=false)]
-        public decimal? RiskValue { get; set; }
+        public long? RiskValue { get; set; }
 
         /// <summary>
         /// Gets or Sets InitMargin
         /// </summary>
         [DataMember(Name="initMargin", EmitDefaultValue=false)]
-        public decimal? InitMargin { get; set; }
+        public long? InitMargin { get; set; }
 
         /// <summary>
         /// Gets or Sets MaintMargin
         /// </summary>
         [DataMember(Name="maintMargin", EmitDefaultValue=false)]
-        public decimal? MaintMargin { get; set; }
+        public long? MaintMargin { get; set; }
 
         /// <summary>
         /// Gets or Sets TargetExcessMargin
         /// </summary>
         [DataMember(Name="targetExcessMargin", EmitDefaultValue=false)]
-        public decimal? TargetExcessMargin { get; set; }
+        public long? TargetExcessMargin { get; set; }
 
         /// <summary>
         /// Gets or Sets RealisedPnl
         /// </summary>
         [DataMember(Name="realisedPnl", EmitDefaultValue=false)]
-        public decimal? RealisedPnl { get; set; }
+        public long? RealisedPnl { get; set; }
 
         /// <summary>
         /// Gets or Sets UnrealisedPnl
         /// </summary>
         [DataMember(Name="unrealisedPnl", EmitDefaultValue=false)]
-        public decimal? UnrealisedPnl { get; set; }
+        public long? UnrealisedPnl { get; set; }
 
         /// <summary>
         /// Gets or Sets WalletBalance
         /// </summary>
         [DataMember(Name="walletBalance", EmitDefaultValue=false)]
-        public decimal? WalletBalance { get; set; }
+        public long? WalletBalance { get; set; }
 
         /// <summary>
         /// Gets or Sets MarginBalance
         /// </summary>
         [DataMember(Name="marginBalance", EmitDefaultValue=false)]
-        public decimal? MarginBalance { get; set; }
+        public long? MarginBalance { get; set; }
 
         /// <summary>
         /// Gets or Sets MarginLeverage
@@ -274,19 +426,19 @@ namespace IO.Swagger.Model
         /// Gets or Sets ExcessMargin
         /// </summary>
         [DataMember(Name="excessMargin", EmitDefaultValue=false)]
-        public decimal? ExcessMargin { get; set; }
+        public long? ExcessMargin { get; set; }
 
         /// <summary>
         /// Gets or Sets AvailableMargin
         /// </summary>
         [DataMember(Name="availableMargin", EmitDefaultValue=false)]
-        public decimal? AvailableMargin { get; set; }
+        public long? AvailableMargin { get; set; }
 
         /// <summary>
         /// Gets or Sets WithdrawableMargin
         /// </summary>
         [DataMember(Name="withdrawableMargin", EmitDefaultValue=false)]
-        public decimal? WithdrawableMargin { get; set; }
+        public long? WithdrawableMargin { get; set; }
 
         /// <summary>
         /// Gets or Sets MakerFeeDiscount

@@ -33,7 +33,7 @@ class User(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'float',
+        'id': 'int',
         'firstname': 'str',
         'lastname': 'str',
         'username': 'str',
@@ -151,7 +151,7 @@ class User(object):
 
 
         :return: The id of this User.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._id
 
@@ -161,7 +161,7 @@ class User(object):
 
 
         :param id: The id of this User.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._id = id

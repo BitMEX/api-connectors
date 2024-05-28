@@ -13,7 +13,6 @@
 
 package io.swagger.client.api;
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.Execution;
 import org.threeten.bp.OffsetDateTime;
@@ -48,8 +47,8 @@ public class ExecutionApiTest {
         String symbol = null;
         String filter = null;
         String columns = null;
-        BigDecimal count = null;
-        BigDecimal start = null;
+        Integer count = null;
+        Integer start = null;
         Boolean reverse = null;
         OffsetDateTime startTime = null;
         OffsetDateTime endTime = null;
@@ -73,8 +72,8 @@ public class ExecutionApiTest {
         String symbol = null;
         String filter = null;
         String columns = null;
-        BigDecimal count = null;
-        BigDecimal start = null;
+        Integer count = null;
+        Integer start = null;
         Boolean reverse = null;
         OffsetDateTime startTime = null;
         OffsetDateTime endTime = null;

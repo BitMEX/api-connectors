@@ -1888,7 +1888,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 NSString* currency = @"XBt"; // Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (default to XBt)
 NSString* network = @"network_example"; // The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
-NSNumber* amount = @8.14; // Amount of withdrawal currency.
+NSNumber* amount = @789; // Amount of withdrawal currency.
 NSString* otpToken = @"otpToken_example"; // 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
 NSString* address = @"address_example"; // Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
 NSString* memo = @"memo_example"; // Destination Memo. If `address`, is specified, Destination Memo can also be specified (optional)
@@ -2122,7 +2122,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 
 NSString* currency = @"currency_example"; // Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
-NSNumber* amount = @8.14; // Amount of transfer.
+NSNumber* amount = @789; // Amount of transfer.
 NSNumber* targetAccountId = @1.2; // AccountId to send the transfer to, must be a paired account with the user sending the transfer.
 NSNumber* fromAccountId = @1.2; // AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
 

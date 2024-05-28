@@ -16,7 +16,7 @@ import (
 
 // Public Announcements
 type Announcement struct {
-	Id float32 `json:"id"`
+	Id int32 `json:"id"`
 	Link string `json:"link,omitempty"`
 	Title string `json:"title,omitempty"`
 	Content string `json:"content,omitempty"`

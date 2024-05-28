@@ -13,12 +13,12 @@ public struct StatsUSDBySymbol: Codable {
 
     public var symbol: String
     public var currency: String?
-    public var turnover24h: Double?
-    public var turnover30d: Double?
-    public var turnover365d: Double?
-    public var turnover: Double?
+    public var turnover24h: Int64?
+    public var turnover30d: Int64?
+    public var turnover365d: Int64?
+    public var turnover: Int64?
 
-    public init(symbol: String, currency: String?, turnover24h: Double?, turnover30d: Double?, turnover365d: Double?, turnover: Double?) {
+    public init(symbol: String, currency: String?, turnover24h: Int64?, turnover30d: Int64?, turnover365d: Int64?, turnover: Int64?) {
         self.symbol = symbol
         self.currency = currency
         self.turnover24h = turnover24h

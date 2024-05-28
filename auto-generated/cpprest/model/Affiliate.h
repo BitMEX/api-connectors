@@ -56,8 +56,8 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getAccount() const;
-        void setAccount(double value);
+    int64_t getAccount() const;
+        void setAccount(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -66,24 +66,24 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getPrevPayout() const;
+    int64_t getPrevPayout() const;
     bool prevPayoutIsSet() const;
     void unsetPrevPayout();
-    void setPrevPayout(double value);
+    void setPrevPayout(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getPrevTurnover() const;
+    int64_t getPrevTurnover() const;
     bool prevTurnoverIsSet() const;
     void unsetPrevTurnover();
-    void setPrevTurnover(double value);
+    void setPrevTurnover(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getPrevComm() const;
+    int64_t getPrevComm() const;
     bool prevCommIsSet() const;
     void unsetPrevComm();
-    void setPrevComm(double value);
+    void setPrevComm(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -94,38 +94,38 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getExecTurnover() const;
+    int64_t getExecTurnover() const;
     bool execTurnoverIsSet() const;
     void unsetExecTurnover();
-    void setExecTurnover(double value);
+    void setExecTurnover(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getExecComm() const;
+    int64_t getExecComm() const;
     bool execCommIsSet() const;
     void unsetExecComm();
-    void setExecComm(double value);
+    void setExecComm(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getTotalReferrals() const;
+    int64_t getTotalReferrals() const;
     bool totalReferralsIsSet() const;
     void unsetTotalReferrals();
-    void setTotalReferrals(double value);
+    void setTotalReferrals(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getTotalTurnover() const;
+    int64_t getTotalTurnover() const;
     bool totalTurnoverIsSet() const;
     void unsetTotalTurnover();
-    void setTotalTurnover(double value);
+    void setTotalTurnover(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getTotalComm() const;
+    int64_t getTotalComm() const;
     bool totalCommIsSet() const;
     void unsetTotalComm();
-    void setTotalComm(double value);
+    void setTotalComm(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -136,10 +136,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getPendingPayout() const;
+    int64_t getPendingPayout() const;
     bool pendingPayoutIsSet() const;
     void unsetPendingPayout();
-    void setPendingPayout(double value);
+    void setPendingPayout(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -170,29 +170,29 @@ public:
     void setAffiliatePayout(double value);
 
 protected:
-    double m_Account;
+    int64_t m_Account;
         utility::string_t m_Currency;
-        double m_PrevPayout;
+        int64_t m_PrevPayout;
     bool m_PrevPayoutIsSet;
-    double m_PrevTurnover;
+    int64_t m_PrevTurnover;
     bool m_PrevTurnoverIsSet;
-    double m_PrevComm;
+    int64_t m_PrevComm;
     bool m_PrevCommIsSet;
     utility::datetime m_PrevTimestamp;
     bool m_PrevTimestampIsSet;
-    double m_ExecTurnover;
+    int64_t m_ExecTurnover;
     bool m_ExecTurnoverIsSet;
-    double m_ExecComm;
+    int64_t m_ExecComm;
     bool m_ExecCommIsSet;
-    double m_TotalReferrals;
+    int64_t m_TotalReferrals;
     bool m_TotalReferralsIsSet;
-    double m_TotalTurnover;
+    int64_t m_TotalTurnover;
     bool m_TotalTurnoverIsSet;
-    double m_TotalComm;
+    int64_t m_TotalComm;
     bool m_TotalCommIsSet;
     double m_PayoutPcnt;
     bool m_PayoutPcntIsSet;
-    double m_PendingPayout;
+    int64_t m_PendingPayout;
     bool m_PendingPayoutIsSet;
     utility::datetime m_Timestamp;
     bool m_TimestampIsSet;

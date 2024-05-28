@@ -22,8 +22,8 @@ case class Settlement (
   settledPrice: Option[Double] = None,
   optionStrikePrice: Option[Double] = None,
   optionUnderlyingPrice: Option[Double] = None,
-  bankrupt: Option[Double] = None,
-  taxBase: Option[Double] = None,
+  bankrupt: Option[Long] = None,
+  taxBase: Option[Long] = None,
   taxRate: Option[Double] = None
 ) extends ApiModel
 

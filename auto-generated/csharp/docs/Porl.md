@@ -3,7 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Account** | **decimal?** |  | 
+**Account** | **int?** |  | 
 **Nonce** | **string** |  | [optional] 
 **AccountNonce** | **string** |  | 
 **Total** | **double?** |  | 

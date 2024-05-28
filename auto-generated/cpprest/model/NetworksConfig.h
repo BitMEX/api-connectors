@@ -96,10 +96,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getDepositConfirmations() const;
+    int32_t getDepositConfirmations() const;
     bool depositConfirmationsIsSet() const;
     void unsetDepositConfirmations();
-    void setDepositConfirmations(double value);
+    void setDepositConfirmations(int32_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -120,7 +120,7 @@ protected:
     bool m_TransactionExplorerIsSet;
     utility::string_t m_TokenExplorer;
     bool m_TokenExplorerIsSet;
-    double m_DepositConfirmations;
+    int32_t m_DepositConfirmations;
     bool m_DepositConfirmationsIsSet;
     bool m_Enabled;
     bool m_EnabledIsSet;

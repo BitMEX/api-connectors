@@ -39,7 +39,7 @@ object InsuranceApi {
    * @param startTime Starting date filter for results.
    * @param endTime Ending date filter for results.
    */
-  def insurance.get(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Double], start: Option[Double], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None): ApiRequest[Seq[Insurance]] =
+  def insurance.get(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Int], start: Option[Int], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None): ApiRequest[Seq[Insurance]] =
     ApiRequest[Seq[Insurance]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/insurance", "application/json")
       .withQueryParam("symbol", symbol)
       .withQueryParam("filter", filter)

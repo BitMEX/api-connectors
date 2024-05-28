@@ -6,6 +6,7 @@
   self = [super init];
   if (self) {
     // initialize property's default value, if any
+    self.nonce = @0;
     self.enabled = @(NO);
     
   }

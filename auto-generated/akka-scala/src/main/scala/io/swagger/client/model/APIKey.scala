@@ -19,13 +19,13 @@ case class APIKey (
   id: String,
   secret: String,
   name: String,
-  nonce: Double,
+  nonce: Long,
   cidr: Option[String] = None,
   cidrs: Option[Seq[XAny]] = None,
-  targetAccountId: Option[Double] = None,
+  targetAccountId: Option[Int] = None,
   permissions: Option[Seq[XAny]] = None,
   enabled: Option[Boolean] = None,
-  userId: Double,
+  userId: Int,
   created: Option[DateTime] = None
 ) extends ApiModel
 

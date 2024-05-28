@@ -3,11 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Float** |  | [optional] 
+**id** | **Integer** |  | [optional] 
 **date** | **DateTime** |  | 
 **title** | **String** |  | 
 **body** | **String** |  | 
-**ttl** | **Float** |  | 
+**ttl** | **Integer** |  | 
 **type** | **String** |  | [optional] 
 **closable** | **BOOLEAN** |  | [optional] [default to true]
 **persist** | **BOOLEAN** |  | [optional] [default to true]

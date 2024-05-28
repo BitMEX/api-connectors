@@ -44,7 +44,7 @@ $apiInstance = new Swagger\Client\Api\PositionApi(
 );
 $filter = "filter_example"; // string | Table filter. For example, send {\"symbol\": \"XBTUSD\"}.
 $columns = "columns_example"; // string | Which columns to fetch. For example, send [\"columnName\"].
-$count = 8.14; // float | Number of rows to fetch.
+$count = 56; // int | Number of rows to fetch.
 
 try {
     $result = $apiInstance->positionGet($filter, $columns, $count);
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter** | **string**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. | [optional]
  **columns** | **string**| Which columns to fetch. For example, send [\&quot;columnName\&quot;]. | [optional]
- **count** | **float**| Number of rows to fetch. | [optional]
+ **count** | **int**| Number of rows to fetch. | [optional]
 
 ### Return type
 
@@ -175,7 +175,7 @@ $apiInstance = new Swagger\Client\Api\PositionApi(
     $config
 );
 $symbol = "symbol_example"; // string | Symbol of position to isolate.
-$amount = 8.14; // float | Amount to transfer, in Satoshis. May be negative.
+$amount = 789; // int | Amount to transfer, in Satoshis. May be negative.
 $target_account_id = 1.2; // double | AccountId for the position that the margin would be transfered to, must be a paired account with main user.
 
 try {
@@ -192,7 +192,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string**| Symbol of position to isolate. |
- **amount** | **float**| Amount to transfer, in Satoshis. May be negative. |
+ **amount** | **int**| Amount to transfer, in Satoshis. May be negative. |
  **target_account_id** | **double**| AccountId for the position that the margin would be transfered to, must be a paired account with main user. | [optional]
 
 ### Return type
@@ -309,7 +309,7 @@ $apiInstance = new Swagger\Client\Api\PositionApi(
     $config
 );
 $symbol = "symbol_example"; // string | Symbol of position to update risk limit on.
-$risk_limit = 8.14; // float | New Risk Limit, in Satoshis.
+$risk_limit = 789; // int | New Risk Limit, in Satoshis.
 $target_account_id = 1.2; // double | AccountId for the position that the risk limit would be updated on, must be a paired account with main user.
 
 try {
@@ -326,7 +326,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string**| Symbol of position to update risk limit on. |
- **risk_limit** | **float**| New Risk Limit, in Satoshis. |
+ **risk_limit** | **int**| New Risk Limit, in Satoshis. |
  **target_account_id** | **double**| AccountId for the position that the risk limit would be updated on, must be a paired account with main user. | [optional]
 
 ### Return type

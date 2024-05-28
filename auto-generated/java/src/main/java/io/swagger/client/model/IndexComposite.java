@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * IndexComposite
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class IndexComposite {
   @SerializedName("timestamp")
   private OffsetDateTime timestamp = null;

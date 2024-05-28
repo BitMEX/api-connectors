@@ -41,13 +41,13 @@ SWGStats::init() {
     m_root_symbol_isSet = false;
     currency = new QString("");
     m_currency_isSet = false;
-    volume24h = 0.0;
+    volume24h = 0L;
     m_volume24h_isSet = false;
-    turnover24h = 0.0;
+    turnover24h = 0L;
     m_turnover24h_isSet = false;
-    open_interest = 0.0;
+    open_interest = 0L;
     m_open_interest_isSet = false;
-    open_value = 0.0;
+    open_value = 0L;
     m_open_value_isSet = false;
 }
 
@@ -59,18 +59,10 @@ SWGStats::cleanup() {
     if(currency != nullptr) { 
         delete currency;
     }
-    if(volume24h != nullptr) { 
-        delete volume24h;
-    }
-    if(turnover24h != nullptr) { 
-        delete turnover24h;
-    }
-    if(open_interest != nullptr) { 
-        delete open_interest;
-    }
-    if(open_value != nullptr) { 
-        delete open_value;
-    }
+
+
+
+
 }
 
 SWGStats*
@@ -88,13 +80,13 @@ SWGStats::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&currency, pJson["currency"], "QString", "QString");
     
-    ::Swagger::setValue(&volume24h, pJson["volume24h"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&volume24h, pJson["volume24h"], "qint64", "");
     
-    ::Swagger::setValue(&turnover24h, pJson["turnover24h"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&turnover24h, pJson["turnover24h"], "qint64", "");
     
-    ::Swagger::setValue(&open_interest, pJson["openInterest"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&open_interest, pJson["openInterest"], "qint64", "");
     
-    ::Swagger::setValue(&open_value, pJson["openValue"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&open_value, pJson["openValue"], "qint64", "");
     
 }
 
@@ -116,17 +108,17 @@ SWGStats::asJsonObject() {
     if(currency != nullptr && *currency != QString("")){
         toJsonValue(QString("currency"), currency, obj, QString("QString"));
     }
-    if((volume24h != nullptr) && (volume24h->isSet())){
-        toJsonValue(QString("volume24h"), volume24h, obj, QString("SWGNumber"));
+    if(m_volume24h_isSet){
+        obj.insert("volume24h", QJsonValue(volume24h));
     }
-    if((turnover24h != nullptr) && (turnover24h->isSet())){
-        toJsonValue(QString("turnover24h"), turnover24h, obj, QString("SWGNumber"));
+    if(m_turnover24h_isSet){
+        obj.insert("turnover24h", QJsonValue(turnover24h));
     }
-    if((open_interest != nullptr) && (open_interest->isSet())){
-        toJsonValue(QString("openInterest"), open_interest, obj, QString("SWGNumber"));
+    if(m_open_interest_isSet){
+        obj.insert("openInterest", QJsonValue(open_interest));
     }
-    if((open_value != nullptr) && (open_value->isSet())){
-        toJsonValue(QString("openValue"), open_value, obj, QString("SWGNumber"));
+    if(m_open_value_isSet){
+        obj.insert("openValue", QJsonValue(open_value));
     }
 
     return obj;
@@ -152,42 +144,42 @@ SWGStats::setCurrency(QString* currency) {
     this->m_currency_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGStats::getVolume24h() {
     return volume24h;
 }
 void
-SWGStats::setVolume24h(SWGNumber* volume24h) {
+SWGStats::setVolume24h(qint64 volume24h) {
     this->volume24h = volume24h;
     this->m_volume24h_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGStats::getTurnover24h() {
     return turnover24h;
 }
 void
-SWGStats::setTurnover24h(SWGNumber* turnover24h) {
+SWGStats::setTurnover24h(qint64 turnover24h) {
     this->turnover24h = turnover24h;
     this->m_turnover24h_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGStats::getOpenInterest() {
     return open_interest;
 }
 void
-SWGStats::setOpenInterest(SWGNumber* open_interest) {
+SWGStats::setOpenInterest(qint64 open_interest) {
     this->open_interest = open_interest;
     this->m_open_interest_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGStats::getOpenValue() {
     return open_value;
 }
 void
-SWGStats::setOpenValue(SWGNumber* open_value) {
+SWGStats::setOpenValue(qint64 open_value) {
     this->open_value = open_value;
     this->m_open_value_isSet = true;
 }
@@ -199,10 +191,10 @@ SWGStats::isSet(){
     do{
         if(root_symbol != nullptr && *root_symbol != QString("")){ isObjectUpdated = true; break;}
         if(currency != nullptr && *currency != QString("")){ isObjectUpdated = true; break;}
-        if(volume24h != nullptr && volume24h->isSet()){ isObjectUpdated = true; break;}
-        if(turnover24h != nullptr && turnover24h->isSet()){ isObjectUpdated = true; break;}
-        if(open_interest != nullptr && open_interest->isSet()){ isObjectUpdated = true; break;}
-        if(open_value != nullptr && open_value->isSet()){ isObjectUpdated = true; break;}
+        if(m_volume24h_isSet){ isObjectUpdated = true; break;}
+        if(m_turnover24h_isSet){ isObjectUpdated = true; break;}
+        if(m_open_interest_isSet){ isObjectUpdated = true; break;}
+        if(m_open_value_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

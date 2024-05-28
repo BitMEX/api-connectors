@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat
 
 import java.util.Date
 import io.swagger.client.model.Error
-import io.swagger.client.model.Number
 import io.swagger.client.model.Settlement
 import io.swagger.client.{ApiInvoker, ApiException}
 
@@ -96,7 +95,7 @@ class SettlementApi(
    * @param endTime Ending date filter for results. (optional)
    * @return List[Settlement]
    */
-  def settlementGet(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Settlement]] = {
+  def settlementGet(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Settlement]] = {
     val await = Try(Await.result(settlementGetAsync(symbol, filter, columns, count, start, reverse, startTime, endTime), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -118,7 +117,7 @@ class SettlementApi(
    * @param endTime Ending date filter for results. (optional)
    * @return Future(List[Settlement])
    */
-  def settlementGetAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Settlement]] = {
+  def settlementGetAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Settlement]] = {
       helper.settlementGet(symbol, filter, columns, count, start, reverse, startTime, endTime)
   }
 
@@ -129,8 +128,8 @@ class SettlementApiAsyncHelper(client: TransportClient, config: SwaggerConfig) e
   def settlementGet(symbol: Option[String] = None,
     filter: Option[String] = None,
     columns: Option[String] = None,
-    count: Option[Number] = Option(100),
-    start: Option[Number] = Option(0),
+    count: Option[Integer] = Option(100),
+    start: Option[Integer] = Option(0),
     reverse: Option[Boolean] = Option(false),
     startTime: Option[Date] = None,
     endTime: Option[Date] = None

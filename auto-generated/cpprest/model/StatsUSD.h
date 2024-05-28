@@ -68,43 +68,43 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getTurnover24h() const;
+    int64_t getTurnover24h() const;
     bool turnover24hIsSet() const;
     void unsetTurnover24h();
-    void setTurnover24h(double value);
+    void setTurnover24h(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getTurnover30d() const;
+    int64_t getTurnover30d() const;
     bool turnover30dIsSet() const;
     void unsetTurnover30d();
-    void setTurnover30d(double value);
+    void setTurnover30d(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getTurnover365d() const;
+    int64_t getTurnover365d() const;
     bool turnover365dIsSet() const;
     void unsetTurnover365d();
-    void setTurnover365d(double value);
+    void setTurnover365d(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getTurnover() const;
+    int64_t getTurnover() const;
     bool turnoverIsSet() const;
     void unsetTurnover();
-    void setTurnover(double value);
+    void setTurnover(int64_t value);
 
 protected:
     utility::string_t m_RootSymbol;
         utility::string_t m_Currency;
     bool m_CurrencyIsSet;
-    double m_Turnover24h;
+    int64_t m_Turnover24h;
     bool m_Turnover24hIsSet;
-    double m_Turnover30d;
+    int64_t m_Turnover30d;
     bool m_Turnover30dIsSet;
-    double m_Turnover365d;
+    int64_t m_Turnover365d;
     bool m_Turnover365dIsSet;
-    double m_Turnover;
+    int64_t m_Turnover;
     bool m_TurnoverIsSet;
 };
 

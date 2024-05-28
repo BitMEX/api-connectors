@@ -28,7 +28,7 @@ import java.io.IOException;
  * Information on Top Users
  */
 @ApiModel(description = "Information on Top Users")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Leaderboard {
   @SerializedName("name")
   private String name = null;

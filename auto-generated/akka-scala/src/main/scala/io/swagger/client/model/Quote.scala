@@ -18,10 +18,10 @@ import java.util.UUID
 case class Quote (
   timestamp: DateTime,
   symbol: String,
-  bidSize: Option[Double] = None,
+  bidSize: Option[Long] = None,
   bidPrice: Option[Double] = None,
   askPrice: Option[Double] = None,
-  askSize: Option[Double] = None
+  askSize: Option[Long] = None
 ) extends ApiModel
 
 

@@ -82,10 +82,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getLeavesQty() const;
+    int64_t getLeavesQty() const;
     bool leavesQtyIsSet() const;
     void unsetLeavesQty();
-    void setLeavesQty(double value);
+    void setLeavesQty(int64_t value);
 
 protected:
     utility::string_t m_OrderID;
@@ -95,7 +95,7 @@ protected:
     bool m_SideIsSet;
     double m_Price;
     bool m_PriceIsSet;
-    double m_LeavesQty;
+    int64_t m_LeavesQty;
     bool m_LeavesQtyIsSet;
 };
 

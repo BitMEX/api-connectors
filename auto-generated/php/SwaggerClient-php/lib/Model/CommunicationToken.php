@@ -59,7 +59,7 @@ class CommunicationToken implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'id' => 'string',
-        'user_id' => 'float',
+        'user_id' => 'int',
         'device_token' => 'string',
         'channel' => 'string'
     ];
@@ -262,7 +262,7 @@ class CommunicationToken implements ModelInterface, ArrayAccess
     /**
      * Gets user_id
      *
-     * @return float
+     * @return int
      */
     public function getUserId()
     {
@@ -272,7 +272,7 @@ class CommunicationToken implements ModelInterface, ArrayAccess
     /**
      * Sets user_id
      *
-     * @param float $user_id user_id
+     * @param int $user_id user_id
      *
      * @return $this
      */

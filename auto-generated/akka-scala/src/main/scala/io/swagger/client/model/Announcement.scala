@@ -16,7 +16,7 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class Announcement (
-  id: Double,
+  id: Int,
   link: Option[String] = None,
   title: Option[String] = None,
   content: Option[String] = None,

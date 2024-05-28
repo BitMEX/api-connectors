@@ -79,7 +79,7 @@ namespace IO.Swagger.Model
         /// <param name="persist">persist (default to true).</param>
         /// <param name="waitForVisibility">waitForVisibility (default to true).</param>
         /// <param name="sound">sound.</param>
-        public GlobalNotification(decimal? id = default(decimal?), DateTime? date = default(DateTime?), string title = default(string), string body = default(string), decimal? ttl = default(decimal?), TypeEnum? type = default(TypeEnum?), bool? closable = true, bool? persist = true, bool? waitForVisibility = true, string sound = default(string))
+        public GlobalNotification(int? id = default(int?), DateTime? date = default(DateTime?), string title = default(string), string body = default(string), int? ttl = default(int?), TypeEnum? type = default(TypeEnum?), bool? closable = true, bool? persist = true, bool? waitForVisibility = true, string sound = default(string))
         {
             // to ensure "date" is required (not null)
             if (date == null)
@@ -153,7 +153,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public decimal? Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Date
@@ -177,7 +177,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Ttl
         /// </summary>
         [DataMember(Name="ttl", EmitDefaultValue=false)]
-        public decimal? Ttl { get; set; }
+        public int? Ttl { get; set; }
 
 
         /// <summary>

@@ -33,7 +33,7 @@ class Porl(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'account': 'float',
+        'account': 'int',
         'nonce': 'str',
         'account_nonce': 'str',
         'total': 'float',
@@ -87,7 +87,7 @@ class Porl(object):
 
 
         :return: The account of this Porl.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._account
 
@@ -97,7 +97,7 @@ class Porl(object):
 
 
         :param account: The account of this Porl.  # noqa: E501
-        :type: float
+        :type: int
         """
         if self._configuration.client_side_validation and account is None:
             raise ValueError("Invalid value for `account`, must not be `None`")  # noqa: E501

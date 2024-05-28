@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **float** |  | [optional] 
+**id** | **int** |  | [optional] 
 **firstname** | **string** |  | [optional] 
 **lastname** | **string** |  | [optional] 
 **username** | **string** |  | 

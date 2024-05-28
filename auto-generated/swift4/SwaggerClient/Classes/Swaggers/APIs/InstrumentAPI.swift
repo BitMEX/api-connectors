@@ -24,7 +24,7 @@ open class InstrumentAPI {
      - parameter endTime: (query) Ending date filter for results. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func instrumentGet(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [Instrument]?,_ error: Error?) -> Void)) {
+    open class func instrumentGet(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [Instrument]?,_ error: Error?) -> Void)) {
         instrumentGetWithRequestBuilder(symbol: symbol, filter: filter, columns: columns, count: count, start: start, reverse: reverse, startTime: startTime, endTime: endTime).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -48,7 +48,7 @@ open class InstrumentAPI {
 
      - returns: RequestBuilder<[Instrument]> 
      */
-    open class func instrumentGetWithRequestBuilder(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[Instrument]> {
+    open class func instrumentGetWithRequestBuilder(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[Instrument]> {
         let path = "/instrument"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -58,8 +58,8 @@ open class InstrumentAPI {
             "symbol": symbol, 
             "filter": filter, 
             "columns": columns, 
-            "count": count, 
-            "start": start, 
+            "count": count?.encodeToJSON(), 
+            "start": start?.encodeToJSON(), 
             "reverse": reverse, 
             "startTime": startTime?.encodeToJSON(), 
             "endTime": endTime?.encodeToJSON()
@@ -177,7 +177,7 @@ open class InstrumentAPI {
      - parameter endTime: (query) Ending date filter for results. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func instrumentGetCompositeIndex(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [IndexComposite]?,_ error: Error?) -> Void)) {
+    open class func instrumentGetCompositeIndex(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [IndexComposite]?,_ error: Error?) -> Void)) {
         instrumentGetCompositeIndexWithRequestBuilder(symbol: symbol, filter: filter, columns: columns, count: count, start: start, reverse: reverse, startTime: startTime, endTime: endTime).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -201,7 +201,7 @@ open class InstrumentAPI {
 
      - returns: RequestBuilder<[IndexComposite]> 
      */
-    open class func instrumentGetCompositeIndexWithRequestBuilder(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[IndexComposite]> {
+    open class func instrumentGetCompositeIndexWithRequestBuilder(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[IndexComposite]> {
         let path = "/instrument/compositeIndex"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -211,8 +211,8 @@ open class InstrumentAPI {
             "symbol": symbol, 
             "filter": filter, 
             "columns": columns, 
-            "count": count, 
-            "start": start, 
+            "count": count?.encodeToJSON(), 
+            "start": start?.encodeToJSON(), 
             "reverse": reverse, 
             "startTime": startTime?.encodeToJSON(), 
             "endTime": endTime?.encodeToJSON()

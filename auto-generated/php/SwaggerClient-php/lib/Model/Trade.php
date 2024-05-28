@@ -61,11 +61,11 @@ class Trade implements ModelInterface, ArrayAccess
         'timestamp' => '\DateTime',
         'symbol' => 'string',
         'side' => 'string',
-        'size' => 'float',
+        'size' => 'int',
         'price' => 'double',
         'tick_direction' => 'string',
         'trd_match_id' => 'string',
-        'gross_value' => 'float',
+        'gross_value' => 'int',
         'home_notional' => 'double',
         'foreign_notional' => 'double',
         'trd_type' => 'string'
@@ -346,7 +346,7 @@ class Trade implements ModelInterface, ArrayAccess
     /**
      * Gets size
      *
-     * @return float
+     * @return int
      */
     public function getSize()
     {
@@ -356,7 +356,7 @@ class Trade implements ModelInterface, ArrayAccess
     /**
      * Sets size
      *
-     * @param float $size size
+     * @param int $size size
      *
      * @return $this
      */
@@ -442,7 +442,7 @@ class Trade implements ModelInterface, ArrayAccess
     /**
      * Gets gross_value
      *
-     * @return float
+     * @return int
      */
     public function getGrossValue()
     {
@@ -452,7 +452,7 @@ class Trade implements ModelInterface, ArrayAccess
     /**
      * Sets gross_value
      *
-     * @param float $gross_value gross_value
+     * @param int $gross_value gross_value
      *
      * @return $this
      */

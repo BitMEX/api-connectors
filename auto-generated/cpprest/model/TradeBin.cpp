@@ -31,15 +31,15 @@ TradeBin::TradeBin()
     m_LowIsSet = false;
     m_Close = 0.0;
     m_CloseIsSet = false;
-    m_Trades = 0.0;
+    m_Trades = 0L;
     m_TradesIsSet = false;
-    m_Volume = 0.0;
+    m_Volume = 0L;
     m_VolumeIsSet = false;
     m_Vwap = 0.0;
     m_VwapIsSet = false;
-    m_LastSize = 0.0;
+    m_LastSize = 0L;
     m_LastSizeIsSet = false;
-    m_Turnover = 0.0;
+    m_Turnover = 0L;
     m_TurnoverIsSet = false;
     m_HomeNotional = 0.0;
     m_HomeNotionalIsSet = false;
@@ -152,7 +152,7 @@ void TradeBin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("trades")];
         if(!fieldValue.is_null())
         {
-            setTrades(ModelBase::doubleFromJson(fieldValue));
+            setTrades(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("volume")))
@@ -160,7 +160,7 @@ void TradeBin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("volume")];
         if(!fieldValue.is_null())
         {
-            setVolume(ModelBase::doubleFromJson(fieldValue));
+            setVolume(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("vwap")))
@@ -176,7 +176,7 @@ void TradeBin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("lastSize")];
         if(!fieldValue.is_null())
         {
-            setLastSize(ModelBase::doubleFromJson(fieldValue));
+            setLastSize(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("turnover")))
@@ -184,7 +184,7 @@ void TradeBin::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("turnover")];
         if(!fieldValue.is_null())
         {
-            setTurnover(ModelBase::doubleFromJson(fieldValue));
+            setTurnover(ModelBase::int64_tFromJson(fieldValue));
         }
     }
     if(val.has_field(utility::conversions::to_string_t("homeNotional")))
@@ -289,11 +289,11 @@ void TradeBin::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t("trades")))
     {
-        setTrades(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("trades"))));
+        setTrades(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("trades"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("volume")))
     {
-        setVolume(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("volume"))));
+        setVolume(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("volume"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("vwap")))
     {
@@ -301,11 +301,11 @@ void TradeBin::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const
     }
     if(multipart->hasContent(utility::conversions::to_string_t("lastSize")))
     {
-        setLastSize(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("lastSize"))));
+        setLastSize(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("lastSize"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("turnover")))
     {
-        setTurnover(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("turnover"))));
+        setTurnover(ModelBase::int64_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("turnover"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("homeNotional")))
     {
@@ -423,13 +423,13 @@ void TradeBin::unsetClose()
     m_CloseIsSet = false;
 }
 
-double TradeBin::getTrades() const
+int64_t TradeBin::getTrades() const
 {
     return m_Trades;
 }
 
 
-void TradeBin::setTrades(double value)
+void TradeBin::setTrades(int64_t value)
 {
     m_Trades = value;
     m_TradesIsSet = true;
@@ -444,13 +444,13 @@ void TradeBin::unsetTrades()
     m_TradesIsSet = false;
 }
 
-double TradeBin::getVolume() const
+int64_t TradeBin::getVolume() const
 {
     return m_Volume;
 }
 
 
-void TradeBin::setVolume(double value)
+void TradeBin::setVolume(int64_t value)
 {
     m_Volume = value;
     m_VolumeIsSet = true;
@@ -486,13 +486,13 @@ void TradeBin::unsetVwap()
     m_VwapIsSet = false;
 }
 
-double TradeBin::getLastSize() const
+int64_t TradeBin::getLastSize() const
 {
     return m_LastSize;
 }
 
 
-void TradeBin::setLastSize(double value)
+void TradeBin::setLastSize(int64_t value)
 {
     m_LastSize = value;
     m_LastSizeIsSet = true;
@@ -507,13 +507,13 @@ void TradeBin::unsetLastSize()
     m_LastSizeIsSet = false;
 }
 
-double TradeBin::getTurnover() const
+int64_t TradeBin::getTurnover() const
 {
     return m_Turnover;
 }
 
 
-void TradeBin::setTurnover(double value)
+void TradeBin::setTurnover(int64_t value)
 {
     m_Turnover = value;
     m_TurnoverIsSet = true;

@@ -23,25 +23,24 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * OrderBookL2
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class OrderBookL2 {
   @SerializedName("symbol")
   private String symbol = null;
 
   @SerializedName("id")
-  private BigDecimal id = null;
+  private Long id = null;
 
   @SerializedName("side")
   private String side = null;
 
   @SerializedName("size")
-  private BigDecimal size = null;
+  private Long size = null;
 
   @SerializedName("price")
   private Double price = null;
@@ -67,7 +66,7 @@ public class OrderBookL2 {
     this.symbol = symbol;
   }
 
-  public OrderBookL2 id(BigDecimal id) {
+  public OrderBookL2 id(Long id) {
     this.id = id;
     return this;
   }
@@ -77,11 +76,11 @@ public class OrderBookL2 {
    * @return id
   **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(BigDecimal id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -103,7 +102,7 @@ public class OrderBookL2 {
     this.side = side;
   }
 
-  public OrderBookL2 size(BigDecimal size) {
+  public OrderBookL2 size(Long size) {
     this.size = size;
     return this;
   }
@@ -113,11 +112,11 @@ public class OrderBookL2 {
    * @return size
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getSize() {
+  public Long getSize() {
     return size;
   }
 
-  public void setSize(BigDecimal size) {
+  public void setSize(Long size) {
     this.size = size;
   }
 

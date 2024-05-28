@@ -94,17 +94,17 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getTrades() const;
+    int64_t getTrades() const;
     bool tradesIsSet() const;
     void unsetTrades();
-    void setTrades(double value);
+    void setTrades(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getVolume() const;
+    int64_t getVolume() const;
     bool volumeIsSet() const;
     void unsetVolume();
-    void setVolume(double value);
+    void setVolume(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -115,17 +115,17 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getLastSize() const;
+    int64_t getLastSize() const;
     bool lastSizeIsSet() const;
     void unsetLastSize();
-    void setLastSize(double value);
+    void setLastSize(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getTurnover() const;
+    int64_t getTurnover() const;
     bool turnoverIsSet() const;
     void unsetTurnover();
-    void setTurnover(double value);
+    void setTurnover(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -152,15 +152,15 @@ protected:
     bool m_LowIsSet;
     double m_Close;
     bool m_CloseIsSet;
-    double m_Trades;
+    int64_t m_Trades;
     bool m_TradesIsSet;
-    double m_Volume;
+    int64_t m_Volume;
     bool m_VolumeIsSet;
     double m_Vwap;
     bool m_VwapIsSet;
-    double m_LastSize;
+    int64_t m_LastSize;
     bool m_LastSizeIsSet;
-    double m_Turnover;
+    int64_t m_Turnover;
     bool m_TurnoverIsSet;
     double m_HomeNotional;
     bool m_HomeNotionalIsSet;

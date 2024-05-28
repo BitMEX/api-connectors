@@ -82,7 +82,7 @@
             // TODO: update response assertions
             expect(data).to.be.a(BitMexApi.Guild);
             expect(data.id).to.be.a('number');
-            expect(data.id).to.be();
+            expect(data.id).to.be(0);
             expect(data.created).to.be.a(Date);
             expect(data.created).to.be(new Date());
             expect(data.updated).to.be.a(Date);
@@ -236,7 +236,7 @@
             // TODO: update response assertions
             expect(data).to.be.a(BitMexApi.Guild);
             expect(data.id).to.be.a('number');
-            expect(data.id).to.be();
+            expect(data.id).to.be(0);
             expect(data.created).to.be.a(Date);
             expect(data.created).to.be(new Date());
             expect(data.updated).to.be.a(Date);

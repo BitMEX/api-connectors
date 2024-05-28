@@ -21,7 +21,7 @@ namespace model {
 
 ChatChannel::ChatChannel()
 {
-    m_Id = 0.0;
+    m_Id = 0;
     m_IdIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_IsPrivate = false;
@@ -57,7 +57,7 @@ void ChatChannel::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("id")];
         if(!fieldValue.is_null())
         {
-            setId(ModelBase::doubleFromJson(fieldValue));
+            setId(ModelBase::int32_tFromJson(fieldValue));
         }
     }
     setName(ModelBase::stringFromJson(val[utility::conversions::to_string_t("name")]));
@@ -90,19 +90,19 @@ void ChatChannel::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
 
     if(multipart->hasContent(utility::conversions::to_string_t("id")))
     {
-        setId(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
+        setId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
     }
     setName(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("name"))));
     setIsPrivate(ModelBase::boolFromHttpContent(multipart->getContent(utility::conversions::to_string_t("isPrivate"))));
 }
 
-double ChatChannel::getId() const
+int32_t ChatChannel::getId() const
 {
     return m_Id;
 }
 
 
-void ChatChannel::setId(double value)
+void ChatChannel::setId(int32_t value)
 {
     m_Id = value;
     m_IdIsSet = true;

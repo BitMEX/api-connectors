@@ -50,7 +50,7 @@ public:
     /// <param name="depth">Orderbook depth per side. Send 0 for full depth. (optional, default to 25)</param>
     pplx::task<std::vector<std::shared_ptr<OrderBookL2>>> orderBook_getL2(
         utility::string_t symbol,
-        boost::optional<double> depth
+        boost::optional<int32_t> depth
     );
 
 protected:

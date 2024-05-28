@@ -21,7 +21,7 @@ namespace model {
 
 Chat::Chat()
 {
-    m_Id = 0.0;
+    m_Id = 0;
     m_IdIsSet = false;
     m_date = utility::datetime();
     m_User = utility::conversions::to_string_t("");
@@ -73,7 +73,7 @@ void Chat::fromJson(web::json::value& val)
         web::json::value& fieldValue = val[utility::conversions::to_string_t("id")];
         if(!fieldValue.is_null())
         {
-            setId(ModelBase::doubleFromJson(fieldValue));
+            setId(ModelBase::int32_tFromJson(fieldValue));
         }
     }
     setDate
@@ -136,7 +136,7 @@ void Chat::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
 
     if(multipart->hasContent(utility::conversions::to_string_t("id")))
     {
-        setId(ModelBase::doubleFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
+        setId(ModelBase::int32_tFromHttpContent(multipart->getContent(utility::conversions::to_string_t("id"))));
     }
     setDate(ModelBase::dateFromHttpContent(multipart->getContent(utility::conversions::to_string_t("date"))));
     setUser(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("user"))));
@@ -152,13 +152,13 @@ void Chat::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     }
 }
 
-double Chat::getId() const
+int32_t Chat::getId() const
 {
     return m_Id;
 }
 
 
-void Chat::setId(double value)
+void Chat::setId(int32_t value)
 {
     m_Id = value;
     m_IdIsSet = true;

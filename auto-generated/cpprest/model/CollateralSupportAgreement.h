@@ -61,10 +61,10 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getAccount() const;
+    int64_t getAccount() const;
     bool accountIsSet() const;
     void unsetAccount();
-    void setAccount(double value);
+    void setAccount(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -75,38 +75,38 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getAmount() const;
+    int64_t getAmount() const;
     bool amountIsSet() const;
     void unsetAmount();
-    void setAmount(double value);
+    void setAmount(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getMinAmount() const;
+    int64_t getMinAmount() const;
     bool minAmountIsSet() const;
     void unsetMinAmount();
-    void setMinAmount(double value);
+    void setMinAmount(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getThreshold() const;
+    int64_t getThreshold() const;
     bool thresholdIsSet() const;
     void unsetThreshold();
-    void setThreshold(double value);
+    void setThreshold(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getMmRatioMarginCall() const;
+    int64_t getMmRatioMarginCall() const;
     bool mmRatioMarginCallIsSet() const;
     void unsetMmRatioMarginCall();
-    void setMmRatioMarginCall(double value);
+    void setMmRatioMarginCall(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getMmRatioLiquidation() const;
+    int64_t getMmRatioLiquidation() const;
     bool mmRatioLiquidationIsSet() const;
     void unsetMmRatioLiquidation();
-    void setMmRatioLiquidation(double value);
+    void setMmRatioLiquidation(int64_t value);
     /// <summary>
     /// 
     /// </summary>
@@ -166,19 +166,19 @@ public:
 
 protected:
     utility::string_t m_CsaID;
-        double m_Account;
+        int64_t m_Account;
     bool m_AccountIsSet;
     utility::string_t m_Currency;
     bool m_CurrencyIsSet;
-    double m_Amount;
+    int64_t m_Amount;
     bool m_AmountIsSet;
-    double m_MinAmount;
+    int64_t m_MinAmount;
     bool m_MinAmountIsSet;
-    double m_Threshold;
+    int64_t m_Threshold;
     bool m_ThresholdIsSet;
-    double m_MmRatioMarginCall;
+    int64_t m_MmRatioMarginCall;
     bool m_MmRatioMarginCallIsSet;
-    double m_MmRatioLiquidation;
+    int64_t m_MmRatioLiquidation;
     bool m_MmRatioLiquidationIsSet;
     utility::string_t m_StartTime;
     bool m_StartTimeIsSet;

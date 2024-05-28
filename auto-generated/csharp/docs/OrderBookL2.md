@@ -4,9 +4,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | **string** |  | 
-**Id** | **decimal?** |  | 
+**Id** | **long?** |  | 
 **Side** | **string** |  | 
-**Size** | **decimal?** |  | [optional] 
+**Size** | **long?** |  | [optional] 
 **Price** | **double?** |  | [optional] 
 **Timestamp** | **DateTime?** |  | [optional] 
 

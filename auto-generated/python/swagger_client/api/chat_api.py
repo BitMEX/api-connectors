@@ -42,8 +42,8 @@ class ChatApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param float count: Number of results to fetch.
-        :param float start: Starting ID for results.
+        :param int count: Number of results to fetch.
+        :param int start: Starting ID for results.
         :param bool reverse: If true, will sort results newest first.
         :param float channel_id: Channel id. GET /chat/channels for ids. Global English by default
         :return: list[Chat]
@@ -66,8 +66,8 @@ class ChatApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param float count: Number of results to fetch.
-        :param float start: Starting ID for results.
+        :param int count: Number of results to fetch.
+        :param int start: Starting ID for results.
         :param bool reverse: If true, will sort results newest first.
         :param float channel_id: Channel id. GET /chat/channels for ids. Global English by default
         :return: list[Chat]

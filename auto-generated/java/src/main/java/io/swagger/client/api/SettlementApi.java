@@ -27,7 +27,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import org.threeten.bp.OffsetDateTime;
 import io.swagger.client.model.Settlement;
@@ -72,7 +71,7 @@ public class SettlementApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call settlementGetCall(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call settlementGetCall(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -130,7 +129,7 @@ public class SettlementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call settlementGetValidateBeforeCall(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call settlementGetValidateBeforeCall(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
         com.squareup.okhttp.Call call = settlementGetCall(symbol, filter, columns, count, start, reverse, startTime, endTime, progressListener, progressRequestListener);
@@ -152,7 +151,7 @@ public class SettlementApi {
      * @return List&lt;Settlement&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Settlement> settlementGet(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public List<Settlement> settlementGet(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         ApiResponse<List<Settlement>> resp = settlementGetWithHttpInfo(symbol, filter, columns, count, start, reverse, startTime, endTime);
         return resp.getData();
     }
@@ -171,7 +170,7 @@ public class SettlementApi {
      * @return ApiResponse&lt;List&lt;Settlement&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Settlement>> settlementGetWithHttpInfo(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public ApiResponse<List<Settlement>> settlementGetWithHttpInfo(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         com.squareup.okhttp.Call call = settlementGetValidateBeforeCall(symbol, filter, columns, count, start, reverse, startTime, endTime, null, null);
         Type localVarReturnType = new TypeToken<List<Settlement>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -192,7 +191,7 @@ public class SettlementApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call settlementGetAsync(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<Settlement>> callback) throws ApiException {
+    public com.squareup.okhttp.Call settlementGetAsync(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<Settlement>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

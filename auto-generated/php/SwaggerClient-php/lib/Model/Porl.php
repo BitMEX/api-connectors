@@ -58,7 +58,7 @@ class Porl implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'account' => 'float',
+        'account' => 'int',
         'nonce' => 'string',
         'account_nonce' => 'string',
         'total' => 'double',
@@ -268,7 +268,7 @@ class Porl implements ModelInterface, ArrayAccess
     /**
      * Gets account
      *
-     * @return float
+     * @return int
      */
     public function getAccount()
     {
@@ -278,7 +278,7 @@ class Porl implements ModelInterface, ArrayAccess
     /**
      * Sets account
      *
-     * @param float $account account
+     * @param int $account account
      *
      * @return $this
      */

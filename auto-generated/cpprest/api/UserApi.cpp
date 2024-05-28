@@ -4223,7 +4223,7 @@ pplx::task<void> UserApi::user_logout()
         return void();
     });
 }
-pplx::task<std::shared_ptr<Transaction>> UserApi::user_requestWithdrawal(utility::string_t currency, utility::string_t network, double amount, boost::optional<utility::string_t> otpToken, boost::optional<utility::string_t> address, boost::optional<utility::string_t> memo, boost::optional<double> addressId, boost::optional<double> targetUserId, boost::optional<double> fee, boost::optional<utility::string_t> text)
+pplx::task<std::shared_ptr<Transaction>> UserApi::user_requestWithdrawal(utility::string_t currency, utility::string_t network, int64_t amount, boost::optional<utility::string_t> otpToken, boost::optional<utility::string_t> address, boost::optional<utility::string_t> memo, boost::optional<double> addressId, boost::optional<double> targetUserId, boost::optional<double> fee, boost::optional<utility::string_t> text)
 {
 
 
@@ -4702,7 +4702,7 @@ pplx::task<std::shared_ptr<Object>> UserApi::user_updateSubAccount(double target
         return result;
     });
 }
-pplx::task<std::shared_ptr<Transaction>> UserApi::user_walletTransfer(utility::string_t currency, double amount, double targetAccountId, boost::optional<double> fromAccountId)
+pplx::task<std::shared_ptr<Transaction>> UserApi::user_walletTransfer(utility::string_t currency, int64_t amount, double targetAccountId, boost::optional<double> fromAccountId)
 {
 
 

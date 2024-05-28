@@ -4,9 +4,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **symbol** | **string** |  | 
-**id** | **float** |  | 
+**id** | **int** |  | 
 **side** | **string** |  | 
-**size** | **float** |  | [optional] 
+**size** | **int** |  | [optional] 
 **price** | **double** |  | [optional] 
 **timestamp** | [**\DateTime**](\DateTime.md) |  | [optional] 
 

@@ -62,7 +62,7 @@ class Liquidation implements ModelInterface, ArrayAccess
         'symbol' => 'string',
         'side' => 'string',
         'price' => 'double',
-        'leaves_qty' => 'float'
+        'leaves_qty' => 'int'
     ];
 
     /**
@@ -331,7 +331,7 @@ class Liquidation implements ModelInterface, ArrayAccess
     /**
      * Gets leaves_qty
      *
-     * @return float
+     * @return int
      */
     public function getLeavesQty()
     {
@@ -341,7 +341,7 @@ class Liquidation implements ModelInterface, ArrayAccess
     /**
      * Sets leaves_qty
      *
-     * @param float $leaves_qty leaves_qty
+     * @param int $leaves_qty leaves_qty
      *
      * @return $this
      */

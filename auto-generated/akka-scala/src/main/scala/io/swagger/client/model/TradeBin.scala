@@ -22,11 +22,11 @@ case class TradeBin (
   high: Option[Double] = None,
   low: Option[Double] = None,
   close: Option[Double] = None,
-  trades: Option[Double] = None,
-  volume: Option[Double] = None,
+  trades: Option[Long] = None,
+  volume: Option[Long] = None,
   vwap: Option[Double] = None,
-  lastSize: Option[Double] = None,
-  turnover: Option[Double] = None,
+  lastSize: Option[Long] = None,
+  turnover: Option[Long] = None,
   homeNotional: Option[Double] = None,
   foreignNotional: Option[Double] = None
 ) extends ApiModel

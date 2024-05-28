@@ -16,9 +16,9 @@ import (
 
 // Pinned Messages
 type PinnedMessage struct {
-	Id float32 `json:"id"`
-	ChannelID float32 `json:"channelID"`
-	MessageId float32 `json:"messageId"`
+	Id int32 `json:"id"`
+	ChannelID int32 `json:"channelID"`
+	MessageId int32 `json:"messageId"`
 	Created time.Time `json:"created,omitempty"`
 	Ended time.Time `json:"ended,omitempty"`
 	CreatedUserId float64 `json:"createdUserId,omitempty"`

@@ -11,7 +11,7 @@
 package swagger
 
 type ChatChannel struct {
-	Id float32 `json:"id,omitempty"`
+	Id int32 `json:"id,omitempty"`
 	Name string `json:"name"`
 	IsPrivate bool `json:"isPrivate"`
 }

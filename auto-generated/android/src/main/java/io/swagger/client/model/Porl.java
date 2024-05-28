@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -24,7 +23,7 @@ import com.google.gson.annotations.SerializedName;
 public class Porl {
   
   @SerializedName("account")
-  private BigDecimal account = null;
+  private Integer account = null;
   @SerializedName("nonce")
   private String nonce = null;
   @SerializedName("accountNonce")
@@ -43,10 +42,10 @@ public class Porl {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getAccount() {
+  public Integer getAccount() {
     return account;
   }
-  public void setAccount(BigDecimal account) {
+  public void setAccount(Integer account) {
     this.account = account;
   }
 

@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**id** | **Integer** |  |  [optional]
 **date** | [**Date**](Date.md) |  | 
 **user** | **String** |  | 
 **userColor** | **String** |  |  [optional]

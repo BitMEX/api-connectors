@@ -18,10 +18,10 @@ import java.util.UUID
 case class Stats (
   rootSymbol: String,
   currency: Option[String] = None,
-  volume24h: Option[Double] = None,
-  turnover24h: Option[Double] = None,
-  openInterest: Option[Double] = None,
-  openValue: Option[Double] = None
+  volume24h: Option[Long] = None,
+  turnover24h: Option[Long] = None,
+  openInterest: Option[Long] = None,
+  openValue: Option[Long] = None
 ) extends ApiModel
 
 

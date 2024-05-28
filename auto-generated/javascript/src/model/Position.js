@@ -174,8 +174,9 @@
 
   /**
    * @member {Number} account
+   * @default 0
    */
-  exports.prototype.account = undefined;
+  exports.prototype.account = 0;
 
   /**
    * @member {String} symbol
@@ -217,8 +218,9 @@
 
   /**
    * @member {Number} riskLimit
+   * @default 0
    */
-  exports.prototype.riskLimit = undefined;
+  exports.prototype.riskLimit = 0;
 
   /**
    * @member {Number} leverage
@@ -239,83 +241,99 @@
 
   /**
    * @member {Number} rebalancedPnl
+   * @default 0
    */
-  exports.prototype.rebalancedPnl = undefined;
+  exports.prototype.rebalancedPnl = 0;
 
   /**
    * @member {Number} prevRealisedPnl
+   * @default 0
    */
-  exports.prototype.prevRealisedPnl = undefined;
+  exports.prototype.prevRealisedPnl = 0;
 
   /**
    * @member {Number} prevUnrealisedPnl
+   * @default 0
    */
-  exports.prototype.prevUnrealisedPnl = undefined;
+  exports.prototype.prevUnrealisedPnl = 0;
 
   /**
    * @member {Number} openingQty
+   * @default 0
    */
-  exports.prototype.openingQty = undefined;
+  exports.prototype.openingQty = 0;
 
   /**
    * @member {Number} openOrderBuyQty
+   * @default 0
    */
-  exports.prototype.openOrderBuyQty = undefined;
+  exports.prototype.openOrderBuyQty = 0;
 
   /**
    * @member {Number} openOrderBuyCost
+   * @default 0
    */
-  exports.prototype.openOrderBuyCost = undefined;
+  exports.prototype.openOrderBuyCost = 0;
 
   /**
    * @member {Number} openOrderBuyPremium
+   * @default 0
    */
-  exports.prototype.openOrderBuyPremium = undefined;
+  exports.prototype.openOrderBuyPremium = 0;
 
   /**
    * @member {Number} openOrderSellQty
+   * @default 0
    */
-  exports.prototype.openOrderSellQty = undefined;
+  exports.prototype.openOrderSellQty = 0;
 
   /**
    * @member {Number} openOrderSellCost
+   * @default 0
    */
-  exports.prototype.openOrderSellCost = undefined;
+  exports.prototype.openOrderSellCost = 0;
 
   /**
    * @member {Number} openOrderSellPremium
+   * @default 0
    */
-  exports.prototype.openOrderSellPremium = undefined;
+  exports.prototype.openOrderSellPremium = 0;
 
   /**
    * @member {Number} currentQty
+   * @default 0
    */
-  exports.prototype.currentQty = undefined;
+  exports.prototype.currentQty = 0;
 
   /**
    * @member {Number} currentCost
+   * @default 0
    */
-  exports.prototype.currentCost = undefined;
+  exports.prototype.currentCost = 0;
 
   /**
    * @member {Number} currentComm
+   * @default 0
    */
-  exports.prototype.currentComm = undefined;
+  exports.prototype.currentComm = 0;
 
   /**
    * @member {Number} realisedCost
+   * @default 0
    */
-  exports.prototype.realisedCost = undefined;
+  exports.prototype.realisedCost = 0;
 
   /**
    * @member {Number} unrealisedCost
+   * @default 0
    */
-  exports.prototype.unrealisedCost = undefined;
+  exports.prototype.unrealisedCost = 0;
 
   /**
    * @member {Number} grossOpenPremium
+   * @default 0
    */
-  exports.prototype.grossOpenPremium = undefined;
+  exports.prototype.grossOpenPremium = 0;
 
   /**
    * @member {Boolean} isOpen
@@ -330,13 +348,15 @@
 
   /**
    * @member {Number} markValue
+   * @default 0
    */
-  exports.prototype.markValue = undefined;
+  exports.prototype.markValue = 0;
 
   /**
    * @member {Number} riskValue
+   * @default 0
    */
-  exports.prototype.riskValue = undefined;
+  exports.prototype.riskValue = 0;
 
   /**
    * @member {Number} homeNotional
@@ -357,53 +377,63 @@
 
   /**
    * @member {Number} posCost
+   * @default 0
    */
-  exports.prototype.posCost = undefined;
+  exports.prototype.posCost = 0;
 
   /**
    * @member {Number} posCross
+   * @default 0
    */
-  exports.prototype.posCross = undefined;
+  exports.prototype.posCross = 0;
 
   /**
    * @member {Number} posComm
+   * @default 0
    */
-  exports.prototype.posComm = undefined;
+  exports.prototype.posComm = 0;
 
   /**
    * @member {Number} posLoss
+   * @default 0
    */
-  exports.prototype.posLoss = undefined;
+  exports.prototype.posLoss = 0;
 
   /**
    * @member {Number} posMargin
+   * @default 0
    */
-  exports.prototype.posMargin = undefined;
+  exports.prototype.posMargin = 0;
 
   /**
    * @member {Number} posMaint
+   * @default 0
    */
-  exports.prototype.posMaint = undefined;
+  exports.prototype.posMaint = 0;
 
   /**
    * @member {Number} initMargin
+   * @default 0
    */
-  exports.prototype.initMargin = undefined;
+  exports.prototype.initMargin = 0;
 
   /**
    * @member {Number} maintMargin
+   * @default 0
    */
-  exports.prototype.maintMargin = undefined;
+  exports.prototype.maintMargin = 0;
 
   /**
    * @member {Number} realisedPnl
+   * @default 0
    */
-  exports.prototype.realisedPnl = undefined;
+  exports.prototype.realisedPnl = 0;
 
   /**
    * @member {Number} unrealisedPnl
+   * @default 0
    */
-  exports.prototype.unrealisedPnl = undefined;
+  exports.prototype.unrealisedPnl = 0;
 
   /**
    * @member {Number} unrealisedPnlPcnt

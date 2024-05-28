@@ -59,11 +59,11 @@
               expect(data.symbol).to.be.a('string');
               expect(data.symbol).to.be("");
               expect(data.id).to.be.a('number');
-              expect(data.id).to.be();
+              expect(data.id).to.be("0");
               expect(data.side).to.be.a('string');
               expect(data.side).to.be("");
               expect(data.size).to.be.a('number');
-              expect(data.size).to.be();
+              expect(data.size).to.be("0");
               expect(data.price).to.be.a('number');
               expect(data.price).to.be(0.0);
               expect(data.timestamp).to.be.a(Date);

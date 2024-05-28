@@ -18,7 +18,6 @@
 #include <QDateTime>
 #include <QString>
 #include "SWGError.h"
-#include "SWGNumber.h"
 #include "SWGTrade.h"
 #include "SWGTradeBin.h"
 
@@ -38,8 +37,8 @@ public:
     QString basePath;
     QMap<QString, QString> defaultHeaders;
 
-    void trade_get(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time);
-    void trade_getBucketed(QString* bin_size, bool partial, QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time);
+    void trade_get(QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time);
+    void trade_getBucketed(QString* bin_size, bool partial, QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time);
     
 private:
     void trade_getCallback (SWGHttpRequestWorker * worker);

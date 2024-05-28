@@ -3,11 +3,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **decimal?** |  | [optional] 
+**Id** | **int?** |  | [optional] 
 **Date** | **DateTime?** |  | 
 **Title** | **string** |  | 
 **Body** | **string** |  | 
-**Ttl** | **decimal?** |  | 
+**Ttl** | **int?** |  | 
 **Type** | **string** |  | [optional] 
 **Closable** | **bool?** |  | [optional] [default to true]
 **Persist** | **bool?** |  | [optional] [default to true]

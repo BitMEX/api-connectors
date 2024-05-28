@@ -37,7 +37,7 @@ SWGGuild::~SWGGuild() {
 
 void
 SWGGuild::init() {
-    id = 0.0;
+    id = 0;
     m_id_isSet = false;
     created = NULL;
     m_created_isSet = false;
@@ -73,9 +73,7 @@ SWGGuild::init() {
 
 void
 SWGGuild::cleanup() {
-    if(id != nullptr) { 
-        delete id;
-    }
+
     if(created != nullptr) { 
         delete created;
     }
@@ -126,7 +124,7 @@ SWGGuild::fromJson(QString json) {
 
 void
 SWGGuild::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&id, pJson["id"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&id, pJson["id"], "qint32", "");
     
     ::Swagger::setValue(&created, pJson["created"], "QDateTime", "QDateTime");
     
@@ -172,8 +170,8 @@ SWGGuild::asJson ()
 QJsonObject
 SWGGuild::asJsonObject() {
     QJsonObject obj;
-    if((id != nullptr) && (id->isSet())){
-        toJsonValue(QString("id"), id, obj, QString("SWGNumber"));
+    if(m_id_isSet){
+        obj.insert("id", QJsonValue(id));
     }
     if(created != nullptr) { 
         toJsonValue(QString("created"), created, obj, QString("QDateTime"));
@@ -224,12 +222,12 @@ SWGGuild::asJsonObject() {
     return obj;
 }
 
-SWGNumber*
+qint32
 SWGGuild::getId() {
     return id;
 }
 void
-SWGGuild::setId(SWGNumber* id) {
+SWGGuild::setId(qint32 id) {
     this->id = id;
     this->m_id_isSet = true;
 }
@@ -389,7 +387,7 @@ bool
 SWGGuild::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(id != nullptr && id->isSet()){ isObjectUpdated = true; break;}
+        if(m_id_isSet){ isObjectUpdated = true; break;}
         
         
         if(m_archived_isSet){ isObjectUpdated = true; break;}

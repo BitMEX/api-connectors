@@ -46,7 +46,7 @@ namespace IO.Swagger.Model
         /// <param name="filename">filename.</param>
         /// <param name="height">height (required).</param>
         /// <param name="created">created (required).</param>
-        public Porl(decimal? account = default(decimal?), string nonce = default(string), string accountNonce = default(string), double? total = default(double?), double? balance = default(double?), string filename = default(string), double? height = default(double?), DateTime? created = default(DateTime?))
+        public Porl(int? account = default(int?), string nonce = default(string), string accountNonce = default(string), double? total = default(double?), double? balance = default(double?), string filename = default(string), double? height = default(double?), DateTime? created = default(DateTime?))
         {
             // to ensure "account" is required (not null)
             if (account == null)
@@ -110,7 +110,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name="account", EmitDefaultValue=false)]
-        public decimal? Account { get; set; }
+        public int? Account { get; set; }
 
         /// <summary>
         /// Gets or Sets Nonce

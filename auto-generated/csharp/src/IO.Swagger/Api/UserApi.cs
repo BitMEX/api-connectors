@@ -663,7 +663,7 @@ namespace IO.Swagger.Api
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Transaction</returns>
-        Transaction UserRequestWithdrawal (string currency, string network, decimal? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
+        Transaction UserRequestWithdrawal (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
 
         /// <summary>
         /// Request a withdrawal to an external wallet.
@@ -683,7 +683,7 @@ namespace IO.Swagger.Api
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>ApiResponse of Transaction</returns>
-        ApiResponse<Transaction> UserRequestWithdrawalWithHttpInfo (string currency, string network, decimal? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
+        ApiResponse<Transaction> UserRequestWithdrawalWithHttpInfo (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
         /// <summary>
         /// Save user preferences.
         /// </summary>
@@ -742,7 +742,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>Transaction</returns>
-        Transaction UserWalletTransfer (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null);
+        Transaction UserWalletTransfer (string currency, long? amount, double? targetAccountId, double? fromAccountId = null);
 
         /// <summary>
         /// Execute a transfer to a paired account.
@@ -756,7 +756,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>ApiResponse of Transaction</returns>
-        ApiResponse<Transaction> UserWalletTransferWithHttpInfo (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null);
+        ApiResponse<Transaction> UserWalletTransferWithHttpInfo (string currency, long? amount, double? targetAccountId, double? fromAccountId = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -1398,7 +1398,7 @@ namespace IO.Swagger.Api
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of Transaction</returns>
-        System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, string network, decimal? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
+        System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
 
         /// <summary>
         /// Request a withdrawal to an external wallet.
@@ -1418,7 +1418,7 @@ namespace IO.Swagger.Api
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of ApiResponse (Transaction)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, string network, decimal? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
+        System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
         /// <summary>
         /// Save user preferences.
         /// </summary>
@@ -1477,7 +1477,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>Task of Transaction</returns>
-        System.Threading.Tasks.Task<Transaction> UserWalletTransferAsync (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null);
+        System.Threading.Tasks.Task<Transaction> UserWalletTransferAsync (string currency, long? amount, double? targetAccountId, double? fromAccountId = null);
 
         /// <summary>
         /// Execute a transfer to a paired account.
@@ -1491,7 +1491,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>Task of ApiResponse (Transaction)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Transaction>> UserWalletTransferAsyncWithHttpInfo (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null);
+        System.Threading.Tasks.Task<ApiResponse<Transaction>> UserWalletTransferAsyncWithHttpInfo (string currency, long? amount, double? targetAccountId, double? fromAccountId = null);
         #endregion Asynchronous Operations
     }
 
@@ -6470,7 +6470,7 @@ namespace IO.Swagger.Api
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Transaction</returns>
-        public Transaction UserRequestWithdrawal (string currency, string network, decimal? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
+        public Transaction UserRequestWithdrawal (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
              ApiResponse<Transaction> localVarResponse = UserRequestWithdrawalWithHttpInfo(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text);
              return localVarResponse.Data;
@@ -6491,7 +6491,7 @@ namespace IO.Swagger.Api
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>ApiResponse of Transaction</returns>
-        public ApiResponse< Transaction > UserRequestWithdrawalWithHttpInfo (string currency, string network, decimal? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
+        public ApiResponse< Transaction > UserRequestWithdrawalWithHttpInfo (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
             // verify the required parameter 'currency' is set
             if (currency == null)
@@ -6590,7 +6590,7 @@ namespace IO.Swagger.Api
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of Transaction</returns>
-        public async System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, string network, decimal? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
+        public async System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
              ApiResponse<Transaction> localVarResponse = await UserRequestWithdrawalAsyncWithHttpInfo(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text);
              return localVarResponse.Data;
@@ -6612,7 +6612,7 @@ namespace IO.Swagger.Api
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of ApiResponse (Transaction)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, string network, decimal? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
             // verify the required parameter 'currency' is set
             if (currency == null)
@@ -7073,7 +7073,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>Transaction</returns>
-        public Transaction UserWalletTransfer (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+        public Transaction UserWalletTransfer (string currency, long? amount, double? targetAccountId, double? fromAccountId = null)
         {
              ApiResponse<Transaction> localVarResponse = UserWalletTransferWithHttpInfo(currency, amount, targetAccountId, fromAccountId);
              return localVarResponse.Data;
@@ -7088,7 +7088,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>ApiResponse of Transaction</returns>
-        public ApiResponse< Transaction > UserWalletTransferWithHttpInfo (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+        public ApiResponse< Transaction > UserWalletTransferWithHttpInfo (string currency, long? amount, double? targetAccountId, double? fromAccountId = null)
         {
             // verify the required parameter 'currency' is set
             if (currency == null)
@@ -7175,7 +7175,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>Task of Transaction</returns>
-        public async System.Threading.Tasks.Task<Transaction> UserWalletTransferAsync (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+        public async System.Threading.Tasks.Task<Transaction> UserWalletTransferAsync (string currency, long? amount, double? targetAccountId, double? fromAccountId = null)
         {
              ApiResponse<Transaction> localVarResponse = await UserWalletTransferAsyncWithHttpInfo(currency, amount, targetAccountId, fromAccountId);
              return localVarResponse.Data;
@@ -7191,7 +7191,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>Task of ApiResponse (Transaction)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Transaction>> UserWalletTransferAsyncWithHttpInfo (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Transaction>> UserWalletTransferAsyncWithHttpInfo (string currency, long? amount, double? targetAccountId, double? fromAccountId = null)
         {
             // verify the required parameter 'currency' is set
             if (currency == null)

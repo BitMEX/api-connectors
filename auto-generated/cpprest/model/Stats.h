@@ -68,43 +68,43 @@ public:
     /// <summary>
     /// 
     /// </summary>
-    double getVolume24h() const;
+    int64_t getVolume24h() const;
     bool volume24hIsSet() const;
     void unsetVolume24h();
-    void setVolume24h(double value);
+    void setVolume24h(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getTurnover24h() const;
+    int64_t getTurnover24h() const;
     bool turnover24hIsSet() const;
     void unsetTurnover24h();
-    void setTurnover24h(double value);
+    void setTurnover24h(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getOpenInterest() const;
+    int64_t getOpenInterest() const;
     bool openInterestIsSet() const;
     void unsetOpenInterest();
-    void setOpenInterest(double value);
+    void setOpenInterest(int64_t value);
     /// <summary>
     /// 
     /// </summary>
-    double getOpenValue() const;
+    int64_t getOpenValue() const;
     bool openValueIsSet() const;
     void unsetOpenValue();
-    void setOpenValue(double value);
+    void setOpenValue(int64_t value);
 
 protected:
     utility::string_t m_RootSymbol;
         utility::string_t m_Currency;
     bool m_CurrencyIsSet;
-    double m_Volume24h;
+    int64_t m_Volume24h;
     bool m_Volume24hIsSet;
-    double m_Turnover24h;
+    int64_t m_Turnover24h;
     bool m_Turnover24hIsSet;
-    double m_OpenInterest;
+    int64_t m_OpenInterest;
     bool m_OpenInterestIsSet;
-    double m_OpenValue;
+    int64_t m_OpenValue;
     bool m_OpenValueIsSet;
 };
 

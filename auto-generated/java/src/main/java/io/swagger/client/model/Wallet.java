@@ -23,49 +23,48 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Assets and Networks Data
  */
 @ApiModel(description = "Assets and Networks Data")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Wallet {
   @SerializedName("account")
-  private BigDecimal account = null;
+  private Long account = null;
 
   @SerializedName("currency")
   private String currency = null;
 
   @SerializedName("deposited")
-  private BigDecimal deposited = null;
+  private Long deposited = null;
 
   @SerializedName("withdrawn")
-  private BigDecimal withdrawn = null;
+  private Long withdrawn = null;
 
   @SerializedName("transferIn")
-  private BigDecimal transferIn = null;
+  private Long transferIn = null;
 
   @SerializedName("transferOut")
-  private BigDecimal transferOut = null;
+  private Long transferOut = null;
 
   @SerializedName("amount")
-  private BigDecimal amount = null;
+  private Long amount = null;
 
   @SerializedName("pendingCredit")
-  private BigDecimal pendingCredit = null;
+  private Long pendingCredit = null;
 
   @SerializedName("pendingDebit")
-  private BigDecimal pendingDebit = null;
+  private Long pendingDebit = null;
 
   @SerializedName("confirmedDebit")
-  private BigDecimal confirmedDebit = null;
+  private Long confirmedDebit = null;
 
   @SerializedName("timestamp")
   private OffsetDateTime timestamp = null;
 
-  public Wallet account(BigDecimal account) {
+  public Wallet account(Long account) {
     this.account = account;
     return this;
   }
@@ -75,11 +74,11 @@ public class Wallet {
    * @return account
   **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getAccount() {
+  public Long getAccount() {
     return account;
   }
 
-  public void setAccount(BigDecimal account) {
+  public void setAccount(Long account) {
     this.account = account;
   }
 
@@ -101,7 +100,7 @@ public class Wallet {
     this.currency = currency;
   }
 
-  public Wallet deposited(BigDecimal deposited) {
+  public Wallet deposited(Long deposited) {
     this.deposited = deposited;
     return this;
   }
@@ -111,15 +110,15 @@ public class Wallet {
    * @return deposited
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getDeposited() {
+  public Long getDeposited() {
     return deposited;
   }
 
-  public void setDeposited(BigDecimal deposited) {
+  public void setDeposited(Long deposited) {
     this.deposited = deposited;
   }
 
-  public Wallet withdrawn(BigDecimal withdrawn) {
+  public Wallet withdrawn(Long withdrawn) {
     this.withdrawn = withdrawn;
     return this;
   }
@@ -129,15 +128,15 @@ public class Wallet {
    * @return withdrawn
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getWithdrawn() {
+  public Long getWithdrawn() {
     return withdrawn;
   }
 
-  public void setWithdrawn(BigDecimal withdrawn) {
+  public void setWithdrawn(Long withdrawn) {
     this.withdrawn = withdrawn;
   }
 
-  public Wallet transferIn(BigDecimal transferIn) {
+  public Wallet transferIn(Long transferIn) {
     this.transferIn = transferIn;
     return this;
   }
@@ -147,15 +146,15 @@ public class Wallet {
    * @return transferIn
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTransferIn() {
+  public Long getTransferIn() {
     return transferIn;
   }
 
-  public void setTransferIn(BigDecimal transferIn) {
+  public void setTransferIn(Long transferIn) {
     this.transferIn = transferIn;
   }
 
-  public Wallet transferOut(BigDecimal transferOut) {
+  public Wallet transferOut(Long transferOut) {
     this.transferOut = transferOut;
     return this;
   }
@@ -165,15 +164,15 @@ public class Wallet {
    * @return transferOut
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTransferOut() {
+  public Long getTransferOut() {
     return transferOut;
   }
 
-  public void setTransferOut(BigDecimal transferOut) {
+  public void setTransferOut(Long transferOut) {
     this.transferOut = transferOut;
   }
 
-  public Wallet amount(BigDecimal amount) {
+  public Wallet amount(Long amount) {
     this.amount = amount;
     return this;
   }
@@ -183,15 +182,15 @@ public class Wallet {
    * @return amount
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAmount() {
+  public Long getAmount() {
     return amount;
   }
 
-  public void setAmount(BigDecimal amount) {
+  public void setAmount(Long amount) {
     this.amount = amount;
   }
 
-  public Wallet pendingCredit(BigDecimal pendingCredit) {
+  public Wallet pendingCredit(Long pendingCredit) {
     this.pendingCredit = pendingCredit;
     return this;
   }
@@ -201,15 +200,15 @@ public class Wallet {
    * @return pendingCredit
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPendingCredit() {
+  public Long getPendingCredit() {
     return pendingCredit;
   }
 
-  public void setPendingCredit(BigDecimal pendingCredit) {
+  public void setPendingCredit(Long pendingCredit) {
     this.pendingCredit = pendingCredit;
   }
 
-  public Wallet pendingDebit(BigDecimal pendingDebit) {
+  public Wallet pendingDebit(Long pendingDebit) {
     this.pendingDebit = pendingDebit;
     return this;
   }
@@ -219,15 +218,15 @@ public class Wallet {
    * @return pendingDebit
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPendingDebit() {
+  public Long getPendingDebit() {
     return pendingDebit;
   }
 
-  public void setPendingDebit(BigDecimal pendingDebit) {
+  public void setPendingDebit(Long pendingDebit) {
     this.pendingDebit = pendingDebit;
   }
 
-  public Wallet confirmedDebit(BigDecimal confirmedDebit) {
+  public Wallet confirmedDebit(Long confirmedDebit) {
     this.confirmedDebit = confirmedDebit;
     return this;
   }
@@ -237,11 +236,11 @@ public class Wallet {
    * @return confirmedDebit
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getConfirmedDebit() {
+  public Long getConfirmedDebit() {
     return confirmedDebit;
   }
 
-  public void setConfirmedDebit(BigDecimal confirmedDebit) {
+  public void setConfirmedDebit(Long confirmedDebit) {
     this.confirmedDebit = confirmedDebit;
   }
 

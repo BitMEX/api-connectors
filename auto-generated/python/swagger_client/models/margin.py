@@ -33,30 +33,30 @@ class Margin(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'account': 'float',
+        'account': 'int',
         'currency': 'str',
-        'risk_limit': 'float',
+        'risk_limit': 'int',
         'state': 'str',
-        'amount': 'float',
-        'prev_realised_pnl': 'float',
-        'gross_comm': 'float',
-        'gross_open_cost': 'float',
-        'gross_open_premium': 'float',
-        'gross_exec_cost': 'float',
-        'gross_mark_value': 'float',
-        'risk_value': 'float',
-        'init_margin': 'float',
-        'maint_margin': 'float',
-        'target_excess_margin': 'float',
-        'realised_pnl': 'float',
-        'unrealised_pnl': 'float',
-        'wallet_balance': 'float',
-        'margin_balance': 'float',
+        'amount': 'int',
+        'prev_realised_pnl': 'int',
+        'gross_comm': 'int',
+        'gross_open_cost': 'int',
+        'gross_open_premium': 'int',
+        'gross_exec_cost': 'int',
+        'gross_mark_value': 'int',
+        'risk_value': 'int',
+        'init_margin': 'int',
+        'maint_margin': 'int',
+        'target_excess_margin': 'int',
+        'realised_pnl': 'int',
+        'unrealised_pnl': 'int',
+        'wallet_balance': 'int',
+        'margin_balance': 'int',
         'margin_leverage': 'float',
         'margin_used_pcnt': 'float',
-        'excess_margin': 'float',
-        'available_margin': 'float',
-        'withdrawable_margin': 'float',
+        'excess_margin': 'int',
+        'available_margin': 'int',
+        'withdrawable_margin': 'int',
         'maker_fee_discount': 'float',
         'taker_fee_discount': 'float',
         'timestamp': 'datetime'
@@ -92,7 +92,7 @@ class Margin(object):
         'timestamp': 'timestamp'
     }
 
-    def __init__(self, account=None, currency=None, risk_limit=None, state=None, amount=None, prev_realised_pnl=None, gross_comm=None, gross_open_cost=None, gross_open_premium=None, gross_exec_cost=None, gross_mark_value=None, risk_value=None, init_margin=None, maint_margin=None, target_excess_margin=None, realised_pnl=None, unrealised_pnl=None, wallet_balance=None, margin_balance=None, margin_leverage=0.0, margin_used_pcnt=0.0, excess_margin=None, available_margin=None, withdrawable_margin=None, maker_fee_discount=0.0, taker_fee_discount=0.0, timestamp=None, _configuration=None):  # noqa: E501
+    def __init__(self, account=0, currency=None, risk_limit=0, state=None, amount=0, prev_realised_pnl=0, gross_comm=0, gross_open_cost=0, gross_open_premium=0, gross_exec_cost=0, gross_mark_value=0, risk_value=0, init_margin=0, maint_margin=0, target_excess_margin=0, realised_pnl=0, unrealised_pnl=0, wallet_balance=0, margin_balance=0, margin_leverage=0.0, margin_used_pcnt=0.0, excess_margin=0, available_margin=0, withdrawable_margin=0, maker_fee_discount=0.0, taker_fee_discount=0.0, timestamp=None, _configuration=None):  # noqa: E501
         """Margin - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -186,7 +186,7 @@ class Margin(object):
 
 
         :return: The account of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._account
 
@@ -196,7 +196,7 @@ class Margin(object):
 
 
         :param account: The account of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
         if self._configuration.client_side_validation and account is None:
             raise ValueError("Invalid value for `account`, must not be `None`")  # noqa: E501
@@ -232,7 +232,7 @@ class Margin(object):
 
 
         :return: The risk_limit of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._risk_limit
 
@@ -242,7 +242,7 @@ class Margin(object):
 
 
         :param risk_limit: The risk_limit of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._risk_limit = risk_limit
@@ -274,7 +274,7 @@ class Margin(object):
 
 
         :return: The amount of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._amount
 
@@ -284,7 +284,7 @@ class Margin(object):
 
 
         :param amount: The amount of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._amount = amount
@@ -295,7 +295,7 @@ class Margin(object):
 
 
         :return: The prev_realised_pnl of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._prev_realised_pnl
 
@@ -305,7 +305,7 @@ class Margin(object):
 
 
         :param prev_realised_pnl: The prev_realised_pnl of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._prev_realised_pnl = prev_realised_pnl
@@ -316,7 +316,7 @@ class Margin(object):
 
 
         :return: The gross_comm of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._gross_comm
 
@@ -326,7 +326,7 @@ class Margin(object):
 
 
         :param gross_comm: The gross_comm of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._gross_comm = gross_comm
@@ -337,7 +337,7 @@ class Margin(object):
 
 
         :return: The gross_open_cost of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._gross_open_cost
 
@@ -347,7 +347,7 @@ class Margin(object):
 
 
         :param gross_open_cost: The gross_open_cost of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._gross_open_cost = gross_open_cost
@@ -358,7 +358,7 @@ class Margin(object):
 
 
         :return: The gross_open_premium of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._gross_open_premium
 
@@ -368,7 +368,7 @@ class Margin(object):
 
 
         :param gross_open_premium: The gross_open_premium of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._gross_open_premium = gross_open_premium
@@ -379,7 +379,7 @@ class Margin(object):
 
 
         :return: The gross_exec_cost of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._gross_exec_cost
 
@@ -389,7 +389,7 @@ class Margin(object):
 
 
         :param gross_exec_cost: The gross_exec_cost of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._gross_exec_cost = gross_exec_cost
@@ -400,7 +400,7 @@ class Margin(object):
 
 
         :return: The gross_mark_value of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._gross_mark_value
 
@@ -410,7 +410,7 @@ class Margin(object):
 
 
         :param gross_mark_value: The gross_mark_value of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._gross_mark_value = gross_mark_value
@@ -421,7 +421,7 @@ class Margin(object):
 
 
         :return: The risk_value of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._risk_value
 
@@ -431,7 +431,7 @@ class Margin(object):
 
 
         :param risk_value: The risk_value of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._risk_value = risk_value
@@ -442,7 +442,7 @@ class Margin(object):
 
 
         :return: The init_margin of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._init_margin
 
@@ -452,7 +452,7 @@ class Margin(object):
 
 
         :param init_margin: The init_margin of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._init_margin = init_margin
@@ -463,7 +463,7 @@ class Margin(object):
 
 
         :return: The maint_margin of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._maint_margin
 
@@ -473,7 +473,7 @@ class Margin(object):
 
 
         :param maint_margin: The maint_margin of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._maint_margin = maint_margin
@@ -484,7 +484,7 @@ class Margin(object):
 
 
         :return: The target_excess_margin of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._target_excess_margin
 
@@ -494,7 +494,7 @@ class Margin(object):
 
 
         :param target_excess_margin: The target_excess_margin of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._target_excess_margin = target_excess_margin
@@ -505,7 +505,7 @@ class Margin(object):
 
 
         :return: The realised_pnl of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._realised_pnl
 
@@ -515,7 +515,7 @@ class Margin(object):
 
 
         :param realised_pnl: The realised_pnl of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._realised_pnl = realised_pnl
@@ -526,7 +526,7 @@ class Margin(object):
 
 
         :return: The unrealised_pnl of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._unrealised_pnl
 
@@ -536,7 +536,7 @@ class Margin(object):
 
 
         :param unrealised_pnl: The unrealised_pnl of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._unrealised_pnl = unrealised_pnl
@@ -547,7 +547,7 @@ class Margin(object):
 
 
         :return: The wallet_balance of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._wallet_balance
 
@@ -557,7 +557,7 @@ class Margin(object):
 
 
         :param wallet_balance: The wallet_balance of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._wallet_balance = wallet_balance
@@ -568,7 +568,7 @@ class Margin(object):
 
 
         :return: The margin_balance of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._margin_balance
 
@@ -578,7 +578,7 @@ class Margin(object):
 
 
         :param margin_balance: The margin_balance of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._margin_balance = margin_balance
@@ -631,7 +631,7 @@ class Margin(object):
 
 
         :return: The excess_margin of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._excess_margin
 
@@ -641,7 +641,7 @@ class Margin(object):
 
 
         :param excess_margin: The excess_margin of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._excess_margin = excess_margin
@@ -652,7 +652,7 @@ class Margin(object):
 
 
         :return: The available_margin of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._available_margin
 
@@ -662,7 +662,7 @@ class Margin(object):
 
 
         :param available_margin: The available_margin of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._available_margin = available_margin
@@ -673,7 +673,7 @@ class Margin(object):
 
 
         :return: The withdrawable_margin of this Margin.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._withdrawable_margin
 
@@ -683,7 +683,7 @@ class Margin(object):
 
 
         :param withdrawable_margin: The withdrawable_margin of this Margin.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._withdrawable_margin = withdrawable_margin

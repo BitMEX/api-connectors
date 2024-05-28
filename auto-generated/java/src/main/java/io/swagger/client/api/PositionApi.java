@@ -27,7 +27,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.Position;
 
@@ -66,7 +65,7 @@ public class PositionApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call positionGetCall(String filter, String columns, BigDecimal count, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call positionGetCall(String filter, String columns, Integer count, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -114,7 +113,7 @@ public class PositionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call positionGetValidateBeforeCall(String filter, String columns, BigDecimal count, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call positionGetValidateBeforeCall(String filter, String columns, Integer count, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
         com.squareup.okhttp.Call call = positionGetCall(filter, columns, count, progressListener, progressRequestListener);
@@ -131,7 +130,7 @@ public class PositionApi {
      * @return List&lt;Position&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Position> positionGet(String filter, String columns, BigDecimal count) throws ApiException {
+    public List<Position> positionGet(String filter, String columns, Integer count) throws ApiException {
         ApiResponse<List<Position>> resp = positionGetWithHttpInfo(filter, columns, count);
         return resp.getData();
     }
@@ -145,7 +144,7 @@ public class PositionApi {
      * @return ApiResponse&lt;List&lt;Position&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Position>> positionGetWithHttpInfo(String filter, String columns, BigDecimal count) throws ApiException {
+    public ApiResponse<List<Position>> positionGetWithHttpInfo(String filter, String columns, Integer count) throws ApiException {
         com.squareup.okhttp.Call call = positionGetValidateBeforeCall(filter, columns, count, null, null);
         Type localVarReturnType = new TypeToken<List<Position>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -161,7 +160,7 @@ public class PositionApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call positionGetAsync(String filter, String columns, BigDecimal count, final ApiCallback<List<Position>> callback) throws ApiException {
+    public com.squareup.okhttp.Call positionGetAsync(String filter, String columns, Integer count, final ApiCallback<List<Position>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -327,7 +326,7 @@ public class PositionApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call positionTransferIsolatedMarginCall(String symbol, BigDecimal amount, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call positionTransferIsolatedMarginCall(String symbol, Long amount, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -375,7 +374,7 @@ public class PositionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call positionTransferIsolatedMarginValidateBeforeCall(String symbol, BigDecimal amount, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call positionTransferIsolatedMarginValidateBeforeCall(String symbol, Long amount, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'symbol' is set
         if (symbol == null) {
@@ -402,7 +401,7 @@ public class PositionApi {
      * @return Position
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Position positionTransferIsolatedMargin(String symbol, BigDecimal amount, Double targetAccountId) throws ApiException {
+    public Position positionTransferIsolatedMargin(String symbol, Long amount, Double targetAccountId) throws ApiException {
         ApiResponse<Position> resp = positionTransferIsolatedMarginWithHttpInfo(symbol, amount, targetAccountId);
         return resp.getData();
     }
@@ -416,7 +415,7 @@ public class PositionApi {
      * @return ApiResponse&lt;Position&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Position> positionTransferIsolatedMarginWithHttpInfo(String symbol, BigDecimal amount, Double targetAccountId) throws ApiException {
+    public ApiResponse<Position> positionTransferIsolatedMarginWithHttpInfo(String symbol, Long amount, Double targetAccountId) throws ApiException {
         com.squareup.okhttp.Call call = positionTransferIsolatedMarginValidateBeforeCall(symbol, amount, targetAccountId, null, null);
         Type localVarReturnType = new TypeToken<Position>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -432,7 +431,7 @@ public class PositionApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call positionTransferIsolatedMarginAsync(String symbol, BigDecimal amount, Double targetAccountId, final ApiCallback<Position> callback) throws ApiException {
+    public com.squareup.okhttp.Call positionTransferIsolatedMarginAsync(String symbol, Long amount, Double targetAccountId, final ApiCallback<Position> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -609,7 +608,7 @@ public class PositionApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call positionUpdateRiskLimitCall(String symbol, BigDecimal riskLimit, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call positionUpdateRiskLimitCall(String symbol, Long riskLimit, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -657,7 +656,7 @@ public class PositionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call positionUpdateRiskLimitValidateBeforeCall(String symbol, BigDecimal riskLimit, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call positionUpdateRiskLimitValidateBeforeCall(String symbol, Long riskLimit, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'symbol' is set
         if (symbol == null) {
@@ -684,7 +683,7 @@ public class PositionApi {
      * @return Position
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Position positionUpdateRiskLimit(String symbol, BigDecimal riskLimit, Double targetAccountId) throws ApiException {
+    public Position positionUpdateRiskLimit(String symbol, Long riskLimit, Double targetAccountId) throws ApiException {
         ApiResponse<Position> resp = positionUpdateRiskLimitWithHttpInfo(symbol, riskLimit, targetAccountId);
         return resp.getData();
     }
@@ -698,7 +697,7 @@ public class PositionApi {
      * @return ApiResponse&lt;Position&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Position> positionUpdateRiskLimitWithHttpInfo(String symbol, BigDecimal riskLimit, Double targetAccountId) throws ApiException {
+    public ApiResponse<Position> positionUpdateRiskLimitWithHttpInfo(String symbol, Long riskLimit, Double targetAccountId) throws ApiException {
         com.squareup.okhttp.Call call = positionUpdateRiskLimitValidateBeforeCall(symbol, riskLimit, targetAccountId, null, null);
         Type localVarReturnType = new TypeToken<Position>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -714,7 +713,7 @@ public class PositionApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call positionUpdateRiskLimitAsync(String symbol, BigDecimal riskLimit, Double targetAccountId, final ApiCallback<Position> callback) throws ApiException {
+    public com.squareup.okhttp.Call positionUpdateRiskLimitAsync(String symbol, Long riskLimit, Double targetAccountId, final ApiCallback<Position> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

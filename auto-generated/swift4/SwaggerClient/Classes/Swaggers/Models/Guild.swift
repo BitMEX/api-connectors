@@ -11,7 +11,7 @@ import Foundation
 
 public struct Guild: Codable {
 
-    public var _id: Double?
+    public var _id: Int?
     public var created: Date
     public var updated: Date
     public var archived: Bool?
@@ -28,7 +28,7 @@ public struct Guild: Codable {
     public var socials: Any?
     public var deleted: Bool?
 
-    public init(_id: Double?, created: Date, updated: Date, archived: Bool?, name: String, imgUrl: String?, mobileHeroImgUrl: String?, emoji: String?, logoUrl: String?, _description: String?, chatChannelId: Double, isPrivate: Bool, affiliateId: String?, potDistributionPreferences: Any?, socials: Any?, deleted: Bool?) {
+    public init(_id: Int?, created: Date, updated: Date, archived: Bool?, name: String, imgUrl: String?, mobileHeroImgUrl: String?, emoji: String?, logoUrl: String?, _description: String?, chatChannelId: Double, isPrivate: Bool, affiliateId: String?, potDistributionPreferences: Any?, socials: Any?, deleted: Bool?) {
         self._id = _id
         self.created = created
         self.updated = updated

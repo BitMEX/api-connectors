@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -46,8 +45,8 @@ public:
     QString* getTransactId();
     void setTransactId(QString* transact_id);
 
-    SWGNumber* getAccount();
-    void setAccount(SWGNumber* account);
+    qint64 getAccount();
+    void setAccount(qint64 account);
 
     QString* getCurrency();
     void setCurrency(QString* currency);
@@ -58,11 +57,11 @@ public:
     QString* getTransactType();
     void setTransactType(QString* transact_type);
 
-    SWGNumber* getAmount();
-    void setAmount(SWGNumber* amount);
+    qint64 getAmount();
+    void setAmount(qint64 amount);
 
-    SWGNumber* getFee();
-    void setFee(SWGNumber* fee);
+    qint64 getFee();
+    void setFee(qint64 fee);
 
     QString* getTransactStatus();
     void setTransactStatus(QString* transact_status);
@@ -82,8 +81,8 @@ public:
     QDateTime* getTimestamp();
     void setTimestamp(QDateTime* timestamp);
 
-    SWGNumber* getWalletBalance();
-    void setWalletBalance(SWGNumber* wallet_balance);
+    qint64 getWalletBalance();
+    void setWalletBalance(qint64 wallet_balance);
 
 
     virtual bool isSet() override;
@@ -92,7 +91,7 @@ private:
     QString* transact_id;
     bool m_transact_id_isSet;
 
-    SWGNumber* account;
+    qint64 account;
     bool m_account_isSet;
 
     QString* currency;
@@ -104,10 +103,10 @@ private:
     QString* transact_type;
     bool m_transact_type_isSet;
 
-    SWGNumber* amount;
+    qint64 amount;
     bool m_amount_isSet;
 
-    SWGNumber* fee;
+    qint64 fee;
     bool m_fee_isSet;
 
     QString* transact_status;
@@ -128,7 +127,7 @@ private:
     QDateTime* timestamp;
     bool m_timestamp_isSet;
 
-    SWGNumber* wallet_balance;
+    qint64 wallet_balance;
     bool m_wallet_balance_isSet;
 
 };

@@ -12,7 +12,7 @@ import Foundation
 
 public struct User: Codable {
 
-    public var _id: Double?
+    public var _id: Int?
     public var firstname: String?
     public var lastname: String?
     public var username: String
@@ -33,7 +33,7 @@ public struct User: Codable {
     public var firstDepositTimestamp: Date?
     public var typ: String?
 
-    public init(_id: Double?, firstname: String?, lastname: String?, username: String, accountName: String?, isUser: Bool, email: String?, dateOfBirth: String?, phone: String?, created: Date?, lastUpdated: Date?, preferences: UserPreferences?, tFAEnabled: String?, affiliateID: String?, country: String?, geoipCountry: String?, geoipRegion: String?, firstTradeTimestamp: Date?, firstDepositTimestamp: Date?, typ: String?) {
+    public init(_id: Int?, firstname: String?, lastname: String?, username: String, accountName: String?, isUser: Bool, email: String?, dateOfBirth: String?, phone: String?, created: Date?, lastUpdated: Date?, preferences: UserPreferences?, tFAEnabled: String?, affiliateID: String?, country: String?, geoipCountry: String?, geoipRegion: String?, firstTradeTimestamp: Date?, firstDepositTimestamp: Date?, typ: String?) {
         self._id = _id
         self.firstname = firstname
         self.lastname = lastname

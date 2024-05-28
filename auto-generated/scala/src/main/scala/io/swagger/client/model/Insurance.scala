@@ -17,6 +17,6 @@ import java.util.Date
 case class Insurance (
   currency: String,
   timestamp: Date,
-  walletBalance: Option[Number] = None
+  walletBalance: Option[Long] = None
 )
 

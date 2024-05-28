@@ -1779,7 +1779,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 currency = 'XBt' # str | Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (default to XBt)
 network = 'network_example' # str | The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
-amount = 8.14 # float | Amount of withdrawal currency.
+amount = 789 # int | Amount of withdrawal currency.
 otp_token = 'otp_token_example' # str | 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
 address = 'address_example' # str | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
 memo = 'memo_example' # str | Destination Memo. If `address`, is specified, Destination Memo can also be specified (optional)
@@ -1802,7 +1802,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **str**| Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | [default to XBt]
  **network** | **str**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
- **amount** | **float**| Amount of withdrawal currency. | 
+ **amount** | **int**| Amount of withdrawal currency. | 
  **otp_token** | **str**| 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. | [optional] 
  **address** | **str**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
  **memo** | **str**| Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified | [optional] 
@@ -1988,7 +1988,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 currency = 'currency_example' # str | Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
-amount = 8.14 # float | Amount of transfer.
+amount = 789 # int | Amount of transfer.
 target_account_id = 1.2 # float | AccountId to send the transfer to, must be a paired account with the user sending the transfer.
 from_account_id = 1.2 # float | AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
 
@@ -2005,7 +2005,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **str**| Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
- **amount** | **float**| Amount of transfer. | 
+ **amount** | **int**| Amount of transfer. | 
  **target_account_id** | **float**| AccountId to send the transfer to, must be a paired account with the user sending the transfer. | 
  **from_account_id** | **float**| AccountID to send the transfer from. Must be paired account with the authenticated user. | [optional] 
 

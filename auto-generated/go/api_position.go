@@ -34,7 +34,7 @@ This endpoint is used for retrieving position information. The fields largely fo
  * @param optional nil or *PositionApiPositionGetOpts - Optional Parameters:
      * @param "Filter" (optional.String) -  Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}.
      * @param "Columns" (optional.String) -  Which columns to fetch. For example, send [\&quot;columnName\&quot;].
-     * @param "Count" (optional.Float32) -  Number of rows to fetch.
+     * @param "Count" (optional.Int32) -  Number of rows to fetch.
 
 @return []Position
 */
@@ -42,7 +42,7 @@ This endpoint is used for retrieving position information. The fields largely fo
 type PositionApiPositionGetOpts struct { 
 	Filter optional.String
 	Columns optional.String
-	Count optional.Float32
+	Count optional.Int32
 }
 
 func (a *PositionApiService) PositionGet(ctx context.Context, localVarOptionals *PositionApiPositionGetOpts) ([]Position, *http.Response, error) {
@@ -411,7 +411,7 @@ type PositionApiPositionTransferIsolatedMarginOpts struct {
 	TargetAccountId optional.Float64
 }
 
-func (a *PositionApiService) PositionTransferIsolatedMargin(ctx context.Context, symbol string, amount float32, localVarOptionals *PositionApiPositionTransferIsolatedMarginOpts) (Position, *http.Response, error) {
+func (a *PositionApiService) PositionTransferIsolatedMargin(ctx context.Context, symbol string, amount int64, localVarOptionals *PositionApiPositionTransferIsolatedMarginOpts) (Position, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -775,7 +775,7 @@ type PositionApiPositionUpdateRiskLimitOpts struct {
 	TargetAccountId optional.Float64
 }
 
-func (a *PositionApiService) PositionUpdateRiskLimit(ctx context.Context, symbol string, riskLimit float32, localVarOptionals *PositionApiPositionUpdateRiskLimitOpts) (Position, *http.Response, error) {
+func (a *PositionApiService) PositionUpdateRiskLimit(ctx context.Context, symbol string, riskLimit int64, localVarOptionals *PositionApiPositionUpdateRiskLimitOpts) (Position, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}

@@ -17,7 +17,7 @@ import java.util.UUID
 
 case class CommunicationToken (
   id: String,
-  userId: Double,
+  userId: Int,
   deviceToken: String,
   channel: String
 ) extends ApiModel

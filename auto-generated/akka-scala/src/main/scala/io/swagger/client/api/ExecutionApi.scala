@@ -44,7 +44,7 @@ object ExecutionApi {
    * @param startTime Starting date filter for results.
    * @param endTime Ending date filter for results.
    */
-  def execution.get(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Double], start: Option[Double], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Execution]] =
+  def execution.get(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Int], start: Option[Int], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Execution]] =
     ApiRequest[Seq[Execution]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/execution", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
@@ -88,7 +88,7 @@ object ExecutionApi {
    * @param startTime Starting date filter for results.
    * @param endTime Ending date filter for results.
    */
-  def execution.getTradeHistory(targetAccountId: Option[Double] = None, targetAccountIds: Option[String] = None, symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Double], start: Option[Double], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Execution]] =
+  def execution.getTradeHistory(targetAccountId: Option[Double] = None, targetAccountIds: Option[String] = None, symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Int], start: Option[Int], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Execution]] =
     ApiRequest[Seq[Execution]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/execution/tradeHistory", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)

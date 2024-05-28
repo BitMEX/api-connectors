@@ -6,8 +6,28 @@
   self = [super init];
   if (self) {
     // initialize property's default value, if any
+    self.account = @0;
+    self.riskLimit = @0;
+    self.amount = @0;
+    self.prevRealisedPnl = @0;
+    self.grossComm = @0;
+    self.grossOpenCost = @0;
+    self.grossOpenPremium = @0;
+    self.grossExecCost = @0;
+    self.grossMarkValue = @0;
+    self.riskValue = @0;
+    self.initMargin = @0;
+    self.maintMargin = @0;
+    self.targetExcessMargin = @0;
+    self.realisedPnl = @0;
+    self.unrealisedPnl = @0;
+    self.walletBalance = @0;
+    self.marginBalance = @0;
     self.marginLeverage = @0.0;
     self.marginUsedPcnt = @0.0;
+    self.excessMargin = @0;
+    self.availableMargin = @0;
+    self.withdrawableMargin = @0;
     self.makerFeeDiscount = @0.0;
     self.takerFeeDiscount = @0.0;
     

@@ -37,7 +37,7 @@ SWGPorl::~SWGPorl() {
 
 void
 SWGPorl::init() {
-    account = 0.0;
+    account = 0;
     m_account_isSet = false;
     nonce = new QString("");
     m_nonce_isSet = false;
@@ -57,9 +57,7 @@ SWGPorl::init() {
 
 void
 SWGPorl::cleanup() {
-    if(account != nullptr) { 
-        delete account;
-    }
+
     if(nonce != nullptr) { 
         delete nonce;
     }
@@ -88,7 +86,7 @@ SWGPorl::fromJson(QString json) {
 
 void
 SWGPorl::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&account, pJson["account"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&account, pJson["account"], "qint32", "");
     
     ::Swagger::setValue(&nonce, pJson["nonce"], "QString", "QString");
     
@@ -118,8 +116,8 @@ SWGPorl::asJson ()
 QJsonObject
 SWGPorl::asJsonObject() {
     QJsonObject obj;
-    if((account != nullptr) && (account->isSet())){
-        toJsonValue(QString("account"), account, obj, QString("SWGNumber"));
+    if(m_account_isSet){
+        obj.insert("account", QJsonValue(account));
     }
     if(nonce != nullptr && *nonce != QString("")){
         toJsonValue(QString("nonce"), nonce, obj, QString("QString"));
@@ -146,12 +144,12 @@ SWGPorl::asJsonObject() {
     return obj;
 }
 
-SWGNumber*
+qint32
 SWGPorl::getAccount() {
     return account;
 }
 void
-SWGPorl::setAccount(SWGNumber* account) {
+SWGPorl::setAccount(qint32 account) {
     this->account = account;
     this->m_account_isSet = true;
 }
@@ -231,7 +229,7 @@ bool
 SWGPorl::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(account != nullptr && account->isSet()){ isObjectUpdated = true; break;}
+        if(m_account_isSet){ isObjectUpdated = true; break;}
         if(nonce != nullptr && *nonce != QString("")){ isObjectUpdated = true; break;}
         if(account_nonce != nullptr && *account_nonce != QString("")){ isObjectUpdated = true; break;}
         if(m_total_isSet){ isObjectUpdated = true; break;}

@@ -294,6 +294,13 @@ class ExecutionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "fee_type"
+     */
+    public function testPropertyFeeType()
+    {
+    }
+
+    /**
      * Test attribute "trade_publish_indicator"
      */
     public function testPropertyTradePublishIndicator()
@@ -353,13 +360,6 @@ class ExecutionTest extends \PHPUnit_Framework_TestCase
      * Test attribute "timestamp"
      */
     public function testPropertyTimestamp()
-    {
-    }
-
-    /**
-     * Test attribute "fee_type"
-     */
-    public function testPropertyFeeType()
     {
     }
 }

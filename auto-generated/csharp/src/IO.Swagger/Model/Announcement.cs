@@ -43,7 +43,7 @@ namespace IO.Swagger.Model
         /// <param name="title">title.</param>
         /// <param name="content">content.</param>
         /// <param name="date">date.</param>
-        public Announcement(decimal? id = default(decimal?), string link = default(string), string title = default(string), string content = default(string), DateTime? date = default(DateTime?))
+        public Announcement(int? id = default(int?), string link = default(string), string title = default(string), string content = default(string), DateTime? date = default(DateTime?))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -64,7 +64,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public decimal? Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Link

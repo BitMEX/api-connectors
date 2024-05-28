@@ -36,8 +36,8 @@ class StatsHistory(object):
         '_date': 'datetime',
         'root_symbol': 'str',
         'currency': 'str',
-        'volume': 'float',
-        'turnover': 'float'
+        'volume': 'int',
+        'turnover': 'int'
     }
 
     attribute_map = {
@@ -143,7 +143,7 @@ class StatsHistory(object):
 
 
         :return: The volume of this StatsHistory.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._volume
 
@@ -153,7 +153,7 @@ class StatsHistory(object):
 
 
         :param volume: The volume of this StatsHistory.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._volume = volume
@@ -164,7 +164,7 @@ class StatsHistory(object):
 
 
         :return: The turnover of this StatsHistory.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._turnover
 
@@ -174,7 +174,7 @@ class StatsHistory(object):
 
 
         :param turnover: The turnover of this StatsHistory.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._turnover = turnover

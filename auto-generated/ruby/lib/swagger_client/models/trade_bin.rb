@@ -68,11 +68,11 @@ module SwaggerClient
         :'high' => :'Float',
         :'low' => :'Float',
         :'close' => :'Float',
-        :'trades' => :'Float',
-        :'volume' => :'Float',
+        :'trades' => :'Integer',
+        :'volume' => :'Integer',
         :'vwap' => :'Float',
-        :'last_size' => :'Float',
-        :'turnover' => :'Float',
+        :'last_size' => :'Integer',
+        :'turnover' => :'Integer',
         :'home_notional' => :'Float',
         :'foreign_notional' => :'Float'
       }

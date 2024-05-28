@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** |  | [optional] [default to null]
+**Id** | **int32** |  | [optional] [default to null]
 **Firstname** | **string** |  | [optional] [default to null]
 **Lastname** | **string** |  | [optional] [default to null]
 **Username** | **string** |  | [default to null]

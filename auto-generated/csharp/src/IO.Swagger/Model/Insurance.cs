@@ -41,7 +41,7 @@ namespace IO.Swagger.Model
         /// <param name="currency">currency (required).</param>
         /// <param name="timestamp">timestamp (required).</param>
         /// <param name="walletBalance">walletBalance.</param>
-        public Insurance(string currency = default(string), DateTime? timestamp = default(DateTime?), decimal? walletBalance = default(decimal?))
+        public Insurance(string currency = default(string), DateTime? timestamp = default(DateTime?), long? walletBalance = default(long?))
         {
             // to ensure "currency" is required (not null)
             if (currency == null)
@@ -80,7 +80,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets WalletBalance
         /// </summary>
         [DataMember(Name="walletBalance", EmitDefaultValue=false)]
-        public decimal? WalletBalance { get; set; }
+        public long? WalletBalance { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

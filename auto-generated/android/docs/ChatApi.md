@@ -23,8 +23,8 @@ Get chat messages.
 //import io.swagger.client.api.ChatApi;
 
 ChatApi apiInstance = new ChatApi();
-BigDecimal count = new BigDecimal(); // BigDecimal | Number of results to fetch.
-BigDecimal start = new BigDecimal(); // BigDecimal | Starting ID for results.
+Integer count = 100; // Integer | Number of results to fetch.
+Integer start = 0; // Integer | Starting ID for results.
 Boolean reverse = true; // Boolean | If true, will sort results newest first.
 Double channelID = 3.4D; // Double | Channel id. GET /chat/channels for ids. Global English by default
 try {
@@ -40,8 +40,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **BigDecimal**| Number of results to fetch. | [optional] [default to 100]
- **start** | **BigDecimal**| Starting ID for results. | [optional] [default to 0]
+ **count** | **Integer**| Number of results to fetch. | [optional] [default to 100]
+ **start** | **Integer**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **Boolean**| If true, will sort results newest first. | [optional] [default to true]
  **channelID** | **Double**| Channel id. GET /chat/channels for ids. Global English by default | [optional] [default to 1]
 

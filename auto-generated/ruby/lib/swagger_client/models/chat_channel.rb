@@ -32,7 +32,7 @@ module SwaggerClient
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'id' => :'Float',
+        :'id' => :'Integer',
         :'name' => :'String',
         :'is_private' => :'BOOLEAN'
       }
