@@ -62,6 +62,8 @@
 
 @property(nonatomic) NSDate* firstTradeTimestamp;
 
+@property(nonatomic) NSDate* firstDepositTimestamp;
+
 @property(nonatomic) NSString* typ;
 
 @end

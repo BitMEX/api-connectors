@@ -33,6 +33,7 @@ case class User (
   geoipCountry: Option[String] = None,
   geoipRegion: Option[String] = None,
   firstTradeTimestamp: Option[Date] = None,
+  firstDepositTimestamp: Option[Date] = None,
   typ: Option[String] = None
 )
 

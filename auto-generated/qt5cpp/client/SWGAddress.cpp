@@ -61,6 +61,8 @@ SWGAddress::init() {
     m_skip2_fa_verified_isSet = false;
     network = new QString("");
     m_network_isSet = false;
+    memo = new QString("");
+    m_memo_isSet = false;
 }
 
 void
@@ -90,6 +92,9 @@ SWGAddress::cleanup() {
 
     if(network != nullptr) { 
         delete network;
+    }
+    if(memo != nullptr) { 
+        delete memo;
     }
 }
 
@@ -127,6 +132,8 @@ SWGAddress::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&skip2_fa_verified, pJson["skip2FAVerified"], "bool", "");
     
     ::Swagger::setValue(&network, pJson["network"], "QString", "QString");
+    
+    ::Swagger::setValue(&memo, pJson["memo"], "QString", "QString");
     
 }
 
@@ -177,6 +184,9 @@ SWGAddress::asJsonObject() {
     }
     if(network != nullptr && *network != QString("")){
         toJsonValue(QString("network"), network, obj, QString("QString"));
+    }
+    if(memo != nullptr && *memo != QString("")){
+        toJsonValue(QString("memo"), memo, obj, QString("QString"));
     }
 
     return obj;
@@ -302,6 +312,16 @@ SWGAddress::setNetwork(QString* network) {
     this->m_network_isSet = true;
 }
 
+QString*
+SWGAddress::getMemo() {
+    return memo;
+}
+void
+SWGAddress::setMemo(QString* memo) {
+    this->memo = memo;
+    this->m_memo_isSet = true;
+}
+
 
 bool
 SWGAddress::isSet(){
@@ -319,6 +339,7 @@ SWGAddress::isSet(){
         if(m_skip2_fa_isSet){ isObjectUpdated = true; break;}
         if(m_skip2_fa_verified_isSet){ isObjectUpdated = true; break;}
         if(network != nullptr && *network != QString("")){ isObjectUpdated = true; break;}
+        if(memo != nullptr && *memo != QString("")){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Address
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
 public class Address {
   @SerializedName("id")
   private BigDecimal id = null;
@@ -66,6 +66,9 @@ public class Address {
 
   @SerializedName("network")
   private String network = null;
+
+  @SerializedName("memo")
+  private String memo = null;
 
   public Address id(BigDecimal id) {
     this.id = id;
@@ -283,6 +286,24 @@ public class Address {
     this.network = network;
   }
 
+  public Address memo(String memo) {
+    this.memo = memo;
+    return this;
+  }
+
+   /**
+   * Get memo
+   * @return memo
+  **/
+  @ApiModelProperty(value = "")
+  public String getMemo() {
+    return memo;
+  }
+
+  public void setMemo(String memo) {
+    this.memo = memo;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -304,12 +325,13 @@ public class Address {
         Objects.equals(this.skipConfirmVerified, address.skipConfirmVerified) &&
         Objects.equals(this.skip2FA, address.skip2FA) &&
         Objects.equals(this.skip2FAVerified, address.skip2FAVerified) &&
-        Objects.equals(this.network, address.network);
+        Objects.equals(this.network, address.network) &&
+        Objects.equals(this.memo, address.memo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, currency, created, userId, address, name, note, skipConfirm, skipConfirmVerified, skip2FA, skip2FAVerified, network);
+    return Objects.hash(id, currency, created, userId, address, name, note, skipConfirm, skipConfirmVerified, skip2FA, skip2FAVerified, network, memo);
   }
 
 
@@ -330,6 +352,7 @@ public class Address {
     sb.append("    skip2FA: ").append(toIndentedString(skip2FA)).append("\n");
     sb.append("    skip2FAVerified: ").append(toIndentedString(skip2FAVerified)).append("\n");
     sb.append("    network: ").append(toIndentedString(network)).append("\n");
+    sb.append("    memo: ").append(toIndentedString(memo)).append("\n");
     sb.append("}");
     return sb.toString();
   }

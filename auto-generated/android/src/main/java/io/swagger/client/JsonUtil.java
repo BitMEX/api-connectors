@@ -105,6 +105,10 @@ public class JsonUtil {
       return new TypeToken<List<ConnectedUsers>>(){}.getType();
     }
     
+    if ("DepositAddress".equalsIgnoreCase(className)) {
+      return new TypeToken<List<DepositAddress>>(){}.getType();
+    }
+    
     if ("Error".equalsIgnoreCase(className)) {
       return new TypeToken<List<Error>>(){}.getType();
     }
@@ -257,6 +261,10 @@ public class JsonUtil {
       return new TypeToken<List<Wallet>>(){}.getType();
     }
     
+    if ("WalletSummaryRecord".equalsIgnoreCase(className)) {
+      return new TypeToken<List<WalletSummaryRecord>>(){}.getType();
+    }
+    
     if ("XAny".equalsIgnoreCase(className)) {
       return new TypeToken<List<XAny>>(){}.getType();
     }
@@ -313,6 +321,10 @@ public class JsonUtil {
     
     if ("ConnectedUsers".equalsIgnoreCase(className)) {
       return new TypeToken<ConnectedUsers>(){}.getType();
+    }
+    
+    if ("DepositAddress".equalsIgnoreCase(className)) {
+      return new TypeToken<DepositAddress>(){}.getType();
     }
     
     if ("Error".equalsIgnoreCase(className)) {
@@ -465,6 +477,10 @@ public class JsonUtil {
     
     if ("Wallet".equalsIgnoreCase(className)) {
       return new TypeToken<Wallet>(){}.getType();
+    }
+    
+    if ("WalletSummaryRecord".equalsIgnoreCase(className)) {
+      return new TypeToken<WalletSummaryRecord>(){}.getType();
     }
     
     if ("XAny".equalsIgnoreCase(className)) {

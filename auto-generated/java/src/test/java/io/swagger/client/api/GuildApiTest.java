@@ -67,9 +67,10 @@ public class GuildApiTest {
         String description = null;
         String twitter = null;
         String discord = null;
+        String telegram = null;
         String imgUrl = null;
         Boolean isPrivate = null;
-        Guild response = api.guildEdit(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, imgUrl, isPrivate);
+        Guild response = api.guildEdit(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, telegram, imgUrl, isPrivate);
 
         // TODO: test validations
     }
@@ -153,9 +154,10 @@ public class GuildApiTest {
         String description = null;
         String twitter = null;
         String discord = null;
+        String telegram = null;
         String imgUrl = null;
         Boolean isPrivate = null;
-        Guild response = api.guildNew(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, imgUrl, isPrivate);
+        Guild response = api.guildNew(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, telegram, imgUrl, isPrivate);
 
         // TODO: test validations
     }

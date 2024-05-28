@@ -19,5 +19,6 @@ type AssetsConfig struct {
 	Scale float64 `json:"scale,omitempty"`
 	Enabled bool `json:"enabled,omitempty"`
 	IsMarginCurrency bool `json:"isMarginCurrency,omitempty"`
+	MemoRequired bool `json:"memoRequired,omitempty"`
 	Networks []AssetsConfigNetworkItem `json:"networks,omitempty"`
 }

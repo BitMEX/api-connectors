@@ -53,6 +53,7 @@ Import the following:
 #import <SwaggerClient/SWGCollateralSupportAgreement.h>
 #import <SwaggerClient/SWGCommunicationToken.h>
 #import <SwaggerClient/SWGConnectedUsers.h>
+#import <SwaggerClient/SWGDepositAddress.h>
 #import <SwaggerClient/SWGError.h>
 #import <SwaggerClient/SWGErrorError.h>
 #import <SwaggerClient/SWGExecution.h>
@@ -91,6 +92,7 @@ Import the following:
 #import <SwaggerClient/SWGUserEvent.h>
 #import <SwaggerClient/SWGUserPreferences.h>
 #import <SwaggerClient/SWGWallet.h>
+#import <SwaggerClient/SWGWalletSummaryRecord.h>
 #import <SwaggerClient/SWGXAny.h>
 // load API classes for accessing endpoints
 #import <SwaggerClient/SWGAPIKeyApi.h>
@@ -230,6 +232,7 @@ Class | Method | HTTP request | Description
 *SWGStatsApi* | [**statsHistoryUSD**](docs/SWGStatsApi.md#statshistoryusd) | **GET** /stats/historyUSD | Get a summary of exchange statistics in USD.
 *SWGTradeApi* | [**tradeGet**](docs/SWGTradeApi.md#tradeget) | **GET** /trade | Get Trades.
 *SWGTradeApi* | [**tradeGetBucketed**](docs/SWGTradeApi.md#tradegetbucketed) | **GET** /trade/bucketed | Get previous trades in time buckets.
+*SWGUserApi* | [**userCancelPendingWithdrawal**](docs/SWGUserApi.md#usercancelpendingwithdrawal) | **DELETE** /user/withdrawal | Cancel pending withdrawal
 *SWGUserApi* | [**userCancelWithdrawal**](docs/SWGUserApi.md#usercancelwithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 *SWGUserApi* | [**userCheckReferralCode**](docs/SWGUserApi.md#usercheckreferralcode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 *SWGUserApi* | [**userCommunicationToken**](docs/SWGUserApi.md#usercommunicationtoken) | **POST** /user/communicationToken | Register your communication token for mobile clients
@@ -243,6 +246,7 @@ Class | Method | HTTP request | Description
 *SWGUserApi* | [**userGetCSA**](docs/SWGUserApi.md#usergetcsa) | **GET** /user/csa | Get your account&#39;s CSA status.
 *SWGUserApi* | [**userGetCommission**](docs/SWGUserApi.md#usergetcommission) | **GET** /user/commission | Get your account&#39;s commission status.
 *SWGUserApi* | [**userGetDepositAddress**](docs/SWGUserApi.md#usergetdepositaddress) | **GET** /user/depositAddress | Get a deposit address.
+*SWGUserApi* | [**userGetDepositAddressInformation**](docs/SWGUserApi.md#usergetdepositaddressinformation) | **GET** /user/depositAddressInformation | Get a deposit address.
 *SWGUserApi* | [**userGetExecutionHistory**](docs/SWGUserApi.md#usergetexecutionhistory) | **GET** /user/executionHistory | Get the execution history by day.
 *SWGUserApi* | [**userGetMargin**](docs/SWGUserApi.md#usergetmargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 *SWGUserApi* | [**userGetQuoteFillRatio**](docs/SWGUserApi.md#usergetquotefillratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
@@ -281,6 +285,7 @@ Class | Method | HTTP request | Description
  - [SWGCollateralSupportAgreement](docs/SWGCollateralSupportAgreement.md)
  - [SWGCommunicationToken](docs/SWGCommunicationToken.md)
  - [SWGConnectedUsers](docs/SWGConnectedUsers.md)
+ - [SWGDepositAddress](docs/SWGDepositAddress.md)
  - [SWGError](docs/SWGError.md)
  - [SWGErrorError](docs/SWGErrorError.md)
  - [SWGExecution](docs/SWGExecution.md)
@@ -319,6 +324,7 @@ Class | Method | HTTP request | Description
  - [SWGUserEvent](docs/SWGUserEvent.md)
  - [SWGUserPreferences](docs/SWGUserPreferences.md)
  - [SWGWallet](docs/SWGWallet.md)
+ - [SWGWalletSummaryRecord](docs/SWGWalletSummaryRecord.md)
  - [SWGXAny](docs/SWGXAny.md)
 
 

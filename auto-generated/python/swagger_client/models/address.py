@@ -44,7 +44,8 @@ class Address(object):
         'skip_confirm_verified': 'bool',
         'skip2_fa': 'bool',
         'skip2_fa_verified': 'bool',
-        'network': 'str'
+        'network': 'str',
+        'memo': 'str'
     }
 
     attribute_map = {
@@ -59,10 +60,11 @@ class Address(object):
         'skip_confirm_verified': 'skipConfirmVerified',
         'skip2_fa': 'skip2FA',
         'skip2_fa_verified': 'skip2FAVerified',
-        'network': 'network'
+        'network': 'network',
+        'memo': 'memo'
     }
 
-    def __init__(self, id=None, currency=None, created=None, user_id=None, address=None, name=None, note=None, skip_confirm=None, skip_confirm_verified=None, skip2_fa=None, skip2_fa_verified=None, network=None, _configuration=None):  # noqa: E501
+    def __init__(self, id=None, currency=None, created=None, user_id=None, address=None, name=None, note=None, skip_confirm=None, skip_confirm_verified=None, skip2_fa=None, skip2_fa_verified=None, network=None, memo=None, _configuration=None):  # noqa: E501
         """Address - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -80,6 +82,7 @@ class Address(object):
         self._skip2_fa = None
         self._skip2_fa_verified = None
         self._network = None
+        self._memo = None
         self.discriminator = None
 
         if id is not None:
@@ -103,6 +106,8 @@ class Address(object):
         if skip2_fa_verified is not None:
             self.skip2_fa_verified = skip2_fa_verified
         self.network = network
+        if memo is not None:
+            self.memo = memo
 
     @property
     def id(self):
@@ -361,6 +366,27 @@ class Address(object):
             raise ValueError("Invalid value for `network`, must not be `None`")  # noqa: E501
 
         self._network = network
+
+    @property
+    def memo(self):
+        """Gets the memo of this Address.  # noqa: E501
+
+
+        :return: The memo of this Address.  # noqa: E501
+        :rtype: str
+        """
+        return self._memo
+
+    @memo.setter
+    def memo(self, memo):
+        """Sets the memo of this Address.
+
+
+        :param memo: The memo of this Address.  # noqa: E501
+        :type: str
+        """
+
+        self._memo = memo
 
     def to_dict(self):
         """Returns the model properties as a dict"""

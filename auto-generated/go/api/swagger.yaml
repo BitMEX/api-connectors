@@ -2249,30 +2249,31 @@ paths:
         \ fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html)\
         \ definitions. Some selected fields are explained in more detail below.\n\n\
         The fields _account_, _symbol_, _currency_ are unique to each position and\
-        \ form its key.\n\nSpot trading symbols do not return any position data.\n\
-        \n- **account**: Your unique account ID.\n- **symbol**: The contract for this\
-        \ position.\n- **currency**: The margin currency for this position.\n- **underlying**:\
-        \ Meta data of the _symbol_.\n- **quoteCurrency**: Meta data of the _symbol_,\
-        \ All prices are in the _quoteCurrency_\n- **commission**: The maximum of\
-        \ the maker, taker, and settlement fee.\n- **initMarginReq**: The initial\
-        \ margin requirement. This will be at least the symbol's default initial maintenance\
-        \ margin, but can be higher if you choose lower leverage.\n- **maintMarginReq**:\
-        \ The maintenance margin requirement. This will be at least the symbol's default\
-        \ maintenance maintenance margin, but can be higher if you choose a higher\
-        \ risk limit.\n- **riskLimit**: This is a function of your _maintMarginReq_.\n\
-        - **leverage**: 1 / initMarginReq.\n- **crossMargin**: True/false depending\
-        \ on whether you set cross margin on this position.\n- **deleveragePercentile**:\
-        \ Indicates where your position is in the ADL queue.\n- **rebalancedPnl**:\
-        \ The value of realised PNL that has transferred to your wallet for this position.\n\
-        - **prevRealisedPnl**: The value of realised PNL that has transferred to your\
-        \ wallet for this position since the position was closed.\n- **currentQty**:\
-        \ The current position amount in contracts.\n- **currentCost**: The current\
-        \ cost of the position in the settlement currency of the symbol (_currency_).\n\
-        - **currentComm**: The current commission of the position in the settlement\
-        \ currency of the symbol (_currency_).\n- **realisedCost**: The realised cost\
-        \ of this position calculated with regard to average cost accounting.\n- **unrealisedCost**:\
-        \ _currentCost_ - _realisedCost_.\n- **grossOpenPremium**: The amount your\
-        \ bidding above the mark price in the settlement currency of the symbol (_currency_).\n\
+        \ form its key.\n\nSpot trading symbols returns a subset of the position fields,\
+        \ mainly the open order aggregates.\n\n- **account**: Your unique account\
+        \ ID.\n- **symbol**: The contract for this position.\n- **currency**: The\
+        \ margin currency for this position.\n- **underlying**: Meta data of the _symbol_.\n\
+        - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_\n\
+        - **commission**: The maximum of the maker, taker, and settlement fee.\n-\
+        \ **initMarginReq**: The initial margin requirement. This will be at least\
+        \ the symbol's default initial maintenance margin, but can be higher if you\
+        \ choose lower leverage.\n- **maintMarginReq**: The maintenance margin requirement.\
+        \ This will be at least the symbol's default maintenance maintenance margin,\
+        \ but can be higher if you choose a higher risk limit.\n- **riskLimit**: This\
+        \ is a function of your _maintMarginReq_.\n- **leverage**: 1 / initMarginReq.\n\
+        - **crossMargin**: True/false depending on whether you set cross margin on\
+        \ this position.\n- **deleveragePercentile**: Indicates where your position\
+        \ is in the ADL queue.\n- **rebalancedPnl**: The value of realised PNL that\
+        \ has transferred to your wallet for this position.\n- **prevRealisedPnl**:\
+        \ The value of realised PNL that has transferred to your wallet for this position\
+        \ since the position was closed.\n- **currentQty**: The current position amount\
+        \ in contracts.\n- **currentCost**: The current cost of the position in the\
+        \ settlement currency of the symbol (_currency_).\n- **currentComm**: The\
+        \ current commission of the position in the settlement currency of the symbol\
+        \ (_currency_).\n- **realisedCost**: The realised cost of this position calculated\
+        \ with regard to average cost accounting.\n- **unrealisedCost**: _currentCost_\
+        \ - _realisedCost_.\n- **grossOpenPremium**: The amount your bidding above\
+        \ the mark price in the settlement currency of the symbol (_currency_).\n\
         - **markPrice**: The mark price of the symbol in _quoteCurrency_.\n- **markValue**:\
         \ The _currentQty_ at the mark price in the settlement currency of the symbol\
         \ (_currency_).\n- **homeNotional**: Value of position in units of _underlying_.\n\
@@ -3323,6 +3324,51 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+  /user/depositAddressInformation:
+    get:
+      tags:
+      - "User"
+      summary: "Get a deposit address."
+      operationId: "User.getDepositAddressInformation"
+      parameters:
+      - name: "currency"
+        in: "query"
+        description: "Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\"\
+          >asset config endpoint</a>"
+        required: true
+        type: "string"
+        x-exportParamName: "Currency"
+      - name: "network"
+        in: "query"
+        description: "The `network` parameter is used to indicate which blockchain\
+          \ you would like to deposit from. The acceptable value in the `network`\
+          \ parameter for each currency can be found from `networks.asset` from `GET\
+          \ /wallet/assets`."
+        required: true
+        type: "string"
+        x-exportParamName: "Network"
+      deprecated: false
+      responses:
+        "200":
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/DepositAddress"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
   /user/wallet:
     get:
       tags:
@@ -3380,16 +3426,17 @@ paths:
         x-optionalDataType: "String"
       - name: "count"
         in: "query"
-        description: "Number of results to fetch."
+        description: "Number of results to fetch. Fetch results from start to start\
+          \ + count. Max: 10,000 rows."
         required: false
         type: "number"
-        default: 100.0
+        default: 10000.0
         format: "double"
         x-exportParamName: "Count"
         x-optionalDataType: "Float64"
       - name: "start"
         in: "query"
-        description: "Starting point for results."
+        description: "Starting point for results, integer. Default 0."
         required: false
         type: "number"
         default: 0.0
@@ -3405,6 +3452,14 @@ paths:
         format: "double"
         x-exportParamName: "TargetAccountId"
         x-optionalDataType: "Float64"
+      - name: "reverse"
+        in: "query"
+        description: "Start from the latest transaction record. Default true."
+        required: false
+        type: "boolean"
+        default: true
+        x-exportParamName: "Reverse"
+        x-optionalDataType: "Bool"
       deprecated: false
       responses:
         "200":
@@ -3435,6 +3490,8 @@ paths:
       - "User"
       summary: "Get a summary of all of your wallet transactions (deposits, withdrawals,\
         \ PNL)."
+      description: "Provides an aggregated view of transactions, by transaction type,\
+        \ over a specific time period."
       operationId: "User.getWalletSummary"
       parameters:
       - name: "currency"
@@ -3446,6 +3503,22 @@ paths:
         default: "XBt"
         x-exportParamName: "Currency"
         x-optionalDataType: "String"
+      - name: "startTime"
+        in: "query"
+        description: "Start time for the summary"
+        required: false
+        type: "string"
+        format: "date-time"
+        x-exportParamName: "StartTime"
+        x-optionalDataType: "Time"
+      - name: "endTime"
+        in: "query"
+        description: "End time for the summary"
+        required: false
+        type: "string"
+        format: "date-time"
+        x-exportParamName: "EndTime"
+        x-optionalDataType: "Time"
       deprecated: false
       responses:
         "200":
@@ -3453,7 +3526,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Transaction"
+              $ref: "#/definitions/WalletSummaryRecord"
         "400":
           description: "Parameter Error"
           schema:
@@ -3848,6 +3921,14 @@ paths:
         type: "string"
         x-exportParamName: "Address"
         x-optionalDataType: "String"
+      - name: "memo"
+        in: "formData"
+        description: "Destination Memo. If `address`, is specified, Destination Memo\
+          \ can also be specified"
+        required: false
+        type: "string"
+        x-exportParamName: "Memo"
+        x-optionalDataType: "String"
       - name: "addressId"
         in: "formData"
         description: "ID of the Destination Address. One of `address`, `addressId`,\
@@ -3889,6 +3970,40 @@ paths:
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Transaction"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+  /user/withdrawal:
+    delete:
+      tags:
+      - "User"
+      summary: "Cancel pending withdrawal"
+      operationId: "User.cancelPendingWithdrawal"
+      parameters:
+      - name: "transactID"
+        in: "formData"
+        required: true
+        type: "string"
+        x-exportParamName: "TransactID"
+      deprecated: false
+      responses:
+        "200":
+          description: "Request was successful"
+          schema:
+            type: "object"
         "400":
           description: "Parameter Error"
           schema:
@@ -4552,7 +4667,7 @@ paths:
         description: "Number of results to fetch."
         required: false
         type: "number"
-        default: 150.0
+        default: 100.0
         format: "double"
         x-exportParamName: "Count"
         x-optionalDataType: "Float64"
@@ -4738,6 +4853,13 @@ paths:
         default: false
         x-exportParamName: "Skip2FA"
         x-optionalDataType: "Bool"
+      - name: "memo"
+        in: "formData"
+        description: "Destination Memo."
+        required: false
+        type: "string"
+        x-exportParamName: "Memo"
+        x-optionalDataType: "String"
       deprecated: false
       responses:
         "200":
@@ -4775,6 +4897,22 @@ paths:
         type: "number"
         format: "double"
         x-exportParamName: "Depth"
+        x-optionalDataType: "Float64"
+      - name: "targetAccountId"
+        in: "query"
+        description: "AccountId of Sub-Affiliate Account"
+        required: false
+        type: "number"
+        format: "double"
+        x-exportParamName: "TargetAccountId"
+        x-optionalDataType: "Float64"
+      - name: "selectUserId"
+        in: "query"
+        description: "User id of result array to keep"
+        required: false
+        type: "number"
+        format: "double"
+        x-exportParamName: "SelectUserId"
         x-optionalDataType: "Float64"
       deprecated: false
       responses:
@@ -4862,7 +5000,8 @@ paths:
         in: "formData"
         description: "How the pot should be distributed to the guild members, must\
           \ be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE,\
-          \ TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM"
+          \ TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI,\
+          \ TOP_10_BY_ROI, RANDOM"
         required: true
         type: "string"
         x-exportParamName: "PotDistributionType"
@@ -4887,6 +5026,13 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Discord"
+        x-optionalDataType: "String"
+      - name: "telegram"
+        in: "formData"
+        description: "Guild telegram link."
+        required: false
+        type: "string"
+        x-exportParamName: "Telegram"
         x-optionalDataType: "String"
       - name: "imgUrl"
         in: "formData"
@@ -4956,7 +5102,8 @@ paths:
         in: "formData"
         description: "How the pot should be distributed to the guild members, must\
           \ be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE,\
-          \ TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM"
+          \ TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI,\
+          \ TOP_10_BY_ROI, RANDOM"
         required: true
         type: "string"
         x-exportParamName: "PotDistributionType"
@@ -4990,6 +5137,13 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Discord"
+        x-optionalDataType: "String"
+      - name: "telegram"
+        in: "formData"
+        description: "Guild telegram link."
+        required: false
+        type: "string"
+        x-exportParamName: "Telegram"
         x-optionalDataType: "String"
       - name: "imgUrl"
         in: "formData"
@@ -5464,28 +5618,29 @@ definitions:
   Execution:
     type: "object"
     required:
-    - "orderID"
     - "symbol"
     - "timestamp"
     properties:
       execID:
         type: "string"
+        format: "guid"
       orderID:
         type: "string"
+        format: "guid"
       clOrdID:
         type: "string"
       clOrdLinkID:
         type: "string"
       account:
         type: "number"
-        format: "double"
+        format: "int64"
       symbol:
         type: "string"
       side:
         type: "string"
       lastQty:
         type: "number"
-        format: "double"
+        format: "int64"
       lastPx:
         type: "number"
         format: "double"
@@ -5493,7 +5648,7 @@ definitions:
         type: "string"
       orderQty:
         type: "number"
-        format: "double"
+        format: "int64"
       price:
         type: "number"
         format: "double"
@@ -5532,7 +5687,7 @@ definitions:
         type: "string"
       leavesQty:
         type: "number"
-        format: "double"
+        format: "int64"
       cumQty:
         type: "number"
         format: "int64"
@@ -5548,12 +5703,13 @@ definitions:
         type: "string"
       trdMatchID:
         type: "string"
+        format: "guid"
       execCost:
         type: "number"
-        format: "double"
+        format: "int64"
       execComm:
         type: "number"
-        format: "double"
+        format: "int64"
       homeNotional:
         type: "number"
         format: "double"
@@ -5566,21 +5722,8 @@ definitions:
       timestamp:
         type: "string"
         format: "date-time"
-      execGrossPnl:
-        type: "number"
-        format: "double"
-      currentQty:
-        type: "number"
-        format: "double"
-      avgEntryPrice:
-        type: "number"
-        format: "double"
-      realisedPnl:
-        type: "number"
-        format: "double"
-      unrealisedPnl:
-        type: "number"
-        format: "double"
+      feeType:
+        type: "string"
     description: "Raw Order and Balance Data"
     example:
       symbol: "symbol"
@@ -5590,19 +5733,16 @@ definitions:
       homeNotional: 1.4894159098541704
       pegOffsetValue: 9.301444243932576
       pegPriceType: "pegPriceType"
-      avgEntryPrice: 4.965218492984954
       execID: "execID"
       contingencyType: "contingencyType"
       foreignNotional: 6.84685269835264
-      unrealisedPnl: 9.965781217890562
-      execCost: 1.2315135367772556
-      execComm: 1.0246457001441578
-      execGrossPnl: 7.457744773683766
+      execCost: 1.231513536777255612975068288506008684635162353515625
+      execComm: 1.024645700144157789424070870154537260532379150390625
       settlCurrency: "settlCurrency"
       ordRejReason: "ordRejReason"
       price: 5.637376656633329
       trdMatchID: "trdMatchID"
-      orderQty: 5.962133916683182
+      orderQty: 5.962133916683182377482808078639209270477294921875
       currency: "currency"
       commission: 7.386281948385884
       text: "text"
@@ -5610,22 +5750,21 @@ definitions:
       timeInForce: "timeInForce"
       timestamp: "2000-01-23T04:56:07.000+00:00"
       ordStatus: "ordStatus"
-      realisedPnl: 5.025004791520295
       side: "side"
       orderID: "orderID"
       lastPx: 1.4658129805029452
-      leavesQty: 3.616076749251911
+      leavesQty: 3.61607674925191080461672754609026014804840087890625
       cumQty: 2.027123023002321833274663731572218239307403564453125
       tradePublishIndicator: "tradePublishIndicator"
       displayQty: 2.3021358869347654518833223846741020679473876953125
-      currentQty: 1.1730742509559433
+      feeType: "feeType"
       clOrdID: "clOrdID"
-      lastQty: 6.027456183070403
+      lastQty: 6.02745618307040320615897144307382404804229736328125
       avgPx: 4.145608029883936
       workingIndicator: true
       lastLiquidityInd: "lastLiquidityInd"
       transactTime: "2000-01-23T04:56:07.000+00:00"
-      account: 0.8008281904610115
+      account: 0.80082819046101150206595775671303272247314453125
       stopPx: 7.061401241503109
       ordType: "ordType"
   x-any:
@@ -5900,6 +6039,9 @@ definitions:
         format: "double"
       instantPnl:
         type: "boolean"
+      minTick:
+        type: "number"
+        format: "double"
       timestamp:
         type: "string"
         format: "date-time"
@@ -5980,6 +6122,7 @@ definitions:
       openValue: 3.02057969929162428712743349024094641208648681640625
       isInverse: true
       lotSize: 1.46581298050294517310021547018550336360931396484375
+      minTick: 4.258773108174356
       settledPriceAdjustmentRate: 0.2025324113236393
       rebalanceTimestamp: "2000-01-23T04:56:07.000+00:00"
       fairBasisRate: 3.0576100241049344
@@ -6206,26 +6349,27 @@ definitions:
     properties:
       orderID:
         type: "string"
+        format: "guid"
       clOrdID:
         type: "string"
       clOrdLinkID:
         type: "string"
       account:
         type: "number"
-        format: "double"
+        format: "int64"
       symbol:
         type: "string"
       side:
         type: "string"
       orderQty:
         type: "number"
-        format: "double"
+        format: "int64"
       price:
         type: "number"
         format: "double"
       displayQty:
         type: "number"
-        format: "double"
+        format: "int64"
       stopPx:
         type: "number"
         format: "double"
@@ -6256,10 +6400,10 @@ definitions:
         type: "string"
       leavesQty:
         type: "number"
-        format: "double"
+        format: "int64"
       cumQty:
         type: "number"
-        format: "double"
+        format: "int64"
       avgPx:
         type: "number"
         format: "double"
@@ -6283,7 +6427,7 @@ definitions:
       settlCurrency: "settlCurrency"
       ordRejReason: "ordRejReason"
       price: 1.4658129805029452
-      orderQty: 6.027456183070403
+      orderQty: 6.02745618307040320615897144307382404804229736328125
       currency: "currency"
       text: "text"
       timeInForce: "timeInForce"
@@ -6291,14 +6435,14 @@ definitions:
       ordStatus: "ordStatus"
       side: "side"
       orderID: "orderID"
-      leavesQty: 7.061401241503109
-      cumQty: 9.301444243932576
-      displayQty: 5.962133916683182
+      leavesQty: 7.061401241503109105224211816675961017608642578125
+      cumQty: 9.301444243932575517419536481611430644989013671875
+      displayQty: 5.962133916683182377482808078639209270477294921875
       clOrdID: "clOrdID"
       avgPx: 3.616076749251911
       workingIndicator: true
       transactTime: "2000-01-23T04:56:07.000+00:00"
-      account: 0.8008281904610115
+      account: 0.80082819046101150206595775671303272247314453125
       stopPx: 5.637376656633329
       ordType: "ordType"
   OrderBookL2:
@@ -6825,6 +6969,19 @@ definitions:
       turnover: 3.61607674925191080461672754609026014804840087890625
       open: 0.8008281904610115
       timestamp: "2000-01-23T04:56:07.000+00:00"
+  DepositAddress:
+    type: "object"
+    required:
+    - "address"
+    properties:
+      address:
+        type: "string"
+      memo:
+        type: "string"
+    description: "Deposit Address"
+    example:
+      address: "address"
+      memo: "memo"
   Wallet:
     type: "object"
     required:
@@ -6931,6 +7088,57 @@ definitions:
       text: "text"
       account: 0.80082819046101150206595775671303272247314453125
       timestamp: "2000-01-23T04:56:07.000+00:00"
+  WalletSummaryRecord:
+    type: "object"
+    required:
+    - "account"
+    properties:
+      account:
+        type: "number"
+        format: "double"
+      currency:
+        type: "string"
+        default: "XBt"
+      transactType:
+        type: "string"
+      symbol:
+        type: "string"
+        default: "XBTUSD"
+      amount:
+        type: "number"
+        format: "double"
+        default: 0.0
+      pendingDebit:
+        type: "number"
+        format: "double"
+        default: 0.0
+      realisedPnl:
+        type: "number"
+        format: "double"
+        default: 0.0
+      walletBalance:
+        type: "number"
+        format: "double"
+        default: 0.0
+      unrealisedPnl:
+        type: "number"
+        format: "double"
+        default: 0.0
+      marginBalance:
+        type: "number"
+        format: "double"
+        default: 0.0
+    example:
+      realisedPnl: 5.962133916683182
+      unrealisedPnl: 2.3021358869347655
+      symbol: "XBTUSD"
+      amount: 6.027456183070403
+      pendingDebit: 1.4658129805029452
+      transactType: "transactType"
+      walletBalance: 5.637376656633329
+      currency: "XBt"
+      account: 0.8008281904610115
+      marginBalance: 7.061401241503109
   StakingRecord:
     type: "object"
     required:
@@ -7193,6 +7401,9 @@ definitions:
       firstTradeTimestamp:
         type: "string"
         format: "date-time"
+      firstDepositTimestamp:
+        type: "string"
+        format: "date-time"
       typ:
         type: "string"
     description: "Account Operations"
@@ -7202,10 +7413,48 @@ definitions:
       firstname: "firstname"
       preferences:
         isWalletZeroBalanceHidden: true
-        marginPnlRowKind: "marginPnlRowKind"
         favourites:
         - "favourites"
         - "favourites"
+        disablePush:
+        - "disablePush"
+        - "disablePush"
+        alertOnLiquidations: true
+        optionsBeta: true
+        hideConfirmDialogs:
+        - "hideConfirmDialogs"
+        - "hideConfirmDialogs"
+        marginPnlRow: "marginPnlRow"
+        isSensitiveInfoVisible: true
+        features:
+        - "features"
+        - "features"
+        spacingPreference: "spacingPreference"
+        colorTheme: "colorTheme"
+        favouritesOrdered:
+        - "favouritesOrdered"
+        - "favouritesOrdered"
+        orderBookBinning: "{}"
+        favouritesAssets:
+        - "favouritesAssets"
+        - "favouritesAssets"
+        hidePnlInGuilds: false
+        msgsSeen:
+        - "msgsSeen"
+        - "msgsSeen"
+        orderControlsPlusMinus: true
+        showChartBottomToolbar: true
+        hasSetTradingCurrencies: true
+        tickerPinned: true
+        hideFromLeaderboard: false
+        favouriteBots:
+        - "favouriteBots"
+        - "favouriteBots"
+        orderBookType: "orderBookType"
+        showLocaleNumbers: true
+        chatChannelID: 6.027456183070403
+        notifications: "{}"
+        marginPnlRowKind: "marginPnlRowKind"
         hideNotifications:
         - "hideNotifications"
         - "hideNotifications"
@@ -7213,57 +7462,28 @@ definitions:
         tickerGroup: "tickerGroup"
         platformLayout: "platformLayout"
         animationsEnabled: true
-        disablePush:
-        - "disablePush"
-        - "disablePush"
-        alertOnLiquidations: true
         locale: "en-US"
-        hideConfirmDialogs:
-        - "hideConfirmDialogs"
-        - "hideConfirmDialogs"
-        marginPnlRow: "marginPnlRow"
-        isSensitiveInfoVisible: true
         disableEmails:
         - "disableEmails"
         - "disableEmails"
-        features:
-        - "features"
-        - "features"
         sounds:
         - "sounds"
         - "sounds"
         hidePhoneConfirm: false
-        colorTheme: "colorTheme"
+        mobileLocale: "mobileLocale"
+        hideRoiInGuilds: false
         currency: "currency"
-        favouritesOrdered:
-        - "favouritesOrdered"
-        - "favouritesOrdered"
         hideNameFromLeaderboard: true
         tradeLayout: "tradeLayout"
         strictTimeout: true
-        orderBookBinning: "{}"
         debug: true
-        favouritesAssets:
-        - "favouritesAssets"
-        - "favouritesAssets"
         strictIPCheck: false
-        msgsSeen:
-        - "msgsSeen"
-        - "msgsSeen"
-        orderControlsPlusMinus: true
-        showChartBottomToolbar: true
         hideConnectionModal: true
-        tickerPinned: true
         equivalentCurrency: "equivalentCurrency"
-        hideFromLeaderboard: false
         displayCorpEnrollUpsell: true
         userColor: "userColor"
         announcementsLastSeen: "2000-01-23T04:56:07.000+00:00"
-        orderBookType: "orderBookType"
         orderClearImmediate: false
-        showLocaleNumbers: true
-        chatChannelID: 6.027456183070403
-        notifications: "{}"
         selectedFiatCurrency: "selectedFiatCurrency"
       accountName: "accountName"
       created: "2000-01-23T04:56:07.000+00:00"
@@ -7273,6 +7493,7 @@ definitions:
       affiliateID: "affiliateID"
       lastname: "lastname"
       geoipCountry: "geoipCountry"
+      firstDepositTimestamp: "2000-01-23T04:56:07.000+00:00"
       lastUpdated: "2000-01-23T04:56:07.000+00:00"
       phone: "phone"
       TFAEnabled: "TFAEnabled"
@@ -7523,6 +7744,16 @@ definitions:
         - "addressSkipConfirmRequested"
         - "addressSkipConfirmVerified"
         - "verify"
+        - "restrictedAccount"
+        - "unrestrictedAccount"
+        - "disabledAccount"
+        - "enabledAccount"
+        - "role:roleMappingDestroy"
+        - "role:chatBanned"
+        - "role:withdrawalBanned"
+        - "role:orderBanned"
+        - "role:apiBanned"
+        - "role:restrictedJurisdictionPrivilege"
       status:
         type: "string"
         enum:
@@ -7594,12 +7825,16 @@ definitions:
       isMarginCurrency:
         type: "boolean"
         default: true
+      memoRequired:
+        type: "boolean"
+        default: false
       networks:
         type: "array"
         items:
           $ref: "#/definitions/AssetsConfigNetworkItem"
     example:
       currencyType: "Crypto"
+      memoRequired: false
       isMarginCurrency: true
       name: "Bitcoin"
       majorCurrency: "XBT"
@@ -7694,19 +7929,22 @@ definitions:
         type: "boolean"
       network:
         type: "string"
+      memo:
+        type: "string"
     example:
-      skip2FA: true
       note: "note"
       skipConfirmVerified: true
       skip2FAVerified: true
       address: "address"
       created: "2000-01-23T04:56:07.000+00:00"
-      name: "name"
-      currency: "currency"
-      id: 0.80082819046101150206595775671303272247314453125
+      memo: "memo"
       skipConfirm: true
       userId: 6.027456183070403
       network: "network"
+      skip2FA: true
+      name: "name"
+      currency: "currency"
+      id: 0.80082819046101150206595775671303272247314453125
   Guild:
     type: "object"
     required:
@@ -7859,6 +8097,12 @@ definitions:
         type: "array"
         items:
           type: "string"
+      favouriteBots:
+        type: "array"
+        items:
+          type: "string"
+      hasSetTradingCurrencies:
+        type: "boolean"
       hideConfirmDialogs:
         type: "array"
         items:
@@ -7871,6 +8115,12 @@ definitions:
       hideNameFromLeaderboard:
         type: "boolean"
         default: true
+      hidePnlInGuilds:
+        type: "boolean"
+        default: false
+      hideRoiInGuilds:
+        type: "boolean"
+        default: false
       hideNotifications:
         type: "array"
         items:
@@ -7892,6 +8142,8 @@ definitions:
         type: "string"
       marginPnlRowKind:
         type: "string"
+      mobileLocale:
+        type: "string"
       msgsSeen:
         type: "array"
         items:
@@ -7899,6 +8151,8 @@ definitions:
       notifications:
         type: "object"
         properties: {}
+      optionsBeta:
+        type: "boolean"
       orderBookBinning:
         type: "object"
         properties: {}
@@ -7922,6 +8176,8 @@ definitions:
         type: "array"
         items:
           type: "string"
+      spacingPreference:
+        type: "string"
       strictIPCheck:
         type: "boolean"
         default: false
@@ -7938,10 +8194,48 @@ definitions:
         type: "string"
     example:
       isWalletZeroBalanceHidden: true
-      marginPnlRowKind: "marginPnlRowKind"
       favourites:
       - "favourites"
       - "favourites"
+      disablePush:
+      - "disablePush"
+      - "disablePush"
+      alertOnLiquidations: true
+      optionsBeta: true
+      hideConfirmDialogs:
+      - "hideConfirmDialogs"
+      - "hideConfirmDialogs"
+      marginPnlRow: "marginPnlRow"
+      isSensitiveInfoVisible: true
+      features:
+      - "features"
+      - "features"
+      spacingPreference: "spacingPreference"
+      colorTheme: "colorTheme"
+      favouritesOrdered:
+      - "favouritesOrdered"
+      - "favouritesOrdered"
+      orderBookBinning: "{}"
+      favouritesAssets:
+      - "favouritesAssets"
+      - "favouritesAssets"
+      hidePnlInGuilds: false
+      msgsSeen:
+      - "msgsSeen"
+      - "msgsSeen"
+      orderControlsPlusMinus: true
+      showChartBottomToolbar: true
+      hasSetTradingCurrencies: true
+      tickerPinned: true
+      hideFromLeaderboard: false
+      favouriteBots:
+      - "favouriteBots"
+      - "favouriteBots"
+      orderBookType: "orderBookType"
+      showLocaleNumbers: true
+      chatChannelID: 6.027456183070403
+      notifications: "{}"
+      marginPnlRowKind: "marginPnlRowKind"
       hideNotifications:
       - "hideNotifications"
       - "hideNotifications"
@@ -7949,57 +8243,28 @@ definitions:
       tickerGroup: "tickerGroup"
       platformLayout: "platformLayout"
       animationsEnabled: true
-      disablePush:
-      - "disablePush"
-      - "disablePush"
-      alertOnLiquidations: true
       locale: "en-US"
-      hideConfirmDialogs:
-      - "hideConfirmDialogs"
-      - "hideConfirmDialogs"
-      marginPnlRow: "marginPnlRow"
-      isSensitiveInfoVisible: true
       disableEmails:
       - "disableEmails"
       - "disableEmails"
-      features:
-      - "features"
-      - "features"
       sounds:
       - "sounds"
       - "sounds"
       hidePhoneConfirm: false
-      colorTheme: "colorTheme"
+      mobileLocale: "mobileLocale"
+      hideRoiInGuilds: false
       currency: "currency"
-      favouritesOrdered:
-      - "favouritesOrdered"
-      - "favouritesOrdered"
       hideNameFromLeaderboard: true
       tradeLayout: "tradeLayout"
       strictTimeout: true
-      orderBookBinning: "{}"
       debug: true
-      favouritesAssets:
-      - "favouritesAssets"
-      - "favouritesAssets"
       strictIPCheck: false
-      msgsSeen:
-      - "msgsSeen"
-      - "msgsSeen"
-      orderControlsPlusMinus: true
-      showChartBottomToolbar: true
       hideConnectionModal: true
-      tickerPinned: true
       equivalentCurrency: "equivalentCurrency"
-      hideFromLeaderboard: false
       displayCorpEnrollUpsell: true
       userColor: "userColor"
       announcementsLastSeen: "2000-01-23T04:56:07.000+00:00"
-      orderBookType: "orderBookType"
       orderClearImmediate: false
-      showLocaleNumbers: true
-      chatChannelID: 6.027456183070403
-      notifications: "{}"
       selectedFiatCurrency: "selectedFiatCurrency"
   AssetsConfigNetworkItem:
     type: "object"

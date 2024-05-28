@@ -30,10 +30,14 @@ type UserPreferences struct {
 	Favourites []string `json:"favourites,omitempty"`
 	FavouritesAssets []string `json:"favouritesAssets,omitempty"`
 	FavouritesOrdered []string `json:"favouritesOrdered,omitempty"`
+	FavouriteBots []string `json:"favouriteBots,omitempty"`
+	HasSetTradingCurrencies bool `json:"hasSetTradingCurrencies,omitempty"`
 	HideConfirmDialogs []string `json:"hideConfirmDialogs,omitempty"`
 	HideConnectionModal bool `json:"hideConnectionModal,omitempty"`
 	HideFromLeaderboard bool `json:"hideFromLeaderboard,omitempty"`
 	HideNameFromLeaderboard bool `json:"hideNameFromLeaderboard,omitempty"`
+	HidePnlInGuilds bool `json:"hidePnlInGuilds,omitempty"`
+	HideRoiInGuilds bool `json:"hideRoiInGuilds,omitempty"`
 	HideNotifications []string `json:"hideNotifications,omitempty"`
 	HidePhoneConfirm bool `json:"hidePhoneConfirm,omitempty"`
 	IsSensitiveInfoVisible bool `json:"isSensitiveInfoVisible,omitempty"`
@@ -42,8 +46,10 @@ type UserPreferences struct {
 	LocaleSetTime float64 `json:"localeSetTime,omitempty"`
 	MarginPnlRow string `json:"marginPnlRow,omitempty"`
 	MarginPnlRowKind string `json:"marginPnlRowKind,omitempty"`
+	MobileLocale string `json:"mobileLocale,omitempty"`
 	MsgsSeen []string `json:"msgsSeen,omitempty"`
 	Notifications interface{} `json:"notifications,omitempty"`
+	OptionsBeta bool `json:"optionsBeta,omitempty"`
 	OrderBookBinning interface{} `json:"orderBookBinning,omitempty"`
 	OrderBookType string `json:"orderBookType,omitempty"`
 	OrderClearImmediate bool `json:"orderClearImmediate,omitempty"`
@@ -53,6 +59,7 @@ type UserPreferences struct {
 	ShowChartBottomToolbar bool `json:"showChartBottomToolbar,omitempty"`
 	ShowLocaleNumbers bool `json:"showLocaleNumbers,omitempty"`
 	Sounds []string `json:"sounds,omitempty"`
+	SpacingPreference string `json:"spacingPreference,omitempty"`
 	StrictIPCheck bool `json:"strictIPCheck,omitempty"`
 	StrictTimeout bool `json:"strictTimeout,omitempty"`
 	TickerGroup string `json:"tickerGroup,omitempty"`

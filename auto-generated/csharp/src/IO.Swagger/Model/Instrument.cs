@@ -125,8 +125,9 @@ namespace IO.Swagger.Model
         /// <param name="settledPriceAdjustmentRate">settledPriceAdjustmentRate.</param>
         /// <param name="settledPrice">settledPrice.</param>
         /// <param name="instantPnl">instantPnl.</param>
+        /// <param name="minTick">minTick.</param>
         /// <param name="timestamp">timestamp.</param>
-        public Instrument(string symbol = default(string), string rootSymbol = default(string), string state = default(string), string typ = default(string), DateTime? listing = default(DateTime?), DateTime? front = default(DateTime?), DateTime? expiry = default(DateTime?), DateTime? settle = default(DateTime?), DateTime? listedSettle = default(DateTime?), string positionCurrency = default(string), string underlying = default(string), string quoteCurrency = default(string), string underlyingSymbol = default(string), string reference = default(string), string referenceSymbol = default(string), DateTime? calcInterval = default(DateTime?), DateTime? publishInterval = default(DateTime?), DateTime? publishTime = default(DateTime?), decimal? maxOrderQty = default(decimal?), double? maxPrice = default(double?), decimal? lotSize = default(decimal?), double? tickSize = default(double?), decimal? multiplier = default(decimal?), string settlCurrency = default(string), decimal? underlyingToPositionMultiplier = default(decimal?), decimal? underlyingToSettleMultiplier = default(decimal?), decimal? quoteToSettleMultiplier = default(decimal?), bool? isQuanto = default(bool?), bool? isInverse = default(bool?), double? initMargin = default(double?), double? maintMargin = default(double?), decimal? riskLimit = default(decimal?), decimal? riskStep = default(decimal?), double? limit = default(double?), bool? taxed = default(bool?), bool? deleverage = default(bool?), double? makerFee = default(double?), double? takerFee = default(double?), double? settlementFee = default(double?), string fundingBaseSymbol = default(string), string fundingQuoteSymbol = default(string), string fundingPremiumSymbol = default(string), DateTime? fundingTimestamp = default(DateTime?), DateTime? fundingInterval = default(DateTime?), double? fundingRate = default(double?), double? indicativeFundingRate = default(double?), DateTime? rebalanceTimestamp = default(DateTime?), DateTime? rebalanceInterval = default(DateTime?), double? prevClosePrice = default(double?), double? limitDownPrice = default(double?), double? limitUpPrice = default(double?), decimal? totalVolume = default(decimal?), decimal? volume = default(decimal?), decimal? volume24h = default(decimal?), decimal? prevTotalTurnover = default(decimal?), decimal? totalTurnover = default(decimal?), decimal? turnover = default(decimal?), decimal? turnover24h = default(decimal?), double? homeNotional24h = default(double?), double? foreignNotional24h = default(double?), double? prevPrice24h = default(double?), double? vwap = default(double?), double? highPrice = default(double?), double? lowPrice = default(double?), double? lastPrice = default(double?), double? lastPriceProtected = default(double?), string lastTickDirection = default(string), double? lastChangePcnt = default(double?), double? bidPrice = default(double?), double? midPrice = default(double?), double? askPrice = default(double?), double? impactBidPrice = default(double?), double? impactMidPrice = default(double?), double? impactAskPrice = default(double?), bool? hasLiquidity = default(bool?), decimal? openInterest = default(decimal?), decimal? openValue = default(decimal?), string fairMethod = default(string), double? fairBasisRate = default(double?), double? fairBasis = default(double?), double? fairPrice = default(double?), string markMethod = default(string), double? markPrice = default(double?), double? indicativeSettlePrice = default(double?), double? settledPriceAdjustmentRate = default(double?), double? settledPrice = default(double?), bool? instantPnl = default(bool?), DateTime? timestamp = default(DateTime?))
+        public Instrument(string symbol = default(string), string rootSymbol = default(string), string state = default(string), string typ = default(string), DateTime? listing = default(DateTime?), DateTime? front = default(DateTime?), DateTime? expiry = default(DateTime?), DateTime? settle = default(DateTime?), DateTime? listedSettle = default(DateTime?), string positionCurrency = default(string), string underlying = default(string), string quoteCurrency = default(string), string underlyingSymbol = default(string), string reference = default(string), string referenceSymbol = default(string), DateTime? calcInterval = default(DateTime?), DateTime? publishInterval = default(DateTime?), DateTime? publishTime = default(DateTime?), decimal? maxOrderQty = default(decimal?), double? maxPrice = default(double?), decimal? lotSize = default(decimal?), double? tickSize = default(double?), decimal? multiplier = default(decimal?), string settlCurrency = default(string), decimal? underlyingToPositionMultiplier = default(decimal?), decimal? underlyingToSettleMultiplier = default(decimal?), decimal? quoteToSettleMultiplier = default(decimal?), bool? isQuanto = default(bool?), bool? isInverse = default(bool?), double? initMargin = default(double?), double? maintMargin = default(double?), decimal? riskLimit = default(decimal?), decimal? riskStep = default(decimal?), double? limit = default(double?), bool? taxed = default(bool?), bool? deleverage = default(bool?), double? makerFee = default(double?), double? takerFee = default(double?), double? settlementFee = default(double?), string fundingBaseSymbol = default(string), string fundingQuoteSymbol = default(string), string fundingPremiumSymbol = default(string), DateTime? fundingTimestamp = default(DateTime?), DateTime? fundingInterval = default(DateTime?), double? fundingRate = default(double?), double? indicativeFundingRate = default(double?), DateTime? rebalanceTimestamp = default(DateTime?), DateTime? rebalanceInterval = default(DateTime?), double? prevClosePrice = default(double?), double? limitDownPrice = default(double?), double? limitUpPrice = default(double?), decimal? totalVolume = default(decimal?), decimal? volume = default(decimal?), decimal? volume24h = default(decimal?), decimal? prevTotalTurnover = default(decimal?), decimal? totalTurnover = default(decimal?), decimal? turnover = default(decimal?), decimal? turnover24h = default(decimal?), double? homeNotional24h = default(double?), double? foreignNotional24h = default(double?), double? prevPrice24h = default(double?), double? vwap = default(double?), double? highPrice = default(double?), double? lowPrice = default(double?), double? lastPrice = default(double?), double? lastPriceProtected = default(double?), string lastTickDirection = default(string), double? lastChangePcnt = default(double?), double? bidPrice = default(double?), double? midPrice = default(double?), double? askPrice = default(double?), double? impactBidPrice = default(double?), double? impactMidPrice = default(double?), double? impactAskPrice = default(double?), bool? hasLiquidity = default(bool?), decimal? openInterest = default(decimal?), decimal? openValue = default(decimal?), string fairMethod = default(string), double? fairBasisRate = default(double?), double? fairBasis = default(double?), double? fairPrice = default(double?), string markMethod = default(string), double? markPrice = default(double?), double? indicativeSettlePrice = default(double?), double? settledPriceAdjustmentRate = default(double?), double? settledPrice = default(double?), bool? instantPnl = default(bool?), double? minTick = default(double?), DateTime? timestamp = default(DateTime?))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -223,6 +224,7 @@ namespace IO.Swagger.Model
             this.SettledPriceAdjustmentRate = settledPriceAdjustmentRate;
             this.SettledPrice = settledPrice;
             this.InstantPnl = instantPnl;
+            this.MinTick = minTick;
             this.Timestamp = timestamp;
         }
         
@@ -749,6 +751,12 @@ namespace IO.Swagger.Model
         public bool? InstantPnl { get; set; }
 
         /// <summary>
+        /// Gets or Sets MinTick
+        /// </summary>
+        [DataMember(Name="minTick", EmitDefaultValue=false)]
+        public double? MinTick { get; set; }
+
+        /// <summary>
         /// Gets or Sets Timestamp
         /// </summary>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
@@ -849,6 +857,7 @@ namespace IO.Swagger.Model
             sb.Append("  SettledPriceAdjustmentRate: ").Append(SettledPriceAdjustmentRate).Append("\n");
             sb.Append("  SettledPrice: ").Append(SettledPrice).Append("\n");
             sb.Append("  InstantPnl: ").Append(InstantPnl).Append("\n");
+            sb.Append("  MinTick: ").Append(MinTick).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -1320,6 +1329,11 @@ namespace IO.Swagger.Model
                     this.InstantPnl.Equals(input.InstantPnl))
                 ) && 
                 (
+                    this.MinTick == input.MinTick ||
+                    (this.MinTick != null &&
+                    this.MinTick.Equals(input.MinTick))
+                ) && 
+                (
                     this.Timestamp == input.Timestamp ||
                     (this.Timestamp != null &&
                     this.Timestamp.Equals(input.Timestamp))
@@ -1509,6 +1523,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.SettledPrice.GetHashCode();
                 if (this.InstantPnl != null)
                     hashCode = hashCode * 59 + this.InstantPnl.GetHashCode();
+                if (this.MinTick != null)
+                    hashCode = hashCode * 59 + this.MinTick.GetHashCode();
                 if (this.Timestamp != null)
                     hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
                 return hashCode;

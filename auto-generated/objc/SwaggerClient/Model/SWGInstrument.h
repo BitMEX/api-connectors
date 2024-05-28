@@ -197,6 +197,8 @@
 
 @property(nonatomic) NSNumber* instantPnl;
 
+@property(nonatomic) NSNumber* minTick;
+
 @property(nonatomic) NSDate* timestamp;
 
 @end

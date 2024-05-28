@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **scale** | **Double** |  |  [optional]
 **enabled** | **Boolean** |  |  [optional]
 **isMarginCurrency** | **Boolean** |  |  [optional]
+**memoRequired** | **Boolean** |  |  [optional]
 **networks** | [**List&lt;AssetsConfigNetworkItem&gt;**](AssetsConfigNetworkItem.md) |  |  [optional]
 
 

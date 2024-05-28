@@ -32,8 +32,10 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depth">the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)</param>
+        /// <param name="targetAccountId">AccountId of Sub-Affiliate Account (optional)</param>
+        /// <param name="selectUserId">User id of result array to keep (optional)</param>
         /// <returns>List&lt;XAny&gt;</returns>
-        List<XAny> UserAffiliatesGet (double? depth = null);
+        List<XAny> UserAffiliatesGet (double? depth = null, double? targetAccountId = null, double? selectUserId = null);
 
         /// <summary>
         /// Get user&#39;s affiliates to a given depth
@@ -43,8 +45,10 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depth">the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)</param>
+        /// <param name="targetAccountId">AccountId of Sub-Affiliate Account (optional)</param>
+        /// <param name="selectUserId">User id of result array to keep (optional)</param>
         /// <returns>ApiResponse of List&lt;XAny&gt;</returns>
-        ApiResponse<List<XAny>> UserAffiliatesGetWithHttpInfo (double? depth = null);
+        ApiResponse<List<XAny>> UserAffiliatesGetWithHttpInfo (double? depth = null, double? targetAccountId = null, double? selectUserId = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -55,8 +59,10 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depth">the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)</param>
+        /// <param name="targetAccountId">AccountId of Sub-Affiliate Account (optional)</param>
+        /// <param name="selectUserId">User id of result array to keep (optional)</param>
         /// <returns>Task of List&lt;XAny&gt;</returns>
-        System.Threading.Tasks.Task<List<XAny>> UserAffiliatesGetAsync (double? depth = null);
+        System.Threading.Tasks.Task<List<XAny>> UserAffiliatesGetAsync (double? depth = null, double? targetAccountId = null, double? selectUserId = null);
 
         /// <summary>
         /// Get user&#39;s affiliates to a given depth
@@ -66,8 +72,10 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depth">the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)</param>
+        /// <param name="targetAccountId">AccountId of Sub-Affiliate Account (optional)</param>
+        /// <param name="selectUserId">User id of result array to keep (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;XAny&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<XAny>>> UserAffiliatesGetAsyncWithHttpInfo (double? depth = null);
+        System.Threading.Tasks.Task<ApiResponse<List<XAny>>> UserAffiliatesGetAsyncWithHttpInfo (double? depth = null, double? targetAccountId = null, double? selectUserId = null);
         #endregion Asynchronous Operations
     }
 
@@ -173,10 +181,12 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depth">the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)</param>
+        /// <param name="targetAccountId">AccountId of Sub-Affiliate Account (optional)</param>
+        /// <param name="selectUserId">User id of result array to keep (optional)</param>
         /// <returns>List&lt;XAny&gt;</returns>
-        public List<XAny> UserAffiliatesGet (double? depth = null)
+        public List<XAny> UserAffiliatesGet (double? depth = null, double? targetAccountId = null, double? selectUserId = null)
         {
-             ApiResponse<List<XAny>> localVarResponse = UserAffiliatesGetWithHttpInfo(depth);
+             ApiResponse<List<XAny>> localVarResponse = UserAffiliatesGetWithHttpInfo(depth, targetAccountId, selectUserId);
              return localVarResponse.Data;
         }
 
@@ -185,8 +195,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depth">the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)</param>
+        /// <param name="targetAccountId">AccountId of Sub-Affiliate Account (optional)</param>
+        /// <param name="selectUserId">User id of result array to keep (optional)</param>
         /// <returns>ApiResponse of List&lt;XAny&gt;</returns>
-        public ApiResponse< List<XAny> > UserAffiliatesGetWithHttpInfo (double? depth = null)
+        public ApiResponse< List<XAny> > UserAffiliatesGetWithHttpInfo (double? depth = null, double? targetAccountId = null, double? selectUserId = null)
         {
 
             var localVarPath = "/userAffiliates";
@@ -217,6 +229,8 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (depth != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "depth", depth)); // query parameter
+            if (targetAccountId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "targetAccountId", targetAccountId)); // query parameter
+            if (selectUserId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "selectUserId", selectUserId)); // query parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -257,10 +271,12 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depth">the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)</param>
+        /// <param name="targetAccountId">AccountId of Sub-Affiliate Account (optional)</param>
+        /// <param name="selectUserId">User id of result array to keep (optional)</param>
         /// <returns>Task of List&lt;XAny&gt;</returns>
-        public async System.Threading.Tasks.Task<List<XAny>> UserAffiliatesGetAsync (double? depth = null)
+        public async System.Threading.Tasks.Task<List<XAny>> UserAffiliatesGetAsync (double? depth = null, double? targetAccountId = null, double? selectUserId = null)
         {
-             ApiResponse<List<XAny>> localVarResponse = await UserAffiliatesGetAsyncWithHttpInfo(depth);
+             ApiResponse<List<XAny>> localVarResponse = await UserAffiliatesGetAsyncWithHttpInfo(depth, targetAccountId, selectUserId);
              return localVarResponse.Data;
 
         }
@@ -270,8 +286,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="depth">the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)</param>
+        /// <param name="targetAccountId">AccountId of Sub-Affiliate Account (optional)</param>
+        /// <param name="selectUserId">User id of result array to keep (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;XAny&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<XAny>>> UserAffiliatesGetAsyncWithHttpInfo (double? depth = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<XAny>>> UserAffiliatesGetAsyncWithHttpInfo (double? depth = null, double? targetAccountId = null, double? selectUserId = null)
         {
 
             var localVarPath = "/userAffiliates";
@@ -302,6 +320,8 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (depth != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "depth", depth)); // query parameter
+            if (targetAccountId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "targetAccountId", targetAccountId)); // query parameter
+            if (selectUserId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "selectUserId", selectUserId)); // query parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))

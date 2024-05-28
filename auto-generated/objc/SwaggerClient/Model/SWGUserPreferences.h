@@ -53,6 +53,10 @@
 
 @property(nonatomic) NSArray<NSString*>* favouritesOrdered;
 
+@property(nonatomic) NSArray<NSString*>* favouriteBots;
+
+@property(nonatomic) NSNumber* hasSetTradingCurrencies;
+
 @property(nonatomic) NSArray<NSString*>* hideConfirmDialogs;
 
 @property(nonatomic) NSNumber* hideConnectionModal;
@@ -60,6 +64,10 @@
 @property(nonatomic) NSNumber* hideFromLeaderboard;
 
 @property(nonatomic) NSNumber* hideNameFromLeaderboard;
+
+@property(nonatomic) NSNumber* hidePnlInGuilds;
+
+@property(nonatomic) NSNumber* hideRoiInGuilds;
 
 @property(nonatomic) NSArray<NSString*>* hideNotifications;
 
@@ -77,9 +85,13 @@
 
 @property(nonatomic) NSString* marginPnlRowKind;
 
+@property(nonatomic) NSString* mobileLocale;
+
 @property(nonatomic) NSArray<NSString*>* msgsSeen;
 
 @property(nonatomic) NSObject* notifications;
+
+@property(nonatomic) NSNumber* optionsBeta;
 
 @property(nonatomic) NSObject* orderBookBinning;
 
@@ -98,6 +110,8 @@
 @property(nonatomic) NSNumber* showLocaleNumbers;
 
 @property(nonatomic) NSArray<NSString*>* sounds;
+
+@property(nonatomic) NSString* spacingPreference;
 
 @property(nonatomic) NSNumber* strictIPCheck;
 

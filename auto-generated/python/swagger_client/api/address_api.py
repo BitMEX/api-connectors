@@ -138,6 +138,7 @@ class AddressApi(object):
         :param str note: Optional annotation.
         :param bool skip_confirm: Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation.
         :param bool skip2_fa: Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.
+        :param str memo: Destination Memo.
         :return: Address
                  If the method is called asynchronously,
                  returns the request thread.
@@ -165,12 +166,13 @@ class AddressApi(object):
         :param str note: Optional annotation.
         :param bool skip_confirm: Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation.
         :param bool skip2_fa: Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.
+        :param str memo: Destination Memo.
         :return: Address
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['currency', 'network', 'address', 'name', 'note', 'skip_confirm', 'skip2_fa']  # noqa: E501
+        all_params = ['currency', 'network', 'address', 'name', 'note', 'skip_confirm', 'skip2_fa', 'memo']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -226,6 +228,8 @@ class AddressApi(object):
             form_params.append(('skipConfirm', params['skip_confirm']))  # noqa: E501
         if 'skip2_fa' in params:
             form_params.append(('skip2FA', params['skip2_fa']))  # noqa: E501
+        if 'memo' in params:
+            form_params.append(('memo', params['memo']))  # noqa: E501
 
         body_params = None
         # HTTP header `Accept`

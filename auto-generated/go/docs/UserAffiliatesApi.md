@@ -24,6 +24,8 @@ Optional parameters are passed through a pointer to a UserAffiliatesApiUserAffil
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **depth** | **optional.Float64**| the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates | 
+ **targetAccountId** | **optional.Float64**| AccountId of Sub-Affiliate Account | 
+ **selectUserId** | **optional.Float64**| User id of result array to keep | 
 
 ### Return type
 

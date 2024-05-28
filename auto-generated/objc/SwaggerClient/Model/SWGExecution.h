@@ -103,14 +103,6 @@
 
 @property(nonatomic) NSDate* timestamp;
 
-@property(nonatomic) NSNumber* execGrossPnl;
-
-@property(nonatomic) NSNumber* currentQty;
-
-@property(nonatomic) NSNumber* avgEntryPrice;
-
-@property(nonatomic) NSNumber* realisedPnl;
-
-@property(nonatomic) NSNumber* unrealisedPnl;
+@property(nonatomic) NSString* feeType;
 
 @end

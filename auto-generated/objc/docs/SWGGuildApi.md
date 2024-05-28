@@ -85,6 +85,7 @@ This endpoint does not need any parameter.
     _description: (NSString*) _description
     twitter: (NSString*) twitter
     discord: (NSString*) discord
+    telegram: (NSString*) telegram
     imgUrl: (NSString*) imgUrl
     isPrivate: (NSNumber*) isPrivate
         completionHandler: (void (^)(SWGGuild* output, NSError* error)) handler;
@@ -115,11 +116,12 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 NSString* name = @"name_example"; // Name of the guild, must be unique, must be at least 5 characters
 NSString* emoji = @"emoji_example"; // Emoji name.
 NSNumber* potDistributionPercent = @1.2; // How much of the pot should be distributed to the guild members, must be between 0 and 100
-NSString* potDistributionType = @"potDistributionType_example"; // How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+NSString* potDistributionType = @"potDistributionType_example"; // How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
 NSNumber* potTraderId = @1.2; // User ID of the guild member with order write permission for the pot (optional)
 NSString* _description = @"_description_example"; // Guild description, can be used to explain the guild to other users. (optional)
 NSString* twitter = @"twitter_example"; // Guild twitter handle. (optional)
 NSString* discord = @"discord_example"; // Guild discord link. (optional)
+NSString* telegram = @"telegram_example"; // Guild telegram link. (optional)
 NSString* imgUrl = @"imgUrl_example"; // URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
 NSNumber* isPrivate = @true; // Guild privacy status (optional)
 
@@ -134,6 +136,7 @@ SWGGuildApi*apiInstance = [[SWGGuildApi alloc] init];
               _description:_description
               twitter:twitter
               discord:discord
+              telegram:telegram
               imgUrl:imgUrl
               isPrivate:isPrivate
           completionHandler: ^(SWGGuild* output, NSError* error) {
@@ -153,11 +156,12 @@ Name | Type | Description  | Notes
  **name** | **NSString***| Name of the guild, must be unique, must be at least 5 characters | 
  **emoji** | **NSString***| Emoji name. | 
  **potDistributionPercent** | **NSNumber***| How much of the pot should be distributed to the guild members, must be between 0 and 100 | 
- **potDistributionType** | **NSString***| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM | 
+ **potDistributionType** | **NSString***| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM | 
  **potTraderId** | **NSNumber***| User ID of the guild member with order write permission for the pot | [optional] 
  **_description** | **NSString***| Guild description, can be used to explain the guild to other users. | [optional] 
  **twitter** | **NSString***| Guild twitter handle. | [optional] 
  **discord** | **NSString***| Guild discord link. | [optional] 
+ **telegram** | **NSString***| Guild telegram link. | [optional] 
  **imgUrl** | **NSString***| URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used | [optional] 
  **isPrivate** | **NSNumber***| Guild privacy status | [optional] 
 
@@ -420,6 +424,7 @@ This endpoint does not need any parameter.
     _description: (NSString*) _description
     twitter: (NSString*) twitter
     discord: (NSString*) discord
+    telegram: (NSString*) telegram
     imgUrl: (NSString*) imgUrl
     isPrivate: (NSNumber*) isPrivate
         completionHandler: (void (^)(SWGGuild* output, NSError* error)) handler;
@@ -450,10 +455,11 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 NSString* name = @"name_example"; // Name of the guild, must be unique, must be at least 5 characters
 NSString* emoji = @"emoji_example"; // Emoji name.
 NSNumber* potDistributionPercent = @1.2; // How much of the pot should be distributed to the guild members, must be between 0 and 100
-NSString* potDistributionType = @"potDistributionType_example"; // How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+NSString* potDistributionType = @"potDistributionType_example"; // How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
 NSString* _description = @"_description_example"; // Guild description, can be used to explain the guild to other users. (optional)
 NSString* twitter = @"twitter_example"; // Guild twitter handle. (optional)
 NSString* discord = @"discord_example"; // Guild discord link. (optional)
+NSString* telegram = @"telegram_example"; // Guild telegram link. (optional)
 NSString* imgUrl = @"imgUrl_example"; // URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
 NSNumber* isPrivate = @true; // Guild privacy status (optional)
 
@@ -467,6 +473,7 @@ SWGGuildApi*apiInstance = [[SWGGuildApi alloc] init];
               _description:_description
               twitter:twitter
               discord:discord
+              telegram:telegram
               imgUrl:imgUrl
               isPrivate:isPrivate
           completionHandler: ^(SWGGuild* output, NSError* error) {
@@ -486,10 +493,11 @@ Name | Type | Description  | Notes
  **name** | **NSString***| Name of the guild, must be unique, must be at least 5 characters | 
  **emoji** | **NSString***| Emoji name. | 
  **potDistributionPercent** | **NSNumber***| How much of the pot should be distributed to the guild members, must be between 0 and 100 | 
- **potDistributionType** | **NSString***| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM | 
+ **potDistributionType** | **NSString***| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM | 
  **_description** | **NSString***| Guild description, can be used to explain the guild to other users. | [optional] 
  **twitter** | **NSString***| Guild twitter handle. | [optional] 
  **discord** | **NSString***| Guild discord link. | [optional] 
+ **telegram** | **NSString***| Guild telegram link. | [optional] 
  **imgUrl** | **NSString***| URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used | [optional] 
  **isPrivate** | **NSNumber***| Guild privacy status | [optional] 
 

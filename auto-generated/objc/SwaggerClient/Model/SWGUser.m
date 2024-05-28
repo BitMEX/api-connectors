@@ -18,7 +18,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"firstname": @"firstname", @"lastname": @"lastname", @"username": @"username", @"accountName": @"accountName", @"isUser": @"isUser", @"email": @"email", @"dateOfBirth": @"dateOfBirth", @"phone": @"phone", @"created": @"created", @"lastUpdated": @"lastUpdated", @"preferences": @"preferences", @"tFAEnabled": @"TFAEnabled", @"affiliateID": @"affiliateID", @"country": @"country", @"geoipCountry": @"geoipCountry", @"geoipRegion": @"geoipRegion", @"firstTradeTimestamp": @"firstTradeTimestamp", @"typ": @"typ" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"firstname": @"firstname", @"lastname": @"lastname", @"username": @"username", @"accountName": @"accountName", @"isUser": @"isUser", @"email": @"email", @"dateOfBirth": @"dateOfBirth", @"phone": @"phone", @"created": @"created", @"lastUpdated": @"lastUpdated", @"preferences": @"preferences", @"tFAEnabled": @"TFAEnabled", @"affiliateID": @"affiliateID", @"country": @"country", @"geoipCountry": @"geoipCountry", @"geoipRegion": @"geoipRegion", @"firstTradeTimestamp": @"firstTradeTimestamp", @"firstDepositTimestamp": @"firstDepositTimestamp", @"typ": @"typ" }];
 }
 
 /**
@@ -28,7 +28,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"_id", @"firstname", @"lastname", @"accountName", @"email", @"dateOfBirth", @"phone", @"created", @"lastUpdated", @"preferences", @"tFAEnabled", @"affiliateID", @"country", @"geoipCountry", @"geoipRegion", @"firstTradeTimestamp", @"typ"];
+  NSArray *optionalProperties = @[@"_id", @"firstname", @"lastname", @"accountName", @"email", @"dateOfBirth", @"phone", @"created", @"lastUpdated", @"preferences", @"tFAEnabled", @"affiliateID", @"country", @"geoipCountry", @"geoipRegion", @"firstTradeTimestamp", @"firstDepositTimestamp", @"typ"];
   return [optionalProperties containsObject:propertyName];
 }
 

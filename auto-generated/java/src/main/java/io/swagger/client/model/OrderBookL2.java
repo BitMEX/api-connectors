@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * OrderBookL2
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
 public class OrderBookL2 {
   @SerializedName("symbol")
   private String symbol = null;

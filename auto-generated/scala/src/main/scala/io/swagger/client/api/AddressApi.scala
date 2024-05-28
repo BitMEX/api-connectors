@@ -115,10 +115,11 @@ class AddressApi(
    * @param note Optional annotation. (optional)
    * @param skipConfirm Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
    * @param skip2FA Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
+   * @param memo Destination Memo. (optional)
    * @return Address
    */
-  def addressNew(currency: String, network: String, address: String, name: String, note: Option[String] = None, skipConfirm: Option[Boolean] = Option(false), skip2FA: Option[Boolean] = Option(false)): Option[Address] = {
-    val await = Try(Await.result(addressNewAsync(currency, network, address, name, note, skipConfirm, skip2FA), Duration.Inf))
+  def addressNew(currency: String, network: String, address: String, name: String, note: Option[String] = None, skipConfirm: Option[Boolean] = Option(false), skip2FA: Option[Boolean] = Option(false), memo: Option[String] = None): Option[Address] = {
+    val await = Try(Await.result(addressNewAsync(currency, network, address, name, note, skipConfirm, skip2FA, memo), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -136,10 +137,11 @@ class AddressApi(
    * @param note Optional annotation. (optional)
    * @param skipConfirm Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
    * @param skip2FA Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
+   * @param memo Destination Memo. (optional)
    * @return Future(Address)
    */
-  def addressNewAsync(currency: String, network: String, address: String, name: String, note: Option[String] = None, skipConfirm: Option[Boolean] = Option(false), skip2FA: Option[Boolean] = Option(false)): Future[Address] = {
-      helper.addressNew(currency, network, address, name, note, skipConfirm, skip2FA)
+  def addressNewAsync(currency: String, network: String, address: String, name: String, note: Option[String] = None, skipConfirm: Option[Boolean] = Option(false), skip2FA: Option[Boolean] = Option(false), memo: Option[String] = None): Future[Address] = {
+      helper.addressNew(currency, network, address, name, note, skipConfirm, skip2FA, memo)
   }
 
 }
@@ -167,7 +169,8 @@ class AddressApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     name: String,
     note: Option[String] = None,
     skipConfirm: Option[Boolean] = Option(false),
-    skip2FA: Option[Boolean] = Option(false)
+    skip2FA: Option[Boolean] = Option(false),
+    memo: Option[String] = None
     )(implicit reader: ClientResponseReader[Address]): Future[Address] = {
     // create path and map variables
     val path = (addFmt("/address"))

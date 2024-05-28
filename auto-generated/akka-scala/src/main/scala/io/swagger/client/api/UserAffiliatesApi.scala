@@ -35,13 +35,17 @@ object UserAffiliatesApi {
    *   apiSignature (apiKey)
    * 
    * @param depth the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates
+   * @param targetAccountId AccountId of Sub-Affiliate Account
+   * @param selectUserId User id of result array to keep
    */
-  def userAffiliates.get(depth: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[XAny]] =
+  def userAffiliates.get(depth: Option[Double] = None, targetAccountId: Option[Double] = None, selectUserId: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[XAny]] =
     ApiRequest[Seq[XAny]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/userAffiliates", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
       .withApiKey(apiKey, "api-signature", HEADER)
       .withQueryParam("depth", depth)
+      .withQueryParam("targetAccountId", targetAccountId)
+      .withQueryParam("selectUserId", selectUserId)
       .withSuccessResponse[Seq[XAny]](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)

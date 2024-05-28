@@ -19,9 +19,10 @@ public struct AssetsConfig: Codable {
     public var scale: Double?
     public var enabled: Bool?
     public var isMarginCurrency: Bool?
+    public var memoRequired: Bool?
     public var networks: [AssetsConfigNetworkItem]?
 
-    public init(asset: String, currency: String?, majorCurrency: String?, name: String?, currencyType: String?, scale: Double?, enabled: Bool?, isMarginCurrency: Bool?, networks: [AssetsConfigNetworkItem]?) {
+    public init(asset: String, currency: String?, majorCurrency: String?, name: String?, currencyType: String?, scale: Double?, enabled: Bool?, isMarginCurrency: Bool?, memoRequired: Bool?, networks: [AssetsConfigNetworkItem]?) {
         self.asset = asset
         self.currency = currency
         self.majorCurrency = majorCurrency
@@ -30,6 +31,7 @@ public struct AssetsConfig: Codable {
         self.scale = scale
         self.enabled = enabled
         self.isMarginCurrency = isMarginCurrency
+        self.memoRequired = memoRequired
         self.networks = networks
     }
 

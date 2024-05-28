@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **scale** | **double** |  | [optional] [default to 8.0]
 **enabled** | **bool** |  | [optional] [default to true]
 **is_margin_currency** | **bool** |  | [optional] [default to true]
+**memo_required** | **bool** |  | [optional] [default to false]
 **networks** | [**\Swagger\Client\Model\AssetsConfigNetworkItem[]**](AssetsConfigNetworkItem.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

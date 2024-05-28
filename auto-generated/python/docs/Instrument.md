@@ -90,6 +90,7 @@ Name | Type | Description | Notes
 **settled_price_adjustment_rate** | **float** |  | [optional] 
 **settled_price** | **float** |  | [optional] 
 **instant_pnl** | **bool** |  | [optional] 
+**min_tick** | **float** |  | [optional] 
 **timestamp** | **datetime** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

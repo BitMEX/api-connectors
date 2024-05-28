@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **exec_id** | **str** |  | [optional] 
-**order_id** | **str** |  | 
+**order_id** | **str** |  | [optional] 
 **cl_ord_id** | **str** |  | [optional] 
 **cl_ord_link_id** | **str** |  | [optional] 
 **account** | **float** |  | [optional] 
@@ -43,11 +43,7 @@ Name | Type | Description | Notes
 **foreign_notional** | **float** |  | [optional] 
 **transact_time** | **datetime** |  | [optional] 
 **timestamp** | **datetime** |  | 
-**exec_gross_pnl** | **float** |  | [optional] 
-**current_qty** | **float** |  | [optional] 
-**avg_entry_price** | **float** |  | [optional] 
-**realised_pnl** | **float** |  | [optional] 
-**unrealised_pnl** | **float** |  | [optional] 
+**fee_type** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

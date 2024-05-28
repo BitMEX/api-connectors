@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **exec_id** | **String** |  | [optional] 
-**order_id** | **String** |  | 
+**order_id** | **String** |  | [optional] 
 **cl_ord_id** | **String** |  | [optional] 
 **cl_ord_link_id** | **String** |  | [optional] 
 **account** | **Float** |  | [optional] 
@@ -43,10 +43,6 @@ Name | Type | Description | Notes
 **foreign_notional** | **Float** |  | [optional] 
 **transact_time** | **DateTime** |  | [optional] 
 **timestamp** | **DateTime** |  | 
-**exec_gross_pnl** | **Float** |  | [optional] 
-**current_qty** | **Float** |  | [optional] 
-**avg_entry_price** | **Float** |  | [optional] 
-**realised_pnl** | **Float** |  | [optional] 
-**unrealised_pnl** | **Float** |  | [optional] 
+**fee_type** | **String** |  | [optional] 
 
 

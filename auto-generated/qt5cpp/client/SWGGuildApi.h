@@ -38,12 +38,12 @@ public:
     QMap<QString, QString> defaultHeaders;
 
     void guild_archive();
-    void guild_edit(QString* name, QString* emoji, double pot_distribution_percent, QString* pot_distribution_type, double pot_trader_id, QString* description, QString* twitter, QString* discord, QString* img_url, bool is_private);
+    void guild_edit(QString* name, QString* emoji, double pot_distribution_percent, QString* pot_distribution_type, double pot_trader_id, QString* description, QString* twitter, QString* discord, QString* telegram, QString* img_url, bool is_private);
     void guild_get();
     void guild_join(QString* code);
     void guild_kick(double member_user_id);
     void guild_leave();
-    void guild_new(QString* name, QString* emoji, double pot_distribution_percent, QString* pot_distribution_type, QString* description, QString* twitter, QString* discord, QString* img_url, bool is_private);
+    void guild_new(QString* name, QString* emoji, double pot_distribution_percent, QString* pot_distribution_type, QString* description, QString* twitter, QString* discord, QString* telegram, QString* img_url, bool is_private);
     void guild_shareTrades(bool share_trades);
     
 private:

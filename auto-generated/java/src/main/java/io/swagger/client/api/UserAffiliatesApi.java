@@ -58,12 +58,14 @@ public class UserAffiliatesApi {
     /**
      * Build call for userAffiliatesGet
      * @param depth the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)
+     * @param targetAccountId AccountId of Sub-Affiliate Account (optional)
+     * @param selectUserId User id of result array to keep (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userAffiliatesGetCall(Double depth, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userAffiliatesGetCall(Double depth, Double targetAccountId, Double selectUserId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -73,6 +75,10 @@ public class UserAffiliatesApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (depth != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("depth", depth));
+        if (targetAccountId != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("targetAccountId", targetAccountId));
+        if (selectUserId != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("selectUserId", selectUserId));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -107,10 +113,10 @@ public class UserAffiliatesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userAffiliatesGetValidateBeforeCall(Double depth, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userAffiliatesGetValidateBeforeCall(Double depth, Double targetAccountId, Double selectUserId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = userAffiliatesGetCall(depth, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = userAffiliatesGetCall(depth, targetAccountId, selectUserId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -119,11 +125,13 @@ public class UserAffiliatesApi {
      * Get user&#39;s affiliates to a given depth
      * 
      * @param depth the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)
+     * @param targetAccountId AccountId of Sub-Affiliate Account (optional)
+     * @param selectUserId User id of result array to keep (optional)
      * @return List&lt;XAny&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<XAny> userAffiliatesGet(Double depth) throws ApiException {
-        ApiResponse<List<XAny>> resp = userAffiliatesGetWithHttpInfo(depth);
+    public List<XAny> userAffiliatesGet(Double depth, Double targetAccountId, Double selectUserId) throws ApiException {
+        ApiResponse<List<XAny>> resp = userAffiliatesGetWithHttpInfo(depth, targetAccountId, selectUserId);
         return resp.getData();
     }
 
@@ -131,11 +139,13 @@ public class UserAffiliatesApi {
      * Get user&#39;s affiliates to a given depth
      * 
      * @param depth the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)
+     * @param targetAccountId AccountId of Sub-Affiliate Account (optional)
+     * @param selectUserId User id of result array to keep (optional)
      * @return ApiResponse&lt;List&lt;XAny&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<XAny>> userAffiliatesGetWithHttpInfo(Double depth) throws ApiException {
-        com.squareup.okhttp.Call call = userAffiliatesGetValidateBeforeCall(depth, null, null);
+    public ApiResponse<List<XAny>> userAffiliatesGetWithHttpInfo(Double depth, Double targetAccountId, Double selectUserId) throws ApiException {
+        com.squareup.okhttp.Call call = userAffiliatesGetValidateBeforeCall(depth, targetAccountId, selectUserId, null, null);
         Type localVarReturnType = new TypeToken<List<XAny>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -144,11 +154,13 @@ public class UserAffiliatesApi {
      * Get user&#39;s affiliates to a given depth (asynchronously)
      * 
      * @param depth the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)
+     * @param targetAccountId AccountId of Sub-Affiliate Account (optional)
+     * @param selectUserId User id of result array to keep (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userAffiliatesGetAsync(Double depth, final ApiCallback<List<XAny>> callback) throws ApiException {
+    public com.squareup.okhttp.Call userAffiliatesGetAsync(Double depth, Double targetAccountId, Double selectUserId, final ApiCallback<List<XAny>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -169,7 +181,7 @@ public class UserAffiliatesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = userAffiliatesGetValidateBeforeCall(depth, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = userAffiliatesGetValidateBeforeCall(depth, targetAccountId, selectUserId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<XAny>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

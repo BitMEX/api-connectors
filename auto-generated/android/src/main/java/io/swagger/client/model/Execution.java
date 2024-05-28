@@ -32,19 +32,19 @@ public class Execution {
   @SerializedName("clOrdLinkID")
   private String clOrdLinkID = null;
   @SerializedName("account")
-  private Double account = null;
+  private BigDecimal account = null;
   @SerializedName("symbol")
   private String symbol = null;
   @SerializedName("side")
   private String side = null;
   @SerializedName("lastQty")
-  private Double lastQty = null;
+  private BigDecimal lastQty = null;
   @SerializedName("lastPx")
   private Double lastPx = null;
   @SerializedName("lastLiquidityInd")
   private String lastLiquidityInd = null;
   @SerializedName("orderQty")
-  private Double orderQty = null;
+  private BigDecimal orderQty = null;
   @SerializedName("price")
   private Double price = null;
   @SerializedName("displayQty")
@@ -78,7 +78,7 @@ public class Execution {
   @SerializedName("ordRejReason")
   private String ordRejReason = null;
   @SerializedName("leavesQty")
-  private Double leavesQty = null;
+  private BigDecimal leavesQty = null;
   @SerializedName("cumQty")
   private BigDecimal cumQty = null;
   @SerializedName("avgPx")
@@ -92,9 +92,9 @@ public class Execution {
   @SerializedName("trdMatchID")
   private String trdMatchID = null;
   @SerializedName("execCost")
-  private Double execCost = null;
+  private BigDecimal execCost = null;
   @SerializedName("execComm")
-  private Double execComm = null;
+  private BigDecimal execComm = null;
   @SerializedName("homeNotional")
   private Double homeNotional = null;
   @SerializedName("foreignNotional")
@@ -103,16 +103,8 @@ public class Execution {
   private Date transactTime = null;
   @SerializedName("timestamp")
   private Date timestamp = null;
-  @SerializedName("execGrossPnl")
-  private Double execGrossPnl = null;
-  @SerializedName("currentQty")
-  private Double currentQty = null;
-  @SerializedName("avgEntryPrice")
-  private Double avgEntryPrice = null;
-  @SerializedName("realisedPnl")
-  private Double realisedPnl = null;
-  @SerializedName("unrealisedPnl")
-  private Double unrealisedPnl = null;
+  @SerializedName("feeType")
+  private String feeType = null;
 
   /**
    **/
@@ -126,7 +118,7 @@ public class Execution {
 
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(value = "")
   public String getOrderID() {
     return orderID;
   }
@@ -157,10 +149,10 @@ public class Execution {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getAccount() {
+  public BigDecimal getAccount() {
     return account;
   }
-  public void setAccount(Double account) {
+  public void setAccount(BigDecimal account) {
     this.account = account;
   }
 
@@ -187,10 +179,10 @@ public class Execution {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getLastQty() {
+  public BigDecimal getLastQty() {
     return lastQty;
   }
-  public void setLastQty(Double lastQty) {
+  public void setLastQty(BigDecimal lastQty) {
     this.lastQty = lastQty;
   }
 
@@ -217,10 +209,10 @@ public class Execution {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getOrderQty() {
+  public BigDecimal getOrderQty() {
     return orderQty;
   }
-  public void setOrderQty(Double orderQty) {
+  public void setOrderQty(BigDecimal orderQty) {
     this.orderQty = orderQty;
   }
 
@@ -387,10 +379,10 @@ public class Execution {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getLeavesQty() {
+  public BigDecimal getLeavesQty() {
     return leavesQty;
   }
-  public void setLeavesQty(Double leavesQty) {
+  public void setLeavesQty(BigDecimal leavesQty) {
     this.leavesQty = leavesQty;
   }
 
@@ -457,20 +449,20 @@ public class Execution {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getExecCost() {
+  public BigDecimal getExecCost() {
     return execCost;
   }
-  public void setExecCost(Double execCost) {
+  public void setExecCost(BigDecimal execCost) {
     this.execCost = execCost;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getExecComm() {
+  public BigDecimal getExecComm() {
     return execComm;
   }
-  public void setExecComm(Double execComm) {
+  public void setExecComm(BigDecimal execComm) {
     this.execComm = execComm;
   }
 
@@ -517,51 +509,11 @@ public class Execution {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getExecGrossPnl() {
-    return execGrossPnl;
+  public String getFeeType() {
+    return feeType;
   }
-  public void setExecGrossPnl(Double execGrossPnl) {
-    this.execGrossPnl = execGrossPnl;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getCurrentQty() {
-    return currentQty;
-  }
-  public void setCurrentQty(Double currentQty) {
-    this.currentQty = currentQty;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getAvgEntryPrice() {
-    return avgEntryPrice;
-  }
-  public void setAvgEntryPrice(Double avgEntryPrice) {
-    this.avgEntryPrice = avgEntryPrice;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getRealisedPnl() {
-    return realisedPnl;
-  }
-  public void setRealisedPnl(Double realisedPnl) {
-    this.realisedPnl = realisedPnl;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getUnrealisedPnl() {
-    return unrealisedPnl;
-  }
-  public void setUnrealisedPnl(Double unrealisedPnl) {
-    this.unrealisedPnl = unrealisedPnl;
+  public void setFeeType(String feeType) {
+    this.feeType = feeType;
   }
 
 
@@ -614,11 +566,7 @@ public class Execution {
         (this.foreignNotional == null ? execution.foreignNotional == null : this.foreignNotional.equals(execution.foreignNotional)) &&
         (this.transactTime == null ? execution.transactTime == null : this.transactTime.equals(execution.transactTime)) &&
         (this.timestamp == null ? execution.timestamp == null : this.timestamp.equals(execution.timestamp)) &&
-        (this.execGrossPnl == null ? execution.execGrossPnl == null : this.execGrossPnl.equals(execution.execGrossPnl)) &&
-        (this.currentQty == null ? execution.currentQty == null : this.currentQty.equals(execution.currentQty)) &&
-        (this.avgEntryPrice == null ? execution.avgEntryPrice == null : this.avgEntryPrice.equals(execution.avgEntryPrice)) &&
-        (this.realisedPnl == null ? execution.realisedPnl == null : this.realisedPnl.equals(execution.realisedPnl)) &&
-        (this.unrealisedPnl == null ? execution.unrealisedPnl == null : this.unrealisedPnl.equals(execution.unrealisedPnl));
+        (this.feeType == null ? execution.feeType == null : this.feeType.equals(execution.feeType));
   }
 
   @Override
@@ -664,11 +612,7 @@ public class Execution {
     result = 31 * result + (this.foreignNotional == null ? 0: this.foreignNotional.hashCode());
     result = 31 * result + (this.transactTime == null ? 0: this.transactTime.hashCode());
     result = 31 * result + (this.timestamp == null ? 0: this.timestamp.hashCode());
-    result = 31 * result + (this.execGrossPnl == null ? 0: this.execGrossPnl.hashCode());
-    result = 31 * result + (this.currentQty == null ? 0: this.currentQty.hashCode());
-    result = 31 * result + (this.avgEntryPrice == null ? 0: this.avgEntryPrice.hashCode());
-    result = 31 * result + (this.realisedPnl == null ? 0: this.realisedPnl.hashCode());
-    result = 31 * result + (this.unrealisedPnl == null ? 0: this.unrealisedPnl.hashCode());
+    result = 31 * result + (this.feeType == null ? 0: this.feeType.hashCode());
     return result;
   }
 
@@ -717,11 +661,7 @@ public class Execution {
     sb.append("  foreignNotional: ").append(foreignNotional).append("\n");
     sb.append("  transactTime: ").append(transactTime).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
-    sb.append("  execGrossPnl: ").append(execGrossPnl).append("\n");
-    sb.append("  currentQty: ").append(currentQty).append("\n");
-    sb.append("  avgEntryPrice: ").append(avgEntryPrice).append("\n");
-    sb.append("  realisedPnl: ").append(realisedPnl).append("\n");
-    sb.append("  unrealisedPnl: ").append(unrealisedPnl).append("\n");
+    sb.append("  feeType: ").append(feeType).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

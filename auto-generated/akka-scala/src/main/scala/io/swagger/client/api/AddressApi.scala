@@ -66,8 +66,9 @@ object AddressApi {
    * @param note Optional annotation.
    * @param skipConfirm Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation.
    * @param skip2FA Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.
+   * @param memo Destination Memo.
    */
-  def address.new(currency: String, network: String, address: String, name: String, note: Option[String] = None, skipConfirm: Option[Boolean], skip2FA: Option[Boolean])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Address] =
+  def address.new(currency: String, network: String, address: String, name: String, note: Option[String] = None, skipConfirm: Option[Boolean], skip2FA: Option[Boolean], memo: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Address] =
     ApiRequest[Address](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/address", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
@@ -79,6 +80,7 @@ object AddressApi {
       .withFormParam("note", note)
       .withFormParam("skipConfirm", skipConfirm)
       .withFormParam("skip2FA", skip2FA)
+      .withFormParam("memo", memo)
       .withSuccessResponse[Address](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)

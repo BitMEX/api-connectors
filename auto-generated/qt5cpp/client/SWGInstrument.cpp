@@ -211,6 +211,8 @@ SWGInstrument::init() {
     m_settled_price_isSet = false;
     instant_pnl = false;
     m_instant_pnl_isSet = false;
+    min_tick = 0.0;
+    m_min_tick_isSet = false;
     timestamp = NULL;
     m_timestamp_isSet = false;
 }
@@ -391,6 +393,7 @@ SWGInstrument::cleanup() {
     if(mark_method != nullptr) { 
         delete mark_method;
     }
+
 
 
 
@@ -585,6 +588,8 @@ SWGInstrument::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&settled_price, pJson["settledPrice"], "double", "");
     
     ::Swagger::setValue(&instant_pnl, pJson["instantPnl"], "bool", "");
+    
+    ::Swagger::setValue(&min_tick, pJson["minTick"], "double", "");
     
     ::Swagger::setValue(&timestamp, pJson["timestamp"], "QDateTime", "QDateTime");
     
@@ -862,6 +867,9 @@ SWGInstrument::asJsonObject() {
     }
     if(m_instant_pnl_isSet){
         obj.insert("instantPnl", QJsonValue(instant_pnl));
+    }
+    if(m_min_tick_isSet){
+        obj.insert("minTick", QJsonValue(min_tick));
     }
     if(timestamp != nullptr) { 
         toJsonValue(QString("timestamp"), timestamp, obj, QString("QDateTime"));
@@ -1740,6 +1748,16 @@ SWGInstrument::setInstantPnl(bool instant_pnl) {
     this->m_instant_pnl_isSet = true;
 }
 
+double
+SWGInstrument::getMinTick() {
+    return min_tick;
+}
+void
+SWGInstrument::setMinTick(double min_tick) {
+    this->min_tick = min_tick;
+    this->m_min_tick_isSet = true;
+}
+
 QDateTime*
 SWGInstrument::getTimestamp() {
     return timestamp;
@@ -1842,6 +1860,7 @@ SWGInstrument::isSet(){
         if(m_settled_price_adjustment_rate_isSet){ isObjectUpdated = true; break;}
         if(m_settled_price_isSet){ isObjectUpdated = true; break;}
         if(m_instant_pnl_isSet){ isObjectUpdated = true; break;}
+        if(m_min_tick_isSet){ isObjectUpdated = true; break;}
         
     }while(false);
     return isObjectUpdated;

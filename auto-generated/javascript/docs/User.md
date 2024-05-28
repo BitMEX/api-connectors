@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **geoipCountry** | **String** |  | [optional] 
 **geoipRegion** | **String** |  | [optional] 
 **firstTradeTimestamp** | **Date** |  | [optional] 
+**firstDepositTimestamp** | **Date** |  | [optional] 
 **typ** | **String** |  | [optional] 
 
 

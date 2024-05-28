@@ -73,7 +73,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **guild_edit**
-> Guild guild_edit(name, emoji, pot_distribution_percent, pot_distribution_type, pot_trader_id=pot_trader_id, description=description, twitter=twitter, discord=discord, img_url=img_url, is_private=is_private)
+> Guild guild_edit(name, emoji, pot_distribution_percent, pot_distribution_type, pot_trader_id=pot_trader_id, description=description, twitter=twitter, discord=discord, telegram=telegram, img_url=img_url, is_private=is_private)
 
 Edit guild new guild
 
@@ -106,17 +106,18 @@ api_instance = swagger_client.GuildApi(swagger_client.ApiClient(configuration))
 name = 'name_example' # str | Name of the guild, must be unique, must be at least 5 characters
 emoji = 'emoji_example' # str | Emoji name.
 pot_distribution_percent = 1.2 # float | How much of the pot should be distributed to the guild members, must be between 0 and 100
-pot_distribution_type = 'pot_distribution_type_example' # str | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+pot_distribution_type = 'pot_distribution_type_example' # str | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
 pot_trader_id = 1.2 # float | User ID of the guild member with order write permission for the pot (optional)
 description = 'description_example' # str | Guild description, can be used to explain the guild to other users. (optional)
 twitter = 'twitter_example' # str | Guild twitter handle. (optional)
 discord = 'discord_example' # str | Guild discord link. (optional)
+telegram = 'telegram_example' # str | Guild telegram link. (optional)
 img_url = 'img_url_example' # str | URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
 is_private = true # bool | Guild privacy status (optional)
 
 try:
     # Edit guild new guild
-    api_response = api_instance.guild_edit(name, emoji, pot_distribution_percent, pot_distribution_type, pot_trader_id=pot_trader_id, description=description, twitter=twitter, discord=discord, img_url=img_url, is_private=is_private)
+    api_response = api_instance.guild_edit(name, emoji, pot_distribution_percent, pot_distribution_type, pot_trader_id=pot_trader_id, description=description, twitter=twitter, discord=discord, telegram=telegram, img_url=img_url, is_private=is_private)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling GuildApi->guild_edit: %s\n" % e)
@@ -129,11 +130,12 @@ Name | Type | Description  | Notes
  **name** | **str**| Name of the guild, must be unique, must be at least 5 characters | 
  **emoji** | **str**| Emoji name. | 
  **pot_distribution_percent** | **float**| How much of the pot should be distributed to the guild members, must be between 0 and 100 | 
- **pot_distribution_type** | **str**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM | 
+ **pot_distribution_type** | **str**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM | 
  **pot_trader_id** | **float**| User ID of the guild member with order write permission for the pot | [optional] 
  **description** | **str**| Guild description, can be used to explain the guild to other users. | [optional] 
  **twitter** | **str**| Guild twitter handle. | [optional] 
  **discord** | **str**| Guild discord link. | [optional] 
+ **telegram** | **str**| Guild telegram link. | [optional] 
  **img_url** | **str**| URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used | [optional] 
  **is_private** | **bool**| Guild privacy status | [optional] 
 
@@ -377,7 +379,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **guild_new**
-> Guild guild_new(name, emoji, pot_distribution_percent, pot_distribution_type, description=description, twitter=twitter, discord=discord, img_url=img_url, is_private=is_private)
+> Guild guild_new(name, emoji, pot_distribution_percent, pot_distribution_type, description=description, twitter=twitter, discord=discord, telegram=telegram, img_url=img_url, is_private=is_private)
 
 Creates a new guild
 
@@ -410,16 +412,17 @@ api_instance = swagger_client.GuildApi(swagger_client.ApiClient(configuration))
 name = 'name_example' # str | Name of the guild, must be unique, must be at least 5 characters
 emoji = 'emoji_example' # str | Emoji name.
 pot_distribution_percent = 1.2 # float | How much of the pot should be distributed to the guild members, must be between 0 and 100
-pot_distribution_type = 'pot_distribution_type_example' # str | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+pot_distribution_type = 'pot_distribution_type_example' # str | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
 description = 'description_example' # str | Guild description, can be used to explain the guild to other users. (optional)
 twitter = 'twitter_example' # str | Guild twitter handle. (optional)
 discord = 'discord_example' # str | Guild discord link. (optional)
+telegram = 'telegram_example' # str | Guild telegram link. (optional)
 img_url = 'img_url_example' # str | URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
 is_private = true # bool | Guild privacy status (optional)
 
 try:
     # Creates a new guild
-    api_response = api_instance.guild_new(name, emoji, pot_distribution_percent, pot_distribution_type, description=description, twitter=twitter, discord=discord, img_url=img_url, is_private=is_private)
+    api_response = api_instance.guild_new(name, emoji, pot_distribution_percent, pot_distribution_type, description=description, twitter=twitter, discord=discord, telegram=telegram, img_url=img_url, is_private=is_private)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling GuildApi->guild_new: %s\n" % e)
@@ -432,10 +435,11 @@ Name | Type | Description  | Notes
  **name** | **str**| Name of the guild, must be unique, must be at least 5 characters | 
  **emoji** | **str**| Emoji name. | 
  **pot_distribution_percent** | **float**| How much of the pot should be distributed to the guild members, must be between 0 and 100 | 
- **pot_distribution_type** | **str**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM | 
+ **pot_distribution_type** | **str**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM | 
  **description** | **str**| Guild description, can be used to explain the guild to other users. | [optional] 
  **twitter** | **str**| Guild twitter handle. | [optional] 
  **discord** | **str**| Guild discord link. | [optional] 
+ **telegram** | **str**| Guild telegram link. | [optional] 
  **img_url** | **str**| URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used | [optional] 
  **is_private** | **bool**| Guild privacy status | [optional] 
 

@@ -36,7 +36,7 @@ public:
     QMap<QString, QString> defaultHeaders;
 
     void address_get();
-    void address_new(QString* currency, QString* network, QString* address, QString* name, QString* note, bool skip_confirm, bool skip2_fa);
+    void address_new(QString* currency, QString* network, QString* address, QString* name, QString* note, bool skip_confirm, bool skip2_fa, QString* memo);
     
 private:
     void address_getCallback (SWGHttpRequestWorker * worker);

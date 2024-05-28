@@ -4,6 +4,7 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**userCancelPendingWithdrawal**](UserApi.md#userCancelPendingWithdrawal) | **DELETE** /user/withdrawal | Cancel pending withdrawal
 [**userCancelWithdrawal**](UserApi.md#userCancelWithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**userCheckReferralCode**](UserApi.md#userCheckReferralCode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 [**userCommunicationToken**](UserApi.md#userCommunicationToken) | **POST** /user/communicationToken | Register your communication token for mobile clients
@@ -17,6 +18,7 @@ Method | HTTP request | Description
 [**userGetCSA**](UserApi.md#userGetCSA) | **GET** /user/csa | Get your account's CSA status.
 [**userGetCommission**](UserApi.md#userGetCommission) | **GET** /user/commission | Get your account's commission status.
 [**userGetDepositAddress**](UserApi.md#userGetDepositAddress) | **GET** /user/depositAddress | Get a deposit address.
+[**userGetDepositAddressInformation**](UserApi.md#userGetDepositAddressInformation) | **GET** /user/depositAddressInformation | Get a deposit address.
 [**userGetExecutionHistory**](UserApi.md#userGetExecutionHistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**userGetMargin**](UserApi.md#userGetMargin) | **GET** /user/margin | Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
 [**userGetQuoteFillRatio**](UserApi.md#userGetQuoteFillRatio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
@@ -36,6 +38,69 @@ Method | HTTP request | Description
 [**userUpdateSubAccount**](UserApi.md#userUpdateSubAccount) | **POST** /user/updateSubaccount | Updates the sub-account name.
 [**userWalletTransfer**](UserApi.md#userWalletTransfer) | **POST** /user/walletTransfer | Execute a transfer to a paired account.
 
+
+<a name="userCancelPendingWithdrawal"></a>
+# **userCancelPendingWithdrawal**
+> Object userCancelPendingWithdrawal(transactID)
+
+Cancel pending withdrawal
+
+### Example
+```javascript
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
+
+// Configure API key authorization: apiExpires
+var apiExpires = defaultClient.authentications['apiExpires'];
+apiExpires.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiExpires.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiKey
+var apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+var apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+var apiInstance = new BitMexApi.UserApi();
+
+var transactID = "transactID_example"; // String | 
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.userCancelPendingWithdrawal(transactID, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transactID** | **String**|  | 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
 <a name="userCancelWithdrawal"></a>
 # **userCancelWithdrawal**
@@ -775,6 +840,72 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
+<a name="userGetDepositAddressInformation"></a>
+# **userGetDepositAddressInformation**
+> DepositAddress userGetDepositAddressInformation(currency, network)
+
+Get a deposit address.
+
+### Example
+```javascript
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
+
+// Configure API key authorization: apiExpires
+var apiExpires = defaultClient.authentications['apiExpires'];
+apiExpires.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiExpires.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiKey
+var apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+var apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+var apiInstance = new BitMexApi.UserApi();
+
+var currency = "currency_example"; // String | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
+
+var network = "network_example"; // String | The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.userGetDepositAddressInformation(currency, network, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **String**| Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> | 
+ **network** | **String**| The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`. | 
+
+### Return type
+
+[**DepositAddress**](DepositAddress.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
 <a name="userGetExecutionHistory"></a>
 # **userGetExecutionHistory**
 > [Execution] userGetExecutionHistory(symbol, timestamp)
@@ -1424,9 +1555,10 @@ var apiInstance = new BitMexApi.UserApi();
 
 var opts = { 
   'currency': "XBt", // String | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
-  'count': 100, // Number | Number of results to fetch.
-  'start': 0, // Number | Starting point for results.
-  'targetAccountId': 1.2 // Number | AccountId to view the history of, must be a paired account with the authorised user requesting the history.
+  'count': 10000, // Number | Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows.
+  'start': 0, // Number | Starting point for results, integer. Default 0.
+  'targetAccountId': 1.2, // Number | AccountId to view the history of, must be a paired account with the authorised user requesting the history.
+  'reverse': true // Boolean | Start from the latest transaction record. Default true.
 };
 
 var callback = function(error, data, response) {
@@ -1444,9 +1576,10 @@ apiInstance.userGetWalletHistory(opts, callback);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **String**| Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" | [optional] [default to XBt]
- **count** | **Number**| Number of results to fetch. | [optional] [default to 100]
- **start** | **Number**| Starting point for results. | [optional] [default to 0]
+ **count** | **Number**| Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. | [optional] [default to 10000]
+ **start** | **Number**| Starting point for results, integer. Default 0. | [optional] [default to 0]
  **targetAccountId** | **Number**| AccountId to view the history of, must be a paired account with the authorised user requesting the history. | [optional] 
+ **reverse** | **Boolean**| Start from the latest transaction record. Default true. | [optional] [default to true]
 
 ### Return type
 
@@ -1463,9 +1596,11 @@ Name | Type | Description  | Notes
 
 <a name="userGetWalletSummary"></a>
 # **userGetWalletSummary**
-> [Transaction] userGetWalletSummary(opts)
+> [WalletSummaryRecord] userGetWalletSummary(opts)
 
 Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+
+Provides an aggregated view of transactions, by transaction type, over a specific time period.
 
 ### Example
 ```javascript
@@ -1493,7 +1628,9 @@ apiSignature.apiKey = 'YOUR API KEY';
 var apiInstance = new BitMexApi.UserApi();
 
 var opts = { 
-  'currency': "XBt" // String | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
+  'currency': "XBt", // String | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
+  'startTime': new Date("2013-10-20T19:20:30+01:00"), // Date | Start time for the summary
+  'endTime': new Date("2013-10-20T19:20:30+01:00") // Date | End time for the summary
 };
 
 var callback = function(error, data, response) {
@@ -1511,10 +1648,12 @@ apiInstance.userGetWalletSummary(opts, callback);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **String**| Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" | [optional] [default to XBt]
+ **startTime** | **Date**| Start time for the summary | [optional] 
+ **endTime** | **Date**| End time for the summary | [optional] 
 
 ### Return type
 
-[**[Transaction]**](Transaction.md)
+[**[WalletSummaryRecord]**](WalletSummaryRecord.md)
 
 ### Authorization
 
@@ -1662,6 +1801,7 @@ var amount = 8.14; // Number | Amount of withdrawal currency.
 var opts = { 
   'otpToken': "otpToken_example", // String | 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
   'address': "address_example", // String | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
+  'memo': "memo_example", // String | Destination Memo. If `address`, is specified, Destination Memo can also be specified
   'addressId': 1.2, // Number | ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
   'targetUserId': 1.2, // Number | ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified.
   'fee': 1.2, // Number | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
@@ -1687,6 +1827,7 @@ Name | Type | Description  | Notes
  **amount** | **Number**| Amount of withdrawal currency. | 
  **otpToken** | **String**| 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. | [optional] 
  **address** | **String**| Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. | [optional] 
+ **memo** | **String**| Destination Memo. If `address`, is specified, Destination Memo can also be specified | [optional] 
  **addressId** | **Number**| ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. | [optional] 
  **targetUserId** | **Number**| ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified. | [optional] 
  **fee** | **Number**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 

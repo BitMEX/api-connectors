@@ -205,6 +205,7 @@ AddressApiService Creates a new saved address.
      * @param "Note" (optional.String) -  Optional annotation.
      * @param "SkipConfirm" (optional.Bool) -  Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation.
      * @param "Skip2FA" (optional.Bool) -  Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.
+     * @param "Memo" (optional.String) -  Destination Memo.
 
 @return Address
 */
@@ -213,6 +214,7 @@ type AddressApiAddressNewOpts struct {
 	Note optional.String
 	SkipConfirm optional.Bool
 	Skip2FA optional.Bool
+	Memo optional.String
 }
 
 func (a *AddressApiService) AddressNew(ctx context.Context, currency string, network string, address string, name string, localVarOptionals *AddressApiAddressNewOpts) (Address, *http.Response, error) {
@@ -260,6 +262,9 @@ func (a *AddressApiService) AddressNew(ctx context.Context, currency string, net
 	}
 	if localVarOptionals != nil && localVarOptionals.Skip2FA.IsSet() {
 		localVarFormParams.Add("skip2FA", parameterToString(localVarOptionals.Skip2FA.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Memo.IsSet() {
+		localVarFormParams.Add("memo", parameterToString(localVarOptionals.Memo.Value(), ""))
 	}
 	if ctx != nil {
 		// API Key Authentication

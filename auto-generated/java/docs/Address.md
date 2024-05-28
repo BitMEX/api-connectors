@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **skip2FA** | **Boolean** |  |  [optional]
 **skip2FAVerified** | **Boolean** |  |  [optional]
 **network** | **String** |  | 
+**memo** | **String** |  |  [optional]
 
 
 

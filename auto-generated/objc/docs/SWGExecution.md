@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **execID** | **NSString*** |  | [optional] 
-**orderID** | **NSString*** |  | 
+**orderID** | **NSString*** |  | [optional] 
 **clOrdID** | **NSString*** |  | [optional] 
 **clOrdLinkID** | **NSString*** |  | [optional] 
 **account** | **NSNumber*** |  | [optional] 
@@ -43,11 +43,7 @@ Name | Type | Description | Notes
 **foreignNotional** | **NSNumber*** |  | [optional] 
 **transactTime** | **NSDate*** |  | [optional] 
 **timestamp** | **NSDate*** |  | 
-**execGrossPnl** | **NSNumber*** |  | [optional] 
-**currentQty** | **NSNumber*** |  | [optional] 
-**avgEntryPrice** | **NSNumber*** |  | [optional] 
-**realisedPnl** | **NSNumber*** |  | [optional] 
-**unrealisedPnl** | **NSNumber*** |  | [optional] 
+**feeType** | **NSString*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -89,7 +89,8 @@ namespace IO.Swagger.Test
             //string note = null;
             //bool? skipConfirm = null;
             //bool? skip2FA = null;
-            //var response = instance.AddressNew(currency, network, address, name, note, skipConfirm, skip2FA);
+            //string memo = null;
+            //var response = instance.AddressNew(currency, network, address, name, note, skipConfirm, skip2FA, memo);
             //Assert.IsInstanceOf<Address> (response, "response is Address");
         }
         

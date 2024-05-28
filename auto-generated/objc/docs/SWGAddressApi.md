@@ -78,6 +78,7 @@ This endpoint does not need any parameter.
     note: (NSString*) note
     skipConfirm: (NSNumber*) skipConfirm
     skip2FA: (NSNumber*) skip2FA
+    memo: (NSString*) memo
         completionHandler: (void (^)(SWGAddress* output, NSError* error)) handler;
 ```
 
@@ -110,6 +111,7 @@ NSString* name = @"name_example"; // Name of the entry, eg. 'Hardware wallet'.
 NSString* note = @"note_example"; // Optional annotation. (optional)
 NSNumber* skipConfirm = @false; // Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional) (default to false)
 NSNumber* skip2FA = @false; // Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional) (default to false)
+NSString* memo = @"memo_example"; // Destination Memo. (optional)
 
 SWGAddressApi*apiInstance = [[SWGAddressApi alloc] init];
 
@@ -121,6 +123,7 @@ SWGAddressApi*apiInstance = [[SWGAddressApi alloc] init];
               note:note
               skipConfirm:skipConfirm
               skip2FA:skip2FA
+              memo:memo
           completionHandler: ^(SWGAddress* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -142,6 +145,7 @@ Name | Type | Description  | Notes
  **note** | **NSString***| Optional annotation. | [optional] 
  **skipConfirm** | **NSNumber***| Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. | [optional] [default to false]
  **skip2FA** | **NSNumber***| Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. | [optional] [default to false]
+ **memo** | **NSString***| Destination Memo. | [optional] 
 
 ### Return type
 

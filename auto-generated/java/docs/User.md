@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **geoipCountry** | **String** |  |  [optional]
 **geoipRegion** | **String** |  |  [optional]
 **firstTradeTimestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
+**firstDepositTimestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **typ** | **String** |  |  [optional]
 
 

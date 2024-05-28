@@ -14,7 +14,7 @@ open class UserEventAPI {
     /**
      Get your user events
      
-     - parameter count: (query) Number of results to fetch. (optional, default to 150)
+     - parameter count: (query) Number of results to fetch. (optional, default to 100)
      - parameter startId: (query) Cursor for pagination. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -39,7 +39,7 @@ open class UserEventAPI {
        - name: apiSignature
      - examples: [{contentType=application/json, example={}}]
      
-     - parameter count: (query) Number of results to fetch. (optional, default to 150)
+     - parameter count: (query) Number of results to fetch. (optional, default to 100)
      - parameter startId: (query) Cursor for pagination. (optional)
 
      - returns: RequestBuilder<[UserEvent]> 

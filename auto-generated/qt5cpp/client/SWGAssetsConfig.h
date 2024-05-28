@@ -67,6 +67,9 @@ public:
     bool isIsMarginCurrency();
     void setIsMarginCurrency(bool is_margin_currency);
 
+    bool isMemoRequired();
+    void setMemoRequired(bool memo_required);
+
     QList<SWGAssetsConfigNetworkItem*>* getNetworks();
     void setNetworks(QList<SWGAssetsConfigNetworkItem*>* networks);
 
@@ -97,6 +100,9 @@ private:
 
     bool is_margin_currency;
     bool m_is_margin_currency_isSet;
+
+    bool memo_required;
+    bool m_memo_required_isSet;
 
     QList<SWGAssetsConfigNetworkItem*>* networks;
     bool m_networks_isSet;

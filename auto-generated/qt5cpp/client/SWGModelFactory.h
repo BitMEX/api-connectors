@@ -27,6 +27,7 @@
 #include "SWGCollateralSupportAgreement.h"
 #include "SWGCommunicationToken.h"
 #include "SWGConnectedUsers.h"
+#include "SWGDepositAddress.h"
 #include "SWGError.h"
 #include "SWGError_error.h"
 #include "SWGExecution.h"
@@ -65,6 +66,7 @@
 #include "SWGUserEvent.h"
 #include "SWGUserPreferences.h"
 #include "SWGWallet.h"
+#include "SWGWalletSummaryRecord.h"
 #include "SWGX-any.h"
 
 namespace Swagger {
@@ -105,6 +107,9 @@ namespace Swagger {
     }
     if(QString("SWGConnectedUsers").compare(type) == 0) {
       return new SWGConnectedUsers();
+    }
+    if(QString("SWGDepositAddress").compare(type) == 0) {
+      return new SWGDepositAddress();
     }
     if(QString("SWGError").compare(type) == 0) {
       return new SWGError();
@@ -219,6 +224,9 @@ namespace Swagger {
     }
     if(QString("SWGWallet").compare(type) == 0) {
       return new SWGWallet();
+    }
+    if(QString("SWGWalletSummaryRecord").compare(type) == 0) {
+      return new SWGWalletSummaryRecord();
     }
     if(QString("SWGX-any").compare(type) == 0) {
       return new SWGX-any();

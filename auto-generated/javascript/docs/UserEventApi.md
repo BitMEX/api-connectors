@@ -39,7 +39,7 @@ apiSignature.apiKey = 'YOUR API KEY';
 var apiInstance = new BitMexApi.UserEventApi();
 
 var opts = { 
-  'count': 150, // Number | Number of results to fetch.
+  'count': 100, // Number | Number of results to fetch.
   'startId': 1.2 // Number | Cursor for pagination.
 };
 
@@ -57,7 +57,7 @@ apiInstance.userEventGet(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **Number**| Number of results to fetch. | [optional] [default to 150]
+ **count** | **Number**| Number of results to fetch. | [optional] [default to 100]
  **startId** | **Number**| Cursor for pagination. | [optional] 
 
 ### Return type

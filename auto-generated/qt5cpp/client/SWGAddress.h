@@ -79,6 +79,9 @@ public:
     QString* getNetwork();
     void setNetwork(QString* network);
 
+    QString* getMemo();
+    void setMemo(QString* memo);
+
 
     virtual bool isSet() override;
 
@@ -118,6 +121,9 @@ private:
 
     QString* network;
     bool m_network_isSet;
+
+    QString* memo;
+    bool m_memo_isSet;
 
 };
 

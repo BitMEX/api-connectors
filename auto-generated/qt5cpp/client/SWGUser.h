@@ -98,6 +98,9 @@ public:
     QDateTime* getFirstTradeTimestamp();
     void setFirstTradeTimestamp(QDateTime* first_trade_timestamp);
 
+    QDateTime* getFirstDepositTimestamp();
+    void setFirstDepositTimestamp(QDateTime* first_deposit_timestamp);
+
     QString* getTyp();
     void setTyp(QString* typ);
 
@@ -158,6 +161,9 @@ private:
 
     QDateTime* first_trade_timestamp;
     bool m_first_trade_timestamp_isSet;
+
+    QDateTime* first_deposit_timestamp;
+    bool m_first_deposit_timestamp_isSet;
 
     QString* typ;
     bool m_typ_isSet;

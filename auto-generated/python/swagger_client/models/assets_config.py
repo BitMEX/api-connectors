@@ -41,6 +41,7 @@ class AssetsConfig(object):
         'scale': 'float',
         'enabled': 'bool',
         'is_margin_currency': 'bool',
+        'memo_required': 'bool',
         'networks': 'list[AssetsConfigNetworkItem]'
     }
 
@@ -53,10 +54,11 @@ class AssetsConfig(object):
         'scale': 'scale',
         'enabled': 'enabled',
         'is_margin_currency': 'isMarginCurrency',
+        'memo_required': 'memoRequired',
         'networks': 'networks'
     }
 
-    def __init__(self, asset='XBT', currency='XBt', major_currency='XBT', name='Bitcoin', currency_type='Crypto', scale=8.0, enabled=True, is_margin_currency=True, networks=None, _configuration=None):  # noqa: E501
+    def __init__(self, asset='XBT', currency='XBt', major_currency='XBT', name='Bitcoin', currency_type='Crypto', scale=8.0, enabled=True, is_margin_currency=True, memo_required=False, networks=None, _configuration=None):  # noqa: E501
         """AssetsConfig - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -70,6 +72,7 @@ class AssetsConfig(object):
         self._scale = None
         self._enabled = None
         self._is_margin_currency = None
+        self._memo_required = None
         self._networks = None
         self.discriminator = None
 
@@ -88,6 +91,8 @@ class AssetsConfig(object):
             self.enabled = enabled
         if is_margin_currency is not None:
             self.is_margin_currency = is_margin_currency
+        if memo_required is not None:
+            self.memo_required = memo_required
         if networks is not None:
             self.networks = networks
 
@@ -260,6 +265,27 @@ class AssetsConfig(object):
         """
 
         self._is_margin_currency = is_margin_currency
+
+    @property
+    def memo_required(self):
+        """Gets the memo_required of this AssetsConfig.  # noqa: E501
+
+
+        :return: The memo_required of this AssetsConfig.  # noqa: E501
+        :rtype: bool
+        """
+        return self._memo_required
+
+    @memo_required.setter
+    def memo_required(self, memo_required):
+        """Sets the memo_required of this AssetsConfig.
+
+
+        :param memo_required: The memo_required of this AssetsConfig.  # noqa: E501
+        :type: bool
+        """
+
+        self._memo_required = memo_required
 
     @property
     def networks(self):

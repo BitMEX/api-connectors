@@ -4,6 +4,7 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**user_cancel_pending_withdrawal**](UserApi.md#user_cancel_pending_withdrawal) | **DELETE** /user/withdrawal | Cancel pending withdrawal
 [**user_cancel_withdrawal**](UserApi.md#user_cancel_withdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**user_check_referral_code**](UserApi.md#user_check_referral_code) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 [**user_communication_token**](UserApi.md#user_communication_token) | **POST** /user/communicationToken | Register your communication token for mobile clients
@@ -17,6 +18,7 @@ Method | HTTP request | Description
 [**user_get_commission**](UserApi.md#user_get_commission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**user_get_csa**](UserApi.md#user_get_csa) | **GET** /user/csa | Get your account&#39;s CSA status.
 [**user_get_deposit_address**](UserApi.md#user_get_deposit_address) | **GET** /user/depositAddress | Get a deposit address.
+[**user_get_deposit_address_information**](UserApi.md#user_get_deposit_address_information) | **GET** /user/depositAddressInformation | Get a deposit address.
 [**user_get_execution_history**](UserApi.md#user_get_execution_history) | **GET** /user/executionHistory | Get the execution history by day.
 [**user_get_margin**](UserApi.md#user_get_margin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**user_get_quote_fill_ratio**](UserApi.md#user_get_quote_fill_ratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
@@ -35,6 +37,68 @@ Method | HTTP request | Description
 [**user_save_preferences**](UserApi.md#user_save_preferences) | **POST** /user/preferences | Save user preferences.
 [**user_update_sub_account**](UserApi.md#user_update_sub_account) | **POST** /user/updateSubaccount | Updates the sub-account name.
 [**user_wallet_transfer**](UserApi.md#user_wallet_transfer) | **POST** /user/walletTransfer | Execute a transfer to a paired account.
+
+
+# **user_cancel_pending_withdrawal**
+> Object user_cancel_pending_withdrawal(transact_id)
+
+Cancel pending withdrawal
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
+  # Configure API key authorization: apiKey
+  config.api_key['api-key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-key'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['api-signature'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-signature'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::UserApi.new
+
+transact_id = 'transact_id_example' # String | 
+
+
+begin
+  #Cancel pending withdrawal
+  result = api_instance.user_cancel_pending_withdrawal(transact_id)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling UserApi->user_cancel_pending_withdrawal: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transact_id** | **String**|  | 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
 
 
 # **user_cancel_withdrawal**
@@ -770,6 +834,71 @@ Name | Type | Description  | Notes
 
 
 
+# **user_get_deposit_address_information**
+> DepositAddress user_get_deposit_address_information(currency, network)
+
+Get a deposit address.
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
+  # Configure API key authorization: apiKey
+  config.api_key['api-key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-key'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['api-signature'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-signature'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::UserApi.new
+
+currency = 'currency_example' # String | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
+
+network = 'network_example' # String | The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
+
+
+begin
+  #Get a deposit address.
+  result = api_instance.user_get_deposit_address_information(currency, network)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling UserApi->user_get_deposit_address_information: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **String**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
+ **network** | **String**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
+
+### Return type
+
+[**DepositAddress**](DepositAddress.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+
+
 # **user_get_execution_history**
 > Array&lt;Execution&gt; user_get_execution_history(symbol, timestamp)
 
@@ -1409,9 +1538,10 @@ api_instance = SwaggerClient::UserApi.new
 
 opts = { 
   currency: 'XBt', # String | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
-  count: 100, # Float | Number of results to fetch.
-  start: 0, # Float | Starting point for results.
-  target_account_id: 1.2 # Float | AccountId to view the history of, must be a paired account with the authorised user requesting the history.
+  count: 10000, # Float | Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows.
+  start: 0, # Float | Starting point for results, integer. Default 0.
+  target_account_id: 1.2, # Float | AccountId to view the history of, must be a paired account with the authorised user requesting the history.
+  reverse: true # BOOLEAN | Start from the latest transaction record. Default true.
 }
 
 begin
@@ -1428,9 +1558,10 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **String**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
- **count** | **Float**| Number of results to fetch. | [optional] [default to 100]
- **start** | **Float**| Starting point for results. | [optional] [default to 0]
+ **count** | **Float**| Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. | [optional] [default to 10000]
+ **start** | **Float**| Starting point for results, integer. Default 0. | [optional] [default to 0]
  **target_account_id** | **Float**| AccountId to view the history of, must be a paired account with the authorised user requesting the history. | [optional] 
+ **reverse** | **BOOLEAN**| Start from the latest transaction record. Default true. | [optional] [default to true]
 
 ### Return type
 
@@ -1448,9 +1579,11 @@ Name | Type | Description  | Notes
 
 
 # **user_get_wallet_summary**
-> Array&lt;Transaction&gt; user_get_wallet_summary(opts)
+> Array&lt;WalletSummaryRecord&gt; user_get_wallet_summary(opts)
 
 Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+
+Provides an aggregated view of transactions, by transaction type, over a specific time period.
 
 ### Example
 ```ruby
@@ -1477,7 +1610,9 @@ end
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  currency: 'XBt' # String | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
+  currency: 'XBt', # String | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
+  start_time: DateTime.parse('2013-10-20T19:20:30+01:00'), # DateTime | Start time for the summary
+  end_time: DateTime.parse('2013-10-20T19:20:30+01:00') # DateTime | End time for the summary
 }
 
 begin
@@ -1494,10 +1629,12 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **String**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
+ **start_time** | **DateTime**| Start time for the summary | [optional] 
+ **end_time** | **DateTime**| End time for the summary | [optional] 
 
 ### Return type
 
-[**Array&lt;Transaction&gt;**](Transaction.md)
+[**Array&lt;WalletSummaryRecord&gt;**](WalletSummaryRecord.md)
 
 ### Authorization
 
@@ -1644,6 +1781,7 @@ amount = 8.14 # Float | Amount of withdrawal currency.
 opts = { 
   otp_token: 'otp_token_example', # String | 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
   address: 'address_example', # String | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
+  memo: 'memo_example', # String | Destination Memo. If `address`, is specified, Destination Memo can also be specified
   address_id: 1.2, # Float | ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
   target_user_id: 1.2, # Float | ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified.
   fee: 1.2, # Float | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
@@ -1668,6 +1806,7 @@ Name | Type | Description  | Notes
  **amount** | **Float**| Amount of withdrawal currency. | 
  **otp_token** | **String**| 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. | [optional] 
  **address** | **String**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **memo** | **String**| Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified | [optional] 
  **address_id** | **Float**| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
  **target_user_id** | **Float**| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
  **fee** | **Float**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 

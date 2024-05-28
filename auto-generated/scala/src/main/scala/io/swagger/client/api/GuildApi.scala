@@ -112,17 +112,18 @@ class GuildApi(
    * @param name Name of the guild, must be unique, must be at least 5 characters 
    * @param emoji Emoji name. 
    * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100 
-   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM 
+   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM 
    * @param potTraderId User ID of the guild member with order write permission for the pot (optional)
    * @param description Guild description, can be used to explain the guild to other users. (optional)
    * @param twitter Guild twitter handle. (optional)
    * @param discord Guild discord link. (optional)
+   * @param telegram Guild telegram link. (optional)
    * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
    * @param isPrivate Guild privacy status (optional)
    * @return Guild
    */
-  def guildEdit(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, potTraderId: Option[Double] = None, description: Option[String] = None, twitter: Option[String] = None, discord: Option[String] = None, imgUrl: Option[String] = None, isPrivate: Option[Boolean] = None): Option[Guild] = {
-    val await = Try(Await.result(guildEditAsync(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, imgUrl, isPrivate), Duration.Inf))
+  def guildEdit(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, potTraderId: Option[Double] = None, description: Option[String] = None, twitter: Option[String] = None, discord: Option[String] = None, telegram: Option[String] = None, imgUrl: Option[String] = None, isPrivate: Option[Boolean] = None): Option[Guild] = {
+    val await = Try(Await.result(guildEditAsync(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, telegram, imgUrl, isPrivate), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -136,17 +137,18 @@ class GuildApi(
    * @param name Name of the guild, must be unique, must be at least 5 characters 
    * @param emoji Emoji name. 
    * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100 
-   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM 
+   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM 
    * @param potTraderId User ID of the guild member with order write permission for the pot (optional)
    * @param description Guild description, can be used to explain the guild to other users. (optional)
    * @param twitter Guild twitter handle. (optional)
    * @param discord Guild discord link. (optional)
+   * @param telegram Guild telegram link. (optional)
    * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
    * @param isPrivate Guild privacy status (optional)
    * @return Future(Guild)
    */
-  def guildEditAsync(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, potTraderId: Option[Double] = None, description: Option[String] = None, twitter: Option[String] = None, discord: Option[String] = None, imgUrl: Option[String] = None, isPrivate: Option[Boolean] = None): Future[Guild] = {
-      helper.guildEdit(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, imgUrl, isPrivate)
+  def guildEditAsync(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, potTraderId: Option[Double] = None, description: Option[String] = None, twitter: Option[String] = None, discord: Option[String] = None, telegram: Option[String] = None, imgUrl: Option[String] = None, isPrivate: Option[Boolean] = None): Future[Guild] = {
+      helper.guildEdit(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, telegram, imgUrl, isPrivate)
   }
 
   /**
@@ -256,16 +258,17 @@ class GuildApi(
    * @param name Name of the guild, must be unique, must be at least 5 characters 
    * @param emoji Emoji name. 
    * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100 
-   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM 
+   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM 
    * @param description Guild description, can be used to explain the guild to other users. (optional)
    * @param twitter Guild twitter handle. (optional)
    * @param discord Guild discord link. (optional)
+   * @param telegram Guild telegram link. (optional)
    * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
    * @param isPrivate Guild privacy status (optional)
    * @return Guild
    */
-  def guildNew(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, description: Option[String] = None, twitter: Option[String] = None, discord: Option[String] = None, imgUrl: Option[String] = None, isPrivate: Option[Boolean] = None): Option[Guild] = {
-    val await = Try(Await.result(guildNewAsync(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, imgUrl, isPrivate), Duration.Inf))
+  def guildNew(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, description: Option[String] = None, twitter: Option[String] = None, discord: Option[String] = None, telegram: Option[String] = None, imgUrl: Option[String] = None, isPrivate: Option[Boolean] = None): Option[Guild] = {
+    val await = Try(Await.result(guildNewAsync(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, telegram, imgUrl, isPrivate), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -279,16 +282,17 @@ class GuildApi(
    * @param name Name of the guild, must be unique, must be at least 5 characters 
    * @param emoji Emoji name. 
    * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100 
-   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM 
+   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM 
    * @param description Guild description, can be used to explain the guild to other users. (optional)
    * @param twitter Guild twitter handle. (optional)
    * @param discord Guild discord link. (optional)
+   * @param telegram Guild telegram link. (optional)
    * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
    * @param isPrivate Guild privacy status (optional)
    * @return Future(Guild)
    */
-  def guildNewAsync(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, description: Option[String] = None, twitter: Option[String] = None, discord: Option[String] = None, imgUrl: Option[String] = None, isPrivate: Option[Boolean] = None): Future[Guild] = {
-      helper.guildNew(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, imgUrl, isPrivate)
+  def guildNewAsync(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, description: Option[String] = None, twitter: Option[String] = None, discord: Option[String] = None, telegram: Option[String] = None, imgUrl: Option[String] = None, isPrivate: Option[Boolean] = None): Future[Guild] = {
+      helper.guildNew(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, telegram, imgUrl, isPrivate)
   }
 
   /**
@@ -344,6 +348,7 @@ class GuildApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     description: Option[String] = None,
     twitter: Option[String] = None,
     discord: Option[String] = None,
+    telegram: Option[String] = None,
     imgUrl: Option[String] = None,
     isPrivate: Option[Boolean] = None
     )(implicit reader: ClientResponseReader[Guild]): Future[Guild] = {
@@ -436,6 +441,7 @@ class GuildApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     description: Option[String] = None,
     twitter: Option[String] = None,
     discord: Option[String] = None,
+    telegram: Option[String] = None,
     imgUrl: Option[String] = None,
     isPrivate: Option[Boolean] = None
     )(implicit reader: ClientResponseReader[Guild]): Future[Guild] = {

@@ -78,7 +78,7 @@ This endpoint does not need any parameter.
 
 <a name="addressnew"></a>
 # **AddressNew**
-> Address AddressNew (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null)
+> Address AddressNew (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null, string memo = null)
 
 Creates a new saved address.
 
@@ -117,11 +117,12 @@ namespace Example
             var note = note_example;  // string | Optional annotation. (optional) 
             var skipConfirm = true;  // bool? | Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional)  (default to false)
             var skip2FA = true;  // bool? | Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional)  (default to false)
+            var memo = memo_example;  // string | Destination Memo. (optional) 
 
             try
             {
                 // Creates a new saved address.
-                Address result = apiInstance.AddressNew(currency, network, address, name, note, skipConfirm, skip2FA);
+                Address result = apiInstance.AddressNew(currency, network, address, name, note, skipConfirm, skip2FA, memo);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -144,6 +145,7 @@ Name | Type | Description  | Notes
  **note** | **string**| Optional annotation. | [optional] 
  **skipConfirm** | **bool?**| Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. | [optional] [default to false]
  **skip2FA** | **bool?**| Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. | [optional] [default to false]
+ **memo** | **string**| Destination Memo. | [optional] 
 
 ### Return type
 

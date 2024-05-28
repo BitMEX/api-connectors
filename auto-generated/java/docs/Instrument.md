@@ -91,6 +91,7 @@ Name | Type | Description | Notes
 **settledPriceAdjustmentRate** | **Double** |  |  [optional]
 **settledPrice** | **Double** |  |  [optional]
 **instantPnl** | **Boolean** |  |  [optional]
+**minTick** | **Double** |  |  [optional]
 **timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 
 

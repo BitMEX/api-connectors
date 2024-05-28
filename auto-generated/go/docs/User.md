@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **GeoipCountry** | **string** |  | [optional] [default to null]
 **GeoipRegion** | **string** |  | [optional] [default to null]
 **FirstTradeTimestamp** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
+**FirstDepositTimestamp** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 **Typ** | **string** |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

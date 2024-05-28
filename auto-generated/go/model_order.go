@@ -19,12 +19,12 @@ type Order struct {
 	OrderID string `json:"orderID"`
 	ClOrdID string `json:"clOrdID,omitempty"`
 	ClOrdLinkID string `json:"clOrdLinkID,omitempty"`
-	Account float64 `json:"account,omitempty"`
+	Account float32 `json:"account,omitempty"`
 	Symbol string `json:"symbol,omitempty"`
 	Side string `json:"side,omitempty"`
-	OrderQty float64 `json:"orderQty,omitempty"`
+	OrderQty float32 `json:"orderQty,omitempty"`
 	Price float64 `json:"price,omitempty"`
-	DisplayQty float64 `json:"displayQty,omitempty"`
+	DisplayQty float32 `json:"displayQty,omitempty"`
 	StopPx float64 `json:"stopPx,omitempty"`
 	PegOffsetValue float64 `json:"pegOffsetValue,omitempty"`
 	PegPriceType string `json:"pegPriceType,omitempty"`
@@ -38,8 +38,8 @@ type Order struct {
 	Triggered string `json:"triggered,omitempty"`
 	WorkingIndicator bool `json:"workingIndicator,omitempty"`
 	OrdRejReason string `json:"ordRejReason,omitempty"`
-	LeavesQty float64 `json:"leavesQty,omitempty"`
-	CumQty float64 `json:"cumQty,omitempty"`
+	LeavesQty float32 `json:"leavesQty,omitempty"`
+	CumQty float32 `json:"cumQty,omitempty"`
 	AvgPx float64 `json:"avgPx,omitempty"`
 	Text string `json:"text,omitempty"`
 	TransactTime time.Time `json:"transactTime,omitempty"`

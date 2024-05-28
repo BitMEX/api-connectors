@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **exec_id** | **string** |  | [optional] 
-**order_id** | **string** |  | 
+**order_id** | **string** |  | [optional] 
 **cl_ord_id** | **string** |  | [optional] 
 **cl_ord_link_id** | **string** |  | [optional] 
-**account** | **double** |  | [optional] 
+**account** | **float** |  | [optional] 
 **symbol** | **string** |  | 
 **side** | **string** |  | [optional] 
-**last_qty** | **double** |  | [optional] 
+**last_qty** | **float** |  | [optional] 
 **last_px** | **double** |  | [optional] 
 **last_liquidity_ind** | **string** |  | [optional] 
-**order_qty** | **double** |  | [optional] 
+**order_qty** | **float** |  | [optional] 
 **price** | **double** |  | [optional] 
 **display_qty** | **float** |  | [optional] 
 **stop_px** | **double** |  | [optional] 
@@ -30,24 +30,20 @@ Name | Type | Description | Notes
 **triggered** | **string** |  | [optional] 
 **working_indicator** | **bool** |  | [optional] 
 **ord_rej_reason** | **string** |  | [optional] 
-**leaves_qty** | **double** |  | [optional] 
+**leaves_qty** | **float** |  | [optional] 
 **cum_qty** | **float** |  | [optional] 
 **avg_px** | **double** |  | [optional] 
 **commission** | **double** |  | [optional] 
 **trade_publish_indicator** | **string** |  | [optional] 
 **text** | **string** |  | [optional] 
 **trd_match_id** | **string** |  | [optional] 
-**exec_cost** | **double** |  | [optional] 
-**exec_comm** | **double** |  | [optional] 
+**exec_cost** | **float** |  | [optional] 
+**exec_comm** | **float** |  | [optional] 
 **home_notional** | **double** |  | [optional] 
 **foreign_notional** | **double** |  | [optional] 
 **transact_time** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **timestamp** | [**\DateTime**](\DateTime.md) |  | 
-**exec_gross_pnl** | **double** |  | [optional] 
-**current_qty** | **double** |  | [optional] 
-**avg_entry_price** | **double** |  | [optional] 
-**realised_pnl** | **double** |  | [optional] 
-**unrealised_pnl** | **double** |  | [optional] 
+**fee_type** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

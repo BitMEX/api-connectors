@@ -4,16 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ExecID** | **string** |  | [optional] 
-**OrderID** | **string** |  | 
+**OrderID** | **string** |  | [optional] 
 **ClOrdID** | **string** |  | [optional] 
 **ClOrdLinkID** | **string** |  | [optional] 
-**Account** | **double?** |  | [optional] 
+**Account** | **decimal?** |  | [optional] 
 **Symbol** | **string** |  | 
 **Side** | **string** |  | [optional] 
-**LastQty** | **double?** |  | [optional] 
+**LastQty** | **decimal?** |  | [optional] 
 **LastPx** | **double?** |  | [optional] 
 **LastLiquidityInd** | **string** |  | [optional] 
-**OrderQty** | **double?** |  | [optional] 
+**OrderQty** | **decimal?** |  | [optional] 
 **Price** | **double?** |  | [optional] 
 **DisplayQty** | **decimal?** |  | [optional] 
 **StopPx** | **double?** |  | [optional] 
@@ -30,24 +30,20 @@ Name | Type | Description | Notes
 **Triggered** | **string** |  | [optional] 
 **WorkingIndicator** | **bool?** |  | [optional] 
 **OrdRejReason** | **string** |  | [optional] 
-**LeavesQty** | **double?** |  | [optional] 
+**LeavesQty** | **decimal?** |  | [optional] 
 **CumQty** | **decimal?** |  | [optional] 
 **AvgPx** | **double?** |  | [optional] 
 **Commission** | **double?** |  | [optional] 
 **TradePublishIndicator** | **string** |  | [optional] 
 **Text** | **string** |  | [optional] 
 **TrdMatchID** | **string** |  | [optional] 
-**ExecCost** | **double?** |  | [optional] 
-**ExecComm** | **double?** |  | [optional] 
+**ExecCost** | **decimal?** |  | [optional] 
+**ExecComm** | **decimal?** |  | [optional] 
 **HomeNotional** | **double?** |  | [optional] 
 **ForeignNotional** | **double?** |  | [optional] 
 **TransactTime** | **DateTime?** |  | [optional] 
 **Timestamp** | **DateTime?** |  | 
-**ExecGrossPnl** | **double?** |  | [optional] 
-**CurrentQty** | **double?** |  | [optional] 
-**AvgEntryPrice** | **double?** |  | [optional] 
-**RealisedPnl** | **double?** |  | [optional] 
-**UnrealisedPnl** | **double?** |  | [optional] 
+**FeeType** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

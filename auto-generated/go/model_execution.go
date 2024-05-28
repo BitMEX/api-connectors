@@ -17,16 +17,16 @@ import (
 // Raw Order and Balance Data
 type Execution struct {
 	ExecID string `json:"execID,omitempty"`
-	OrderID string `json:"orderID"`
+	OrderID string `json:"orderID,omitempty"`
 	ClOrdID string `json:"clOrdID,omitempty"`
 	ClOrdLinkID string `json:"clOrdLinkID,omitempty"`
-	Account float64 `json:"account,omitempty"`
+	Account float32 `json:"account,omitempty"`
 	Symbol string `json:"symbol"`
 	Side string `json:"side,omitempty"`
-	LastQty float64 `json:"lastQty,omitempty"`
+	LastQty float32 `json:"lastQty,omitempty"`
 	LastPx float64 `json:"lastPx,omitempty"`
 	LastLiquidityInd string `json:"lastLiquidityInd,omitempty"`
-	OrderQty float64 `json:"orderQty,omitempty"`
+	OrderQty float32 `json:"orderQty,omitempty"`
 	Price float64 `json:"price,omitempty"`
 	DisplayQty float32 `json:"displayQty,omitempty"`
 	StopPx float64 `json:"stopPx,omitempty"`
@@ -43,22 +43,18 @@ type Execution struct {
 	Triggered string `json:"triggered,omitempty"`
 	WorkingIndicator bool `json:"workingIndicator,omitempty"`
 	OrdRejReason string `json:"ordRejReason,omitempty"`
-	LeavesQty float64 `json:"leavesQty,omitempty"`
+	LeavesQty float32 `json:"leavesQty,omitempty"`
 	CumQty float32 `json:"cumQty,omitempty"`
 	AvgPx float64 `json:"avgPx,omitempty"`
 	Commission float64 `json:"commission,omitempty"`
 	TradePublishIndicator string `json:"tradePublishIndicator,omitempty"`
 	Text string `json:"text,omitempty"`
 	TrdMatchID string `json:"trdMatchID,omitempty"`
-	ExecCost float64 `json:"execCost,omitempty"`
-	ExecComm float64 `json:"execComm,omitempty"`
+	ExecCost float32 `json:"execCost,omitempty"`
+	ExecComm float32 `json:"execComm,omitempty"`
 	HomeNotional float64 `json:"homeNotional,omitempty"`
 	ForeignNotional float64 `json:"foreignNotional,omitempty"`
 	TransactTime time.Time `json:"transactTime,omitempty"`
 	Timestamp time.Time `json:"timestamp"`
-	ExecGrossPnl float64 `json:"execGrossPnl,omitempty"`
-	CurrentQty float64 `json:"currentQty,omitempty"`
-	AvgEntryPrice float64 `json:"avgEntryPrice,omitempty"`
-	RealisedPnl float64 `json:"realisedPnl,omitempty"`
-	UnrealisedPnl float64 `json:"unrealisedPnl,omitempty"`
+	FeeType string `json:"feeType,omitempty"`
 }

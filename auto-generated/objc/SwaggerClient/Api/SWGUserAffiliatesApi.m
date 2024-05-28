@@ -55,9 +55,15 @@ NSInteger kSWGUserAffiliatesApiMissingParamErrorCode = 234513;
 /// 
 ///  @param depth the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates (optional)
 ///
+///  @param targetAccountId AccountId of Sub-Affiliate Account (optional)
+///
+///  @param selectUserId User id of result array to keep (optional)
+///
 ///  @returns NSArray<SWGXAny>*
 ///
 -(NSURLSessionTask*) userAffiliatesGetWithDepth: (NSNumber*) depth
+    targetAccountId: (NSNumber*) targetAccountId
+    selectUserId: (NSNumber*) selectUserId
     completionHandler: (void (^)(NSArray<SWGXAny>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/userAffiliates"];
 
@@ -66,6 +72,12 @@ NSInteger kSWGUserAffiliatesApiMissingParamErrorCode = 234513;
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     if (depth != nil) {
         queryParams[@"depth"] = depth;
+    }
+    if (targetAccountId != nil) {
+        queryParams[@"targetAccountId"] = targetAccountId;
+    }
+    if (selectUserId != nil) {
+        queryParams[@"selectUserId"] = selectUserId;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];

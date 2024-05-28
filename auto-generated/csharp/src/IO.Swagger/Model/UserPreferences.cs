@@ -48,10 +48,14 @@ namespace IO.Swagger.Model
         /// <param name="favourites">favourites.</param>
         /// <param name="favouritesAssets">favouritesAssets.</param>
         /// <param name="favouritesOrdered">favouritesOrdered.</param>
+        /// <param name="favouriteBots">favouriteBots.</param>
+        /// <param name="hasSetTradingCurrencies">hasSetTradingCurrencies.</param>
         /// <param name="hideConfirmDialogs">hideConfirmDialogs.</param>
         /// <param name="hideConnectionModal">hideConnectionModal.</param>
         /// <param name="hideFromLeaderboard">hideFromLeaderboard (default to false).</param>
         /// <param name="hideNameFromLeaderboard">hideNameFromLeaderboard (default to true).</param>
+        /// <param name="hidePnlInGuilds">hidePnlInGuilds (default to false).</param>
+        /// <param name="hideRoiInGuilds">hideRoiInGuilds (default to false).</param>
         /// <param name="hideNotifications">hideNotifications.</param>
         /// <param name="hidePhoneConfirm">hidePhoneConfirm (default to false).</param>
         /// <param name="isSensitiveInfoVisible">isSensitiveInfoVisible.</param>
@@ -60,8 +64,10 @@ namespace IO.Swagger.Model
         /// <param name="localeSetTime">localeSetTime.</param>
         /// <param name="marginPnlRow">marginPnlRow.</param>
         /// <param name="marginPnlRowKind">marginPnlRowKind.</param>
+        /// <param name="mobileLocale">mobileLocale.</param>
         /// <param name="msgsSeen">msgsSeen.</param>
         /// <param name="notifications">notifications.</param>
+        /// <param name="optionsBeta">optionsBeta.</param>
         /// <param name="orderBookBinning">orderBookBinning.</param>
         /// <param name="orderBookType">orderBookType.</param>
         /// <param name="orderClearImmediate">orderClearImmediate (default to false).</param>
@@ -71,13 +77,14 @@ namespace IO.Swagger.Model
         /// <param name="showChartBottomToolbar">showChartBottomToolbar.</param>
         /// <param name="showLocaleNumbers">showLocaleNumbers (default to true).</param>
         /// <param name="sounds">sounds.</param>
+        /// <param name="spacingPreference">spacingPreference.</param>
         /// <param name="strictIPCheck">strictIPCheck (default to false).</param>
         /// <param name="strictTimeout">strictTimeout (default to true).</param>
         /// <param name="tickerGroup">tickerGroup.</param>
         /// <param name="tickerPinned">tickerPinned.</param>
         /// <param name="tradeLayout">tradeLayout.</param>
         /// <param name="userColor">userColor.</param>
-        public UserPreferences(bool? alertOnLiquidations = default(bool?), bool? animationsEnabled = default(bool?), DateTime? announcementsLastSeen = default(DateTime?), double? chatChannelID = default(double?), string colorTheme = default(string), string currency = default(string), bool? debug = default(bool?), List<string> disableEmails = default(List<string>), List<string> disablePush = default(List<string>), bool? displayCorpEnrollUpsell = default(bool?), string equivalentCurrency = default(string), List<string> features = default(List<string>), List<string> favourites = default(List<string>), List<string> favouritesAssets = default(List<string>), List<string> favouritesOrdered = default(List<string>), List<string> hideConfirmDialogs = default(List<string>), bool? hideConnectionModal = default(bool?), bool? hideFromLeaderboard = false, bool? hideNameFromLeaderboard = true, List<string> hideNotifications = default(List<string>), bool? hidePhoneConfirm = false, bool? isSensitiveInfoVisible = default(bool?), bool? isWalletZeroBalanceHidden = default(bool?), string locale = "en-US", double? localeSetTime = default(double?), string marginPnlRow = default(string), string marginPnlRowKind = default(string), List<string> msgsSeen = default(List<string>), Object notifications = default(Object), Object orderBookBinning = default(Object), string orderBookType = default(string), bool? orderClearImmediate = false, bool? orderControlsPlusMinus = default(bool?), string platformLayout = default(string), string selectedFiatCurrency = default(string), bool? showChartBottomToolbar = default(bool?), bool? showLocaleNumbers = true, List<string> sounds = default(List<string>), bool? strictIPCheck = false, bool? strictTimeout = true, string tickerGroup = default(string), bool? tickerPinned = default(bool?), string tradeLayout = default(string), string userColor = default(string))
+        public UserPreferences(bool? alertOnLiquidations = default(bool?), bool? animationsEnabled = default(bool?), DateTime? announcementsLastSeen = default(DateTime?), double? chatChannelID = default(double?), string colorTheme = default(string), string currency = default(string), bool? debug = default(bool?), List<string> disableEmails = default(List<string>), List<string> disablePush = default(List<string>), bool? displayCorpEnrollUpsell = default(bool?), string equivalentCurrency = default(string), List<string> features = default(List<string>), List<string> favourites = default(List<string>), List<string> favouritesAssets = default(List<string>), List<string> favouritesOrdered = default(List<string>), List<string> favouriteBots = default(List<string>), bool? hasSetTradingCurrencies = default(bool?), List<string> hideConfirmDialogs = default(List<string>), bool? hideConnectionModal = default(bool?), bool? hideFromLeaderboard = false, bool? hideNameFromLeaderboard = true, bool? hidePnlInGuilds = false, bool? hideRoiInGuilds = false, List<string> hideNotifications = default(List<string>), bool? hidePhoneConfirm = false, bool? isSensitiveInfoVisible = default(bool?), bool? isWalletZeroBalanceHidden = default(bool?), string locale = "en-US", double? localeSetTime = default(double?), string marginPnlRow = default(string), string marginPnlRowKind = default(string), string mobileLocale = default(string), List<string> msgsSeen = default(List<string>), Object notifications = default(Object), bool? optionsBeta = default(bool?), Object orderBookBinning = default(Object), string orderBookType = default(string), bool? orderClearImmediate = false, bool? orderControlsPlusMinus = default(bool?), string platformLayout = default(string), string selectedFiatCurrency = default(string), bool? showChartBottomToolbar = default(bool?), bool? showLocaleNumbers = true, List<string> sounds = default(List<string>), string spacingPreference = default(string), bool? strictIPCheck = false, bool? strictTimeout = true, string tickerGroup = default(string), bool? tickerPinned = default(bool?), string tradeLayout = default(string), string userColor = default(string))
         {
             this.AlertOnLiquidations = alertOnLiquidations;
             this.AnimationsEnabled = animationsEnabled;
@@ -94,6 +101,8 @@ namespace IO.Swagger.Model
             this.Favourites = favourites;
             this.FavouritesAssets = favouritesAssets;
             this.FavouritesOrdered = favouritesOrdered;
+            this.FavouriteBots = favouriteBots;
+            this.HasSetTradingCurrencies = hasSetTradingCurrencies;
             this.HideConfirmDialogs = hideConfirmDialogs;
             this.HideConnectionModal = hideConnectionModal;
             // use default value if no "hideFromLeaderboard" provided
@@ -113,6 +122,24 @@ namespace IO.Swagger.Model
             else
             {
                 this.HideNameFromLeaderboard = hideNameFromLeaderboard;
+            }
+            // use default value if no "hidePnlInGuilds" provided
+            if (hidePnlInGuilds == null)
+            {
+                this.HidePnlInGuilds = false;
+            }
+            else
+            {
+                this.HidePnlInGuilds = hidePnlInGuilds;
+            }
+            // use default value if no "hideRoiInGuilds" provided
+            if (hideRoiInGuilds == null)
+            {
+                this.HideRoiInGuilds = false;
+            }
+            else
+            {
+                this.HideRoiInGuilds = hideRoiInGuilds;
             }
             this.HideNotifications = hideNotifications;
             // use default value if no "hidePhoneConfirm" provided
@@ -138,8 +165,10 @@ namespace IO.Swagger.Model
             this.LocaleSetTime = localeSetTime;
             this.MarginPnlRow = marginPnlRow;
             this.MarginPnlRowKind = marginPnlRowKind;
+            this.MobileLocale = mobileLocale;
             this.MsgsSeen = msgsSeen;
             this.Notifications = notifications;
+            this.OptionsBeta = optionsBeta;
             this.OrderBookBinning = orderBookBinning;
             this.OrderBookType = orderBookType;
             // use default value if no "orderClearImmediate" provided
@@ -165,6 +194,7 @@ namespace IO.Swagger.Model
                 this.ShowLocaleNumbers = showLocaleNumbers;
             }
             this.Sounds = sounds;
+            this.SpacingPreference = spacingPreference;
             // use default value if no "strictIPCheck" provided
             if (strictIPCheck == null)
             {
@@ -280,6 +310,18 @@ namespace IO.Swagger.Model
         public List<string> FavouritesOrdered { get; set; }
 
         /// <summary>
+        /// Gets or Sets FavouriteBots
+        /// </summary>
+        [DataMember(Name="favouriteBots", EmitDefaultValue=false)]
+        public List<string> FavouriteBots { get; set; }
+
+        /// <summary>
+        /// Gets or Sets HasSetTradingCurrencies
+        /// </summary>
+        [DataMember(Name="hasSetTradingCurrencies", EmitDefaultValue=false)]
+        public bool? HasSetTradingCurrencies { get; set; }
+
+        /// <summary>
         /// Gets or Sets HideConfirmDialogs
         /// </summary>
         [DataMember(Name="hideConfirmDialogs", EmitDefaultValue=false)]
@@ -302,6 +344,18 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="hideNameFromLeaderboard", EmitDefaultValue=false)]
         public bool? HideNameFromLeaderboard { get; set; }
+
+        /// <summary>
+        /// Gets or Sets HidePnlInGuilds
+        /// </summary>
+        [DataMember(Name="hidePnlInGuilds", EmitDefaultValue=false)]
+        public bool? HidePnlInGuilds { get; set; }
+
+        /// <summary>
+        /// Gets or Sets HideRoiInGuilds
+        /// </summary>
+        [DataMember(Name="hideRoiInGuilds", EmitDefaultValue=false)]
+        public bool? HideRoiInGuilds { get; set; }
 
         /// <summary>
         /// Gets or Sets HideNotifications
@@ -352,6 +406,12 @@ namespace IO.Swagger.Model
         public string MarginPnlRowKind { get; set; }
 
         /// <summary>
+        /// Gets or Sets MobileLocale
+        /// </summary>
+        [DataMember(Name="mobileLocale", EmitDefaultValue=false)]
+        public string MobileLocale { get; set; }
+
+        /// <summary>
         /// Gets or Sets MsgsSeen
         /// </summary>
         [DataMember(Name="msgsSeen", EmitDefaultValue=false)]
@@ -362,6 +422,12 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="notifications", EmitDefaultValue=false)]
         public Object Notifications { get; set; }
+
+        /// <summary>
+        /// Gets or Sets OptionsBeta
+        /// </summary>
+        [DataMember(Name="optionsBeta", EmitDefaultValue=false)]
+        public bool? OptionsBeta { get; set; }
 
         /// <summary>
         /// Gets or Sets OrderBookBinning
@@ -416,6 +482,12 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="sounds", EmitDefaultValue=false)]
         public List<string> Sounds { get; set; }
+
+        /// <summary>
+        /// Gets or Sets SpacingPreference
+        /// </summary>
+        [DataMember(Name="spacingPreference", EmitDefaultValue=false)]
+        public string SpacingPreference { get; set; }
 
         /// <summary>
         /// Gets or Sets StrictIPCheck
@@ -476,10 +548,14 @@ namespace IO.Swagger.Model
             sb.Append("  Favourites: ").Append(Favourites).Append("\n");
             sb.Append("  FavouritesAssets: ").Append(FavouritesAssets).Append("\n");
             sb.Append("  FavouritesOrdered: ").Append(FavouritesOrdered).Append("\n");
+            sb.Append("  FavouriteBots: ").Append(FavouriteBots).Append("\n");
+            sb.Append("  HasSetTradingCurrencies: ").Append(HasSetTradingCurrencies).Append("\n");
             sb.Append("  HideConfirmDialogs: ").Append(HideConfirmDialogs).Append("\n");
             sb.Append("  HideConnectionModal: ").Append(HideConnectionModal).Append("\n");
             sb.Append("  HideFromLeaderboard: ").Append(HideFromLeaderboard).Append("\n");
             sb.Append("  HideNameFromLeaderboard: ").Append(HideNameFromLeaderboard).Append("\n");
+            sb.Append("  HidePnlInGuilds: ").Append(HidePnlInGuilds).Append("\n");
+            sb.Append("  HideRoiInGuilds: ").Append(HideRoiInGuilds).Append("\n");
             sb.Append("  HideNotifications: ").Append(HideNotifications).Append("\n");
             sb.Append("  HidePhoneConfirm: ").Append(HidePhoneConfirm).Append("\n");
             sb.Append("  IsSensitiveInfoVisible: ").Append(IsSensitiveInfoVisible).Append("\n");
@@ -488,8 +564,10 @@ namespace IO.Swagger.Model
             sb.Append("  LocaleSetTime: ").Append(LocaleSetTime).Append("\n");
             sb.Append("  MarginPnlRow: ").Append(MarginPnlRow).Append("\n");
             sb.Append("  MarginPnlRowKind: ").Append(MarginPnlRowKind).Append("\n");
+            sb.Append("  MobileLocale: ").Append(MobileLocale).Append("\n");
             sb.Append("  MsgsSeen: ").Append(MsgsSeen).Append("\n");
             sb.Append("  Notifications: ").Append(Notifications).Append("\n");
+            sb.Append("  OptionsBeta: ").Append(OptionsBeta).Append("\n");
             sb.Append("  OrderBookBinning: ").Append(OrderBookBinning).Append("\n");
             sb.Append("  OrderBookType: ").Append(OrderBookType).Append("\n");
             sb.Append("  OrderClearImmediate: ").Append(OrderClearImmediate).Append("\n");
@@ -499,6 +577,7 @@ namespace IO.Swagger.Model
             sb.Append("  ShowChartBottomToolbar: ").Append(ShowChartBottomToolbar).Append("\n");
             sb.Append("  ShowLocaleNumbers: ").Append(ShowLocaleNumbers).Append("\n");
             sb.Append("  Sounds: ").Append(Sounds).Append("\n");
+            sb.Append("  SpacingPreference: ").Append(SpacingPreference).Append("\n");
             sb.Append("  StrictIPCheck: ").Append(StrictIPCheck).Append("\n");
             sb.Append("  StrictTimeout: ").Append(StrictTimeout).Append("\n");
             sb.Append("  TickerGroup: ").Append(TickerGroup).Append("\n");
@@ -615,6 +694,16 @@ namespace IO.Swagger.Model
                     this.FavouritesOrdered.SequenceEqual(input.FavouritesOrdered)
                 ) && 
                 (
+                    this.FavouriteBots == input.FavouriteBots ||
+                    this.FavouriteBots != null &&
+                    this.FavouriteBots.SequenceEqual(input.FavouriteBots)
+                ) && 
+                (
+                    this.HasSetTradingCurrencies == input.HasSetTradingCurrencies ||
+                    (this.HasSetTradingCurrencies != null &&
+                    this.HasSetTradingCurrencies.Equals(input.HasSetTradingCurrencies))
+                ) && 
+                (
                     this.HideConfirmDialogs == input.HideConfirmDialogs ||
                     this.HideConfirmDialogs != null &&
                     this.HideConfirmDialogs.SequenceEqual(input.HideConfirmDialogs)
@@ -633,6 +722,16 @@ namespace IO.Swagger.Model
                     this.HideNameFromLeaderboard == input.HideNameFromLeaderboard ||
                     (this.HideNameFromLeaderboard != null &&
                     this.HideNameFromLeaderboard.Equals(input.HideNameFromLeaderboard))
+                ) && 
+                (
+                    this.HidePnlInGuilds == input.HidePnlInGuilds ||
+                    (this.HidePnlInGuilds != null &&
+                    this.HidePnlInGuilds.Equals(input.HidePnlInGuilds))
+                ) && 
+                (
+                    this.HideRoiInGuilds == input.HideRoiInGuilds ||
+                    (this.HideRoiInGuilds != null &&
+                    this.HideRoiInGuilds.Equals(input.HideRoiInGuilds))
                 ) && 
                 (
                     this.HideNotifications == input.HideNotifications ||
@@ -675,6 +774,11 @@ namespace IO.Swagger.Model
                     this.MarginPnlRowKind.Equals(input.MarginPnlRowKind))
                 ) && 
                 (
+                    this.MobileLocale == input.MobileLocale ||
+                    (this.MobileLocale != null &&
+                    this.MobileLocale.Equals(input.MobileLocale))
+                ) && 
+                (
                     this.MsgsSeen == input.MsgsSeen ||
                     this.MsgsSeen != null &&
                     this.MsgsSeen.SequenceEqual(input.MsgsSeen)
@@ -683,6 +787,11 @@ namespace IO.Swagger.Model
                     this.Notifications == input.Notifications ||
                     (this.Notifications != null &&
                     this.Notifications.Equals(input.Notifications))
+                ) && 
+                (
+                    this.OptionsBeta == input.OptionsBeta ||
+                    (this.OptionsBeta != null &&
+                    this.OptionsBeta.Equals(input.OptionsBeta))
                 ) && 
                 (
                     this.OrderBookBinning == input.OrderBookBinning ||
@@ -728,6 +837,11 @@ namespace IO.Swagger.Model
                     this.Sounds == input.Sounds ||
                     this.Sounds != null &&
                     this.Sounds.SequenceEqual(input.Sounds)
+                ) && 
+                (
+                    this.SpacingPreference == input.SpacingPreference ||
+                    (this.SpacingPreference != null &&
+                    this.SpacingPreference.Equals(input.SpacingPreference))
                 ) && 
                 (
                     this.StrictIPCheck == input.StrictIPCheck ||
@@ -800,6 +914,10 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.FavouritesAssets.GetHashCode();
                 if (this.FavouritesOrdered != null)
                     hashCode = hashCode * 59 + this.FavouritesOrdered.GetHashCode();
+                if (this.FavouriteBots != null)
+                    hashCode = hashCode * 59 + this.FavouriteBots.GetHashCode();
+                if (this.HasSetTradingCurrencies != null)
+                    hashCode = hashCode * 59 + this.HasSetTradingCurrencies.GetHashCode();
                 if (this.HideConfirmDialogs != null)
                     hashCode = hashCode * 59 + this.HideConfirmDialogs.GetHashCode();
                 if (this.HideConnectionModal != null)
@@ -808,6 +926,10 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.HideFromLeaderboard.GetHashCode();
                 if (this.HideNameFromLeaderboard != null)
                     hashCode = hashCode * 59 + this.HideNameFromLeaderboard.GetHashCode();
+                if (this.HidePnlInGuilds != null)
+                    hashCode = hashCode * 59 + this.HidePnlInGuilds.GetHashCode();
+                if (this.HideRoiInGuilds != null)
+                    hashCode = hashCode * 59 + this.HideRoiInGuilds.GetHashCode();
                 if (this.HideNotifications != null)
                     hashCode = hashCode * 59 + this.HideNotifications.GetHashCode();
                 if (this.HidePhoneConfirm != null)
@@ -824,10 +946,14 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.MarginPnlRow.GetHashCode();
                 if (this.MarginPnlRowKind != null)
                     hashCode = hashCode * 59 + this.MarginPnlRowKind.GetHashCode();
+                if (this.MobileLocale != null)
+                    hashCode = hashCode * 59 + this.MobileLocale.GetHashCode();
                 if (this.MsgsSeen != null)
                     hashCode = hashCode * 59 + this.MsgsSeen.GetHashCode();
                 if (this.Notifications != null)
                     hashCode = hashCode * 59 + this.Notifications.GetHashCode();
+                if (this.OptionsBeta != null)
+                    hashCode = hashCode * 59 + this.OptionsBeta.GetHashCode();
                 if (this.OrderBookBinning != null)
                     hashCode = hashCode * 59 + this.OrderBookBinning.GetHashCode();
                 if (this.OrderBookType != null)
@@ -846,6 +972,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.ShowLocaleNumbers.GetHashCode();
                 if (this.Sounds != null)
                     hashCode = hashCode * 59 + this.Sounds.GetHashCode();
+                if (this.SpacingPreference != null)
+                    hashCode = hashCode * 59 + this.SpacingPreference.GetHashCode();
                 if (this.StrictIPCheck != null)
                     hashCode = hashCode * 59 + this.StrictIPCheck.GetHashCode();
                 if (this.StrictTimeout != null)

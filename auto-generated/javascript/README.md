@@ -196,6 +196,7 @@ Class | Method | HTTP request | Description
 *BitMexApi.StatsApi* | [**statsHistoryUSD**](docs/StatsApi.md#statsHistoryUSD) | **GET** /stats/historyUSD | Get a summary of exchange statistics in USD.
 *BitMexApi.TradeApi* | [**tradeGet**](docs/TradeApi.md#tradeGet) | **GET** /trade | Get Trades.
 *BitMexApi.TradeApi* | [**tradeGetBucketed**](docs/TradeApi.md#tradeGetBucketed) | **GET** /trade/bucketed | Get previous trades in time buckets.
+*BitMexApi.UserApi* | [**userCancelPendingWithdrawal**](docs/UserApi.md#userCancelPendingWithdrawal) | **DELETE** /user/withdrawal | Cancel pending withdrawal
 *BitMexApi.UserApi* | [**userCancelWithdrawal**](docs/UserApi.md#userCancelWithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 *BitMexApi.UserApi* | [**userCheckReferralCode**](docs/UserApi.md#userCheckReferralCode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 *BitMexApi.UserApi* | [**userCommunicationToken**](docs/UserApi.md#userCommunicationToken) | **POST** /user/communicationToken | Register your communication token for mobile clients
@@ -209,6 +210,7 @@ Class | Method | HTTP request | Description
 *BitMexApi.UserApi* | [**userGetCSA**](docs/UserApi.md#userGetCSA) | **GET** /user/csa | Get your account's CSA status.
 *BitMexApi.UserApi* | [**userGetCommission**](docs/UserApi.md#userGetCommission) | **GET** /user/commission | Get your account's commission status.
 *BitMexApi.UserApi* | [**userGetDepositAddress**](docs/UserApi.md#userGetDepositAddress) | **GET** /user/depositAddress | Get a deposit address.
+*BitMexApi.UserApi* | [**userGetDepositAddressInformation**](docs/UserApi.md#userGetDepositAddressInformation) | **GET** /user/depositAddressInformation | Get a deposit address.
 *BitMexApi.UserApi* | [**userGetExecutionHistory**](docs/UserApi.md#userGetExecutionHistory) | **GET** /user/executionHistory | Get the execution history by day.
 *BitMexApi.UserApi* | [**userGetMargin**](docs/UserApi.md#userGetMargin) | **GET** /user/margin | Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
 *BitMexApi.UserApi* | [**userGetQuoteFillRatio**](docs/UserApi.md#userGetQuoteFillRatio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
@@ -247,6 +249,7 @@ Class | Method | HTTP request | Description
  - [BitMexApi.CollateralSupportAgreement](docs/CollateralSupportAgreement.md)
  - [BitMexApi.CommunicationToken](docs/CommunicationToken.md)
  - [BitMexApi.ConnectedUsers](docs/ConnectedUsers.md)
+ - [BitMexApi.DepositAddress](docs/DepositAddress.md)
  - [BitMexApi.Error](docs/Error.md)
  - [BitMexApi.ErrorError](docs/ErrorError.md)
  - [BitMexApi.Execution](docs/Execution.md)
@@ -285,6 +288,7 @@ Class | Method | HTTP request | Description
  - [BitMexApi.UserEvent](docs/UserEvent.md)
  - [BitMexApi.UserPreferences](docs/UserPreferences.md)
  - [BitMexApi.Wallet](docs/Wallet.md)
+ - [BitMexApi.WalletSummaryRecord](docs/WalletSummaryRecord.md)
  - [BitMexApi.XAny](docs/XAny.md)
 
 

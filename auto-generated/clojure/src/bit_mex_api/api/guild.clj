@@ -22,13 +22,13 @@
 (defn guild-edit-with-http-info
   "Edit guild new guild"
   ([name emoji pot-distribution-percent pot-distribution-type ] (guild-edit-with-http-info name emoji pot-distribution-percent pot-distribution-type nil))
-  ([name emoji pot-distribution-percent pot-distribution-type {:keys [pot-trader-id description twitter discord img-url is-private ]}]
+  ([name emoji pot-distribution-percent pot-distribution-type {:keys [pot-trader-id description twitter discord telegram img-url is-private ]}]
    (check-required-params name emoji pot-distribution-percent pot-distribution-type)
    (call-api "/guild" :put
              {:path-params   {}
               :header-params {}
               :query-params  {}
-              :form-params   {"name" name "emoji" emoji "potDistributionPercent" pot-distribution-percent "potDistributionType" pot-distribution-type "potTraderId" pot-trader-id "description" description "twitter" twitter "discord" discord "imgUrl" img-url "isPrivate" is-private }
+              :form-params   {"name" name "emoji" emoji "potDistributionPercent" pot-distribution-percent "potDistributionType" pot-distribution-type "potTraderId" pot-trader-id "description" description "twitter" twitter "discord" discord "telegram" telegram "imgUrl" img-url "isPrivate" is-private }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
               :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
@@ -112,13 +112,13 @@
 (defn guild-new-with-http-info
   "Creates a new guild"
   ([name emoji pot-distribution-percent pot-distribution-type ] (guild-new-with-http-info name emoji pot-distribution-percent pot-distribution-type nil))
-  ([name emoji pot-distribution-percent pot-distribution-type {:keys [description twitter discord img-url is-private ]}]
+  ([name emoji pot-distribution-percent pot-distribution-type {:keys [description twitter discord telegram img-url is-private ]}]
    (check-required-params name emoji pot-distribution-percent pot-distribution-type)
    (call-api "/guild" :post
              {:path-params   {}
               :header-params {}
               :query-params  {}
-              :form-params   {"name" name "emoji" emoji "potDistributionPercent" pot-distribution-percent "potDistributionType" pot-distribution-type "description" description "twitter" twitter "discord" discord "imgUrl" img-url "isPrivate" is-private }
+              :form-params   {"name" name "emoji" emoji "potDistributionPercent" pot-distribution-percent "potDistributionType" pot-distribution-type "description" description "twitter" twitter "discord" discord "telegram" telegram "imgUrl" img-url "isPrivate" is-private }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
               :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))

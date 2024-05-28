@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * User Events for Auditing
  */
 @ApiModel(description = "User Events for Auditing")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
 public class UserEvent {
   @SerializedName("id")
   private Double id = null;
@@ -89,7 +89,27 @@ public class UserEvent {
     
     ADDRESSSKIPCONFIRMVERIFIED("addressSkipConfirmVerified"),
     
-    VERIFY("verify");
+    VERIFY("verify"),
+    
+    RESTRICTEDACCOUNT("restrictedAccount"),
+    
+    UNRESTRICTEDACCOUNT("unrestrictedAccount"),
+    
+    DISABLEDACCOUNT("disabledAccount"),
+    
+    ENABLEDACCOUNT("enabledAccount"),
+    
+    ROLE_ROLEMAPPINGDESTROY("role:roleMappingDestroy"),
+    
+    ROLE_CHATBANNED("role:chatBanned"),
+    
+    ROLE_WITHDRAWALBANNED("role:withdrawalBanned"),
+    
+    ROLE_ORDERBANNED("role:orderBanned"),
+    
+    ROLE_APIBANNED("role:apiBanned"),
+    
+    ROLE_RESTRICTEDJURISDICTIONPRIVILEGE("role:restrictedJurisdictionPrivilege");
 
     private String value;
 

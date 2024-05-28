@@ -53,15 +53,16 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="potTraderId">User ID of the guild member with order write permission for the pot (optional)</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>Guild</returns>
-        Guild GuildEdit (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null);
+        Guild GuildEdit (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null);
 
         /// <summary>
         /// Edit guild new guild
@@ -73,15 +74,16 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="potTraderId">User ID of the guild member with order write permission for the pot (optional)</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>ApiResponse of Guild</returns>
-        ApiResponse<Guild> GuildEditWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null);
+        ApiResponse<Guild> GuildEditWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null);
         /// <summary>
         /// Get all guilds
         /// </summary>
@@ -172,14 +174,15 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>Guild</returns>
-        Guild GuildNew (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null);
+        Guild GuildNew (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null);
 
         /// <summary>
         /// Creates a new guild
@@ -191,14 +194,15 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>ApiResponse of Guild</returns>
-        ApiResponse<Guild> GuildNewWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null);
+        ApiResponse<Guild> GuildNewWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null);
         /// <summary>
         /// Toggle share trades for your account, which controls whether your guild members can see your orders and positions in their UI
         /// </summary>
@@ -251,15 +255,16 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="potTraderId">User ID of the guild member with order write permission for the pot (optional)</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>Task of Guild</returns>
-        System.Threading.Tasks.Task<Guild> GuildEditAsync (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null);
+        System.Threading.Tasks.Task<Guild> GuildEditAsync (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null);
 
         /// <summary>
         /// Edit guild new guild
@@ -271,15 +276,16 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="potTraderId">User ID of the guild member with order write permission for the pot (optional)</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>Task of ApiResponse (Guild)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Guild>> GuildEditAsyncWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null);
+        System.Threading.Tasks.Task<ApiResponse<Guild>> GuildEditAsyncWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null);
         /// <summary>
         /// Get all guilds
         /// </summary>
@@ -370,14 +376,15 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>Task of Guild</returns>
-        System.Threading.Tasks.Task<Guild> GuildNewAsync (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null);
+        System.Threading.Tasks.Task<Guild> GuildNewAsync (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null);
 
         /// <summary>
         /// Creates a new guild
@@ -389,14 +396,15 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>Task of ApiResponse (Guild)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Guild>> GuildNewAsyncWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null);
+        System.Threading.Tasks.Task<ApiResponse<Guild>> GuildNewAsyncWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null);
         /// <summary>
         /// Toggle share trades for your account, which controls whether your guild members can see your orders and positions in their UI
         /// </summary>
@@ -688,17 +696,18 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="potTraderId">User ID of the guild member with order write permission for the pot (optional)</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>Guild</returns>
-        public Guild GuildEdit (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null)
+        public Guild GuildEdit (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null)
         {
-             ApiResponse<Guild> localVarResponse = GuildEditWithHttpInfo(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, imgUrl, isPrivate);
+             ApiResponse<Guild> localVarResponse = GuildEditWithHttpInfo(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, telegram, imgUrl, isPrivate);
              return localVarResponse.Data;
         }
 
@@ -709,15 +718,16 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="potTraderId">User ID of the guild member with order write permission for the pot (optional)</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>ApiResponse of Guild</returns>
-        public ApiResponse< Guild > GuildEditWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null)
+        public ApiResponse< Guild > GuildEditWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -767,6 +777,7 @@ namespace IO.Swagger.Api
             if (description != null) localVarFormParams.Add("description", this.Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (twitter != null) localVarFormParams.Add("twitter", this.Configuration.ApiClient.ParameterToString(twitter)); // form parameter
             if (discord != null) localVarFormParams.Add("discord", this.Configuration.ApiClient.ParameterToString(discord)); // form parameter
+            if (telegram != null) localVarFormParams.Add("telegram", this.Configuration.ApiClient.ParameterToString(telegram)); // form parameter
             if (imgUrl != null) localVarFormParams.Add("imgUrl", this.Configuration.ApiClient.ParameterToString(imgUrl)); // form parameter
             if (isPrivate != null) localVarFormParams.Add("isPrivate", this.Configuration.ApiClient.ParameterToString(isPrivate)); // form parameter
 
@@ -811,17 +822,18 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="potTraderId">User ID of the guild member with order write permission for the pot (optional)</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>Task of Guild</returns>
-        public async System.Threading.Tasks.Task<Guild> GuildEditAsync (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null)
+        public async System.Threading.Tasks.Task<Guild> GuildEditAsync (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null)
         {
-             ApiResponse<Guild> localVarResponse = await GuildEditAsyncWithHttpInfo(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, imgUrl, isPrivate);
+             ApiResponse<Guild> localVarResponse = await GuildEditAsyncWithHttpInfo(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, telegram, imgUrl, isPrivate);
              return localVarResponse.Data;
 
         }
@@ -833,15 +845,16 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="potTraderId">User ID of the guild member with order write permission for the pot (optional)</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>Task of ApiResponse (Guild)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Guild>> GuildEditAsyncWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Guild>> GuildEditAsyncWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -891,6 +904,7 @@ namespace IO.Swagger.Api
             if (description != null) localVarFormParams.Add("description", this.Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (twitter != null) localVarFormParams.Add("twitter", this.Configuration.ApiClient.ParameterToString(twitter)); // form parameter
             if (discord != null) localVarFormParams.Add("discord", this.Configuration.ApiClient.ParameterToString(discord)); // form parameter
+            if (telegram != null) localVarFormParams.Add("telegram", this.Configuration.ApiClient.ParameterToString(telegram)); // form parameter
             if (imgUrl != null) localVarFormParams.Add("imgUrl", this.Configuration.ApiClient.ParameterToString(imgUrl)); // form parameter
             if (isPrivate != null) localVarFormParams.Add("isPrivate", this.Configuration.ApiClient.ParameterToString(isPrivate)); // form parameter
 
@@ -1581,16 +1595,17 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>Guild</returns>
-        public Guild GuildNew (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null)
+        public Guild GuildNew (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null)
         {
-             ApiResponse<Guild> localVarResponse = GuildNewWithHttpInfo(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, imgUrl, isPrivate);
+             ApiResponse<Guild> localVarResponse = GuildNewWithHttpInfo(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, telegram, imgUrl, isPrivate);
              return localVarResponse.Data;
         }
 
@@ -1601,14 +1616,15 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>ApiResponse of Guild</returns>
-        public ApiResponse< Guild > GuildNewWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null)
+        public ApiResponse< Guild > GuildNewWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -1657,6 +1673,7 @@ namespace IO.Swagger.Api
             if (description != null) localVarFormParams.Add("description", this.Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (twitter != null) localVarFormParams.Add("twitter", this.Configuration.ApiClient.ParameterToString(twitter)); // form parameter
             if (discord != null) localVarFormParams.Add("discord", this.Configuration.ApiClient.ParameterToString(discord)); // form parameter
+            if (telegram != null) localVarFormParams.Add("telegram", this.Configuration.ApiClient.ParameterToString(telegram)); // form parameter
             if (imgUrl != null) localVarFormParams.Add("imgUrl", this.Configuration.ApiClient.ParameterToString(imgUrl)); // form parameter
             if (isPrivate != null) localVarFormParams.Add("isPrivate", this.Configuration.ApiClient.ParameterToString(isPrivate)); // form parameter
 
@@ -1701,16 +1718,17 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>Task of Guild</returns>
-        public async System.Threading.Tasks.Task<Guild> GuildNewAsync (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null)
+        public async System.Threading.Tasks.Task<Guild> GuildNewAsync (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null)
         {
-             ApiResponse<Guild> localVarResponse = await GuildNewAsyncWithHttpInfo(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, imgUrl, isPrivate);
+             ApiResponse<Guild> localVarResponse = await GuildNewAsyncWithHttpInfo(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, telegram, imgUrl, isPrivate);
              return localVarResponse.Data;
 
         }
@@ -1722,14 +1740,15 @@ namespace IO.Swagger.Api
         /// <param name="name">Name of the guild, must be unique, must be at least 5 characters</param>
         /// <param name="emoji">Emoji name.</param>
         /// <param name="potDistributionPercent">How much of the pot should be distributed to the guild members, must be between 0 and 100</param>
-        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM</param>
+        /// <param name="potDistributionType">How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM</param>
         /// <param name="description">Guild description, can be used to explain the guild to other users. (optional)</param>
         /// <param name="twitter">Guild twitter handle. (optional)</param>
         /// <param name="discord">Guild discord link. (optional)</param>
+        /// <param name="telegram">Guild telegram link. (optional)</param>
         /// <param name="imgUrl">URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)</param>
         /// <param name="isPrivate">Guild privacy status (optional)</param>
         /// <returns>Task of ApiResponse (Guild)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Guild>> GuildNewAsyncWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Guild>> GuildNewAsyncWithHttpInfo (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -1778,6 +1797,7 @@ namespace IO.Swagger.Api
             if (description != null) localVarFormParams.Add("description", this.Configuration.ApiClient.ParameterToString(description)); // form parameter
             if (twitter != null) localVarFormParams.Add("twitter", this.Configuration.ApiClient.ParameterToString(twitter)); // form parameter
             if (discord != null) localVarFormParams.Add("discord", this.Configuration.ApiClient.ParameterToString(discord)); // form parameter
+            if (telegram != null) localVarFormParams.Add("telegram", this.Configuration.ApiClient.ParameterToString(telegram)); // form parameter
             if (imgUrl != null) localVarFormParams.Add("imgUrl", this.Configuration.ApiClient.ParameterToString(imgUrl)); // form parameter
             if (isPrivate != null) localVarFormParams.Add("isPrivate", this.Configuration.ApiClient.ParameterToString(isPrivate)); // form parameter
 

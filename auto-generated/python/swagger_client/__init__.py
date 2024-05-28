@@ -58,6 +58,7 @@ from swagger_client.models.chat_channel import ChatChannel
 from swagger_client.models.collateral_support_agreement import CollateralSupportAgreement
 from swagger_client.models.communication_token import CommunicationToken
 from swagger_client.models.connected_users import ConnectedUsers
+from swagger_client.models.deposit_address import DepositAddress
 from swagger_client.models.error import Error
 from swagger_client.models.error_error import ErrorError
 from swagger_client.models.execution import Execution
@@ -96,4 +97,5 @@ from swagger_client.models.user_commissions_by_symbol import UserCommissionsBySy
 from swagger_client.models.user_event import UserEvent
 from swagger_client.models.user_preferences import UserPreferences
 from swagger_client.models.wallet import Wallet
+from swagger_client.models.wallet_summary_record import WalletSummaryRecord
 from swagger_client.models.x_any import XAny

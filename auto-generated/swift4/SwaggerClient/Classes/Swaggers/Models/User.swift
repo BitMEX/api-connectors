@@ -30,9 +30,10 @@ public struct User: Codable {
     public var geoipCountry: String?
     public var geoipRegion: String?
     public var firstTradeTimestamp: Date?
+    public var firstDepositTimestamp: Date?
     public var typ: String?
 
-    public init(_id: Double?, firstname: String?, lastname: String?, username: String, accountName: String?, isUser: Bool, email: String?, dateOfBirth: String?, phone: String?, created: Date?, lastUpdated: Date?, preferences: UserPreferences?, tFAEnabled: String?, affiliateID: String?, country: String?, geoipCountry: String?, geoipRegion: String?, firstTradeTimestamp: Date?, typ: String?) {
+    public init(_id: Double?, firstname: String?, lastname: String?, username: String, accountName: String?, isUser: Bool, email: String?, dateOfBirth: String?, phone: String?, created: Date?, lastUpdated: Date?, preferences: UserPreferences?, tFAEnabled: String?, affiliateID: String?, country: String?, geoipCountry: String?, geoipRegion: String?, firstTradeTimestamp: Date?, firstDepositTimestamp: Date?, typ: String?) {
         self._id = _id
         self.firstname = firstname
         self.lastname = lastname
@@ -51,6 +52,7 @@ public struct User: Codable {
         self.geoipCountry = geoipCountry
         self.geoipRegion = geoipRegion
         self.firstTradeTimestamp = firstTradeTimestamp
+        self.firstDepositTimestamp = firstDepositTimestamp
         self.typ = typ
     }
 
@@ -73,6 +75,7 @@ public struct User: Codable {
         case geoipCountry
         case geoipRegion
         case firstTradeTimestamp
+        case firstDepositTimestamp
         case typ
     }
 

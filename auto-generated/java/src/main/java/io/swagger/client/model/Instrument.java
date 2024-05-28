@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * Tradeable Contracts, Indices, and History
  */
 @ApiModel(description = "Tradeable Contracts, Indices, and History")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T17:02:46.897+08:00")
 public class Instrument {
   @SerializedName("symbol")
   private String symbol = null;
@@ -292,6 +292,9 @@ public class Instrument {
 
   @SerializedName("instantPnl")
   private Boolean instantPnl = null;
+
+  @SerializedName("minTick")
+  private Double minTick = null;
 
   @SerializedName("timestamp")
   private OffsetDateTime timestamp = null;
@@ -1862,6 +1865,24 @@ public class Instrument {
     this.instantPnl = instantPnl;
   }
 
+  public Instrument minTick(Double minTick) {
+    this.minTick = minTick;
+    return this;
+  }
+
+   /**
+   * Get minTick
+   * @return minTick
+  **/
+  @ApiModelProperty(value = "")
+  public Double getMinTick() {
+    return minTick;
+  }
+
+  public void setMinTick(Double minTick) {
+    this.minTick = minTick;
+  }
+
   public Instrument timestamp(OffsetDateTime timestamp) {
     this.timestamp = timestamp;
     return this;
@@ -1977,12 +1998,13 @@ public class Instrument {
         Objects.equals(this.settledPriceAdjustmentRate, instrument.settledPriceAdjustmentRate) &&
         Objects.equals(this.settledPrice, instrument.settledPrice) &&
         Objects.equals(this.instantPnl, instrument.instantPnl) &&
+        Objects.equals(this.minTick, instrument.minTick) &&
         Objects.equals(this.timestamp, instrument.timestamp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(symbol, rootSymbol, state, typ, listing, front, expiry, settle, listedSettle, positionCurrency, underlying, quoteCurrency, underlyingSymbol, reference, referenceSymbol, calcInterval, publishInterval, publishTime, maxOrderQty, maxPrice, lotSize, tickSize, multiplier, settlCurrency, underlyingToPositionMultiplier, underlyingToSettleMultiplier, quoteToSettleMultiplier, isQuanto, isInverse, initMargin, maintMargin, riskLimit, riskStep, limit, taxed, deleverage, makerFee, takerFee, settlementFee, fundingBaseSymbol, fundingQuoteSymbol, fundingPremiumSymbol, fundingTimestamp, fundingInterval, fundingRate, indicativeFundingRate, rebalanceTimestamp, rebalanceInterval, prevClosePrice, limitDownPrice, limitUpPrice, totalVolume, volume, volume24h, prevTotalTurnover, totalTurnover, turnover, turnover24h, homeNotional24h, foreignNotional24h, prevPrice24h, vwap, highPrice, lowPrice, lastPrice, lastPriceProtected, lastTickDirection, lastChangePcnt, bidPrice, midPrice, askPrice, impactBidPrice, impactMidPrice, impactAskPrice, hasLiquidity, openInterest, openValue, fairMethod, fairBasisRate, fairBasis, fairPrice, markMethod, markPrice, indicativeSettlePrice, settledPriceAdjustmentRate, settledPrice, instantPnl, timestamp);
+    return Objects.hash(symbol, rootSymbol, state, typ, listing, front, expiry, settle, listedSettle, positionCurrency, underlying, quoteCurrency, underlyingSymbol, reference, referenceSymbol, calcInterval, publishInterval, publishTime, maxOrderQty, maxPrice, lotSize, tickSize, multiplier, settlCurrency, underlyingToPositionMultiplier, underlyingToSettleMultiplier, quoteToSettleMultiplier, isQuanto, isInverse, initMargin, maintMargin, riskLimit, riskStep, limit, taxed, deleverage, makerFee, takerFee, settlementFee, fundingBaseSymbol, fundingQuoteSymbol, fundingPremiumSymbol, fundingTimestamp, fundingInterval, fundingRate, indicativeFundingRate, rebalanceTimestamp, rebalanceInterval, prevClosePrice, limitDownPrice, limitUpPrice, totalVolume, volume, volume24h, prevTotalTurnover, totalTurnover, turnover, turnover24h, homeNotional24h, foreignNotional24h, prevPrice24h, vwap, highPrice, lowPrice, lastPrice, lastPriceProtected, lastTickDirection, lastChangePcnt, bidPrice, midPrice, askPrice, impactBidPrice, impactMidPrice, impactAskPrice, hasLiquidity, openInterest, openValue, fairMethod, fairBasisRate, fairBasis, fairPrice, markMethod, markPrice, indicativeSettlePrice, settledPriceAdjustmentRate, settledPrice, instantPnl, minTick, timestamp);
   }
 
 
@@ -2078,6 +2100,7 @@ public class Instrument {
     sb.append("    settledPriceAdjustmentRate: ").append(toIndentedString(settledPriceAdjustmentRate)).append("\n");
     sb.append("    settledPrice: ").append(toIndentedString(settledPrice)).append("\n");
     sb.append("    instantPnl: ").append(toIndentedString(instantPnl)).append("\n");
+    sb.append("    minTick: ").append(toIndentedString(minTick)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("}");
     return sb.toString();

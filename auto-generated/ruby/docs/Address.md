@@ -15,5 +15,6 @@ Name | Type | Description | Notes
 **skip2_fa** | **BOOLEAN** |  | [optional] 
 **skip2_fa_verified** | **BOOLEAN** |  | [optional] 
 **network** | **String** |  | 
+**memo** | **String** |  | [optional] 
 
 

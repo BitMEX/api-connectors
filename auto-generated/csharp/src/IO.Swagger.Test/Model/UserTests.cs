@@ -211,6 +211,14 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'FirstTradeTimestamp'
         }
         /// <summary>
+        /// Test the property 'FirstDepositTimestamp'
+        /// </summary>
+        [Test]
+        public void FirstDepositTimestampTest()
+        {
+            // TODO unit test for the property 'FirstDepositTimestamp'
+        }
+        /// <summary>
         /// Test the property 'Typ'
         /// </summary>
         [Test]

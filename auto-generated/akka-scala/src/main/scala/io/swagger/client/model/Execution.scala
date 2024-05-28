@@ -17,7 +17,7 @@ import java.util.UUID
 
 case class Execution (
   execID: Option[String] = None,
-  orderID: String,
+  orderID: Option[String] = None,
   clOrdID: Option[String] = None,
   clOrdLinkID: Option[String] = None,
   account: Option[Double] = None,
@@ -56,11 +56,7 @@ case class Execution (
   foreignNotional: Option[Double] = None,
   transactTime: Option[DateTime] = None,
   timestamp: DateTime,
-  execGrossPnl: Option[Double] = None,
-  currentQty: Option[Double] = None,
-  avgEntryPrice: Option[Double] = None,
-  realisedPnl: Option[Double] = None,
-  unrealisedPnl: Option[Double] = None
+  feeType: Option[String] = None
 ) extends ApiModel
 
 

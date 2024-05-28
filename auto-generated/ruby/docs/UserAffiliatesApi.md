@@ -37,7 +37,9 @@ end
 api_instance = SwaggerClient::UserAffiliatesApi.new
 
 opts = { 
-  depth: 1.2 # Float | the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates
+  depth: 1.2, # Float | the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates
+  target_account_id: 1.2, # Float | AccountId of Sub-Affiliate Account
+  select_user_id: 1.2 # Float | User id of result array to keep
 }
 
 begin
@@ -54,6 +56,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **depth** | **Float**| the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates | [optional] 
+ **target_account_id** | **Float**| AccountId of Sub-Affiliate Account | [optional] 
+ **select_user_id** | **Float**| User id of result array to keep | [optional] 
 
 ### Return type
 

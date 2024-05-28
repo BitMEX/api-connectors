@@ -387,44 +387,12 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'Timestamp'
         }
         /// <summary>
-        /// Test the property 'ExecGrossPnl'
+        /// Test the property 'FeeType'
         /// </summary>
         [Test]
-        public void ExecGrossPnlTest()
+        public void FeeTypeTest()
         {
-            // TODO unit test for the property 'ExecGrossPnl'
-        }
-        /// <summary>
-        /// Test the property 'CurrentQty'
-        /// </summary>
-        [Test]
-        public void CurrentQtyTest()
-        {
-            // TODO unit test for the property 'CurrentQty'
-        }
-        /// <summary>
-        /// Test the property 'AvgEntryPrice'
-        /// </summary>
-        [Test]
-        public void AvgEntryPriceTest()
-        {
-            // TODO unit test for the property 'AvgEntryPrice'
-        }
-        /// <summary>
-        /// Test the property 'RealisedPnl'
-        /// </summary>
-        [Test]
-        public void RealisedPnlTest()
-        {
-            // TODO unit test for the property 'RealisedPnl'
-        }
-        /// <summary>
-        /// Test the property 'UnrealisedPnl'
-        /// </summary>
-        [Test]
-        public void UnrealisedPnlTest()
-        {
-            // TODO unit test for the property 'UnrealisedPnl'
+            // TODO unit test for the property 'FeeType'
         }
 
     }

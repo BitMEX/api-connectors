@@ -134,11 +134,12 @@ class GuildApi(object):
         :param str name: Name of the guild, must be unique, must be at least 5 characters (required)
         :param str emoji: Emoji name. (required)
         :param float pot_distribution_percent: How much of the pot should be distributed to the guild members, must be between 0 and 100 (required)
-        :param str pot_distribution_type: How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM (required)
+        :param str pot_distribution_type: How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM (required)
         :param float pot_trader_id: User ID of the guild member with order write permission for the pot
         :param str description: Guild description, can be used to explain the guild to other users.
         :param str twitter: Guild twitter handle.
         :param str discord: Guild discord link.
+        :param str telegram: Guild telegram link.
         :param str img_url: URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
         :param bool is_private: Guild privacy status
         :return: Guild
@@ -164,11 +165,12 @@ class GuildApi(object):
         :param str name: Name of the guild, must be unique, must be at least 5 characters (required)
         :param str emoji: Emoji name. (required)
         :param float pot_distribution_percent: How much of the pot should be distributed to the guild members, must be between 0 and 100 (required)
-        :param str pot_distribution_type: How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM (required)
+        :param str pot_distribution_type: How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM (required)
         :param float pot_trader_id: User ID of the guild member with order write permission for the pot
         :param str description: Guild description, can be used to explain the guild to other users.
         :param str twitter: Guild twitter handle.
         :param str discord: Guild discord link.
+        :param str telegram: Guild telegram link.
         :param str img_url: URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
         :param bool is_private: Guild privacy status
         :return: Guild
@@ -176,7 +178,7 @@ class GuildApi(object):
                  returns the request thread.
         """
 
-        all_params = ['name', 'emoji', 'pot_distribution_percent', 'pot_distribution_type', 'pot_trader_id', 'description', 'twitter', 'discord', 'img_url', 'is_private']  # noqa: E501
+        all_params = ['name', 'emoji', 'pot_distribution_percent', 'pot_distribution_type', 'pot_trader_id', 'description', 'twitter', 'discord', 'telegram', 'img_url', 'is_private']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -234,6 +236,8 @@ class GuildApi(object):
             form_params.append(('twitter', params['twitter']))  # noqa: E501
         if 'discord' in params:
             form_params.append(('discord', params['discord']))  # noqa: E501
+        if 'telegram' in params:
+            form_params.append(('telegram', params['telegram']))  # noqa: E501
         if 'img_url' in params:
             form_params.append(('imgUrl', params['img_url']))  # noqa: E501
         if 'is_private' in params:
@@ -651,10 +655,11 @@ class GuildApi(object):
         :param str name: Name of the guild, must be unique, must be at least 5 characters (required)
         :param str emoji: Emoji name. (required)
         :param float pot_distribution_percent: How much of the pot should be distributed to the guild members, must be between 0 and 100 (required)
-        :param str pot_distribution_type: How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM (required)
+        :param str pot_distribution_type: How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM (required)
         :param str description: Guild description, can be used to explain the guild to other users.
         :param str twitter: Guild twitter handle.
         :param str discord: Guild discord link.
+        :param str telegram: Guild telegram link.
         :param str img_url: URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
         :param bool is_private: Guild privacy status
         :return: Guild
@@ -680,10 +685,11 @@ class GuildApi(object):
         :param str name: Name of the guild, must be unique, must be at least 5 characters (required)
         :param str emoji: Emoji name. (required)
         :param float pot_distribution_percent: How much of the pot should be distributed to the guild members, must be between 0 and 100 (required)
-        :param str pot_distribution_type: How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM (required)
+        :param str pot_distribution_type: How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM (required)
         :param str description: Guild description, can be used to explain the guild to other users.
         :param str twitter: Guild twitter handle.
         :param str discord: Guild discord link.
+        :param str telegram: Guild telegram link.
         :param str img_url: URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
         :param bool is_private: Guild privacy status
         :return: Guild
@@ -691,7 +697,7 @@ class GuildApi(object):
                  returns the request thread.
         """
 
-        all_params = ['name', 'emoji', 'pot_distribution_percent', 'pot_distribution_type', 'description', 'twitter', 'discord', 'img_url', 'is_private']  # noqa: E501
+        all_params = ['name', 'emoji', 'pot_distribution_percent', 'pot_distribution_type', 'description', 'twitter', 'discord', 'telegram', 'img_url', 'is_private']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -747,6 +753,8 @@ class GuildApi(object):
             form_params.append(('twitter', params['twitter']))  # noqa: E501
         if 'discord' in params:
             form_params.append(('discord', params['discord']))  # noqa: E501
+        if 'telegram' in params:
+            form_params.append(('telegram', params['telegram']))  # noqa: E501
         if 'img_url' in params:
             form_params.append(('imgUrl', params['img_url']))  # noqa: E501
         if 'is_private' in params:

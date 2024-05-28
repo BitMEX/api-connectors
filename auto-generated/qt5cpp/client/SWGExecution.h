@@ -55,8 +55,8 @@ public:
     QString* getClOrdLinkId();
     void setClOrdLinkId(QString* cl_ord_link_id);
 
-    double getAccount();
-    void setAccount(double account);
+    SWGNumber* getAccount();
+    void setAccount(SWGNumber* account);
 
     QString* getSymbol();
     void setSymbol(QString* symbol);
@@ -64,8 +64,8 @@ public:
     QString* getSide();
     void setSide(QString* side);
 
-    double getLastQty();
-    void setLastQty(double last_qty);
+    SWGNumber* getLastQty();
+    void setLastQty(SWGNumber* last_qty);
 
     double getLastPx();
     void setLastPx(double last_px);
@@ -73,8 +73,8 @@ public:
     QString* getLastLiquidityInd();
     void setLastLiquidityInd(QString* last_liquidity_ind);
 
-    double getOrderQty();
-    void setOrderQty(double order_qty);
+    SWGNumber* getOrderQty();
+    void setOrderQty(SWGNumber* order_qty);
 
     double getPrice();
     void setPrice(double price);
@@ -124,8 +124,8 @@ public:
     QString* getOrdRejReason();
     void setOrdRejReason(QString* ord_rej_reason);
 
-    double getLeavesQty();
-    void setLeavesQty(double leaves_qty);
+    SWGNumber* getLeavesQty();
+    void setLeavesQty(SWGNumber* leaves_qty);
 
     SWGNumber* getCumQty();
     void setCumQty(SWGNumber* cum_qty);
@@ -145,11 +145,11 @@ public:
     QString* getTrdMatchId();
     void setTrdMatchId(QString* trd_match_id);
 
-    double getExecCost();
-    void setExecCost(double exec_cost);
+    SWGNumber* getExecCost();
+    void setExecCost(SWGNumber* exec_cost);
 
-    double getExecComm();
-    void setExecComm(double exec_comm);
+    SWGNumber* getExecComm();
+    void setExecComm(SWGNumber* exec_comm);
 
     double getHomeNotional();
     void setHomeNotional(double home_notional);
@@ -163,20 +163,8 @@ public:
     QDateTime* getTimestamp();
     void setTimestamp(QDateTime* timestamp);
 
-    double getExecGrossPnl();
-    void setExecGrossPnl(double exec_gross_pnl);
-
-    double getCurrentQty();
-    void setCurrentQty(double current_qty);
-
-    double getAvgEntryPrice();
-    void setAvgEntryPrice(double avg_entry_price);
-
-    double getRealisedPnl();
-    void setRealisedPnl(double realised_pnl);
-
-    double getUnrealisedPnl();
-    void setUnrealisedPnl(double unrealised_pnl);
+    QString* getFeeType();
+    void setFeeType(QString* fee_type);
 
 
     virtual bool isSet() override;
@@ -194,7 +182,7 @@ private:
     QString* cl_ord_link_id;
     bool m_cl_ord_link_id_isSet;
 
-    double account;
+    SWGNumber* account;
     bool m_account_isSet;
 
     QString* symbol;
@@ -203,7 +191,7 @@ private:
     QString* side;
     bool m_side_isSet;
 
-    double last_qty;
+    SWGNumber* last_qty;
     bool m_last_qty_isSet;
 
     double last_px;
@@ -212,7 +200,7 @@ private:
     QString* last_liquidity_ind;
     bool m_last_liquidity_ind_isSet;
 
-    double order_qty;
+    SWGNumber* order_qty;
     bool m_order_qty_isSet;
 
     double price;
@@ -263,7 +251,7 @@ private:
     QString* ord_rej_reason;
     bool m_ord_rej_reason_isSet;
 
-    double leaves_qty;
+    SWGNumber* leaves_qty;
     bool m_leaves_qty_isSet;
 
     SWGNumber* cum_qty;
@@ -284,10 +272,10 @@ private:
     QString* trd_match_id;
     bool m_trd_match_id_isSet;
 
-    double exec_cost;
+    SWGNumber* exec_cost;
     bool m_exec_cost_isSet;
 
-    double exec_comm;
+    SWGNumber* exec_comm;
     bool m_exec_comm_isSet;
 
     double home_notional;
@@ -302,20 +290,8 @@ private:
     QDateTime* timestamp;
     bool m_timestamp_isSet;
 
-    double exec_gross_pnl;
-    bool m_exec_gross_pnl_isSet;
-
-    double current_qty;
-    bool m_current_qty_isSet;
-
-    double avg_entry_price;
-    bool m_avg_entry_price_isSet;
-
-    double realised_pnl;
-    bool m_realised_pnl_isSet;
-
-    double unrealised_pnl;
-    bool m_unrealised_pnl_isSet;
+    QString* fee_type;
+    bool m_fee_type_isSet;
 
 };
 

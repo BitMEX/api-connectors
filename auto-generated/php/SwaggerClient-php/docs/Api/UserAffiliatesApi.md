@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **userAffiliatesGet**
-> \Swagger\Client\Model\XAny[] userAffiliatesGet($depth)
+> \Swagger\Client\Model\XAny[] userAffiliatesGet($depth, $target_account_id, $select_user_id)
 
 Get user's affiliates to a given depth
 
@@ -37,9 +37,11 @@ $apiInstance = new Swagger\Client\Api\UserAffiliatesApi(
     $config
 );
 $depth = 1.2; // double | the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates
+$target_account_id = 1.2; // double | AccountId of Sub-Affiliate Account
+$select_user_id = 1.2; // double | User id of result array to keep
 
 try {
-    $result = $apiInstance->userAffiliatesGet($depth);
+    $result = $apiInstance->userAffiliatesGet($depth, $target_account_id, $select_user_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserAffiliatesApi->userAffiliatesGet: ', $e->getMessage(), PHP_EOL;
@@ -52,6 +54,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **depth** | **double**| the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates | [optional]
+ **target_account_id** | **double**| AccountId of Sub-Affiliate Account | [optional]
+ **select_user_id** | **double**| User id of result array to keep | [optional]
 
 ### Return type
 

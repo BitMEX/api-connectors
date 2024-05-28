@@ -107,7 +107,8 @@ var name = "name_example"; // String | Name of the entry, eg. 'Hardware wallet'.
 var opts = { 
   'note': "note_example", // String | Optional annotation.
   'skipConfirm': false, // Boolean | Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation.
-  'skip2FA': false // Boolean | Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.
+  'skip2FA': false, // Boolean | Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.
+  'memo': "memo_example" // String | Destination Memo.
 };
 
 var callback = function(error, data, response) {
@@ -131,6 +132,7 @@ Name | Type | Description  | Notes
  **note** | **String**| Optional annotation. | [optional] 
  **skipConfirm** | **Boolean**| Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. | [optional] [default to false]
  **skip2FA** | **Boolean**| Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. | [optional] [default to false]
+ **memo** | **String**| Destination Memo. | [optional] 
 
 ### Return type
 

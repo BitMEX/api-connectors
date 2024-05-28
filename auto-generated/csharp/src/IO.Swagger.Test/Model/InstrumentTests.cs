@@ -763,6 +763,14 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'InstantPnl'
         }
         /// <summary>
+        /// Test the property 'MinTick'
+        /// </summary>
+        [Test]
+        public void MinTickTest()
+        {
+            // TODO unit test for the property 'MinTick'
+        }
+        /// <summary>
         /// Test the property 'Timestamp'
         /// </summary>
         [Test]

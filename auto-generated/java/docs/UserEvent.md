@@ -47,6 +47,16 @@ WITHDRAWALREQUESTED | &quot;withdrawalRequested&quot;
 ADDRESSSKIPCONFIRMREQUESTED | &quot;addressSkipConfirmRequested&quot;
 ADDRESSSKIPCONFIRMVERIFIED | &quot;addressSkipConfirmVerified&quot;
 VERIFY | &quot;verify&quot;
+RESTRICTEDACCOUNT | &quot;restrictedAccount&quot;
+UNRESTRICTEDACCOUNT | &quot;unrestrictedAccount&quot;
+DISABLEDACCOUNT | &quot;disabledAccount&quot;
+ENABLEDACCOUNT | &quot;enabledAccount&quot;
+ROLE_ROLEMAPPINGDESTROY | &quot;role:roleMappingDestroy&quot;
+ROLE_CHATBANNED | &quot;role:chatBanned&quot;
+ROLE_WITHDRAWALBANNED | &quot;role:withdrawalBanned&quot;
+ROLE_ORDERBANNED | &quot;role:orderBanned&quot;
+ROLE_APIBANNED | &quot;role:apiBanned&quot;
+ROLE_RESTRICTEDJURISDICTIONPRIVILEGE | &quot;role:restrictedJurisdictionPrivilege&quot;
 
 
 <a name="StatusEnum"></a>

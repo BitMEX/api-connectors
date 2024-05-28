@@ -84,7 +84,7 @@ This endpoint does not need any parameter.
 
 <a name="guildedit"></a>
 # **GuildEdit**
-> Guild GuildEdit (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null)
+> Guild GuildEdit (string name, string emoji, double? potDistributionPercent, string potDistributionType, double? potTraderId = null, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null)
 
 Edit guild new guild
 
@@ -119,18 +119,19 @@ namespace Example
             var name = name_example;  // string | Name of the guild, must be unique, must be at least 5 characters
             var emoji = emoji_example;  // string | Emoji name.
             var potDistributionPercent = 1.2;  // double? | How much of the pot should be distributed to the guild members, must be between 0 and 100
-            var potDistributionType = potDistributionType_example;  // string | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+            var potDistributionType = potDistributionType_example;  // string | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
             var potTraderId = 1.2;  // double? | User ID of the guild member with order write permission for the pot (optional) 
             var description = description_example;  // string | Guild description, can be used to explain the guild to other users. (optional) 
             var twitter = twitter_example;  // string | Guild twitter handle. (optional) 
             var discord = discord_example;  // string | Guild discord link. (optional) 
+            var telegram = telegram_example;  // string | Guild telegram link. (optional) 
             var imgUrl = imgUrl_example;  // string | URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional) 
             var isPrivate = true;  // bool? | Guild privacy status (optional) 
 
             try
             {
                 // Edit guild new guild
-                Guild result = apiInstance.GuildEdit(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, imgUrl, isPrivate);
+                Guild result = apiInstance.GuildEdit(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, telegram, imgUrl, isPrivate);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -149,11 +150,12 @@ Name | Type | Description  | Notes
  **name** | **string**| Name of the guild, must be unique, must be at least 5 characters | 
  **emoji** | **string**| Emoji name. | 
  **potDistributionPercent** | **double?**| How much of the pot should be distributed to the guild members, must be between 0 and 100 | 
- **potDistributionType** | **string**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM | 
+ **potDistributionType** | **string**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM | 
  **potTraderId** | **double?**| User ID of the guild member with order write permission for the pot | [optional] 
  **description** | **string**| Guild description, can be used to explain the guild to other users. | [optional] 
  **twitter** | **string**| Guild twitter handle. | [optional] 
  **discord** | **string**| Guild discord link. | [optional] 
+ **telegram** | **string**| Guild telegram link. | [optional] 
  **imgUrl** | **string**| URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used | [optional] 
  **isPrivate** | **bool?**| Guild privacy status | [optional] 
 
@@ -441,7 +443,7 @@ This endpoint does not need any parameter.
 
 <a name="guildnew"></a>
 # **GuildNew**
-> Guild GuildNew (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string imgUrl = null, bool? isPrivate = null)
+> Guild GuildNew (string name, string emoji, double? potDistributionPercent, string potDistributionType, string description = null, string twitter = null, string discord = null, string telegram = null, string imgUrl = null, bool? isPrivate = null)
 
 Creates a new guild
 
@@ -476,17 +478,18 @@ namespace Example
             var name = name_example;  // string | Name of the guild, must be unique, must be at least 5 characters
             var emoji = emoji_example;  // string | Emoji name.
             var potDistributionPercent = 1.2;  // double? | How much of the pot should be distributed to the guild members, must be between 0 and 100
-            var potDistributionType = potDistributionType_example;  // string | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+            var potDistributionType = potDistributionType_example;  // string | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
             var description = description_example;  // string | Guild description, can be used to explain the guild to other users. (optional) 
             var twitter = twitter_example;  // string | Guild twitter handle. (optional) 
             var discord = discord_example;  // string | Guild discord link. (optional) 
+            var telegram = telegram_example;  // string | Guild telegram link. (optional) 
             var imgUrl = imgUrl_example;  // string | URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional) 
             var isPrivate = true;  // bool? | Guild privacy status (optional) 
 
             try
             {
                 // Creates a new guild
-                Guild result = apiInstance.GuildNew(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, imgUrl, isPrivate);
+                Guild result = apiInstance.GuildNew(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, telegram, imgUrl, isPrivate);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -505,10 +508,11 @@ Name | Type | Description  | Notes
  **name** | **string**| Name of the guild, must be unique, must be at least 5 characters | 
  **emoji** | **string**| Emoji name. | 
  **potDistributionPercent** | **double?**| How much of the pot should be distributed to the guild members, must be between 0 and 100 | 
- **potDistributionType** | **string**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM | 
+ **potDistributionType** | **string**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM | 
  **description** | **string**| Guild description, can be used to explain the guild to other users. | [optional] 
  **twitter** | **string**| Guild twitter handle. | [optional] 
  **discord** | **string**| Guild discord link. | [optional] 
+ **telegram** | **string**| Guild telegram link. | [optional] 
  **imgUrl** | **string**| URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used | [optional] 
  **isPrivate** | **bool?**| Guild privacy status | [optional] 
 

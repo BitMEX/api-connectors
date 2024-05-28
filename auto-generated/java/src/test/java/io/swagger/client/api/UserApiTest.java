@@ -18,6 +18,7 @@ import io.swagger.client.model.Affiliate;
 import java.math.BigDecimal;
 import io.swagger.client.model.CollateralSupportAgreement;
 import io.swagger.client.model.CommunicationToken;
+import io.swagger.client.model.DepositAddress;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.Execution;
 import io.swagger.client.model.Margin;
@@ -30,6 +31,7 @@ import io.swagger.client.model.Transaction;
 import io.swagger.client.model.User;
 import io.swagger.client.model.UserCommissionsBySymbol;
 import io.swagger.client.model.Wallet;
+import io.swagger.client.model.WalletSummaryRecord;
 import io.swagger.client.model.XAny;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -48,6 +50,22 @@ public class UserApiTest {
 
     private final UserApi api = new UserApi();
 
+    
+    /**
+     * Cancel pending withdrawal
+     *
+     * 
+     *
+     * @throws Exception
+     *          if the Api call fails
+     */
+    @Test
+    public void userCancelPendingWithdrawalTest() throws Exception {
+        String transactID = null;
+        Object response = api.userCancelPendingWithdrawal(transactID);
+
+        // TODO: test validations
+    }
     
     /**
      * Cancel a withdrawal.
@@ -258,6 +276,23 @@ public class UserApiTest {
     }
     
     /**
+     * Get a deposit address.
+     *
+     * 
+     *
+     * @throws Exception
+     *          if the Api call fails
+     */
+    @Test
+    public void userGetDepositAddressInformationTest() throws Exception {
+        String currency = null;
+        String network = null;
+        DepositAddress response = api.userGetDepositAddressInformation(currency, network);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Get the execution history by day.
      *
      * 
@@ -432,7 +467,8 @@ public class UserApiTest {
         Double count = null;
         Double start = null;
         Double targetAccountId = null;
-        List<Transaction> response = api.userGetWalletHistory(currency, count, start, targetAccountId);
+        Boolean reverse = null;
+        List<Transaction> response = api.userGetWalletHistory(currency, count, start, targetAccountId, reverse);
 
         // TODO: test validations
     }
@@ -440,7 +476,7 @@ public class UserApiTest {
     /**
      * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
      *
-     * 
+     * Provides an aggregated view of transactions, by transaction type, over a specific time period.
      *
      * @throws Exception
      *          if the Api call fails
@@ -448,7 +484,9 @@ public class UserApiTest {
     @Test
     public void userGetWalletSummaryTest() throws Exception {
         String currency = null;
-        List<Transaction> response = api.userGetWalletSummary(currency);
+        OffsetDateTime startTime = null;
+        OffsetDateTime endTime = null;
+        List<WalletSummaryRecord> response = api.userGetWalletSummary(currency, startTime, endTime);
 
         // TODO: test validations
     }
@@ -498,11 +536,12 @@ public class UserApiTest {
         BigDecimal amount = null;
         String otpToken = null;
         String address = null;
+        String memo = null;
         Double addressId = null;
         Double targetUserId = null;
         Double fee = null;
         String text = null;
-        Transaction response = api.userRequestWithdrawal(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text);
+        Transaction response = api.userRequestWithdrawal(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text);
 
         // TODO: test validations
     }

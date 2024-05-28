@@ -72,7 +72,9 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //double? depth = null;
-            //var response = instance.UserAffiliatesGet(depth);
+            //double? targetAccountId = null;
+            //double? selectUserId = null;
+            //var response = instance.UserAffiliatesGet(depth, targetAccountId, selectUserId);
             //Assert.IsInstanceOf<List<XAny>> (response, "response is List<XAny>");
         }
         

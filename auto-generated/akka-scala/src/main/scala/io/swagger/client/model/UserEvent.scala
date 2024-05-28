@@ -60,6 +60,16 @@ object UserEventEnums {
     val AddressSkipConfirmRequested = Value("addressSkipConfirmRequested")
     val AddressSkipConfirmVerified = Value("addressSkipConfirmVerified")
     val Verify = Value("verify")
+    val RestrictedAccount = Value("restrictedAccount")
+    val UnrestrictedAccount = Value("unrestrictedAccount")
+    val DisabledAccount = Value("disabledAccount")
+    val EnabledAccount = Value("enabledAccount")
+    val RoleroleMappingDestroy = Value("role:roleMappingDestroy")
+    val RolechatBanned = Value("role:chatBanned")
+    val RolewithdrawalBanned = Value("role:withdrawalBanned")
+    val RoleorderBanned = Value("role:orderBanned")
+    val RoleapiBanned = Value("role:apiBanned")
+    val RolerestrictedJurisdictionPrivilege = Value("role:restrictedJurisdictionPrivilege")
   }
 
   object Status extends Enumeration {

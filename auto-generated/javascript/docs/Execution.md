@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **execID** | **String** |  | [optional] 
-**orderID** | **String** |  | 
+**orderID** | **String** |  | [optional] 
 **clOrdID** | **String** |  | [optional] 
 **clOrdLinkID** | **String** |  | [optional] 
 **account** | **Number** |  | [optional] 
@@ -43,10 +43,6 @@ Name | Type | Description | Notes
 **foreignNotional** | **Number** |  | [optional] 
 **transactTime** | **Date** |  | [optional] 
 **timestamp** | **Date** |  | 
-**execGrossPnl** | **Number** |  | [optional] 
-**currentQty** | **Number** |  | [optional] 
-**avgEntryPrice** | **Number** |  | [optional] 
-**realisedPnl** | **Number** |  | [optional] 
-**unrealisedPnl** | **Number** |  | [optional] 
+**feeType** | **String** |  | [optional] 
 
 

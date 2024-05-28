@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"currency": @"currency", @"created": @"created", @"userId": @"userId", @"address": @"address", @"name": @"name", @"note": @"note", @"skipConfirm": @"skipConfirm", @"skipConfirmVerified": @"skipConfirmVerified", @"skip2FA": @"skip2FA", @"skip2FAVerified": @"skip2FAVerified", @"network": @"network" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"currency": @"currency", @"created": @"created", @"userId": @"userId", @"address": @"address", @"name": @"name", @"note": @"note", @"skipConfirm": @"skipConfirm", @"skipConfirmVerified": @"skipConfirmVerified", @"skip2FA": @"skip2FA", @"skip2FAVerified": @"skip2FAVerified", @"network": @"network", @"memo": @"memo" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"_id", @"currency", @"created", @"userId", @"note", @"skipConfirm", @"skipConfirmVerified", @"skip2FA", @"skip2FAVerified", ];
+  NSArray *optionalProperties = @[@"_id", @"currency", @"created", @"userId", @"note", @"skipConfirm", @"skipConfirmVerified", @"skip2FA", @"skip2FAVerified", @"memo"];
   return [optionalProperties containsObject:propertyName];
 }
 

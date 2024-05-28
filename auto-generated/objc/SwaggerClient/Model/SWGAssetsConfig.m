@@ -14,6 +14,7 @@
     self.scale = @8.0;
     self.enabled = @(YES);
     self.isMarginCurrency = @(YES);
+    self.memoRequired = @(NO);
     
   }
   return self;
@@ -25,7 +26,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"asset": @"asset", @"currency": @"currency", @"majorCurrency": @"majorCurrency", @"name": @"name", @"currencyType": @"currencyType", @"scale": @"scale", @"enabled": @"enabled", @"isMarginCurrency": @"isMarginCurrency", @"networks": @"networks" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"asset": @"asset", @"currency": @"currency", @"majorCurrency": @"majorCurrency", @"name": @"name", @"currencyType": @"currencyType", @"scale": @"scale", @"enabled": @"enabled", @"isMarginCurrency": @"isMarginCurrency", @"memoRequired": @"memoRequired", @"networks": @"networks" }];
 }
 
 /**
@@ -35,7 +36,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"currency", @"majorCurrency", @"name", @"currencyType", @"scale", @"enabled", @"isMarginCurrency", @"networks"];
+  NSArray *optionalProperties = @[@"currency", @"majorCurrency", @"name", @"currencyType", @"scale", @"enabled", @"isMarginCurrency", @"memoRequired", @"networks"];
   return [optionalProperties containsObject:propertyName];
 }
 

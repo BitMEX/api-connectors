@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **scale** | **NSNumber*** |  | [optional] [default to @8.0]
 **enabled** | **NSNumber*** |  | [optional] [default to @(YES)]
 **isMarginCurrency** | **NSNumber*** |  | [optional] [default to @(YES)]
+**memoRequired** | **NSNumber*** |  | [optional] [default to @(NO)]
 **networks** | [**NSArray&lt;SWGAssetsConfigNetworkItem&gt;***](SWGAssetsConfigNetworkItem.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

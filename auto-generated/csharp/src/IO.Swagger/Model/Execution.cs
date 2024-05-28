@@ -39,7 +39,7 @@ namespace IO.Swagger.Model
         /// Initializes a new instance of the <see cref="Execution" /> class.
         /// </summary>
         /// <param name="execID">execID.</param>
-        /// <param name="orderID">orderID (required).</param>
+        /// <param name="orderID">orderID.</param>
         /// <param name="clOrdID">clOrdID.</param>
         /// <param name="clOrdLinkID">clOrdLinkID.</param>
         /// <param name="account">account.</param>
@@ -78,22 +78,9 @@ namespace IO.Swagger.Model
         /// <param name="foreignNotional">foreignNotional.</param>
         /// <param name="transactTime">transactTime.</param>
         /// <param name="timestamp">timestamp (required).</param>
-        /// <param name="execGrossPnl">execGrossPnl.</param>
-        /// <param name="currentQty">currentQty.</param>
-        /// <param name="avgEntryPrice">avgEntryPrice.</param>
-        /// <param name="realisedPnl">realisedPnl.</param>
-        /// <param name="unrealisedPnl">unrealisedPnl.</param>
-        public Execution(string execID = default(string), string orderID = default(string), string clOrdID = default(string), string clOrdLinkID = default(string), double? account = default(double?), string symbol = default(string), string side = default(string), double? lastQty = default(double?), double? lastPx = default(double?), string lastLiquidityInd = default(string), double? orderQty = default(double?), double? price = default(double?), decimal? displayQty = default(decimal?), double? stopPx = default(double?), double? pegOffsetValue = default(double?), string pegPriceType = default(string), string currency = default(string), string settlCurrency = default(string), string execType = default(string), string ordType = default(string), string timeInForce = default(string), string execInst = default(string), string contingencyType = default(string), string ordStatus = default(string), string triggered = default(string), bool? workingIndicator = default(bool?), string ordRejReason = default(string), double? leavesQty = default(double?), decimal? cumQty = default(decimal?), double? avgPx = default(double?), double? commission = default(double?), string tradePublishIndicator = default(string), string text = default(string), string trdMatchID = default(string), double? execCost = default(double?), double? execComm = default(double?), double? homeNotional = default(double?), double? foreignNotional = default(double?), DateTime? transactTime = default(DateTime?), DateTime? timestamp = default(DateTime?), double? execGrossPnl = default(double?), double? currentQty = default(double?), double? avgEntryPrice = default(double?), double? realisedPnl = default(double?), double? unrealisedPnl = default(double?))
+        /// <param name="feeType">feeType.</param>
+        public Execution(string execID = default(string), string orderID = default(string), string clOrdID = default(string), string clOrdLinkID = default(string), decimal? account = default(decimal?), string symbol = default(string), string side = default(string), decimal? lastQty = default(decimal?), double? lastPx = default(double?), string lastLiquidityInd = default(string), decimal? orderQty = default(decimal?), double? price = default(double?), decimal? displayQty = default(decimal?), double? stopPx = default(double?), double? pegOffsetValue = default(double?), string pegPriceType = default(string), string currency = default(string), string settlCurrency = default(string), string execType = default(string), string ordType = default(string), string timeInForce = default(string), string execInst = default(string), string contingencyType = default(string), string ordStatus = default(string), string triggered = default(string), bool? workingIndicator = default(bool?), string ordRejReason = default(string), decimal? leavesQty = default(decimal?), decimal? cumQty = default(decimal?), double? avgPx = default(double?), double? commission = default(double?), string tradePublishIndicator = default(string), string text = default(string), string trdMatchID = default(string), decimal? execCost = default(decimal?), decimal? execComm = default(decimal?), double? homeNotional = default(double?), double? foreignNotional = default(double?), DateTime? transactTime = default(DateTime?), DateTime? timestamp = default(DateTime?), string feeType = default(string))
         {
-            // to ensure "orderID" is required (not null)
-            if (orderID == null)
-            {
-                throw new InvalidDataException("orderID is a required property for Execution and cannot be null");
-            }
-            else
-            {
-                this.OrderID = orderID;
-            }
             // to ensure "symbol" is required (not null)
             if (symbol == null)
             {
@@ -113,6 +100,7 @@ namespace IO.Swagger.Model
                 this.Timestamp = timestamp;
             }
             this.ExecID = execID;
+            this.OrderID = orderID;
             this.ClOrdID = clOrdID;
             this.ClOrdLinkID = clOrdLinkID;
             this.Account = account;
@@ -149,11 +137,7 @@ namespace IO.Swagger.Model
             this.HomeNotional = homeNotional;
             this.ForeignNotional = foreignNotional;
             this.TransactTime = transactTime;
-            this.ExecGrossPnl = execGrossPnl;
-            this.CurrentQty = currentQty;
-            this.AvgEntryPrice = avgEntryPrice;
-            this.RealisedPnl = realisedPnl;
-            this.UnrealisedPnl = unrealisedPnl;
+            this.FeeType = feeType;
         }
         
         /// <summary>
@@ -184,7 +168,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name="account", EmitDefaultValue=false)]
-        public double? Account { get; set; }
+        public decimal? Account { get; set; }
 
         /// <summary>
         /// Gets or Sets Symbol
@@ -202,7 +186,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets LastQty
         /// </summary>
         [DataMember(Name="lastQty", EmitDefaultValue=false)]
-        public double? LastQty { get; set; }
+        public decimal? LastQty { get; set; }
 
         /// <summary>
         /// Gets or Sets LastPx
@@ -220,7 +204,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets OrderQty
         /// </summary>
         [DataMember(Name="orderQty", EmitDefaultValue=false)]
-        public double? OrderQty { get; set; }
+        public decimal? OrderQty { get; set; }
 
         /// <summary>
         /// Gets or Sets Price
@@ -322,7 +306,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets LeavesQty
         /// </summary>
         [DataMember(Name="leavesQty", EmitDefaultValue=false)]
-        public double? LeavesQty { get; set; }
+        public decimal? LeavesQty { get; set; }
 
         /// <summary>
         /// Gets or Sets CumQty
@@ -364,13 +348,13 @@ namespace IO.Swagger.Model
         /// Gets or Sets ExecCost
         /// </summary>
         [DataMember(Name="execCost", EmitDefaultValue=false)]
-        public double? ExecCost { get; set; }
+        public decimal? ExecCost { get; set; }
 
         /// <summary>
         /// Gets or Sets ExecComm
         /// </summary>
         [DataMember(Name="execComm", EmitDefaultValue=false)]
-        public double? ExecComm { get; set; }
+        public decimal? ExecComm { get; set; }
 
         /// <summary>
         /// Gets or Sets HomeNotional
@@ -397,34 +381,10 @@ namespace IO.Swagger.Model
         public DateTime? Timestamp { get; set; }
 
         /// <summary>
-        /// Gets or Sets ExecGrossPnl
+        /// Gets or Sets FeeType
         /// </summary>
-        [DataMember(Name="execGrossPnl", EmitDefaultValue=false)]
-        public double? ExecGrossPnl { get; set; }
-
-        /// <summary>
-        /// Gets or Sets CurrentQty
-        /// </summary>
-        [DataMember(Name="currentQty", EmitDefaultValue=false)]
-        public double? CurrentQty { get; set; }
-
-        /// <summary>
-        /// Gets or Sets AvgEntryPrice
-        /// </summary>
-        [DataMember(Name="avgEntryPrice", EmitDefaultValue=false)]
-        public double? AvgEntryPrice { get; set; }
-
-        /// <summary>
-        /// Gets or Sets RealisedPnl
-        /// </summary>
-        [DataMember(Name="realisedPnl", EmitDefaultValue=false)]
-        public double? RealisedPnl { get; set; }
-
-        /// <summary>
-        /// Gets or Sets UnrealisedPnl
-        /// </summary>
-        [DataMember(Name="unrealisedPnl", EmitDefaultValue=false)]
-        public double? UnrealisedPnl { get; set; }
+        [DataMember(Name="feeType", EmitDefaultValue=false)]
+        public string FeeType { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -474,11 +434,7 @@ namespace IO.Swagger.Model
             sb.Append("  ForeignNotional: ").Append(ForeignNotional).Append("\n");
             sb.Append("  TransactTime: ").Append(TransactTime).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  ExecGrossPnl: ").Append(ExecGrossPnl).Append("\n");
-            sb.Append("  CurrentQty: ").Append(CurrentQty).Append("\n");
-            sb.Append("  AvgEntryPrice: ").Append(AvgEntryPrice).Append("\n");
-            sb.Append("  RealisedPnl: ").Append(RealisedPnl).Append("\n");
-            sb.Append("  UnrealisedPnl: ").Append(UnrealisedPnl).Append("\n");
+            sb.Append("  FeeType: ").Append(FeeType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -714,29 +670,9 @@ namespace IO.Swagger.Model
                     this.Timestamp.Equals(input.Timestamp))
                 ) && 
                 (
-                    this.ExecGrossPnl == input.ExecGrossPnl ||
-                    (this.ExecGrossPnl != null &&
-                    this.ExecGrossPnl.Equals(input.ExecGrossPnl))
-                ) && 
-                (
-                    this.CurrentQty == input.CurrentQty ||
-                    (this.CurrentQty != null &&
-                    this.CurrentQty.Equals(input.CurrentQty))
-                ) && 
-                (
-                    this.AvgEntryPrice == input.AvgEntryPrice ||
-                    (this.AvgEntryPrice != null &&
-                    this.AvgEntryPrice.Equals(input.AvgEntryPrice))
-                ) && 
-                (
-                    this.RealisedPnl == input.RealisedPnl ||
-                    (this.RealisedPnl != null &&
-                    this.RealisedPnl.Equals(input.RealisedPnl))
-                ) && 
-                (
-                    this.UnrealisedPnl == input.UnrealisedPnl ||
-                    (this.UnrealisedPnl != null &&
-                    this.UnrealisedPnl.Equals(input.UnrealisedPnl))
+                    this.FeeType == input.FeeType ||
+                    (this.FeeType != null &&
+                    this.FeeType.Equals(input.FeeType))
                 );
         }
 
@@ -829,16 +765,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.TransactTime.GetHashCode();
                 if (this.Timestamp != null)
                     hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
-                if (this.ExecGrossPnl != null)
-                    hashCode = hashCode * 59 + this.ExecGrossPnl.GetHashCode();
-                if (this.CurrentQty != null)
-                    hashCode = hashCode * 59 + this.CurrentQty.GetHashCode();
-                if (this.AvgEntryPrice != null)
-                    hashCode = hashCode * 59 + this.AvgEntryPrice.GetHashCode();
-                if (this.RealisedPnl != null)
-                    hashCode = hashCode * 59 + this.RealisedPnl.GetHashCode();
-                if (this.UnrealisedPnl != null)
-                    hashCode = hashCode * 59 + this.UnrealisedPnl.GetHashCode();
+                if (this.FeeType != null)
+                    hashCode = hashCode * 59 + this.FeeType.GetHashCode();
                 return hashCode;
             }
         }

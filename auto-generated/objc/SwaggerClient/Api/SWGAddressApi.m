@@ -119,6 +119,8 @@ NSInteger kSWGAddressApiMissingParamErrorCode = 234513;
 ///
 ///  @param skip2FA Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
 ///
+///  @param memo Destination Memo. (optional)
+///
 ///  @returns SWGAddress*
 ///
 -(NSURLSessionTask*) addressNewWithCurrency: (NSString*) currency
@@ -128,6 +130,7 @@ NSInteger kSWGAddressApiMissingParamErrorCode = 234513;
     note: (NSString*) note
     skipConfirm: (NSNumber*) skipConfirm
     skip2FA: (NSNumber*) skip2FA
+    memo: (NSString*) memo
     completionHandler: (void (^)(SWGAddress* output, NSError* error)) handler {
     // verify the required parameter 'currency' is set
     if (currency == nil) {
@@ -218,6 +221,9 @@ NSInteger kSWGAddressApiMissingParamErrorCode = 234513;
     }
     if (skip2FA) {
         formParams[@"skip2FA"] = skip2FA;
+    }
+    if (memo) {
+        formParams[@"memo"] = memo;
     }
 
     return [self.apiClient requestWithPath: resourcePath

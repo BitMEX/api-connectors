@@ -2394,7 +2394,7 @@
           "Position"
         ],
         "summary": "Get your positions.",
-        "description": "This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.\n\nThe fields _account_, _symbol_, _currency_ are unique to each position and form its key.\n\nSpot trading symbols do not return any position data.\n\n- **account**: Your unique account ID.\n- **symbol**: The contract for this position.\n- **currency**: The margin currency for this position.\n- **underlying**: Meta data of the _symbol_.\n- **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_\n- **commission**: The maximum of the maker, taker, and settlement fee.\n- **initMarginReq**: The initial margin requirement. This will be at least the symbol's default initial maintenance margin, but can be higher if you choose lower leverage.\n- **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol's default maintenance maintenance margin, but can be higher if you choose a higher risk limit.\n- **riskLimit**: This is a function of your _maintMarginReq_.\n- **leverage**: 1 / initMarginReq.\n- **crossMargin**: True/false depending on whether you set cross margin on this position.\n- **deleveragePercentile**: Indicates where your position is in the ADL queue.\n- **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position.\n- **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed.\n- **currentQty**: The current position amount in contracts.\n- **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_).\n- **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_).\n- **realisedCost**: The realised cost of this position calculated with regard to average cost accounting.\n- **unrealisedCost**: _currentCost_ - _realisedCost_.\n- **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_).\n- **markPrice**: The mark price of the symbol in _quoteCurrency_.\n- **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_).\n- **homeNotional**: Value of position in units of _underlying_.\n- **foreignNotional**: Value of position in units of _quoteCurrency_.\n- **realisedPnl**: The negative of _realisedCost_.\n- **unrealisedPnl**: _unrealisedGrossPnl_.\n- **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated.\n- **bankruptPrice**: Once markPrice reaches this price, this position will have no equity.\n",
+        "description": "This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.\n\nThe fields _account_, _symbol_, _currency_ are unique to each position and form its key.\n\nSpot trading symbols returns a subset of the position fields, mainly the open order aggregates.\n\n- **account**: Your unique account ID.\n- **symbol**: The contract for this position.\n- **currency**: The margin currency for this position.\n- **underlying**: Meta data of the _symbol_.\n- **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_\n- **commission**: The maximum of the maker, taker, and settlement fee.\n- **initMarginReq**: The initial margin requirement. This will be at least the symbol's default initial maintenance margin, but can be higher if you choose lower leverage.\n- **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol's default maintenance maintenance margin, but can be higher if you choose a higher risk limit.\n- **riskLimit**: This is a function of your _maintMarginReq_.\n- **leverage**: 1 / initMarginReq.\n- **crossMargin**: True/false depending on whether you set cross margin on this position.\n- **deleveragePercentile**: Indicates where your position is in the ADL queue.\n- **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position.\n- **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed.\n- **currentQty**: The current position amount in contracts.\n- **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_).\n- **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_).\n- **realisedCost**: The realised cost of this position calculated with regard to average cost accounting.\n- **unrealisedCost**: _currentCost_ - _realisedCost_.\n- **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_).\n- **markPrice**: The mark price of the symbol in _quoteCurrency_.\n- **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_).\n- **homeNotional**: Value of position in units of _underlying_.\n- **foreignNotional**: Value of position in units of _quoteCurrency_.\n- **realisedPnl**: The negative of _realisedCost_.\n- **unrealisedPnl**: _unrealisedGrossPnl_.\n- **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated.\n- **bankruptPrice**: Once markPrice reaches this price, this position will have no equity.\n",
         "operationId": "Position.get",
         "parameters": [
           {
@@ -3623,6 +3623,64 @@
         "deprecated": false
       }
     },
+    "/user/depositAddressInformation": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get a deposit address.",
+        "operationId": "User.getDepositAddressInformation",
+        "parameters": [
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "network",
+            "in": "query",
+            "description": "The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request was successful",
+            "schema": {
+              "$ref": "#/definitions/DepositAddress"
+            }
+          },
+          "400": {
+            "description": "Parameter Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Access Denied",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
     "/user/wallet": {
       "get": {
         "tags": [
@@ -3694,16 +3752,16 @@
           {
             "name": "count",
             "in": "query",
-            "description": "Number of results to fetch.",
+            "description": "Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows.",
             "required": false,
-            "default": 100,
+            "default": 10000,
             "type": "number",
             "format": "double"
           },
           {
             "name": "start",
             "in": "query",
-            "description": "Starting point for results.",
+            "description": "Starting point for results, integer. Default 0.",
             "required": false,
             "default": 0,
             "type": "number",
@@ -3716,6 +3774,14 @@
             "required": false,
             "type": "number",
             "format": "double"
+          },
+          {
+            "name": "reverse",
+            "in": "query",
+            "description": "Start from the latest transaction record. Default true.",
+            "required": false,
+            "default": true,
+            "type": "boolean"
           }
         ],
         "responses": {
@@ -3762,6 +3828,7 @@
           "User"
         ],
         "summary": "Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).",
+        "description": "Provides an aggregated view of transactions, by transaction type, over a specific time period.",
         "operationId": "User.getWalletSummary",
         "parameters": [
           {
@@ -3771,6 +3838,22 @@
             "required": false,
             "default": "XBt",
             "type": "string"
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "description": "Start time for the summary",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "description": "End time for the summary",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
           }
         ],
         "responses": {
@@ -3779,7 +3862,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Transaction"
+                "$ref": "#/definitions/WalletSummaryRecord"
               }
             }
           },
@@ -4318,6 +4401,13 @@
             "type": "string"
           },
           {
+            "name": "memo",
+            "in": "formData",
+            "description": "Destination Memo. If `address`, is specified, Destination Memo can also be specified",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "addressId",
             "in": "formData",
             "description": "ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.",
@@ -4354,6 +4444,56 @@
             "description": "Request was successful",
             "schema": {
               "$ref": "#/definitions/Transaction"
+            }
+          },
+          "400": {
+            "description": "Parameter Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Access Denied",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/withdrawal": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Cancel pending withdrawal",
+        "operationId": "User.cancelPendingWithdrawal",
+        "parameters": [
+          {
+            "name": "transactID",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request was successful",
+            "schema": {
+              "type": "object"
             }
           },
           "400": {
@@ -5300,7 +5440,7 @@
             "in": "query",
             "description": "Number of results to fetch.",
             "required": false,
-            "default": 150,
+            "default": 100,
             "type": "number",
             "format": "double"
           },
@@ -5503,6 +5643,13 @@
             "required": false,
             "default": false,
             "type": "boolean"
+          },
+          {
+            "name": "memo",
+            "in": "formData",
+            "description": "Destination Memo.",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
@@ -5599,6 +5746,22 @@
             "required": false,
             "type": "number",
             "format": "double"
+          },
+          {
+            "name": "targetAccountId",
+            "in": "query",
+            "description": "AccountId of Sub-Affiliate Account",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "selectUserId",
+            "in": "query",
+            "description": "User id of result array to keep",
+            "required": false,
+            "type": "number",
+            "format": "double"
           }
         ],
         "responses": {
@@ -5672,7 +5835,7 @@
           {
             "name": "potDistributionType",
             "in": "formData",
-            "description": "How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM",
+            "description": "How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM",
             "required": true,
             "type": "string"
           },
@@ -5694,6 +5857,13 @@
             "name": "discord",
             "in": "formData",
             "description": "Guild discord link.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "telegram",
+            "in": "formData",
+            "description": "Guild telegram link.",
             "required": false,
             "type": "string"
           },
@@ -5778,7 +5948,7 @@
           {
             "name": "potDistributionType",
             "in": "formData",
-            "description": "How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM",
+            "description": "How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM",
             "required": true,
             "type": "string"
           },
@@ -5808,6 +5978,13 @@
             "name": "discord",
             "in": "formData",
             "description": "Guild discord link.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "telegram",
+            "in": "formData",
+            "description": "Guild telegram link.",
             "required": false,
             "type": "string"
           },
@@ -6567,9 +6744,11 @@
       "description": "Raw Order and Balance Data",
       "properties": {
         "execID": {
+          "format": "guid",
           "type": "string"
         },
         "orderID": {
+          "format": "guid",
           "type": "string"
         },
         "clOrdID": {
@@ -6579,8 +6758,8 @@
           "type": "string"
         },
         "account": {
-          "type": "number",
-          "format": "double"
+          "format": "int64",
+          "type": "number"
         },
         "symbol": {
           "type": "string"
@@ -6589,23 +6768,23 @@
           "type": "string"
         },
         "lastQty": {
-          "type": "number",
-          "format": "double"
+          "format": "int64",
+          "type": "number"
         },
         "lastPx": {
-          "type": "number",
-          "format": "double"
+          "format": "double",
+          "type": "number"
         },
         "lastLiquidityInd": {
           "type": "string"
         },
         "orderQty": {
-          "type": "number",
-          "format": "double"
+          "format": "int64",
+          "type": "number"
         },
         "price": {
-          "type": "number",
-          "format": "double"
+          "format": "double",
+          "type": "number"
         },
         "displayQty": {
           "format": "int64",
@@ -6656,8 +6835,8 @@
           "type": "string"
         },
         "leavesQty": {
-          "type": "number",
-          "format": "double"
+          "format": "int64",
+          "type": "number"
         },
         "cumQty": {
           "format": "int64",
@@ -6668,8 +6847,8 @@
           "type": "number"
         },
         "commission": {
-          "type": "number",
-          "format": "double"
+          "format": "double",
+          "type": "number"
         },
         "tradePublishIndicator": {
           "type": "string"
@@ -6678,15 +6857,16 @@
           "type": "string"
         },
         "trdMatchID": {
+          "format": "guid",
           "type": "string"
         },
         "execCost": {
-          "type": "number",
-          "format": "double"
+          "format": "int64",
+          "type": "number"
         },
         "execComm": {
-          "type": "number",
-          "format": "double"
+          "format": "int64",
+          "type": "number"
         },
         "homeNotional": {
           "format": "double",
@@ -6697,36 +6877,18 @@
           "type": "number"
         },
         "transactTime": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         },
         "timestamp": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         },
-        "execGrossPnl": {
-          "type": "number",
-          "format": "double"
-        },
-        "currentQty": {
-          "type": "number",
-          "format": "double"
-        },
-        "avgEntryPrice": {
-          "type": "number",
-          "format": "double"
-        },
-        "realisedPnl": {
-          "type": "number",
-          "format": "double"
-        },
-        "unrealisedPnl": {
-          "type": "number",
-          "format": "double"
+        "feeType": {
+          "type": "string"
         }
       },
       "required": [
-        "orderID",
         "symbol",
         "timestamp"
       ],
@@ -7093,6 +7255,10 @@
         "instantPnl": {
           "type": "boolean"
         },
+        "minTick": {
+          "format": "double",
+          "type": "number"
+        },
         "timestamp": {
           "format": "date-time",
           "type": "string"
@@ -7326,6 +7492,7 @@
       "description": "Placement, Cancellation, Amending, and History",
       "properties": {
         "orderID": {
+          "format": "guid",
           "type": "string"
         },
         "clOrdID": {
@@ -7335,8 +7502,8 @@
           "type": "string"
         },
         "account": {
-          "type": "number",
-          "format": "double"
+          "format": "int64",
+          "type": "number"
         },
         "symbol": {
           "type": "string"
@@ -7345,24 +7512,24 @@
           "type": "string"
         },
         "orderQty": {
-          "type": "number",
-          "format": "double"
+          "format": "int64",
+          "type": "number"
         },
         "price": {
-          "type": "number",
-          "format": "double"
+          "format": "double",
+          "type": "number"
         },
         "displayQty": {
-          "type": "number",
-          "format": "double"
+          "format": "int64",
+          "type": "number"
         },
         "stopPx": {
-          "type": "number",
-          "format": "double"
+          "format": "double",
+          "type": "number"
         },
         "pegOffsetValue": {
-          "type": "number",
-          "format": "double"
+          "format": "double",
+          "type": "number"
         },
         "pegPriceType": {
           "type": "string"
@@ -7398,27 +7565,27 @@
           "type": "string"
         },
         "leavesQty": {
-          "type": "number",
-          "format": "double"
+          "format": "int64",
+          "type": "number"
         },
         "cumQty": {
-          "type": "number",
-          "format": "double"
+          "format": "int64",
+          "type": "number"
         },
         "avgPx": {
-          "type": "number",
-          "format": "double"
+          "format": "double",
+          "type": "number"
         },
         "text": {
           "type": "string"
         },
         "transactTime": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         },
         "timestamp": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         }
       },
       "required": [
@@ -7998,6 +8165,21 @@
       ],
       "type": "object"
     },
+    "DepositAddress": {
+      "description": "Deposit Address",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "memo": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "address"
+      ],
+      "type": "object"
+    },
     "Wallet": {
       "description": "Assets and Networks Data",
       "properties": {
@@ -8105,6 +8287,59 @@
       },
       "required": [
         "transactID"
+      ],
+      "type": "object"
+    },
+    "WalletSummaryRecord": {
+      "properties": {
+        "account": {
+          "type": "number",
+          "format": "double"
+        },
+        "currency": {
+          "default": "XBt",
+          "type": "string"
+        },
+        "transactType": {
+          "type": "string"
+        },
+        "symbol": {
+          "default": "XBTUSD",
+          "type": "string"
+        },
+        "amount": {
+          "default": 0,
+          "type": "number",
+          "format": "double"
+        },
+        "pendingDebit": {
+          "default": 0,
+          "type": "number",
+          "format": "double"
+        },
+        "realisedPnl": {
+          "default": 0,
+          "type": "number",
+          "format": "double"
+        },
+        "walletBalance": {
+          "default": 0,
+          "type": "number",
+          "format": "double"
+        },
+        "unrealisedPnl": {
+          "default": 0,
+          "type": "number",
+          "format": "double"
+        },
+        "marginBalance": {
+          "default": 0,
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "required": [
+        "account"
       ],
       "type": "object"
     },
@@ -8418,6 +8653,10 @@
           "type": "string",
           "format": "date-time"
         },
+        "firstDepositTimestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
         "typ": {
           "type": "string"
         }
@@ -8692,7 +8931,17 @@
             "withdrawalRequested",
             "addressSkipConfirmRequested",
             "addressSkipConfirmVerified",
-            "verify"
+            "verify",
+            "restrictedAccount",
+            "unrestrictedAccount",
+            "disabledAccount",
+            "enabledAccount",
+            "role:roleMappingDestroy",
+            "role:chatBanned",
+            "role:withdrawalBanned",
+            "role:orderBanned",
+            "role:apiBanned",
+            "role:restrictedJurisdictionPrivilege"
           ],
           "type": "string"
         },
@@ -8776,6 +9025,10 @@
         },
         "isMarginCurrency": {
           "default": true,
+          "type": "boolean"
+        },
+        "memoRequired": {
+          "default": false,
           "type": "boolean"
         },
         "networks": {
@@ -8869,6 +9122,9 @@
           "type": "boolean"
         },
         "network": {
+          "type": "string"
+        },
+        "memo": {
           "type": "string"
         }
       },
@@ -9053,6 +9309,15 @@
             "type": "string"
           }
         },
+        "favouriteBots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "hasSetTradingCurrencies": {
+          "type": "boolean"
+        },
         "hideConfirmDialogs": {
           "type": "array",
           "items": {
@@ -9068,6 +9333,14 @@
         },
         "hideNameFromLeaderboard": {
           "default": true,
+          "type": "boolean"
+        },
+        "hidePnlInGuilds": {
+          "default": false,
+          "type": "boolean"
+        },
+        "hideRoiInGuilds": {
+          "default": false,
           "type": "boolean"
         },
         "hideNotifications": {
@@ -9100,6 +9373,9 @@
         "marginPnlRowKind": {
           "type": "string"
         },
+        "mobileLocale": {
+          "type": "string"
+        },
         "msgsSeen": {
           "type": "array",
           "items": {
@@ -9108,6 +9384,9 @@
         },
         "notifications": {
           "type": "object"
+        },
+        "optionsBeta": {
+          "type": "boolean"
         },
         "orderBookBinning": {
           "type": "object"
@@ -9140,6 +9419,9 @@
           "items": {
             "type": "string"
           }
+        },
+        "spacingPreference": {
+          "type": "string"
         },
         "strictIPCheck": {
           "default": false,

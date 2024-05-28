@@ -108,13 +108,14 @@ var emoji = "emoji_example"; // String | Emoji name.
 
 var potDistributionPercent = 1.2; // Number | How much of the pot should be distributed to the guild members, must be between 0 and 100
 
-var potDistributionType = "potDistributionType_example"; // String | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+var potDistributionType = "potDistributionType_example"; // String | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
 
 var opts = { 
   'potTraderId': 1.2, // Number | User ID of the guild member with order write permission for the pot
   'description': "description_example", // String | Guild description, can be used to explain the guild to other users.
   'twitter': "twitter_example", // String | Guild twitter handle.
   'discord': "discord_example", // String | Guild discord link.
+  'telegram': "telegram_example", // String | Guild telegram link.
   'imgUrl': "imgUrl_example", // String | URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
   'isPrivate': true // Boolean | Guild privacy status
 };
@@ -136,11 +137,12 @@ Name | Type | Description  | Notes
  **name** | **String**| Name of the guild, must be unique, must be at least 5 characters | 
  **emoji** | **String**| Emoji name. | 
  **potDistributionPercent** | **Number**| How much of the pot should be distributed to the guild members, must be between 0 and 100 | 
- **potDistributionType** | **String**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM | 
+ **potDistributionType** | **String**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM | 
  **potTraderId** | **Number**| User ID of the guild member with order write permission for the pot | [optional] 
  **description** | **String**| Guild description, can be used to explain the guild to other users. | [optional] 
  **twitter** | **String**| Guild twitter handle. | [optional] 
  **discord** | **String**| Guild discord link. | [optional] 
+ **telegram** | **String**| Guild telegram link. | [optional] 
  **imgUrl** | **String**| URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used | [optional] 
  **isPrivate** | **Boolean**| Guild privacy status | [optional] 
 
@@ -415,12 +417,13 @@ var emoji = "emoji_example"; // String | Emoji name.
 
 var potDistributionPercent = 1.2; // Number | How much of the pot should be distributed to the guild members, must be between 0 and 100
 
-var potDistributionType = "potDistributionType_example"; // String | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+var potDistributionType = "potDistributionType_example"; // String | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
 
 var opts = { 
   'description': "description_example", // String | Guild description, can be used to explain the guild to other users.
   'twitter': "twitter_example", // String | Guild twitter handle.
   'discord': "discord_example", // String | Guild discord link.
+  'telegram': "telegram_example", // String | Guild telegram link.
   'imgUrl': "imgUrl_example", // String | URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
   'isPrivate': true // Boolean | Guild privacy status
 };
@@ -442,10 +445,11 @@ Name | Type | Description  | Notes
  **name** | **String**| Name of the guild, must be unique, must be at least 5 characters | 
  **emoji** | **String**| Emoji name. | 
  **potDistributionPercent** | **Number**| How much of the pot should be distributed to the guild members, must be between 0 and 100 | 
- **potDistributionType** | **String**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM | 
+ **potDistributionType** | **String**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM | 
  **description** | **String**| Guild description, can be used to explain the guild to other users. | [optional] 
  **twitter** | **String**| Guild twitter handle. | [optional] 
  **discord** | **String**| Guild discord link. | [optional] 
+ **telegram** | **String**| Guild telegram link. | [optional] 
  **imgUrl** | **String**| URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used | [optional] 
  **isPrivate** | **Boolean**| Guild privacy status | [optional] 
 

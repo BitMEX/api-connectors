@@ -14,6 +14,7 @@ HEADERS += \
     $${PWD}/SWGCollateralSupportAgreement.h \
     $${PWD}/SWGCommunicationToken.h \
     $${PWD}/SWGConnectedUsers.h \
+    $${PWD}/SWGDepositAddress.h \
     $${PWD}/SWGError.h \
     $${PWD}/SWGError_error.h \
     $${PWD}/SWGExecution.h \
@@ -52,6 +53,7 @@ HEADERS += \
     $${PWD}/SWGUserEvent.h \
     $${PWD}/SWGUserPreferences.h \
     $${PWD}/SWGWallet.h \
+    $${PWD}/SWGWalletSummaryRecord.h \
     $${PWD}/SWGX-any.h \
 # APIs
     $${PWD}/SWGAPIKeyApi.h \
@@ -100,6 +102,7 @@ SOURCES += \
     $${PWD}/SWGCollateralSupportAgreement.cpp \
     $${PWD}/SWGCommunicationToken.cpp \
     $${PWD}/SWGConnectedUsers.cpp \
+    $${PWD}/SWGDepositAddress.cpp \
     $${PWD}/SWGError.cpp \
     $${PWD}/SWGError_error.cpp \
     $${PWD}/SWGExecution.cpp \
@@ -138,6 +141,7 @@ SOURCES += \
     $${PWD}/SWGUserEvent.cpp \
     $${PWD}/SWGUserPreferences.cpp \
     $${PWD}/SWGWallet.cpp \
+    $${PWD}/SWGWalletSummaryRecord.cpp \
     $${PWD}/SWGX-any.cpp \
 # APIs
     $${PWD}/SWGAPIKeyApi.cpp \

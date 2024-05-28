@@ -103,6 +103,7 @@ case class Instrument (
   settledPriceAdjustmentRate: Option[Double] = None,
   settledPrice: Option[Double] = None,
   instantPnl: Option[Boolean] = None,
+  minTick: Option[Double] = None,
   timestamp: Option[DateTime] = None
 ) extends ApiModel
 

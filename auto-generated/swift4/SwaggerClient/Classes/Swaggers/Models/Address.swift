@@ -23,8 +23,9 @@ public struct Address: Codable {
     public var skip2FA: Bool?
     public var skip2FAVerified: Bool?
     public var network: String
+    public var memo: String?
 
-    public init(_id: Double?, currency: String?, created: Date?, userId: Double?, address: String, name: String, note: String?, skipConfirm: Bool?, skipConfirmVerified: Bool?, skip2FA: Bool?, skip2FAVerified: Bool?, network: String) {
+    public init(_id: Double?, currency: String?, created: Date?, userId: Double?, address: String, name: String, note: String?, skipConfirm: Bool?, skipConfirmVerified: Bool?, skip2FA: Bool?, skip2FAVerified: Bool?, network: String, memo: String?) {
         self._id = _id
         self.currency = currency
         self.created = created
@@ -37,6 +38,7 @@ public struct Address: Codable {
         self.skip2FA = skip2FA
         self.skip2FAVerified = skip2FAVerified
         self.network = network
+        self.memo = memo
     }
 
     public enum CodingKeys: String, CodingKey { 
@@ -52,6 +54,7 @@ public struct Address: Codable {
         case skip2FA
         case skip2FAVerified
         case network
+        case memo
     }
 
 

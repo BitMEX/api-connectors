@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **execID** | **String** |  |  [optional]
-**orderID** | **String** |  | 
+**orderID** | **String** |  |  [optional]
 **clOrdID** | **String** |  |  [optional]
 **clOrdLinkID** | **String** |  |  [optional]
-**account** | **Double** |  |  [optional]
+**account** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **symbol** | **String** |  | 
 **side** | **String** |  |  [optional]
-**lastQty** | **Double** |  |  [optional]
+**lastQty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **lastPx** | **Double** |  |  [optional]
 **lastLiquidityInd** | **String** |  |  [optional]
-**orderQty** | **Double** |  |  [optional]
+**orderQty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **price** | **Double** |  |  [optional]
 **displayQty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **stopPx** | **Double** |  |  [optional]
@@ -31,24 +31,20 @@ Name | Type | Description | Notes
 **triggered** | **String** |  |  [optional]
 **workingIndicator** | **Boolean** |  |  [optional]
 **ordRejReason** | **String** |  |  [optional]
-**leavesQty** | **Double** |  |  [optional]
+**leavesQty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **cumQty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **avgPx** | **Double** |  |  [optional]
 **commission** | **Double** |  |  [optional]
 **tradePublishIndicator** | **String** |  |  [optional]
 **text** | **String** |  |  [optional]
 **trdMatchID** | **String** |  |  [optional]
-**execCost** | **Double** |  |  [optional]
-**execComm** | **Double** |  |  [optional]
+**execCost** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**execComm** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **homeNotional** | **Double** |  |  [optional]
 **foreignNotional** | **Double** |  |  [optional]
 **transactTime** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
-**execGrossPnl** | **Double** |  |  [optional]
-**currentQty** | **Double** |  |  [optional]
-**avgEntryPrice** | **Double** |  |  [optional]
-**realisedPnl** | **Double** |  |  [optional]
-**unrealisedPnl** | **Double** |  |  [optional]
+**feeType** | **String** |  |  [optional]
 
 
 

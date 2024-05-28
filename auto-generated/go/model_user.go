@@ -34,5 +34,6 @@ type User struct {
 	GeoipCountry string `json:"geoipCountry,omitempty"`
 	GeoipRegion string `json:"geoipRegion,omitempty"`
 	FirstTradeTimestamp time.Time `json:"firstTradeTimestamp,omitempty"`
+	FirstDepositTimestamp time.Time `json:"firstDepositTimestamp,omitempty"`
 	Typ string `json:"typ,omitempty"`
 }

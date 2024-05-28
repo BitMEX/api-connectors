@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **skip2_fa** | **bool** |  | [optional] 
 **skip2_fa_verified** | **bool** |  | [optional] 
 **network** | **string** |  | 
+**memo** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

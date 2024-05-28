@@ -51,6 +51,7 @@ class User(object):
         'geoip_country': 'str',
         'geoip_region': 'str',
         'first_trade_timestamp': 'datetime',
+        'first_deposit_timestamp': 'datetime',
         'typ': 'str'
     }
 
@@ -73,10 +74,11 @@ class User(object):
         'geoip_country': 'geoipCountry',
         'geoip_region': 'geoipRegion',
         'first_trade_timestamp': 'firstTradeTimestamp',
+        'first_deposit_timestamp': 'firstDepositTimestamp',
         'typ': 'typ'
     }
 
-    def __init__(self, id=None, firstname=None, lastname=None, username=None, account_name=None, is_user=True, email=None, date_of_birth=None, phone=None, created=None, last_updated=None, preferences=None, tfa_enabled=None, affiliate_id=None, country=None, geoip_country=None, geoip_region=None, first_trade_timestamp=None, typ=None, _configuration=None):  # noqa: E501
+    def __init__(self, id=None, firstname=None, lastname=None, username=None, account_name=None, is_user=True, email=None, date_of_birth=None, phone=None, created=None, last_updated=None, preferences=None, tfa_enabled=None, affiliate_id=None, country=None, geoip_country=None, geoip_region=None, first_trade_timestamp=None, first_deposit_timestamp=None, typ=None, _configuration=None):  # noqa: E501
         """User - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -100,6 +102,7 @@ class User(object):
         self._geoip_country = None
         self._geoip_region = None
         self._first_trade_timestamp = None
+        self._first_deposit_timestamp = None
         self._typ = None
         self.discriminator = None
 
@@ -137,6 +140,8 @@ class User(object):
             self.geoip_region = geoip_region
         if first_trade_timestamp is not None:
             self.first_trade_timestamp = first_trade_timestamp
+        if first_deposit_timestamp is not None:
+            self.first_deposit_timestamp = first_deposit_timestamp
         if typ is not None:
             self.typ = typ
 
@@ -533,6 +538,27 @@ class User(object):
         """
 
         self._first_trade_timestamp = first_trade_timestamp
+
+    @property
+    def first_deposit_timestamp(self):
+        """Gets the first_deposit_timestamp of this User.  # noqa: E501
+
+
+        :return: The first_deposit_timestamp of this User.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._first_deposit_timestamp
+
+    @first_deposit_timestamp.setter
+    def first_deposit_timestamp(self, first_deposit_timestamp):
+        """Sets the first_deposit_timestamp of this User.
+
+
+        :param first_deposit_timestamp: The first_deposit_timestamp of this User.  # noqa: E501
+        :type: datetime
+        """
+
+        self._first_deposit_timestamp = first_deposit_timestamp
 
     @property
     def typ(self):

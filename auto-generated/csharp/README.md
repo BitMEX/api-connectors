@@ -167,6 +167,7 @@ Class | Method | HTTP request | Description
 *StatsApi* | [**StatsHistoryUSD**](docs/StatsApi.md#statshistoryusd) | **GET** /stats/historyUSD | Get a summary of exchange statistics in USD.
 *TradeApi* | [**TradeGet**](docs/TradeApi.md#tradeget) | **GET** /trade | Get Trades.
 *TradeApi* | [**TradeGetBucketed**](docs/TradeApi.md#tradegetbucketed) | **GET** /trade/bucketed | Get previous trades in time buckets.
+*UserApi* | [**UserCancelPendingWithdrawal**](docs/UserApi.md#usercancelpendingwithdrawal) | **DELETE** /user/withdrawal | Cancel pending withdrawal
 *UserApi* | [**UserCancelWithdrawal**](docs/UserApi.md#usercancelwithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 *UserApi* | [**UserCheckReferralCode**](docs/UserApi.md#usercheckreferralcode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 *UserApi* | [**UserCommunicationToken**](docs/UserApi.md#usercommunicationtoken) | **POST** /user/communicationToken | Register your communication token for mobile clients
@@ -180,6 +181,7 @@ Class | Method | HTTP request | Description
 *UserApi* | [**UserGetCSA**](docs/UserApi.md#usergetcsa) | **GET** /user/csa | Get your account's CSA status.
 *UserApi* | [**UserGetCommission**](docs/UserApi.md#usergetcommission) | **GET** /user/commission | Get your account's commission status.
 *UserApi* | [**UserGetDepositAddress**](docs/UserApi.md#usergetdepositaddress) | **GET** /user/depositAddress | Get a deposit address.
+*UserApi* | [**UserGetDepositAddressInformation**](docs/UserApi.md#usergetdepositaddressinformation) | **GET** /user/depositAddressInformation | Get a deposit address.
 *UserApi* | [**UserGetExecutionHistory**](docs/UserApi.md#usergetexecutionhistory) | **GET** /user/executionHistory | Get the execution history by day.
 *UserApi* | [**UserGetMargin**](docs/UserApi.md#usergetmargin) | **GET** /user/margin | Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
 *UserApi* | [**UserGetQuoteFillRatio**](docs/UserApi.md#usergetquotefillratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
@@ -219,6 +221,7 @@ Class | Method | HTTP request | Description
  - [Model.CollateralSupportAgreement](docs/CollateralSupportAgreement.md)
  - [Model.CommunicationToken](docs/CommunicationToken.md)
  - [Model.ConnectedUsers](docs/ConnectedUsers.md)
+ - [Model.DepositAddress](docs/DepositAddress.md)
  - [Model.Error](docs/Error.md)
  - [Model.ErrorError](docs/ErrorError.md)
  - [Model.Execution](docs/Execution.md)
@@ -257,6 +260,7 @@ Class | Method | HTTP request | Description
  - [Model.UserEvent](docs/UserEvent.md)
  - [Model.UserPreferences](docs/UserPreferences.md)
  - [Model.Wallet](docs/Wallet.md)
+ - [Model.WalletSummaryRecord](docs/WalletSummaryRecord.md)
  - [Model.XAny](docs/XAny.md)
 
 

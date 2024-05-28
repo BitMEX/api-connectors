@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **scale** | **Number** |  | [optional] [default to 8.0]
 **enabled** | **Boolean** |  | [optional] [default to true]
 **isMarginCurrency** | **Boolean** |  | [optional] [default to true]
+**memoRequired** | **Boolean** |  | [optional] [default to false]
 **networks** | [**[AssetsConfigNetworkItem]**](AssetsConfigNetworkItem.md) |  | [optional] 
 
 

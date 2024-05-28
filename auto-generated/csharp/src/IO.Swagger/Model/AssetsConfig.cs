@@ -46,8 +46,9 @@ namespace IO.Swagger.Model
         /// <param name="scale">scale (default to 8.0).</param>
         /// <param name="enabled">enabled (default to true).</param>
         /// <param name="isMarginCurrency">isMarginCurrency (default to true).</param>
+        /// <param name="memoRequired">memoRequired (default to false).</param>
         /// <param name="networks">networks.</param>
-        public AssetsConfig(string asset = "XBT", string currency = "XBt", string majorCurrency = "XBT", string name = "Bitcoin", string currencyType = "Crypto", double? scale = 8.0, bool? enabled = true, bool? isMarginCurrency = true, List<AssetsConfigNetworkItem> networks = default(List<AssetsConfigNetworkItem>))
+        public AssetsConfig(string asset = "XBT", string currency = "XBt", string majorCurrency = "XBT", string name = "Bitcoin", string currencyType = "Crypto", double? scale = 8.0, bool? enabled = true, bool? isMarginCurrency = true, bool? memoRequired = false, List<AssetsConfigNetworkItem> networks = default(List<AssetsConfigNetworkItem>))
         {
             // to ensure "asset" is required (not null)
             if (asset == null)
@@ -121,6 +122,15 @@ namespace IO.Swagger.Model
             {
                 this.IsMarginCurrency = isMarginCurrency;
             }
+            // use default value if no "memoRequired" provided
+            if (memoRequired == null)
+            {
+                this.MemoRequired = false;
+            }
+            else
+            {
+                this.MemoRequired = memoRequired;
+            }
             this.Networks = networks;
         }
         
@@ -173,6 +183,12 @@ namespace IO.Swagger.Model
         public bool? IsMarginCurrency { get; set; }
 
         /// <summary>
+        /// Gets or Sets MemoRequired
+        /// </summary>
+        [DataMember(Name="memoRequired", EmitDefaultValue=false)]
+        public bool? MemoRequired { get; set; }
+
+        /// <summary>
         /// Gets or Sets Networks
         /// </summary>
         [DataMember(Name="networks", EmitDefaultValue=false)]
@@ -194,6 +210,7 @@ namespace IO.Swagger.Model
             sb.Append("  Scale: ").Append(Scale).Append("\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("  IsMarginCurrency: ").Append(IsMarginCurrency).Append("\n");
+            sb.Append("  MemoRequired: ").Append(MemoRequired).Append("\n");
             sb.Append("  Networks: ").Append(Networks).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -270,6 +287,11 @@ namespace IO.Swagger.Model
                     this.IsMarginCurrency.Equals(input.IsMarginCurrency))
                 ) && 
                 (
+                    this.MemoRequired == input.MemoRequired ||
+                    (this.MemoRequired != null &&
+                    this.MemoRequired.Equals(input.MemoRequired))
+                ) && 
+                (
                     this.Networks == input.Networks ||
                     this.Networks != null &&
                     this.Networks.SequenceEqual(input.Networks)
@@ -301,6 +323,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Enabled.GetHashCode();
                 if (this.IsMarginCurrency != null)
                     hashCode = hashCode * 59 + this.IsMarginCurrency.GetHashCode();
+                if (this.MemoRequired != null)
+                    hashCode = hashCode * 59 + this.MemoRequired.GetHashCode();
                 if (this.Networks != null)
                     hashCode = hashCode * 59 + this.Networks.GetHashCode();
                 return hashCode;

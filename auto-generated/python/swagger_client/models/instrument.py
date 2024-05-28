@@ -120,6 +120,7 @@ class Instrument(object):
         'settled_price_adjustment_rate': 'float',
         'settled_price': 'float',
         'instant_pnl': 'bool',
+        'min_tick': 'float',
         'timestamp': 'datetime'
     }
 
@@ -211,10 +212,11 @@ class Instrument(object):
         'settled_price_adjustment_rate': 'settledPriceAdjustmentRate',
         'settled_price': 'settledPrice',
         'instant_pnl': 'instantPnl',
+        'min_tick': 'minTick',
         'timestamp': 'timestamp'
     }
 
-    def __init__(self, symbol=None, root_symbol=None, state=None, typ=None, listing=None, front=None, expiry=None, settle=None, listed_settle=None, position_currency=None, underlying=None, quote_currency=None, underlying_symbol=None, reference=None, reference_symbol=None, calc_interval=None, publish_interval=None, publish_time=None, max_order_qty=None, max_price=None, lot_size=None, tick_size=None, multiplier=None, settl_currency=None, underlying_to_position_multiplier=None, underlying_to_settle_multiplier=None, quote_to_settle_multiplier=None, is_quanto=None, is_inverse=None, init_margin=None, maint_margin=None, risk_limit=None, risk_step=None, limit=None, taxed=None, deleverage=None, maker_fee=None, taker_fee=None, settlement_fee=None, funding_base_symbol=None, funding_quote_symbol=None, funding_premium_symbol=None, funding_timestamp=None, funding_interval=None, funding_rate=None, indicative_funding_rate=None, rebalance_timestamp=None, rebalance_interval=None, prev_close_price=None, limit_down_price=None, limit_up_price=None, total_volume=None, volume=None, volume24h=None, prev_total_turnover=None, total_turnover=None, turnover=None, turnover24h=None, home_notional24h=None, foreign_notional24h=None, prev_price24h=None, vwap=None, high_price=None, low_price=None, last_price=None, last_price_protected=None, last_tick_direction=None, last_change_pcnt=None, bid_price=None, mid_price=None, ask_price=None, impact_bid_price=None, impact_mid_price=None, impact_ask_price=None, has_liquidity=None, open_interest=None, open_value=None, fair_method=None, fair_basis_rate=None, fair_basis=None, fair_price=None, mark_method=None, mark_price=None, indicative_settle_price=None, settled_price_adjustment_rate=None, settled_price=None, instant_pnl=None, timestamp=None, _configuration=None):  # noqa: E501
+    def __init__(self, symbol=None, root_symbol=None, state=None, typ=None, listing=None, front=None, expiry=None, settle=None, listed_settle=None, position_currency=None, underlying=None, quote_currency=None, underlying_symbol=None, reference=None, reference_symbol=None, calc_interval=None, publish_interval=None, publish_time=None, max_order_qty=None, max_price=None, lot_size=None, tick_size=None, multiplier=None, settl_currency=None, underlying_to_position_multiplier=None, underlying_to_settle_multiplier=None, quote_to_settle_multiplier=None, is_quanto=None, is_inverse=None, init_margin=None, maint_margin=None, risk_limit=None, risk_step=None, limit=None, taxed=None, deleverage=None, maker_fee=None, taker_fee=None, settlement_fee=None, funding_base_symbol=None, funding_quote_symbol=None, funding_premium_symbol=None, funding_timestamp=None, funding_interval=None, funding_rate=None, indicative_funding_rate=None, rebalance_timestamp=None, rebalance_interval=None, prev_close_price=None, limit_down_price=None, limit_up_price=None, total_volume=None, volume=None, volume24h=None, prev_total_turnover=None, total_turnover=None, turnover=None, turnover24h=None, home_notional24h=None, foreign_notional24h=None, prev_price24h=None, vwap=None, high_price=None, low_price=None, last_price=None, last_price_protected=None, last_tick_direction=None, last_change_pcnt=None, bid_price=None, mid_price=None, ask_price=None, impact_bid_price=None, impact_mid_price=None, impact_ask_price=None, has_liquidity=None, open_interest=None, open_value=None, fair_method=None, fair_basis_rate=None, fair_basis=None, fair_price=None, mark_method=None, mark_price=None, indicative_settle_price=None, settled_price_adjustment_rate=None, settled_price=None, instant_pnl=None, min_tick=None, timestamp=None, _configuration=None):  # noqa: E501
         """Instrument - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -307,6 +309,7 @@ class Instrument(object):
         self._settled_price_adjustment_rate = None
         self._settled_price = None
         self._instant_pnl = None
+        self._min_tick = None
         self._timestamp = None
         self.discriminator = None
 
@@ -483,6 +486,8 @@ class Instrument(object):
             self.settled_price = settled_price
         if instant_pnl is not None:
             self.instant_pnl = instant_pnl
+        if min_tick is not None:
+            self.min_tick = min_tick
         if timestamp is not None:
             self.timestamp = timestamp
 
@@ -2314,6 +2319,27 @@ class Instrument(object):
         """
 
         self._instant_pnl = instant_pnl
+
+    @property
+    def min_tick(self):
+        """Gets the min_tick of this Instrument.  # noqa: E501
+
+
+        :return: The min_tick of this Instrument.  # noqa: E501
+        :rtype: float
+        """
+        return self._min_tick
+
+    @min_tick.setter
+    def min_tick(self, min_tick):
+        """Sets the min_tick of this Instrument.
+
+
+        :param min_tick: The min_tick of this Instrument.  # noqa: E501
+        :type: float
+        """
+
+        self._min_tick = min_tick
 
     @property
     def timestamp(self):

@@ -26,6 +26,7 @@ case class Address (
   skipConfirmVerified: Option[Boolean] = None,
   skip2FA: Option[Boolean] = None,
   skip2FAVerified: Option[Boolean] = None,
-  network: String
+  network: String,
+  memo: Option[String] = None
 )
 

@@ -90,6 +90,7 @@ Name | Type | Description | Notes
 **settled_price_adjustment_rate** | **Float** |  | [optional] 
 **settled_price** | **Float** |  | [optional] 
 **instant_pnl** | **BOOLEAN** |  | [optional] 
+**min_tick** | **Float** |  | [optional] 
 **timestamp** | **DateTime** |  | [optional] 
 
 

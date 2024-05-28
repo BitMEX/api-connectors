@@ -4,6 +4,7 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**UserCancelPendingWithdrawal**](UserApi.md#UserCancelPendingWithdrawal) | **Delete** /user/withdrawal | Cancel pending withdrawal
 [**UserCancelWithdrawal**](UserApi.md#UserCancelWithdrawal) | **Post** /user/cancelWithdrawal | Cancel a withdrawal.
 [**UserCheckReferralCode**](UserApi.md#UserCheckReferralCode) | **Get** /user/checkReferralCode | Check if a referral code is valid.
 [**UserCommunicationToken**](UserApi.md#UserCommunicationToken) | **Post** /user/communicationToken | Register your communication token for mobile clients
@@ -17,6 +18,7 @@ Method | HTTP request | Description
 [**UserGetCSA**](UserApi.md#UserGetCSA) | **Get** /user/csa | Get your account&#39;s CSA status.
 [**UserGetCommission**](UserApi.md#UserGetCommission) | **Get** /user/commission | Get your account&#39;s commission status.
 [**UserGetDepositAddress**](UserApi.md#UserGetDepositAddress) | **Get** /user/depositAddress | Get a deposit address.
+[**UserGetDepositAddressInformation**](UserApi.md#UserGetDepositAddressInformation) | **Get** /user/depositAddressInformation | Get a deposit address.
 [**UserGetExecutionHistory**](UserApi.md#UserGetExecutionHistory) | **Get** /user/executionHistory | Get the execution history by day.
 [**UserGetMargin**](UserApi.md#UserGetMargin) | **Get** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**UserGetQuoteFillRatio**](UserApi.md#UserGetQuoteFillRatio) | **Get** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
@@ -36,6 +38,32 @@ Method | HTTP request | Description
 [**UserUpdateSubAccount**](UserApi.md#UserUpdateSubAccount) | **Post** /user/updateSubaccount | Updates the sub-account name.
 [**UserWalletTransfer**](UserApi.md#UserWalletTransfer) | **Post** /user/walletTransfer | Execute a transfer to a paired account.
 
+
+# **UserCancelPendingWithdrawal**
+> interface{} UserCancelPendingWithdrawal(ctx, transactID)
+Cancel pending withdrawal
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **transactID** | **string**|  | 
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserCancelWithdrawal**
 > Transaction UserCancelWithdrawal(ctx, token)
@@ -382,6 +410,33 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **UserGetDepositAddressInformation**
+> DepositAddress UserGetDepositAddressInformation(ctx, currency, network)
+Get a deposit address.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **currency** | **string**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
+  **network** | **string**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
+
+### Return type
+
+[**DepositAddress**](DepositAddress.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **UserGetExecutionHistory**
 > []Execution UserGetExecutionHistory(ctx, symbol, timestamp)
 Get the execution history by day.
@@ -699,9 +754,10 @@ Optional parameters are passed through a pointer to a UserApiUserGetWalletHistor
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **optional.String**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [default to XBt]
- **count** | **optional.Float64**| Number of results to fetch. | [default to 100]
- **start** | **optional.Float64**| Starting point for results. | [default to 0]
+ **count** | **optional.Float64**| Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. | [default to 10000]
+ **start** | **optional.Float64**| Starting point for results, integer. Default 0. | [default to 0]
  **targetAccountId** | **optional.Float64**| AccountId to view the history of, must be a paired account with the authorised user requesting the history. | 
+ **reverse** | **optional.Bool**| Start from the latest transaction record. Default true. | [default to true]
 
 ### Return type
 
@@ -719,8 +775,10 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserGetWalletSummary**
-> []Transaction UserGetWalletSummary(ctx, optional)
+> []WalletSummaryRecord UserGetWalletSummary(ctx, optional)
 Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+
+Provides an aggregated view of transactions, by transaction type, over a specific time period.
 
 ### Required Parameters
 
@@ -735,10 +793,12 @@ Optional parameters are passed through a pointer to a UserApiUserGetWalletSummar
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **optional.String**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [default to XBt]
+ **startTime** | **optional.Time**| Start time for the summary | 
+ **endTime** | **optional.Time**| End time for the summary | 
 
 ### Return type
 
-[**[]Transaction**](Transaction.md)
+[**[]WalletSummaryRecord**](WalletSummaryRecord.md)
 
 ### Authorization
 
@@ -821,6 +881,7 @@ Name | Type | Description  | Notes
 
  **otpToken** | **optional.String**| 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. | 
  **address** | **optional.String**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | 
+ **memo** | **optional.String**| Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified | 
  **addressId** | **optional.Float64**| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | 
  **targetUserId** | **optional.Float64**| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | 
  **fee** | **optional.Float64**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | 

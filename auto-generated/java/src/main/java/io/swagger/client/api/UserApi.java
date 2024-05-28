@@ -32,6 +32,7 @@ import io.swagger.client.model.Affiliate;
 import java.math.BigDecimal;
 import io.swagger.client.model.CollateralSupportAgreement;
 import io.swagger.client.model.CommunicationToken;
+import io.swagger.client.model.DepositAddress;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.Execution;
 import io.swagger.client.model.Margin;
@@ -44,6 +45,7 @@ import io.swagger.client.model.Transaction;
 import io.swagger.client.model.User;
 import io.swagger.client.model.UserCommissionsBySymbol;
 import io.swagger.client.model.Wallet;
+import io.swagger.client.model.WalletSummaryRecord;
 import io.swagger.client.model.XAny;
 
 import java.lang.reflect.Type;
@@ -71,6 +73,130 @@ public class UserApi {
         this.apiClient = apiClient;
     }
 
+    /**
+     * Build call for userCancelPendingWithdrawal
+     * @param transactID  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call userCancelPendingWithdrawalCall(String transactID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/user/withdrawal";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (transactID != null)
+        localVarFormParams.put("transactID", transactID);
+
+        final String[] localVarAccepts = {
+            "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "application/x-www-form-urlencoded"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call userCancelPendingWithdrawalValidateBeforeCall(String transactID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'transactID' is set
+        if (transactID == null) {
+            throw new ApiException("Missing the required parameter 'transactID' when calling userCancelPendingWithdrawal(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = userCancelPendingWithdrawalCall(transactID, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Cancel pending withdrawal
+     * 
+     * @param transactID  (required)
+     * @return Object
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Object userCancelPendingWithdrawal(String transactID) throws ApiException {
+        ApiResponse<Object> resp = userCancelPendingWithdrawalWithHttpInfo(transactID);
+        return resp.getData();
+    }
+
+    /**
+     * Cancel pending withdrawal
+     * 
+     * @param transactID  (required)
+     * @return ApiResponse&lt;Object&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Object> userCancelPendingWithdrawalWithHttpInfo(String transactID) throws ApiException {
+        com.squareup.okhttp.Call call = userCancelPendingWithdrawalValidateBeforeCall(transactID, null, null);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Cancel pending withdrawal (asynchronously)
+     * 
+     * @param transactID  (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call userCancelPendingWithdrawalAsync(String transactID, final ApiCallback<Object> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = userCancelPendingWithdrawalValidateBeforeCall(transactID, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
     /**
      * Build call for userCancelWithdrawal
      * @param token  (required)
@@ -1674,6 +1800,141 @@ public class UserApi {
         return call;
     }
     /**
+     * Build call for userGetDepositAddressInformation
+     * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (required)
+     * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call userGetDepositAddressInformationCall(String currency, String network, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/user/depositAddressInformation";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (currency != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("currency", currency));
+        if (network != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("network", network));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "application/x-www-form-urlencoded"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call userGetDepositAddressInformationValidateBeforeCall(String currency, String network, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'currency' is set
+        if (currency == null) {
+            throw new ApiException("Missing the required parameter 'currency' when calling userGetDepositAddressInformation(Async)");
+        }
+        
+        // verify the required parameter 'network' is set
+        if (network == null) {
+            throw new ApiException("Missing the required parameter 'network' when calling userGetDepositAddressInformation(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = userGetDepositAddressInformationCall(currency, network, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get a deposit address.
+     * 
+     * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (required)
+     * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. (required)
+     * @return DepositAddress
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public DepositAddress userGetDepositAddressInformation(String currency, String network) throws ApiException {
+        ApiResponse<DepositAddress> resp = userGetDepositAddressInformationWithHttpInfo(currency, network);
+        return resp.getData();
+    }
+
+    /**
+     * Get a deposit address.
+     * 
+     * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (required)
+     * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. (required)
+     * @return ApiResponse&lt;DepositAddress&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<DepositAddress> userGetDepositAddressInformationWithHttpInfo(String currency, String network) throws ApiException {
+        com.squareup.okhttp.Call call = userGetDepositAddressInformationValidateBeforeCall(currency, network, null, null);
+        Type localVarReturnType = new TypeToken<DepositAddress>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get a deposit address. (asynchronously)
+     * 
+     * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; (required)
+     * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call userGetDepositAddressInformationAsync(String currency, String network, final ApiCallback<DepositAddress> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = userGetDepositAddressInformationValidateBeforeCall(currency, network, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<DepositAddress>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for userGetExecutionHistory
      * @param symbol  (required)
      * @param timestamp  (required)
@@ -2892,15 +3153,16 @@ public class UserApi {
     /**
      * Build call for userGetWalletHistory
      * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
-     * @param count Number of results to fetch. (optional, default to 100)
-     * @param start Starting point for results. (optional, default to 0)
+     * @param count Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)
+     * @param start Starting point for results, integer. Default 0. (optional, default to 0)
      * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)
+     * @param reverse Start from the latest transaction record. Default true. (optional, default to true)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userGetWalletHistoryCall(String currency, Double count, Double start, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userGetWalletHistoryCall(String currency, Double count, Double start, Double targetAccountId, Boolean reverse, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2916,6 +3178,8 @@ public class UserApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("start", start));
         if (targetAccountId != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("targetAccountId", targetAccountId));
+        if (reverse != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("reverse", reverse));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -2950,10 +3214,10 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userGetWalletHistoryValidateBeforeCall(String currency, Double count, Double start, Double targetAccountId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userGetWalletHistoryValidateBeforeCall(String currency, Double count, Double start, Double targetAccountId, Boolean reverse, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = userGetWalletHistoryCall(currency, count, start, targetAccountId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = userGetWalletHistoryCall(currency, count, start, targetAccountId, reverse, progressListener, progressRequestListener);
         return call;
 
     }
@@ -2962,14 +3226,15 @@ public class UserApi {
      * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
      * 
      * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
-     * @param count Number of results to fetch. (optional, default to 100)
-     * @param start Starting point for results. (optional, default to 0)
+     * @param count Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)
+     * @param start Starting point for results, integer. Default 0. (optional, default to 0)
      * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)
+     * @param reverse Start from the latest transaction record. Default true. (optional, default to true)
      * @return List&lt;Transaction&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Transaction> userGetWalletHistory(String currency, Double count, Double start, Double targetAccountId) throws ApiException {
-        ApiResponse<List<Transaction>> resp = userGetWalletHistoryWithHttpInfo(currency, count, start, targetAccountId);
+    public List<Transaction> userGetWalletHistory(String currency, Double count, Double start, Double targetAccountId, Boolean reverse) throws ApiException {
+        ApiResponse<List<Transaction>> resp = userGetWalletHistoryWithHttpInfo(currency, count, start, targetAccountId, reverse);
         return resp.getData();
     }
 
@@ -2977,14 +3242,15 @@ public class UserApi {
      * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
      * 
      * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
-     * @param count Number of results to fetch. (optional, default to 100)
-     * @param start Starting point for results. (optional, default to 0)
+     * @param count Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)
+     * @param start Starting point for results, integer. Default 0. (optional, default to 0)
      * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)
+     * @param reverse Start from the latest transaction record. Default true. (optional, default to true)
      * @return ApiResponse&lt;List&lt;Transaction&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Transaction>> userGetWalletHistoryWithHttpInfo(String currency, Double count, Double start, Double targetAccountId) throws ApiException {
-        com.squareup.okhttp.Call call = userGetWalletHistoryValidateBeforeCall(currency, count, start, targetAccountId, null, null);
+    public ApiResponse<List<Transaction>> userGetWalletHistoryWithHttpInfo(String currency, Double count, Double start, Double targetAccountId, Boolean reverse) throws ApiException {
+        com.squareup.okhttp.Call call = userGetWalletHistoryValidateBeforeCall(currency, count, start, targetAccountId, reverse, null, null);
         Type localVarReturnType = new TypeToken<List<Transaction>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -2993,14 +3259,15 @@ public class UserApi {
      * Get a history of all of your wallet transactions (deposits, withdrawals, PNL). (asynchronously)
      * 
      * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
-     * @param count Number of results to fetch. (optional, default to 100)
-     * @param start Starting point for results. (optional, default to 0)
+     * @param count Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)
+     * @param start Starting point for results, integer. Default 0. (optional, default to 0)
      * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)
+     * @param reverse Start from the latest transaction record. Default true. (optional, default to true)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userGetWalletHistoryAsync(String currency, Double count, Double start, Double targetAccountId, final ApiCallback<List<Transaction>> callback) throws ApiException {
+    public com.squareup.okhttp.Call userGetWalletHistoryAsync(String currency, Double count, Double start, Double targetAccountId, Boolean reverse, final ApiCallback<List<Transaction>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3021,7 +3288,7 @@ public class UserApi {
             };
         }
 
-        com.squareup.okhttp.Call call = userGetWalletHistoryValidateBeforeCall(currency, count, start, targetAccountId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = userGetWalletHistoryValidateBeforeCall(currency, count, start, targetAccountId, reverse, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Transaction>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -3029,12 +3296,14 @@ public class UserApi {
     /**
      * Build call for userGetWalletSummary
      * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
+     * @param startTime Start time for the summary (optional)
+     * @param endTime End time for the summary (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userGetWalletSummaryCall(String currency, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userGetWalletSummaryCall(String currency, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3044,6 +3313,10 @@ public class UserApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (currency != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("currency", currency));
+        if (startTime != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("startTime", startTime));
+        if (endTime != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("endTime", endTime));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -3078,48 +3351,54 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userGetWalletSummaryValidateBeforeCall(String currency, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userGetWalletSummaryValidateBeforeCall(String currency, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = userGetWalletSummaryCall(currency, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = userGetWalletSummaryCall(currency, startTime, endTime, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
-     * 
+     * Provides an aggregated view of transactions, by transaction type, over a specific time period.
      * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
-     * @return List&lt;Transaction&gt;
+     * @param startTime Start time for the summary (optional)
+     * @param endTime End time for the summary (optional)
+     * @return List&lt;WalletSummaryRecord&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Transaction> userGetWalletSummary(String currency) throws ApiException {
-        ApiResponse<List<Transaction>> resp = userGetWalletSummaryWithHttpInfo(currency);
+    public List<WalletSummaryRecord> userGetWalletSummary(String currency, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+        ApiResponse<List<WalletSummaryRecord>> resp = userGetWalletSummaryWithHttpInfo(currency, startTime, endTime);
         return resp.getData();
     }
 
     /**
      * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
-     * 
+     * Provides an aggregated view of transactions, by transaction type, over a specific time period.
      * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
-     * @return ApiResponse&lt;List&lt;Transaction&gt;&gt;
+     * @param startTime Start time for the summary (optional)
+     * @param endTime End time for the summary (optional)
+     * @return ApiResponse&lt;List&lt;WalletSummaryRecord&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Transaction>> userGetWalletSummaryWithHttpInfo(String currency) throws ApiException {
-        com.squareup.okhttp.Call call = userGetWalletSummaryValidateBeforeCall(currency, null, null);
-        Type localVarReturnType = new TypeToken<List<Transaction>>(){}.getType();
+    public ApiResponse<List<WalletSummaryRecord>> userGetWalletSummaryWithHttpInfo(String currency, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+        com.squareup.okhttp.Call call = userGetWalletSummaryValidateBeforeCall(currency, startTime, endTime, null, null);
+        Type localVarReturnType = new TypeToken<List<WalletSummaryRecord>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). (asynchronously)
-     * 
+     * Provides an aggregated view of transactions, by transaction type, over a specific time period.
      * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
+     * @param startTime Start time for the summary (optional)
+     * @param endTime End time for the summary (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userGetWalletSummaryAsync(String currency, final ApiCallback<List<Transaction>> callback) throws ApiException {
+    public com.squareup.okhttp.Call userGetWalletSummaryAsync(String currency, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<WalletSummaryRecord>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3140,8 +3419,8 @@ public class UserApi {
             };
         }
 
-        com.squareup.okhttp.Call call = userGetWalletSummaryValidateBeforeCall(currency, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<Transaction>>(){}.getType();
+        com.squareup.okhttp.Call call = userGetWalletSummaryValidateBeforeCall(currency, startTime, endTime, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<WalletSummaryRecord>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -3374,6 +3653,7 @@ public class UserApi {
      * @param amount Amount of withdrawal currency. (required)
      * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
      * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
+     * @param memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)
      * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
@@ -3383,7 +3663,7 @@ public class UserApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userRequestWithdrawalCall(String currency, String network, BigDecimal amount, String otpToken, String address, Double addressId, Double targetUserId, Double fee, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userRequestWithdrawalCall(String currency, String network, BigDecimal amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3405,6 +3685,8 @@ public class UserApi {
         localVarFormParams.put("amount", amount);
         if (address != null)
         localVarFormParams.put("address", address);
+        if (memo != null)
+        localVarFormParams.put("memo", memo);
         if (addressId != null)
         localVarFormParams.put("addressId", addressId);
         if (targetUserId != null)
@@ -3443,7 +3725,7 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userRequestWithdrawalValidateBeforeCall(String currency, String network, BigDecimal amount, String otpToken, String address, Double addressId, Double targetUserId, Double fee, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userRequestWithdrawalValidateBeforeCall(String currency, String network, BigDecimal amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'currency' is set
         if (currency == null) {
@@ -3461,7 +3743,7 @@ public class UserApi {
         }
         
 
-        com.squareup.okhttp.Call call = userRequestWithdrawalCall(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = userRequestWithdrawalCall(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text, progressListener, progressRequestListener);
         return call;
 
     }
@@ -3474,6 +3756,7 @@ public class UserApi {
      * @param amount Amount of withdrawal currency. (required)
      * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
      * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
+     * @param memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)
      * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
@@ -3481,8 +3764,8 @@ public class UserApi {
      * @return Transaction
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Transaction userRequestWithdrawal(String currency, String network, BigDecimal amount, String otpToken, String address, Double addressId, Double targetUserId, Double fee, String text) throws ApiException {
-        ApiResponse<Transaction> resp = userRequestWithdrawalWithHttpInfo(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text);
+    public Transaction userRequestWithdrawal(String currency, String network, BigDecimal amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text) throws ApiException {
+        ApiResponse<Transaction> resp = userRequestWithdrawalWithHttpInfo(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text);
         return resp.getData();
     }
 
@@ -3494,6 +3777,7 @@ public class UserApi {
      * @param amount Amount of withdrawal currency. (required)
      * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
      * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
+     * @param memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)
      * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
@@ -3501,8 +3785,8 @@ public class UserApi {
      * @return ApiResponse&lt;Transaction&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Transaction> userRequestWithdrawalWithHttpInfo(String currency, String network, BigDecimal amount, String otpToken, String address, Double addressId, Double targetUserId, Double fee, String text) throws ApiException {
-        com.squareup.okhttp.Call call = userRequestWithdrawalValidateBeforeCall(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text, null, null);
+    public ApiResponse<Transaction> userRequestWithdrawalWithHttpInfo(String currency, String network, BigDecimal amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text) throws ApiException {
+        com.squareup.okhttp.Call call = userRequestWithdrawalValidateBeforeCall(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text, null, null);
         Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -3515,6 +3799,7 @@ public class UserApi {
      * @param amount Amount of withdrawal currency. (required)
      * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
      * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
+     * @param memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)
      * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
@@ -3523,7 +3808,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userRequestWithdrawalAsync(String currency, String network, BigDecimal amount, String otpToken, String address, Double addressId, Double targetUserId, Double fee, String text, final ApiCallback<Transaction> callback) throws ApiException {
+    public com.squareup.okhttp.Call userRequestWithdrawalAsync(String currency, String network, BigDecimal amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text, final ApiCallback<Transaction> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3544,7 +3829,7 @@ public class UserApi {
             };
         }
 
-        com.squareup.okhttp.Call call = userRequestWithdrawalValidateBeforeCall(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = userRequestWithdrawalValidateBeforeCall(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

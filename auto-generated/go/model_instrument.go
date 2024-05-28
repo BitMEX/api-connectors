@@ -103,5 +103,6 @@ type Instrument struct {
 	SettledPriceAdjustmentRate float64 `json:"settledPriceAdjustmentRate,omitempty"`
 	SettledPrice float64 `json:"settledPrice,omitempty"`
 	InstantPnl bool `json:"instantPnl,omitempty"`
+	MinTick float64 `json:"minTick,omitempty"`
 	Timestamp time.Time `json:"timestamp,omitempty"`
 }

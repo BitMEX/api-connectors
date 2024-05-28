@@ -174,11 +174,12 @@ public class GuildApi {
      * @param name Name of the guild, must be unique, must be at least 5 characters (required)
      * @param emoji Emoji name. (required)
      * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100 (required)
-     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM (required)
+     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM (required)
      * @param potTraderId User ID of the guild member with order write permission for the pot (optional)
      * @param description Guild description, can be used to explain the guild to other users. (optional)
      * @param twitter Guild twitter handle. (optional)
      * @param discord Guild discord link. (optional)
+     * @param telegram Guild telegram link. (optional)
      * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
      * @param isPrivate Guild privacy status (optional)
      * @param progressListener Progress listener
@@ -186,7 +187,7 @@ public class GuildApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call guildEditCall(String name, String emoji, Double potDistributionPercent, String potDistributionType, Double potTraderId, String description, String twitter, String discord, String imgUrl, Boolean isPrivate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call guildEditCall(String name, String emoji, Double potDistributionPercent, String potDistributionType, Double potTraderId, String description, String twitter, String discord, String telegram, String imgUrl, Boolean isPrivate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -214,6 +215,8 @@ public class GuildApi {
         localVarFormParams.put("twitter", twitter);
         if (discord != null)
         localVarFormParams.put("discord", discord);
+        if (telegram != null)
+        localVarFormParams.put("telegram", telegram);
         if (imgUrl != null)
         localVarFormParams.put("imgUrl", imgUrl);
         if (isPrivate != null)
@@ -248,7 +251,7 @@ public class GuildApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call guildEditValidateBeforeCall(String name, String emoji, Double potDistributionPercent, String potDistributionType, Double potTraderId, String description, String twitter, String discord, String imgUrl, Boolean isPrivate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call guildEditValidateBeforeCall(String name, String emoji, Double potDistributionPercent, String potDistributionType, Double potTraderId, String description, String twitter, String discord, String telegram, String imgUrl, Boolean isPrivate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'name' is set
         if (name == null) {
@@ -271,7 +274,7 @@ public class GuildApi {
         }
         
 
-        com.squareup.okhttp.Call call = guildEditCall(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, imgUrl, isPrivate, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = guildEditCall(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, telegram, imgUrl, isPrivate, progressListener, progressRequestListener);
         return call;
 
     }
@@ -282,18 +285,19 @@ public class GuildApi {
      * @param name Name of the guild, must be unique, must be at least 5 characters (required)
      * @param emoji Emoji name. (required)
      * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100 (required)
-     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM (required)
+     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM (required)
      * @param potTraderId User ID of the guild member with order write permission for the pot (optional)
      * @param description Guild description, can be used to explain the guild to other users. (optional)
      * @param twitter Guild twitter handle. (optional)
      * @param discord Guild discord link. (optional)
+     * @param telegram Guild telegram link. (optional)
      * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
      * @param isPrivate Guild privacy status (optional)
      * @return Guild
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Guild guildEdit(String name, String emoji, Double potDistributionPercent, String potDistributionType, Double potTraderId, String description, String twitter, String discord, String imgUrl, Boolean isPrivate) throws ApiException {
-        ApiResponse<Guild> resp = guildEditWithHttpInfo(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, imgUrl, isPrivate);
+    public Guild guildEdit(String name, String emoji, Double potDistributionPercent, String potDistributionType, Double potTraderId, String description, String twitter, String discord, String telegram, String imgUrl, Boolean isPrivate) throws ApiException {
+        ApiResponse<Guild> resp = guildEditWithHttpInfo(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, telegram, imgUrl, isPrivate);
         return resp.getData();
     }
 
@@ -303,18 +307,19 @@ public class GuildApi {
      * @param name Name of the guild, must be unique, must be at least 5 characters (required)
      * @param emoji Emoji name. (required)
      * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100 (required)
-     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM (required)
+     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM (required)
      * @param potTraderId User ID of the guild member with order write permission for the pot (optional)
      * @param description Guild description, can be used to explain the guild to other users. (optional)
      * @param twitter Guild twitter handle. (optional)
      * @param discord Guild discord link. (optional)
+     * @param telegram Guild telegram link. (optional)
      * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
      * @param isPrivate Guild privacy status (optional)
      * @return ApiResponse&lt;Guild&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Guild> guildEditWithHttpInfo(String name, String emoji, Double potDistributionPercent, String potDistributionType, Double potTraderId, String description, String twitter, String discord, String imgUrl, Boolean isPrivate) throws ApiException {
-        com.squareup.okhttp.Call call = guildEditValidateBeforeCall(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, imgUrl, isPrivate, null, null);
+    public ApiResponse<Guild> guildEditWithHttpInfo(String name, String emoji, Double potDistributionPercent, String potDistributionType, Double potTraderId, String description, String twitter, String discord, String telegram, String imgUrl, Boolean isPrivate) throws ApiException {
+        com.squareup.okhttp.Call call = guildEditValidateBeforeCall(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, telegram, imgUrl, isPrivate, null, null);
         Type localVarReturnType = new TypeToken<Guild>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -325,18 +330,19 @@ public class GuildApi {
      * @param name Name of the guild, must be unique, must be at least 5 characters (required)
      * @param emoji Emoji name. (required)
      * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100 (required)
-     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM (required)
+     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM (required)
      * @param potTraderId User ID of the guild member with order write permission for the pot (optional)
      * @param description Guild description, can be used to explain the guild to other users. (optional)
      * @param twitter Guild twitter handle. (optional)
      * @param discord Guild discord link. (optional)
+     * @param telegram Guild telegram link. (optional)
      * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
      * @param isPrivate Guild privacy status (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call guildEditAsync(String name, String emoji, Double potDistributionPercent, String potDistributionType, Double potTraderId, String description, String twitter, String discord, String imgUrl, Boolean isPrivate, final ApiCallback<Guild> callback) throws ApiException {
+    public com.squareup.okhttp.Call guildEditAsync(String name, String emoji, Double potDistributionPercent, String potDistributionType, Double potTraderId, String description, String twitter, String discord, String telegram, String imgUrl, Boolean isPrivate, final ApiCallback<Guild> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -357,7 +363,7 @@ public class GuildApi {
             };
         }
 
-        com.squareup.okhttp.Call call = guildEditValidateBeforeCall(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, imgUrl, isPrivate, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = guildEditValidateBeforeCall(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, telegram, imgUrl, isPrivate, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Guild>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -841,10 +847,11 @@ public class GuildApi {
      * @param name Name of the guild, must be unique, must be at least 5 characters (required)
      * @param emoji Emoji name. (required)
      * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100 (required)
-     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM (required)
+     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM (required)
      * @param description Guild description, can be used to explain the guild to other users. (optional)
      * @param twitter Guild twitter handle. (optional)
      * @param discord Guild discord link. (optional)
+     * @param telegram Guild telegram link. (optional)
      * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
      * @param isPrivate Guild privacy status (optional)
      * @param progressListener Progress listener
@@ -852,7 +859,7 @@ public class GuildApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call guildNewCall(String name, String emoji, Double potDistributionPercent, String potDistributionType, String description, String twitter, String discord, String imgUrl, Boolean isPrivate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call guildNewCall(String name, String emoji, Double potDistributionPercent, String potDistributionType, String description, String twitter, String discord, String telegram, String imgUrl, Boolean isPrivate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -878,6 +885,8 @@ public class GuildApi {
         localVarFormParams.put("twitter", twitter);
         if (discord != null)
         localVarFormParams.put("discord", discord);
+        if (telegram != null)
+        localVarFormParams.put("telegram", telegram);
         if (imgUrl != null)
         localVarFormParams.put("imgUrl", imgUrl);
         if (isPrivate != null)
@@ -912,7 +921,7 @@ public class GuildApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call guildNewValidateBeforeCall(String name, String emoji, Double potDistributionPercent, String potDistributionType, String description, String twitter, String discord, String imgUrl, Boolean isPrivate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call guildNewValidateBeforeCall(String name, String emoji, Double potDistributionPercent, String potDistributionType, String description, String twitter, String discord, String telegram, String imgUrl, Boolean isPrivate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'name' is set
         if (name == null) {
@@ -935,7 +944,7 @@ public class GuildApi {
         }
         
 
-        com.squareup.okhttp.Call call = guildNewCall(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, imgUrl, isPrivate, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = guildNewCall(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, telegram, imgUrl, isPrivate, progressListener, progressRequestListener);
         return call;
 
     }
@@ -946,17 +955,18 @@ public class GuildApi {
      * @param name Name of the guild, must be unique, must be at least 5 characters (required)
      * @param emoji Emoji name. (required)
      * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100 (required)
-     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM (required)
+     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM (required)
      * @param description Guild description, can be used to explain the guild to other users. (optional)
      * @param twitter Guild twitter handle. (optional)
      * @param discord Guild discord link. (optional)
+     * @param telegram Guild telegram link. (optional)
      * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
      * @param isPrivate Guild privacy status (optional)
      * @return Guild
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Guild guildNew(String name, String emoji, Double potDistributionPercent, String potDistributionType, String description, String twitter, String discord, String imgUrl, Boolean isPrivate) throws ApiException {
-        ApiResponse<Guild> resp = guildNewWithHttpInfo(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, imgUrl, isPrivate);
+    public Guild guildNew(String name, String emoji, Double potDistributionPercent, String potDistributionType, String description, String twitter, String discord, String telegram, String imgUrl, Boolean isPrivate) throws ApiException {
+        ApiResponse<Guild> resp = guildNewWithHttpInfo(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, telegram, imgUrl, isPrivate);
         return resp.getData();
     }
 
@@ -966,17 +976,18 @@ public class GuildApi {
      * @param name Name of the guild, must be unique, must be at least 5 characters (required)
      * @param emoji Emoji name. (required)
      * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100 (required)
-     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM (required)
+     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM (required)
      * @param description Guild description, can be used to explain the guild to other users. (optional)
      * @param twitter Guild twitter handle. (optional)
      * @param discord Guild discord link. (optional)
+     * @param telegram Guild telegram link. (optional)
      * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
      * @param isPrivate Guild privacy status (optional)
      * @return ApiResponse&lt;Guild&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Guild> guildNewWithHttpInfo(String name, String emoji, Double potDistributionPercent, String potDistributionType, String description, String twitter, String discord, String imgUrl, Boolean isPrivate) throws ApiException {
-        com.squareup.okhttp.Call call = guildNewValidateBeforeCall(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, imgUrl, isPrivate, null, null);
+    public ApiResponse<Guild> guildNewWithHttpInfo(String name, String emoji, Double potDistributionPercent, String potDistributionType, String description, String twitter, String discord, String telegram, String imgUrl, Boolean isPrivate) throws ApiException {
+        com.squareup.okhttp.Call call = guildNewValidateBeforeCall(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, telegram, imgUrl, isPrivate, null, null);
         Type localVarReturnType = new TypeToken<Guild>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -987,17 +998,18 @@ public class GuildApi {
      * @param name Name of the guild, must be unique, must be at least 5 characters (required)
      * @param emoji Emoji name. (required)
      * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100 (required)
-     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM (required)
+     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM (required)
      * @param description Guild description, can be used to explain the guild to other users. (optional)
      * @param twitter Guild twitter handle. (optional)
      * @param discord Guild discord link. (optional)
+     * @param telegram Guild telegram link. (optional)
      * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
      * @param isPrivate Guild privacy status (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call guildNewAsync(String name, String emoji, Double potDistributionPercent, String potDistributionType, String description, String twitter, String discord, String imgUrl, Boolean isPrivate, final ApiCallback<Guild> callback) throws ApiException {
+    public com.squareup.okhttp.Call guildNewAsync(String name, String emoji, Double potDistributionPercent, String potDistributionType, String description, String twitter, String discord, String telegram, String imgUrl, Boolean isPrivate, final ApiCallback<Guild> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1018,7 +1030,7 @@ public class GuildApi {
             };
         }
 
-        com.squareup.okhttp.Call call = guildNewValidateBeforeCall(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, imgUrl, isPrivate, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = guildNewValidateBeforeCall(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, telegram, imgUrl, isPrivate, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Guild>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

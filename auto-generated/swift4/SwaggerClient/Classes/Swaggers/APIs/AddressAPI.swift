@@ -61,10 +61,11 @@ open class AddressAPI {
      - parameter note: (form) Optional annotation. (optional)
      - parameter skipConfirm: (form) Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
      - parameter skip2FA: (form) Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
+     - parameter memo: (form) Destination Memo. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func addressNew(currency: String, network: String, address: String, name: String, note: String? = nil, skipConfirm: Bool? = nil, skip2FA: Bool? = nil, completion: @escaping ((_ data: Address?,_ error: Error?) -> Void)) {
-        addressNewWithRequestBuilder(currency: currency, network: network, address: address, name: name, note: note, skipConfirm: skipConfirm, skip2FA: skip2FA).execute { (response, error) -> Void in
+    open class func addressNew(currency: String, network: String, address: String, name: String, note: String? = nil, skipConfirm: Bool? = nil, skip2FA: Bool? = nil, memo: String? = nil, completion: @escaping ((_ data: Address?,_ error: Error?) -> Void)) {
+        addressNewWithRequestBuilder(currency: currency, network: network, address: address, name: name, note: note, skipConfirm: skipConfirm, skip2FA: skip2FA, memo: memo).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -91,10 +92,11 @@ open class AddressAPI {
      - parameter note: (form) Optional annotation. (optional)
      - parameter skipConfirm: (form) Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
      - parameter skip2FA: (form) Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
+     - parameter memo: (form) Destination Memo. (optional)
 
      - returns: RequestBuilder<Address> 
      */
-    open class func addressNewWithRequestBuilder(currency: String, network: String, address: String, name: String, note: String? = nil, skipConfirm: Bool? = nil, skip2FA: Bool? = nil) -> RequestBuilder<Address> {
+    open class func addressNewWithRequestBuilder(currency: String, network: String, address: String, name: String, note: String? = nil, skipConfirm: Bool? = nil, skip2FA: Bool? = nil, memo: String? = nil) -> RequestBuilder<Address> {
         let path = "/address"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
@@ -104,7 +106,8 @@ open class AddressAPI {
             "name": name,
             "note": note,
             "skipConfirm": skipConfirm,
-            "skip2FA": skip2FA
+            "skip2FA": skip2FA,
+            "memo": memo
         ]
 
         let nonNullParameters = APIHelper.rejectNil(formParams)

@@ -44,6 +44,8 @@ public class Address {
   private Boolean skip2FAVerified = null;
   @SerializedName("network")
   private String network = null;
+  @SerializedName("memo")
+  private String memo = null;
 
   /**
    **/
@@ -165,6 +167,16 @@ public class Address {
     this.network = network;
   }
 
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getMemo() {
+    return memo;
+  }
+  public void setMemo(String memo) {
+    this.memo = memo;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -186,7 +198,8 @@ public class Address {
         (this.skipConfirmVerified == null ? address.skipConfirmVerified == null : this.skipConfirmVerified.equals(address.skipConfirmVerified)) &&
         (this.skip2FA == null ? address.skip2FA == null : this.skip2FA.equals(address.skip2FA)) &&
         (this.skip2FAVerified == null ? address.skip2FAVerified == null : this.skip2FAVerified.equals(address.skip2FAVerified)) &&
-        (this.network == null ? address.network == null : this.network.equals(address.network));
+        (this.network == null ? address.network == null : this.network.equals(address.network)) &&
+        (this.memo == null ? address.memo == null : this.memo.equals(address.memo));
   }
 
   @Override
@@ -204,6 +217,7 @@ public class Address {
     result = 31 * result + (this.skip2FA == null ? 0: this.skip2FA.hashCode());
     result = 31 * result + (this.skip2FAVerified == null ? 0: this.skip2FAVerified.hashCode());
     result = 31 * result + (this.network == null ? 0: this.network.hashCode());
+    result = 31 * result + (this.memo == null ? 0: this.memo.hashCode());
     return result;
   }
 
@@ -224,6 +238,7 @@ public class Address {
     sb.append("  skip2FA: ").append(skip2FA).append("\n");
     sb.append("  skip2FAVerified: ").append(skip2FAVerified).append("\n");
     sb.append("  network: ").append(network).append("\n");
+    sb.append("  memo: ").append(memo).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

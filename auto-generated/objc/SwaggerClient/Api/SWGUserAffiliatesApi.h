@@ -28,6 +28,8 @@ extern NSInteger kSWGUserAffiliatesApiMissingParamErrorCode;
 /// 
 ///
 /// @param depth the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)
+/// @param targetAccountId AccountId of Sub-Affiliate Account (optional)
+/// @param selectUserId User id of result array to keep (optional)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -37,6 +39,8 @@ extern NSInteger kSWGUserAffiliatesApiMissingParamErrorCode;
 ///
 /// @return NSArray<SWGXAny>*
 -(NSURLSessionTask*) userAffiliatesGetWithDepth: (NSNumber*) depth
+    targetAccountId: (NSNumber*) targetAccountId
+    selectUserId: (NSNumber*) selectUserId
     completionHandler: (void (^)(NSArray<SWGXAny>* output, NSError* error)) handler;
 
 

@@ -197,6 +197,8 @@ public class Instrument {
   private Double settledPrice = null;
   @SerializedName("instantPnl")
   private Boolean instantPnl = null;
+  @SerializedName("minTick")
+  private Double minTick = null;
   @SerializedName("timestamp")
   private Date timestamp = null;
 
@@ -1073,6 +1075,16 @@ public class Instrument {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Double getMinTick() {
+    return minTick;
+  }
+  public void setMinTick(Double minTick) {
+    this.minTick = minTick;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public Date getTimestamp() {
     return timestamp;
   }
@@ -1177,6 +1189,7 @@ public class Instrument {
         (this.settledPriceAdjustmentRate == null ? instrument.settledPriceAdjustmentRate == null : this.settledPriceAdjustmentRate.equals(instrument.settledPriceAdjustmentRate)) &&
         (this.settledPrice == null ? instrument.settledPrice == null : this.settledPrice.equals(instrument.settledPrice)) &&
         (this.instantPnl == null ? instrument.instantPnl == null : this.instantPnl.equals(instrument.instantPnl)) &&
+        (this.minTick == null ? instrument.minTick == null : this.minTick.equals(instrument.minTick)) &&
         (this.timestamp == null ? instrument.timestamp == null : this.timestamp.equals(instrument.timestamp));
   }
 
@@ -1270,6 +1283,7 @@ public class Instrument {
     result = 31 * result + (this.settledPriceAdjustmentRate == null ? 0: this.settledPriceAdjustmentRate.hashCode());
     result = 31 * result + (this.settledPrice == null ? 0: this.settledPrice.hashCode());
     result = 31 * result + (this.instantPnl == null ? 0: this.instantPnl.hashCode());
+    result = 31 * result + (this.minTick == null ? 0: this.minTick.hashCode());
     result = 31 * result + (this.timestamp == null ? 0: this.timestamp.hashCode());
     return result;
   }
@@ -1366,6 +1380,7 @@ public class Instrument {
     sb.append("  settledPriceAdjustmentRate: ").append(settledPriceAdjustmentRate).append("\n");
     sb.append("  settledPrice: ").append(settledPrice).append("\n");
     sb.append("  instantPnl: ").append(instantPnl).append("\n");
+    sb.append("  minTick: ").append(minTick).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
     sb.append("}\n");
     return sb.toString();

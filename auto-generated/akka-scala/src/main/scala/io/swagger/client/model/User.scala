@@ -34,6 +34,7 @@ case class User (
   geoipCountry: Option[String] = None,
   geoipRegion: Option[String] = None,
   firstTradeTimestamp: Option[DateTime] = None,
+  firstDepositTimestamp: Option[DateTime] = None,
   typ: Option[String] = None
 ) extends ApiModel
 

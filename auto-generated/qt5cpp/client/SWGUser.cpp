@@ -73,6 +73,8 @@ SWGUser::init() {
     m_geoip_region_isSet = false;
     first_trade_timestamp = NULL;
     m_first_trade_timestamp_isSet = false;
+    first_deposit_timestamp = NULL;
+    m_first_deposit_timestamp_isSet = false;
     typ = new QString("");
     m_typ_isSet = false;
 }
@@ -131,6 +133,9 @@ SWGUser::cleanup() {
     if(first_trade_timestamp != nullptr) { 
         delete first_trade_timestamp;
     }
+    if(first_deposit_timestamp != nullptr) { 
+        delete first_deposit_timestamp;
+    }
     if(typ != nullptr) { 
         delete typ;
     }
@@ -182,6 +187,8 @@ SWGUser::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&geoip_region, pJson["geoipRegion"], "QString", "QString");
     
     ::Swagger::setValue(&first_trade_timestamp, pJson["firstTradeTimestamp"], "QDateTime", "QDateTime");
+    
+    ::Swagger::setValue(&first_deposit_timestamp, pJson["firstDepositTimestamp"], "QDateTime", "QDateTime");
     
     ::Swagger::setValue(&typ, pJson["typ"], "QString", "QString");
     
@@ -252,6 +259,9 @@ SWGUser::asJsonObject() {
     }
     if(first_trade_timestamp != nullptr) { 
         toJsonValue(QString("firstTradeTimestamp"), first_trade_timestamp, obj, QString("QDateTime"));
+    }
+    if(first_deposit_timestamp != nullptr) { 
+        toJsonValue(QString("firstDepositTimestamp"), first_deposit_timestamp, obj, QString("QDateTime"));
     }
     if(typ != nullptr && *typ != QString("")){
         toJsonValue(QString("typ"), typ, obj, QString("QString"));
@@ -440,6 +450,16 @@ SWGUser::setFirstTradeTimestamp(QDateTime* first_trade_timestamp) {
     this->m_first_trade_timestamp_isSet = true;
 }
 
+QDateTime*
+SWGUser::getFirstDepositTimestamp() {
+    return first_deposit_timestamp;
+}
+void
+SWGUser::setFirstDepositTimestamp(QDateTime* first_deposit_timestamp) {
+    this->first_deposit_timestamp = first_deposit_timestamp;
+    this->m_first_deposit_timestamp_isSet = true;
+}
+
 QString*
 SWGUser::getTyp() {
     return typ;
@@ -472,6 +492,7 @@ SWGUser::isSet(){
         if(country != nullptr && *country != QString("")){ isObjectUpdated = true; break;}
         if(geoip_country != nullptr && *geoip_country != QString("")){ isObjectUpdated = true; break;}
         if(geoip_region != nullptr && *geoip_region != QString("")){ isObjectUpdated = true; break;}
+        
         
         if(typ != nullptr && *typ != QString("")){ isObjectUpdated = true; break;}
     }while(false);

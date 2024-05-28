@@ -89,6 +89,12 @@ public:
     QList<QString*>* getFavouritesOrdered();
     void setFavouritesOrdered(QList<QString*>* favourites_ordered);
 
+    QList<QString*>* getFavouriteBots();
+    void setFavouriteBots(QList<QString*>* favourite_bots);
+
+    bool isHasSetTradingCurrencies();
+    void setHasSetTradingCurrencies(bool has_set_trading_currencies);
+
     QList<QString*>* getHideConfirmDialogs();
     void setHideConfirmDialogs(QList<QString*>* hide_confirm_dialogs);
 
@@ -100,6 +106,12 @@ public:
 
     bool isHideNameFromLeaderboard();
     void setHideNameFromLeaderboard(bool hide_name_from_leaderboard);
+
+    bool isHidePnlInGuilds();
+    void setHidePnlInGuilds(bool hide_pnl_in_guilds);
+
+    bool isHideRoiInGuilds();
+    void setHideRoiInGuilds(bool hide_roi_in_guilds);
 
     QList<QString*>* getHideNotifications();
     void setHideNotifications(QList<QString*>* hide_notifications);
@@ -125,11 +137,17 @@ public:
     QString* getMarginPnlRowKind();
     void setMarginPnlRowKind(QString* margin_pnl_row_kind);
 
+    QString* getMobileLocale();
+    void setMobileLocale(QString* mobile_locale);
+
     QList<QString*>* getMsgsSeen();
     void setMsgsSeen(QList<QString*>* msgs_seen);
 
     SWGObject* getNotifications();
     void setNotifications(SWGObject* notifications);
+
+    bool isOptionsBeta();
+    void setOptionsBeta(bool options_beta);
 
     SWGObject* getOrderBookBinning();
     void setOrderBookBinning(SWGObject* order_book_binning);
@@ -157,6 +175,9 @@ public:
 
     QList<QString*>* getSounds();
     void setSounds(QList<QString*>* sounds);
+
+    QString* getSpacingPreference();
+    void setSpacingPreference(QString* spacing_preference);
 
     bool isStrictIpCheck();
     void setStrictIpCheck(bool strict_ip_check);
@@ -225,6 +246,12 @@ private:
     QList<QString*>* favourites_ordered;
     bool m_favourites_ordered_isSet;
 
+    QList<QString*>* favourite_bots;
+    bool m_favourite_bots_isSet;
+
+    bool has_set_trading_currencies;
+    bool m_has_set_trading_currencies_isSet;
+
     QList<QString*>* hide_confirm_dialogs;
     bool m_hide_confirm_dialogs_isSet;
 
@@ -236,6 +263,12 @@ private:
 
     bool hide_name_from_leaderboard;
     bool m_hide_name_from_leaderboard_isSet;
+
+    bool hide_pnl_in_guilds;
+    bool m_hide_pnl_in_guilds_isSet;
+
+    bool hide_roi_in_guilds;
+    bool m_hide_roi_in_guilds_isSet;
 
     QList<QString*>* hide_notifications;
     bool m_hide_notifications_isSet;
@@ -261,11 +294,17 @@ private:
     QString* margin_pnl_row_kind;
     bool m_margin_pnl_row_kind_isSet;
 
+    QString* mobile_locale;
+    bool m_mobile_locale_isSet;
+
     QList<QString*>* msgs_seen;
     bool m_msgs_seen_isSet;
 
     SWGObject* notifications;
     bool m_notifications_isSet;
+
+    bool options_beta;
+    bool m_options_beta_isSet;
 
     SWGObject* order_book_binning;
     bool m_order_book_binning_isSet;
@@ -293,6 +332,9 @@ private:
 
     QList<QString*>* sounds;
     bool m_sounds_isSet;
+
+    QString* spacing_preference;
+    bool m_spacing_preference_isSet;
 
     bool strict_ip_check;
     bool m_strict_ip_check_isSet;

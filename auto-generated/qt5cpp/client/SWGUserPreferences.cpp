@@ -67,6 +67,10 @@ SWGUserPreferences::init() {
     m_favourites_assets_isSet = false;
     favourites_ordered = new QList<QString*>();
     m_favourites_ordered_isSet = false;
+    favourite_bots = new QList<QString*>();
+    m_favourite_bots_isSet = false;
+    has_set_trading_currencies = false;
+    m_has_set_trading_currencies_isSet = false;
     hide_confirm_dialogs = new QList<QString*>();
     m_hide_confirm_dialogs_isSet = false;
     hide_connection_modal = false;
@@ -75,6 +79,10 @@ SWGUserPreferences::init() {
     m_hide_from_leaderboard_isSet = false;
     hide_name_from_leaderboard = false;
     m_hide_name_from_leaderboard_isSet = false;
+    hide_pnl_in_guilds = false;
+    m_hide_pnl_in_guilds_isSet = false;
+    hide_roi_in_guilds = false;
+    m_hide_roi_in_guilds_isSet = false;
     hide_notifications = new QList<QString*>();
     m_hide_notifications_isSet = false;
     hide_phone_confirm = false;
@@ -91,10 +99,14 @@ SWGUserPreferences::init() {
     m_margin_pnl_row_isSet = false;
     margin_pnl_row_kind = new QString("");
     m_margin_pnl_row_kind_isSet = false;
+    mobile_locale = new QString("");
+    m_mobile_locale_isSet = false;
     msgs_seen = new QList<QString*>();
     m_msgs_seen_isSet = false;
     notifications = NULL;
     m_notifications_isSet = false;
+    options_beta = false;
+    m_options_beta_isSet = false;
     order_book_binning = NULL;
     m_order_book_binning_isSet = false;
     order_book_type = new QString("");
@@ -113,6 +125,8 @@ SWGUserPreferences::init() {
     m_show_locale_numbers_isSet = false;
     sounds = new QList<QString*>();
     m_sounds_isSet = false;
+    spacing_preference = new QString("");
+    m_spacing_preference_isSet = false;
     strict_ip_check = false;
     m_strict_ip_check_isSet = false;
     strict_timeout = false;
@@ -188,6 +202,14 @@ SWGUserPreferences::cleanup() {
         }
         delete favourites_ordered;
     }
+    if(favourite_bots != nullptr) { 
+        auto arr = favourite_bots;
+        for(auto o: *arr) { 
+            delete o;
+        }
+        delete favourite_bots;
+    }
+
     if(hide_confirm_dialogs != nullptr) { 
         auto arr = hide_confirm_dialogs;
         for(auto o: *arr) { 
@@ -195,6 +217,8 @@ SWGUserPreferences::cleanup() {
         }
         delete hide_confirm_dialogs;
     }
+
+
 
 
 
@@ -218,6 +242,9 @@ SWGUserPreferences::cleanup() {
     if(margin_pnl_row_kind != nullptr) { 
         delete margin_pnl_row_kind;
     }
+    if(mobile_locale != nullptr) { 
+        delete mobile_locale;
+    }
     if(msgs_seen != nullptr) { 
         auto arr = msgs_seen;
         for(auto o: *arr) { 
@@ -228,6 +255,7 @@ SWGUserPreferences::cleanup() {
     if(notifications != nullptr) { 
         delete notifications;
     }
+
     if(order_book_binning != nullptr) { 
         delete order_book_binning;
     }
@@ -250,6 +278,9 @@ SWGUserPreferences::cleanup() {
             delete o;
         }
         delete sounds;
+    }
+    if(spacing_preference != nullptr) { 
+        delete spacing_preference;
     }
 
 
@@ -307,12 +338,20 @@ SWGUserPreferences::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&favourites_ordered, pJson["favouritesOrdered"], "QList", "QString");
     
+    ::Swagger::setValue(&favourite_bots, pJson["favouriteBots"], "QList", "QString");
+    ::Swagger::setValue(&has_set_trading_currencies, pJson["hasSetTradingCurrencies"], "bool", "");
+    
+    
     ::Swagger::setValue(&hide_confirm_dialogs, pJson["hideConfirmDialogs"], "QList", "QString");
     ::Swagger::setValue(&hide_connection_modal, pJson["hideConnectionModal"], "bool", "");
     
     ::Swagger::setValue(&hide_from_leaderboard, pJson["hideFromLeaderboard"], "bool", "");
     
     ::Swagger::setValue(&hide_name_from_leaderboard, pJson["hideNameFromLeaderboard"], "bool", "");
+    
+    ::Swagger::setValue(&hide_pnl_in_guilds, pJson["hidePnlInGuilds"], "bool", "");
+    
+    ::Swagger::setValue(&hide_roi_in_guilds, pJson["hideRoiInGuilds"], "bool", "");
     
     
     ::Swagger::setValue(&hide_notifications, pJson["hideNotifications"], "QList", "QString");
@@ -330,9 +369,13 @@ SWGUserPreferences::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&margin_pnl_row_kind, pJson["marginPnlRowKind"], "QString", "QString");
     
+    ::Swagger::setValue(&mobile_locale, pJson["mobileLocale"], "QString", "QString");
+    
     
     ::Swagger::setValue(&msgs_seen, pJson["msgsSeen"], "QList", "QString");
     ::Swagger::setValue(&notifications, pJson["notifications"], "SWGObject", "SWGObject");
+    
+    ::Swagger::setValue(&options_beta, pJson["optionsBeta"], "bool", "");
     
     ::Swagger::setValue(&order_book_binning, pJson["orderBookBinning"], "SWGObject", "SWGObject");
     
@@ -352,6 +395,8 @@ SWGUserPreferences::fromJsonObject(QJsonObject pJson) {
     
     
     ::Swagger::setValue(&sounds, pJson["sounds"], "QList", "QString");
+    ::Swagger::setValue(&spacing_preference, pJson["spacingPreference"], "QString", "QString");
+    
     ::Swagger::setValue(&strict_ip_check, pJson["strictIPCheck"], "bool", "");
     
     ::Swagger::setValue(&strict_timeout, pJson["strictTimeout"], "bool", "");
@@ -423,6 +468,12 @@ SWGUserPreferences::asJsonObject() {
     if(favourites_ordered->size() > 0){
         toJsonArray((QList<void*>*)favourites_ordered, obj, "favouritesOrdered", "QString");
     }
+    if(favourite_bots->size() > 0){
+        toJsonArray((QList<void*>*)favourite_bots, obj, "favouriteBots", "QString");
+    }
+    if(m_has_set_trading_currencies_isSet){
+        obj.insert("hasSetTradingCurrencies", QJsonValue(has_set_trading_currencies));
+    }
     if(hide_confirm_dialogs->size() > 0){
         toJsonArray((QList<void*>*)hide_confirm_dialogs, obj, "hideConfirmDialogs", "QString");
     }
@@ -434,6 +485,12 @@ SWGUserPreferences::asJsonObject() {
     }
     if(m_hide_name_from_leaderboard_isSet){
         obj.insert("hideNameFromLeaderboard", QJsonValue(hide_name_from_leaderboard));
+    }
+    if(m_hide_pnl_in_guilds_isSet){
+        obj.insert("hidePnlInGuilds", QJsonValue(hide_pnl_in_guilds));
+    }
+    if(m_hide_roi_in_guilds_isSet){
+        obj.insert("hideRoiInGuilds", QJsonValue(hide_roi_in_guilds));
     }
     if(hide_notifications->size() > 0){
         toJsonArray((QList<void*>*)hide_notifications, obj, "hideNotifications", "QString");
@@ -459,11 +516,17 @@ SWGUserPreferences::asJsonObject() {
     if(margin_pnl_row_kind != nullptr && *margin_pnl_row_kind != QString("")){
         toJsonValue(QString("marginPnlRowKind"), margin_pnl_row_kind, obj, QString("QString"));
     }
+    if(mobile_locale != nullptr && *mobile_locale != QString("")){
+        toJsonValue(QString("mobileLocale"), mobile_locale, obj, QString("QString"));
+    }
     if(msgs_seen->size() > 0){
         toJsonArray((QList<void*>*)msgs_seen, obj, "msgsSeen", "QString");
     }
     if((notifications != nullptr) && (notifications->isSet())){
         toJsonValue(QString("notifications"), notifications, obj, QString("SWGObject"));
+    }
+    if(m_options_beta_isSet){
+        obj.insert("optionsBeta", QJsonValue(options_beta));
     }
     if((order_book_binning != nullptr) && (order_book_binning->isSet())){
         toJsonValue(QString("orderBookBinning"), order_book_binning, obj, QString("SWGObject"));
@@ -491,6 +554,9 @@ SWGUserPreferences::asJsonObject() {
     }
     if(sounds->size() > 0){
         toJsonArray((QList<void*>*)sounds, obj, "sounds", "QString");
+    }
+    if(spacing_preference != nullptr && *spacing_preference != QString("")){
+        toJsonValue(QString("spacingPreference"), spacing_preference, obj, QString("QString"));
     }
     if(m_strict_ip_check_isSet){
         obj.insert("strictIPCheck", QJsonValue(strict_ip_check));
@@ -665,6 +731,26 @@ SWGUserPreferences::setFavouritesOrdered(QList<QString*>* favourites_ordered) {
 }
 
 QList<QString*>*
+SWGUserPreferences::getFavouriteBots() {
+    return favourite_bots;
+}
+void
+SWGUserPreferences::setFavouriteBots(QList<QString*>* favourite_bots) {
+    this->favourite_bots = favourite_bots;
+    this->m_favourite_bots_isSet = true;
+}
+
+bool
+SWGUserPreferences::isHasSetTradingCurrencies() {
+    return has_set_trading_currencies;
+}
+void
+SWGUserPreferences::setHasSetTradingCurrencies(bool has_set_trading_currencies) {
+    this->has_set_trading_currencies = has_set_trading_currencies;
+    this->m_has_set_trading_currencies_isSet = true;
+}
+
+QList<QString*>*
 SWGUserPreferences::getHideConfirmDialogs() {
     return hide_confirm_dialogs;
 }
@@ -702,6 +788,26 @@ void
 SWGUserPreferences::setHideNameFromLeaderboard(bool hide_name_from_leaderboard) {
     this->hide_name_from_leaderboard = hide_name_from_leaderboard;
     this->m_hide_name_from_leaderboard_isSet = true;
+}
+
+bool
+SWGUserPreferences::isHidePnlInGuilds() {
+    return hide_pnl_in_guilds;
+}
+void
+SWGUserPreferences::setHidePnlInGuilds(bool hide_pnl_in_guilds) {
+    this->hide_pnl_in_guilds = hide_pnl_in_guilds;
+    this->m_hide_pnl_in_guilds_isSet = true;
+}
+
+bool
+SWGUserPreferences::isHideRoiInGuilds() {
+    return hide_roi_in_guilds;
+}
+void
+SWGUserPreferences::setHideRoiInGuilds(bool hide_roi_in_guilds) {
+    this->hide_roi_in_guilds = hide_roi_in_guilds;
+    this->m_hide_roi_in_guilds_isSet = true;
 }
 
 QList<QString*>*
@@ -784,6 +890,16 @@ SWGUserPreferences::setMarginPnlRowKind(QString* margin_pnl_row_kind) {
     this->m_margin_pnl_row_kind_isSet = true;
 }
 
+QString*
+SWGUserPreferences::getMobileLocale() {
+    return mobile_locale;
+}
+void
+SWGUserPreferences::setMobileLocale(QString* mobile_locale) {
+    this->mobile_locale = mobile_locale;
+    this->m_mobile_locale_isSet = true;
+}
+
 QList<QString*>*
 SWGUserPreferences::getMsgsSeen() {
     return msgs_seen;
@@ -802,6 +918,16 @@ void
 SWGUserPreferences::setNotifications(SWGObject* notifications) {
     this->notifications = notifications;
     this->m_notifications_isSet = true;
+}
+
+bool
+SWGUserPreferences::isOptionsBeta() {
+    return options_beta;
+}
+void
+SWGUserPreferences::setOptionsBeta(bool options_beta) {
+    this->options_beta = options_beta;
+    this->m_options_beta_isSet = true;
 }
 
 SWGObject*
@@ -894,6 +1020,16 @@ SWGUserPreferences::setSounds(QList<QString*>* sounds) {
     this->m_sounds_isSet = true;
 }
 
+QString*
+SWGUserPreferences::getSpacingPreference() {
+    return spacing_preference;
+}
+void
+SWGUserPreferences::setSpacingPreference(QString* spacing_preference) {
+    this->spacing_preference = spacing_preference;
+    this->m_spacing_preference_isSet = true;
+}
+
 bool
 SWGUserPreferences::isStrictIpCheck() {
     return strict_ip_check;
@@ -974,10 +1110,14 @@ SWGUserPreferences::isSet(){
         if(favourites->size() > 0){ isObjectUpdated = true; break;}
         if(favourites_assets->size() > 0){ isObjectUpdated = true; break;}
         if(favourites_ordered->size() > 0){ isObjectUpdated = true; break;}
+        if(favourite_bots->size() > 0){ isObjectUpdated = true; break;}
+        if(m_has_set_trading_currencies_isSet){ isObjectUpdated = true; break;}
         if(hide_confirm_dialogs->size() > 0){ isObjectUpdated = true; break;}
         if(m_hide_connection_modal_isSet){ isObjectUpdated = true; break;}
         if(m_hide_from_leaderboard_isSet){ isObjectUpdated = true; break;}
         if(m_hide_name_from_leaderboard_isSet){ isObjectUpdated = true; break;}
+        if(m_hide_pnl_in_guilds_isSet){ isObjectUpdated = true; break;}
+        if(m_hide_roi_in_guilds_isSet){ isObjectUpdated = true; break;}
         if(hide_notifications->size() > 0){ isObjectUpdated = true; break;}
         if(m_hide_phone_confirm_isSet){ isObjectUpdated = true; break;}
         if(m_is_sensitive_info_visible_isSet){ isObjectUpdated = true; break;}
@@ -986,8 +1126,10 @@ SWGUserPreferences::isSet(){
         if(m_locale_set_time_isSet){ isObjectUpdated = true; break;}
         if(margin_pnl_row != nullptr && *margin_pnl_row != QString("")){ isObjectUpdated = true; break;}
         if(margin_pnl_row_kind != nullptr && *margin_pnl_row_kind != QString("")){ isObjectUpdated = true; break;}
+        if(mobile_locale != nullptr && *mobile_locale != QString("")){ isObjectUpdated = true; break;}
         if(msgs_seen->size() > 0){ isObjectUpdated = true; break;}
         if(notifications != nullptr && notifications->isSet()){ isObjectUpdated = true; break;}
+        if(m_options_beta_isSet){ isObjectUpdated = true; break;}
         if(order_book_binning != nullptr && order_book_binning->isSet()){ isObjectUpdated = true; break;}
         if(order_book_type != nullptr && *order_book_type != QString("")){ isObjectUpdated = true; break;}
         if(m_order_clear_immediate_isSet){ isObjectUpdated = true; break;}
@@ -997,6 +1139,7 @@ SWGUserPreferences::isSet(){
         if(m_show_chart_bottom_toolbar_isSet){ isObjectUpdated = true; break;}
         if(m_show_locale_numbers_isSet){ isObjectUpdated = true; break;}
         if(sounds->size() > 0){ isObjectUpdated = true; break;}
+        if(spacing_preference != nullptr && *spacing_preference != QString("")){ isObjectUpdated = true; break;}
         if(m_strict_ip_check_isSet){ isObjectUpdated = true; break;}
         if(m_strict_timeout_isSet){ isObjectUpdated = true; break;}
         if(ticker_group != nullptr && *ticker_group != QString("")){ isObjectUpdated = true; break;}

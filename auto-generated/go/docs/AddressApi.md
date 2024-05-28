@@ -57,6 +57,7 @@ Name | Type | Description  | Notes
  **note** | **optional.String**| Optional annotation. | 
  **skipConfirm** | **optional.Bool**| Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. | [default to false]
  **skip2FA** | **optional.Bool**| Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. | [default to false]
+ **memo** | **optional.String**| Destination Memo. | 
 
 ### Return type
 

@@ -27,4 +27,5 @@ type Address struct {
 	Skip2FA bool `json:"skip2FA,omitempty"`
 	Skip2FAVerified bool `json:"skip2FAVerified,omitempty"`
 	Network string `json:"network"`
+	Memo string `json:"memo,omitempty"`
 }

@@ -304,6 +304,9 @@ public:
     bool isInstantPnl();
     void setInstantPnl(bool instant_pnl);
 
+    double getMinTick();
+    void setMinTick(double min_tick);
+
     QDateTime* getTimestamp();
     void setTimestamp(QDateTime* timestamp);
 
@@ -571,6 +574,9 @@ private:
 
     bool instant_pnl;
     bool m_instant_pnl_isSet;
+
+    double min_tick;
+    bool m_min_tick_isSet;
 
     QDateTime* timestamp;
     bool m_timestamp_isSet;

@@ -56,8 +56,9 @@ namespace IO.Swagger.Model
         /// <param name="geoipCountry">geoipCountry.</param>
         /// <param name="geoipRegion">geoipRegion.</param>
         /// <param name="firstTradeTimestamp">firstTradeTimestamp.</param>
+        /// <param name="firstDepositTimestamp">firstDepositTimestamp.</param>
         /// <param name="typ">typ.</param>
-        public User(decimal? id = default(decimal?), string firstname = default(string), string lastname = default(string), string username = default(string), string accountName = default(string), bool? isUser = true, string email = default(string), string dateOfBirth = default(string), string phone = default(string), DateTime? created = default(DateTime?), DateTime? lastUpdated = default(DateTime?), UserPreferences preferences = default(UserPreferences), string tFAEnabled = default(string), string affiliateID = default(string), string country = default(string), string geoipCountry = default(string), string geoipRegion = default(string), DateTime? firstTradeTimestamp = default(DateTime?), string typ = default(string))
+        public User(decimal? id = default(decimal?), string firstname = default(string), string lastname = default(string), string username = default(string), string accountName = default(string), bool? isUser = true, string email = default(string), string dateOfBirth = default(string), string phone = default(string), DateTime? created = default(DateTime?), DateTime? lastUpdated = default(DateTime?), UserPreferences preferences = default(UserPreferences), string tFAEnabled = default(string), string affiliateID = default(string), string country = default(string), string geoipCountry = default(string), string geoipRegion = default(string), DateTime? firstTradeTimestamp = default(DateTime?), DateTime? firstDepositTimestamp = default(DateTime?), string typ = default(string))
         {
             // to ensure "username" is required (not null)
             if (username == null)
@@ -93,6 +94,7 @@ namespace IO.Swagger.Model
             this.GeoipCountry = geoipCountry;
             this.GeoipRegion = geoipRegion;
             this.FirstTradeTimestamp = firstTradeTimestamp;
+            this.FirstDepositTimestamp = firstDepositTimestamp;
             this.Typ = typ;
         }
         
@@ -205,6 +207,12 @@ namespace IO.Swagger.Model
         public DateTime? FirstTradeTimestamp { get; set; }
 
         /// <summary>
+        /// Gets or Sets FirstDepositTimestamp
+        /// </summary>
+        [DataMember(Name="firstDepositTimestamp", EmitDefaultValue=false)]
+        public DateTime? FirstDepositTimestamp { get; set; }
+
+        /// <summary>
         /// Gets or Sets Typ
         /// </summary>
         [DataMember(Name="typ", EmitDefaultValue=false)]
@@ -236,6 +244,7 @@ namespace IO.Swagger.Model
             sb.Append("  GeoipCountry: ").Append(GeoipCountry).Append("\n");
             sb.Append("  GeoipRegion: ").Append(GeoipRegion).Append("\n");
             sb.Append("  FirstTradeTimestamp: ").Append(FirstTradeTimestamp).Append("\n");
+            sb.Append("  FirstDepositTimestamp: ").Append(FirstDepositTimestamp).Append("\n");
             sb.Append("  Typ: ").Append(Typ).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -362,6 +371,11 @@ namespace IO.Swagger.Model
                     this.FirstTradeTimestamp.Equals(input.FirstTradeTimestamp))
                 ) && 
                 (
+                    this.FirstDepositTimestamp == input.FirstDepositTimestamp ||
+                    (this.FirstDepositTimestamp != null &&
+                    this.FirstDepositTimestamp.Equals(input.FirstDepositTimestamp))
+                ) && 
+                (
                     this.Typ == input.Typ ||
                     (this.Typ != null &&
                     this.Typ.Equals(input.Typ))
@@ -413,6 +427,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.GeoipRegion.GetHashCode();
                 if (this.FirstTradeTimestamp != null)
                     hashCode = hashCode * 59 + this.FirstTradeTimestamp.GetHashCode();
+                if (this.FirstDepositTimestamp != null)
+                    hashCode = hashCode * 59 + this.FirstDepositTimestamp.GetHashCode();
                 if (this.Typ != null)
                     hashCode = hashCode * 59 + this.Typ.GetHashCode();
                 return hashCode;

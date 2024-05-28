@@ -149,23 +149,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Announcement'
+              $ref: "#/definitions/Announcement"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /announcement/urgent:
     get:
       tags:
@@ -180,23 +180,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Announcement'
+              $ref: "#/definitions/Announcement"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /apiKey:
     get:
       tags:
@@ -217,23 +217,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/APIKey'
+              $ref: "#/definitions/APIKey"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /chat/pinned:
     get:
       tags:
@@ -252,23 +252,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/PinnedMessage'
+            $ref: "#/definitions/PinnedMessage"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /chat:
     get:
       tags:
@@ -311,23 +311,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Chat'
+              $ref: "#/definitions/Chat"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
     post:
       tags:
       - Chat
@@ -350,23 +350,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Chat'
+            $ref: "#/definitions/Chat"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /chat/channels:
     get:
       tags:
@@ -382,23 +382,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/ChatChannel'
+              $ref: "#/definitions/ChatChannel"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /chat/connected:
     get:
       tags:
@@ -413,23 +413,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/ConnectedUsers'
+            $ref: "#/definitions/ConnectedUsers"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /execution:
     get:
       tags:
@@ -509,23 +509,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Execution'
+              $ref: "#/definitions/Execution"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /execution/tradeHistory:
     get:
       tags:
@@ -609,23 +609,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Execution'
+              $ref: "#/definitions/Execution"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /funding:
     get:
       tags:
@@ -698,23 +698,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Funding'
+              $ref: "#/definitions/Funding"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /instrument:
     get:
       tags:
@@ -803,23 +803,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Instrument'
+              $ref: "#/definitions/Instrument"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /instrument/active:
     get:
       tags:
@@ -835,23 +835,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Instrument'
+              $ref: "#/definitions/Instrument"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /instrument/indices:
     get:
       tags:
@@ -867,23 +867,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Instrument'
+              $ref: "#/definitions/Instrument"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /instrument/activeAndIndices:
     get:
       tags:
@@ -899,23 +899,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Instrument'
+              $ref: "#/definitions/Instrument"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /instrument/activeIntervals:
     get:
       tags:
@@ -930,23 +930,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/InstrumentInterval'
+            $ref: "#/definitions/InstrumentInterval"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /instrument/compositeIndex:
     get:
       tags:
@@ -1022,23 +1022,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/IndexComposite'
+              $ref: "#/definitions/IndexComposite"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /instrument/usdVolume:
     get:
       tags:
@@ -1065,23 +1065,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/StatsUSDBySymbol'
+              $ref: "#/definitions/StatsUSDBySymbol"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /insurance:
     get:
       tags:
@@ -1154,23 +1154,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Insurance'
+              $ref: "#/definitions/Insurance"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /leaderboard:
     get:
       tags:
@@ -1192,23 +1192,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Leaderboard'
+              $ref: "#/definitions/Leaderboard"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /leaderboard/name:
     get:
       tags:
@@ -1221,23 +1221,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/inline_response_200'
+            $ref: "#/definitions/inline_response_200"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /liquidation:
     get:
       tags:
@@ -1310,23 +1310,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Liquidation'
+              $ref: "#/definitions/Liquidation"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /globalNotification:
     get:
       tags:
@@ -1342,23 +1342,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/GlobalNotification'
+              $ref: "#/definitions/GlobalNotification"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /order:
     get:
       tags:
@@ -1434,23 +1434,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Order'
+              $ref: "#/definitions/Order"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
     post:
       tags:
       - Order
@@ -1682,23 +1682,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Order'
+            $ref: "#/definitions/Order"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
     put:
       tags:
       - Order
@@ -1782,23 +1782,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Order'
+            $ref: "#/definitions/Order"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
     delete:
       tags:
       - Order
@@ -1830,23 +1830,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Order'
+              $ref: "#/definitions/Order"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /order/closePosition:
     post:
       tags:
@@ -1871,23 +1871,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Order'
+            $ref: "#/definitions/Order"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /order/all:
     delete:
       tags:
@@ -1924,23 +1924,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Order'
+              $ref: "#/definitions/Order"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /order/cancelAllAfter:
     post:
       tags:
@@ -1971,19 +1971,19 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /orderBook/L2:
     get:
       tags:
@@ -2012,23 +2012,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/OrderBookL2'
+              $ref: "#/definitions/OrderBookL2"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /position:
     get:
       tags:
@@ -2039,7 +2039,7 @@ paths:
 
         The fields _account_, _symbol_, _currency_ are unique to each position and form its key.
 
-        Spot trading symbols do not return any position data.
+        Spot trading symbols returns a subset of the position fields, mainly the open order aggregates.
 
         - **account**: Your unique account ID.
         - **symbol**: The contract for this position.
@@ -2096,23 +2096,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Position'
+              $ref: "#/definitions/Position"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /position/isolate:
     post:
       tags:
@@ -2137,23 +2137,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Position'
+            $ref: "#/definitions/Position"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /position/riskLimit:
     post:
       tags:
@@ -2184,23 +2184,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Position'
+            $ref: "#/definitions/Position"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /position/transferMargin:
     post:
       tags:
@@ -2231,23 +2231,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Position'
+            $ref: "#/definitions/Position"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /position/leverage:
     post:
       tags:
@@ -2278,23 +2278,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Position'
+            $ref: "#/definitions/Position"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /quote:
     get:
       tags:
@@ -2367,23 +2367,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Quote'
+              $ref: "#/definitions/Quote"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /quote/bucketed:
     get:
       tags:
@@ -2469,23 +2469,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Quote'
+              $ref: "#/definitions/Quote"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /schema:
     get:
       tags:
@@ -2508,19 +2508,19 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /schema/websocketHelp:
     get:
       tags:
@@ -2538,19 +2538,19 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /settlement:
     get:
       tags:
@@ -2623,23 +2623,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Settlement'
+              $ref: "#/definitions/Settlement"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /stats:
     get:
       tags:
@@ -2655,23 +2655,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Stats'
+              $ref: "#/definitions/Stats"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /stats/history:
     get:
       tags:
@@ -2687,23 +2687,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/StatsHistory'
+              $ref: "#/definitions/StatsHistory"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /stats/historyUSD:
     get:
       tags:
@@ -2719,23 +2719,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/StatsUSD'
+              $ref: "#/definitions/StatsUSD"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /trade:
     get:
       tags:
@@ -2812,23 +2812,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Trade'
+              $ref: "#/definitions/Trade"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /trade/bucketed:
     get:
       tags:
@@ -2917,23 +2917,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/TradeBin'
+              $ref: "#/definitions/TradeBin"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/depositAddress:
     get:
       tags:
@@ -2960,19 +2960,58 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
+  /user/depositAddressInformation:
+    get:
+      tags:
+      - User
+      summary: Get a deposit address.
+      operationId: User.getDepositAddressInformation
+      parameters:
+      - name: currency
+        in: query
+        description: "Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>"
+        required: true
+        type: string
+      - name: network
+        in: query
+        description: The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
+        required: true
+        type: string
+      deprecated: false
+      responses:
+        "200":
+          description: Request was successful
+          schema:
+            $ref: "#/definitions/DepositAddress"
+        "400":
+          description: Parameter Error
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Access Denied
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: Not Found
+          schema:
+            $ref: "#/definitions/Error"
   /user/wallet:
     get:
       tags:
@@ -2991,23 +3030,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Wallet'
+            $ref: "#/definitions/Wallet"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/walletHistory:
     get:
       tags:
@@ -3023,14 +3062,14 @@ paths:
         default: XBt
       - name: count
         in: query
-        description: Number of results to fetch.
+        description: "Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows."
         required: false
         type: number
-        default: 100.0
+        default: 10000.0
         format: double
       - name: start
         in: query
-        description: Starting point for results.
+        description: "Starting point for results, integer. Default 0."
         required: false
         type: number
         default: 0.0
@@ -3041,6 +3080,12 @@ paths:
         required: false
         type: number
         format: double
+      - name: reverse
+        in: query
+        description: Start from the latest transaction record. Default true.
+        required: false
+        type: boolean
+        default: true
       deprecated: false
       responses:
         "200":
@@ -3048,28 +3093,29 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Transaction'
+              $ref: "#/definitions/Transaction"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/walletSummary:
     get:
       tags:
       - User
       summary: "Get a summary of all of your wallet transactions (deposits, withdrawals, PNL)."
+      description: "Provides an aggregated view of transactions, by transaction type, over a specific time period."
       operationId: User.getWalletSummary
       parameters:
       - name: currency
@@ -3078,6 +3124,18 @@ paths:
         required: false
         type: string
         default: XBt
+      - name: startTime
+        in: query
+        description: Start time for the summary
+        required: false
+        type: string
+        format: date-time
+      - name: endTime
+        in: query
+        description: End time for the summary
+        required: false
+        type: string
+        format: date-time
       deprecated: false
       responses:
         "200":
@@ -3085,23 +3143,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Transaction'
+              $ref: "#/definitions/WalletSummaryRecord"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/executionHistory:
     get:
       tags:
@@ -3127,23 +3185,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Execution'
+              $ref: "#/definitions/Execution"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/staking:
     get:
       tags:
@@ -3162,23 +3220,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/StakingRecord'
+              $ref: "#/definitions/StakingRecord"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/unstakingRequests:
     get:
       tags:
@@ -3197,23 +3255,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/StakingRecord'
+              $ref: "#/definitions/StakingRecord"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
     post:
       tags:
       - User
@@ -3238,19 +3296,19 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
     delete:
       tags:
       - User
@@ -3270,19 +3328,19 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/staking/instruments:
     get:
       tags:
@@ -3305,23 +3363,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/x-any'
+              $ref: "#/definitions/x-any"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/staking/tiers:
     get:
       tags:
@@ -3341,23 +3399,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/x-any'
+              $ref: "#/definitions/x-any"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/walletTransfer:
     post:
       tags:
@@ -3394,23 +3452,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Transaction'
+            $ref: "#/definitions/Transaction"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/requestWithdrawal:
     post:
       tags:
@@ -3446,6 +3504,11 @@ paths:
         description: "Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified."
         required: false
         type: string
+      - name: memo
+        in: formData
+        description: "Destination Memo. If `address`, is specified, Destination Memo can also be specified"
+        required: false
+        type: string
       - name: addressId
         in: formData
         description: "ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified."
@@ -3474,23 +3537,56 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Transaction'
+            $ref: "#/definitions/Transaction"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
+  /user/withdrawal:
+    delete:
+      tags:
+      - User
+      summary: Cancel pending withdrawal
+      operationId: User.cancelPendingWithdrawal
+      parameters:
+      - name: transactID
+        in: formData
+        required: true
+        type: string
+      deprecated: false
+      responses:
+        "200":
+          description: Request was successful
+          schema:
+            type: object
+        "400":
+          description: Parameter Error
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: Access Denied
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: Not Found
+          schema:
+            $ref: "#/definitions/Error"
   /user/cancelWithdrawal:
     post:
       tags:
@@ -3508,23 +3604,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Transaction'
+            $ref: "#/definitions/Transaction"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/confirmWithdrawal:
     post:
       tags:
@@ -3542,23 +3638,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Transaction'
+            $ref: "#/definitions/Transaction"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/confirmEmail:
     post:
       tags:
@@ -3576,23 +3672,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/AccessToken'
+            $ref: "#/definitions/AccessToken"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/affiliateStatus:
     get:
       tags:
@@ -3611,23 +3707,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Affiliate'
+            $ref: "#/definitions/Affiliate"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/checkReferralCode:
     get:
       tags:
@@ -3650,19 +3746,19 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/quoteFillRatio:
     get:
       tags:
@@ -3681,23 +3777,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/QuoteFillRatio'
+            $ref: "#/definitions/QuoteFillRatio"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/quoteValueRatio:
     get:
       tags:
@@ -3716,23 +3812,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/QuoteValueRatio'
+            $ref: "#/definitions/QuoteValueRatio"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/tradingVolume:
     get:
       tags:
@@ -3747,23 +3843,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/TradingVolume'
+              $ref: "#/definitions/TradingVolume"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/addSubaccount:
     post:
       tags:
@@ -3784,19 +3880,19 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/updateSubaccount:
     post:
       tags:
@@ -3822,19 +3918,19 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/getWalletTransferAccounts:
     get:
       tags:
@@ -3849,23 +3945,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/x-any'
+              $ref: "#/definitions/x-any"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/logout:
     post:
       tags:
@@ -3883,19 +3979,19 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/preferences:
     post:
       tags:
@@ -3919,23 +4015,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/User'
+            $ref: "#/definitions/User"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user:
     get:
       tags:
@@ -3948,23 +4044,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/User'
+            $ref: "#/definitions/User"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/commission:
     get:
       tags:
@@ -3977,23 +4073,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/UserCommissionsBySymbol'
+            $ref: "#/definitions/UserCommissionsBySymbol"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/margin:
     get:
       tags:
@@ -4012,23 +4108,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Margin'
+            $ref: "#/definitions/Margin"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/csa:
     get:
       tags:
@@ -4041,23 +4137,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/CollateralSupportAgreement'
+            $ref: "#/definitions/CollateralSupportAgreement"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /user/communicationToken:
     post:
       tags:
@@ -4080,23 +4176,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/CommunicationToken'
+              $ref: "#/definitions/CommunicationToken"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /userEvent:
     get:
       tags:
@@ -4109,7 +4205,7 @@ paths:
         description: Number of results to fetch.
         required: false
         type: number
-        default: 150.0
+        default: 100.0
         format: double
       - name: startId
         in: query
@@ -4124,23 +4220,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/UserEvent'
+              $ref: "#/definitions/UserEvent"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /wallet/assets:
     get:
       tags:
@@ -4156,23 +4252,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/AssetsConfig'
+              $ref: "#/definitions/AssetsConfig"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /wallet/networks:
     get:
       tags:
@@ -4188,23 +4284,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/NetworksConfig'
+              $ref: "#/definitions/NetworksConfig"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /address:
     get:
       tags:
@@ -4219,23 +4315,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Address'
+              $ref: "#/definitions/Address"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
     post:
       tags:
       - Address
@@ -4279,28 +4375,33 @@ paths:
         required: false
         type: boolean
         default: false
+      - name: memo
+        in: formData
+        description: Destination Memo.
+        required: false
+        type: string
       deprecated: false
       responses:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Address'
+            $ref: "#/definitions/Address"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /userAffiliates:
     get:
       tags:
@@ -4314,6 +4415,18 @@ paths:
         required: false
         type: number
         format: double
+      - name: targetAccountId
+        in: query
+        description: AccountId of Sub-Affiliate Account
+        required: false
+        type: number
+        format: double
+      - name: selectUserId
+        in: query
+        description: User id of result array to keep
+        required: false
+        type: number
+        format: double
       deprecated: false
       responses:
         "200":
@@ -4321,23 +4434,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/x-any'
+              $ref: "#/definitions/x-any"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /guild:
     get:
       tags:
@@ -4353,23 +4466,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/x-any'
+              $ref: "#/definitions/x-any"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
     post:
       tags:
       - Guild
@@ -4394,7 +4507,7 @@ paths:
         format: double
       - name: potDistributionType
         in: formData
-        description: "How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM"
+        description: "How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM"
         required: true
         type: string
       - name: description
@@ -4412,6 +4525,11 @@ paths:
         description: Guild discord link.
         required: false
         type: string
+      - name: telegram
+        in: formData
+        description: Guild telegram link.
+        required: false
+        type: string
       - name: imgUrl
         in: formData
         description: "URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used"
@@ -4427,23 +4545,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Guild'
+            $ref: "#/definitions/Guild"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
     put:
       tags:
       - Guild
@@ -4468,7 +4586,7 @@ paths:
         format: double
       - name: potDistributionType
         in: formData
-        description: "How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM"
+        description: "How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM"
         required: true
         type: string
       - name: potTraderId
@@ -4492,6 +4610,11 @@ paths:
         description: Guild discord link.
         required: false
         type: string
+      - name: telegram
+        in: formData
+        description: Guild telegram link.
+        required: false
+        type: string
       - name: imgUrl
         in: formData
         description: "URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used"
@@ -4507,23 +4630,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Guild'
+            $ref: "#/definitions/Guild"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /guild/shareTrades:
     post:
       tags:
@@ -4544,19 +4667,19 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /guild/leave:
     post:
       tags:
@@ -4573,19 +4696,19 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /guild/kick:
     post:
       tags:
@@ -4607,19 +4730,19 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /guild/join:
     post:
       tags:
@@ -4640,19 +4763,19 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /guild/archive:
     post:
       tags:
@@ -4669,19 +4792,19 @@ paths:
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /porl/nonce:
     get:
       tags:
@@ -4700,23 +4823,23 @@ paths:
         "200":
           description: Request was successful
           schema:
-            $ref: '#/definitions/Porl'
+            $ref: "#/definitions/Porl"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
   /porl/snapshots:
     get:
       tags:
@@ -4732,23 +4855,23 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/x-any'
+              $ref: "#/definitions/x-any"
         "400":
           description: Parameter Error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "403":
           description: Access Denied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: "#/definitions/Error"
 securityDefinitions:
   apiKey:
     type: apiKey
@@ -4787,7 +4910,7 @@ definitions:
     - error
     properties:
       error:
-        $ref: '#/definitions/Error_error'
+        $ref: "#/definitions/Error_error"
   APIKey:
     type: object
     required:
@@ -4815,14 +4938,14 @@ definitions:
       cidrs:
         type: array
         items:
-          $ref: '#/definitions/x-any'
+          $ref: "#/definitions/x-any"
       targetAccountId:
         type: number
         format: int32
       permissions:
         type: array
         items:
-          $ref: '#/definitions/x-any'
+          $ref: "#/definitions/x-any"
       enabled:
         type: boolean
         default: false
@@ -4913,28 +5036,29 @@ definitions:
   Execution:
     type: object
     required:
-    - orderID
     - symbol
     - timestamp
     properties:
       execID:
         type: string
+        format: guid
       orderID:
         type: string
+        format: guid
       clOrdID:
         type: string
       clOrdLinkID:
         type: string
       account:
         type: number
-        format: double
+        format: int64
       symbol:
         type: string
       side:
         type: string
       lastQty:
         type: number
-        format: double
+        format: int64
       lastPx:
         type: number
         format: double
@@ -4942,7 +5066,7 @@ definitions:
         type: string
       orderQty:
         type: number
-        format: double
+        format: int64
       price:
         type: number
         format: double
@@ -4981,7 +5105,7 @@ definitions:
         type: string
       leavesQty:
         type: number
-        format: double
+        format: int64
       cumQty:
         type: number
         format: int64
@@ -4997,12 +5121,13 @@ definitions:
         type: string
       trdMatchID:
         type: string
+        format: guid
       execCost:
         type: number
-        format: double
+        format: int64
       execComm:
         type: number
-        format: double
+        format: int64
       homeNotional:
         type: number
         format: double
@@ -5015,21 +5140,8 @@ definitions:
       timestamp:
         type: string
         format: date-time
-      execGrossPnl:
-        type: number
-        format: double
-      currentQty:
-        type: number
-        format: double
-      avgEntryPrice:
-        type: number
-        format: double
-      realisedPnl:
-        type: number
-        format: double
-      unrealisedPnl:
-        type: number
-        format: double
+      feeType:
+        type: string
     description: Raw Order and Balance Data
   x-any:
     type: object
@@ -5297,6 +5409,9 @@ definitions:
         format: double
       instantPnl:
         type: boolean
+      minTick:
+        type: number
+        format: double
       timestamp:
         type: string
         format: date-time
@@ -5463,26 +5578,27 @@ definitions:
     properties:
       orderID:
         type: string
+        format: guid
       clOrdID:
         type: string
       clOrdLinkID:
         type: string
       account:
         type: number
-        format: double
+        format: int64
       symbol:
         type: string
       side:
         type: string
       orderQty:
         type: number
-        format: double
+        format: int64
       price:
         type: number
         format: double
       displayQty:
         type: number
-        format: double
+        format: int64
       stopPx:
         type: number
         format: double
@@ -5513,10 +5629,10 @@ definitions:
         type: string
       leavesQty:
         type: number
-        format: double
+        format: int64
       cumQty:
         type: number
-        format: double
+        format: int64
       avgPx:
         type: number
         format: double
@@ -5928,6 +6044,16 @@ definitions:
       foreignNotional:
         type: number
         format: double
+  DepositAddress:
+    type: object
+    required:
+    - address
+    properties:
+      address:
+        type: string
+      memo:
+        type: string
+    description: Deposit Address
   Wallet:
     type: object
     required:
@@ -6007,6 +6133,46 @@ definitions:
       walletBalance:
         type: number
         format: int64
+  WalletSummaryRecord:
+    type: object
+    required:
+    - account
+    properties:
+      account:
+        type: number
+        format: double
+      currency:
+        type: string
+        default: XBt
+      transactType:
+        type: string
+      symbol:
+        type: string
+        default: XBTUSD
+      amount:
+        type: number
+        format: double
+        default: 0.0
+      pendingDebit:
+        type: number
+        format: double
+        default: 0.0
+      realisedPnl:
+        type: number
+        format: double
+        default: 0.0
+      walletBalance:
+        type: number
+        format: double
+        default: 0.0
+      unrealisedPnl:
+        type: number
+        format: double
+        default: 0.0
+      marginBalance:
+        type: number
+        format: double
+        default: 0.0
   StakingRecord:
     type: object
     required:
@@ -6202,7 +6368,7 @@ definitions:
         type: string
         format: date-time
       preferences:
-        $ref: '#/definitions/UserPreferences'
+        $ref: "#/definitions/UserPreferences"
       TFAEnabled:
         type: string
       affiliateID:
@@ -6218,6 +6384,9 @@ definitions:
         type: string
         maxLength: 2
       firstTradeTimestamp:
+        type: string
+        format: date-time
+      firstDepositTimestamp:
         type: string
         format: date-time
       typ:
@@ -6416,6 +6585,16 @@ definitions:
         - addressSkipConfirmRequested
         - addressSkipConfirmVerified
         - verify
+        - restrictedAccount
+        - unrestrictedAccount
+        - disabledAccount
+        - enabledAccount
+        - role:roleMappingDestroy
+        - role:chatBanned
+        - role:withdrawalBanned
+        - role:orderBanned
+        - role:apiBanned
+        - role:restrictedJurisdictionPrivilege
       status:
         type: string
         enum:
@@ -6475,10 +6654,13 @@ definitions:
       isMarginCurrency:
         type: boolean
         default: true
+      memoRequired:
+        type: boolean
+        default: false
       networks:
         type: array
         items:
-          $ref: '#/definitions/AssetsConfigNetworkItem'
+          $ref: "#/definitions/AssetsConfigNetworkItem"
   NetworksConfig:
     type: object
     required:
@@ -6541,6 +6723,8 @@ definitions:
       skip2FAVerified:
         type: boolean
       network:
+        type: string
+      memo:
         type: string
   Guild:
     type: object
@@ -6668,6 +6852,12 @@ definitions:
         type: array
         items:
           type: string
+      favouriteBots:
+        type: array
+        items:
+          type: string
+      hasSetTradingCurrencies:
+        type: boolean
       hideConfirmDialogs:
         type: array
         items:
@@ -6680,6 +6870,12 @@ definitions:
       hideNameFromLeaderboard:
         type: boolean
         default: true
+      hidePnlInGuilds:
+        type: boolean
+        default: false
+      hideRoiInGuilds:
+        type: boolean
+        default: false
       hideNotifications:
         type: array
         items:
@@ -6701,6 +6897,8 @@ definitions:
         type: string
       marginPnlRowKind:
         type: string
+      mobileLocale:
+        type: string
       msgsSeen:
         type: array
         items:
@@ -6708,6 +6906,8 @@ definitions:
       notifications:
         type: object
         properties: {}
+      optionsBeta:
+        type: boolean
       orderBookBinning:
         type: object
         properties: {}
@@ -6731,6 +6931,8 @@ definitions:
         type: array
         items:
           type: string
+      spacingPreference:
+        type: string
       strictIPCheck:
         type: boolean
         default: false
