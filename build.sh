@@ -22,6 +22,10 @@ curl --compressed $RESOURCES | \
   jq '.host = "www.bitmex.com"' > \
   $DIR/swagger.json
 
+# Fix up the swagger.json file to be more compatible with the generator
+echo "Fixing up swagger.json..."
+./fix-swagger-type $DIR/swagger.json
+
 echo "Creating output folders..."
 rm -rf $CLIENTS
 rm -rf $DOCS

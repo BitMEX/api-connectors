@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+// Function to recursively fix the types
+function fixTypes(obj) {
+  if (typeof obj === "object" && obj !== null) {
+    for (let k in obj) {
+      if (obj.hasOwnProperty(k)) {
+        if (
+          typeof obj[k] === "object" &&
+          obj[k].hasOwnProperty("format") &&
+          (obj[k].format === "int64" || obj[k].format === "int32") &&
+          obj[k].type === "number"
+        ) {
+          obj[k].type = "integer";
+        }
+        fixTypes(obj[k]);
+      }
+    }
+  }
+}
+
+if (require.main === module) {
+  // Check if a file argument was provided
+  if (process.argv[2]) {
+    // Load the JSON file
+    let data = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
+
+    // Fix the types
+    fixTypes(data);
+
+    // Write the fixed JSON back to the file
+    fs.writeFileSync(process.argv[2], JSON.stringify(data, null, 2), "utf8");
+  } else if (!process.stdin.isTTY) {
+    // Read from stdin
+    let json = "";
+    process.stdin.on("readable", () => {
+      let chunk;
+      while ((chunk = process.stdin.read()) !== null) {
+        json += chunk;
+      }
+    });
+
+    process.stdin.on("end", () => {
+      let data = JSON.parse(json);
+
+      // Fix the types
+      fixTypes(data);
+
+      // Write the fixed JSON to stdout
+      process.stdout.write(JSON.stringify(data, null, 2));
+    });
+  } else {
+    console.error(
+      "No input provided. Please provide a file argument or pipe in some data."
+    );
+    process.exit(1);
+  }
+}
