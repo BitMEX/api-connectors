@@ -3,19 +3,19 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**account** | **float** |  | 
+**account** | **int** |  | 
 **currency** | **str** |  | 
-**prev_payout** | **float** |  | [optional] 
-**prev_turnover** | **float** |  | [optional] 
-**prev_comm** | **float** |  | [optional] 
+**prev_payout** | **int** |  | [optional] 
+**prev_turnover** | **int** |  | [optional] 
+**prev_comm** | **int** |  | [optional] 
 **prev_timestamp** | **datetime** |  | [optional] 
-**exec_turnover** | **float** |  | [optional] 
-**exec_comm** | **float** |  | [optional] 
-**total_referrals** | **float** |  | [optional] 
-**total_turnover** | **float** |  | [optional] 
-**total_comm** | **float** |  | [optional] 
+**exec_turnover** | **int** |  | [optional] 
+**exec_comm** | **int** |  | [optional] 
+**total_referrals** | **int** |  | [optional] 
+**total_turnover** | **int** |  | [optional] 
+**total_comm** | **int** |  | [optional] 
 **payout_pcnt** | **float** |  | [optional] 
-**pending_payout** | **float** |  | [optional] 
+**pending_payout** | **int** |  | [optional] 
 **timestamp** | **datetime** |  | [optional] 
 **referrer_account** | **float** |  | [optional] 
 **referral_discount** | **float** |  | [optional] 

@@ -45,7 +45,7 @@ namespace IO.Swagger.Model
         /// <param name="message">message (required).</param>
         /// <param name="html">html (required).</param>
         /// <param name="channelID">channelID.</param>
-        public Chat(decimal? id = default(decimal?), DateTime? date = default(DateTime?), string user = default(string), string userColor = default(string), string message = default(string), string html = default(string), double? channelID = default(double?))
+        public Chat(int? id = default(int?), DateTime? date = default(DateTime?), string user = default(string), string userColor = default(string), string message = default(string), string html = default(string), double? channelID = default(double?))
         {
             // to ensure "date" is required (not null)
             if (date == null)
@@ -92,7 +92,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public decimal? Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Date

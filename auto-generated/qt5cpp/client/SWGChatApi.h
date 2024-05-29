@@ -20,7 +20,6 @@
 #include "SWGChatChannel.h"
 #include "SWGConnectedUsers.h"
 #include "SWGError.h"
-#include "SWGNumber.h"
 #include "SWGPinnedMessage.h"
 
 #include <QObject>
@@ -39,7 +38,7 @@ public:
     QString basePath;
     QMap<QString, QString> defaultHeaders;
 
-    void chat_get(SWGNumber* count, SWGNumber* start, bool reverse, double channel_id);
+    void chat_get(qint32 count, qint32 start, bool reverse, double channel_id);
     void chat_getChannels();
     void chat_getConnected();
     void chat_getPinnedMessage(double channel_id);

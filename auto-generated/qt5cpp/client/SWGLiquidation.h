@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QString>
 
 #include "SWGObject.h"
@@ -54,8 +53,8 @@ public:
     double getPrice();
     void setPrice(double price);
 
-    SWGNumber* getLeavesQty();
-    void setLeavesQty(SWGNumber* leaves_qty);
+    qint64 getLeavesQty();
+    void setLeavesQty(qint64 leaves_qty);
 
 
     virtual bool isSet() override;
@@ -73,7 +72,7 @@ private:
     double price;
     bool m_price_isSet;
 
-    SWGNumber* leaves_qty;
+    qint64 leaves_qty;
     bool m_leaves_qty_isSet;
 
 };

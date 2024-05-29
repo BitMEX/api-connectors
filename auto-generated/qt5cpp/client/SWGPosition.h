@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -43,8 +42,8 @@ public:
     void fromJsonObject(QJsonObject json) override;
     SWGPosition* fromJson(QString jsonString) override;
 
-    SWGNumber* getAccount();
-    void setAccount(SWGNumber* account);
+    qint64 getAccount();
+    void setAccount(qint64 account);
 
     QString* getSymbol();
     void setSymbol(QString* symbol);
@@ -67,8 +66,8 @@ public:
     double getMaintMarginReq();
     void setMaintMarginReq(double maint_margin_req);
 
-    SWGNumber* getRiskLimit();
-    void setRiskLimit(SWGNumber* risk_limit);
+    qint64 getRiskLimit();
+    void setRiskLimit(qint64 risk_limit);
 
     double getLeverage();
     void setLeverage(double leverage);
@@ -79,53 +78,53 @@ public:
     double getDeleveragePercentile();
     void setDeleveragePercentile(double deleverage_percentile);
 
-    SWGNumber* getRebalancedPnl();
-    void setRebalancedPnl(SWGNumber* rebalanced_pnl);
+    qint64 getRebalancedPnl();
+    void setRebalancedPnl(qint64 rebalanced_pnl);
 
-    SWGNumber* getPrevRealisedPnl();
-    void setPrevRealisedPnl(SWGNumber* prev_realised_pnl);
+    qint64 getPrevRealisedPnl();
+    void setPrevRealisedPnl(qint64 prev_realised_pnl);
 
-    SWGNumber* getPrevUnrealisedPnl();
-    void setPrevUnrealisedPnl(SWGNumber* prev_unrealised_pnl);
+    qint64 getPrevUnrealisedPnl();
+    void setPrevUnrealisedPnl(qint64 prev_unrealised_pnl);
 
-    SWGNumber* getOpeningQty();
-    void setOpeningQty(SWGNumber* opening_qty);
+    qint64 getOpeningQty();
+    void setOpeningQty(qint64 opening_qty);
 
-    SWGNumber* getOpenOrderBuyQty();
-    void setOpenOrderBuyQty(SWGNumber* open_order_buy_qty);
+    qint64 getOpenOrderBuyQty();
+    void setOpenOrderBuyQty(qint64 open_order_buy_qty);
 
-    SWGNumber* getOpenOrderBuyCost();
-    void setOpenOrderBuyCost(SWGNumber* open_order_buy_cost);
+    qint64 getOpenOrderBuyCost();
+    void setOpenOrderBuyCost(qint64 open_order_buy_cost);
 
-    SWGNumber* getOpenOrderBuyPremium();
-    void setOpenOrderBuyPremium(SWGNumber* open_order_buy_premium);
+    qint64 getOpenOrderBuyPremium();
+    void setOpenOrderBuyPremium(qint64 open_order_buy_premium);
 
-    SWGNumber* getOpenOrderSellQty();
-    void setOpenOrderSellQty(SWGNumber* open_order_sell_qty);
+    qint64 getOpenOrderSellQty();
+    void setOpenOrderSellQty(qint64 open_order_sell_qty);
 
-    SWGNumber* getOpenOrderSellCost();
-    void setOpenOrderSellCost(SWGNumber* open_order_sell_cost);
+    qint64 getOpenOrderSellCost();
+    void setOpenOrderSellCost(qint64 open_order_sell_cost);
 
-    SWGNumber* getOpenOrderSellPremium();
-    void setOpenOrderSellPremium(SWGNumber* open_order_sell_premium);
+    qint64 getOpenOrderSellPremium();
+    void setOpenOrderSellPremium(qint64 open_order_sell_premium);
 
-    SWGNumber* getCurrentQty();
-    void setCurrentQty(SWGNumber* current_qty);
+    qint64 getCurrentQty();
+    void setCurrentQty(qint64 current_qty);
 
-    SWGNumber* getCurrentCost();
-    void setCurrentCost(SWGNumber* current_cost);
+    qint64 getCurrentCost();
+    void setCurrentCost(qint64 current_cost);
 
-    SWGNumber* getCurrentComm();
-    void setCurrentComm(SWGNumber* current_comm);
+    qint64 getCurrentComm();
+    void setCurrentComm(qint64 current_comm);
 
-    SWGNumber* getRealisedCost();
-    void setRealisedCost(SWGNumber* realised_cost);
+    qint64 getRealisedCost();
+    void setRealisedCost(qint64 realised_cost);
 
-    SWGNumber* getUnrealisedCost();
-    void setUnrealisedCost(SWGNumber* unrealised_cost);
+    qint64 getUnrealisedCost();
+    void setUnrealisedCost(qint64 unrealised_cost);
 
-    SWGNumber* getGrossOpenPremium();
-    void setGrossOpenPremium(SWGNumber* gross_open_premium);
+    qint64 getGrossOpenPremium();
+    void setGrossOpenPremium(qint64 gross_open_premium);
 
     bool isIsOpen();
     void setIsOpen(bool is_open);
@@ -133,11 +132,11 @@ public:
     double getMarkPrice();
     void setMarkPrice(double mark_price);
 
-    SWGNumber* getMarkValue();
-    void setMarkValue(SWGNumber* mark_value);
+    qint64 getMarkValue();
+    void setMarkValue(qint64 mark_value);
 
-    SWGNumber* getRiskValue();
-    void setRiskValue(SWGNumber* risk_value);
+    qint64 getRiskValue();
+    void setRiskValue(qint64 risk_value);
 
     double getHomeNotional();
     void setHomeNotional(double home_notional);
@@ -148,35 +147,35 @@ public:
     QString* getPosState();
     void setPosState(QString* pos_state);
 
-    SWGNumber* getPosCost();
-    void setPosCost(SWGNumber* pos_cost);
+    qint64 getPosCost();
+    void setPosCost(qint64 pos_cost);
 
-    SWGNumber* getPosCross();
-    void setPosCross(SWGNumber* pos_cross);
+    qint64 getPosCross();
+    void setPosCross(qint64 pos_cross);
 
-    SWGNumber* getPosComm();
-    void setPosComm(SWGNumber* pos_comm);
+    qint64 getPosComm();
+    void setPosComm(qint64 pos_comm);
 
-    SWGNumber* getPosLoss();
-    void setPosLoss(SWGNumber* pos_loss);
+    qint64 getPosLoss();
+    void setPosLoss(qint64 pos_loss);
 
-    SWGNumber* getPosMargin();
-    void setPosMargin(SWGNumber* pos_margin);
+    qint64 getPosMargin();
+    void setPosMargin(qint64 pos_margin);
 
-    SWGNumber* getPosMaint();
-    void setPosMaint(SWGNumber* pos_maint);
+    qint64 getPosMaint();
+    void setPosMaint(qint64 pos_maint);
 
-    SWGNumber* getInitMargin();
-    void setInitMargin(SWGNumber* init_margin);
+    qint64 getInitMargin();
+    void setInitMargin(qint64 init_margin);
 
-    SWGNumber* getMaintMargin();
-    void setMaintMargin(SWGNumber* maint_margin);
+    qint64 getMaintMargin();
+    void setMaintMargin(qint64 maint_margin);
 
-    SWGNumber* getRealisedPnl();
-    void setRealisedPnl(SWGNumber* realised_pnl);
+    qint64 getRealisedPnl();
+    void setRealisedPnl(qint64 realised_pnl);
 
-    SWGNumber* getUnrealisedPnl();
-    void setUnrealisedPnl(SWGNumber* unrealised_pnl);
+    qint64 getUnrealisedPnl();
+    void setUnrealisedPnl(qint64 unrealised_pnl);
 
     double getUnrealisedPnlPcnt();
     void setUnrealisedPnlPcnt(double unrealised_pnl_pcnt);
@@ -209,7 +208,7 @@ public:
     virtual bool isSet() override;
 
 private:
-    SWGNumber* account;
+    qint64 account;
     bool m_account_isSet;
 
     QString* symbol;
@@ -233,7 +232,7 @@ private:
     double maint_margin_req;
     bool m_maint_margin_req_isSet;
 
-    SWGNumber* risk_limit;
+    qint64 risk_limit;
     bool m_risk_limit_isSet;
 
     double leverage;
@@ -245,52 +244,52 @@ private:
     double deleverage_percentile;
     bool m_deleverage_percentile_isSet;
 
-    SWGNumber* rebalanced_pnl;
+    qint64 rebalanced_pnl;
     bool m_rebalanced_pnl_isSet;
 
-    SWGNumber* prev_realised_pnl;
+    qint64 prev_realised_pnl;
     bool m_prev_realised_pnl_isSet;
 
-    SWGNumber* prev_unrealised_pnl;
+    qint64 prev_unrealised_pnl;
     bool m_prev_unrealised_pnl_isSet;
 
-    SWGNumber* opening_qty;
+    qint64 opening_qty;
     bool m_opening_qty_isSet;
 
-    SWGNumber* open_order_buy_qty;
+    qint64 open_order_buy_qty;
     bool m_open_order_buy_qty_isSet;
 
-    SWGNumber* open_order_buy_cost;
+    qint64 open_order_buy_cost;
     bool m_open_order_buy_cost_isSet;
 
-    SWGNumber* open_order_buy_premium;
+    qint64 open_order_buy_premium;
     bool m_open_order_buy_premium_isSet;
 
-    SWGNumber* open_order_sell_qty;
+    qint64 open_order_sell_qty;
     bool m_open_order_sell_qty_isSet;
 
-    SWGNumber* open_order_sell_cost;
+    qint64 open_order_sell_cost;
     bool m_open_order_sell_cost_isSet;
 
-    SWGNumber* open_order_sell_premium;
+    qint64 open_order_sell_premium;
     bool m_open_order_sell_premium_isSet;
 
-    SWGNumber* current_qty;
+    qint64 current_qty;
     bool m_current_qty_isSet;
 
-    SWGNumber* current_cost;
+    qint64 current_cost;
     bool m_current_cost_isSet;
 
-    SWGNumber* current_comm;
+    qint64 current_comm;
     bool m_current_comm_isSet;
 
-    SWGNumber* realised_cost;
+    qint64 realised_cost;
     bool m_realised_cost_isSet;
 
-    SWGNumber* unrealised_cost;
+    qint64 unrealised_cost;
     bool m_unrealised_cost_isSet;
 
-    SWGNumber* gross_open_premium;
+    qint64 gross_open_premium;
     bool m_gross_open_premium_isSet;
 
     bool is_open;
@@ -299,10 +298,10 @@ private:
     double mark_price;
     bool m_mark_price_isSet;
 
-    SWGNumber* mark_value;
+    qint64 mark_value;
     bool m_mark_value_isSet;
 
-    SWGNumber* risk_value;
+    qint64 risk_value;
     bool m_risk_value_isSet;
 
     double home_notional;
@@ -314,34 +313,34 @@ private:
     QString* pos_state;
     bool m_pos_state_isSet;
 
-    SWGNumber* pos_cost;
+    qint64 pos_cost;
     bool m_pos_cost_isSet;
 
-    SWGNumber* pos_cross;
+    qint64 pos_cross;
     bool m_pos_cross_isSet;
 
-    SWGNumber* pos_comm;
+    qint64 pos_comm;
     bool m_pos_comm_isSet;
 
-    SWGNumber* pos_loss;
+    qint64 pos_loss;
     bool m_pos_loss_isSet;
 
-    SWGNumber* pos_margin;
+    qint64 pos_margin;
     bool m_pos_margin_isSet;
 
-    SWGNumber* pos_maint;
+    qint64 pos_maint;
     bool m_pos_maint_isSet;
 
-    SWGNumber* init_margin;
+    qint64 init_margin;
     bool m_init_margin_isSet;
 
-    SWGNumber* maint_margin;
+    qint64 maint_margin;
     bool m_maint_margin_isSet;
 
-    SWGNumber* realised_pnl;
+    qint64 realised_pnl;
     bool m_realised_pnl_isSet;
 
-    SWGNumber* unrealised_pnl;
+    qint64 unrealised_pnl;
     bool m_unrealised_pnl_isSet;
 
     double unrealised_pnl_pcnt;

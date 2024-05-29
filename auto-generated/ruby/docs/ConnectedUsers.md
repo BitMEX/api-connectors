@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**users** | **Float** |  | [optional] 
-**bots** | **Float** |  | [optional] 
+**users** | **Integer** |  | [optional] 
+**bots** | **Integer** |  | [optional] 
 
 

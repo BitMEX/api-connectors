@@ -29,17 +29,17 @@ public class Order {
   @SerializedName("clOrdLinkID")
   private String clOrdLinkID = null;
   @SerializedName("account")
-  private Double account = null;
+  private Long account = null;
   @SerializedName("symbol")
   private String symbol = null;
   @SerializedName("side")
   private String side = null;
   @SerializedName("orderQty")
-  private Double orderQty = null;
+  private Long orderQty = null;
   @SerializedName("price")
   private Double price = null;
   @SerializedName("displayQty")
-  private Double displayQty = null;
+  private Long displayQty = null;
   @SerializedName("stopPx")
   private Double stopPx = null;
   @SerializedName("pegOffsetValue")
@@ -67,9 +67,9 @@ public class Order {
   @SerializedName("ordRejReason")
   private String ordRejReason = null;
   @SerializedName("leavesQty")
-  private Double leavesQty = null;
+  private Long leavesQty = null;
   @SerializedName("cumQty")
-  private Double cumQty = null;
+  private Long cumQty = null;
   @SerializedName("avgPx")
   private Double avgPx = null;
   @SerializedName("text")
@@ -112,10 +112,10 @@ public class Order {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getAccount() {
+  public Long getAccount() {
     return account;
   }
-  public void setAccount(Double account) {
+  public void setAccount(Long account) {
     this.account = account;
   }
 
@@ -142,10 +142,10 @@ public class Order {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getOrderQty() {
+  public Long getOrderQty() {
     return orderQty;
   }
-  public void setOrderQty(Double orderQty) {
+  public void setOrderQty(Long orderQty) {
     this.orderQty = orderQty;
   }
 
@@ -162,10 +162,10 @@ public class Order {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getDisplayQty() {
+  public Long getDisplayQty() {
     return displayQty;
   }
-  public void setDisplayQty(Double displayQty) {
+  public void setDisplayQty(Long displayQty) {
     this.displayQty = displayQty;
   }
 
@@ -302,20 +302,20 @@ public class Order {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getLeavesQty() {
+  public Long getLeavesQty() {
     return leavesQty;
   }
-  public void setLeavesQty(Double leavesQty) {
+  public void setLeavesQty(Long leavesQty) {
     this.leavesQty = leavesQty;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getCumQty() {
+  public Long getCumQty() {
     return cumQty;
   }
-  public void setCumQty(Double cumQty) {
+  public void setCumQty(Long cumQty) {
     this.cumQty = cumQty;
   }
 

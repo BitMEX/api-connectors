@@ -33,7 +33,7 @@ class Position(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'account': 'float',
+        'account': 'int',
         'symbol': 'str',
         'currency': 'str',
         'underlying': 'str',
@@ -41,43 +41,43 @@ class Position(object):
         'commission': 'float',
         'init_margin_req': 'float',
         'maint_margin_req': 'float',
-        'risk_limit': 'float',
+        'risk_limit': 'int',
         'leverage': 'float',
         'cross_margin': 'bool',
         'deleverage_percentile': 'float',
-        'rebalanced_pnl': 'float',
-        'prev_realised_pnl': 'float',
-        'prev_unrealised_pnl': 'float',
-        'opening_qty': 'float',
-        'open_order_buy_qty': 'float',
-        'open_order_buy_cost': 'float',
-        'open_order_buy_premium': 'float',
-        'open_order_sell_qty': 'float',
-        'open_order_sell_cost': 'float',
-        'open_order_sell_premium': 'float',
-        'current_qty': 'float',
-        'current_cost': 'float',
-        'current_comm': 'float',
-        'realised_cost': 'float',
-        'unrealised_cost': 'float',
-        'gross_open_premium': 'float',
+        'rebalanced_pnl': 'int',
+        'prev_realised_pnl': 'int',
+        'prev_unrealised_pnl': 'int',
+        'opening_qty': 'int',
+        'open_order_buy_qty': 'int',
+        'open_order_buy_cost': 'int',
+        'open_order_buy_premium': 'int',
+        'open_order_sell_qty': 'int',
+        'open_order_sell_cost': 'int',
+        'open_order_sell_premium': 'int',
+        'current_qty': 'int',
+        'current_cost': 'int',
+        'current_comm': 'int',
+        'realised_cost': 'int',
+        'unrealised_cost': 'int',
+        'gross_open_premium': 'int',
         'is_open': 'bool',
         'mark_price': 'float',
-        'mark_value': 'float',
-        'risk_value': 'float',
+        'mark_value': 'int',
+        'risk_value': 'int',
         'home_notional': 'float',
         'foreign_notional': 'float',
         'pos_state': 'str',
-        'pos_cost': 'float',
-        'pos_cross': 'float',
-        'pos_comm': 'float',
-        'pos_loss': 'float',
-        'pos_margin': 'float',
-        'pos_maint': 'float',
-        'init_margin': 'float',
-        'maint_margin': 'float',
-        'realised_pnl': 'float',
-        'unrealised_pnl': 'float',
+        'pos_cost': 'int',
+        'pos_cross': 'int',
+        'pos_comm': 'int',
+        'pos_loss': 'int',
+        'pos_margin': 'int',
+        'pos_maint': 'int',
+        'init_margin': 'int',
+        'maint_margin': 'int',
+        'realised_pnl': 'int',
+        'unrealised_pnl': 'int',
         'unrealised_pnl_pcnt': 'float',
         'unrealised_roe_pcnt': 'float',
         'avg_cost_price': 'float',
@@ -146,7 +146,7 @@ class Position(object):
         'timestamp': 'timestamp'
     }
 
-    def __init__(self, account=None, symbol=None, currency=None, underlying=None, quote_currency=None, commission=0.0, init_margin_req=0.0, maint_margin_req=0.0, risk_limit=None, leverage=0.0, cross_margin=None, deleverage_percentile=0.0, rebalanced_pnl=None, prev_realised_pnl=None, prev_unrealised_pnl=None, opening_qty=None, open_order_buy_qty=None, open_order_buy_cost=None, open_order_buy_premium=None, open_order_sell_qty=None, open_order_sell_cost=None, open_order_sell_premium=None, current_qty=None, current_cost=None, current_comm=None, realised_cost=None, unrealised_cost=None, gross_open_premium=None, is_open=None, mark_price=0.0, mark_value=None, risk_value=None, home_notional=0.0, foreign_notional=0.0, pos_state=None, pos_cost=None, pos_cross=None, pos_comm=None, pos_loss=None, pos_margin=None, pos_maint=None, init_margin=None, maint_margin=None, realised_pnl=None, unrealised_pnl=None, unrealised_pnl_pcnt=0.0, unrealised_roe_pcnt=0.0, avg_cost_price=0.0, avg_entry_price=0.0, break_even_price=0.0, margin_call_price=0.0, liquidation_price=0.0, bankrupt_price=0.0, timestamp=None, _configuration=None):  # noqa: E501
+    def __init__(self, account=0, symbol=None, currency=None, underlying=None, quote_currency=None, commission=0.0, init_margin_req=0.0, maint_margin_req=0.0, risk_limit=0, leverage=0.0, cross_margin=None, deleverage_percentile=0.0, rebalanced_pnl=0, prev_realised_pnl=0, prev_unrealised_pnl=0, opening_qty=0, open_order_buy_qty=0, open_order_buy_cost=0, open_order_buy_premium=0, open_order_sell_qty=0, open_order_sell_cost=0, open_order_sell_premium=0, current_qty=0, current_cost=0, current_comm=0, realised_cost=0, unrealised_cost=0, gross_open_premium=0, is_open=None, mark_price=0.0, mark_value=0, risk_value=0, home_notional=0.0, foreign_notional=0.0, pos_state=None, pos_cost=0, pos_cross=0, pos_comm=0, pos_loss=0, pos_margin=0, pos_maint=0, init_margin=0, maint_margin=0, realised_pnl=0, unrealised_pnl=0, unrealised_pnl_pcnt=0.0, unrealised_roe_pcnt=0.0, avg_cost_price=0.0, avg_entry_price=0.0, break_even_price=0.0, margin_call_price=0.0, liquidation_price=0.0, bankrupt_price=0.0, timestamp=None, _configuration=None):  # noqa: E501
         """Position - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -321,7 +321,7 @@ class Position(object):
 
 
         :return: The account of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._account
 
@@ -331,7 +331,7 @@ class Position(object):
 
 
         :param account: The account of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
         if self._configuration.client_side_validation and account is None:
             raise ValueError("Invalid value for `account`, must not be `None`")  # noqa: E501
@@ -493,7 +493,7 @@ class Position(object):
 
 
         :return: The risk_limit of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._risk_limit
 
@@ -503,7 +503,7 @@ class Position(object):
 
 
         :param risk_limit: The risk_limit of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._risk_limit = risk_limit
@@ -577,7 +577,7 @@ class Position(object):
 
 
         :return: The rebalanced_pnl of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._rebalanced_pnl
 
@@ -587,7 +587,7 @@ class Position(object):
 
 
         :param rebalanced_pnl: The rebalanced_pnl of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._rebalanced_pnl = rebalanced_pnl
@@ -598,7 +598,7 @@ class Position(object):
 
 
         :return: The prev_realised_pnl of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._prev_realised_pnl
 
@@ -608,7 +608,7 @@ class Position(object):
 
 
         :param prev_realised_pnl: The prev_realised_pnl of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._prev_realised_pnl = prev_realised_pnl
@@ -619,7 +619,7 @@ class Position(object):
 
 
         :return: The prev_unrealised_pnl of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._prev_unrealised_pnl
 
@@ -629,7 +629,7 @@ class Position(object):
 
 
         :param prev_unrealised_pnl: The prev_unrealised_pnl of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._prev_unrealised_pnl = prev_unrealised_pnl
@@ -640,7 +640,7 @@ class Position(object):
 
 
         :return: The opening_qty of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._opening_qty
 
@@ -650,7 +650,7 @@ class Position(object):
 
 
         :param opening_qty: The opening_qty of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._opening_qty = opening_qty
@@ -661,7 +661,7 @@ class Position(object):
 
 
         :return: The open_order_buy_qty of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._open_order_buy_qty
 
@@ -671,7 +671,7 @@ class Position(object):
 
 
         :param open_order_buy_qty: The open_order_buy_qty of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._open_order_buy_qty = open_order_buy_qty
@@ -682,7 +682,7 @@ class Position(object):
 
 
         :return: The open_order_buy_cost of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._open_order_buy_cost
 
@@ -692,7 +692,7 @@ class Position(object):
 
 
         :param open_order_buy_cost: The open_order_buy_cost of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._open_order_buy_cost = open_order_buy_cost
@@ -703,7 +703,7 @@ class Position(object):
 
 
         :return: The open_order_buy_premium of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._open_order_buy_premium
 
@@ -713,7 +713,7 @@ class Position(object):
 
 
         :param open_order_buy_premium: The open_order_buy_premium of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._open_order_buy_premium = open_order_buy_premium
@@ -724,7 +724,7 @@ class Position(object):
 
 
         :return: The open_order_sell_qty of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._open_order_sell_qty
 
@@ -734,7 +734,7 @@ class Position(object):
 
 
         :param open_order_sell_qty: The open_order_sell_qty of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._open_order_sell_qty = open_order_sell_qty
@@ -745,7 +745,7 @@ class Position(object):
 
 
         :return: The open_order_sell_cost of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._open_order_sell_cost
 
@@ -755,7 +755,7 @@ class Position(object):
 
 
         :param open_order_sell_cost: The open_order_sell_cost of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._open_order_sell_cost = open_order_sell_cost
@@ -766,7 +766,7 @@ class Position(object):
 
 
         :return: The open_order_sell_premium of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._open_order_sell_premium
 
@@ -776,7 +776,7 @@ class Position(object):
 
 
         :param open_order_sell_premium: The open_order_sell_premium of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._open_order_sell_premium = open_order_sell_premium
@@ -787,7 +787,7 @@ class Position(object):
 
 
         :return: The current_qty of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._current_qty
 
@@ -797,7 +797,7 @@ class Position(object):
 
 
         :param current_qty: The current_qty of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._current_qty = current_qty
@@ -808,7 +808,7 @@ class Position(object):
 
 
         :return: The current_cost of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._current_cost
 
@@ -818,7 +818,7 @@ class Position(object):
 
 
         :param current_cost: The current_cost of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._current_cost = current_cost
@@ -829,7 +829,7 @@ class Position(object):
 
 
         :return: The current_comm of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._current_comm
 
@@ -839,7 +839,7 @@ class Position(object):
 
 
         :param current_comm: The current_comm of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._current_comm = current_comm
@@ -850,7 +850,7 @@ class Position(object):
 
 
         :return: The realised_cost of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._realised_cost
 
@@ -860,7 +860,7 @@ class Position(object):
 
 
         :param realised_cost: The realised_cost of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._realised_cost = realised_cost
@@ -871,7 +871,7 @@ class Position(object):
 
 
         :return: The unrealised_cost of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._unrealised_cost
 
@@ -881,7 +881,7 @@ class Position(object):
 
 
         :param unrealised_cost: The unrealised_cost of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._unrealised_cost = unrealised_cost
@@ -892,7 +892,7 @@ class Position(object):
 
 
         :return: The gross_open_premium of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._gross_open_premium
 
@@ -902,7 +902,7 @@ class Position(object):
 
 
         :param gross_open_premium: The gross_open_premium of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._gross_open_premium = gross_open_premium
@@ -955,7 +955,7 @@ class Position(object):
 
 
         :return: The mark_value of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._mark_value
 
@@ -965,7 +965,7 @@ class Position(object):
 
 
         :param mark_value: The mark_value of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._mark_value = mark_value
@@ -976,7 +976,7 @@ class Position(object):
 
 
         :return: The risk_value of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._risk_value
 
@@ -986,7 +986,7 @@ class Position(object):
 
 
         :param risk_value: The risk_value of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._risk_value = risk_value
@@ -1060,7 +1060,7 @@ class Position(object):
 
 
         :return: The pos_cost of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._pos_cost
 
@@ -1070,7 +1070,7 @@ class Position(object):
 
 
         :param pos_cost: The pos_cost of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._pos_cost = pos_cost
@@ -1081,7 +1081,7 @@ class Position(object):
 
 
         :return: The pos_cross of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._pos_cross
 
@@ -1091,7 +1091,7 @@ class Position(object):
 
 
         :param pos_cross: The pos_cross of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._pos_cross = pos_cross
@@ -1102,7 +1102,7 @@ class Position(object):
 
 
         :return: The pos_comm of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._pos_comm
 
@@ -1112,7 +1112,7 @@ class Position(object):
 
 
         :param pos_comm: The pos_comm of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._pos_comm = pos_comm
@@ -1123,7 +1123,7 @@ class Position(object):
 
 
         :return: The pos_loss of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._pos_loss
 
@@ -1133,7 +1133,7 @@ class Position(object):
 
 
         :param pos_loss: The pos_loss of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._pos_loss = pos_loss
@@ -1144,7 +1144,7 @@ class Position(object):
 
 
         :return: The pos_margin of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._pos_margin
 
@@ -1154,7 +1154,7 @@ class Position(object):
 
 
         :param pos_margin: The pos_margin of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._pos_margin = pos_margin
@@ -1165,7 +1165,7 @@ class Position(object):
 
 
         :return: The pos_maint of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._pos_maint
 
@@ -1175,7 +1175,7 @@ class Position(object):
 
 
         :param pos_maint: The pos_maint of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._pos_maint = pos_maint
@@ -1186,7 +1186,7 @@ class Position(object):
 
 
         :return: The init_margin of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._init_margin
 
@@ -1196,7 +1196,7 @@ class Position(object):
 
 
         :param init_margin: The init_margin of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._init_margin = init_margin
@@ -1207,7 +1207,7 @@ class Position(object):
 
 
         :return: The maint_margin of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._maint_margin
 
@@ -1217,7 +1217,7 @@ class Position(object):
 
 
         :param maint_margin: The maint_margin of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._maint_margin = maint_margin
@@ -1228,7 +1228,7 @@ class Position(object):
 
 
         :return: The realised_pnl of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._realised_pnl
 
@@ -1238,7 +1238,7 @@ class Position(object):
 
 
         :param realised_pnl: The realised_pnl of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._realised_pnl = realised_pnl
@@ -1249,7 +1249,7 @@ class Position(object):
 
 
         :return: The unrealised_pnl of this Position.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._unrealised_pnl
 
@@ -1259,7 +1259,7 @@ class Position(object):
 
 
         :param unrealised_pnl: The unrealised_pnl of this Position.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._unrealised_pnl = unrealised_pnl

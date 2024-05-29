@@ -22,13 +22,13 @@
 (defn address-new-with-http-info
   "Creates a new saved address."
   ([currency network address name ] (address-new-with-http-info currency network address name nil))
-  ([currency network address name {:keys [note skip-confirm skip2-fa ]}]
+  ([currency network address name {:keys [note skip-confirm skip2-fa memo ]}]
    (check-required-params currency network address name)
    (call-api "/address" :post
              {:path-params   {}
               :header-params {}
               :query-params  {}
-              :form-params   {"currency" currency "network" network "address" address "name" name "note" note "skipConfirm" skip-confirm "skip2FA" skip2-fa }
+              :form-params   {"currency" currency "network" network "address" address "name" name "note" note "skipConfirm" skip-confirm "skip2FA" skip2-fa "memo" memo }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
               :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))

@@ -17,6 +17,6 @@ type NetworksConfig struct {
 	NetworkSymbol string `json:"networkSymbol,omitempty"`
 	TransactionExplorer string `json:"transactionExplorer,omitempty"`
 	TokenExplorer string `json:"tokenExplorer,omitempty"`
-	DepositConfirmations float32 `json:"depositConfirmations,omitempty"`
+	DepositConfirmations int32 `json:"depositConfirmations,omitempty"`
 	Enabled bool `json:"enabled,omitempty"`
 }

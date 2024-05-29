@@ -66,7 +66,7 @@ namespace IO.Swagger.Model
         /// <param name="text">text.</param>
         /// <param name="transactTime">transactTime.</param>
         /// <param name="timestamp">timestamp.</param>
-        public Order(string orderID = default(string), string clOrdID = default(string), string clOrdLinkID = default(string), double? account = default(double?), string symbol = default(string), string side = default(string), double? orderQty = default(double?), double? price = default(double?), double? displayQty = default(double?), double? stopPx = default(double?), double? pegOffsetValue = default(double?), string pegPriceType = default(string), string currency = default(string), string settlCurrency = default(string), string ordType = default(string), string timeInForce = default(string), string execInst = default(string), string contingencyType = default(string), string ordStatus = default(string), string triggered = default(string), bool? workingIndicator = default(bool?), string ordRejReason = default(string), double? leavesQty = default(double?), double? cumQty = default(double?), double? avgPx = default(double?), string text = default(string), DateTime? transactTime = default(DateTime?), DateTime? timestamp = default(DateTime?))
+        public Order(string orderID = default(string), string clOrdID = default(string), string clOrdLinkID = default(string), long? account = default(long?), string symbol = default(string), string side = default(string), long? orderQty = default(long?), double? price = default(double?), long? displayQty = default(long?), double? stopPx = default(double?), double? pegOffsetValue = default(double?), string pegPriceType = default(string), string currency = default(string), string settlCurrency = default(string), string ordType = default(string), string timeInForce = default(string), string execInst = default(string), string contingencyType = default(string), string ordStatus = default(string), string triggered = default(string), bool? workingIndicator = default(bool?), string ordRejReason = default(string), long? leavesQty = default(long?), long? cumQty = default(long?), double? avgPx = default(double?), string text = default(string), DateTime? transactTime = default(DateTime?), DateTime? timestamp = default(DateTime?))
         {
             // to ensure "orderID" is required (not null)
             if (orderID == null)
@@ -128,7 +128,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name="account", EmitDefaultValue=false)]
-        public double? Account { get; set; }
+        public long? Account { get; set; }
 
         /// <summary>
         /// Gets or Sets Symbol
@@ -146,7 +146,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets OrderQty
         /// </summary>
         [DataMember(Name="orderQty", EmitDefaultValue=false)]
-        public double? OrderQty { get; set; }
+        public long? OrderQty { get; set; }
 
         /// <summary>
         /// Gets or Sets Price
@@ -158,7 +158,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets DisplayQty
         /// </summary>
         [DataMember(Name="displayQty", EmitDefaultValue=false)]
-        public double? DisplayQty { get; set; }
+        public long? DisplayQty { get; set; }
 
         /// <summary>
         /// Gets or Sets StopPx
@@ -242,13 +242,13 @@ namespace IO.Swagger.Model
         /// Gets or Sets LeavesQty
         /// </summary>
         [DataMember(Name="leavesQty", EmitDefaultValue=false)]
-        public double? LeavesQty { get; set; }
+        public long? LeavesQty { get; set; }
 
         /// <summary>
         /// Gets or Sets CumQty
         /// </summary>
         [DataMember(Name="cumQty", EmitDefaultValue=false)]
-        public double? CumQty { get; set; }
+        public long? CumQty { get; set; }
 
         /// <summary>
         /// Gets or Sets AvgPx

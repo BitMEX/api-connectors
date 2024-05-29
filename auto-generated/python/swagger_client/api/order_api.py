@@ -47,9 +47,9 @@ class OrderApi(object):
         :param str orig_cl_ord_id: Client Order ID. See POST /order.
         :param str cl_ord_id: Optional new Client Order ID, requires `origClOrdID`.
         :param float simple_order_qty: Deprecated: simple orders are not supported after 2018/10/26
-        :param float order_qty: Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)).
+        :param int order_qty: Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)).
         :param float simple_leaves_qty: Deprecated: simple orders are not supported after 2018/10/26
-        :param float leaves_qty: Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders.
+        :param int leaves_qty: Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders.
         :param float price: Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.
         :param float stop_px: Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders.
         :param float peg_offset_value: Optional trailing offset from the current price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for 'Pegged' orders.
@@ -79,9 +79,9 @@ class OrderApi(object):
         :param str orig_cl_ord_id: Client Order ID. See POST /order.
         :param str cl_ord_id: Optional new Client Order ID, requires `origClOrdID`.
         :param float simple_order_qty: Deprecated: simple orders are not supported after 2018/10/26
-        :param float order_qty: Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)).
+        :param int order_qty: Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)).
         :param float simple_leaves_qty: Deprecated: simple orders are not supported after 2018/10/26
-        :param float leaves_qty: Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders.
+        :param int leaves_qty: Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders.
         :param float price: Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.
         :param float stop_px: Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders.
         :param float peg_offset_value: Optional trailing offset from the current price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for 'Pegged' orders.
@@ -591,8 +591,8 @@ class OrderApi(object):
         :param str symbol: Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive.
         :param str filter: Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
         :param str columns: Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-        :param float count: Number of results to fetch. Must be a positive integer.
-        :param float start: Starting point for results.
+        :param int count: Number of results to fetch. Must be a positive integer.
+        :param int start: Starting point for results.
         :param bool reverse: If true, will sort results newest first.
         :param datetime start_time: Starting date filter for results.
         :param datetime end_time: Ending date filter for results.
@@ -620,8 +620,8 @@ class OrderApi(object):
         :param str symbol: Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive.
         :param str filter: Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
         :param str columns: Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-        :param float count: Number of results to fetch. Must be a positive integer.
-        :param float start: Starting point for results.
+        :param int count: Number of results to fetch. Must be a positive integer.
+        :param int start: Starting point for results.
         :param bool reverse: If true, will sort results newest first.
         :param datetime start_time: Starting date filter for results.
         :param datetime end_time: Ending date filter for results.
@@ -714,9 +714,9 @@ class OrderApi(object):
         :param str symbol: Instrument symbol. e.g. 'XBTUSD'. (required)
         :param str side: Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless `orderQty` is negative.
         :param float simple_order_qty: Deprecated: simple orders are not supported after 2018/10/26
-        :param float order_qty: Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)).
+        :param int order_qty: Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)).
         :param float price: Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.
-        :param float display_qty: Optional quantity to display in the book. Use 0 for a fully hidden order.
+        :param int display_qty: Optional quantity to display in the book. Use 0 for a fully hidden order.
         :param float stop_px: Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use `execInst` of 'MarkPrice' or 'LastPrice' to define the current price used for triggering.
         :param str cl_ord_id: Optional Client Order ID. This clOrdID will come back on the order and any related executions.
         :param str cl_ord_link_id: Optional Client Order Link ID for contingent orders
@@ -751,9 +751,9 @@ class OrderApi(object):
         :param str symbol: Instrument symbol. e.g. 'XBTUSD'. (required)
         :param str side: Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless `orderQty` is negative.
         :param float simple_order_qty: Deprecated: simple orders are not supported after 2018/10/26
-        :param float order_qty: Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)).
+        :param int order_qty: Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)).
         :param float price: Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.
-        :param float display_qty: Optional quantity to display in the book. Use 0 for a fully hidden order.
+        :param int display_qty: Optional quantity to display in the book. Use 0 for a fully hidden order.
         :param float stop_px: Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use `execInst` of 'MarkPrice' or 'LastPrice' to define the current price used for triggering.
         :param str cl_ord_id: Optional Client Order ID. This clOrdID will come back on the order and any related executions.
         :param str cl_ord_link_id: Optional Client Order Link ID for contingent orders

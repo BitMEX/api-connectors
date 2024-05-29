@@ -11,11 +11,11 @@ import Foundation
 
 public struct ChatChannel: Codable {
 
-    public var _id: Double?
+    public var _id: Int?
     public var name: String
     public var isPrivate: Bool
 
-    public init(_id: Double?, name: String, isPrivate: Bool) {
+    public init(_id: Int?, name: String, isPrivate: Bool) {
         self._id = _id
         self.name = name
         self.isPrivate = isPrivate

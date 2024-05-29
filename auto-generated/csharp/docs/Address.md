@@ -3,7 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **decimal?** |  | [optional] 
+**Id** | **int?** |  | [optional] 
 **Currency** | **string** |  | [optional] 
 **Created** | **DateTime?** |  | [optional] 
 **UserId** | **double?** |  | [optional] 
@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Skip2FA** | **bool?** |  | [optional] 
 **Skip2FAVerified** | **bool?** |  | [optional] 
 **Network** | **string** |  | 
+**Memo** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

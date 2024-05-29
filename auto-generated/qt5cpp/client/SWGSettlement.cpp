@@ -49,9 +49,9 @@ SWGSettlement::init() {
     m_option_strike_price_isSet = false;
     option_underlying_price = 0.0;
     m_option_underlying_price_isSet = false;
-    bankrupt = 0.0;
+    bankrupt = 0L;
     m_bankrupt_isSet = false;
-    tax_base = 0.0;
+    tax_base = 0L;
     m_tax_base_isSet = false;
     tax_rate = 0.0;
     m_tax_rate_isSet = false;
@@ -71,12 +71,8 @@ SWGSettlement::cleanup() {
 
 
 
-    if(bankrupt != nullptr) { 
-        delete bankrupt;
-    }
-    if(tax_base != nullptr) { 
-        delete tax_base;
-    }
+
+
 
 }
 
@@ -103,9 +99,9 @@ SWGSettlement::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&option_underlying_price, pJson["optionUnderlyingPrice"], "double", "");
     
-    ::Swagger::setValue(&bankrupt, pJson["bankrupt"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&bankrupt, pJson["bankrupt"], "qint64", "");
     
-    ::Swagger::setValue(&tax_base, pJson["taxBase"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&tax_base, pJson["taxBase"], "qint64", "");
     
     ::Swagger::setValue(&tax_rate, pJson["taxRate"], "double", "");
     
@@ -141,11 +137,11 @@ SWGSettlement::asJsonObject() {
     if(m_option_underlying_price_isSet){
         obj.insert("optionUnderlyingPrice", QJsonValue(option_underlying_price));
     }
-    if((bankrupt != nullptr) && (bankrupt->isSet())){
-        toJsonValue(QString("bankrupt"), bankrupt, obj, QString("SWGNumber"));
+    if(m_bankrupt_isSet){
+        obj.insert("bankrupt", QJsonValue(bankrupt));
     }
-    if((tax_base != nullptr) && (tax_base->isSet())){
-        toJsonValue(QString("taxBase"), tax_base, obj, QString("SWGNumber"));
+    if(m_tax_base_isSet){
+        obj.insert("taxBase", QJsonValue(tax_base));
     }
     if(m_tax_rate_isSet){
         obj.insert("taxRate", QJsonValue(tax_rate));
@@ -214,22 +210,22 @@ SWGSettlement::setOptionUnderlyingPrice(double option_underlying_price) {
     this->m_option_underlying_price_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGSettlement::getBankrupt() {
     return bankrupt;
 }
 void
-SWGSettlement::setBankrupt(SWGNumber* bankrupt) {
+SWGSettlement::setBankrupt(qint64 bankrupt) {
     this->bankrupt = bankrupt;
     this->m_bankrupt_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGSettlement::getTaxBase() {
     return tax_base;
 }
 void
-SWGSettlement::setTaxBase(SWGNumber* tax_base) {
+SWGSettlement::setTaxBase(qint64 tax_base) {
     this->tax_base = tax_base;
     this->m_tax_base_isSet = true;
 }
@@ -255,8 +251,8 @@ SWGSettlement::isSet(){
         if(m_settled_price_isSet){ isObjectUpdated = true; break;}
         if(m_option_strike_price_isSet){ isObjectUpdated = true; break;}
         if(m_option_underlying_price_isSet){ isObjectUpdated = true; break;}
-        if(bankrupt != nullptr && bankrupt->isSet()){ isObjectUpdated = true; break;}
-        if(tax_base != nullptr && tax_base->isSet()){ isObjectUpdated = true; break;}
+        if(m_bankrupt_isSet){ isObjectUpdated = true; break;}
+        if(m_tax_base_isSet){ isObjectUpdated = true; break;}
         if(m_tax_rate_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;

@@ -43,7 +43,7 @@ SWGTrade::init() {
     m_symbol_isSet = false;
     side = new QString("");
     m_side_isSet = false;
-    size = 0.0;
+    size = 0L;
     m_size_isSet = false;
     price = 0.0;
     m_price_isSet = false;
@@ -51,7 +51,7 @@ SWGTrade::init() {
     m_tick_direction_isSet = false;
     trd_match_id = new QString("");
     m_trd_match_id_isSet = false;
-    gross_value = 0.0;
+    gross_value = 0L;
     m_gross_value_isSet = false;
     home_notional = 0.0;
     m_home_notional_isSet = false;
@@ -72,9 +72,7 @@ SWGTrade::cleanup() {
     if(side != nullptr) { 
         delete side;
     }
-    if(size != nullptr) { 
-        delete size;
-    }
+
 
     if(tick_direction != nullptr) { 
         delete tick_direction;
@@ -82,9 +80,7 @@ SWGTrade::cleanup() {
     if(trd_match_id != nullptr) { 
         delete trd_match_id;
     }
-    if(gross_value != nullptr) { 
-        delete gross_value;
-    }
+
 
 
     if(trd_type != nullptr) { 
@@ -109,7 +105,7 @@ SWGTrade::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&side, pJson["side"], "QString", "QString");
     
-    ::Swagger::setValue(&size, pJson["size"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&size, pJson["size"], "qint64", "");
     
     ::Swagger::setValue(&price, pJson["price"], "double", "");
     
@@ -117,7 +113,7 @@ SWGTrade::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&trd_match_id, pJson["trdMatchID"], "QString", "QString");
     
-    ::Swagger::setValue(&gross_value, pJson["grossValue"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&gross_value, pJson["grossValue"], "qint64", "");
     
     ::Swagger::setValue(&home_notional, pJson["homeNotional"], "double", "");
     
@@ -148,8 +144,8 @@ SWGTrade::asJsonObject() {
     if(side != nullptr && *side != QString("")){
         toJsonValue(QString("side"), side, obj, QString("QString"));
     }
-    if((size != nullptr) && (size->isSet())){
-        toJsonValue(QString("size"), size, obj, QString("SWGNumber"));
+    if(m_size_isSet){
+        obj.insert("size", QJsonValue(size));
     }
     if(m_price_isSet){
         obj.insert("price", QJsonValue(price));
@@ -160,8 +156,8 @@ SWGTrade::asJsonObject() {
     if(trd_match_id != nullptr && *trd_match_id != QString("")){
         toJsonValue(QString("trdMatchID"), trd_match_id, obj, QString("QString"));
     }
-    if((gross_value != nullptr) && (gross_value->isSet())){
-        toJsonValue(QString("grossValue"), gross_value, obj, QString("SWGNumber"));
+    if(m_gross_value_isSet){
+        obj.insert("grossValue", QJsonValue(gross_value));
     }
     if(m_home_notional_isSet){
         obj.insert("homeNotional", QJsonValue(home_notional));
@@ -206,12 +202,12 @@ SWGTrade::setSide(QString* side) {
     this->m_side_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGTrade::getSize() {
     return size;
 }
 void
-SWGTrade::setSize(SWGNumber* size) {
+SWGTrade::setSize(qint64 size) {
     this->size = size;
     this->m_size_isSet = true;
 }
@@ -246,12 +242,12 @@ SWGTrade::setTrdMatchId(QString* trd_match_id) {
     this->m_trd_match_id_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGTrade::getGrossValue() {
     return gross_value;
 }
 void
-SWGTrade::setGrossValue(SWGNumber* gross_value) {
+SWGTrade::setGrossValue(qint64 gross_value) {
     this->gross_value = gross_value;
     this->m_gross_value_isSet = true;
 }
@@ -294,11 +290,11 @@ SWGTrade::isSet(){
         
         if(symbol != nullptr && *symbol != QString("")){ isObjectUpdated = true; break;}
         if(side != nullptr && *side != QString("")){ isObjectUpdated = true; break;}
-        if(size != nullptr && size->isSet()){ isObjectUpdated = true; break;}
+        if(m_size_isSet){ isObjectUpdated = true; break;}
         if(m_price_isSet){ isObjectUpdated = true; break;}
         if(tick_direction != nullptr && *tick_direction != QString("")){ isObjectUpdated = true; break;}
         if(trd_match_id != nullptr && *trd_match_id != QString("")){ isObjectUpdated = true; break;}
-        if(gross_value != nullptr && gross_value->isSet()){ isObjectUpdated = true; break;}
+        if(m_gross_value_isSet){ isObjectUpdated = true; break;}
         if(m_home_notional_isSet){ isObjectUpdated = true; break;}
         if(m_foreign_notional_isSet){ isObjectUpdated = true; break;}
         if(trd_type != nullptr && *trd_type != QString("")){ isObjectUpdated = true; break;}

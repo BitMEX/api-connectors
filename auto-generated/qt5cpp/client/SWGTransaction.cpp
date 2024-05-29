@@ -39,7 +39,7 @@ void
 SWGTransaction::init() {
     transact_id = new QString("");
     m_transact_id_isSet = false;
-    account = 0.0;
+    account = 0L;
     m_account_isSet = false;
     currency = new QString("");
     m_currency_isSet = false;
@@ -47,9 +47,9 @@ SWGTransaction::init() {
     m_network_isSet = false;
     transact_type = new QString("");
     m_transact_type_isSet = false;
-    amount = 0.0;
+    amount = 0L;
     m_amount_isSet = false;
-    fee = 0.0;
+    fee = 0L;
     m_fee_isSet = false;
     transact_status = new QString("");
     m_transact_status_isSet = false;
@@ -63,7 +63,7 @@ SWGTransaction::init() {
     m_transact_time_isSet = false;
     timestamp = NULL;
     m_timestamp_isSet = false;
-    wallet_balance = 0.0;
+    wallet_balance = 0L;
     m_wallet_balance_isSet = false;
 }
 
@@ -72,9 +72,7 @@ SWGTransaction::cleanup() {
     if(transact_id != nullptr) { 
         delete transact_id;
     }
-    if(account != nullptr) { 
-        delete account;
-    }
+
     if(currency != nullptr) { 
         delete currency;
     }
@@ -84,12 +82,8 @@ SWGTransaction::cleanup() {
     if(transact_type != nullptr) { 
         delete transact_type;
     }
-    if(amount != nullptr) { 
-        delete amount;
-    }
-    if(fee != nullptr) { 
-        delete fee;
-    }
+
+
     if(transact_status != nullptr) { 
         delete transact_status;
     }
@@ -108,9 +102,7 @@ SWGTransaction::cleanup() {
     if(timestamp != nullptr) { 
         delete timestamp;
     }
-    if(wallet_balance != nullptr) { 
-        delete wallet_balance;
-    }
+
 }
 
 SWGTransaction*
@@ -126,7 +118,7 @@ void
 SWGTransaction::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&transact_id, pJson["transactID"], "QString", "QString");
     
-    ::Swagger::setValue(&account, pJson["account"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&account, pJson["account"], "qint64", "");
     
     ::Swagger::setValue(&currency, pJson["currency"], "QString", "QString");
     
@@ -134,9 +126,9 @@ SWGTransaction::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&transact_type, pJson["transactType"], "QString", "QString");
     
-    ::Swagger::setValue(&amount, pJson["amount"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&amount, pJson["amount"], "qint64", "");
     
-    ::Swagger::setValue(&fee, pJson["fee"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&fee, pJson["fee"], "qint64", "");
     
     ::Swagger::setValue(&transact_status, pJson["transactStatus"], "QString", "QString");
     
@@ -150,7 +142,7 @@ SWGTransaction::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&timestamp, pJson["timestamp"], "QDateTime", "QDateTime");
     
-    ::Swagger::setValue(&wallet_balance, pJson["walletBalance"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&wallet_balance, pJson["walletBalance"], "qint64", "");
     
 }
 
@@ -169,8 +161,8 @@ SWGTransaction::asJsonObject() {
     if(transact_id != nullptr && *transact_id != QString("")){
         toJsonValue(QString("transactID"), transact_id, obj, QString("QString"));
     }
-    if((account != nullptr) && (account->isSet())){
-        toJsonValue(QString("account"), account, obj, QString("SWGNumber"));
+    if(m_account_isSet){
+        obj.insert("account", QJsonValue(account));
     }
     if(currency != nullptr && *currency != QString("")){
         toJsonValue(QString("currency"), currency, obj, QString("QString"));
@@ -181,11 +173,11 @@ SWGTransaction::asJsonObject() {
     if(transact_type != nullptr && *transact_type != QString("")){
         toJsonValue(QString("transactType"), transact_type, obj, QString("QString"));
     }
-    if((amount != nullptr) && (amount->isSet())){
-        toJsonValue(QString("amount"), amount, obj, QString("SWGNumber"));
+    if(m_amount_isSet){
+        obj.insert("amount", QJsonValue(amount));
     }
-    if((fee != nullptr) && (fee->isSet())){
-        toJsonValue(QString("fee"), fee, obj, QString("SWGNumber"));
+    if(m_fee_isSet){
+        obj.insert("fee", QJsonValue(fee));
     }
     if(transact_status != nullptr && *transact_status != QString("")){
         toJsonValue(QString("transactStatus"), transact_status, obj, QString("QString"));
@@ -205,8 +197,8 @@ SWGTransaction::asJsonObject() {
     if(timestamp != nullptr) { 
         toJsonValue(QString("timestamp"), timestamp, obj, QString("QDateTime"));
     }
-    if((wallet_balance != nullptr) && (wallet_balance->isSet())){
-        toJsonValue(QString("walletBalance"), wallet_balance, obj, QString("SWGNumber"));
+    if(m_wallet_balance_isSet){
+        obj.insert("walletBalance", QJsonValue(wallet_balance));
     }
 
     return obj;
@@ -222,12 +214,12 @@ SWGTransaction::setTransactId(QString* transact_id) {
     this->m_transact_id_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGTransaction::getAccount() {
     return account;
 }
 void
-SWGTransaction::setAccount(SWGNumber* account) {
+SWGTransaction::setAccount(qint64 account) {
     this->account = account;
     this->m_account_isSet = true;
 }
@@ -262,22 +254,22 @@ SWGTransaction::setTransactType(QString* transact_type) {
     this->m_transact_type_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGTransaction::getAmount() {
     return amount;
 }
 void
-SWGTransaction::setAmount(SWGNumber* amount) {
+SWGTransaction::setAmount(qint64 amount) {
     this->amount = amount;
     this->m_amount_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGTransaction::getFee() {
     return fee;
 }
 void
-SWGTransaction::setFee(SWGNumber* fee) {
+SWGTransaction::setFee(qint64 fee) {
     this->fee = fee;
     this->m_fee_isSet = true;
 }
@@ -342,12 +334,12 @@ SWGTransaction::setTimestamp(QDateTime* timestamp) {
     this->m_timestamp_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGTransaction::getWalletBalance() {
     return wallet_balance;
 }
 void
-SWGTransaction::setWalletBalance(SWGNumber* wallet_balance) {
+SWGTransaction::setWalletBalance(qint64 wallet_balance) {
     this->wallet_balance = wallet_balance;
     this->m_wallet_balance_isSet = true;
 }
@@ -358,19 +350,19 @@ SWGTransaction::isSet(){
     bool isObjectUpdated = false;
     do{
         if(transact_id != nullptr && *transact_id != QString("")){ isObjectUpdated = true; break;}
-        if(account != nullptr && account->isSet()){ isObjectUpdated = true; break;}
+        if(m_account_isSet){ isObjectUpdated = true; break;}
         if(currency != nullptr && *currency != QString("")){ isObjectUpdated = true; break;}
         if(network != nullptr && *network != QString("")){ isObjectUpdated = true; break;}
         if(transact_type != nullptr && *transact_type != QString("")){ isObjectUpdated = true; break;}
-        if(amount != nullptr && amount->isSet()){ isObjectUpdated = true; break;}
-        if(fee != nullptr && fee->isSet()){ isObjectUpdated = true; break;}
+        if(m_amount_isSet){ isObjectUpdated = true; break;}
+        if(m_fee_isSet){ isObjectUpdated = true; break;}
         if(transact_status != nullptr && *transact_status != QString("")){ isObjectUpdated = true; break;}
         if(address != nullptr && *address != QString("")){ isObjectUpdated = true; break;}
         if(tx != nullptr && *tx != QString("")){ isObjectUpdated = true; break;}
         if(text != nullptr && *text != QString("")){ isObjectUpdated = true; break;}
         
         
-        if(wallet_balance != nullptr && wallet_balance->isSet()){ isObjectUpdated = true; break;}
+        if(m_wallet_balance_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

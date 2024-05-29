@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -55,8 +54,8 @@ public:
     QString* getClOrdLinkId();
     void setClOrdLinkId(QString* cl_ord_link_id);
 
-    double getAccount();
-    void setAccount(double account);
+    qint64 getAccount();
+    void setAccount(qint64 account);
 
     QString* getSymbol();
     void setSymbol(QString* symbol);
@@ -64,8 +63,8 @@ public:
     QString* getSide();
     void setSide(QString* side);
 
-    double getLastQty();
-    void setLastQty(double last_qty);
+    qint64 getLastQty();
+    void setLastQty(qint64 last_qty);
 
     double getLastPx();
     void setLastPx(double last_px);
@@ -73,14 +72,14 @@ public:
     QString* getLastLiquidityInd();
     void setLastLiquidityInd(QString* last_liquidity_ind);
 
-    double getOrderQty();
-    void setOrderQty(double order_qty);
+    qint64 getOrderQty();
+    void setOrderQty(qint64 order_qty);
 
     double getPrice();
     void setPrice(double price);
 
-    SWGNumber* getDisplayQty();
-    void setDisplayQty(SWGNumber* display_qty);
+    qint64 getDisplayQty();
+    void setDisplayQty(qint64 display_qty);
 
     double getStopPx();
     void setStopPx(double stop_px);
@@ -124,17 +123,20 @@ public:
     QString* getOrdRejReason();
     void setOrdRejReason(QString* ord_rej_reason);
 
-    double getLeavesQty();
-    void setLeavesQty(double leaves_qty);
+    qint64 getLeavesQty();
+    void setLeavesQty(qint64 leaves_qty);
 
-    SWGNumber* getCumQty();
-    void setCumQty(SWGNumber* cum_qty);
+    qint64 getCumQty();
+    void setCumQty(qint64 cum_qty);
 
     double getAvgPx();
     void setAvgPx(double avg_px);
 
     double getCommission();
     void setCommission(double commission);
+
+    QString* getFeeType();
+    void setFeeType(QString* fee_type);
 
     QString* getTradePublishIndicator();
     void setTradePublishIndicator(QString* trade_publish_indicator);
@@ -145,11 +147,11 @@ public:
     QString* getTrdMatchId();
     void setTrdMatchId(QString* trd_match_id);
 
-    double getExecCost();
-    void setExecCost(double exec_cost);
+    qint64 getExecCost();
+    void setExecCost(qint64 exec_cost);
 
-    double getExecComm();
-    void setExecComm(double exec_comm);
+    qint64 getExecComm();
+    void setExecComm(qint64 exec_comm);
 
     double getHomeNotional();
     void setHomeNotional(double home_notional);
@@ -162,21 +164,6 @@ public:
 
     QDateTime* getTimestamp();
     void setTimestamp(QDateTime* timestamp);
-
-    double getExecGrossPnl();
-    void setExecGrossPnl(double exec_gross_pnl);
-
-    double getCurrentQty();
-    void setCurrentQty(double current_qty);
-
-    double getAvgEntryPrice();
-    void setAvgEntryPrice(double avg_entry_price);
-
-    double getRealisedPnl();
-    void setRealisedPnl(double realised_pnl);
-
-    double getUnrealisedPnl();
-    void setUnrealisedPnl(double unrealised_pnl);
 
 
     virtual bool isSet() override;
@@ -194,7 +181,7 @@ private:
     QString* cl_ord_link_id;
     bool m_cl_ord_link_id_isSet;
 
-    double account;
+    qint64 account;
     bool m_account_isSet;
 
     QString* symbol;
@@ -203,7 +190,7 @@ private:
     QString* side;
     bool m_side_isSet;
 
-    double last_qty;
+    qint64 last_qty;
     bool m_last_qty_isSet;
 
     double last_px;
@@ -212,13 +199,13 @@ private:
     QString* last_liquidity_ind;
     bool m_last_liquidity_ind_isSet;
 
-    double order_qty;
+    qint64 order_qty;
     bool m_order_qty_isSet;
 
     double price;
     bool m_price_isSet;
 
-    SWGNumber* display_qty;
+    qint64 display_qty;
     bool m_display_qty_isSet;
 
     double stop_px;
@@ -263,10 +250,10 @@ private:
     QString* ord_rej_reason;
     bool m_ord_rej_reason_isSet;
 
-    double leaves_qty;
+    qint64 leaves_qty;
     bool m_leaves_qty_isSet;
 
-    SWGNumber* cum_qty;
+    qint64 cum_qty;
     bool m_cum_qty_isSet;
 
     double avg_px;
@@ -274,6 +261,9 @@ private:
 
     double commission;
     bool m_commission_isSet;
+
+    QString* fee_type;
+    bool m_fee_type_isSet;
 
     QString* trade_publish_indicator;
     bool m_trade_publish_indicator_isSet;
@@ -284,10 +274,10 @@ private:
     QString* trd_match_id;
     bool m_trd_match_id_isSet;
 
-    double exec_cost;
+    qint64 exec_cost;
     bool m_exec_cost_isSet;
 
-    double exec_comm;
+    qint64 exec_comm;
     bool m_exec_comm_isSet;
 
     double home_notional;
@@ -301,21 +291,6 @@ private:
 
     QDateTime* timestamp;
     bool m_timestamp_isSet;
-
-    double exec_gross_pnl;
-    bool m_exec_gross_pnl_isSet;
-
-    double current_qty;
-    bool m_current_qty_isSet;
-
-    double avg_entry_price;
-    bool m_avg_entry_price_isSet;
-
-    double realised_pnl;
-    bool m_realised_pnl_isSet;
-
-    double unrealised_pnl;
-    bool m_unrealised_pnl_isSet;
 
 };
 

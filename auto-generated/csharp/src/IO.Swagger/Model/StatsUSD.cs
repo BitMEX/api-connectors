@@ -44,7 +44,7 @@ namespace IO.Swagger.Model
         /// <param name="turnover30d">turnover30d.</param>
         /// <param name="turnover365d">turnover365d.</param>
         /// <param name="turnover">turnover.</param>
-        public StatsUSD(string rootSymbol = default(string), string currency = default(string), decimal? turnover24h = default(decimal?), decimal? turnover30d = default(decimal?), decimal? turnover365d = default(decimal?), decimal? turnover = default(decimal?))
+        public StatsUSD(string rootSymbol = default(string), string currency = default(string), long? turnover24h = default(long?), long? turnover30d = default(long?), long? turnover365d = default(long?), long? turnover = default(long?))
         {
             // to ensure "rootSymbol" is required (not null)
             if (rootSymbol == null)
@@ -78,25 +78,25 @@ namespace IO.Swagger.Model
         /// Gets or Sets Turnover24h
         /// </summary>
         [DataMember(Name="turnover24h", EmitDefaultValue=false)]
-        public decimal? Turnover24h { get; set; }
+        public long? Turnover24h { get; set; }
 
         /// <summary>
         /// Gets or Sets Turnover30d
         /// </summary>
         [DataMember(Name="turnover30d", EmitDefaultValue=false)]
-        public decimal? Turnover30d { get; set; }
+        public long? Turnover30d { get; set; }
 
         /// <summary>
         /// Gets or Sets Turnover365d
         /// </summary>
         [DataMember(Name="turnover365d", EmitDefaultValue=false)]
-        public decimal? Turnover365d { get; set; }
+        public long? Turnover365d { get; set; }
 
         /// <summary>
         /// Gets or Sets Turnover
         /// </summary>
         [DataMember(Name="turnover", EmitDefaultValue=false)]
-        public decimal? Turnover { get; set; }
+        public long? Turnover { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

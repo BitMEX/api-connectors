@@ -11,25 +11,25 @@ import Foundation
 
 public struct Affiliate: Codable {
 
-    public var account: Double
+    public var account: Int64
     public var currency: String
-    public var prevPayout: Double?
-    public var prevTurnover: Double?
-    public var prevComm: Double?
+    public var prevPayout: Int64?
+    public var prevTurnover: Int64?
+    public var prevComm: Int64?
     public var prevTimestamp: Date?
-    public var execTurnover: Double?
-    public var execComm: Double?
-    public var totalReferrals: Double?
-    public var totalTurnover: Double?
-    public var totalComm: Double?
+    public var execTurnover: Int64?
+    public var execComm: Int64?
+    public var totalReferrals: Int64?
+    public var totalTurnover: Int64?
+    public var totalComm: Int64?
     public var payoutPcnt: Double?
-    public var pendingPayout: Double?
+    public var pendingPayout: Int64?
     public var timestamp: Date?
     public var referrerAccount: Double?
     public var referralDiscount: Double?
     public var affiliatePayout: Double?
 
-    public init(account: Double, currency: String, prevPayout: Double?, prevTurnover: Double?, prevComm: Double?, prevTimestamp: Date?, execTurnover: Double?, execComm: Double?, totalReferrals: Double?, totalTurnover: Double?, totalComm: Double?, payoutPcnt: Double?, pendingPayout: Double?, timestamp: Date?, referrerAccount: Double?, referralDiscount: Double?, affiliatePayout: Double?) {
+    public init(account: Int64, currency: String, prevPayout: Int64?, prevTurnover: Int64?, prevComm: Int64?, prevTimestamp: Date?, execTurnover: Int64?, execComm: Int64?, totalReferrals: Int64?, totalTurnover: Int64?, totalComm: Int64?, payoutPcnt: Double?, pendingPayout: Int64?, timestamp: Date?, referrerAccount: Double?, referralDiscount: Double?, affiliatePayout: Double?) {
         self.account = account
         self.currency = currency
         self.prevPayout = prevPayout

@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="userAffiliatesGet"></a>
 # **userAffiliatesGet**
-> List&lt;XAny&gt; userAffiliatesGet(depth)
+> List&lt;XAny&gt; userAffiliatesGet(depth, targetAccountId, selectUserId)
 
 Get user&#39;s affiliates to a given depth
 
@@ -20,8 +20,10 @@ Get user&#39;s affiliates to a given depth
 
 UserAffiliatesApi apiInstance = new UserAffiliatesApi();
 Double depth = 3.4D; // Double | the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates
+Double targetAccountId = 3.4D; // Double | AccountId of Sub-Affiliate Account
+Double selectUserId = 3.4D; // Double | User id of result array to keep
 try {
-    List<XAny> result = apiInstance.userAffiliatesGet(depth);
+    List<XAny> result = apiInstance.userAffiliatesGet(depth, targetAccountId, selectUserId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserAffiliatesApi#userAffiliatesGet");
@@ -34,6 +36,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **depth** | **Double**| the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates | [optional]
+ **targetAccountId** | **Double**| AccountId of Sub-Affiliate Account | [optional]
+ **selectUserId** | **Double**| User id of result array to keep | [optional]
 
 ### Return type
 

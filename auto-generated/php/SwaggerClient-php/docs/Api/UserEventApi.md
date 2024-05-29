@@ -36,7 +36,7 @@ $apiInstance = new Swagger\Client\Api\UserEventApi(
     new GuzzleHttp\Client(),
     $config
 );
-$count = 150; // double | Number of results to fetch.
+$count = 100; // double | Number of results to fetch.
 $start_id = 1.2; // double | Cursor for pagination.
 
 try {
@@ -52,7 +52,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **double**| Number of results to fetch. | [optional] [default to 150]
+ **count** | **double**| Number of results to fetch. | [optional] [default to 100]
  **start_id** | **double**| Cursor for pagination. | [optional]
 
 ### Return type

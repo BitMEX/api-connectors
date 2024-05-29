@@ -12,15 +12,15 @@ import Foundation
 
 public struct PinnedMessage: Codable {
 
-    public var _id: Double
-    public var channelID: Double
-    public var messageId: Double
+    public var _id: Int
+    public var channelID: Int
+    public var messageId: Int
     public var created: Date?
     public var ended: Date?
     public var createdUserId: Double?
     public var endedUserId: Double?
 
-    public init(_id: Double, channelID: Double, messageId: Double, created: Date?, ended: Date?, createdUserId: Double?, endedUserId: Double?) {
+    public init(_id: Int, channelID: Int, messageId: Int, created: Date?, ended: Date?, createdUserId: Double?, endedUserId: Double?) {
         self._id = _id
         self.channelID = channelID
         self.messageId = messageId

@@ -37,11 +37,11 @@ SWGPinnedMessage::~SWGPinnedMessage() {
 
 void
 SWGPinnedMessage::init() {
-    id = 0.0;
+    id = 0;
     m_id_isSet = false;
-    channel_id = 0.0;
+    channel_id = 0;
     m_channel_id_isSet = false;
-    message_id = 0.0;
+    message_id = 0;
     m_message_id_isSet = false;
     created = NULL;
     m_created_isSet = false;
@@ -55,15 +55,9 @@ SWGPinnedMessage::init() {
 
 void
 SWGPinnedMessage::cleanup() {
-    if(id != nullptr) { 
-        delete id;
-    }
-    if(channel_id != nullptr) { 
-        delete channel_id;
-    }
-    if(message_id != nullptr) { 
-        delete message_id;
-    }
+
+
+
     if(created != nullptr) { 
         delete created;
     }
@@ -85,11 +79,11 @@ SWGPinnedMessage::fromJson(QString json) {
 
 void
 SWGPinnedMessage::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&id, pJson["id"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&id, pJson["id"], "qint32", "");
     
-    ::Swagger::setValue(&channel_id, pJson["channelID"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&channel_id, pJson["channelID"], "qint32", "");
     
-    ::Swagger::setValue(&message_id, pJson["messageId"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&message_id, pJson["messageId"], "qint32", "");
     
     ::Swagger::setValue(&created, pJson["created"], "QDateTime", "QDateTime");
     
@@ -113,14 +107,14 @@ SWGPinnedMessage::asJson ()
 QJsonObject
 SWGPinnedMessage::asJsonObject() {
     QJsonObject obj;
-    if((id != nullptr) && (id->isSet())){
-        toJsonValue(QString("id"), id, obj, QString("SWGNumber"));
+    if(m_id_isSet){
+        obj.insert("id", QJsonValue(id));
     }
-    if((channel_id != nullptr) && (channel_id->isSet())){
-        toJsonValue(QString("channelID"), channel_id, obj, QString("SWGNumber"));
+    if(m_channel_id_isSet){
+        obj.insert("channelID", QJsonValue(channel_id));
     }
-    if((message_id != nullptr) && (message_id->isSet())){
-        toJsonValue(QString("messageId"), message_id, obj, QString("SWGNumber"));
+    if(m_message_id_isSet){
+        obj.insert("messageId", QJsonValue(message_id));
     }
     if(created != nullptr) { 
         toJsonValue(QString("created"), created, obj, QString("QDateTime"));
@@ -138,32 +132,32 @@ SWGPinnedMessage::asJsonObject() {
     return obj;
 }
 
-SWGNumber*
+qint32
 SWGPinnedMessage::getId() {
     return id;
 }
 void
-SWGPinnedMessage::setId(SWGNumber* id) {
+SWGPinnedMessage::setId(qint32 id) {
     this->id = id;
     this->m_id_isSet = true;
 }
 
-SWGNumber*
+qint32
 SWGPinnedMessage::getChannelId() {
     return channel_id;
 }
 void
-SWGPinnedMessage::setChannelId(SWGNumber* channel_id) {
+SWGPinnedMessage::setChannelId(qint32 channel_id) {
     this->channel_id = channel_id;
     this->m_channel_id_isSet = true;
 }
 
-SWGNumber*
+qint32
 SWGPinnedMessage::getMessageId() {
     return message_id;
 }
 void
-SWGPinnedMessage::setMessageId(SWGNumber* message_id) {
+SWGPinnedMessage::setMessageId(qint32 message_id) {
     this->message_id = message_id;
     this->m_message_id_isSet = true;
 }
@@ -213,9 +207,9 @@ bool
 SWGPinnedMessage::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(id != nullptr && id->isSet()){ isObjectUpdated = true; break;}
-        if(channel_id != nullptr && channel_id->isSet()){ isObjectUpdated = true; break;}
-        if(message_id != nullptr && message_id->isSet()){ isObjectUpdated = true; break;}
+        if(m_id_isSet){ isObjectUpdated = true; break;}
+        if(m_channel_id_isSet){ isObjectUpdated = true; break;}
+        if(m_message_id_isSet){ isObjectUpdated = true; break;}
         
         
         if(m_created_user_id_isSet){ isObjectUpdated = true; break;}

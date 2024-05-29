@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 **Timestamp** | **DateTime?** |  | 
 **Symbol** | **string** |  | 
 **Side** | **string** |  | [optional] 
-**Size** | **decimal?** |  | [optional] 
+**Size** | **long?** |  | [optional] 
 **Price** | **double?** |  | [optional] 
 **TickDirection** | **string** |  | [optional] 
 **TrdMatchID** | **string** |  | [optional] 
-**GrossValue** | **decimal?** |  | [optional] 
+**GrossValue** | **long?** |  | [optional] 
 **HomeNotional** | **double?** |  | [optional] 
 **ForeignNotional** | **double?** |  | [optional] 
 **TrdType** | **string** |  | [optional] 

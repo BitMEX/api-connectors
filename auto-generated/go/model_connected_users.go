@@ -11,6 +11,6 @@
 package swagger
 
 type ConnectedUsers struct {
-	Users float32 `json:"users,omitempty"`
-	Bots float32 `json:"bots,omitempty"`
+	Users int32 `json:"users,omitempty"`
+	Bots int32 `json:"bots,omitempty"`
 }

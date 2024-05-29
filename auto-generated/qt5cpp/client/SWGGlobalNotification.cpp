@@ -37,7 +37,7 @@ SWGGlobalNotification::~SWGGlobalNotification() {
 
 void
 SWGGlobalNotification::init() {
-    id = 0.0;
+    id = 0;
     m_id_isSet = false;
     date = NULL;
     m_date_isSet = false;
@@ -45,7 +45,7 @@ SWGGlobalNotification::init() {
     m_title_isSet = false;
     body = new QString("");
     m_body_isSet = false;
-    ttl = 0.0;
+    ttl = 0;
     m_ttl_isSet = false;
     type = new QString("");
     m_type_isSet = false;
@@ -61,9 +61,7 @@ SWGGlobalNotification::init() {
 
 void
 SWGGlobalNotification::cleanup() {
-    if(id != nullptr) { 
-        delete id;
-    }
+
     if(date != nullptr) { 
         delete date;
     }
@@ -73,9 +71,7 @@ SWGGlobalNotification::cleanup() {
     if(body != nullptr) { 
         delete body;
     }
-    if(ttl != nullptr) { 
-        delete ttl;
-    }
+
     if(type != nullptr) { 
         delete type;
     }
@@ -98,7 +94,7 @@ SWGGlobalNotification::fromJson(QString json) {
 
 void
 SWGGlobalNotification::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&id, pJson["id"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&id, pJson["id"], "qint32", "");
     
     ::Swagger::setValue(&date, pJson["date"], "QDateTime", "QDateTime");
     
@@ -106,7 +102,7 @@ SWGGlobalNotification::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&body, pJson["body"], "QString", "QString");
     
-    ::Swagger::setValue(&ttl, pJson["ttl"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&ttl, pJson["ttl"], "qint32", "");
     
     ::Swagger::setValue(&type, pJson["type"], "QString", "QString");
     
@@ -132,8 +128,8 @@ SWGGlobalNotification::asJson ()
 QJsonObject
 SWGGlobalNotification::asJsonObject() {
     QJsonObject obj;
-    if((id != nullptr) && (id->isSet())){
-        toJsonValue(QString("id"), id, obj, QString("SWGNumber"));
+    if(m_id_isSet){
+        obj.insert("id", QJsonValue(id));
     }
     if(date != nullptr) { 
         toJsonValue(QString("date"), date, obj, QString("QDateTime"));
@@ -144,8 +140,8 @@ SWGGlobalNotification::asJsonObject() {
     if(body != nullptr && *body != QString("")){
         toJsonValue(QString("body"), body, obj, QString("QString"));
     }
-    if((ttl != nullptr) && (ttl->isSet())){
-        toJsonValue(QString("ttl"), ttl, obj, QString("SWGNumber"));
+    if(m_ttl_isSet){
+        obj.insert("ttl", QJsonValue(ttl));
     }
     if(type != nullptr && *type != QString("")){
         toJsonValue(QString("type"), type, obj, QString("QString"));
@@ -166,12 +162,12 @@ SWGGlobalNotification::asJsonObject() {
     return obj;
 }
 
-SWGNumber*
+qint32
 SWGGlobalNotification::getId() {
     return id;
 }
 void
-SWGGlobalNotification::setId(SWGNumber* id) {
+SWGGlobalNotification::setId(qint32 id) {
     this->id = id;
     this->m_id_isSet = true;
 }
@@ -206,12 +202,12 @@ SWGGlobalNotification::setBody(QString* body) {
     this->m_body_isSet = true;
 }
 
-SWGNumber*
+qint32
 SWGGlobalNotification::getTtl() {
     return ttl;
 }
 void
-SWGGlobalNotification::setTtl(SWGNumber* ttl) {
+SWGGlobalNotification::setTtl(qint32 ttl) {
     this->ttl = ttl;
     this->m_ttl_isSet = true;
 }
@@ -271,11 +267,11 @@ bool
 SWGGlobalNotification::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(id != nullptr && id->isSet()){ isObjectUpdated = true; break;}
+        if(m_id_isSet){ isObjectUpdated = true; break;}
         
         if(title != nullptr && *title != QString("")){ isObjectUpdated = true; break;}
         if(body != nullptr && *body != QString("")){ isObjectUpdated = true; break;}
-        if(ttl != nullptr && ttl->isSet()){ isObjectUpdated = true; break;}
+        if(m_ttl_isSet){ isObjectUpdated = true; break;}
         if(type != nullptr && *type != QString("")){ isObjectUpdated = true; break;}
         if(m_closable_isSet){ isObjectUpdated = true; break;}
         if(m_persist_isSet){ isObjectUpdated = true; break;}

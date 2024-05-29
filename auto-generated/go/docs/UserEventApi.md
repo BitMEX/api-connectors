@@ -23,7 +23,7 @@ Optional parameters are passed through a pointer to a UserEventApiUserEventGetOp
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **optional.Float64**| Number of results to fetch. | [default to 150]
+ **count** | **optional.Float64**| Number of results to fetch. | [default to 100]
  **startId** | **optional.Float64**| Cursor for pagination. | 
 
 ### Return type

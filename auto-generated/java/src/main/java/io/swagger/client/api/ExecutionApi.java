@@ -27,7 +27,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.Execution;
 import org.threeten.bp.OffsetDateTime;
@@ -72,7 +71,7 @@ public class ExecutionApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call executionGetCall(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call executionGetCall(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -130,7 +129,7 @@ public class ExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call executionGetValidateBeforeCall(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call executionGetValidateBeforeCall(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
         com.squareup.okhttp.Call call = executionGetCall(symbol, filter, columns, count, start, reverse, startTime, endTime, progressListener, progressRequestListener);
@@ -152,7 +151,7 @@ public class ExecutionApi {
      * @return List&lt;Execution&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Execution> executionGet(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public List<Execution> executionGet(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         ApiResponse<List<Execution>> resp = executionGetWithHttpInfo(symbol, filter, columns, count, start, reverse, startTime, endTime);
         return resp.getData();
     }
@@ -171,7 +170,7 @@ public class ExecutionApi {
      * @return ApiResponse&lt;List&lt;Execution&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Execution>> executionGetWithHttpInfo(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public ApiResponse<List<Execution>> executionGetWithHttpInfo(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         com.squareup.okhttp.Call call = executionGetValidateBeforeCall(symbol, filter, columns, count, start, reverse, startTime, endTime, null, null);
         Type localVarReturnType = new TypeToken<List<Execution>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -192,7 +191,7 @@ public class ExecutionApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call executionGetAsync(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<Execution>> callback) throws ApiException {
+    public com.squareup.okhttp.Call executionGetAsync(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<Execution>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -235,7 +234,7 @@ public class ExecutionApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call executionGetTradeHistoryCall(Double targetAccountId, String targetAccountIds, String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call executionGetTradeHistoryCall(Double targetAccountId, String targetAccountIds, String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -297,7 +296,7 @@ public class ExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call executionGetTradeHistoryValidateBeforeCall(Double targetAccountId, String targetAccountIds, String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call executionGetTradeHistoryValidateBeforeCall(Double targetAccountId, String targetAccountIds, String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
         com.squareup.okhttp.Call call = executionGetTradeHistoryCall(targetAccountId, targetAccountIds, symbol, filter, columns, count, start, reverse, startTime, endTime, progressListener, progressRequestListener);
@@ -321,7 +320,7 @@ public class ExecutionApi {
      * @return List&lt;Execution&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Execution> executionGetTradeHistory(Double targetAccountId, String targetAccountIds, String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public List<Execution> executionGetTradeHistory(Double targetAccountId, String targetAccountIds, String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         ApiResponse<List<Execution>> resp = executionGetTradeHistoryWithHttpInfo(targetAccountId, targetAccountIds, symbol, filter, columns, count, start, reverse, startTime, endTime);
         return resp.getData();
     }
@@ -342,7 +341,7 @@ public class ExecutionApi {
      * @return ApiResponse&lt;List&lt;Execution&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Execution>> executionGetTradeHistoryWithHttpInfo(Double targetAccountId, String targetAccountIds, String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public ApiResponse<List<Execution>> executionGetTradeHistoryWithHttpInfo(Double targetAccountId, String targetAccountIds, String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         com.squareup.okhttp.Call call = executionGetTradeHistoryValidateBeforeCall(targetAccountId, targetAccountIds, symbol, filter, columns, count, start, reverse, startTime, endTime, null, null);
         Type localVarReturnType = new TypeToken<List<Execution>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -365,7 +364,7 @@ public class ExecutionApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call executionGetTradeHistoryAsync(Double targetAccountId, String targetAccountIds, String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<Execution>> callback) throws ApiException {
+    public com.squareup.okhttp.Call executionGetTradeHistoryAsync(Double targetAccountId, String targetAccountIds, String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<Execution>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

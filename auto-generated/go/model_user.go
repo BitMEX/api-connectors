@@ -16,7 +16,7 @@ import (
 
 // Account Operations
 type User struct {
-	Id float32 `json:"id,omitempty"`
+	Id int32 `json:"id,omitempty"`
 	Firstname string `json:"firstname,omitempty"`
 	Lastname string `json:"lastname,omitempty"`
 	Username string `json:"username"`
@@ -34,5 +34,6 @@ type User struct {
 	GeoipCountry string `json:"geoipCountry,omitempty"`
 	GeoipRegion string `json:"geoipRegion,omitempty"`
 	FirstTradeTimestamp time.Time `json:"firstTradeTimestamp,omitempty"`
+	FirstDepositTimestamp time.Time `json:"firstDepositTimestamp,omitempty"`
 	Typ string `json:"typ,omitempty"`
 }

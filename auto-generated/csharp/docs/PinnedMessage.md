@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **decimal?** |  | 
-**ChannelID** | **decimal?** |  | 
-**MessageId** | **decimal?** |  | 
+**Id** | **int?** |  | 
+**ChannelID** | **int?** |  | 
+**MessageId** | **int?** |  | 
 **Created** | **DateTime?** |  | [optional] 
 **Ended** | **DateTime?** |  | [optional] 
 **CreatedUserId** | **double?** |  | [optional] 

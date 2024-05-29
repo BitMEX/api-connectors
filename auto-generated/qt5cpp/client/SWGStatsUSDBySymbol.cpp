@@ -41,13 +41,13 @@ SWGStatsUSDBySymbol::init() {
     m_symbol_isSet = false;
     currency = new QString("");
     m_currency_isSet = false;
-    turnover24h = 0.0;
+    turnover24h = 0L;
     m_turnover24h_isSet = false;
-    turnover30d = 0.0;
+    turnover30d = 0L;
     m_turnover30d_isSet = false;
-    turnover365d = 0.0;
+    turnover365d = 0L;
     m_turnover365d_isSet = false;
-    turnover = 0.0;
+    turnover = 0L;
     m_turnover_isSet = false;
 }
 
@@ -59,18 +59,10 @@ SWGStatsUSDBySymbol::cleanup() {
     if(currency != nullptr) { 
         delete currency;
     }
-    if(turnover24h != nullptr) { 
-        delete turnover24h;
-    }
-    if(turnover30d != nullptr) { 
-        delete turnover30d;
-    }
-    if(turnover365d != nullptr) { 
-        delete turnover365d;
-    }
-    if(turnover != nullptr) { 
-        delete turnover;
-    }
+
+
+
+
 }
 
 SWGStatsUSDBySymbol*
@@ -88,13 +80,13 @@ SWGStatsUSDBySymbol::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&currency, pJson["currency"], "QString", "QString");
     
-    ::Swagger::setValue(&turnover24h, pJson["turnover24h"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&turnover24h, pJson["turnover24h"], "qint64", "");
     
-    ::Swagger::setValue(&turnover30d, pJson["turnover30d"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&turnover30d, pJson["turnover30d"], "qint64", "");
     
-    ::Swagger::setValue(&turnover365d, pJson["turnover365d"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&turnover365d, pJson["turnover365d"], "qint64", "");
     
-    ::Swagger::setValue(&turnover, pJson["turnover"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&turnover, pJson["turnover"], "qint64", "");
     
 }
 
@@ -116,17 +108,17 @@ SWGStatsUSDBySymbol::asJsonObject() {
     if(currency != nullptr && *currency != QString("")){
         toJsonValue(QString("currency"), currency, obj, QString("QString"));
     }
-    if((turnover24h != nullptr) && (turnover24h->isSet())){
-        toJsonValue(QString("turnover24h"), turnover24h, obj, QString("SWGNumber"));
+    if(m_turnover24h_isSet){
+        obj.insert("turnover24h", QJsonValue(turnover24h));
     }
-    if((turnover30d != nullptr) && (turnover30d->isSet())){
-        toJsonValue(QString("turnover30d"), turnover30d, obj, QString("SWGNumber"));
+    if(m_turnover30d_isSet){
+        obj.insert("turnover30d", QJsonValue(turnover30d));
     }
-    if((turnover365d != nullptr) && (turnover365d->isSet())){
-        toJsonValue(QString("turnover365d"), turnover365d, obj, QString("SWGNumber"));
+    if(m_turnover365d_isSet){
+        obj.insert("turnover365d", QJsonValue(turnover365d));
     }
-    if((turnover != nullptr) && (turnover->isSet())){
-        toJsonValue(QString("turnover"), turnover, obj, QString("SWGNumber"));
+    if(m_turnover_isSet){
+        obj.insert("turnover", QJsonValue(turnover));
     }
 
     return obj;
@@ -152,42 +144,42 @@ SWGStatsUSDBySymbol::setCurrency(QString* currency) {
     this->m_currency_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGStatsUSDBySymbol::getTurnover24h() {
     return turnover24h;
 }
 void
-SWGStatsUSDBySymbol::setTurnover24h(SWGNumber* turnover24h) {
+SWGStatsUSDBySymbol::setTurnover24h(qint64 turnover24h) {
     this->turnover24h = turnover24h;
     this->m_turnover24h_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGStatsUSDBySymbol::getTurnover30d() {
     return turnover30d;
 }
 void
-SWGStatsUSDBySymbol::setTurnover30d(SWGNumber* turnover30d) {
+SWGStatsUSDBySymbol::setTurnover30d(qint64 turnover30d) {
     this->turnover30d = turnover30d;
     this->m_turnover30d_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGStatsUSDBySymbol::getTurnover365d() {
     return turnover365d;
 }
 void
-SWGStatsUSDBySymbol::setTurnover365d(SWGNumber* turnover365d) {
+SWGStatsUSDBySymbol::setTurnover365d(qint64 turnover365d) {
     this->turnover365d = turnover365d;
     this->m_turnover365d_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGStatsUSDBySymbol::getTurnover() {
     return turnover;
 }
 void
-SWGStatsUSDBySymbol::setTurnover(SWGNumber* turnover) {
+SWGStatsUSDBySymbol::setTurnover(qint64 turnover) {
     this->turnover = turnover;
     this->m_turnover_isSet = true;
 }
@@ -199,10 +191,10 @@ SWGStatsUSDBySymbol::isSet(){
     do{
         if(symbol != nullptr && *symbol != QString("")){ isObjectUpdated = true; break;}
         if(currency != nullptr && *currency != QString("")){ isObjectUpdated = true; break;}
-        if(turnover24h != nullptr && turnover24h->isSet()){ isObjectUpdated = true; break;}
-        if(turnover30d != nullptr && turnover30d->isSet()){ isObjectUpdated = true; break;}
-        if(turnover365d != nullptr && turnover365d->isSet()){ isObjectUpdated = true; break;}
-        if(turnover != nullptr && turnover->isSet()){ isObjectUpdated = true; break;}
+        if(m_turnover24h_isSet){ isObjectUpdated = true; break;}
+        if(m_turnover30d_isSet){ isObjectUpdated = true; break;}
+        if(m_turnover365d_isSet){ isObjectUpdated = true; break;}
+        if(m_turnover_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

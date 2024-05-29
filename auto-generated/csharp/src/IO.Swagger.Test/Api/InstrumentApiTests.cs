@@ -74,8 +74,8 @@ namespace IO.Swagger.Test
             //string symbol = null;
             //string filter = null;
             //string columns = null;
-            //decimal? count = null;
-            //decimal? start = null;
+            //int? count = null;
+            //int? start = null;
             //bool? reverse = null;
             //DateTime? startTime = null;
             //DateTime? endTime = null;
@@ -126,8 +126,8 @@ namespace IO.Swagger.Test
             //string symbol = null;
             //string filter = null;
             //string columns = null;
-            //decimal? count = null;
-            //decimal? start = null;
+            //int? count = null;
+            //int? start = null;
             //bool? reverse = null;
             //DateTime? startTime = null;
             //DateTime? endTime = null;

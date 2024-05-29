@@ -8,7 +8,7 @@
 
 The fields _account_, _symbol_, _currency_ are unique to each position and form its key.
 
-Spot trading symbols do not return any position data.
+Spot trading symbols returns a subset of the position fields, mainly the open order aggregates.
 
 - **account**: Your unique account ID.
 - **symbol**: The contract for this position.
@@ -55,7 +55,7 @@ Spot trading symbols do not return any position data.
 
 The fields _account_, _symbol_, _currency_ are unique to each position and form its key.
 
-Spot trading symbols do not return any position data.
+Spot trading symbols returns a subset of the position fields, mainly the open order aggregates.
 
 - **account**: Your unique account ID.
 - **symbol**: The contract for this position.

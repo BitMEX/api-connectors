@@ -4,18 +4,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ExecID** | **string** |  | [optional] 
-**OrderID** | **string** |  | 
+**OrderID** | **string** |  | [optional] 
 **ClOrdID** | **string** |  | [optional] 
 **ClOrdLinkID** | **string** |  | [optional] 
-**Account** | **double?** |  | [optional] 
+**Account** | **long?** |  | [optional] 
 **Symbol** | **string** |  | 
 **Side** | **string** |  | [optional] 
-**LastQty** | **double?** |  | [optional] 
+**LastQty** | **long?** |  | [optional] 
 **LastPx** | **double?** |  | [optional] 
 **LastLiquidityInd** | **string** |  | [optional] 
-**OrderQty** | **double?** |  | [optional] 
+**OrderQty** | **long?** |  | [optional] 
 **Price** | **double?** |  | [optional] 
-**DisplayQty** | **decimal?** |  | [optional] 
+**DisplayQty** | **long?** |  | [optional] 
 **StopPx** | **double?** |  | [optional] 
 **PegOffsetValue** | **double?** |  | [optional] 
 **PegPriceType** | **string** |  | [optional] 
@@ -30,24 +30,20 @@ Name | Type | Description | Notes
 **Triggered** | **string** |  | [optional] 
 **WorkingIndicator** | **bool?** |  | [optional] 
 **OrdRejReason** | **string** |  | [optional] 
-**LeavesQty** | **double?** |  | [optional] 
-**CumQty** | **decimal?** |  | [optional] 
+**LeavesQty** | **long?** |  | [optional] 
+**CumQty** | **long?** |  | [optional] 
 **AvgPx** | **double?** |  | [optional] 
 **Commission** | **double?** |  | [optional] 
+**FeeType** | **string** |  | [optional] 
 **TradePublishIndicator** | **string** |  | [optional] 
 **Text** | **string** |  | [optional] 
 **TrdMatchID** | **string** |  | [optional] 
-**ExecCost** | **double?** |  | [optional] 
-**ExecComm** | **double?** |  | [optional] 
+**ExecCost** | **long?** |  | [optional] 
+**ExecComm** | **long?** |  | [optional] 
 **HomeNotional** | **double?** |  | [optional] 
 **ForeignNotional** | **double?** |  | [optional] 
 **TransactTime** | **DateTime?** |  | [optional] 
 **Timestamp** | **DateTime?** |  | 
-**ExecGrossPnl** | **double?** |  | [optional] 
-**CurrentQty** | **double?** |  | [optional] 
-**AvgEntryPrice** | **double?** |  | [optional] 
-**RealisedPnl** | **double?** |  | [optional] 
-**UnrealisedPnl** | **double?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

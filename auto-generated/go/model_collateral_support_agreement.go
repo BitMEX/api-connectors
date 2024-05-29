@@ -12,13 +12,13 @@ package swagger
 
 type CollateralSupportAgreement struct {
 	CsaID string `json:"csaID"`
-	Account float32 `json:"account,omitempty"`
+	Account int64 `json:"account,omitempty"`
 	Currency string `json:"currency,omitempty"`
-	Amount float32 `json:"amount,omitempty"`
-	MinAmount float32 `json:"minAmount,omitempty"`
-	Threshold float32 `json:"threshold,omitempty"`
-	MmRatioMarginCall float32 `json:"mmRatioMarginCall,omitempty"`
-	MmRatioLiquidation float32 `json:"mmRatioLiquidation,omitempty"`
+	Amount int64 `json:"amount,omitempty"`
+	MinAmount int64 `json:"minAmount,omitempty"`
+	Threshold int64 `json:"threshold,omitempty"`
+	MmRatioMarginCall int64 `json:"mmRatioMarginCall,omitempty"`
+	MmRatioLiquidation int64 `json:"mmRatioLiquidation,omitempty"`
 	StartTime string `json:"startTime,omitempty"`
 	MaturityTime string `json:"maturityTime,omitempty"`
 	MaturityInstruction string `json:"maturityInstruction,omitempty"`

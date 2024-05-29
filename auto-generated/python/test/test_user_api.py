@@ -29,6 +29,13 @@ class TestUserApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_user_cancel_pending_withdrawal(self):
+        """Test case for user_cancel_pending_withdrawal
+
+        Cancel pending withdrawal  # noqa: E501
+        """
+        pass
+
     def test_user_cancel_withdrawal(self):
         """Test case for user_cancel_withdrawal
 
@@ -115,6 +122,13 @@ class TestUserApi(unittest.TestCase):
 
     def test_user_get_deposit_address(self):
         """Test case for user_get_deposit_address
+
+        Get a deposit address.  # noqa: E501
+        """
+        pass
+
+    def test_user_get_deposit_address_information(self):
+        """Test case for user_get_deposit_address_information
 
         Get a deposit address.  # noqa: E501
         """

@@ -5,6 +5,7 @@
 #import "SWGAffiliate.h"
 #import "SWGCollateralSupportAgreement.h"
 #import "SWGCommunicationToken.h"
+#import "SWGDepositAddress.h"
 #import "SWGError.h"
 #import "SWGExecution.h"
 #import "SWGMargin.h"
@@ -16,6 +17,7 @@
 #import "SWGUser.h"
 #import "SWGUserCommissionsBySymbol.h"
 #import "SWGWallet.h"
+#import "SWGWalletSummaryRecord.h"
 #import "SWGXAny.h"
 
 
@@ -63,6 +65,74 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 }
 
 #pragma mark - Api Methods
+
+///
+/// Cancel pending withdrawal
+/// 
+///  @param transactID  
+///
+///  @returns NSObject*
+///
+-(NSURLSessionTask*) userCancelPendingWithdrawalWithTransactID: (NSString*) transactID
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
+    // verify the required parameter 'transactID' is set
+    if (transactID == nil) {
+        NSParameterAssert(transactID);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"transactID"] };
+            NSError* error = [NSError errorWithDomain:kSWGUserApiErrorDomain code:kSWGUserApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/withdrawal"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"apiExpires", @"apiKey", @"apiSignature"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    if (transactID) {
+        formParams[@"transactID"] = transactID;
+    }
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"DELETE"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSObject*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSObject*)data, error);
+                                }
+                            }];
+}
 
 ///
 /// Cancel a withdrawal.
@@ -930,6 +1000,91 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 }
 
 ///
+/// Get a deposit address.
+/// 
+///  @param currency Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> 
+///
+///  @param network The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`. 
+///
+///  @returns SWGDepositAddress*
+///
+-(NSURLSessionTask*) userGetDepositAddressInformationWithCurrency: (NSString*) currency
+    network: (NSString*) network
+    completionHandler: (void (^)(SWGDepositAddress* output, NSError* error)) handler {
+    // verify the required parameter 'currency' is set
+    if (currency == nil) {
+        NSParameterAssert(currency);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"currency"] };
+            NSError* error = [NSError errorWithDomain:kSWGUserApiErrorDomain code:kSWGUserApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    // verify the required parameter 'network' is set
+    if (network == nil) {
+        NSParameterAssert(network);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"network"] };
+            NSError* error = [NSError errorWithDomain:kSWGUserApiErrorDomain code:kSWGUserApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/depositAddressInformation"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (currency != nil) {
+        queryParams[@"currency"] = currency;
+    }
+    if (network != nil) {
+        queryParams[@"network"] = network;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"apiExpires", @"apiKey", @"apiSignature"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"GET"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"SWGDepositAddress*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((SWGDepositAddress*)data, error);
+                                }
+                            }];
+}
+
+///
 /// Get the execution history by day.
 /// 
 ///  @param symbol  
@@ -1555,11 +1710,13 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 /// 
 ///  @param currency Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional, default to XBt)
 ///
-///  @param count Number of results to fetch. (optional, default to 100)
+///  @param count Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)
 ///
-///  @param start Starting point for results. (optional, default to 0)
+///  @param start Starting point for results, integer. Default 0. (optional, default to 0)
 ///
 ///  @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)
+///
+///  @param reverse Start from the latest transaction record. Default true. (optional, default to true)
 ///
 ///  @returns NSArray<SWGTransaction>*
 ///
@@ -1567,6 +1724,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     count: (NSNumber*) count
     start: (NSNumber*) start
     targetAccountId: (NSNumber*) targetAccountId
+    reverse: (NSNumber*) reverse
     completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/walletHistory"];
 
@@ -1584,6 +1742,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     }
     if (targetAccountId != nil) {
         queryParams[@"targetAccountId"] = targetAccountId;
+    }
+    if (reverse != nil) {
+        queryParams[@"reverse"] = [reverse isEqual:@(YES)] ? @"true" : @"false";
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
@@ -1627,13 +1788,19 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 
 ///
 /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
-/// 
+/// Provides an aggregated view of transactions, by transaction type, over a specific time period.
 ///  @param currency Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional, default to XBt)
 ///
-///  @returns NSArray<SWGTransaction>*
+///  @param startTime Start time for the summary (optional)
+///
+///  @param endTime End time for the summary (optional)
+///
+///  @returns NSArray<SWGWalletSummaryRecord>*
 ///
 -(NSURLSessionTask*) userGetWalletSummaryWithCurrency: (NSString*) currency
-    completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler {
+    startTime: (NSDate*) startTime
+    endTime: (NSDate*) endTime
+    completionHandler: (void (^)(NSArray<SWGWalletSummaryRecord>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/walletSummary"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
@@ -1641,6 +1808,12 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     if (currency != nil) {
         queryParams[@"currency"] = currency;
+    }
+    if (startTime != nil) {
+        queryParams[@"startTime"] = startTime;
+    }
+    if (endTime != nil) {
+        queryParams[@"endTime"] = endTime;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
@@ -1674,10 +1847,10 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"NSArray<SWGTransaction>*"
+                              responseType: @"NSArray<SWGWalletSummaryRecord>*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((NSArray<SWGTransaction>*)data, error);
+                                    handler((NSArray<SWGWalletSummaryRecord>*)data, error);
                                 }
                             }];
 }
@@ -1799,6 +1972,8 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @param address Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
 ///
+///  @param memo Destination Memo. If `address`, is specified, Destination Memo can also be specified (optional)
+///
 ///  @param addressId ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
 ///
 ///  @param targetUserId ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
@@ -1814,6 +1989,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     amount: (NSNumber*) amount
     otpToken: (NSString*) otpToken
     address: (NSString*) address
+    memo: (NSString*) memo
     addressId: (NSNumber*) addressId
     targetUserId: (NSNumber*) targetUserId
     fee: (NSNumber*) fee
@@ -1891,6 +2067,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     }
     if (address) {
         formParams[@"address"] = address;
+    }
+    if (memo) {
+        formParams[@"memo"] = memo;
     }
     if (addressId) {
         formParams[@"addressId"] = addressId;

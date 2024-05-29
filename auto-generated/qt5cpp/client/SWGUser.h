@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include "SWGUserPreferences.h"
 #include <QDateTime>
 #include <QString>
@@ -44,8 +43,8 @@ public:
     void fromJsonObject(QJsonObject json) override;
     SWGUser* fromJson(QString jsonString) override;
 
-    SWGNumber* getId();
-    void setId(SWGNumber* id);
+    qint32 getId();
+    void setId(qint32 id);
 
     QString* getFirstname();
     void setFirstname(QString* firstname);
@@ -98,6 +97,9 @@ public:
     QDateTime* getFirstTradeTimestamp();
     void setFirstTradeTimestamp(QDateTime* first_trade_timestamp);
 
+    QDateTime* getFirstDepositTimestamp();
+    void setFirstDepositTimestamp(QDateTime* first_deposit_timestamp);
+
     QString* getTyp();
     void setTyp(QString* typ);
 
@@ -105,7 +107,7 @@ public:
     virtual bool isSet() override;
 
 private:
-    SWGNumber* id;
+    qint32 id;
     bool m_id_isSet;
 
     QString* firstname;
@@ -158,6 +160,9 @@ private:
 
     QDateTime* first_trade_timestamp;
     bool m_first_trade_timestamp_isSet;
+
+    QDateTime* first_deposit_timestamp;
+    bool m_first_deposit_timestamp_isSet;
 
     QString* typ;
     bool m_typ_isSet;

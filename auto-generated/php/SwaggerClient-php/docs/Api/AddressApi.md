@@ -66,7 +66,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **addressNew**
-> \Swagger\Client\Model\Address addressNew($currency, $network, $address, $name, $note, $skip_confirm, $skip2_fa)
+> \Swagger\Client\Model\Address addressNew($currency, $network, $address, $name, $note, $skip_confirm, $skip2_fa, $memo)
 
 Creates a new saved address.
 
@@ -101,9 +101,10 @@ $name = "name_example"; // string | Name of the entry, eg. 'Hardware wallet'.
 $note = "note_example"; // string | Optional annotation.
 $skip_confirm = false; // bool | Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation.
 $skip2_fa = false; // bool | Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.
+$memo = "memo_example"; // string | Destination Memo.
 
 try {
-    $result = $apiInstance->addressNew($currency, $network, $address, $name, $note, $skip_confirm, $skip2_fa);
+    $result = $apiInstance->addressNew($currency, $network, $address, $name, $note, $skip_confirm, $skip2_fa, $memo);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AddressApi->addressNew: ', $e->getMessage(), PHP_EOL;
@@ -122,6 +123,7 @@ Name | Type | Description  | Notes
  **note** | **string**| Optional annotation. | [optional]
  **skip_confirm** | **bool**| Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. | [optional] [default to false]
  **skip2_fa** | **bool**| Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. | [optional] [default to false]
+ **memo** | **string**| Destination Memo. | [optional]
 
 ### Return type
 

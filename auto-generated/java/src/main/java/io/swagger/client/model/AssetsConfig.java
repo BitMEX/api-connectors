@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * AssetsConfig
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class AssetsConfig {
   @SerializedName("asset")
   private String asset = "XBT";
@@ -55,6 +55,9 @@ public class AssetsConfig {
 
   @SerializedName("isMarginCurrency")
   private Boolean isMarginCurrency = true;
+
+  @SerializedName("memoRequired")
+  private Boolean memoRequired = false;
 
   @SerializedName("networks")
   private List<AssetsConfigNetworkItem> networks = null;
@@ -203,6 +206,24 @@ public class AssetsConfig {
     this.isMarginCurrency = isMarginCurrency;
   }
 
+  public AssetsConfig memoRequired(Boolean memoRequired) {
+    this.memoRequired = memoRequired;
+    return this;
+  }
+
+   /**
+   * Get memoRequired
+   * @return memoRequired
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isMemoRequired() {
+    return memoRequired;
+  }
+
+  public void setMemoRequired(Boolean memoRequired) {
+    this.memoRequired = memoRequired;
+  }
+
   public AssetsConfig networks(List<AssetsConfigNetworkItem> networks) {
     this.networks = networks;
     return this;
@@ -247,12 +268,13 @@ public class AssetsConfig {
         Objects.equals(this.scale, assetsConfig.scale) &&
         Objects.equals(this.enabled, assetsConfig.enabled) &&
         Objects.equals(this.isMarginCurrency, assetsConfig.isMarginCurrency) &&
+        Objects.equals(this.memoRequired, assetsConfig.memoRequired) &&
         Objects.equals(this.networks, assetsConfig.networks);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(asset, currency, majorCurrency, name, currencyType, scale, enabled, isMarginCurrency, networks);
+    return Objects.hash(asset, currency, majorCurrency, name, currencyType, scale, enabled, isMarginCurrency, memoRequired, networks);
   }
 
 
@@ -269,6 +291,7 @@ public class AssetsConfig {
     sb.append("    scale: ").append(toIndentedString(scale)).append("\n");
     sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
     sb.append("    isMarginCurrency: ").append(toIndentedString(isMarginCurrency)).append("\n");
+    sb.append("    memoRequired: ").append(toIndentedString(memoRequired)).append("\n");
     sb.append("    networks: ").append(toIndentedString(networks)).append("\n");
     sb.append("}");
     return sb.toString();

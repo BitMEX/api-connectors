@@ -37,7 +37,7 @@ SWGPosition::~SWGPosition() {
 
 void
 SWGPosition::init() {
-    account = 0.0;
+    account = 0L;
     m_account_isSet = false;
     symbol = new QString("");
     m_symbol_isSet = false;
@@ -53,7 +53,7 @@ SWGPosition::init() {
     m_init_margin_req_isSet = false;
     maint_margin_req = 0.0;
     m_maint_margin_req_isSet = false;
-    risk_limit = 0.0;
+    risk_limit = 0L;
     m_risk_limit_isSet = false;
     leverage = 0.0;
     m_leverage_isSet = false;
@@ -61,45 +61,45 @@ SWGPosition::init() {
     m_cross_margin_isSet = false;
     deleverage_percentile = 0.0;
     m_deleverage_percentile_isSet = false;
-    rebalanced_pnl = 0.0;
+    rebalanced_pnl = 0L;
     m_rebalanced_pnl_isSet = false;
-    prev_realised_pnl = 0.0;
+    prev_realised_pnl = 0L;
     m_prev_realised_pnl_isSet = false;
-    prev_unrealised_pnl = 0.0;
+    prev_unrealised_pnl = 0L;
     m_prev_unrealised_pnl_isSet = false;
-    opening_qty = 0.0;
+    opening_qty = 0L;
     m_opening_qty_isSet = false;
-    open_order_buy_qty = 0.0;
+    open_order_buy_qty = 0L;
     m_open_order_buy_qty_isSet = false;
-    open_order_buy_cost = 0.0;
+    open_order_buy_cost = 0L;
     m_open_order_buy_cost_isSet = false;
-    open_order_buy_premium = 0.0;
+    open_order_buy_premium = 0L;
     m_open_order_buy_premium_isSet = false;
-    open_order_sell_qty = 0.0;
+    open_order_sell_qty = 0L;
     m_open_order_sell_qty_isSet = false;
-    open_order_sell_cost = 0.0;
+    open_order_sell_cost = 0L;
     m_open_order_sell_cost_isSet = false;
-    open_order_sell_premium = 0.0;
+    open_order_sell_premium = 0L;
     m_open_order_sell_premium_isSet = false;
-    current_qty = 0.0;
+    current_qty = 0L;
     m_current_qty_isSet = false;
-    current_cost = 0.0;
+    current_cost = 0L;
     m_current_cost_isSet = false;
-    current_comm = 0.0;
+    current_comm = 0L;
     m_current_comm_isSet = false;
-    realised_cost = 0.0;
+    realised_cost = 0L;
     m_realised_cost_isSet = false;
-    unrealised_cost = 0.0;
+    unrealised_cost = 0L;
     m_unrealised_cost_isSet = false;
-    gross_open_premium = 0.0;
+    gross_open_premium = 0L;
     m_gross_open_premium_isSet = false;
     is_open = false;
     m_is_open_isSet = false;
     mark_price = 0.0;
     m_mark_price_isSet = false;
-    mark_value = 0.0;
+    mark_value = 0L;
     m_mark_value_isSet = false;
-    risk_value = 0.0;
+    risk_value = 0L;
     m_risk_value_isSet = false;
     home_notional = 0.0;
     m_home_notional_isSet = false;
@@ -107,25 +107,25 @@ SWGPosition::init() {
     m_foreign_notional_isSet = false;
     pos_state = new QString("");
     m_pos_state_isSet = false;
-    pos_cost = 0.0;
+    pos_cost = 0L;
     m_pos_cost_isSet = false;
-    pos_cross = 0.0;
+    pos_cross = 0L;
     m_pos_cross_isSet = false;
-    pos_comm = 0.0;
+    pos_comm = 0L;
     m_pos_comm_isSet = false;
-    pos_loss = 0.0;
+    pos_loss = 0L;
     m_pos_loss_isSet = false;
-    pos_margin = 0.0;
+    pos_margin = 0L;
     m_pos_margin_isSet = false;
-    pos_maint = 0.0;
+    pos_maint = 0L;
     m_pos_maint_isSet = false;
-    init_margin = 0.0;
+    init_margin = 0L;
     m_init_margin_isSet = false;
-    maint_margin = 0.0;
+    maint_margin = 0L;
     m_maint_margin_isSet = false;
-    realised_pnl = 0.0;
+    realised_pnl = 0L;
     m_realised_pnl_isSet = false;
-    unrealised_pnl = 0.0;
+    unrealised_pnl = 0L;
     m_unrealised_pnl_isSet = false;
     unrealised_pnl_pcnt = 0.0;
     m_unrealised_pnl_pcnt_isSet = false;
@@ -149,9 +149,7 @@ SWGPosition::init() {
 
 void
 SWGPosition::cleanup() {
-    if(account != nullptr) { 
-        delete account;
-    }
+
     if(symbol != nullptr) { 
         delete symbol;
     }
@@ -167,103 +165,45 @@ SWGPosition::cleanup() {
 
 
 
-    if(risk_limit != nullptr) { 
-        delete risk_limit;
-    }
 
 
 
-    if(rebalanced_pnl != nullptr) { 
-        delete rebalanced_pnl;
-    }
-    if(prev_realised_pnl != nullptr) { 
-        delete prev_realised_pnl;
-    }
-    if(prev_unrealised_pnl != nullptr) { 
-        delete prev_unrealised_pnl;
-    }
-    if(opening_qty != nullptr) { 
-        delete opening_qty;
-    }
-    if(open_order_buy_qty != nullptr) { 
-        delete open_order_buy_qty;
-    }
-    if(open_order_buy_cost != nullptr) { 
-        delete open_order_buy_cost;
-    }
-    if(open_order_buy_premium != nullptr) { 
-        delete open_order_buy_premium;
-    }
-    if(open_order_sell_qty != nullptr) { 
-        delete open_order_sell_qty;
-    }
-    if(open_order_sell_cost != nullptr) { 
-        delete open_order_sell_cost;
-    }
-    if(open_order_sell_premium != nullptr) { 
-        delete open_order_sell_premium;
-    }
-    if(current_qty != nullptr) { 
-        delete current_qty;
-    }
-    if(current_cost != nullptr) { 
-        delete current_cost;
-    }
-    if(current_comm != nullptr) { 
-        delete current_comm;
-    }
-    if(realised_cost != nullptr) { 
-        delete realised_cost;
-    }
-    if(unrealised_cost != nullptr) { 
-        delete unrealised_cost;
-    }
-    if(gross_open_premium != nullptr) { 
-        delete gross_open_premium;
-    }
 
 
-    if(mark_value != nullptr) { 
-        delete mark_value;
-    }
-    if(risk_value != nullptr) { 
-        delete risk_value;
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     if(pos_state != nullptr) { 
         delete pos_state;
     }
-    if(pos_cost != nullptr) { 
-        delete pos_cost;
-    }
-    if(pos_cross != nullptr) { 
-        delete pos_cross;
-    }
-    if(pos_comm != nullptr) { 
-        delete pos_comm;
-    }
-    if(pos_loss != nullptr) { 
-        delete pos_loss;
-    }
-    if(pos_margin != nullptr) { 
-        delete pos_margin;
-    }
-    if(pos_maint != nullptr) { 
-        delete pos_maint;
-    }
-    if(init_margin != nullptr) { 
-        delete init_margin;
-    }
-    if(maint_margin != nullptr) { 
-        delete maint_margin;
-    }
-    if(realised_pnl != nullptr) { 
-        delete realised_pnl;
-    }
-    if(unrealised_pnl != nullptr) { 
-        delete unrealised_pnl;
-    }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -288,7 +228,7 @@ SWGPosition::fromJson(QString json) {
 
 void
 SWGPosition::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&account, pJson["account"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&account, pJson["account"], "qint64", "");
     
     ::Swagger::setValue(&symbol, pJson["symbol"], "QString", "QString");
     
@@ -304,7 +244,7 @@ SWGPosition::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&maint_margin_req, pJson["maintMarginReq"], "double", "");
     
-    ::Swagger::setValue(&risk_limit, pJson["riskLimit"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&risk_limit, pJson["riskLimit"], "qint64", "");
     
     ::Swagger::setValue(&leverage, pJson["leverage"], "double", "");
     
@@ -312,45 +252,45 @@ SWGPosition::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&deleverage_percentile, pJson["deleveragePercentile"], "double", "");
     
-    ::Swagger::setValue(&rebalanced_pnl, pJson["rebalancedPnl"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&rebalanced_pnl, pJson["rebalancedPnl"], "qint64", "");
     
-    ::Swagger::setValue(&prev_realised_pnl, pJson["prevRealisedPnl"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&prev_realised_pnl, pJson["prevRealisedPnl"], "qint64", "");
     
-    ::Swagger::setValue(&prev_unrealised_pnl, pJson["prevUnrealisedPnl"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&prev_unrealised_pnl, pJson["prevUnrealisedPnl"], "qint64", "");
     
-    ::Swagger::setValue(&opening_qty, pJson["openingQty"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&opening_qty, pJson["openingQty"], "qint64", "");
     
-    ::Swagger::setValue(&open_order_buy_qty, pJson["openOrderBuyQty"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&open_order_buy_qty, pJson["openOrderBuyQty"], "qint64", "");
     
-    ::Swagger::setValue(&open_order_buy_cost, pJson["openOrderBuyCost"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&open_order_buy_cost, pJson["openOrderBuyCost"], "qint64", "");
     
-    ::Swagger::setValue(&open_order_buy_premium, pJson["openOrderBuyPremium"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&open_order_buy_premium, pJson["openOrderBuyPremium"], "qint64", "");
     
-    ::Swagger::setValue(&open_order_sell_qty, pJson["openOrderSellQty"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&open_order_sell_qty, pJson["openOrderSellQty"], "qint64", "");
     
-    ::Swagger::setValue(&open_order_sell_cost, pJson["openOrderSellCost"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&open_order_sell_cost, pJson["openOrderSellCost"], "qint64", "");
     
-    ::Swagger::setValue(&open_order_sell_premium, pJson["openOrderSellPremium"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&open_order_sell_premium, pJson["openOrderSellPremium"], "qint64", "");
     
-    ::Swagger::setValue(&current_qty, pJson["currentQty"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&current_qty, pJson["currentQty"], "qint64", "");
     
-    ::Swagger::setValue(&current_cost, pJson["currentCost"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&current_cost, pJson["currentCost"], "qint64", "");
     
-    ::Swagger::setValue(&current_comm, pJson["currentComm"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&current_comm, pJson["currentComm"], "qint64", "");
     
-    ::Swagger::setValue(&realised_cost, pJson["realisedCost"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&realised_cost, pJson["realisedCost"], "qint64", "");
     
-    ::Swagger::setValue(&unrealised_cost, pJson["unrealisedCost"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&unrealised_cost, pJson["unrealisedCost"], "qint64", "");
     
-    ::Swagger::setValue(&gross_open_premium, pJson["grossOpenPremium"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&gross_open_premium, pJson["grossOpenPremium"], "qint64", "");
     
     ::Swagger::setValue(&is_open, pJson["isOpen"], "bool", "");
     
     ::Swagger::setValue(&mark_price, pJson["markPrice"], "double", "");
     
-    ::Swagger::setValue(&mark_value, pJson["markValue"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&mark_value, pJson["markValue"], "qint64", "");
     
-    ::Swagger::setValue(&risk_value, pJson["riskValue"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&risk_value, pJson["riskValue"], "qint64", "");
     
     ::Swagger::setValue(&home_notional, pJson["homeNotional"], "double", "");
     
@@ -358,25 +298,25 @@ SWGPosition::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&pos_state, pJson["posState"], "QString", "QString");
     
-    ::Swagger::setValue(&pos_cost, pJson["posCost"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&pos_cost, pJson["posCost"], "qint64", "");
     
-    ::Swagger::setValue(&pos_cross, pJson["posCross"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&pos_cross, pJson["posCross"], "qint64", "");
     
-    ::Swagger::setValue(&pos_comm, pJson["posComm"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&pos_comm, pJson["posComm"], "qint64", "");
     
-    ::Swagger::setValue(&pos_loss, pJson["posLoss"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&pos_loss, pJson["posLoss"], "qint64", "");
     
-    ::Swagger::setValue(&pos_margin, pJson["posMargin"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&pos_margin, pJson["posMargin"], "qint64", "");
     
-    ::Swagger::setValue(&pos_maint, pJson["posMaint"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&pos_maint, pJson["posMaint"], "qint64", "");
     
-    ::Swagger::setValue(&init_margin, pJson["initMargin"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&init_margin, pJson["initMargin"], "qint64", "");
     
-    ::Swagger::setValue(&maint_margin, pJson["maintMargin"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&maint_margin, pJson["maintMargin"], "qint64", "");
     
-    ::Swagger::setValue(&realised_pnl, pJson["realisedPnl"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&realised_pnl, pJson["realisedPnl"], "qint64", "");
     
-    ::Swagger::setValue(&unrealised_pnl, pJson["unrealisedPnl"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&unrealised_pnl, pJson["unrealisedPnl"], "qint64", "");
     
     ::Swagger::setValue(&unrealised_pnl_pcnt, pJson["unrealisedPnlPcnt"], "double", "");
     
@@ -410,8 +350,8 @@ SWGPosition::asJson ()
 QJsonObject
 SWGPosition::asJsonObject() {
     QJsonObject obj;
-    if((account != nullptr) && (account->isSet())){
-        toJsonValue(QString("account"), account, obj, QString("SWGNumber"));
+    if(m_account_isSet){
+        obj.insert("account", QJsonValue(account));
     }
     if(symbol != nullptr && *symbol != QString("")){
         toJsonValue(QString("symbol"), symbol, obj, QString("QString"));
@@ -434,8 +374,8 @@ SWGPosition::asJsonObject() {
     if(m_maint_margin_req_isSet){
         obj.insert("maintMarginReq", QJsonValue(maint_margin_req));
     }
-    if((risk_limit != nullptr) && (risk_limit->isSet())){
-        toJsonValue(QString("riskLimit"), risk_limit, obj, QString("SWGNumber"));
+    if(m_risk_limit_isSet){
+        obj.insert("riskLimit", QJsonValue(risk_limit));
     }
     if(m_leverage_isSet){
         obj.insert("leverage", QJsonValue(leverage));
@@ -446,53 +386,53 @@ SWGPosition::asJsonObject() {
     if(m_deleverage_percentile_isSet){
         obj.insert("deleveragePercentile", QJsonValue(deleverage_percentile));
     }
-    if((rebalanced_pnl != nullptr) && (rebalanced_pnl->isSet())){
-        toJsonValue(QString("rebalancedPnl"), rebalanced_pnl, obj, QString("SWGNumber"));
+    if(m_rebalanced_pnl_isSet){
+        obj.insert("rebalancedPnl", QJsonValue(rebalanced_pnl));
     }
-    if((prev_realised_pnl != nullptr) && (prev_realised_pnl->isSet())){
-        toJsonValue(QString("prevRealisedPnl"), prev_realised_pnl, obj, QString("SWGNumber"));
+    if(m_prev_realised_pnl_isSet){
+        obj.insert("prevRealisedPnl", QJsonValue(prev_realised_pnl));
     }
-    if((prev_unrealised_pnl != nullptr) && (prev_unrealised_pnl->isSet())){
-        toJsonValue(QString("prevUnrealisedPnl"), prev_unrealised_pnl, obj, QString("SWGNumber"));
+    if(m_prev_unrealised_pnl_isSet){
+        obj.insert("prevUnrealisedPnl", QJsonValue(prev_unrealised_pnl));
     }
-    if((opening_qty != nullptr) && (opening_qty->isSet())){
-        toJsonValue(QString("openingQty"), opening_qty, obj, QString("SWGNumber"));
+    if(m_opening_qty_isSet){
+        obj.insert("openingQty", QJsonValue(opening_qty));
     }
-    if((open_order_buy_qty != nullptr) && (open_order_buy_qty->isSet())){
-        toJsonValue(QString("openOrderBuyQty"), open_order_buy_qty, obj, QString("SWGNumber"));
+    if(m_open_order_buy_qty_isSet){
+        obj.insert("openOrderBuyQty", QJsonValue(open_order_buy_qty));
     }
-    if((open_order_buy_cost != nullptr) && (open_order_buy_cost->isSet())){
-        toJsonValue(QString("openOrderBuyCost"), open_order_buy_cost, obj, QString("SWGNumber"));
+    if(m_open_order_buy_cost_isSet){
+        obj.insert("openOrderBuyCost", QJsonValue(open_order_buy_cost));
     }
-    if((open_order_buy_premium != nullptr) && (open_order_buy_premium->isSet())){
-        toJsonValue(QString("openOrderBuyPremium"), open_order_buy_premium, obj, QString("SWGNumber"));
+    if(m_open_order_buy_premium_isSet){
+        obj.insert("openOrderBuyPremium", QJsonValue(open_order_buy_premium));
     }
-    if((open_order_sell_qty != nullptr) && (open_order_sell_qty->isSet())){
-        toJsonValue(QString("openOrderSellQty"), open_order_sell_qty, obj, QString("SWGNumber"));
+    if(m_open_order_sell_qty_isSet){
+        obj.insert("openOrderSellQty", QJsonValue(open_order_sell_qty));
     }
-    if((open_order_sell_cost != nullptr) && (open_order_sell_cost->isSet())){
-        toJsonValue(QString("openOrderSellCost"), open_order_sell_cost, obj, QString("SWGNumber"));
+    if(m_open_order_sell_cost_isSet){
+        obj.insert("openOrderSellCost", QJsonValue(open_order_sell_cost));
     }
-    if((open_order_sell_premium != nullptr) && (open_order_sell_premium->isSet())){
-        toJsonValue(QString("openOrderSellPremium"), open_order_sell_premium, obj, QString("SWGNumber"));
+    if(m_open_order_sell_premium_isSet){
+        obj.insert("openOrderSellPremium", QJsonValue(open_order_sell_premium));
     }
-    if((current_qty != nullptr) && (current_qty->isSet())){
-        toJsonValue(QString("currentQty"), current_qty, obj, QString("SWGNumber"));
+    if(m_current_qty_isSet){
+        obj.insert("currentQty", QJsonValue(current_qty));
     }
-    if((current_cost != nullptr) && (current_cost->isSet())){
-        toJsonValue(QString("currentCost"), current_cost, obj, QString("SWGNumber"));
+    if(m_current_cost_isSet){
+        obj.insert("currentCost", QJsonValue(current_cost));
     }
-    if((current_comm != nullptr) && (current_comm->isSet())){
-        toJsonValue(QString("currentComm"), current_comm, obj, QString("SWGNumber"));
+    if(m_current_comm_isSet){
+        obj.insert("currentComm", QJsonValue(current_comm));
     }
-    if((realised_cost != nullptr) && (realised_cost->isSet())){
-        toJsonValue(QString("realisedCost"), realised_cost, obj, QString("SWGNumber"));
+    if(m_realised_cost_isSet){
+        obj.insert("realisedCost", QJsonValue(realised_cost));
     }
-    if((unrealised_cost != nullptr) && (unrealised_cost->isSet())){
-        toJsonValue(QString("unrealisedCost"), unrealised_cost, obj, QString("SWGNumber"));
+    if(m_unrealised_cost_isSet){
+        obj.insert("unrealisedCost", QJsonValue(unrealised_cost));
     }
-    if((gross_open_premium != nullptr) && (gross_open_premium->isSet())){
-        toJsonValue(QString("grossOpenPremium"), gross_open_premium, obj, QString("SWGNumber"));
+    if(m_gross_open_premium_isSet){
+        obj.insert("grossOpenPremium", QJsonValue(gross_open_premium));
     }
     if(m_is_open_isSet){
         obj.insert("isOpen", QJsonValue(is_open));
@@ -500,11 +440,11 @@ SWGPosition::asJsonObject() {
     if(m_mark_price_isSet){
         obj.insert("markPrice", QJsonValue(mark_price));
     }
-    if((mark_value != nullptr) && (mark_value->isSet())){
-        toJsonValue(QString("markValue"), mark_value, obj, QString("SWGNumber"));
+    if(m_mark_value_isSet){
+        obj.insert("markValue", QJsonValue(mark_value));
     }
-    if((risk_value != nullptr) && (risk_value->isSet())){
-        toJsonValue(QString("riskValue"), risk_value, obj, QString("SWGNumber"));
+    if(m_risk_value_isSet){
+        obj.insert("riskValue", QJsonValue(risk_value));
     }
     if(m_home_notional_isSet){
         obj.insert("homeNotional", QJsonValue(home_notional));
@@ -515,35 +455,35 @@ SWGPosition::asJsonObject() {
     if(pos_state != nullptr && *pos_state != QString("")){
         toJsonValue(QString("posState"), pos_state, obj, QString("QString"));
     }
-    if((pos_cost != nullptr) && (pos_cost->isSet())){
-        toJsonValue(QString("posCost"), pos_cost, obj, QString("SWGNumber"));
+    if(m_pos_cost_isSet){
+        obj.insert("posCost", QJsonValue(pos_cost));
     }
-    if((pos_cross != nullptr) && (pos_cross->isSet())){
-        toJsonValue(QString("posCross"), pos_cross, obj, QString("SWGNumber"));
+    if(m_pos_cross_isSet){
+        obj.insert("posCross", QJsonValue(pos_cross));
     }
-    if((pos_comm != nullptr) && (pos_comm->isSet())){
-        toJsonValue(QString("posComm"), pos_comm, obj, QString("SWGNumber"));
+    if(m_pos_comm_isSet){
+        obj.insert("posComm", QJsonValue(pos_comm));
     }
-    if((pos_loss != nullptr) && (pos_loss->isSet())){
-        toJsonValue(QString("posLoss"), pos_loss, obj, QString("SWGNumber"));
+    if(m_pos_loss_isSet){
+        obj.insert("posLoss", QJsonValue(pos_loss));
     }
-    if((pos_margin != nullptr) && (pos_margin->isSet())){
-        toJsonValue(QString("posMargin"), pos_margin, obj, QString("SWGNumber"));
+    if(m_pos_margin_isSet){
+        obj.insert("posMargin", QJsonValue(pos_margin));
     }
-    if((pos_maint != nullptr) && (pos_maint->isSet())){
-        toJsonValue(QString("posMaint"), pos_maint, obj, QString("SWGNumber"));
+    if(m_pos_maint_isSet){
+        obj.insert("posMaint", QJsonValue(pos_maint));
     }
-    if((init_margin != nullptr) && (init_margin->isSet())){
-        toJsonValue(QString("initMargin"), init_margin, obj, QString("SWGNumber"));
+    if(m_init_margin_isSet){
+        obj.insert("initMargin", QJsonValue(init_margin));
     }
-    if((maint_margin != nullptr) && (maint_margin->isSet())){
-        toJsonValue(QString("maintMargin"), maint_margin, obj, QString("SWGNumber"));
+    if(m_maint_margin_isSet){
+        obj.insert("maintMargin", QJsonValue(maint_margin));
     }
-    if((realised_pnl != nullptr) && (realised_pnl->isSet())){
-        toJsonValue(QString("realisedPnl"), realised_pnl, obj, QString("SWGNumber"));
+    if(m_realised_pnl_isSet){
+        obj.insert("realisedPnl", QJsonValue(realised_pnl));
     }
-    if((unrealised_pnl != nullptr) && (unrealised_pnl->isSet())){
-        toJsonValue(QString("unrealisedPnl"), unrealised_pnl, obj, QString("SWGNumber"));
+    if(m_unrealised_pnl_isSet){
+        obj.insert("unrealisedPnl", QJsonValue(unrealised_pnl));
     }
     if(m_unrealised_pnl_pcnt_isSet){
         obj.insert("unrealisedPnlPcnt", QJsonValue(unrealised_pnl_pcnt));
@@ -576,12 +516,12 @@ SWGPosition::asJsonObject() {
     return obj;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getAccount() {
     return account;
 }
 void
-SWGPosition::setAccount(SWGNumber* account) {
+SWGPosition::setAccount(qint64 account) {
     this->account = account;
     this->m_account_isSet = true;
 }
@@ -656,12 +596,12 @@ SWGPosition::setMaintMarginReq(double maint_margin_req) {
     this->m_maint_margin_req_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getRiskLimit() {
     return risk_limit;
 }
 void
-SWGPosition::setRiskLimit(SWGNumber* risk_limit) {
+SWGPosition::setRiskLimit(qint64 risk_limit) {
     this->risk_limit = risk_limit;
     this->m_risk_limit_isSet = true;
 }
@@ -696,162 +636,162 @@ SWGPosition::setDeleveragePercentile(double deleverage_percentile) {
     this->m_deleverage_percentile_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getRebalancedPnl() {
     return rebalanced_pnl;
 }
 void
-SWGPosition::setRebalancedPnl(SWGNumber* rebalanced_pnl) {
+SWGPosition::setRebalancedPnl(qint64 rebalanced_pnl) {
     this->rebalanced_pnl = rebalanced_pnl;
     this->m_rebalanced_pnl_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getPrevRealisedPnl() {
     return prev_realised_pnl;
 }
 void
-SWGPosition::setPrevRealisedPnl(SWGNumber* prev_realised_pnl) {
+SWGPosition::setPrevRealisedPnl(qint64 prev_realised_pnl) {
     this->prev_realised_pnl = prev_realised_pnl;
     this->m_prev_realised_pnl_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getPrevUnrealisedPnl() {
     return prev_unrealised_pnl;
 }
 void
-SWGPosition::setPrevUnrealisedPnl(SWGNumber* prev_unrealised_pnl) {
+SWGPosition::setPrevUnrealisedPnl(qint64 prev_unrealised_pnl) {
     this->prev_unrealised_pnl = prev_unrealised_pnl;
     this->m_prev_unrealised_pnl_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getOpeningQty() {
     return opening_qty;
 }
 void
-SWGPosition::setOpeningQty(SWGNumber* opening_qty) {
+SWGPosition::setOpeningQty(qint64 opening_qty) {
     this->opening_qty = opening_qty;
     this->m_opening_qty_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getOpenOrderBuyQty() {
     return open_order_buy_qty;
 }
 void
-SWGPosition::setOpenOrderBuyQty(SWGNumber* open_order_buy_qty) {
+SWGPosition::setOpenOrderBuyQty(qint64 open_order_buy_qty) {
     this->open_order_buy_qty = open_order_buy_qty;
     this->m_open_order_buy_qty_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getOpenOrderBuyCost() {
     return open_order_buy_cost;
 }
 void
-SWGPosition::setOpenOrderBuyCost(SWGNumber* open_order_buy_cost) {
+SWGPosition::setOpenOrderBuyCost(qint64 open_order_buy_cost) {
     this->open_order_buy_cost = open_order_buy_cost;
     this->m_open_order_buy_cost_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getOpenOrderBuyPremium() {
     return open_order_buy_premium;
 }
 void
-SWGPosition::setOpenOrderBuyPremium(SWGNumber* open_order_buy_premium) {
+SWGPosition::setOpenOrderBuyPremium(qint64 open_order_buy_premium) {
     this->open_order_buy_premium = open_order_buy_premium;
     this->m_open_order_buy_premium_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getOpenOrderSellQty() {
     return open_order_sell_qty;
 }
 void
-SWGPosition::setOpenOrderSellQty(SWGNumber* open_order_sell_qty) {
+SWGPosition::setOpenOrderSellQty(qint64 open_order_sell_qty) {
     this->open_order_sell_qty = open_order_sell_qty;
     this->m_open_order_sell_qty_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getOpenOrderSellCost() {
     return open_order_sell_cost;
 }
 void
-SWGPosition::setOpenOrderSellCost(SWGNumber* open_order_sell_cost) {
+SWGPosition::setOpenOrderSellCost(qint64 open_order_sell_cost) {
     this->open_order_sell_cost = open_order_sell_cost;
     this->m_open_order_sell_cost_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getOpenOrderSellPremium() {
     return open_order_sell_premium;
 }
 void
-SWGPosition::setOpenOrderSellPremium(SWGNumber* open_order_sell_premium) {
+SWGPosition::setOpenOrderSellPremium(qint64 open_order_sell_premium) {
     this->open_order_sell_premium = open_order_sell_premium;
     this->m_open_order_sell_premium_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getCurrentQty() {
     return current_qty;
 }
 void
-SWGPosition::setCurrentQty(SWGNumber* current_qty) {
+SWGPosition::setCurrentQty(qint64 current_qty) {
     this->current_qty = current_qty;
     this->m_current_qty_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getCurrentCost() {
     return current_cost;
 }
 void
-SWGPosition::setCurrentCost(SWGNumber* current_cost) {
+SWGPosition::setCurrentCost(qint64 current_cost) {
     this->current_cost = current_cost;
     this->m_current_cost_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getCurrentComm() {
     return current_comm;
 }
 void
-SWGPosition::setCurrentComm(SWGNumber* current_comm) {
+SWGPosition::setCurrentComm(qint64 current_comm) {
     this->current_comm = current_comm;
     this->m_current_comm_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getRealisedCost() {
     return realised_cost;
 }
 void
-SWGPosition::setRealisedCost(SWGNumber* realised_cost) {
+SWGPosition::setRealisedCost(qint64 realised_cost) {
     this->realised_cost = realised_cost;
     this->m_realised_cost_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getUnrealisedCost() {
     return unrealised_cost;
 }
 void
-SWGPosition::setUnrealisedCost(SWGNumber* unrealised_cost) {
+SWGPosition::setUnrealisedCost(qint64 unrealised_cost) {
     this->unrealised_cost = unrealised_cost;
     this->m_unrealised_cost_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getGrossOpenPremium() {
     return gross_open_premium;
 }
 void
-SWGPosition::setGrossOpenPremium(SWGNumber* gross_open_premium) {
+SWGPosition::setGrossOpenPremium(qint64 gross_open_premium) {
     this->gross_open_premium = gross_open_premium;
     this->m_gross_open_premium_isSet = true;
 }
@@ -876,22 +816,22 @@ SWGPosition::setMarkPrice(double mark_price) {
     this->m_mark_price_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getMarkValue() {
     return mark_value;
 }
 void
-SWGPosition::setMarkValue(SWGNumber* mark_value) {
+SWGPosition::setMarkValue(qint64 mark_value) {
     this->mark_value = mark_value;
     this->m_mark_value_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getRiskValue() {
     return risk_value;
 }
 void
-SWGPosition::setRiskValue(SWGNumber* risk_value) {
+SWGPosition::setRiskValue(qint64 risk_value) {
     this->risk_value = risk_value;
     this->m_risk_value_isSet = true;
 }
@@ -926,102 +866,102 @@ SWGPosition::setPosState(QString* pos_state) {
     this->m_pos_state_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getPosCost() {
     return pos_cost;
 }
 void
-SWGPosition::setPosCost(SWGNumber* pos_cost) {
+SWGPosition::setPosCost(qint64 pos_cost) {
     this->pos_cost = pos_cost;
     this->m_pos_cost_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getPosCross() {
     return pos_cross;
 }
 void
-SWGPosition::setPosCross(SWGNumber* pos_cross) {
+SWGPosition::setPosCross(qint64 pos_cross) {
     this->pos_cross = pos_cross;
     this->m_pos_cross_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getPosComm() {
     return pos_comm;
 }
 void
-SWGPosition::setPosComm(SWGNumber* pos_comm) {
+SWGPosition::setPosComm(qint64 pos_comm) {
     this->pos_comm = pos_comm;
     this->m_pos_comm_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getPosLoss() {
     return pos_loss;
 }
 void
-SWGPosition::setPosLoss(SWGNumber* pos_loss) {
+SWGPosition::setPosLoss(qint64 pos_loss) {
     this->pos_loss = pos_loss;
     this->m_pos_loss_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getPosMargin() {
     return pos_margin;
 }
 void
-SWGPosition::setPosMargin(SWGNumber* pos_margin) {
+SWGPosition::setPosMargin(qint64 pos_margin) {
     this->pos_margin = pos_margin;
     this->m_pos_margin_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getPosMaint() {
     return pos_maint;
 }
 void
-SWGPosition::setPosMaint(SWGNumber* pos_maint) {
+SWGPosition::setPosMaint(qint64 pos_maint) {
     this->pos_maint = pos_maint;
     this->m_pos_maint_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getInitMargin() {
     return init_margin;
 }
 void
-SWGPosition::setInitMargin(SWGNumber* init_margin) {
+SWGPosition::setInitMargin(qint64 init_margin) {
     this->init_margin = init_margin;
     this->m_init_margin_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getMaintMargin() {
     return maint_margin;
 }
 void
-SWGPosition::setMaintMargin(SWGNumber* maint_margin) {
+SWGPosition::setMaintMargin(qint64 maint_margin) {
     this->maint_margin = maint_margin;
     this->m_maint_margin_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getRealisedPnl() {
     return realised_pnl;
 }
 void
-SWGPosition::setRealisedPnl(SWGNumber* realised_pnl) {
+SWGPosition::setRealisedPnl(qint64 realised_pnl) {
     this->realised_pnl = realised_pnl;
     this->m_realised_pnl_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGPosition::getUnrealisedPnl() {
     return unrealised_pnl;
 }
 void
-SWGPosition::setUnrealisedPnl(SWGNumber* unrealised_pnl) {
+SWGPosition::setUnrealisedPnl(qint64 unrealised_pnl) {
     this->unrealised_pnl = unrealised_pnl;
     this->m_unrealised_pnl_isSet = true;
 }
@@ -1121,7 +1061,7 @@ bool
 SWGPosition::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(account != nullptr && account->isSet()){ isObjectUpdated = true; break;}
+        if(m_account_isSet){ isObjectUpdated = true; break;}
         if(symbol != nullptr && *symbol != QString("")){ isObjectUpdated = true; break;}
         if(currency != nullptr && *currency != QString("")){ isObjectUpdated = true; break;}
         if(underlying != nullptr && *underlying != QString("")){ isObjectUpdated = true; break;}
@@ -1129,43 +1069,43 @@ SWGPosition::isSet(){
         if(m_commission_isSet){ isObjectUpdated = true; break;}
         if(m_init_margin_req_isSet){ isObjectUpdated = true; break;}
         if(m_maint_margin_req_isSet){ isObjectUpdated = true; break;}
-        if(risk_limit != nullptr && risk_limit->isSet()){ isObjectUpdated = true; break;}
+        if(m_risk_limit_isSet){ isObjectUpdated = true; break;}
         if(m_leverage_isSet){ isObjectUpdated = true; break;}
         if(m_cross_margin_isSet){ isObjectUpdated = true; break;}
         if(m_deleverage_percentile_isSet){ isObjectUpdated = true; break;}
-        if(rebalanced_pnl != nullptr && rebalanced_pnl->isSet()){ isObjectUpdated = true; break;}
-        if(prev_realised_pnl != nullptr && prev_realised_pnl->isSet()){ isObjectUpdated = true; break;}
-        if(prev_unrealised_pnl != nullptr && prev_unrealised_pnl->isSet()){ isObjectUpdated = true; break;}
-        if(opening_qty != nullptr && opening_qty->isSet()){ isObjectUpdated = true; break;}
-        if(open_order_buy_qty != nullptr && open_order_buy_qty->isSet()){ isObjectUpdated = true; break;}
-        if(open_order_buy_cost != nullptr && open_order_buy_cost->isSet()){ isObjectUpdated = true; break;}
-        if(open_order_buy_premium != nullptr && open_order_buy_premium->isSet()){ isObjectUpdated = true; break;}
-        if(open_order_sell_qty != nullptr && open_order_sell_qty->isSet()){ isObjectUpdated = true; break;}
-        if(open_order_sell_cost != nullptr && open_order_sell_cost->isSet()){ isObjectUpdated = true; break;}
-        if(open_order_sell_premium != nullptr && open_order_sell_premium->isSet()){ isObjectUpdated = true; break;}
-        if(current_qty != nullptr && current_qty->isSet()){ isObjectUpdated = true; break;}
-        if(current_cost != nullptr && current_cost->isSet()){ isObjectUpdated = true; break;}
-        if(current_comm != nullptr && current_comm->isSet()){ isObjectUpdated = true; break;}
-        if(realised_cost != nullptr && realised_cost->isSet()){ isObjectUpdated = true; break;}
-        if(unrealised_cost != nullptr && unrealised_cost->isSet()){ isObjectUpdated = true; break;}
-        if(gross_open_premium != nullptr && gross_open_premium->isSet()){ isObjectUpdated = true; break;}
+        if(m_rebalanced_pnl_isSet){ isObjectUpdated = true; break;}
+        if(m_prev_realised_pnl_isSet){ isObjectUpdated = true; break;}
+        if(m_prev_unrealised_pnl_isSet){ isObjectUpdated = true; break;}
+        if(m_opening_qty_isSet){ isObjectUpdated = true; break;}
+        if(m_open_order_buy_qty_isSet){ isObjectUpdated = true; break;}
+        if(m_open_order_buy_cost_isSet){ isObjectUpdated = true; break;}
+        if(m_open_order_buy_premium_isSet){ isObjectUpdated = true; break;}
+        if(m_open_order_sell_qty_isSet){ isObjectUpdated = true; break;}
+        if(m_open_order_sell_cost_isSet){ isObjectUpdated = true; break;}
+        if(m_open_order_sell_premium_isSet){ isObjectUpdated = true; break;}
+        if(m_current_qty_isSet){ isObjectUpdated = true; break;}
+        if(m_current_cost_isSet){ isObjectUpdated = true; break;}
+        if(m_current_comm_isSet){ isObjectUpdated = true; break;}
+        if(m_realised_cost_isSet){ isObjectUpdated = true; break;}
+        if(m_unrealised_cost_isSet){ isObjectUpdated = true; break;}
+        if(m_gross_open_premium_isSet){ isObjectUpdated = true; break;}
         if(m_is_open_isSet){ isObjectUpdated = true; break;}
         if(m_mark_price_isSet){ isObjectUpdated = true; break;}
-        if(mark_value != nullptr && mark_value->isSet()){ isObjectUpdated = true; break;}
-        if(risk_value != nullptr && risk_value->isSet()){ isObjectUpdated = true; break;}
+        if(m_mark_value_isSet){ isObjectUpdated = true; break;}
+        if(m_risk_value_isSet){ isObjectUpdated = true; break;}
         if(m_home_notional_isSet){ isObjectUpdated = true; break;}
         if(m_foreign_notional_isSet){ isObjectUpdated = true; break;}
         if(pos_state != nullptr && *pos_state != QString("")){ isObjectUpdated = true; break;}
-        if(pos_cost != nullptr && pos_cost->isSet()){ isObjectUpdated = true; break;}
-        if(pos_cross != nullptr && pos_cross->isSet()){ isObjectUpdated = true; break;}
-        if(pos_comm != nullptr && pos_comm->isSet()){ isObjectUpdated = true; break;}
-        if(pos_loss != nullptr && pos_loss->isSet()){ isObjectUpdated = true; break;}
-        if(pos_margin != nullptr && pos_margin->isSet()){ isObjectUpdated = true; break;}
-        if(pos_maint != nullptr && pos_maint->isSet()){ isObjectUpdated = true; break;}
-        if(init_margin != nullptr && init_margin->isSet()){ isObjectUpdated = true; break;}
-        if(maint_margin != nullptr && maint_margin->isSet()){ isObjectUpdated = true; break;}
-        if(realised_pnl != nullptr && realised_pnl->isSet()){ isObjectUpdated = true; break;}
-        if(unrealised_pnl != nullptr && unrealised_pnl->isSet()){ isObjectUpdated = true; break;}
+        if(m_pos_cost_isSet){ isObjectUpdated = true; break;}
+        if(m_pos_cross_isSet){ isObjectUpdated = true; break;}
+        if(m_pos_comm_isSet){ isObjectUpdated = true; break;}
+        if(m_pos_loss_isSet){ isObjectUpdated = true; break;}
+        if(m_pos_margin_isSet){ isObjectUpdated = true; break;}
+        if(m_pos_maint_isSet){ isObjectUpdated = true; break;}
+        if(m_init_margin_isSet){ isObjectUpdated = true; break;}
+        if(m_maint_margin_isSet){ isObjectUpdated = true; break;}
+        if(m_realised_pnl_isSet){ isObjectUpdated = true; break;}
+        if(m_unrealised_pnl_isSet){ isObjectUpdated = true; break;}
         if(m_unrealised_pnl_pcnt_isSet){ isObjectUpdated = true; break;}
         if(m_unrealised_roe_pcnt_isSet){ isObjectUpdated = true; break;}
         if(m_avg_cost_price_isSet){ isObjectUpdated = true; break;}

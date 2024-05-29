@@ -17,19 +17,19 @@ import java.util.UUID
 
 case class Transaction (
   transactID: String,
-  account: Option[Double] = None,
+  account: Option[Long] = None,
   currency: Option[String] = None,
   network: Option[String] = None,
   transactType: Option[String] = None,
-  amount: Option[Double] = None,
-  fee: Option[Double] = None,
+  amount: Option[Long] = None,
+  fee: Option[Long] = None,
   transactStatus: Option[String] = None,
   address: Option[String] = None,
   tx: Option[String] = None,
   text: Option[String] = None,
   transactTime: Option[DateTime] = None,
   timestamp: Option[DateTime] = None,
-  walletBalance: Option[Double] = None
+  walletBalance: Option[Long] = None
 ) extends ApiModel
 
 

@@ -22,7 +22,7 @@ api_instance = SwaggerClient::OrderBookApi.new
 symbol = 'symbol_example' # String | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 
 opts = { 
-  depth: 25 # Float | Orderbook depth per side. Send 0 for full depth.
+  depth: 25 # Integer | Orderbook depth per side. Send 0 for full depth.
 }
 
 begin
@@ -39,7 +39,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **String**| Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. | 
- **depth** | **Float**| Orderbook depth per side. Send 0 for full depth. | [optional] [default to 25]
+ **depth** | **Integer**| Orderbook depth per side. Send 0 for full depth. | [optional] [default to 25]
 
 ### Return type
 

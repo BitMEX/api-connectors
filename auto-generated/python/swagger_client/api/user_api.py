@@ -33,6 +33,103 @@ class UserApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
+    def user_cancel_pending_withdrawal(self, transact_id, **kwargs):  # noqa: E501
+        """Cancel pending withdrawal  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_cancel_pending_withdrawal(transact_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str transact_id: (required)
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_cancel_pending_withdrawal_with_http_info(transact_id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.user_cancel_pending_withdrawal_with_http_info(transact_id, **kwargs)  # noqa: E501
+            return data
+
+    def user_cancel_pending_withdrawal_with_http_info(self, transact_id, **kwargs):  # noqa: E501
+        """Cancel pending withdrawal  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_cancel_pending_withdrawal_with_http_info(transact_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str transact_id: (required)
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['transact_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_cancel_pending_withdrawal" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'transact_id' is set
+        if self.api_client.client_side_validation and ('transact_id' not in params or
+                                                       params['transact_id'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `transact_id` when calling `user_cancel_pending_withdrawal`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+        if 'transact_id' in params:
+            form_params.append(('transactID', params['transact_id']))  # noqa: E501
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/withdrawal', 'DELETE',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='object',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def user_cancel_withdrawal(self, token, **kwargs):  # noqa: E501
         """Cancel a withdrawal.  # noqa: E501
 
@@ -1288,6 +1385,111 @@ class UserApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def user_get_deposit_address_information(self, currency, network, **kwargs):  # noqa: E501
+        """Get a deposit address.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_deposit_address_information(currency, network, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
+        :param str network: The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`. (required)
+        :return: DepositAddress
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.user_get_deposit_address_information_with_http_info(currency, network, **kwargs)  # noqa: E501
+        else:
+            (data) = self.user_get_deposit_address_information_with_http_info(currency, network, **kwargs)  # noqa: E501
+            return data
+
+    def user_get_deposit_address_information_with_http_info(self, currency, network, **kwargs):  # noqa: E501
+        """Get a deposit address.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.user_get_deposit_address_information_with_http_info(currency, network, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
+        :param str network: The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`. (required)
+        :return: DepositAddress
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['currency', 'network']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_get_deposit_address_information" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'currency' is set
+        if self.api_client.client_side_validation and ('currency' not in params or
+                                                       params['currency'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `currency` when calling `user_get_deposit_address_information`")  # noqa: E501
+        # verify the required parameter 'network' is set
+        if self.api_client.client_side_validation and ('network' not in params or
+                                                       params['network'] is None):  # noqa: E501
+            raise ValueError("Missing the required parameter `network` when calling `user_get_deposit_address_information`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'currency' in params:
+            query_params.append(('currency', params['currency']))  # noqa: E501
+        if 'network' in params:
+            query_params.append(('network', params['network']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/user/depositAddressInformation', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='DepositAddress',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def user_get_execution_history(self, symbol, timestamp, **kwargs):  # noqa: E501
         """Get the execution history by day.  # noqa: E501
 
@@ -2248,9 +2450,10 @@ class UserApi(object):
 
         :param async_req bool
         :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
-        :param float count: Number of results to fetch.
-        :param float start: Starting point for results.
+        :param float count: Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows.
+        :param float start: Starting point for results, integer. Default 0.
         :param float target_account_id: AccountId to view the history of, must be a paired account with the authorised user requesting the history.
+        :param bool reverse: Start from the latest transaction record. Default true.
         :return: list[Transaction]
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2272,15 +2475,16 @@ class UserApi(object):
 
         :param async_req bool
         :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
-        :param float count: Number of results to fetch.
-        :param float start: Starting point for results.
+        :param float count: Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows.
+        :param float start: Starting point for results, integer. Default 0.
         :param float target_account_id: AccountId to view the history of, must be a paired account with the authorised user requesting the history.
+        :param bool reverse: Start from the latest transaction record. Default true.
         :return: list[Transaction]
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['currency', 'count', 'start', 'target_account_id']  # noqa: E501
+        all_params = ['currency', 'count', 'start', 'target_account_id', 'reverse']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -2309,6 +2513,8 @@ class UserApi(object):
             query_params.append(('start', params['start']))  # noqa: E501
         if 'target_account_id' in params:
             query_params.append(('targetAccountId', params['target_account_id']))  # noqa: E501
+        if 'reverse' in params:
+            query_params.append(('reverse', params['reverse']))  # noqa: E501
 
         header_params = {}
 
@@ -2346,6 +2552,7 @@ class UserApi(object):
     def user_get_wallet_summary(self, **kwargs):  # noqa: E501
         """Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).  # noqa: E501
 
+        Provides an aggregated view of transactions, by transaction type, over a specific time period.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.user_get_wallet_summary(async_req=True)
@@ -2353,7 +2560,9 @@ class UserApi(object):
 
         :param async_req bool
         :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
-        :return: list[Transaction]
+        :param datetime start_time: Start time for the summary
+        :param datetime end_time: End time for the summary
+        :return: list[WalletSummaryRecord]
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -2367,6 +2576,7 @@ class UserApi(object):
     def user_get_wallet_summary_with_http_info(self, **kwargs):  # noqa: E501
         """Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).  # noqa: E501
 
+        Provides an aggregated view of transactions, by transaction type, over a specific time period.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.user_get_wallet_summary_with_http_info(async_req=True)
@@ -2374,12 +2584,14 @@ class UserApi(object):
 
         :param async_req bool
         :param str currency: Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
-        :return: list[Transaction]
+        :param datetime start_time: Start time for the summary
+        :param datetime end_time: End time for the summary
+        :return: list[WalletSummaryRecord]
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['currency']  # noqa: E501
+        all_params = ['currency', 'start_time', 'end_time']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -2402,6 +2614,10 @@ class UserApi(object):
         query_params = []
         if 'currency' in params:
             query_params.append(('currency', params['currency']))  # noqa: E501
+        if 'start_time' in params:
+            query_params.append(('startTime', params['start_time']))  # noqa: E501
+        if 'end_time' in params:
+            query_params.append(('endTime', params['end_time']))  # noqa: E501
 
         header_params = {}
 
@@ -2428,7 +2644,7 @@ class UserApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='list[Transaction]',  # noqa: E501
+            response_type='list[WalletSummaryRecord]',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -2626,9 +2842,10 @@ class UserApi(object):
         :param async_req bool
         :param str currency: Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
         :param str network: The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`. (required)
-        :param float amount: Amount of withdrawal currency. (required)
+        :param int amount: Amount of withdrawal currency. (required)
         :param str otp_token: 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
         :param str address: Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
+        :param str memo: Destination Memo. If `address`, is specified, Destination Memo can also be specified
         :param float address_id: ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
         :param float target_user_id: ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified.
         :param float fee: Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
@@ -2656,9 +2873,10 @@ class UserApi(object):
         :param async_req bool
         :param str currency: Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
         :param str network: The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`. (required)
-        :param float amount: Amount of withdrawal currency. (required)
+        :param int amount: Amount of withdrawal currency. (required)
         :param str otp_token: 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
         :param str address: Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
+        :param str memo: Destination Memo. If `address`, is specified, Destination Memo can also be specified
         :param float address_id: ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
         :param float target_user_id: ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified.
         :param float fee: Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
@@ -2668,7 +2886,7 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['currency', 'network', 'amount', 'otp_token', 'address', 'address_id', 'target_user_id', 'fee', 'text']  # noqa: E501
+        all_params = ['currency', 'network', 'amount', 'otp_token', 'address', 'memo', 'address_id', 'target_user_id', 'fee', 'text']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -2716,6 +2934,8 @@ class UserApi(object):
             form_params.append(('amount', params['amount']))  # noqa: E501
         if 'address' in params:
             form_params.append(('address', params['address']))  # noqa: E501
+        if 'memo' in params:
+            form_params.append(('memo', params['memo']))  # noqa: E501
         if 'address_id' in params:
             form_params.append(('addressId', params['address_id']))  # noqa: E501
         if 'target_user_id' in params:
@@ -2970,7 +3190,7 @@ class UserApi(object):
 
         :param async_req bool
         :param str currency: Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
-        :param float amount: Amount of transfer. (required)
+        :param int amount: Amount of transfer. (required)
         :param float target_account_id: AccountId to send the transfer to, must be a paired account with the user sending the transfer. (required)
         :param float from_account_id: AccountID to send the transfer from. Must be paired account with the authenticated user.
         :return: Transaction
@@ -2995,7 +3215,7 @@ class UserApi(object):
 
         :param async_req bool
         :param str currency: Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (required)
-        :param float amount: Amount of transfer. (required)
+        :param int amount: Amount of transfer. (required)
         :param float target_account_id: AccountId to send the transfer to, must be a paired account with the user sending the transfer. (required)
         :param float from_account_id: AccountID to send the transfer from. Must be paired account with the authenticated user.
         :return: Transaction

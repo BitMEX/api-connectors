@@ -30,7 +30,7 @@ SWGChatApi::SWGChatApi(QString host, QString basePath) {
 }
 
 void
-SWGChatApi::chat_get(SWGNumber* count, SWGNumber* start, bool reverse, double channel_id) {
+SWGChatApi::chat_get(qint32 count, qint32 start, bool reverse, double channel_id) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/chat");
 

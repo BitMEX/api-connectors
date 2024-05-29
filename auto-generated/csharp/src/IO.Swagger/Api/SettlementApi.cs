@@ -40,7 +40,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>List&lt;Settlement&gt;</returns>
-        List<Settlement> SettlementGet (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        List<Settlement> SettlementGet (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
 
         /// <summary>
         /// Get settlement history.
@@ -58,7 +58,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>ApiResponse of List&lt;Settlement&gt;</returns>
-        ApiResponse<List<Settlement>> SettlementGetWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        ApiResponse<List<Settlement>> SettlementGetWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -77,7 +77,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of List&lt;Settlement&gt;</returns>
-        System.Threading.Tasks.Task<List<Settlement>> SettlementGetAsync (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        System.Threading.Tasks.Task<List<Settlement>> SettlementGetAsync (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
 
         /// <summary>
         /// Get settlement history.
@@ -95,7 +95,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Settlement&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Settlement>>> SettlementGetAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Settlement>>> SettlementGetAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
         #endregion Asynchronous Operations
     }
 
@@ -209,7 +209,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>List&lt;Settlement&gt;</returns>
-        public List<Settlement> SettlementGet (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public List<Settlement> SettlementGet (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
              ApiResponse<List<Settlement>> localVarResponse = SettlementGetWithHttpInfo(symbol, filter, columns, count, start, reverse, startTime, endTime);
              return localVarResponse.Data;
@@ -228,7 +228,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>ApiResponse of List&lt;Settlement&gt;</returns>
-        public ApiResponse< List<Settlement> > SettlementGetWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public ApiResponse< List<Settlement> > SettlementGetWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
 
             var localVarPath = "/settlement";
@@ -299,7 +299,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of List&lt;Settlement&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Settlement>> SettlementGetAsync (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public async System.Threading.Tasks.Task<List<Settlement>> SettlementGetAsync (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
              ApiResponse<List<Settlement>> localVarResponse = await SettlementGetAsyncWithHttpInfo(symbol, filter, columns, count, start, reverse, startTime, endTime);
              return localVarResponse.Data;
@@ -319,7 +319,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Settlement&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Settlement>>> SettlementGetAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Settlement>>> SettlementGetAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
 
             var localVarPath = "/settlement";

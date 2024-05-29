@@ -41,7 +41,7 @@ namespace IO.Swagger.Model
         /// <param name="id">id.</param>
         /// <param name="name">name (required).</param>
         /// <param name="isPrivate">isPrivate (required).</param>
-        public ChatChannel(decimal? id = default(decimal?), string name = default(string), bool? isPrivate = default(bool?))
+        public ChatChannel(int? id = default(int?), string name = default(string), bool? isPrivate = default(bool?))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -68,7 +68,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public decimal? Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Name

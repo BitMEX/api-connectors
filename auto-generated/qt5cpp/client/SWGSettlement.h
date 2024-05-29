@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -61,11 +60,11 @@ public:
     double getOptionUnderlyingPrice();
     void setOptionUnderlyingPrice(double option_underlying_price);
 
-    SWGNumber* getBankrupt();
-    void setBankrupt(SWGNumber* bankrupt);
+    qint64 getBankrupt();
+    void setBankrupt(qint64 bankrupt);
 
-    SWGNumber* getTaxBase();
-    void setTaxBase(SWGNumber* tax_base);
+    qint64 getTaxBase();
+    void setTaxBase(qint64 tax_base);
 
     double getTaxRate();
     void setTaxRate(double tax_rate);
@@ -92,10 +91,10 @@ private:
     double option_underlying_price;
     bool m_option_underlying_price_isSet;
 
-    SWGNumber* bankrupt;
+    qint64 bankrupt;
     bool m_bankrupt_isSet;
 
-    SWGNumber* tax_base;
+    qint64 tax_base;
     bool m_tax_base_isSet;
 
     double tax_rate;

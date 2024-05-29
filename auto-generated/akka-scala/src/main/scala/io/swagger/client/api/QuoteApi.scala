@@ -39,7 +39,7 @@ object QuoteApi {
    * @param startTime Starting date filter for results.
    * @param endTime Ending date filter for results.
    */
-  def quote.get(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Double], start: Option[Double], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None): ApiRequest[Seq[Quote]] =
+  def quote.get(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Int], start: Option[Int], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None): ApiRequest[Seq[Quote]] =
     ApiRequest[Seq[Quote]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/quote", "application/json")
       .withQueryParam("symbol", symbol)
       .withQueryParam("filter", filter)
@@ -75,7 +75,7 @@ object QuoteApi {
    * @param startTime Starting date filter for results.
    * @param endTime Ending date filter for results.
    */
-  def quote.getBucketed(binSize: Option[String], partial: Option[Boolean], symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Double], start: Option[Double], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None): ApiRequest[Seq[Quote]] =
+  def quote.getBucketed(binSize: Option[String], partial: Option[Boolean], symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Int], start: Option[Int], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None): ApiRequest[Seq[Quote]] =
     ApiRequest[Seq[Quote]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/quote/bucketed", "application/json")
       .withQueryParam("binSize", binSize)
       .withQueryParam("partial", partial)

@@ -42,6 +42,8 @@
 
 @property(nonatomic) NSNumber* isMarginCurrency;
 
+@property(nonatomic) NSNumber* memoRequired;
+
 @property(nonatomic) NSArray<SWGAssetsConfigNetworkItem>* networks;
 
 @end

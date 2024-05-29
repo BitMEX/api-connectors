@@ -4,13 +4,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **csa_id** | **string** |  | 
-**account** | **float** |  | [optional] 
+**account** | **int** |  | [optional] 
 **currency** | **string** |  | [optional] 
-**amount** | **float** |  | [optional] 
-**min_amount** | **float** |  | [optional] 
-**threshold** | **float** |  | [optional] 
-**mm_ratio_margin_call** | **float** |  | [optional] 
-**mm_ratio_liquidation** | **float** |  | [optional] 
+**amount** | **int** |  | [optional] 
+**min_amount** | **int** |  | [optional] 
+**threshold** | **int** |  | [optional] 
+**mm_ratio_margin_call** | **int** |  | [optional] 
+**mm_ratio_liquidation** | **int** |  | [optional] 
 **start_time** | **string** |  | [optional] 
 **maturity_time** | **string** |  | [optional] 
 **maturity_instruction** | **string** |  | [optional] 

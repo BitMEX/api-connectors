@@ -12,19 +12,19 @@ import Foundation
 
 public struct Wallet: Codable {
 
-    public var account: Double
+    public var account: Int64
     public var currency: String
-    public var deposited: Double?
-    public var withdrawn: Double?
-    public var transferIn: Double?
-    public var transferOut: Double?
-    public var amount: Double?
-    public var pendingCredit: Double?
-    public var pendingDebit: Double?
-    public var confirmedDebit: Double?
+    public var deposited: Int64?
+    public var withdrawn: Int64?
+    public var transferIn: Int64?
+    public var transferOut: Int64?
+    public var amount: Int64?
+    public var pendingCredit: Int64?
+    public var pendingDebit: Int64?
+    public var confirmedDebit: Int64?
     public var timestamp: Date?
 
-    public init(account: Double, currency: String, deposited: Double?, withdrawn: Double?, transferIn: Double?, transferOut: Double?, amount: Double?, pendingCredit: Double?, pendingDebit: Double?, confirmedDebit: Double?, timestamp: Date?) {
+    public init(account: Int64, currency: String, deposited: Int64?, withdrawn: Int64?, transferIn: Int64?, transferOut: Int64?, amount: Int64?, pendingCredit: Int64?, pendingDebit: Int64?, confirmedDebit: Int64?, timestamp: Date?) {
         self.account = account
         self.currency = currency
         self.deposited = deposited

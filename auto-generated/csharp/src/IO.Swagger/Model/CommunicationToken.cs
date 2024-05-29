@@ -42,7 +42,7 @@ namespace IO.Swagger.Model
         /// <param name="userId">userId (required).</param>
         /// <param name="deviceToken">deviceToken (required).</param>
         /// <param name="channel">channel (required).</param>
-        public CommunicationToken(string id = default(string), decimal? userId = default(decimal?), string deviceToken = default(string), string channel = default(string))
+        public CommunicationToken(string id = default(string), int? userId = default(int?), string deviceToken = default(string), string channel = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -92,7 +92,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets UserId
         /// </summary>
         [DataMember(Name="userId", EmitDefaultValue=false)]
-        public decimal? UserId { get; set; }
+        public int? UserId { get; set; }
 
         /// <summary>
         /// Gets or Sets DeviceToken

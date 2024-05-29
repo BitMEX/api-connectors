@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** |  | [default to null]
-**ChannelID** | **float32** |  | [default to null]
-**MessageId** | **float32** |  | [default to null]
+**Id** | **int32** |  | [default to null]
+**ChannelID** | **int32** |  | [default to null]
+**MessageId** | **int32** |  | [default to null]
 **Created** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 **Ended** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 **CreatedUserId** | **float64** |  | [optional] [default to null]

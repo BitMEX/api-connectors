@@ -13,18 +13,18 @@ import Foundation
 public struct Execution: Codable {
 
     public var execID: String?
-    public var orderID: String
+    public var orderID: String?
     public var clOrdID: String?
     public var clOrdLinkID: String?
-    public var account: Double?
+    public var account: Int64?
     public var symbol: String
     public var side: String?
-    public var lastQty: Double?
+    public var lastQty: Int64?
     public var lastPx: Double?
     public var lastLiquidityInd: String?
-    public var orderQty: Double?
+    public var orderQty: Int64?
     public var price: Double?
-    public var displayQty: Double?
+    public var displayQty: Int64?
     public var stopPx: Double?
     public var pegOffsetValue: Double?
     public var pegPriceType: String?
@@ -39,26 +39,22 @@ public struct Execution: Codable {
     public var triggered: String?
     public var workingIndicator: Bool?
     public var ordRejReason: String?
-    public var leavesQty: Double?
-    public var cumQty: Double?
+    public var leavesQty: Int64?
+    public var cumQty: Int64?
     public var avgPx: Double?
     public var commission: Double?
+    public var feeType: String?
     public var tradePublishIndicator: String?
     public var text: String?
     public var trdMatchID: String?
-    public var execCost: Double?
-    public var execComm: Double?
+    public var execCost: Int64?
+    public var execComm: Int64?
     public var homeNotional: Double?
     public var foreignNotional: Double?
     public var transactTime: Date?
     public var timestamp: Date
-    public var execGrossPnl: Double?
-    public var currentQty: Double?
-    public var avgEntryPrice: Double?
-    public var realisedPnl: Double?
-    public var unrealisedPnl: Double?
 
-    public init(execID: String?, orderID: String, clOrdID: String?, clOrdLinkID: String?, account: Double?, symbol: String, side: String?, lastQty: Double?, lastPx: Double?, lastLiquidityInd: String?, orderQty: Double?, price: Double?, displayQty: Double?, stopPx: Double?, pegOffsetValue: Double?, pegPriceType: String?, currency: String?, settlCurrency: String?, execType: String?, ordType: String?, timeInForce: String?, execInst: String?, contingencyType: String?, ordStatus: String?, triggered: String?, workingIndicator: Bool?, ordRejReason: String?, leavesQty: Double?, cumQty: Double?, avgPx: Double?, commission: Double?, tradePublishIndicator: String?, text: String?, trdMatchID: String?, execCost: Double?, execComm: Double?, homeNotional: Double?, foreignNotional: Double?, transactTime: Date?, timestamp: Date, execGrossPnl: Double?, currentQty: Double?, avgEntryPrice: Double?, realisedPnl: Double?, unrealisedPnl: Double?) {
+    public init(execID: String?, orderID: String?, clOrdID: String?, clOrdLinkID: String?, account: Int64?, symbol: String, side: String?, lastQty: Int64?, lastPx: Double?, lastLiquidityInd: String?, orderQty: Int64?, price: Double?, displayQty: Int64?, stopPx: Double?, pegOffsetValue: Double?, pegPriceType: String?, currency: String?, settlCurrency: String?, execType: String?, ordType: String?, timeInForce: String?, execInst: String?, contingencyType: String?, ordStatus: String?, triggered: String?, workingIndicator: Bool?, ordRejReason: String?, leavesQty: Int64?, cumQty: Int64?, avgPx: Double?, commission: Double?, feeType: String?, tradePublishIndicator: String?, text: String?, trdMatchID: String?, execCost: Int64?, execComm: Int64?, homeNotional: Double?, foreignNotional: Double?, transactTime: Date?, timestamp: Date) {
         self.execID = execID
         self.orderID = orderID
         self.clOrdID = clOrdID
@@ -90,6 +86,7 @@ public struct Execution: Codable {
         self.cumQty = cumQty
         self.avgPx = avgPx
         self.commission = commission
+        self.feeType = feeType
         self.tradePublishIndicator = tradePublishIndicator
         self.text = text
         self.trdMatchID = trdMatchID
@@ -99,11 +96,6 @@ public struct Execution: Codable {
         self.foreignNotional = foreignNotional
         self.transactTime = transactTime
         self.timestamp = timestamp
-        self.execGrossPnl = execGrossPnl
-        self.currentQty = currentQty
-        self.avgEntryPrice = avgEntryPrice
-        self.realisedPnl = realisedPnl
-        self.unrealisedPnl = unrealisedPnl
     }
 
 

@@ -33,9 +33,9 @@ class PinnedMessage(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'float',
-        'channel_id': 'float',
-        'message_id': 'float',
+        'id': 'int',
+        'channel_id': 'int',
+        'message_id': 'int',
         'created': 'datetime',
         'ended': 'datetime',
         'created_user_id': 'float',
@@ -85,7 +85,7 @@ class PinnedMessage(object):
 
 
         :return: The id of this PinnedMessage.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._id
 
@@ -95,7 +95,7 @@ class PinnedMessage(object):
 
 
         :param id: The id of this PinnedMessage.  # noqa: E501
-        :type: float
+        :type: int
         """
         if self._configuration.client_side_validation and id is None:
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
@@ -108,7 +108,7 @@ class PinnedMessage(object):
 
 
         :return: The channel_id of this PinnedMessage.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._channel_id
 
@@ -118,7 +118,7 @@ class PinnedMessage(object):
 
 
         :param channel_id: The channel_id of this PinnedMessage.  # noqa: E501
-        :type: float
+        :type: int
         """
         if self._configuration.client_side_validation and channel_id is None:
             raise ValueError("Invalid value for `channel_id`, must not be `None`")  # noqa: E501
@@ -131,7 +131,7 @@ class PinnedMessage(object):
 
 
         :return: The message_id of this PinnedMessage.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._message_id
 
@@ -141,7 +141,7 @@ class PinnedMessage(object):
 
 
         :param message_id: The message_id of this PinnedMessage.  # noqa: E501
-        :type: float
+        :type: int
         """
         if self._configuration.client_side_validation and message_id is None:
             raise ValueError("Invalid value for `message_id`, must not be `None`")  # noqa: E501

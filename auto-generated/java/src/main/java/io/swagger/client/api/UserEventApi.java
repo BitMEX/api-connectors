@@ -57,7 +57,7 @@ public class UserEventApi {
 
     /**
      * Build call for userEventGet
-     * @param count Number of results to fetch. (optional, default to 150)
+     * @param count Number of results to fetch. (optional, default to 100)
      * @param startId Cursor for pagination. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -121,7 +121,7 @@ public class UserEventApi {
     /**
      * Get your user events
      * 
-     * @param count Number of results to fetch. (optional, default to 150)
+     * @param count Number of results to fetch. (optional, default to 100)
      * @param startId Cursor for pagination. (optional)
      * @return List&lt;UserEvent&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -134,7 +134,7 @@ public class UserEventApi {
     /**
      * Get your user events
      * 
-     * @param count Number of results to fetch. (optional, default to 150)
+     * @param count Number of results to fetch. (optional, default to 100)
      * @param startId Cursor for pagination. (optional)
      * @return ApiResponse&lt;List&lt;UserEvent&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -148,7 +148,7 @@ public class UserEventApi {
     /**
      * Get your user events (asynchronously)
      * 
-     * @param count Number of results to fetch. (optional, default to 150)
+     * @param count Number of results to fetch. (optional, default to 100)
      * @param startId Cursor for pagination. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call

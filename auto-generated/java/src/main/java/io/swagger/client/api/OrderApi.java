@@ -27,7 +27,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import org.threeten.bp.OffsetDateTime;
 import io.swagger.client.model.Order;
@@ -75,7 +74,7 @@ public class OrderApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call orderAmendCall(String orderID, String origClOrdID, String clOrdID, Double simpleOrderQty, BigDecimal orderQty, Double simpleLeavesQty, BigDecimal leavesQty, Double price, Double stopPx, Double pegOffsetValue, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call orderAmendCall(String orderID, String origClOrdID, String clOrdID, Double simpleOrderQty, Integer orderQty, Double simpleLeavesQty, Integer leavesQty, Double price, Double stopPx, Double pegOffsetValue, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -139,7 +138,7 @@ public class OrderApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call orderAmendValidateBeforeCall(String orderID, String origClOrdID, String clOrdID, Double simpleOrderQty, BigDecimal orderQty, Double simpleLeavesQty, BigDecimal leavesQty, Double price, Double stopPx, Double pegOffsetValue, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call orderAmendValidateBeforeCall(String orderID, String origClOrdID, String clOrdID, Double simpleOrderQty, Integer orderQty, Double simpleLeavesQty, Integer leavesQty, Double price, Double stopPx, Double pegOffsetValue, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
         com.squareup.okhttp.Call call = orderAmendCall(orderID, origClOrdID, clOrdID, simpleOrderQty, orderQty, simpleLeavesQty, leavesQty, price, stopPx, pegOffsetValue, text, progressListener, progressRequestListener);
@@ -164,7 +163,7 @@ public class OrderApi {
      * @return Order
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Order orderAmend(String orderID, String origClOrdID, String clOrdID, Double simpleOrderQty, BigDecimal orderQty, Double simpleLeavesQty, BigDecimal leavesQty, Double price, Double stopPx, Double pegOffsetValue, String text) throws ApiException {
+    public Order orderAmend(String orderID, String origClOrdID, String clOrdID, Double simpleOrderQty, Integer orderQty, Double simpleLeavesQty, Integer leavesQty, Double price, Double stopPx, Double pegOffsetValue, String text) throws ApiException {
         ApiResponse<Order> resp = orderAmendWithHttpInfo(orderID, origClOrdID, clOrdID, simpleOrderQty, orderQty, simpleLeavesQty, leavesQty, price, stopPx, pegOffsetValue, text);
         return resp.getData();
     }
@@ -186,7 +185,7 @@ public class OrderApi {
      * @return ApiResponse&lt;Order&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Order> orderAmendWithHttpInfo(String orderID, String origClOrdID, String clOrdID, Double simpleOrderQty, BigDecimal orderQty, Double simpleLeavesQty, BigDecimal leavesQty, Double price, Double stopPx, Double pegOffsetValue, String text) throws ApiException {
+    public ApiResponse<Order> orderAmendWithHttpInfo(String orderID, String origClOrdID, String clOrdID, Double simpleOrderQty, Integer orderQty, Double simpleLeavesQty, Integer leavesQty, Double price, Double stopPx, Double pegOffsetValue, String text) throws ApiException {
         com.squareup.okhttp.Call call = orderAmendValidateBeforeCall(orderID, origClOrdID, clOrdID, simpleOrderQty, orderQty, simpleLeavesQty, leavesQty, price, stopPx, pegOffsetValue, text, null, null);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -210,7 +209,7 @@ public class OrderApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call orderAmendAsync(String orderID, String origClOrdID, String clOrdID, Double simpleOrderQty, BigDecimal orderQty, Double simpleLeavesQty, BigDecimal leavesQty, Double price, Double stopPx, Double pegOffsetValue, String text, final ApiCallback<Order> callback) throws ApiException {
+    public com.squareup.okhttp.Call orderAmendAsync(String orderID, String origClOrdID, String clOrdID, Double simpleOrderQty, Integer orderQty, Double simpleLeavesQty, Integer leavesQty, Double price, Double stopPx, Double pegOffsetValue, String text, final ApiCallback<Order> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -773,7 +772,7 @@ public class OrderApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call orderGetOrdersCall(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call orderGetOrdersCall(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -831,7 +830,7 @@ public class OrderApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call orderGetOrdersValidateBeforeCall(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call orderGetOrdersValidateBeforeCall(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
         com.squareup.okhttp.Call call = orderGetOrdersCall(symbol, filter, columns, count, start, reverse, startTime, endTime, progressListener, progressRequestListener);
@@ -853,7 +852,7 @@ public class OrderApi {
      * @return List&lt;Order&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Order> orderGetOrders(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public List<Order> orderGetOrders(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         ApiResponse<List<Order>> resp = orderGetOrdersWithHttpInfo(symbol, filter, columns, count, start, reverse, startTime, endTime);
         return resp.getData();
     }
@@ -872,7 +871,7 @@ public class OrderApi {
      * @return ApiResponse&lt;List&lt;Order&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Order>> orderGetOrdersWithHttpInfo(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
+    public ApiResponse<List<Order>> orderGetOrdersWithHttpInfo(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime) throws ApiException {
         com.squareup.okhttp.Call call = orderGetOrdersValidateBeforeCall(symbol, filter, columns, count, start, reverse, startTime, endTime, null, null);
         Type localVarReturnType = new TypeToken<List<Order>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -893,7 +892,7 @@ public class OrderApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call orderGetOrdersAsync(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<Order>> callback) throws ApiException {
+    public com.squareup.okhttp.Call orderGetOrdersAsync(String symbol, String filter, String columns, Integer count, Integer start, Boolean reverse, OffsetDateTime startTime, OffsetDateTime endTime, final ApiCallback<List<Order>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -942,7 +941,7 @@ public class OrderApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call orderNewCall(String symbol, String side, Double simpleOrderQty, BigDecimal orderQty, Double price, BigDecimal displayQty, Double stopPx, String clOrdID, String clOrdLinkID, Double pegOffsetValue, String pegPriceType, String ordType, String timeInForce, String execInst, String contingencyType, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call orderNewCall(String symbol, String side, Double simpleOrderQty, Integer orderQty, Double price, Integer displayQty, Double stopPx, String clOrdID, String clOrdLinkID, Double pegOffsetValue, String pegPriceType, String ordType, String timeInForce, String execInst, String contingencyType, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1016,7 +1015,7 @@ public class OrderApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call orderNewValidateBeforeCall(String symbol, String side, Double simpleOrderQty, BigDecimal orderQty, Double price, BigDecimal displayQty, Double stopPx, String clOrdID, String clOrdLinkID, Double pegOffsetValue, String pegPriceType, String ordType, String timeInForce, String execInst, String contingencyType, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call orderNewValidateBeforeCall(String symbol, String side, Double simpleOrderQty, Integer orderQty, Double price, Integer displayQty, Double stopPx, String clOrdID, String clOrdLinkID, Double pegOffsetValue, String pegPriceType, String ordType, String timeInForce, String execInst, String contingencyType, String text, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'symbol' is set
         if (symbol == null) {
@@ -1051,7 +1050,7 @@ public class OrderApi {
      * @return Order
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Order orderNew(String symbol, String side, Double simpleOrderQty, BigDecimal orderQty, Double price, BigDecimal displayQty, Double stopPx, String clOrdID, String clOrdLinkID, Double pegOffsetValue, String pegPriceType, String ordType, String timeInForce, String execInst, String contingencyType, String text) throws ApiException {
+    public Order orderNew(String symbol, String side, Double simpleOrderQty, Integer orderQty, Double price, Integer displayQty, Double stopPx, String clOrdID, String clOrdLinkID, Double pegOffsetValue, String pegPriceType, String ordType, String timeInForce, String execInst, String contingencyType, String text) throws ApiException {
         ApiResponse<Order> resp = orderNewWithHttpInfo(symbol, side, simpleOrderQty, orderQty, price, displayQty, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, ordType, timeInForce, execInst, contingencyType, text);
         return resp.getData();
     }
@@ -1078,7 +1077,7 @@ public class OrderApi {
      * @return ApiResponse&lt;Order&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Order> orderNewWithHttpInfo(String symbol, String side, Double simpleOrderQty, BigDecimal orderQty, Double price, BigDecimal displayQty, Double stopPx, String clOrdID, String clOrdLinkID, Double pegOffsetValue, String pegPriceType, String ordType, String timeInForce, String execInst, String contingencyType, String text) throws ApiException {
+    public ApiResponse<Order> orderNewWithHttpInfo(String symbol, String side, Double simpleOrderQty, Integer orderQty, Double price, Integer displayQty, Double stopPx, String clOrdID, String clOrdLinkID, Double pegOffsetValue, String pegPriceType, String ordType, String timeInForce, String execInst, String contingencyType, String text) throws ApiException {
         com.squareup.okhttp.Call call = orderNewValidateBeforeCall(symbol, side, simpleOrderQty, orderQty, price, displayQty, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, ordType, timeInForce, execInst, contingencyType, text, null, null);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -1107,7 +1106,7 @@ public class OrderApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call orderNewAsync(String symbol, String side, Double simpleOrderQty, BigDecimal orderQty, Double price, BigDecimal displayQty, Double stopPx, String clOrdID, String clOrdLinkID, Double pegOffsetValue, String pegPriceType, String ordType, String timeInForce, String execInst, String contingencyType, String text, final ApiCallback<Order> callback) throws ApiException {
+    public com.squareup.okhttp.Call orderNewAsync(String symbol, String side, Double simpleOrderQty, Integer orderQty, Double price, Integer displayQty, Double stopPx, String clOrdID, String clOrdLinkID, Double pegOffsetValue, String pegPriceType, String ordType, String timeInForce, String execInst, String contingencyType, String text, final ApiCallback<Order> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

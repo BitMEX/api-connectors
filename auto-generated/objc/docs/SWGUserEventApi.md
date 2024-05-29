@@ -36,7 +36,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSNumber* count = @150; // Number of results to fetch. (optional) (default to 150)
+NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
 NSNumber* startId = @1.2; // Cursor for pagination. (optional)
 
 SWGUserEventApi*apiInstance = [[SWGUserEventApi alloc] init];
@@ -58,7 +58,7 @@ SWGUserEventApi*apiInstance = [[SWGUserEventApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **NSNumber***| Number of results to fetch. | [optional] [default to 150]
+ **count** | **NSNumber***| Number of results to fetch. | [optional] [default to 100]
  **startId** | **NSNumber***| Cursor for pagination. | [optional] 
 
 ### Return type

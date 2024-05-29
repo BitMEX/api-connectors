@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
@@ -25,7 +24,7 @@ public class CommunicationToken {
   @SerializedName("id")
   private String id = null;
   @SerializedName("userId")
-  private BigDecimal userId = null;
+  private Integer userId = null;
   @SerializedName("deviceToken")
   private String deviceToken = null;
   @SerializedName("channel")
@@ -44,10 +43,10 @@ public class CommunicationToken {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getUserId() {
+  public Integer getUserId() {
     return userId;
   }
-  public void setUserId(BigDecimal userId) {
+  public void setUserId(Integer userId) {
     this.userId = userId;
   }
 

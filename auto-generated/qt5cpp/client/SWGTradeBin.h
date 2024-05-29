@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -61,20 +60,20 @@ public:
     double getClose();
     void setClose(double close);
 
-    SWGNumber* getTrades();
-    void setTrades(SWGNumber* trades);
+    qint64 getTrades();
+    void setTrades(qint64 trades);
 
-    SWGNumber* getVolume();
-    void setVolume(SWGNumber* volume);
+    qint64 getVolume();
+    void setVolume(qint64 volume);
 
     double getVwap();
     void setVwap(double vwap);
 
-    SWGNumber* getLastSize();
-    void setLastSize(SWGNumber* last_size);
+    qint64 getLastSize();
+    void setLastSize(qint64 last_size);
 
-    SWGNumber* getTurnover();
-    void setTurnover(SWGNumber* turnover);
+    qint64 getTurnover();
+    void setTurnover(qint64 turnover);
 
     double getHomeNotional();
     void setHomeNotional(double home_notional);
@@ -104,19 +103,19 @@ private:
     double close;
     bool m_close_isSet;
 
-    SWGNumber* trades;
+    qint64 trades;
     bool m_trades_isSet;
 
-    SWGNumber* volume;
+    qint64 volume;
     bool m_volume_isSet;
 
     double vwap;
     bool m_vwap_isSet;
 
-    SWGNumber* last_size;
+    qint64 last_size;
     bool m_last_size_isSet;
 
-    SWGNumber* turnover;
+    qint64 turnover;
     bool m_turnover_isSet;
 
     double home_notional;

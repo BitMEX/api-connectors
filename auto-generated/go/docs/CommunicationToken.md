@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | [default to null]
-**UserId** | **float32** |  | [default to null]
+**UserId** | **int32** |  | [default to null]
 **DeviceToken** | **string** |  | [default to null]
 **Channel** | **string** |  | [default to null]
 

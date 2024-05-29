@@ -37,7 +37,7 @@ SWGAddress::~SWGAddress() {
 
 void
 SWGAddress::init() {
-    id = 0.0;
+    id = 0;
     m_id_isSet = false;
     currency = new QString("");
     m_currency_isSet = false;
@@ -61,13 +61,13 @@ SWGAddress::init() {
     m_skip2_fa_verified_isSet = false;
     network = new QString("");
     m_network_isSet = false;
+    memo = new QString("");
+    m_memo_isSet = false;
 }
 
 void
 SWGAddress::cleanup() {
-    if(id != nullptr) { 
-        delete id;
-    }
+
     if(currency != nullptr) { 
         delete currency;
     }
@@ -91,6 +91,9 @@ SWGAddress::cleanup() {
     if(network != nullptr) { 
         delete network;
     }
+    if(memo != nullptr) { 
+        delete memo;
+    }
 }
 
 SWGAddress*
@@ -104,7 +107,7 @@ SWGAddress::fromJson(QString json) {
 
 void
 SWGAddress::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&id, pJson["id"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&id, pJson["id"], "qint32", "");
     
     ::Swagger::setValue(&currency, pJson["currency"], "QString", "QString");
     
@@ -128,6 +131,8 @@ SWGAddress::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&network, pJson["network"], "QString", "QString");
     
+    ::Swagger::setValue(&memo, pJson["memo"], "QString", "QString");
+    
 }
 
 QString
@@ -142,8 +147,8 @@ SWGAddress::asJson ()
 QJsonObject
 SWGAddress::asJsonObject() {
     QJsonObject obj;
-    if((id != nullptr) && (id->isSet())){
-        toJsonValue(QString("id"), id, obj, QString("SWGNumber"));
+    if(m_id_isSet){
+        obj.insert("id", QJsonValue(id));
     }
     if(currency != nullptr && *currency != QString("")){
         toJsonValue(QString("currency"), currency, obj, QString("QString"));
@@ -178,16 +183,19 @@ SWGAddress::asJsonObject() {
     if(network != nullptr && *network != QString("")){
         toJsonValue(QString("network"), network, obj, QString("QString"));
     }
+    if(memo != nullptr && *memo != QString("")){
+        toJsonValue(QString("memo"), memo, obj, QString("QString"));
+    }
 
     return obj;
 }
 
-SWGNumber*
+qint32
 SWGAddress::getId() {
     return id;
 }
 void
-SWGAddress::setId(SWGNumber* id) {
+SWGAddress::setId(qint32 id) {
     this->id = id;
     this->m_id_isSet = true;
 }
@@ -302,12 +310,22 @@ SWGAddress::setNetwork(QString* network) {
     this->m_network_isSet = true;
 }
 
+QString*
+SWGAddress::getMemo() {
+    return memo;
+}
+void
+SWGAddress::setMemo(QString* memo) {
+    this->memo = memo;
+    this->m_memo_isSet = true;
+}
+
 
 bool
 SWGAddress::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(id != nullptr && id->isSet()){ isObjectUpdated = true; break;}
+        if(m_id_isSet){ isObjectUpdated = true; break;}
         if(currency != nullptr && *currency != QString("")){ isObjectUpdated = true; break;}
         
         if(m_user_id_isSet){ isObjectUpdated = true; break;}
@@ -319,6 +337,7 @@ SWGAddress::isSet(){
         if(m_skip2_fa_isSet){ isObjectUpdated = true; break;}
         if(m_skip2_fa_verified_isSet){ isObjectUpdated = true; break;}
         if(network != nullptr && *network != QString("")){ isObjectUpdated = true; break;}
+        if(memo != nullptr && *memo != QString("")){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

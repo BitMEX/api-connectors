@@ -16,7 +16,7 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class Chat (
-  id: Option[Double] = None,
+  id: Option[Int] = None,
   date: DateTime,
   user: String,
   userColor: Option[String] = None,

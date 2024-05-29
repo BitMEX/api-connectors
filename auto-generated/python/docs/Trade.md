@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 **timestamp** | **datetime** |  | 
 **symbol** | **str** |  | 
 **side** | **str** |  | [optional] 
-**size** | **float** |  | [optional] 
+**size** | **int** |  | [optional] 
 **price** | **float** |  | [optional] 
 **tick_direction** | **str** |  | [optional] 
 **trd_match_id** | **str** |  | [optional] 
-**gross_value** | **float** |  | [optional] 
+**gross_value** | **int** |  | [optional] 
 **home_notional** | **float** |  | [optional] 
 **foreign_notional** | **float** |  | [optional] 
 **trd_type** | **str** |  | [optional] 

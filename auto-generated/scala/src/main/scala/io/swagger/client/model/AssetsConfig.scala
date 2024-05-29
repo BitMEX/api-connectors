@@ -22,6 +22,7 @@ case class AssetsConfig (
   scale: Option[Double] = None,
   enabled: Option[Boolean] = None,
   isMarginCurrency: Option[Boolean] = None,
+  memoRequired: Option[Boolean] = None,
   networks: Option[List[AssetsConfigNetworkItem]] = None
 )
 

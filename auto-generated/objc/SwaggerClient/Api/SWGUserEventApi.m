@@ -53,7 +53,7 @@ NSInteger kSWGUserEventApiMissingParamErrorCode = 234513;
 ///
 /// Get your user events
 /// 
-///  @param count Number of results to fetch. (optional, default to 150)
+///  @param count Number of results to fetch. (optional, default to 100)
 ///
 ///  @param startId Cursor for pagination. (optional)
 ///

@@ -18,11 +18,11 @@ public struct Settlement: Codable {
     public var settledPrice: Double?
     public var optionStrikePrice: Double?
     public var optionUnderlyingPrice: Double?
-    public var bankrupt: Double?
-    public var taxBase: Double?
+    public var bankrupt: Int64?
+    public var taxBase: Int64?
     public var taxRate: Double?
 
-    public init(timestamp: Date, symbol: String, settlementType: String?, settledPrice: Double?, optionStrikePrice: Double?, optionUnderlyingPrice: Double?, bankrupt: Double?, taxBase: Double?, taxRate: Double?) {
+    public init(timestamp: Date, symbol: String, settlementType: String?, settledPrice: Double?, optionStrikePrice: Double?, optionUnderlyingPrice: Double?, bankrupt: Int64?, taxBase: Int64?, taxRate: Double?) {
         self.timestamp = timestamp
         self.symbol = symbol
         self.settlementType = settlementType

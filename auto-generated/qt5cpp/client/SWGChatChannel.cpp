@@ -37,7 +37,7 @@ SWGChatChannel::~SWGChatChannel() {
 
 void
 SWGChatChannel::init() {
-    id = 0.0;
+    id = 0;
     m_id_isSet = false;
     name = new QString("");
     m_name_isSet = false;
@@ -47,9 +47,7 @@ SWGChatChannel::init() {
 
 void
 SWGChatChannel::cleanup() {
-    if(id != nullptr) { 
-        delete id;
-    }
+
     if(name != nullptr) { 
         delete name;
     }
@@ -67,7 +65,7 @@ SWGChatChannel::fromJson(QString json) {
 
 void
 SWGChatChannel::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&id, pJson["id"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&id, pJson["id"], "qint32", "");
     
     ::Swagger::setValue(&name, pJson["name"], "QString", "QString");
     
@@ -87,8 +85,8 @@ SWGChatChannel::asJson ()
 QJsonObject
 SWGChatChannel::asJsonObject() {
     QJsonObject obj;
-    if((id != nullptr) && (id->isSet())){
-        toJsonValue(QString("id"), id, obj, QString("SWGNumber"));
+    if(m_id_isSet){
+        obj.insert("id", QJsonValue(id));
     }
     if(name != nullptr && *name != QString("")){
         toJsonValue(QString("name"), name, obj, QString("QString"));
@@ -100,12 +98,12 @@ SWGChatChannel::asJsonObject() {
     return obj;
 }
 
-SWGNumber*
+qint32
 SWGChatChannel::getId() {
     return id;
 }
 void
-SWGChatChannel::setId(SWGNumber* id) {
+SWGChatChannel::setId(qint32 id) {
     this->id = id;
     this->m_id_isSet = true;
 }
@@ -135,7 +133,7 @@ bool
 SWGChatChannel::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(id != nullptr && id->isSet()){ isObjectUpdated = true; break;}
+        if(m_id_isSet){ isObjectUpdated = true; break;}
         if(name != nullptr && *name != QString("")){ isObjectUpdated = true; break;}
         if(m_is_private_isSet){ isObjectUpdated = true; break;}
     }while(false);

@@ -23,14 +23,13 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Tradeable Contracts, Indices, and History
  */
 @ApiModel(description = "Tradeable Contracts, Indices, and History")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Instrument {
   @SerializedName("symbol")
   private String symbol = null;
@@ -87,31 +86,31 @@ public class Instrument {
   private OffsetDateTime publishTime = null;
 
   @SerializedName("maxOrderQty")
-  private BigDecimal maxOrderQty = null;
+  private Long maxOrderQty = null;
 
   @SerializedName("maxPrice")
   private Double maxPrice = null;
 
   @SerializedName("lotSize")
-  private BigDecimal lotSize = null;
+  private Long lotSize = null;
 
   @SerializedName("tickSize")
   private Double tickSize = null;
 
   @SerializedName("multiplier")
-  private BigDecimal multiplier = null;
+  private Long multiplier = null;
 
   @SerializedName("settlCurrency")
   private String settlCurrency = null;
 
   @SerializedName("underlyingToPositionMultiplier")
-  private BigDecimal underlyingToPositionMultiplier = null;
+  private Long underlyingToPositionMultiplier = null;
 
   @SerializedName("underlyingToSettleMultiplier")
-  private BigDecimal underlyingToSettleMultiplier = null;
+  private Long underlyingToSettleMultiplier = null;
 
   @SerializedName("quoteToSettleMultiplier")
-  private BigDecimal quoteToSettleMultiplier = null;
+  private Long quoteToSettleMultiplier = null;
 
   @SerializedName("isQuanto")
   private Boolean isQuanto = null;
@@ -126,10 +125,10 @@ public class Instrument {
   private Double maintMargin = null;
 
   @SerializedName("riskLimit")
-  private BigDecimal riskLimit = null;
+  private Long riskLimit = null;
 
   @SerializedName("riskStep")
-  private BigDecimal riskStep = null;
+  private Long riskStep = null;
 
   @SerializedName("limit")
   private Double limit = null;
@@ -186,25 +185,25 @@ public class Instrument {
   private Double limitUpPrice = null;
 
   @SerializedName("totalVolume")
-  private BigDecimal totalVolume = null;
+  private Long totalVolume = null;
 
   @SerializedName("volume")
-  private BigDecimal volume = null;
+  private Long volume = null;
 
   @SerializedName("volume24h")
-  private BigDecimal volume24h = null;
+  private Long volume24h = null;
 
   @SerializedName("prevTotalTurnover")
-  private BigDecimal prevTotalTurnover = null;
+  private Long prevTotalTurnover = null;
 
   @SerializedName("totalTurnover")
-  private BigDecimal totalTurnover = null;
+  private Long totalTurnover = null;
 
   @SerializedName("turnover")
-  private BigDecimal turnover = null;
+  private Long turnover = null;
 
   @SerializedName("turnover24h")
-  private BigDecimal turnover24h = null;
+  private Long turnover24h = null;
 
   @SerializedName("homeNotional24h")
   private Double homeNotional24h = null;
@@ -258,10 +257,10 @@ public class Instrument {
   private Boolean hasLiquidity = null;
 
   @SerializedName("openInterest")
-  private BigDecimal openInterest = null;
+  private Long openInterest = null;
 
   @SerializedName("openValue")
-  private BigDecimal openValue = null;
+  private Long openValue = null;
 
   @SerializedName("fairMethod")
   private String fairMethod = null;
@@ -292,6 +291,9 @@ public class Instrument {
 
   @SerializedName("instantPnl")
   private Boolean instantPnl = null;
+
+  @SerializedName("minTick")
+  private Double minTick = null;
 
   @SerializedName("timestamp")
   private OffsetDateTime timestamp = null;
@@ -620,7 +622,7 @@ public class Instrument {
     this.publishTime = publishTime;
   }
 
-  public Instrument maxOrderQty(BigDecimal maxOrderQty) {
+  public Instrument maxOrderQty(Long maxOrderQty) {
     this.maxOrderQty = maxOrderQty;
     return this;
   }
@@ -630,11 +632,11 @@ public class Instrument {
    * @return maxOrderQty
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getMaxOrderQty() {
+  public Long getMaxOrderQty() {
     return maxOrderQty;
   }
 
-  public void setMaxOrderQty(BigDecimal maxOrderQty) {
+  public void setMaxOrderQty(Long maxOrderQty) {
     this.maxOrderQty = maxOrderQty;
   }
 
@@ -656,7 +658,7 @@ public class Instrument {
     this.maxPrice = maxPrice;
   }
 
-  public Instrument lotSize(BigDecimal lotSize) {
+  public Instrument lotSize(Long lotSize) {
     this.lotSize = lotSize;
     return this;
   }
@@ -666,11 +668,11 @@ public class Instrument {
    * @return lotSize
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getLotSize() {
+  public Long getLotSize() {
     return lotSize;
   }
 
-  public void setLotSize(BigDecimal lotSize) {
+  public void setLotSize(Long lotSize) {
     this.lotSize = lotSize;
   }
 
@@ -692,7 +694,7 @@ public class Instrument {
     this.tickSize = tickSize;
   }
 
-  public Instrument multiplier(BigDecimal multiplier) {
+  public Instrument multiplier(Long multiplier) {
     this.multiplier = multiplier;
     return this;
   }
@@ -702,11 +704,11 @@ public class Instrument {
    * @return multiplier
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getMultiplier() {
+  public Long getMultiplier() {
     return multiplier;
   }
 
-  public void setMultiplier(BigDecimal multiplier) {
+  public void setMultiplier(Long multiplier) {
     this.multiplier = multiplier;
   }
 
@@ -728,7 +730,7 @@ public class Instrument {
     this.settlCurrency = settlCurrency;
   }
 
-  public Instrument underlyingToPositionMultiplier(BigDecimal underlyingToPositionMultiplier) {
+  public Instrument underlyingToPositionMultiplier(Long underlyingToPositionMultiplier) {
     this.underlyingToPositionMultiplier = underlyingToPositionMultiplier;
     return this;
   }
@@ -738,15 +740,15 @@ public class Instrument {
    * @return underlyingToPositionMultiplier
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getUnderlyingToPositionMultiplier() {
+  public Long getUnderlyingToPositionMultiplier() {
     return underlyingToPositionMultiplier;
   }
 
-  public void setUnderlyingToPositionMultiplier(BigDecimal underlyingToPositionMultiplier) {
+  public void setUnderlyingToPositionMultiplier(Long underlyingToPositionMultiplier) {
     this.underlyingToPositionMultiplier = underlyingToPositionMultiplier;
   }
 
-  public Instrument underlyingToSettleMultiplier(BigDecimal underlyingToSettleMultiplier) {
+  public Instrument underlyingToSettleMultiplier(Long underlyingToSettleMultiplier) {
     this.underlyingToSettleMultiplier = underlyingToSettleMultiplier;
     return this;
   }
@@ -756,15 +758,15 @@ public class Instrument {
    * @return underlyingToSettleMultiplier
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getUnderlyingToSettleMultiplier() {
+  public Long getUnderlyingToSettleMultiplier() {
     return underlyingToSettleMultiplier;
   }
 
-  public void setUnderlyingToSettleMultiplier(BigDecimal underlyingToSettleMultiplier) {
+  public void setUnderlyingToSettleMultiplier(Long underlyingToSettleMultiplier) {
     this.underlyingToSettleMultiplier = underlyingToSettleMultiplier;
   }
 
-  public Instrument quoteToSettleMultiplier(BigDecimal quoteToSettleMultiplier) {
+  public Instrument quoteToSettleMultiplier(Long quoteToSettleMultiplier) {
     this.quoteToSettleMultiplier = quoteToSettleMultiplier;
     return this;
   }
@@ -774,11 +776,11 @@ public class Instrument {
    * @return quoteToSettleMultiplier
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getQuoteToSettleMultiplier() {
+  public Long getQuoteToSettleMultiplier() {
     return quoteToSettleMultiplier;
   }
 
-  public void setQuoteToSettleMultiplier(BigDecimal quoteToSettleMultiplier) {
+  public void setQuoteToSettleMultiplier(Long quoteToSettleMultiplier) {
     this.quoteToSettleMultiplier = quoteToSettleMultiplier;
   }
 
@@ -854,7 +856,7 @@ public class Instrument {
     this.maintMargin = maintMargin;
   }
 
-  public Instrument riskLimit(BigDecimal riskLimit) {
+  public Instrument riskLimit(Long riskLimit) {
     this.riskLimit = riskLimit;
     return this;
   }
@@ -864,15 +866,15 @@ public class Instrument {
    * @return riskLimit
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getRiskLimit() {
+  public Long getRiskLimit() {
     return riskLimit;
   }
 
-  public void setRiskLimit(BigDecimal riskLimit) {
+  public void setRiskLimit(Long riskLimit) {
     this.riskLimit = riskLimit;
   }
 
-  public Instrument riskStep(BigDecimal riskStep) {
+  public Instrument riskStep(Long riskStep) {
     this.riskStep = riskStep;
     return this;
   }
@@ -882,11 +884,11 @@ public class Instrument {
    * @return riskStep
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getRiskStep() {
+  public Long getRiskStep() {
     return riskStep;
   }
 
-  public void setRiskStep(BigDecimal riskStep) {
+  public void setRiskStep(Long riskStep) {
     this.riskStep = riskStep;
   }
 
@@ -1214,7 +1216,7 @@ public class Instrument {
     this.limitUpPrice = limitUpPrice;
   }
 
-  public Instrument totalVolume(BigDecimal totalVolume) {
+  public Instrument totalVolume(Long totalVolume) {
     this.totalVolume = totalVolume;
     return this;
   }
@@ -1224,15 +1226,15 @@ public class Instrument {
    * @return totalVolume
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTotalVolume() {
+  public Long getTotalVolume() {
     return totalVolume;
   }
 
-  public void setTotalVolume(BigDecimal totalVolume) {
+  public void setTotalVolume(Long totalVolume) {
     this.totalVolume = totalVolume;
   }
 
-  public Instrument volume(BigDecimal volume) {
+  public Instrument volume(Long volume) {
     this.volume = volume;
     return this;
   }
@@ -1242,15 +1244,15 @@ public class Instrument {
    * @return volume
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getVolume() {
+  public Long getVolume() {
     return volume;
   }
 
-  public void setVolume(BigDecimal volume) {
+  public void setVolume(Long volume) {
     this.volume = volume;
   }
 
-  public Instrument volume24h(BigDecimal volume24h) {
+  public Instrument volume24h(Long volume24h) {
     this.volume24h = volume24h;
     return this;
   }
@@ -1260,15 +1262,15 @@ public class Instrument {
    * @return volume24h
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getVolume24h() {
+  public Long getVolume24h() {
     return volume24h;
   }
 
-  public void setVolume24h(BigDecimal volume24h) {
+  public void setVolume24h(Long volume24h) {
     this.volume24h = volume24h;
   }
 
-  public Instrument prevTotalTurnover(BigDecimal prevTotalTurnover) {
+  public Instrument prevTotalTurnover(Long prevTotalTurnover) {
     this.prevTotalTurnover = prevTotalTurnover;
     return this;
   }
@@ -1278,15 +1280,15 @@ public class Instrument {
    * @return prevTotalTurnover
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPrevTotalTurnover() {
+  public Long getPrevTotalTurnover() {
     return prevTotalTurnover;
   }
 
-  public void setPrevTotalTurnover(BigDecimal prevTotalTurnover) {
+  public void setPrevTotalTurnover(Long prevTotalTurnover) {
     this.prevTotalTurnover = prevTotalTurnover;
   }
 
-  public Instrument totalTurnover(BigDecimal totalTurnover) {
+  public Instrument totalTurnover(Long totalTurnover) {
     this.totalTurnover = totalTurnover;
     return this;
   }
@@ -1296,15 +1298,15 @@ public class Instrument {
    * @return totalTurnover
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTotalTurnover() {
+  public Long getTotalTurnover() {
     return totalTurnover;
   }
 
-  public void setTotalTurnover(BigDecimal totalTurnover) {
+  public void setTotalTurnover(Long totalTurnover) {
     this.totalTurnover = totalTurnover;
   }
 
-  public Instrument turnover(BigDecimal turnover) {
+  public Instrument turnover(Long turnover) {
     this.turnover = turnover;
     return this;
   }
@@ -1314,15 +1316,15 @@ public class Instrument {
    * @return turnover
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover() {
+  public Long getTurnover() {
     return turnover;
   }
 
-  public void setTurnover(BigDecimal turnover) {
+  public void setTurnover(Long turnover) {
     this.turnover = turnover;
   }
 
-  public Instrument turnover24h(BigDecimal turnover24h) {
+  public Instrument turnover24h(Long turnover24h) {
     this.turnover24h = turnover24h;
     return this;
   }
@@ -1332,11 +1334,11 @@ public class Instrument {
    * @return turnover24h
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover24h() {
+  public Long getTurnover24h() {
     return turnover24h;
   }
 
-  public void setTurnover24h(BigDecimal turnover24h) {
+  public void setTurnover24h(Long turnover24h) {
     this.turnover24h = turnover24h;
   }
 
@@ -1646,7 +1648,7 @@ public class Instrument {
     this.hasLiquidity = hasLiquidity;
   }
 
-  public Instrument openInterest(BigDecimal openInterest) {
+  public Instrument openInterest(Long openInterest) {
     this.openInterest = openInterest;
     return this;
   }
@@ -1656,15 +1658,15 @@ public class Instrument {
    * @return openInterest
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOpenInterest() {
+  public Long getOpenInterest() {
     return openInterest;
   }
 
-  public void setOpenInterest(BigDecimal openInterest) {
+  public void setOpenInterest(Long openInterest) {
     this.openInterest = openInterest;
   }
 
-  public Instrument openValue(BigDecimal openValue) {
+  public Instrument openValue(Long openValue) {
     this.openValue = openValue;
     return this;
   }
@@ -1674,11 +1676,11 @@ public class Instrument {
    * @return openValue
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOpenValue() {
+  public Long getOpenValue() {
     return openValue;
   }
 
-  public void setOpenValue(BigDecimal openValue) {
+  public void setOpenValue(Long openValue) {
     this.openValue = openValue;
   }
 
@@ -1862,6 +1864,24 @@ public class Instrument {
     this.instantPnl = instantPnl;
   }
 
+  public Instrument minTick(Double minTick) {
+    this.minTick = minTick;
+    return this;
+  }
+
+   /**
+   * Get minTick
+   * @return minTick
+  **/
+  @ApiModelProperty(value = "")
+  public Double getMinTick() {
+    return minTick;
+  }
+
+  public void setMinTick(Double minTick) {
+    this.minTick = minTick;
+  }
+
   public Instrument timestamp(OffsetDateTime timestamp) {
     this.timestamp = timestamp;
     return this;
@@ -1977,12 +1997,13 @@ public class Instrument {
         Objects.equals(this.settledPriceAdjustmentRate, instrument.settledPriceAdjustmentRate) &&
         Objects.equals(this.settledPrice, instrument.settledPrice) &&
         Objects.equals(this.instantPnl, instrument.instantPnl) &&
+        Objects.equals(this.minTick, instrument.minTick) &&
         Objects.equals(this.timestamp, instrument.timestamp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(symbol, rootSymbol, state, typ, listing, front, expiry, settle, listedSettle, positionCurrency, underlying, quoteCurrency, underlyingSymbol, reference, referenceSymbol, calcInterval, publishInterval, publishTime, maxOrderQty, maxPrice, lotSize, tickSize, multiplier, settlCurrency, underlyingToPositionMultiplier, underlyingToSettleMultiplier, quoteToSettleMultiplier, isQuanto, isInverse, initMargin, maintMargin, riskLimit, riskStep, limit, taxed, deleverage, makerFee, takerFee, settlementFee, fundingBaseSymbol, fundingQuoteSymbol, fundingPremiumSymbol, fundingTimestamp, fundingInterval, fundingRate, indicativeFundingRate, rebalanceTimestamp, rebalanceInterval, prevClosePrice, limitDownPrice, limitUpPrice, totalVolume, volume, volume24h, prevTotalTurnover, totalTurnover, turnover, turnover24h, homeNotional24h, foreignNotional24h, prevPrice24h, vwap, highPrice, lowPrice, lastPrice, lastPriceProtected, lastTickDirection, lastChangePcnt, bidPrice, midPrice, askPrice, impactBidPrice, impactMidPrice, impactAskPrice, hasLiquidity, openInterest, openValue, fairMethod, fairBasisRate, fairBasis, fairPrice, markMethod, markPrice, indicativeSettlePrice, settledPriceAdjustmentRate, settledPrice, instantPnl, timestamp);
+    return Objects.hash(symbol, rootSymbol, state, typ, listing, front, expiry, settle, listedSettle, positionCurrency, underlying, quoteCurrency, underlyingSymbol, reference, referenceSymbol, calcInterval, publishInterval, publishTime, maxOrderQty, maxPrice, lotSize, tickSize, multiplier, settlCurrency, underlyingToPositionMultiplier, underlyingToSettleMultiplier, quoteToSettleMultiplier, isQuanto, isInverse, initMargin, maintMargin, riskLimit, riskStep, limit, taxed, deleverage, makerFee, takerFee, settlementFee, fundingBaseSymbol, fundingQuoteSymbol, fundingPremiumSymbol, fundingTimestamp, fundingInterval, fundingRate, indicativeFundingRate, rebalanceTimestamp, rebalanceInterval, prevClosePrice, limitDownPrice, limitUpPrice, totalVolume, volume, volume24h, prevTotalTurnover, totalTurnover, turnover, turnover24h, homeNotional24h, foreignNotional24h, prevPrice24h, vwap, highPrice, lowPrice, lastPrice, lastPriceProtected, lastTickDirection, lastChangePcnt, bidPrice, midPrice, askPrice, impactBidPrice, impactMidPrice, impactAskPrice, hasLiquidity, openInterest, openValue, fairMethod, fairBasisRate, fairBasis, fairPrice, markMethod, markPrice, indicativeSettlePrice, settledPriceAdjustmentRate, settledPrice, instantPnl, minTick, timestamp);
   }
 
 
@@ -2078,6 +2099,7 @@ public class Instrument {
     sb.append("    settledPriceAdjustmentRate: ").append(toIndentedString(settledPriceAdjustmentRate)).append("\n");
     sb.append("    settledPrice: ").append(toIndentedString(settledPrice)).append("\n");
     sb.append("    instantPnl: ").append(toIndentedString(instantPnl)).append("\n");
+    sb.append("    minTick: ").append(toIndentedString(minTick)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("}");
     return sb.toString();

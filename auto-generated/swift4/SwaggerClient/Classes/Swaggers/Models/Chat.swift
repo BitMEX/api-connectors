@@ -12,7 +12,7 @@ import Foundation
 
 public struct Chat: Codable {
 
-    public var _id: Double?
+    public var _id: Int?
     public var date: Date
     public var user: String
     public var userColor: String?
@@ -20,7 +20,7 @@ public struct Chat: Codable {
     public var html: String
     public var channelID: Double?
 
-    public init(_id: Double?, date: Date, user: String, userColor: String?, message: String, html: String, channelID: Double?) {
+    public init(_id: Int?, date: Date, user: String, userColor: String?, message: String, html: String, channelID: Double?) {
         self._id = _id
         self.date = date
         self.user = user

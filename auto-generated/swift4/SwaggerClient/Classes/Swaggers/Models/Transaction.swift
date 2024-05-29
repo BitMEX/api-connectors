@@ -12,21 +12,21 @@ import Foundation
 public struct Transaction: Codable {
 
     public var transactID: String
-    public var account: Double?
+    public var account: Int64?
     public var currency: String?
     public var network: String?
     public var transactType: String?
-    public var amount: Double?
-    public var fee: Double?
+    public var amount: Int64?
+    public var fee: Int64?
     public var transactStatus: String?
     public var address: String?
     public var tx: String?
     public var text: String?
     public var transactTime: Date?
     public var timestamp: Date?
-    public var walletBalance: Double?
+    public var walletBalance: Int64?
 
-    public init(transactID: String, account: Double?, currency: String?, network: String?, transactType: String?, amount: Double?, fee: Double?, transactStatus: String?, address: String?, tx: String?, text: String?, transactTime: Date?, timestamp: Date?, walletBalance: Double?) {
+    public init(transactID: String, account: Int64?, currency: String?, network: String?, transactType: String?, amount: Int64?, fee: Int64?, transactStatus: String?, address: String?, tx: String?, text: String?, transactTime: Date?, timestamp: Date?, walletBalance: Int64?) {
         self.transactID = transactID
         self.account = account
         self.currency = currency

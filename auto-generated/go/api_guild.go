@@ -200,12 +200,13 @@ GuildApiService Edit guild new guild
  * @param name Name of the guild, must be unique, must be at least 5 characters
  * @param emoji Emoji name.
  * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100
- * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+ * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
  * @param optional nil or *GuildApiGuildEditOpts - Optional Parameters:
      * @param "PotTraderId" (optional.Float64) -  User ID of the guild member with order write permission for the pot
      * @param "Description" (optional.String) -  Guild description, can be used to explain the guild to other users.
      * @param "Twitter" (optional.String) -  Guild twitter handle.
      * @param "Discord" (optional.String) -  Guild discord link.
+     * @param "Telegram" (optional.String) -  Guild telegram link.
      * @param "ImgUrl" (optional.String) -  URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
      * @param "IsPrivate" (optional.Bool) -  Guild privacy status
 
@@ -217,6 +218,7 @@ type GuildApiGuildEditOpts struct {
 	Description optional.String
 	Twitter optional.String
 	Discord optional.String
+	Telegram optional.String
 	ImgUrl optional.String
 	IsPrivate optional.Bool
 }
@@ -269,6 +271,9 @@ func (a *GuildApiService) GuildEdit(ctx context.Context, name string, emoji stri
 	}
 	if localVarOptionals != nil && localVarOptionals.Discord.IsSet() {
 		localVarFormParams.Add("discord", parameterToString(localVarOptionals.Discord.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Telegram.IsSet() {
+		localVarFormParams.Add("telegram", parameterToString(localVarOptionals.Telegram.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.ImgUrl.IsSet() {
 		localVarFormParams.Add("imgUrl", parameterToString(localVarOptionals.ImgUrl.Value(), ""))
@@ -1043,11 +1048,12 @@ GuildApiService Creates a new guild
  * @param name Name of the guild, must be unique, must be at least 5 characters
  * @param emoji Emoji name.
  * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100
- * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+ * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
  * @param optional nil or *GuildApiGuildNewOpts - Optional Parameters:
      * @param "Description" (optional.String) -  Guild description, can be used to explain the guild to other users.
      * @param "Twitter" (optional.String) -  Guild twitter handle.
      * @param "Discord" (optional.String) -  Guild discord link.
+     * @param "Telegram" (optional.String) -  Guild telegram link.
      * @param "ImgUrl" (optional.String) -  URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
      * @param "IsPrivate" (optional.Bool) -  Guild privacy status
 
@@ -1058,6 +1064,7 @@ type GuildApiGuildNewOpts struct {
 	Description optional.String
 	Twitter optional.String
 	Discord optional.String
+	Telegram optional.String
 	ImgUrl optional.String
 	IsPrivate optional.Bool
 }
@@ -1107,6 +1114,9 @@ func (a *GuildApiService) GuildNew(ctx context.Context, name string, emoji strin
 	}
 	if localVarOptionals != nil && localVarOptionals.Discord.IsSet() {
 		localVarFormParams.Add("discord", parameterToString(localVarOptionals.Discord.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Telegram.IsSet() {
+		localVarFormParams.Add("telegram", parameterToString(localVarOptionals.Telegram.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.ImgUrl.IsSet() {
 		localVarFormParams.Add("imgUrl", parameterToString(localVarOptionals.ImgUrl.Value(), ""))

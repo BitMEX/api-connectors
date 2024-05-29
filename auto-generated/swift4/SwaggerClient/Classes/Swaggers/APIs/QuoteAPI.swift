@@ -24,7 +24,7 @@ open class QuoteAPI {
      - parameter endTime: (query) Ending date filter for results. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func quoteGet(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [Quote]?,_ error: Error?) -> Void)) {
+    open class func quoteGet(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [Quote]?,_ error: Error?) -> Void)) {
         quoteGetWithRequestBuilder(symbol: symbol, filter: filter, columns: columns, count: count, start: start, reverse: reverse, startTime: startTime, endTime: endTime).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -47,7 +47,7 @@ open class QuoteAPI {
 
      - returns: RequestBuilder<[Quote]> 
      */
-    open class func quoteGetWithRequestBuilder(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[Quote]> {
+    open class func quoteGetWithRequestBuilder(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[Quote]> {
         let path = "/quote"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -57,8 +57,8 @@ open class QuoteAPI {
             "symbol": symbol, 
             "filter": filter, 
             "columns": columns, 
-            "count": count, 
-            "start": start, 
+            "count": count?.encodeToJSON(), 
+            "start": start?.encodeToJSON(), 
             "reverse": reverse, 
             "startTime": startTime?.encodeToJSON(), 
             "endTime": endTime?.encodeToJSON()
@@ -84,7 +84,7 @@ open class QuoteAPI {
      - parameter endTime: (query) Ending date filter for results. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func quoteGetBucketed(binSize: String? = nil, partial: Bool? = nil, symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [Quote]?,_ error: Error?) -> Void)) {
+    open class func quoteGetBucketed(binSize: String? = nil, partial: Bool? = nil, symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [Quote]?,_ error: Error?) -> Void)) {
         quoteGetBucketedWithRequestBuilder(binSize: binSize, partial: partial, symbol: symbol, filter: filter, columns: columns, count: count, start: start, reverse: reverse, startTime: startTime, endTime: endTime).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -110,7 +110,7 @@ open class QuoteAPI {
 
      - returns: RequestBuilder<[Quote]> 
      */
-    open class func quoteGetBucketedWithRequestBuilder(binSize: String? = nil, partial: Bool? = nil, symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[Quote]> {
+    open class func quoteGetBucketedWithRequestBuilder(binSize: String? = nil, partial: Bool? = nil, symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[Quote]> {
         let path = "/quote/bucketed"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -122,8 +122,8 @@ open class QuoteAPI {
             "symbol": symbol, 
             "filter": filter, 
             "columns": columns, 
-            "count": count, 
-            "start": start, 
+            "count": count?.encodeToJSON(), 
+            "start": start?.encodeToJSON(), 
             "reverse": reverse, 
             "startTime": startTime?.encodeToJSON(), 
             "endTime": endTime?.encodeToJSON()

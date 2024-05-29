@@ -37,20 +37,16 @@ SWGConnectedUsers::~SWGConnectedUsers() {
 
 void
 SWGConnectedUsers::init() {
-    users = 0.0;
+    users = 0;
     m_users_isSet = false;
-    bots = 0.0;
+    bots = 0;
     m_bots_isSet = false;
 }
 
 void
 SWGConnectedUsers::cleanup() {
-    if(users != nullptr) { 
-        delete users;
-    }
-    if(bots != nullptr) { 
-        delete bots;
-    }
+
+
 }
 
 SWGConnectedUsers*
@@ -64,9 +60,9 @@ SWGConnectedUsers::fromJson(QString json) {
 
 void
 SWGConnectedUsers::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&users, pJson["users"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&users, pJson["users"], "qint32", "");
     
-    ::Swagger::setValue(&bots, pJson["bots"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&bots, pJson["bots"], "qint32", "");
     
 }
 
@@ -82,32 +78,32 @@ SWGConnectedUsers::asJson ()
 QJsonObject
 SWGConnectedUsers::asJsonObject() {
     QJsonObject obj;
-    if((users != nullptr) && (users->isSet())){
-        toJsonValue(QString("users"), users, obj, QString("SWGNumber"));
+    if(m_users_isSet){
+        obj.insert("users", QJsonValue(users));
     }
-    if((bots != nullptr) && (bots->isSet())){
-        toJsonValue(QString("bots"), bots, obj, QString("SWGNumber"));
+    if(m_bots_isSet){
+        obj.insert("bots", QJsonValue(bots));
     }
 
     return obj;
 }
 
-SWGNumber*
+qint32
 SWGConnectedUsers::getUsers() {
     return users;
 }
 void
-SWGConnectedUsers::setUsers(SWGNumber* users) {
+SWGConnectedUsers::setUsers(qint32 users) {
     this->users = users;
     this->m_users_isSet = true;
 }
 
-SWGNumber*
+qint32
 SWGConnectedUsers::getBots() {
     return bots;
 }
 void
-SWGConnectedUsers::setBots(SWGNumber* bots) {
+SWGConnectedUsers::setBots(qint32 bots) {
     this->bots = bots;
     this->m_bots_isSet = true;
 }
@@ -117,8 +113,8 @@ bool
 SWGConnectedUsers::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(users != nullptr && users->isSet()){ isObjectUpdated = true; break;}
-        if(bots != nullptr && bots->isSet()){ isObjectUpdated = true; break;}
+        if(m_users_isSet){ isObjectUpdated = true; break;}
+        if(m_bots_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

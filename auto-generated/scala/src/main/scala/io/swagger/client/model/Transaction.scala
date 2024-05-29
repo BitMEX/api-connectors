@@ -16,18 +16,18 @@ import java.util.Date
 
 case class Transaction (
   transactID: String,
-  account: Option[Number] = None,
+  account: Option[Long] = None,
   currency: Option[String] = None,
   network: Option[String] = None,
   transactType: Option[String] = None,
-  amount: Option[Number] = None,
-  fee: Option[Number] = None,
+  amount: Option[Long] = None,
+  fee: Option[Long] = None,
   transactStatus: Option[String] = None,
   address: Option[String] = None,
   tx: Option[String] = None,
   text: Option[String] = None,
   transactTime: Option[Date] = None,
   timestamp: Option[Date] = None,
-  walletBalance: Option[Number] = None
+  walletBalance: Option[Long] = None
 )
 

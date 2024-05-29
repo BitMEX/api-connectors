@@ -37,7 +37,7 @@ end
 api_instance = SwaggerClient::UserEventApi.new
 
 opts = { 
-  count: 150, # Float | Number of results to fetch.
+  count: 100, # Float | Number of results to fetch.
   start_id: 1.2 # Float | Cursor for pagination.
 }
 
@@ -54,7 +54,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **Float**| Number of results to fetch. | [optional] [default to 150]
+ **count** | **Float**| Number of results to fetch. | [optional] [default to 100]
  **start_id** | **Float**| Cursor for pagination. | [optional] 
 
 ### Return type

@@ -36,6 +36,8 @@ public class AssetsConfig {
   private Boolean enabled = null;
   @SerializedName("isMarginCurrency")
   private Boolean isMarginCurrency = null;
+  @SerializedName("memoRequired")
+  private Boolean memoRequired = null;
   @SerializedName("networks")
   private List<AssetsConfigNetworkItem> networks = null;
 
@@ -122,6 +124,16 @@ public class AssetsConfig {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Boolean getMemoRequired() {
+    return memoRequired;
+  }
+  public void setMemoRequired(Boolean memoRequired) {
+    this.memoRequired = memoRequired;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public List<AssetsConfigNetworkItem> getNetworks() {
     return networks;
   }
@@ -147,6 +159,7 @@ public class AssetsConfig {
         (this.scale == null ? assetsConfig.scale == null : this.scale.equals(assetsConfig.scale)) &&
         (this.enabled == null ? assetsConfig.enabled == null : this.enabled.equals(assetsConfig.enabled)) &&
         (this.isMarginCurrency == null ? assetsConfig.isMarginCurrency == null : this.isMarginCurrency.equals(assetsConfig.isMarginCurrency)) &&
+        (this.memoRequired == null ? assetsConfig.memoRequired == null : this.memoRequired.equals(assetsConfig.memoRequired)) &&
         (this.networks == null ? assetsConfig.networks == null : this.networks.equals(assetsConfig.networks));
   }
 
@@ -161,6 +174,7 @@ public class AssetsConfig {
     result = 31 * result + (this.scale == null ? 0: this.scale.hashCode());
     result = 31 * result + (this.enabled == null ? 0: this.enabled.hashCode());
     result = 31 * result + (this.isMarginCurrency == null ? 0: this.isMarginCurrency.hashCode());
+    result = 31 * result + (this.memoRequired == null ? 0: this.memoRequired.hashCode());
     result = 31 * result + (this.networks == null ? 0: this.networks.hashCode());
     return result;
   }
@@ -178,6 +192,7 @@ public class AssetsConfig {
     sb.append("  scale: ").append(scale).append("\n");
     sb.append("  enabled: ").append(enabled).append("\n");
     sb.append("  isMarginCurrency: ").append(isMarginCurrency).append("\n");
+    sb.append("  memoRequired: ").append(memoRequired).append("\n");
     sb.append("  networks: ").append(networks).append("\n");
     sb.append("}\n");
     return sb.toString();

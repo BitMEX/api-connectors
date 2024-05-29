@@ -369,6 +369,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
   </ul>
   <h4><a href="#User">User</a></h4>
   <ul>
+  <li><a href="#user.cancelPendingWithdrawal"><code><span class="http-method">delete</span> /user/withdrawal</code></a></li>
   <li><a href="#user.cancelWithdrawal"><code><span class="http-method">post</span> /user/cancelWithdrawal</code></a></li>
   <li><a href="#user.checkReferralCode"><code><span class="http-method">get</span> /user/checkReferralCode</code></a></li>
   <li><a href="#user.communicationToken"><code><span class="http-method">post</span> /user/communicationToken</code></a></li>
@@ -382,6 +383,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
   <li><a href="#user.getCSA"><code><span class="http-method">get</span> /user/csa</code></a></li>
   <li><a href="#user.getCommission"><code><span class="http-method">get</span> /user/commission</code></a></li>
   <li><a href="#user.getDepositAddress"><code><span class="http-method">get</span> /user/depositAddress</code></a></li>
+  <li><a href="#user.getDepositAddressInformation"><code><span class="http-method">get</span> /user/depositAddressInformation</code></a></li>
   <li><a href="#user.getExecutionHistory"><code><span class="http-method">get</span> /user/executionHistory</code></a></li>
   <li><a href="#user.getMargin"><code><span class="http-method">get</span> /user/margin</code></a></li>
   <li><a href="#user.getQuoteFillRatio"><code><span class="http-method">get</span> /user/quoteFillRatio</code></a></li>
@@ -577,7 +579,9 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. default: false </div><div class="param">skip2FA (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. default: false </div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. default: false </div><div class="param">memo (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Destination Memo. </div>
     </div>  <!-- field-items -->
 
     <h3 class="field-label">Return type</h3>
@@ -1498,7 +1502,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; How much of the pot should be distributed to the guild members, must be between 0 and 100 format: double</div><div class="param">potDistributionType (required)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM </div><div class="param">potTraderId (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM </div><div class="param">potTraderId (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; User ID of the guild member with order write permission for the pot format: double</div><div class="param">description (optional)</div>
 
@@ -1506,7 +1510,9 @@ changes. It can be quite noisy. More focused information is available at <code>/
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Guild twitter handle. </div><div class="param">discord (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Guild discord link. </div><div class="param">imgUrl (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Guild discord link. </div><div class="param">telegram (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Guild telegram link. </div><div class="param">imgUrl (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used </div><div class="param">isPrivate (optional)</div>
 
@@ -1855,13 +1861,15 @@ changes. It can be quite noisy. More focused information is available at <code>/
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; How much of the pot should be distributed to the guild members, must be between 0 and 100 format: double</div><div class="param">potDistributionType (required)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM </div><div class="param">description (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM </div><div class="param">description (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Guild description, can be used to explain the guild to other users. </div><div class="param">twitter (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Guild twitter handle. </div><div class="param">discord (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Guild discord link. </div><div class="param">imgUrl (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Guild discord link. </div><div class="param">telegram (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Guild telegram link. </div><div class="param">imgUrl (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used </div><div class="param">isPrivate (optional)</div>
 
@@ -3666,7 +3674,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <div class="method-summary">Get your positions. (<span class="nickname">position.get</span>)</div>
     <div class="method-notes"><p>This endpoint is used for retrieving position information. The fields largely follow the <a href="http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html">FIX spec</a> definitions. Some selected fields are explained in more detail below.</p>
 <p>The fields <em>account</em>, <em>symbol</em>, <em>currency</em> are unique to each position and form its key.</p>
-<p>Spot trading symbols do not return any position data.</p>
+<p>Spot trading symbols returns a subset of the position fields, mainly the open order aggregates.</p>
 <ul>
 <li><strong>account</strong>: Your unique account ID.</li>
 <li><strong>symbol</strong>: The contract for this position.</li>
@@ -4803,6 +4811,79 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
   </div> <!-- method -->
   <hr/>
   <h1><a name="User">User</a></h1>
+  <div class="method"><a name="user.cancelPendingWithdrawal"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /user/withdrawal</code></pre></div>
+    <div class="method-summary">Cancel pending withdrawal (<span class="nickname">user.cancelPendingWithdrawal</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/x-www-form-urlencoded</code></li>
+    </ul>
+
+
+
+
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">transactID (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Object
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "blank": false,
+  "bytes": [
+    123,
+    125
+  ],
+  "empty": false
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>text/xml</code></li>
+      <li><code>application/javascript</code></li>
+      <li><code>text/javascript</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Request was successful
+        <a href="#Object">Object</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
   <div class="method"><a name="user.cancelWithdrawal"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
@@ -5681,6 +5762,74 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
         <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
+  <div class="method"><a name="user.getDepositAddressInformation"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /user/depositAddressInformation</code></pre></div>
+    <div class="method-summary">Get a deposit address. (<span class="nickname">user.getDepositAddressInformation</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/x-www-form-urlencoded</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">currency (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Any currency. For all currencies, see <a href="#!/Wallet/Wallet_getAssetsConfig">asset config endpoint</a> </div><div class="param">network (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The <code>network</code> parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the <code>network</code> parameter for each currency can be found from <code>networks.asset</code> from <code>GET /wallet/assets</code>. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#DepositAddress">DepositAddress</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"empty": false}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>text/xml</code></li>
+      <li><code>application/javascript</code></li>
+      <li><code>text/javascript</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Request was successful
+        <a href="#DepositAddress">DepositAddress</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
   <div class="method"><a name="user.getExecutionHistory"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
@@ -6362,11 +6511,13 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Any currency. For all currencies, see <a href="#!/Wallet/Wallet_getAssetsConfig">asset config endpoint</a>. For all currencies specify &quot;all&quot; default: XBt </div><div class="param">count (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Number of results to fetch. default: 100 format: double</div><div class="param">start (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. default: 10000 format: double</div><div class="param">start (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Starting point for results. default: 0 format: double</div><div class="param">targetAccountId (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Starting point for results, integer. Default 0. default: 0 format: double</div><div class="param">targetAccountId (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; AccountId to view the history of, must be a paired account with the authorised user requesting the history. format: double</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; AccountId to view the history of, must be a paired account with the authorised user requesting the history. format: double</div><div class="param">reverse (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Start from the latest transaction record. Default true. default: true </div>
     </div>  <!-- field-items -->
 
 
@@ -6416,7 +6567,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /user/walletSummary</code></pre></div>
     <div class="method-summary">Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). (<span class="nickname">user.getWalletSummary</span>)</div>
-    <div class="method-notes"></div>
+    <div class="method-notes">Provides an aggregated view of transactions, by transaction type, over a specific time period.</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -6432,13 +6583,17 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <div class="field-items">
       <div class="param">currency (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Any currency. For all currencies, see <a href="#!/Wallet/Wallet_getAssetsConfig">asset config endpoint</a>. For all currencies specify &quot;all&quot; default: XBt </div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Any currency. For all currencies, see <a href="#!/Wallet/Wallet_getAssetsConfig">asset config endpoint</a>. For all currencies specify &quot;all&quot; default: XBt </div><div class="param">startTime (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Start time for the summary format: date-time</div><div class="param">endTime (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; End time for the summary format: date-time</div>
     </div>  <!-- field-items -->
 
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      array[<a href="#Transaction">Transaction</a>]
+      array[<a href="#WalletSummaryRecord">WalletSummaryRecord</a>]
       
     </div>
 
@@ -6619,7 +6774,9 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Amount of withdrawal currency. format: int64</div><div class="param">address (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Destination Address. One of <code>address</code>, <code>addressId</code>, <code>targetUserId</code> has to be specified. </div><div class="param">addressId (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Destination Address. One of <code>address</code>, <code>addressId</code>, <code>targetUserId</code> has to be specified. </div><div class="param">memo (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Destination Memo. If <code>address</code>, is specified, Destination Memo can also be specified </div><div class="param">addressId (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; ID of the Destination Address. One of <code>address</code>, <code>addressId</code>, <code>targetUserId</code> has to be specified. format: double</div><div class="param">targetUserId (optional)</div>
 
@@ -6908,7 +7065,11 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <div class="field-items">
       <div class="param">depth (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates format: double</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates format: double</div><div class="param">targetAccountId (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; AccountId of Sub-Affiliate Account format: double</div><div class="param">selectUserId (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User id of result array to keep format: double</div>
     </div>  <!-- field-items -->
 
 
@@ -6975,7 +7136,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <div class="field-items">
       <div class="param">count (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Number of results to fetch. default: 150 format: double</div><div class="param">startId (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Number of results to fetch. default: 100 format: double</div><div class="param">startId (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Cursor for pagination. format: double</div>
     </div>  <!-- field-items -->
@@ -7161,6 +7322,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <li><a href="#CollateralSupportAgreement"><code>CollateralSupportAgreement</code> - </a></li>
     <li><a href="#CommunicationToken"><code>CommunicationToken</code> - </a></li>
     <li><a href="#ConnectedUsers"><code>ConnectedUsers</code> - </a></li>
+    <li><a href="#DepositAddress"><code>DepositAddress</code> - </a></li>
     <li><a href="#Error"><code>Error</code> - </a></li>
     <li><a href="#Error_error"><code>Error_error</code> - </a></li>
     <li><a href="#Execution"><code>Execution</code> - </a></li>
@@ -7198,6 +7360,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <li><a href="#UserEvent"><code>UserEvent</code> - </a></li>
     <li><a href="#UserPreferences"><code>UserPreferences</code> - </a></li>
     <li><a href="#Wallet"><code>Wallet</code> - </a></li>
+    <li><a href="#WalletSummaryRecord"><code>WalletSummaryRecord</code> - </a></li>
     <li><a href="#inline_response_200"><code>inline_response_200</code> - </a></li>
     <li><a href="#x-any"><code>x-any</code> - </a></li>
   </ol>
@@ -7209,13 +7372,13 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
       <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">secret </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">nonce </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">nonce </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">cidr (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">cidrs (optional)</div><div class="param-desc"><span class="param-type"><a href="#x-any">array[x-any]</a></span>  </div>
-<div class="param">targetAccountId (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+<div class="param">targetAccountId (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">permissions (optional)</div><div class="param-desc"><span class="param-type"><a href="#x-any">array[x-any]</a></span>  </div>
 <div class="param">enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-<div class="param">userId </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+<div class="param">userId </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">created (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
     </div>  <!-- field-items -->
   </div>
@@ -7235,7 +7398,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <h3><a name="Address"><code>Address</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
-      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">created (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">userId (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
@@ -7247,25 +7410,26 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">skip2FA (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">skip2FAVerified (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">network </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">memo (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="Affiliate"><code>Affiliate</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
-      <div class="param">account </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+      <div class="param">account </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">currency </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">prevPayout (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">prevTurnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">prevComm (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">prevPayout (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">prevTurnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">prevComm (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">prevTimestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-<div class="param">execTurnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">execComm (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">totalReferrals (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">totalTurnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">totalComm (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">execTurnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">execComm (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">totalReferrals (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">totalTurnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">totalComm (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">payoutPcnt (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">pendingPayout (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">pendingPayout (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">referrerAccount (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">referralDiscount (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
@@ -7276,7 +7440,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <h3><a name="Announcement"><code>Announcement</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Public Announcements</div>
     <div class="field-items">
-      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">content (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
@@ -7295,6 +7459,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">scale (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">isMarginCurrency (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">memoRequired (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">networks (optional)</div><div class="param-desc"><span class="param-type"><a href="#AssetsConfigNetworkItem">array[AssetsConfigNetworkItem]</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
@@ -7315,7 +7480,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <h3><a name="Chat"><code>Chat</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Trollbox Data</div>
     <div class="field-items">
-      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">date </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">user </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">userColor (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
@@ -7328,7 +7493,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <h3><a name="ChatChannel"><code>ChatChannel</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
-      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">isPrivate </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
     </div>  <!-- field-items -->
@@ -7338,13 +7503,13 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <div class='model-description'></div>
     <div class="field-items">
       <div class="param">csaID </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">account (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">account (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">minAmount (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">threshold (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">mmRatioMarginCall (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">mmRatioLiquidation (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">minAmount (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">threshold (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">mmRatioMarginCall (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">mmRatioLiquidation (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">startTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">maturityTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">maturityInstruction (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
@@ -7360,7 +7525,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <div class='model-description'>User communication SNS token</div>
     <div class="field-items">
       <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">userId </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+<div class="param">userId </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">deviceToken </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">channel </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
@@ -7369,8 +7534,16 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <h3><a name="ConnectedUsers"><code>ConnectedUsers</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
-      <div class="param">users (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
-<div class="param">bots (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+      <div class="param">users (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">bots (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="DepositAddress"><code>DepositAddress</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Deposit Address</div>
+    <div class="field-items">
+      <div class="param">address </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">memo (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -7392,19 +7565,19 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <h3><a name="Execution"><code>Execution</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Raw Order and Balance Data</div>
     <div class="field-items">
-      <div class="param">execID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">orderID </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+      <div class="param">execID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: guid</div>
+<div class="param">orderID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: guid</div>
 <div class="param">clOrdID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">clOrdLinkID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">account (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">account (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">symbol </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">side (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">lastQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">lastQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">lastPx (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">lastLiquidityInd (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">orderQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">orderQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">displayQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">displayQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">stopPx (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">pegOffsetValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">pegPriceType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
@@ -7419,24 +7592,20 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">triggered (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">workingIndicator (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">ordRejReason (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">leavesQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">cumQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">leavesQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">cumQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">avgPx (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">commission (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">feeType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">tradePublishIndicator (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">text (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">trdMatchID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">execCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">execComm (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">trdMatchID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: guid</div>
+<div class="param">execCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">execComm (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">homeNotional (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">foreignNotional (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">transactTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">timestamp </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-<div class="param">execGrossPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">currentQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">avgEntryPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">realisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">unrealisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -7454,11 +7623,11 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <h3><a name="GlobalNotification"><code>GlobalNotification</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Account Notifications</div>
     <div class="field-items">
-      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">date </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">title </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">ttl </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+<div class="param">ttl </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
         <div class="param-enum-header">Enum:</div>
         <div class="param-enum">success</div><div class="param-enum">error</div><div class="param-enum">info</div>
@@ -7472,7 +7641,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <h3><a name="Guild"><code>Guild</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
-      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">updated </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">archived (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
@@ -7529,21 +7698,21 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">calcInterval (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">publishInterval (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">publishTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-<div class="param">maxOrderQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">maxOrderQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">maxPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">lotSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">lotSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">tickSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">multiplier (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">multiplier (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">settlCurrency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">underlyingToPositionMultiplier (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">underlyingToSettleMultiplier (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">quoteToSettleMultiplier (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">underlyingToPositionMultiplier (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">underlyingToSettleMultiplier (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">quoteToSettleMultiplier (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">isQuanto (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">isInverse (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">initMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">maintMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">riskLimit (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">riskStep (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">riskLimit (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">riskStep (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">limit (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">taxed (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">deleverage (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
@@ -7562,13 +7731,13 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">prevClosePrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">limitDownPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">limitUpPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">totalVolume (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">volume24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">prevTotalTurnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">totalTurnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">turnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">turnover24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">totalVolume (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">volume24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">prevTotalTurnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">totalTurnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">turnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">turnover24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">homeNotional24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">foreignNotional24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">prevPrice24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
@@ -7586,8 +7755,8 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">impactMidPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">impactAskPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">hasLiquidity (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-<div class="param">openInterest (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">openValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">openInterest (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">openValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">fairMethod (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">fairBasisRate (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">fairBasis (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
@@ -7598,6 +7767,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">settledPriceAdjustmentRate (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">settledPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">instantPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">minTick (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
     </div>  <!-- field-items -->
   </div>
@@ -7615,7 +7785,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <div class="field-items">
       <div class="param">currency </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">timestamp </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-<div class="param">walletBalance (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">walletBalance (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -7635,37 +7805,37 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">side (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">leavesQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">leavesQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="Margin"><code>Margin</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
-      <div class="param">account </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+      <div class="param">account </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">currency </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">riskLimit (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">riskLimit (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">state (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">prevRealisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">grossComm (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">grossOpenCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">grossOpenPremium (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">grossExecCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">grossMarkValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">riskValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">initMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">maintMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">targetExcessMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">realisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">unrealisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">walletBalance (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">marginBalance (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">prevRealisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">grossComm (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">grossOpenCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">grossOpenPremium (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">grossExecCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">grossMarkValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">riskValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">initMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">maintMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">targetExcessMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">realisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">unrealisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">walletBalance (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">marginBalance (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">marginLeverage (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">marginUsedPcnt (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">excessMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">availableMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">withdrawableMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">excessMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">availableMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">withdrawableMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">makerFeeDiscount (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">takerFeeDiscount (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
@@ -7681,7 +7851,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">networkSymbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">transactionExplorer (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">tokenExplorer (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">depositConfirmations (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+<div class="param">depositConfirmations (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
@@ -7689,15 +7859,15 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <h3><a name="Order"><code>Order</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Placement, Cancellation, Amending, and History</div>
     <div class="field-items">
-      <div class="param">orderID </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+      <div class="param">orderID </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: guid</div>
 <div class="param">clOrdID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">clOrdLinkID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">account (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">account (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">side (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">orderQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">orderQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">displayQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">displayQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">stopPx (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">pegOffsetValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">pegPriceType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
@@ -7711,8 +7881,8 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">triggered (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">workingIndicator (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">ordRejReason (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">leavesQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">cumQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">leavesQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">cumQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">avgPx (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">text (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">transactTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
@@ -7724,9 +7894,9 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <div class='model-description'></div>
     <div class="field-items">
       <div class="param">symbol </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">side </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">size (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">size (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
     </div>  <!-- field-items -->
@@ -7735,9 +7905,9 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <h3><a name="PinnedMessage"><code>PinnedMessage</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Pinned Messages</div>
     <div class="field-items">
-      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
-<div class="param">channelID </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
-<div class="param">messageId </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">channelID </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">messageId </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">created (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">ended (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">createdUserId (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
@@ -7748,7 +7918,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <h3><a name="Porl"><code>Porl</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Proof of Reserves/Liabilities</div>
     <div class="field-items">
-      <div class="param">account </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+      <div class="param">account </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">nonce (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">accountNonce </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">total </div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
@@ -7762,7 +7932,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <h3><a name="Position"><code>Position</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Summary of Open and Closed Positions</div>
     <div class="field-items">
-      <div class="param">account </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+      <div class="param">account </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">symbol </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">underlying (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
@@ -7770,43 +7940,43 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">commission (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">initMarginReq (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">maintMarginReq (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">riskLimit (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">riskLimit (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">leverage (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">crossMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">deleveragePercentile (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">rebalancedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">prevRealisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">prevUnrealisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">openingQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">openOrderBuyQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">openOrderBuyCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">openOrderBuyPremium (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">openOrderSellQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">openOrderSellCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">openOrderSellPremium (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">currentQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">currentCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">currentComm (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">realisedCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">unrealisedCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">grossOpenPremium (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">rebalancedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">prevRealisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">prevUnrealisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">openingQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">openOrderBuyQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">openOrderBuyCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">openOrderBuyPremium (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">openOrderSellQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">openOrderSellCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">openOrderSellPremium (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">currentQty (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">currentCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">currentComm (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">realisedCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">unrealisedCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">grossOpenPremium (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">isOpen (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">markPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">markValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">riskValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">markValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">riskValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">homeNotional (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">foreignNotional (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">posState (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">posCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">posCross (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">posComm (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">posLoss (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">posMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">posMaint (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">initMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">maintMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">realisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">unrealisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">posCost (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">posCross (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">posComm (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">posLoss (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">posMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">posMaint (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">initMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">maintMargin (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">realisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">unrealisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">unrealisedPnlPcnt (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">unrealisedRoePcnt (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">avgCostPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
@@ -7824,10 +7994,10 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <div class="field-items">
       <div class="param">timestamp </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">symbol </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">bidSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">bidSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">bidPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">askPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">askSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">askSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -7866,8 +8036,8 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">settledPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">optionStrikePrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">optionUnderlyingPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">bankrupt (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">taxBase (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">bankrupt (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">taxBase (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">taxRate (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
     </div>  <!-- field-items -->
   </div>
@@ -7886,10 +8056,10 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <div class="field-items">
       <div class="param">rootSymbol </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">volume24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">turnover24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">openInterest (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">openValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">volume24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">turnover24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">openInterest (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">openValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -7899,8 +8069,8 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
       <div class="param">date </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">rootSymbol </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">turnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">turnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -7909,10 +8079,10 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <div class="field-items">
       <div class="param">rootSymbol </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">turnover24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">turnover30d (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">turnover365d (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">turnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">turnover24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">turnover30d (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">turnover365d (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">turnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -7921,10 +8091,10 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <div class="field-items">
       <div class="param">symbol </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">turnover24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">turnover30d (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">turnover365d (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">turnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">turnover24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">turnover30d (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">turnover365d (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">turnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -7934,11 +8104,11 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
       <div class="param">timestamp </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">symbol </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">side (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">size (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">size (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">tickDirection (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">trdMatchID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: guid</div>
-<div class="param">grossValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">grossValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">homeNotional (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">foreignNotional (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">trdType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
@@ -7954,11 +8124,11 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">high (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">low (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">close (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">trades (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">trades (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">vwap (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">lastSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">turnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">lastSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">turnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">homeNotional (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">foreignNotional (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
     </div>  <!-- field-items -->
@@ -7977,26 +8147,26 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <div class='model-description'></div>
     <div class="field-items">
       <div class="param">transactID </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: guid</div>
-<div class="param">account (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">account (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">network (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">transactType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">fee (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">fee (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">transactStatus (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">address (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">tx (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">text (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">transactTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-<div class="param">walletBalance (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">walletBalance (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="User"><code>User</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Account Operations</div>
     <div class="field-items">
-      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">firstname (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">lastname (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
@@ -8014,6 +8184,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">geoipCountry (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">geoipRegion (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">firstTradeTimestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">firstDepositTimestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">typ (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
@@ -8030,7 +8201,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
       <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
         <div class="param-enum-header">Enum:</div>
-        <div class="param-enum">apiKeyCreated</div><div class="param-enum">deleverageExecution</div><div class="param-enum">depositConfirmed</div><div class="param-enum">depositPending</div><div class="param-enum">banZeroVolumeApiUser</div><div class="param-enum">liquidationOrderPlaced</div><div class="param-enum">login</div><div class="param-enum">existingAccountRegistrationAttempt</div><div class="param-enum">passwordChanged</div><div class="param-enum">positionStateLiquidated</div><div class="param-enum">positionStateWarning</div><div class="param-enum">resetPasswordConfirmed</div><div class="param-enum">resetPasswordRequest</div><div class="param-enum">transferCanceled</div><div class="param-enum">transferCompleted</div><div class="param-enum">transferReceived</div><div class="param-enum">transferRequested</div><div class="param-enum">twoFactorDisabled</div><div class="param-enum">twoFactorEnabled</div><div class="param-enum">withdrawalCanceled</div><div class="param-enum">withdrawalCompleted</div><div class="param-enum">withdrawalConfirmed</div><div class="param-enum">withdrawalRequested</div><div class="param-enum">addressSkipConfirmRequested</div><div class="param-enum">addressSkipConfirmVerified</div><div class="param-enum">verify</div>
+        <div class="param-enum">apiKeyCreated</div><div class="param-enum">deleverageExecution</div><div class="param-enum">depositConfirmed</div><div class="param-enum">depositPending</div><div class="param-enum">banZeroVolumeApiUser</div><div class="param-enum">liquidationOrderPlaced</div><div class="param-enum">login</div><div class="param-enum">existingAccountRegistrationAttempt</div><div class="param-enum">passwordChanged</div><div class="param-enum">positionStateLiquidated</div><div class="param-enum">positionStateWarning</div><div class="param-enum">resetPasswordConfirmed</div><div class="param-enum">resetPasswordRequest</div><div class="param-enum">transferCanceled</div><div class="param-enum">transferCompleted</div><div class="param-enum">transferReceived</div><div class="param-enum">transferRequested</div><div class="param-enum">twoFactorDisabled</div><div class="param-enum">twoFactorEnabled</div><div class="param-enum">withdrawalCanceled</div><div class="param-enum">withdrawalCompleted</div><div class="param-enum">withdrawalConfirmed</div><div class="param-enum">withdrawalRequested</div><div class="param-enum">addressSkipConfirmRequested</div><div class="param-enum">addressSkipConfirmVerified</div><div class="param-enum">verify</div><div class="param-enum">restrictedAccount</div><div class="param-enum">unrestrictedAccount</div><div class="param-enum">disabledAccount</div><div class="param-enum">enabledAccount</div><div class="param-enum">role:roleMappingDestroy</div><div class="param-enum">role:chatBanned</div><div class="param-enum">role:withdrawalBanned</div><div class="param-enum">role:orderBanned</div><div class="param-enum">role:apiBanned</div><div class="param-enum">role:restrictedJurisdictionPrivilege</div>
 <div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
         <div class="param-enum-header">Enum:</div>
         <div class="param-enum">success</div><div class="param-enum">failure</div>
@@ -8063,10 +8234,14 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">favourites (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
 <div class="param">favouritesAssets (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
 <div class="param">favouritesOrdered (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">favouriteBots (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">hasSetTradingCurrencies (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">hideConfirmDialogs (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
 <div class="param">hideConnectionModal (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">hideFromLeaderboard (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">hideNameFromLeaderboard (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">hidePnlInGuilds (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">hideRoiInGuilds (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">hideNotifications (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
 <div class="param">hidePhoneConfirm (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">isSensitiveInfoVisible (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
@@ -8075,8 +8250,10 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">localeSetTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">marginPnlRow (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">marginPnlRowKind (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">mobileLocale (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">msgsSeen (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
 <div class="param">notifications (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span>  </div>
+<div class="param">optionsBeta (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">orderBookBinning (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span>  </div>
 <div class="param">orderBookType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">orderClearImmediate (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
@@ -8086,6 +8263,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 <div class="param">showChartBottomToolbar (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">showLocaleNumbers (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">sounds (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">spacingPreference (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">strictIPCheck (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">strictTimeout (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">tickerGroup (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
@@ -8098,17 +8276,33 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <h3><a name="Wallet"><code>Wallet</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Assets and Networks Data</div>
     <div class="field-items">
-      <div class="param">account </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+      <div class="param">account </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">currency </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">deposited (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">withdrawn (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">transferIn (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">transferOut (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">pendingCredit (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">pendingDebit (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">confirmedDebit (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">deposited (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">withdrawn (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">transferIn (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">transferOut (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">pendingCredit (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">pendingDebit (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">confirmedDebit (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="WalletSummaryRecord"><code>WalletSummaryRecord</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">account </div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">transactType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">pendingDebit (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">realisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">walletBalance (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">unrealisedPnl (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">marginBalance (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">

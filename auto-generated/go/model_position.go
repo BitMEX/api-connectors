@@ -16,7 +16,7 @@ import (
 
 // Summary of Open and Closed Positions
 type Position struct {
-	Account float32 `json:"account"`
+	Account int64 `json:"account"`
 	Symbol string `json:"symbol"`
 	Currency string `json:"currency,omitempty"`
 	Underlying string `json:"underlying,omitempty"`
@@ -24,43 +24,43 @@ type Position struct {
 	Commission float64 `json:"commission,omitempty"`
 	InitMarginReq float64 `json:"initMarginReq,omitempty"`
 	MaintMarginReq float64 `json:"maintMarginReq,omitempty"`
-	RiskLimit float32 `json:"riskLimit,omitempty"`
+	RiskLimit int64 `json:"riskLimit,omitempty"`
 	Leverage float64 `json:"leverage,omitempty"`
 	CrossMargin bool `json:"crossMargin,omitempty"`
 	DeleveragePercentile float64 `json:"deleveragePercentile,omitempty"`
-	RebalancedPnl float32 `json:"rebalancedPnl,omitempty"`
-	PrevRealisedPnl float32 `json:"prevRealisedPnl,omitempty"`
-	PrevUnrealisedPnl float32 `json:"prevUnrealisedPnl,omitempty"`
-	OpeningQty float32 `json:"openingQty,omitempty"`
-	OpenOrderBuyQty float32 `json:"openOrderBuyQty,omitempty"`
-	OpenOrderBuyCost float32 `json:"openOrderBuyCost,omitempty"`
-	OpenOrderBuyPremium float32 `json:"openOrderBuyPremium,omitempty"`
-	OpenOrderSellQty float32 `json:"openOrderSellQty,omitempty"`
-	OpenOrderSellCost float32 `json:"openOrderSellCost,omitempty"`
-	OpenOrderSellPremium float32 `json:"openOrderSellPremium,omitempty"`
-	CurrentQty float32 `json:"currentQty,omitempty"`
-	CurrentCost float32 `json:"currentCost,omitempty"`
-	CurrentComm float32 `json:"currentComm,omitempty"`
-	RealisedCost float32 `json:"realisedCost,omitempty"`
-	UnrealisedCost float32 `json:"unrealisedCost,omitempty"`
-	GrossOpenPremium float32 `json:"grossOpenPremium,omitempty"`
+	RebalancedPnl int64 `json:"rebalancedPnl,omitempty"`
+	PrevRealisedPnl int64 `json:"prevRealisedPnl,omitempty"`
+	PrevUnrealisedPnl int64 `json:"prevUnrealisedPnl,omitempty"`
+	OpeningQty int64 `json:"openingQty,omitempty"`
+	OpenOrderBuyQty int64 `json:"openOrderBuyQty,omitempty"`
+	OpenOrderBuyCost int64 `json:"openOrderBuyCost,omitempty"`
+	OpenOrderBuyPremium int64 `json:"openOrderBuyPremium,omitempty"`
+	OpenOrderSellQty int64 `json:"openOrderSellQty,omitempty"`
+	OpenOrderSellCost int64 `json:"openOrderSellCost,omitempty"`
+	OpenOrderSellPremium int64 `json:"openOrderSellPremium,omitempty"`
+	CurrentQty int64 `json:"currentQty,omitempty"`
+	CurrentCost int64 `json:"currentCost,omitempty"`
+	CurrentComm int64 `json:"currentComm,omitempty"`
+	RealisedCost int64 `json:"realisedCost,omitempty"`
+	UnrealisedCost int64 `json:"unrealisedCost,omitempty"`
+	GrossOpenPremium int64 `json:"grossOpenPremium,omitempty"`
 	IsOpen bool `json:"isOpen,omitempty"`
 	MarkPrice float64 `json:"markPrice,omitempty"`
-	MarkValue float32 `json:"markValue,omitempty"`
-	RiskValue float32 `json:"riskValue,omitempty"`
+	MarkValue int64 `json:"markValue,omitempty"`
+	RiskValue int64 `json:"riskValue,omitempty"`
 	HomeNotional float64 `json:"homeNotional,omitempty"`
 	ForeignNotional float64 `json:"foreignNotional,omitempty"`
 	PosState string `json:"posState,omitempty"`
-	PosCost float32 `json:"posCost,omitempty"`
-	PosCross float32 `json:"posCross,omitempty"`
-	PosComm float32 `json:"posComm,omitempty"`
-	PosLoss float32 `json:"posLoss,omitempty"`
-	PosMargin float32 `json:"posMargin,omitempty"`
-	PosMaint float32 `json:"posMaint,omitempty"`
-	InitMargin float32 `json:"initMargin,omitempty"`
-	MaintMargin float32 `json:"maintMargin,omitempty"`
-	RealisedPnl float32 `json:"realisedPnl,omitempty"`
-	UnrealisedPnl float32 `json:"unrealisedPnl,omitempty"`
+	PosCost int64 `json:"posCost,omitempty"`
+	PosCross int64 `json:"posCross,omitempty"`
+	PosComm int64 `json:"posComm,omitempty"`
+	PosLoss int64 `json:"posLoss,omitempty"`
+	PosMargin int64 `json:"posMargin,omitempty"`
+	PosMaint int64 `json:"posMaint,omitempty"`
+	InitMargin int64 `json:"initMargin,omitempty"`
+	MaintMargin int64 `json:"maintMargin,omitempty"`
+	RealisedPnl int64 `json:"realisedPnl,omitempty"`
+	UnrealisedPnl int64 `json:"unrealisedPnl,omitempty"`
 	UnrealisedPnlPcnt float64 `json:"unrealisedPnlPcnt,omitempty"`
 	UnrealisedRoePcnt float64 `json:"unrealisedRoePcnt,omitempty"`
 	AvgCostPrice float64 `json:"avgCostPrice,omitempty"`

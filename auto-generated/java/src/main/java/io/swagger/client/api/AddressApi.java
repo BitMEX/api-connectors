@@ -177,12 +177,13 @@ public class AddressApi {
      * @param note Optional annotation. (optional)
      * @param skipConfirm Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
      * @param skip2FA Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
+     * @param memo Destination Memo. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call addressNewCall(String currency, String network, String address, String name, String note, Boolean skipConfirm, Boolean skip2FA, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call addressNewCall(String currency, String network, String address, String name, String note, Boolean skipConfirm, Boolean skip2FA, String memo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -208,6 +209,8 @@ public class AddressApi {
         localVarFormParams.put("skipConfirm", skipConfirm);
         if (skip2FA != null)
         localVarFormParams.put("skip2FA", skip2FA);
+        if (memo != null)
+        localVarFormParams.put("memo", memo);
 
         final String[] localVarAccepts = {
             "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
@@ -238,7 +241,7 @@ public class AddressApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call addressNewValidateBeforeCall(String currency, String network, String address, String name, String note, Boolean skipConfirm, Boolean skip2FA, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call addressNewValidateBeforeCall(String currency, String network, String address, String name, String note, Boolean skipConfirm, Boolean skip2FA, String memo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'currency' is set
         if (currency == null) {
@@ -261,7 +264,7 @@ public class AddressApi {
         }
         
 
-        com.squareup.okhttp.Call call = addressNewCall(currency, network, address, name, note, skipConfirm, skip2FA, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = addressNewCall(currency, network, address, name, note, skipConfirm, skip2FA, memo, progressListener, progressRequestListener);
         return call;
 
     }
@@ -276,11 +279,12 @@ public class AddressApi {
      * @param note Optional annotation. (optional)
      * @param skipConfirm Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
      * @param skip2FA Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
+     * @param memo Destination Memo. (optional)
      * @return Address
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Address addressNew(String currency, String network, String address, String name, String note, Boolean skipConfirm, Boolean skip2FA) throws ApiException {
-        ApiResponse<Address> resp = addressNewWithHttpInfo(currency, network, address, name, note, skipConfirm, skip2FA);
+    public Address addressNew(String currency, String network, String address, String name, String note, Boolean skipConfirm, Boolean skip2FA, String memo) throws ApiException {
+        ApiResponse<Address> resp = addressNewWithHttpInfo(currency, network, address, name, note, skipConfirm, skip2FA, memo);
         return resp.getData();
     }
 
@@ -294,11 +298,12 @@ public class AddressApi {
      * @param note Optional annotation. (optional)
      * @param skipConfirm Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
      * @param skip2FA Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
+     * @param memo Destination Memo. (optional)
      * @return ApiResponse&lt;Address&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Address> addressNewWithHttpInfo(String currency, String network, String address, String name, String note, Boolean skipConfirm, Boolean skip2FA) throws ApiException {
-        com.squareup.okhttp.Call call = addressNewValidateBeforeCall(currency, network, address, name, note, skipConfirm, skip2FA, null, null);
+    public ApiResponse<Address> addressNewWithHttpInfo(String currency, String network, String address, String name, String note, Boolean skipConfirm, Boolean skip2FA, String memo) throws ApiException {
+        com.squareup.okhttp.Call call = addressNewValidateBeforeCall(currency, network, address, name, note, skipConfirm, skip2FA, memo, null, null);
         Type localVarReturnType = new TypeToken<Address>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -313,11 +318,12 @@ public class AddressApi {
      * @param note Optional annotation. (optional)
      * @param skipConfirm Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
      * @param skip2FA Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)
+     * @param memo Destination Memo. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call addressNewAsync(String currency, String network, String address, String name, String note, Boolean skipConfirm, Boolean skip2FA, final ApiCallback<Address> callback) throws ApiException {
+    public com.squareup.okhttp.Call addressNewAsync(String currency, String network, String address, String name, String note, Boolean skipConfirm, Boolean skip2FA, String memo, final ApiCallback<Address> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -338,7 +344,7 @@ public class AddressApi {
             };
         }
 
-        com.squareup.okhttp.Call call = addressNewValidateBeforeCall(currency, network, address, name, note, skipConfirm, skip2FA, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = addressNewValidateBeforeCall(currency, network, address, name, note, skipConfirm, skip2FA, memo, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Address>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

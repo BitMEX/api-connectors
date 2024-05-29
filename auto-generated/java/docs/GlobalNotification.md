@@ -4,11 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**id** | **Integer** |  |  [optional]
 **date** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
 **title** | **String** |  | 
 **body** | **String** |  | 
-**ttl** | [**BigDecimal**](BigDecimal.md) |  | 
+**ttl** | **Integer** |  | 
 **type** | [**TypeEnum**](#TypeEnum) |  |  [optional]
 **closable** | **Boolean** |  |  [optional]
 **persist** | **Boolean** |  |  [optional]

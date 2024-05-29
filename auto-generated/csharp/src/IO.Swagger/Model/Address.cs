@@ -50,7 +50,8 @@ namespace IO.Swagger.Model
         /// <param name="skip2FA">skip2FA.</param>
         /// <param name="skip2FAVerified">skip2FAVerified.</param>
         /// <param name="network">network (required).</param>
-        public Address(decimal? id = default(decimal?), string currency = default(string), DateTime? created = default(DateTime?), double? userId = default(double?), string address = default(string), string name = default(string), string note = default(string), bool? skipConfirm = default(bool?), bool? skipConfirmVerified = default(bool?), bool? skip2FA = default(bool?), bool? skip2FAVerified = default(bool?), string network = default(string))
+        /// <param name="memo">memo.</param>
+        public Address(int? id = default(int?), string currency = default(string), DateTime? created = default(DateTime?), double? userId = default(double?), string address = default(string), string name = default(string), string note = default(string), bool? skipConfirm = default(bool?), bool? skipConfirmVerified = default(bool?), bool? skip2FA = default(bool?), bool? skip2FAVerified = default(bool?), string network = default(string), string memo = default(string))
         {
             // to ensure "address" is required (not null)
             if (address == null)
@@ -88,13 +89,14 @@ namespace IO.Swagger.Model
             this.SkipConfirmVerified = skipConfirmVerified;
             this.Skip2FA = skip2FA;
             this.Skip2FAVerified = skip2FAVerified;
+            this.Memo = memo;
         }
         
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public decimal? Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Currency
@@ -163,6 +165,12 @@ namespace IO.Swagger.Model
         public string Network { get; set; }
 
         /// <summary>
+        /// Gets or Sets Memo
+        /// </summary>
+        [DataMember(Name="memo", EmitDefaultValue=false)]
+        public string Memo { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -182,6 +190,7 @@ namespace IO.Swagger.Model
             sb.Append("  Skip2FA: ").Append(Skip2FA).Append("\n");
             sb.Append("  Skip2FAVerified: ").Append(Skip2FAVerified).Append("\n");
             sb.Append("  Network: ").Append(Network).Append("\n");
+            sb.Append("  Memo: ").Append(Memo).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -275,6 +284,11 @@ namespace IO.Swagger.Model
                     this.Network == input.Network ||
                     (this.Network != null &&
                     this.Network.Equals(input.Network))
+                ) && 
+                (
+                    this.Memo == input.Memo ||
+                    (this.Memo != null &&
+                    this.Memo.Equals(input.Memo))
                 );
         }
 
@@ -311,6 +325,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Skip2FAVerified.GetHashCode();
                 if (this.Network != null)
                     hashCode = hashCode * 59 + this.Network.GetHashCode();
+                if (this.Memo != null)
+                    hashCode = hashCode * 59 + this.Memo.GetHashCode();
                 return hashCode;
             }
         }

@@ -47,7 +47,7 @@ object OrderApi {
    * @param pegOffsetValue Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders.
    * @param text Optional amend annotation. e.g. &#39;Adjust skew&#39;.
    */
-  def order.amend(orderID: Option[String] = None, origClOrdID: Option[String] = None, clOrdID: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Double] = None, simpleLeavesQty: Option[Double] = None, leavesQty: Option[Double] = None, price: Option[Double] = None, stopPx: Option[Double] = None, pegOffsetValue: Option[Double] = None, text: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Order] =
+  def order.amend(orderID: Option[String] = None, origClOrdID: Option[String] = None, clOrdID: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Int] = None, simpleLeavesQty: Option[Double] = None, leavesQty: Option[Int] = None, price: Option[Double] = None, stopPx: Option[Double] = None, pegOffsetValue: Option[Double] = None, text: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Order] =
     ApiRequest[Order](ApiMethods.PUT, "https://www.bitmex.com/api/v1", "/order", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
@@ -216,7 +216,7 @@ object OrderApi {
    * @param startTime Starting date filter for results.
    * @param endTime Ending date filter for results.
    */
-  def order.getOrders(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Double], start: Option[Double], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Order]] =
+  def order.getOrders(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Int], start: Option[Int], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Order]] =
     ApiRequest[Seq[Order]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/order", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
@@ -266,7 +266,7 @@ object OrderApi {
    * @param contingencyType Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther.
    * @param text Optional order annotation. e.g. &#39;Take profit&#39;.
    */
-  def order.new(symbol: String, side: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Double] = None, price: Option[Double] = None, displayQty: Option[Double] = None, stopPx: Option[Double] = None, clOrdID: Option[String] = None, clOrdLinkID: Option[String] = None, pegOffsetValue: Option[Double] = None, pegPriceType: Option[String] = None, ordType: Option[String], timeInForce: Option[String] = None, execInst: Option[String] = None, contingencyType: Option[String] = None, text: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Order] =
+  def order.new(symbol: String, side: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Int] = None, price: Option[Double] = None, displayQty: Option[Int] = None, stopPx: Option[Double] = None, clOrdID: Option[String] = None, clOrdLinkID: Option[String] = None, pegOffsetValue: Option[Double] = None, pegPriceType: Option[String] = None, ordType: Option[String], timeInForce: Option[String] = None, execInst: Option[String] = None, contingencyType: Option[String] = None, text: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Order] =
     ApiRequest[Order](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/order", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)

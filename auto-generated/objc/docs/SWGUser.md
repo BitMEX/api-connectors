@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **geoipCountry** | **NSString*** |  | [optional] 
 **geoipRegion** | **NSString*** |  | [optional] 
 **firstTradeTimestamp** | **NSDate*** |  | [optional] 
+**firstDepositTimestamp** | **NSDate*** |  | [optional] 
 **typ** | **NSString*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

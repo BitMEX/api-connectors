@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -97,32 +96,32 @@ public:
     QDateTime* getPublishTime();
     void setPublishTime(QDateTime* publish_time);
 
-    SWGNumber* getMaxOrderQty();
-    void setMaxOrderQty(SWGNumber* max_order_qty);
+    qint64 getMaxOrderQty();
+    void setMaxOrderQty(qint64 max_order_qty);
 
     double getMaxPrice();
     void setMaxPrice(double max_price);
 
-    SWGNumber* getLotSize();
-    void setLotSize(SWGNumber* lot_size);
+    qint64 getLotSize();
+    void setLotSize(qint64 lot_size);
 
     double getTickSize();
     void setTickSize(double tick_size);
 
-    SWGNumber* getMultiplier();
-    void setMultiplier(SWGNumber* multiplier);
+    qint64 getMultiplier();
+    void setMultiplier(qint64 multiplier);
 
     QString* getSettlCurrency();
     void setSettlCurrency(QString* settl_currency);
 
-    SWGNumber* getUnderlyingToPositionMultiplier();
-    void setUnderlyingToPositionMultiplier(SWGNumber* underlying_to_position_multiplier);
+    qint64 getUnderlyingToPositionMultiplier();
+    void setUnderlyingToPositionMultiplier(qint64 underlying_to_position_multiplier);
 
-    SWGNumber* getUnderlyingToSettleMultiplier();
-    void setUnderlyingToSettleMultiplier(SWGNumber* underlying_to_settle_multiplier);
+    qint64 getUnderlyingToSettleMultiplier();
+    void setUnderlyingToSettleMultiplier(qint64 underlying_to_settle_multiplier);
 
-    SWGNumber* getQuoteToSettleMultiplier();
-    void setQuoteToSettleMultiplier(SWGNumber* quote_to_settle_multiplier);
+    qint64 getQuoteToSettleMultiplier();
+    void setQuoteToSettleMultiplier(qint64 quote_to_settle_multiplier);
 
     bool isIsQuanto();
     void setIsQuanto(bool is_quanto);
@@ -136,11 +135,11 @@ public:
     double getMaintMargin();
     void setMaintMargin(double maint_margin);
 
-    SWGNumber* getRiskLimit();
-    void setRiskLimit(SWGNumber* risk_limit);
+    qint64 getRiskLimit();
+    void setRiskLimit(qint64 risk_limit);
 
-    SWGNumber* getRiskStep();
-    void setRiskStep(SWGNumber* risk_step);
+    qint64 getRiskStep();
+    void setRiskStep(qint64 risk_step);
 
     double getLimit();
     void setLimit(double limit);
@@ -196,26 +195,26 @@ public:
     double getLimitUpPrice();
     void setLimitUpPrice(double limit_up_price);
 
-    SWGNumber* getTotalVolume();
-    void setTotalVolume(SWGNumber* total_volume);
+    qint64 getTotalVolume();
+    void setTotalVolume(qint64 total_volume);
 
-    SWGNumber* getVolume();
-    void setVolume(SWGNumber* volume);
+    qint64 getVolume();
+    void setVolume(qint64 volume);
 
-    SWGNumber* getVolume24h();
-    void setVolume24h(SWGNumber* volume24h);
+    qint64 getVolume24h();
+    void setVolume24h(qint64 volume24h);
 
-    SWGNumber* getPrevTotalTurnover();
-    void setPrevTotalTurnover(SWGNumber* prev_total_turnover);
+    qint64 getPrevTotalTurnover();
+    void setPrevTotalTurnover(qint64 prev_total_turnover);
 
-    SWGNumber* getTotalTurnover();
-    void setTotalTurnover(SWGNumber* total_turnover);
+    qint64 getTotalTurnover();
+    void setTotalTurnover(qint64 total_turnover);
 
-    SWGNumber* getTurnover();
-    void setTurnover(SWGNumber* turnover);
+    qint64 getTurnover();
+    void setTurnover(qint64 turnover);
 
-    SWGNumber* getTurnover24h();
-    void setTurnover24h(SWGNumber* turnover24h);
+    qint64 getTurnover24h();
+    void setTurnover24h(qint64 turnover24h);
 
     double getHomeNotional24h();
     void setHomeNotional24h(double home_notional24h);
@@ -268,11 +267,11 @@ public:
     bool isHasLiquidity();
     void setHasLiquidity(bool has_liquidity);
 
-    SWGNumber* getOpenInterest();
-    void setOpenInterest(SWGNumber* open_interest);
+    qint64 getOpenInterest();
+    void setOpenInterest(qint64 open_interest);
 
-    SWGNumber* getOpenValue();
-    void setOpenValue(SWGNumber* open_value);
+    qint64 getOpenValue();
+    void setOpenValue(qint64 open_value);
 
     QString* getFairMethod();
     void setFairMethod(QString* fair_method);
@@ -303,6 +302,9 @@ public:
 
     bool isInstantPnl();
     void setInstantPnl(bool instant_pnl);
+
+    double getMinTick();
+    void setMinTick(double min_tick);
 
     QDateTime* getTimestamp();
     void setTimestamp(QDateTime* timestamp);
@@ -365,31 +367,31 @@ private:
     QDateTime* publish_time;
     bool m_publish_time_isSet;
 
-    SWGNumber* max_order_qty;
+    qint64 max_order_qty;
     bool m_max_order_qty_isSet;
 
     double max_price;
     bool m_max_price_isSet;
 
-    SWGNumber* lot_size;
+    qint64 lot_size;
     bool m_lot_size_isSet;
 
     double tick_size;
     bool m_tick_size_isSet;
 
-    SWGNumber* multiplier;
+    qint64 multiplier;
     bool m_multiplier_isSet;
 
     QString* settl_currency;
     bool m_settl_currency_isSet;
 
-    SWGNumber* underlying_to_position_multiplier;
+    qint64 underlying_to_position_multiplier;
     bool m_underlying_to_position_multiplier_isSet;
 
-    SWGNumber* underlying_to_settle_multiplier;
+    qint64 underlying_to_settle_multiplier;
     bool m_underlying_to_settle_multiplier_isSet;
 
-    SWGNumber* quote_to_settle_multiplier;
+    qint64 quote_to_settle_multiplier;
     bool m_quote_to_settle_multiplier_isSet;
 
     bool is_quanto;
@@ -404,10 +406,10 @@ private:
     double maint_margin;
     bool m_maint_margin_isSet;
 
-    SWGNumber* risk_limit;
+    qint64 risk_limit;
     bool m_risk_limit_isSet;
 
-    SWGNumber* risk_step;
+    qint64 risk_step;
     bool m_risk_step_isSet;
 
     double limit;
@@ -464,25 +466,25 @@ private:
     double limit_up_price;
     bool m_limit_up_price_isSet;
 
-    SWGNumber* total_volume;
+    qint64 total_volume;
     bool m_total_volume_isSet;
 
-    SWGNumber* volume;
+    qint64 volume;
     bool m_volume_isSet;
 
-    SWGNumber* volume24h;
+    qint64 volume24h;
     bool m_volume24h_isSet;
 
-    SWGNumber* prev_total_turnover;
+    qint64 prev_total_turnover;
     bool m_prev_total_turnover_isSet;
 
-    SWGNumber* total_turnover;
+    qint64 total_turnover;
     bool m_total_turnover_isSet;
 
-    SWGNumber* turnover;
+    qint64 turnover;
     bool m_turnover_isSet;
 
-    SWGNumber* turnover24h;
+    qint64 turnover24h;
     bool m_turnover24h_isSet;
 
     double home_notional24h;
@@ -536,10 +538,10 @@ private:
     bool has_liquidity;
     bool m_has_liquidity_isSet;
 
-    SWGNumber* open_interest;
+    qint64 open_interest;
     bool m_open_interest_isSet;
 
-    SWGNumber* open_value;
+    qint64 open_value;
     bool m_open_value_isSet;
 
     QString* fair_method;
@@ -571,6 +573,9 @@ private:
 
     bool instant_pnl;
     bool m_instant_pnl_isSet;
+
+    double min_tick;
+    bool m_min_tick_isSet;
 
     QDateTime* timestamp;
     bool m_timestamp_isSet;

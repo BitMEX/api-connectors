@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **secret** | **String** |  | 
 **name** | **String** |  | 
-**nonce** | **Number** |  | 
+**nonce** | **Number** |  | [default to 0]
 **cidr** | **String** |  | [optional] 
 **cidrs** | [**[XAny]**](XAny.md) |  | [optional] 
 **targetAccountId** | **Number** |  | [optional] 

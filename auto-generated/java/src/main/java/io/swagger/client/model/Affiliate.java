@@ -23,52 +23,51 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Affiliate
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Affiliate {
   @SerializedName("account")
-  private BigDecimal account = null;
+  private Long account = null;
 
   @SerializedName("currency")
   private String currency = null;
 
   @SerializedName("prevPayout")
-  private BigDecimal prevPayout = null;
+  private Long prevPayout = null;
 
   @SerializedName("prevTurnover")
-  private BigDecimal prevTurnover = null;
+  private Long prevTurnover = null;
 
   @SerializedName("prevComm")
-  private BigDecimal prevComm = null;
+  private Long prevComm = null;
 
   @SerializedName("prevTimestamp")
   private OffsetDateTime prevTimestamp = null;
 
   @SerializedName("execTurnover")
-  private BigDecimal execTurnover = null;
+  private Long execTurnover = null;
 
   @SerializedName("execComm")
-  private BigDecimal execComm = null;
+  private Long execComm = null;
 
   @SerializedName("totalReferrals")
-  private BigDecimal totalReferrals = null;
+  private Long totalReferrals = null;
 
   @SerializedName("totalTurnover")
-  private BigDecimal totalTurnover = null;
+  private Long totalTurnover = null;
 
   @SerializedName("totalComm")
-  private BigDecimal totalComm = null;
+  private Long totalComm = null;
 
   @SerializedName("payoutPcnt")
   private Double payoutPcnt = null;
 
   @SerializedName("pendingPayout")
-  private BigDecimal pendingPayout = null;
+  private Long pendingPayout = null;
 
   @SerializedName("timestamp")
   private OffsetDateTime timestamp = null;
@@ -82,7 +81,7 @@ public class Affiliate {
   @SerializedName("affiliatePayout")
   private Double affiliatePayout = null;
 
-  public Affiliate account(BigDecimal account) {
+  public Affiliate account(Long account) {
     this.account = account;
     return this;
   }
@@ -92,11 +91,11 @@ public class Affiliate {
    * @return account
   **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getAccount() {
+  public Long getAccount() {
     return account;
   }
 
-  public void setAccount(BigDecimal account) {
+  public void setAccount(Long account) {
     this.account = account;
   }
 
@@ -118,7 +117,7 @@ public class Affiliate {
     this.currency = currency;
   }
 
-  public Affiliate prevPayout(BigDecimal prevPayout) {
+  public Affiliate prevPayout(Long prevPayout) {
     this.prevPayout = prevPayout;
     return this;
   }
@@ -128,15 +127,15 @@ public class Affiliate {
    * @return prevPayout
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPrevPayout() {
+  public Long getPrevPayout() {
     return prevPayout;
   }
 
-  public void setPrevPayout(BigDecimal prevPayout) {
+  public void setPrevPayout(Long prevPayout) {
     this.prevPayout = prevPayout;
   }
 
-  public Affiliate prevTurnover(BigDecimal prevTurnover) {
+  public Affiliate prevTurnover(Long prevTurnover) {
     this.prevTurnover = prevTurnover;
     return this;
   }
@@ -146,15 +145,15 @@ public class Affiliate {
    * @return prevTurnover
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPrevTurnover() {
+  public Long getPrevTurnover() {
     return prevTurnover;
   }
 
-  public void setPrevTurnover(BigDecimal prevTurnover) {
+  public void setPrevTurnover(Long prevTurnover) {
     this.prevTurnover = prevTurnover;
   }
 
-  public Affiliate prevComm(BigDecimal prevComm) {
+  public Affiliate prevComm(Long prevComm) {
     this.prevComm = prevComm;
     return this;
   }
@@ -164,11 +163,11 @@ public class Affiliate {
    * @return prevComm
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPrevComm() {
+  public Long getPrevComm() {
     return prevComm;
   }
 
-  public void setPrevComm(BigDecimal prevComm) {
+  public void setPrevComm(Long prevComm) {
     this.prevComm = prevComm;
   }
 
@@ -190,7 +189,7 @@ public class Affiliate {
     this.prevTimestamp = prevTimestamp;
   }
 
-  public Affiliate execTurnover(BigDecimal execTurnover) {
+  public Affiliate execTurnover(Long execTurnover) {
     this.execTurnover = execTurnover;
     return this;
   }
@@ -200,15 +199,15 @@ public class Affiliate {
    * @return execTurnover
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getExecTurnover() {
+  public Long getExecTurnover() {
     return execTurnover;
   }
 
-  public void setExecTurnover(BigDecimal execTurnover) {
+  public void setExecTurnover(Long execTurnover) {
     this.execTurnover = execTurnover;
   }
 
-  public Affiliate execComm(BigDecimal execComm) {
+  public Affiliate execComm(Long execComm) {
     this.execComm = execComm;
     return this;
   }
@@ -218,15 +217,15 @@ public class Affiliate {
    * @return execComm
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getExecComm() {
+  public Long getExecComm() {
     return execComm;
   }
 
-  public void setExecComm(BigDecimal execComm) {
+  public void setExecComm(Long execComm) {
     this.execComm = execComm;
   }
 
-  public Affiliate totalReferrals(BigDecimal totalReferrals) {
+  public Affiliate totalReferrals(Long totalReferrals) {
     this.totalReferrals = totalReferrals;
     return this;
   }
@@ -236,15 +235,15 @@ public class Affiliate {
    * @return totalReferrals
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTotalReferrals() {
+  public Long getTotalReferrals() {
     return totalReferrals;
   }
 
-  public void setTotalReferrals(BigDecimal totalReferrals) {
+  public void setTotalReferrals(Long totalReferrals) {
     this.totalReferrals = totalReferrals;
   }
 
-  public Affiliate totalTurnover(BigDecimal totalTurnover) {
+  public Affiliate totalTurnover(Long totalTurnover) {
     this.totalTurnover = totalTurnover;
     return this;
   }
@@ -254,15 +253,15 @@ public class Affiliate {
    * @return totalTurnover
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTotalTurnover() {
+  public Long getTotalTurnover() {
     return totalTurnover;
   }
 
-  public void setTotalTurnover(BigDecimal totalTurnover) {
+  public void setTotalTurnover(Long totalTurnover) {
     this.totalTurnover = totalTurnover;
   }
 
-  public Affiliate totalComm(BigDecimal totalComm) {
+  public Affiliate totalComm(Long totalComm) {
     this.totalComm = totalComm;
     return this;
   }
@@ -272,11 +271,11 @@ public class Affiliate {
    * @return totalComm
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTotalComm() {
+  public Long getTotalComm() {
     return totalComm;
   }
 
-  public void setTotalComm(BigDecimal totalComm) {
+  public void setTotalComm(Long totalComm) {
     this.totalComm = totalComm;
   }
 
@@ -298,7 +297,7 @@ public class Affiliate {
     this.payoutPcnt = payoutPcnt;
   }
 
-  public Affiliate pendingPayout(BigDecimal pendingPayout) {
+  public Affiliate pendingPayout(Long pendingPayout) {
     this.pendingPayout = pendingPayout;
     return this;
   }
@@ -308,11 +307,11 @@ public class Affiliate {
    * @return pendingPayout
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPendingPayout() {
+  public Long getPendingPayout() {
     return pendingPayout;
   }
 
-  public void setPendingPayout(BigDecimal pendingPayout) {
+  public void setPendingPayout(Long pendingPayout) {
     this.pendingPayout = pendingPayout;
   }
 

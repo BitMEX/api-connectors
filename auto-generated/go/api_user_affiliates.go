@@ -32,12 +32,16 @@ UserAffiliatesApiService Get user&#39;s affiliates to a given depth
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *UserAffiliatesApiUserAffiliatesGetOpts - Optional Parameters:
      * @param "Depth" (optional.Float64) -  the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates
+     * @param "TargetAccountId" (optional.Float64) -  AccountId of Sub-Affiliate Account
+     * @param "SelectUserId" (optional.Float64) -  User id of result array to keep
 
 @return []XAny
 */
 
 type UserAffiliatesApiUserAffiliatesGetOpts struct { 
 	Depth optional.Float64
+	TargetAccountId optional.Float64
+	SelectUserId optional.Float64
 }
 
 func (a *UserAffiliatesApiService) UserAffiliatesGet(ctx context.Context, localVarOptionals *UserAffiliatesApiUserAffiliatesGetOpts) ([]XAny, *http.Response, error) {
@@ -58,6 +62,12 @@ func (a *UserAffiliatesApiService) UserAffiliatesGet(ctx context.Context, localV
 
 	if localVarOptionals != nil && localVarOptionals.Depth.IsSet() {
 		localVarQueryParams.Add("depth", parameterToString(localVarOptionals.Depth.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.TargetAccountId.IsSet() {
+		localVarQueryParams.Add("targetAccountId", parameterToString(localVarOptionals.TargetAccountId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SelectUserId.IsSet() {
+		localVarQueryParams.Add("selectUserId", parameterToString(localVarOptionals.SelectUserId.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}

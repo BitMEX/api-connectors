@@ -65,6 +65,18 @@ namespace IO.Swagger.Test
 
         
         /// <summary>
+        /// Test UserCancelPendingWithdrawal
+        /// </summary>
+        [Test]
+        public void UserCancelPendingWithdrawalTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string transactID = null;
+            //var response = instance.UserCancelPendingWithdrawal(transactID);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
         /// Test UserCancelWithdrawal
         /// </summary>
         [Test]
@@ -221,6 +233,19 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
+        /// Test UserGetDepositAddressInformation
+        /// </summary>
+        [Test]
+        public void UserGetDepositAddressInformationTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string currency = null;
+            //string network = null;
+            //var response = instance.UserGetDepositAddressInformation(currency, network);
+            //Assert.IsInstanceOf<DepositAddress> (response, "response is DepositAddress");
+        }
+        
+        /// <summary>
         /// Test UserGetExecutionHistory
         /// </summary>
         [Test]
@@ -352,7 +377,8 @@ namespace IO.Swagger.Test
             //double? count = null;
             //double? start = null;
             //double? targetAccountId = null;
-            //var response = instance.UserGetWalletHistory(currency, count, start, targetAccountId);
+            //bool? reverse = null;
+            //var response = instance.UserGetWalletHistory(currency, count, start, targetAccountId, reverse);
             //Assert.IsInstanceOf<List<Transaction>> (response, "response is List<Transaction>");
         }
         
@@ -364,8 +390,10 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string currency = null;
-            //var response = instance.UserGetWalletSummary(currency);
-            //Assert.IsInstanceOf<List<Transaction>> (response, "response is List<Transaction>");
+            //DateTime? startTime = null;
+            //DateTime? endTime = null;
+            //var response = instance.UserGetWalletSummary(currency, startTime, endTime);
+            //Assert.IsInstanceOf<List<WalletSummaryRecord>> (response, "response is List<WalletSummaryRecord>");
         }
         
         /// <summary>
@@ -399,14 +427,15 @@ namespace IO.Swagger.Test
             // TODO uncomment below to test the method and replace null with proper value
             //string currency = null;
             //string network = null;
-            //decimal? amount = null;
+            //long? amount = null;
             //string otpToken = null;
             //string address = null;
+            //string memo = null;
             //double? addressId = null;
             //double? targetUserId = null;
             //double? fee = null;
             //string text = null;
-            //var response = instance.UserRequestWithdrawal(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text);
+            //var response = instance.UserRequestWithdrawal(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text);
             //Assert.IsInstanceOf<Transaction> (response, "response is Transaction");
         }
         
@@ -444,7 +473,7 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string currency = null;
-            //decimal? amount = null;
+            //long? amount = null;
             //double? targetAccountId = null;
             //double? fromAccountId = null;
             //var response = instance.UserWalletTransfer(currency, amount, targetAccountId, fromAccountId);

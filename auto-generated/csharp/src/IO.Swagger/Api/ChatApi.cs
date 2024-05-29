@@ -36,7 +36,7 @@ namespace IO.Swagger.Api
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
         /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>List&lt;Chat&gt;</returns>
-        List<Chat> ChatGet (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null);
+        List<Chat> ChatGet (int? count = null, int? start = null, bool? reverse = null, double? channelID = null);
 
         /// <summary>
         /// Get chat messages.
@@ -50,7 +50,7 @@ namespace IO.Swagger.Api
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
         /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>ApiResponse of List&lt;Chat&gt;</returns>
-        ApiResponse<List<Chat>> ChatGetWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null);
+        ApiResponse<List<Chat>> ChatGetWithHttpInfo (int? count = null, int? start = null, bool? reverse = null, double? channelID = null);
         /// <summary>
         /// Get available channels.
         /// </summary>
@@ -147,7 +147,7 @@ namespace IO.Swagger.Api
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
         /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>Task of List&lt;Chat&gt;</returns>
-        System.Threading.Tasks.Task<List<Chat>> ChatGetAsync (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null);
+        System.Threading.Tasks.Task<List<Chat>> ChatGetAsync (int? count = null, int? start = null, bool? reverse = null, double? channelID = null);
 
         /// <summary>
         /// Get chat messages.
@@ -161,7 +161,7 @@ namespace IO.Swagger.Api
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
         /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>Task of ApiResponse (List&lt;Chat&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Chat>>> ChatGetAsyncWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Chat>>> ChatGetAsyncWithHttpInfo (int? count = null, int? start = null, bool? reverse = null, double? channelID = null);
         /// <summary>
         /// Get available channels.
         /// </summary>
@@ -353,7 +353,7 @@ namespace IO.Swagger.Api
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
         /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>List&lt;Chat&gt;</returns>
-        public List<Chat> ChatGet (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null)
+        public List<Chat> ChatGet (int? count = null, int? start = null, bool? reverse = null, double? channelID = null)
         {
              ApiResponse<List<Chat>> localVarResponse = ChatGetWithHttpInfo(count, start, reverse, channelID);
              return localVarResponse.Data;
@@ -368,7 +368,7 @@ namespace IO.Swagger.Api
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
         /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>ApiResponse of List&lt;Chat&gt;</returns>
-        public ApiResponse< List<Chat> > ChatGetWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null)
+        public ApiResponse< List<Chat> > ChatGetWithHttpInfo (int? count = null, int? start = null, bool? reverse = null, double? channelID = null)
         {
 
             var localVarPath = "/chat";
@@ -431,7 +431,7 @@ namespace IO.Swagger.Api
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
         /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>Task of List&lt;Chat&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Chat>> ChatGetAsync (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null)
+        public async System.Threading.Tasks.Task<List<Chat>> ChatGetAsync (int? count = null, int? start = null, bool? reverse = null, double? channelID = null)
         {
              ApiResponse<List<Chat>> localVarResponse = await ChatGetAsyncWithHttpInfo(count, start, reverse, channelID);
              return localVarResponse.Data;
@@ -447,7 +447,7 @@ namespace IO.Swagger.Api
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
         /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>Task of ApiResponse (List&lt;Chat&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Chat>>> ChatGetAsyncWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Chat>>> ChatGetAsyncWithHttpInfo (int? count = null, int? start = null, bool? reverse = null, double? channelID = null)
         {
 
             var localVarPath = "/chat";

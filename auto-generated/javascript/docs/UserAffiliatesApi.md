@@ -39,7 +39,9 @@ apiSignature.apiKey = 'YOUR API KEY';
 var apiInstance = new BitMexApi.UserAffiliatesApi();
 
 var opts = { 
-  'depth': 1.2 // Number | the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates
+  'depth': 1.2, // Number | the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates
+  'targetAccountId': 1.2, // Number | AccountId of Sub-Affiliate Account
+  'selectUserId': 1.2 // Number | User id of result array to keep
 };
 
 var callback = function(error, data, response) {
@@ -57,6 +59,8 @@ apiInstance.userAffiliatesGet(opts, callback);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **depth** | **Number**| the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates | [optional] 
+ **targetAccountId** | **Number**| AccountId of Sub-Affiliate Account | [optional] 
+ **selectUserId** | **Number**| User id of result array to keep | [optional] 
 
 ### Return type
 

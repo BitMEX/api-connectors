@@ -17,10 +17,10 @@ public struct NetworksConfig: Codable {
     public var networkSymbol: String?
     public var transactionExplorer: String?
     public var tokenExplorer: String?
-    public var depositConfirmations: Double?
+    public var depositConfirmations: Int?
     public var enabled: Bool?
 
-    public init(network: String, name: String?, currency: String?, networkSymbol: String?, transactionExplorer: String?, tokenExplorer: String?, depositConfirmations: Double?, enabled: Bool?) {
+    public init(network: String, name: String?, currency: String?, networkSymbol: String?, transactionExplorer: String?, tokenExplorer: String?, depositConfirmations: Int?, enabled: Bool?) {
         self.network = network
         self.name = name
         self.currency = currency

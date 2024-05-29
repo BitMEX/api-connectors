@@ -55,7 +55,7 @@ namespace IO.Swagger.Model
         /// <param name="referrerAccount">referrerAccount.</param>
         /// <param name="referralDiscount">referralDiscount.</param>
         /// <param name="affiliatePayout">affiliatePayout.</param>
-        public Affiliate(decimal? account = default(decimal?), string currency = default(string), decimal? prevPayout = default(decimal?), decimal? prevTurnover = default(decimal?), decimal? prevComm = default(decimal?), DateTime? prevTimestamp = default(DateTime?), decimal? execTurnover = default(decimal?), decimal? execComm = default(decimal?), decimal? totalReferrals = default(decimal?), decimal? totalTurnover = default(decimal?), decimal? totalComm = default(decimal?), double? payoutPcnt = default(double?), decimal? pendingPayout = default(decimal?), DateTime? timestamp = default(DateTime?), double? referrerAccount = default(double?), double? referralDiscount = default(double?), double? affiliatePayout = default(double?))
+        public Affiliate(long? account = default(long?), string currency = default(string), long? prevPayout = default(long?), long? prevTurnover = default(long?), long? prevComm = default(long?), DateTime? prevTimestamp = default(DateTime?), long? execTurnover = default(long?), long? execComm = default(long?), long? totalReferrals = default(long?), long? totalTurnover = default(long?), long? totalComm = default(long?), double? payoutPcnt = default(double?), long? pendingPayout = default(long?), DateTime? timestamp = default(DateTime?), double? referrerAccount = default(double?), double? referralDiscount = default(double?), double? affiliatePayout = default(double?))
         {
             // to ensure "account" is required (not null)
             if (account == null)
@@ -96,7 +96,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name="account", EmitDefaultValue=false)]
-        public decimal? Account { get; set; }
+        public long? Account { get; set; }
 
         /// <summary>
         /// Gets or Sets Currency
@@ -108,19 +108,19 @@ namespace IO.Swagger.Model
         /// Gets or Sets PrevPayout
         /// </summary>
         [DataMember(Name="prevPayout", EmitDefaultValue=false)]
-        public decimal? PrevPayout { get; set; }
+        public long? PrevPayout { get; set; }
 
         /// <summary>
         /// Gets or Sets PrevTurnover
         /// </summary>
         [DataMember(Name="prevTurnover", EmitDefaultValue=false)]
-        public decimal? PrevTurnover { get; set; }
+        public long? PrevTurnover { get; set; }
 
         /// <summary>
         /// Gets or Sets PrevComm
         /// </summary>
         [DataMember(Name="prevComm", EmitDefaultValue=false)]
-        public decimal? PrevComm { get; set; }
+        public long? PrevComm { get; set; }
 
         /// <summary>
         /// Gets or Sets PrevTimestamp
@@ -132,31 +132,31 @@ namespace IO.Swagger.Model
         /// Gets or Sets ExecTurnover
         /// </summary>
         [DataMember(Name="execTurnover", EmitDefaultValue=false)]
-        public decimal? ExecTurnover { get; set; }
+        public long? ExecTurnover { get; set; }
 
         /// <summary>
         /// Gets or Sets ExecComm
         /// </summary>
         [DataMember(Name="execComm", EmitDefaultValue=false)]
-        public decimal? ExecComm { get; set; }
+        public long? ExecComm { get; set; }
 
         /// <summary>
         /// Gets or Sets TotalReferrals
         /// </summary>
         [DataMember(Name="totalReferrals", EmitDefaultValue=false)]
-        public decimal? TotalReferrals { get; set; }
+        public long? TotalReferrals { get; set; }
 
         /// <summary>
         /// Gets or Sets TotalTurnover
         /// </summary>
         [DataMember(Name="totalTurnover", EmitDefaultValue=false)]
-        public decimal? TotalTurnover { get; set; }
+        public long? TotalTurnover { get; set; }
 
         /// <summary>
         /// Gets or Sets TotalComm
         /// </summary>
         [DataMember(Name="totalComm", EmitDefaultValue=false)]
-        public decimal? TotalComm { get; set; }
+        public long? TotalComm { get; set; }
 
         /// <summary>
         /// Gets or Sets PayoutPcnt
@@ -168,7 +168,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets PendingPayout
         /// </summary>
         [DataMember(Name="pendingPayout", EmitDefaultValue=false)]
-        public decimal? PendingPayout { get; set; }
+        public long? PendingPayout { get; set; }
 
         /// <summary>
         /// Gets or Sets Timestamp

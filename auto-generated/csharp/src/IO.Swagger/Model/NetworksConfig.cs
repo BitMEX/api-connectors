@@ -46,7 +46,7 @@ namespace IO.Swagger.Model
         /// <param name="tokenExplorer">tokenExplorer (default to &quot;https://etherscan.io/token/&quot;).</param>
         /// <param name="depositConfirmations">depositConfirmations.</param>
         /// <param name="enabled">enabled (default to true).</param>
-        public NetworksConfig(string network = "eth", string name = "Ethereum", string currency = "Gwei", string networkSymbol = "ETH", string transactionExplorer = "https://etherscan.io/tx/", string tokenExplorer = "https://etherscan.io/token/", decimal? depositConfirmations = default(decimal?), bool? enabled = true)
+        public NetworksConfig(string network = "eth", string name = "Ethereum", string currency = "Gwei", string networkSymbol = "ETH", string transactionExplorer = "https://etherscan.io/tx/", string tokenExplorer = "https://etherscan.io/token/", int? depositConfirmations = default(int?), bool? enabled = true)
         {
             // to ensure "network" is required (not null)
             if (network == null)
@@ -154,7 +154,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets DepositConfirmations
         /// </summary>
         [DataMember(Name="depositConfirmations", EmitDefaultValue=false)]
-        public decimal? DepositConfirmations { get; set; }
+        public int? DepositConfirmations { get; set; }
 
         /// <summary>
         /// Gets or Sets Enabled

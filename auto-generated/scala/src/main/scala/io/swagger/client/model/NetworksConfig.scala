@@ -20,7 +20,7 @@ case class NetworksConfig (
   networkSymbol: Option[String] = None,
   transactionExplorer: Option[String] = None,
   tokenExplorer: Option[String] = None,
-  depositConfirmations: Option[Number] = None,
+  depositConfirmations: Option[Integer] = None,
   enabled: Option[Boolean] = None
 )
 

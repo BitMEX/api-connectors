@@ -33,8 +33,8 @@ class ConnectedUsers(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'users': 'float',
-        'bots': 'float'
+        'users': 'int',
+        'bots': 'int'
     }
 
     attribute_map = {
@@ -63,7 +63,7 @@ class ConnectedUsers(object):
 
 
         :return: The users of this ConnectedUsers.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._users
 
@@ -73,7 +73,7 @@ class ConnectedUsers(object):
 
 
         :param users: The users of this ConnectedUsers.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._users = users
@@ -84,7 +84,7 @@ class ConnectedUsers(object):
 
 
         :return: The bots of this ConnectedUsers.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._bots
 
@@ -94,7 +94,7 @@ class ConnectedUsers(object):
 
 
         :param bots: The bots of this ConnectedUsers.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._bots = bots

@@ -72,6 +72,26 @@ Name | Type | Description | Notes
 
 * `verify` (value: `"verify"`)
 
+* `restrictedAccount` (value: `"restrictedAccount"`)
+
+* `unrestrictedAccount` (value: `"unrestrictedAccount"`)
+
+* `disabledAccount` (value: `"disabledAccount"`)
+
+* `enabledAccount` (value: `"enabledAccount"`)
+
+* `roleroleMappingDestroy` (value: `"role:roleMappingDestroy"`)
+
+* `rolechatBanned` (value: `"role:chatBanned"`)
+
+* `rolewithdrawalBanned` (value: `"role:withdrawalBanned"`)
+
+* `roleorderBanned` (value: `"role:orderBanned"`)
+
+* `roleapiBanned` (value: `"role:apiBanned"`)
+
+* `rolerestrictedJurisdictionPrivilege` (value: `"role:restrictedJurisdictionPrivilege"`)
+
 
 
 

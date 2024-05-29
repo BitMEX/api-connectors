@@ -27,7 +27,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.OrderBookL2;
 
@@ -65,7 +64,7 @@ public class OrderBookApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call orderBookGetL2Call(String symbol, BigDecimal depth, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call orderBookGetL2Call(String symbol, Integer depth, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -111,7 +110,7 @@ public class OrderBookApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call orderBookGetL2ValidateBeforeCall(String symbol, BigDecimal depth, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call orderBookGetL2ValidateBeforeCall(String symbol, Integer depth, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'symbol' is set
         if (symbol == null) {
@@ -132,7 +131,7 @@ public class OrderBookApi {
      * @return List&lt;OrderBookL2&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<OrderBookL2> orderBookGetL2(String symbol, BigDecimal depth) throws ApiException {
+    public List<OrderBookL2> orderBookGetL2(String symbol, Integer depth) throws ApiException {
         ApiResponse<List<OrderBookL2>> resp = orderBookGetL2WithHttpInfo(symbol, depth);
         return resp.getData();
     }
@@ -145,7 +144,7 @@ public class OrderBookApi {
      * @return ApiResponse&lt;List&lt;OrderBookL2&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<OrderBookL2>> orderBookGetL2WithHttpInfo(String symbol, BigDecimal depth) throws ApiException {
+    public ApiResponse<List<OrderBookL2>> orderBookGetL2WithHttpInfo(String symbol, Integer depth) throws ApiException {
         com.squareup.okhttp.Call call = orderBookGetL2ValidateBeforeCall(symbol, depth, null, null);
         Type localVarReturnType = new TypeToken<List<OrderBookL2>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -160,7 +159,7 @@ public class OrderBookApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call orderBookGetL2Async(String symbol, BigDecimal depth, final ApiCallback<List<OrderBookL2>> callback) throws ApiException {
+    public com.squareup.okhttp.Call orderBookGetL2Async(String symbol, Integer depth, final ApiCallback<List<OrderBookL2>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

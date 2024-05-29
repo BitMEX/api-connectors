@@ -49,6 +49,7 @@ extern NSInteger kSWGAddressApiMissingParamErrorCode;
 /// @param note Optional annotation. (optional)
 /// @param skipConfirm Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional) (default to false)
 /// @param skip2FA Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional) (default to false)
+/// @param memo Destination Memo. (optional)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -64,6 +65,7 @@ extern NSInteger kSWGAddressApiMissingParamErrorCode;
     note: (NSString*) note
     skipConfirm: (NSNumber*) skipConfirm
     skip2FA: (NSNumber*) skip2FA
+    memo: (NSString*) memo
     completionHandler: (void (^)(SWGAddress* output, NSError* error)) handler;
 
 

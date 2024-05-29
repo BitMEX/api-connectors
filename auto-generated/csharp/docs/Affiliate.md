@@ -3,19 +3,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Account** | **decimal?** |  | 
+**Account** | **long?** |  | 
 **Currency** | **string** |  | 
-**PrevPayout** | **decimal?** |  | [optional] 
-**PrevTurnover** | **decimal?** |  | [optional] 
-**PrevComm** | **decimal?** |  | [optional] 
+**PrevPayout** | **long?** |  | [optional] 
+**PrevTurnover** | **long?** |  | [optional] 
+**PrevComm** | **long?** |  | [optional] 
 **PrevTimestamp** | **DateTime?** |  | [optional] 
-**ExecTurnover** | **decimal?** |  | [optional] 
-**ExecComm** | **decimal?** |  | [optional] 
-**TotalReferrals** | **decimal?** |  | [optional] 
-**TotalTurnover** | **decimal?** |  | [optional] 
-**TotalComm** | **decimal?** |  | [optional] 
+**ExecTurnover** | **long?** |  | [optional] 
+**ExecComm** | **long?** |  | [optional] 
+**TotalReferrals** | **long?** |  | [optional] 
+**TotalTurnover** | **long?** |  | [optional] 
+**TotalComm** | **long?** |  | [optional] 
 **PayoutPcnt** | **double?** |  | [optional] 
-**PendingPayout** | **decimal?** |  | [optional] 
+**PendingPayout** | **long?** |  | [optional] 
 **Timestamp** | **DateTime?** |  | [optional] 
 **ReferrerAccount** | **double?** |  | [optional] 
 **ReferralDiscount** | **double?** |  | [optional] 

@@ -90,6 +90,7 @@ Name | Type | Description | Notes
 **settledPriceAdjustmentRate** | **NSNumber*** |  | [optional] 
 **settledPrice** | **NSNumber*** |  | [optional] 
 **instantPnl** | **NSNumber*** |  | [optional] 
+**minTick** | **NSNumber*** |  | [optional] 
 **timestamp** | **NSDate*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

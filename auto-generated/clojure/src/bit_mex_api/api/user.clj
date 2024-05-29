@@ -2,6 +2,24 @@
   (:require [bit-mex-api.core :refer [call-api check-required-params with-collection-format]])
   (:import (java.io File)))
 
+(defn user-cancel-pending-withdrawal-with-http-info
+  "Cancel pending withdrawal"
+  [transact-id ]
+  (check-required-params transact-id)
+  (call-api "/user/withdrawal" :delete
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {"transactID" transact-id }
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+             :auth-names    ["apiExpires" "apiKey" "apiSignature"]}))
+
+(defn user-cancel-pending-withdrawal
+  "Cancel pending withdrawal"
+  [transact-id ]
+  (:data (user-cancel-pending-withdrawal-with-http-info transact-id)))
+
 (defn user-cancel-withdrawal-with-http-info
   "Cancel a withdrawal."
   [token ]
@@ -237,6 +255,24 @@
   [currency network ]
   (:data (user-get-deposit-address-with-http-info currency network)))
 
+(defn user-get-deposit-address-information-with-http-info
+  "Get a deposit address."
+  [currency network ]
+  (check-required-params currency network)
+  (call-api "/user/depositAddressInformation" :get
+            {:path-params   {}
+             :header-params {}
+             :query-params  {"currency" currency "network" network }
+             :form-params   {}
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+             :auth-names    ["apiExpires" "apiKey" "apiSignature"]}))
+
+(defn user-get-deposit-address-information
+  "Get a deposit address."
+  [currency network ]
+  (:data (user-get-deposit-address-information-with-http-info currency network)))
+
 (defn user-get-execution-history-with-http-info
   "Get the execution history by day."
   [symbol timestamp ]
@@ -425,11 +461,11 @@
 (defn user-get-wallet-history-with-http-info
   "Get a history of all of your wallet transactions (deposits, withdrawals, PNL)."
   ([] (user-get-wallet-history-with-http-info nil))
-  ([{:keys [currency count start target-account-id ]}]
+  ([{:keys [currency count start target-account-id reverse ]}]
    (call-api "/user/walletHistory" :get
              {:path-params   {}
               :header-params {}
-              :query-params  {"currency" currency "count" count "start" start "targetAccountId" target-account-id }
+              :query-params  {"currency" currency "count" count "start" start "targetAccountId" target-account-id "reverse" reverse }
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
@@ -442,20 +478,22 @@
    (:data (user-get-wallet-history-with-http-info optional-params))))
 
 (defn user-get-wallet-summary-with-http-info
-  "Get a summary of all of your wallet transactions (deposits, withdrawals, PNL)."
+  "Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+  Provides an aggregated view of transactions, by transaction type, over a specific time period."
   ([] (user-get-wallet-summary-with-http-info nil))
-  ([{:keys [currency ]}]
+  ([{:keys [currency start-time end-time ]}]
    (call-api "/user/walletSummary" :get
              {:path-params   {}
               :header-params {}
-              :query-params  {"currency" currency }
+              :query-params  {"currency" currency "startTime" start-time "endTime" end-time }
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
               :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn user-get-wallet-summary
-  "Get a summary of all of your wallet transactions (deposits, withdrawals, PNL)."
+  "Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+  Provides an aggregated view of transactions, by transaction type, over a specific time period."
   ([] (user-get-wallet-summary nil))
   ([optional-params]
    (:data (user-get-wallet-summary-with-http-info optional-params))))
@@ -498,13 +536,13 @@
   "Request a withdrawal to an external wallet.
   This will send a confirmation email to the email address on record."
   ([currency network amount ] (user-request-withdrawal-with-http-info currency network amount nil))
-  ([currency network amount {:keys [otp-token address address-id target-user-id fee text ]}]
+  ([currency network amount {:keys [otp-token address memo address-id target-user-id fee text ]}]
    (check-required-params currency network amount)
    (call-api "/user/requestWithdrawal" :post
              {:path-params   {}
               :header-params {}
               :query-params  {}
-              :form-params   {"otpToken" otp-token "currency" currency "network" network "amount" amount "address" address "addressId" address-id "targetUserId" target-user-id "fee" fee "text" text }
+              :form-params   {"otpToken" otp-token "currency" currency "network" network "amount" amount "address" address "memo" memo "addressId" address-id "targetUserId" target-user-id "fee" fee "text" text }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
               :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))

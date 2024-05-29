@@ -47,7 +47,7 @@ namespace IO.Swagger.Model
         /// <param name="bankrupt">bankrupt.</param>
         /// <param name="taxBase">taxBase.</param>
         /// <param name="taxRate">taxRate.</param>
-        public Settlement(DateTime? timestamp = default(DateTime?), string symbol = default(string), string settlementType = default(string), double? settledPrice = default(double?), double? optionStrikePrice = default(double?), double? optionUnderlyingPrice = default(double?), decimal? bankrupt = default(decimal?), decimal? taxBase = default(decimal?), double? taxRate = default(double?))
+        public Settlement(DateTime? timestamp = default(DateTime?), string symbol = default(string), string settlementType = default(string), double? settledPrice = default(double?), double? optionStrikePrice = default(double?), double? optionUnderlyingPrice = default(double?), long? bankrupt = default(long?), long? taxBase = default(long?), double? taxRate = default(double?))
         {
             // to ensure "timestamp" is required (not null)
             if (timestamp == null)
@@ -116,13 +116,13 @@ namespace IO.Swagger.Model
         /// Gets or Sets Bankrupt
         /// </summary>
         [DataMember(Name="bankrupt", EmitDefaultValue=false)]
-        public decimal? Bankrupt { get; set; }
+        public long? Bankrupt { get; set; }
 
         /// <summary>
         /// Gets or Sets TaxBase
         /// </summary>
         [DataMember(Name="taxBase", EmitDefaultValue=false)]
-        public decimal? TaxBase { get; set; }
+        public long? TaxBase { get; set; }
 
         /// <summary>
         /// Gets or Sets TaxRate

@@ -18,7 +18,7 @@ open class OrderBookAPI {
      - parameter depth: (query) Orderbook depth per side. Send 0 for full depth. (optional, default to 25)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func orderBookGetL2(symbol: String, depth: Double? = nil, completion: @escaping ((_ data: [OrderBookL2]?,_ error: Error?) -> Void)) {
+    open class func orderBookGetL2(symbol: String, depth: Int? = nil, completion: @escaping ((_ data: [OrderBookL2]?,_ error: Error?) -> Void)) {
         orderBookGetL2WithRequestBuilder(symbol: symbol, depth: depth).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -35,7 +35,7 @@ open class OrderBookAPI {
 
      - returns: RequestBuilder<[OrderBookL2]> 
      */
-    open class func orderBookGetL2WithRequestBuilder(symbol: String, depth: Double? = nil) -> RequestBuilder<[OrderBookL2]> {
+    open class func orderBookGetL2WithRequestBuilder(symbol: String, depth: Int? = nil) -> RequestBuilder<[OrderBookL2]> {
         let path = "/orderBook/L2"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -43,7 +43,7 @@ open class OrderBookAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "symbol": symbol, 
-            "depth": depth
+            "depth": depth?.encodeToJSON()
         ])
 
         let requestBuilder: RequestBuilder<[OrderBookL2]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()

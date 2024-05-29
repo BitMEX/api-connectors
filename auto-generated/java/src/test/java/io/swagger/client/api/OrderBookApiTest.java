@@ -13,7 +13,6 @@
 
 package io.swagger.client.api;
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.OrderBookL2;
 import org.junit.Test;
@@ -45,7 +44,7 @@ public class OrderBookApiTest {
     @Test
     public void orderBookGetL2Test() throws Exception {
         String symbol = null;
-        BigDecimal depth = null;
+        Integer depth = null;
         List<OrderBookL2> response = api.orderBookGetL2(symbol, depth);
 
         // TODO: test validations

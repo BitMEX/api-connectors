@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -21,53 +20,53 @@ import com.google.gson.annotations.SerializedName;
 public class Margin {
   
   @SerializedName("account")
-  private BigDecimal account = null;
+  private Long account = 0;
   @SerializedName("currency")
   private String currency = null;
   @SerializedName("riskLimit")
-  private BigDecimal riskLimit = null;
+  private Long riskLimit = 0;
   @SerializedName("state")
   private String state = null;
   @SerializedName("amount")
-  private BigDecimal amount = null;
+  private Long amount = 0;
   @SerializedName("prevRealisedPnl")
-  private BigDecimal prevRealisedPnl = null;
+  private Long prevRealisedPnl = 0;
   @SerializedName("grossComm")
-  private BigDecimal grossComm = null;
+  private Long grossComm = 0;
   @SerializedName("grossOpenCost")
-  private BigDecimal grossOpenCost = null;
+  private Long grossOpenCost = 0;
   @SerializedName("grossOpenPremium")
-  private BigDecimal grossOpenPremium = null;
+  private Long grossOpenPremium = 0;
   @SerializedName("grossExecCost")
-  private BigDecimal grossExecCost = null;
+  private Long grossExecCost = 0;
   @SerializedName("grossMarkValue")
-  private BigDecimal grossMarkValue = null;
+  private Long grossMarkValue = 0;
   @SerializedName("riskValue")
-  private BigDecimal riskValue = null;
+  private Long riskValue = 0;
   @SerializedName("initMargin")
-  private BigDecimal initMargin = null;
+  private Long initMargin = 0;
   @SerializedName("maintMargin")
-  private BigDecimal maintMargin = null;
+  private Long maintMargin = 0;
   @SerializedName("targetExcessMargin")
-  private BigDecimal targetExcessMargin = null;
+  private Long targetExcessMargin = 0;
   @SerializedName("realisedPnl")
-  private BigDecimal realisedPnl = null;
+  private Long realisedPnl = 0;
   @SerializedName("unrealisedPnl")
-  private BigDecimal unrealisedPnl = null;
+  private Long unrealisedPnl = 0;
   @SerializedName("walletBalance")
-  private BigDecimal walletBalance = null;
+  private Long walletBalance = 0;
   @SerializedName("marginBalance")
-  private BigDecimal marginBalance = null;
+  private Long marginBalance = 0;
   @SerializedName("marginLeverage")
   private Double marginLeverage = 0.0;
   @SerializedName("marginUsedPcnt")
   private Double marginUsedPcnt = 0.0;
   @SerializedName("excessMargin")
-  private BigDecimal excessMargin = null;
+  private Long excessMargin = 0;
   @SerializedName("availableMargin")
-  private BigDecimal availableMargin = null;
+  private Long availableMargin = 0;
   @SerializedName("withdrawableMargin")
-  private BigDecimal withdrawableMargin = null;
+  private Long withdrawableMargin = 0;
   @SerializedName("makerFeeDiscount")
   private Double makerFeeDiscount = 0.0;
   @SerializedName("takerFeeDiscount")
@@ -78,10 +77,10 @@ public class Margin {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getAccount() {
+  public Long getAccount() {
     return account;
   }
-  public void setAccount(BigDecimal account) {
+  public void setAccount(Long account) {
     this.account = account;
   }
 
@@ -98,10 +97,10 @@ public class Margin {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getRiskLimit() {
+  public Long getRiskLimit() {
     return riskLimit;
   }
-  public void setRiskLimit(BigDecimal riskLimit) {
+  public void setRiskLimit(Long riskLimit) {
     this.riskLimit = riskLimit;
   }
 
@@ -118,150 +117,150 @@ public class Margin {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAmount() {
+  public Long getAmount() {
     return amount;
   }
-  public void setAmount(BigDecimal amount) {
+  public void setAmount(Long amount) {
     this.amount = amount;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPrevRealisedPnl() {
+  public Long getPrevRealisedPnl() {
     return prevRealisedPnl;
   }
-  public void setPrevRealisedPnl(BigDecimal prevRealisedPnl) {
+  public void setPrevRealisedPnl(Long prevRealisedPnl) {
     this.prevRealisedPnl = prevRealisedPnl;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getGrossComm() {
+  public Long getGrossComm() {
     return grossComm;
   }
-  public void setGrossComm(BigDecimal grossComm) {
+  public void setGrossComm(Long grossComm) {
     this.grossComm = grossComm;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getGrossOpenCost() {
+  public Long getGrossOpenCost() {
     return grossOpenCost;
   }
-  public void setGrossOpenCost(BigDecimal grossOpenCost) {
+  public void setGrossOpenCost(Long grossOpenCost) {
     this.grossOpenCost = grossOpenCost;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getGrossOpenPremium() {
+  public Long getGrossOpenPremium() {
     return grossOpenPremium;
   }
-  public void setGrossOpenPremium(BigDecimal grossOpenPremium) {
+  public void setGrossOpenPremium(Long grossOpenPremium) {
     this.grossOpenPremium = grossOpenPremium;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getGrossExecCost() {
+  public Long getGrossExecCost() {
     return grossExecCost;
   }
-  public void setGrossExecCost(BigDecimal grossExecCost) {
+  public void setGrossExecCost(Long grossExecCost) {
     this.grossExecCost = grossExecCost;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getGrossMarkValue() {
+  public Long getGrossMarkValue() {
     return grossMarkValue;
   }
-  public void setGrossMarkValue(BigDecimal grossMarkValue) {
+  public void setGrossMarkValue(Long grossMarkValue) {
     this.grossMarkValue = grossMarkValue;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getRiskValue() {
+  public Long getRiskValue() {
     return riskValue;
   }
-  public void setRiskValue(BigDecimal riskValue) {
+  public void setRiskValue(Long riskValue) {
     this.riskValue = riskValue;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getInitMargin() {
+  public Long getInitMargin() {
     return initMargin;
   }
-  public void setInitMargin(BigDecimal initMargin) {
+  public void setInitMargin(Long initMargin) {
     this.initMargin = initMargin;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getMaintMargin() {
+  public Long getMaintMargin() {
     return maintMargin;
   }
-  public void setMaintMargin(BigDecimal maintMargin) {
+  public void setMaintMargin(Long maintMargin) {
     this.maintMargin = maintMargin;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTargetExcessMargin() {
+  public Long getTargetExcessMargin() {
     return targetExcessMargin;
   }
-  public void setTargetExcessMargin(BigDecimal targetExcessMargin) {
+  public void setTargetExcessMargin(Long targetExcessMargin) {
     this.targetExcessMargin = targetExcessMargin;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getRealisedPnl() {
+  public Long getRealisedPnl() {
     return realisedPnl;
   }
-  public void setRealisedPnl(BigDecimal realisedPnl) {
+  public void setRealisedPnl(Long realisedPnl) {
     this.realisedPnl = realisedPnl;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getUnrealisedPnl() {
+  public Long getUnrealisedPnl() {
     return unrealisedPnl;
   }
-  public void setUnrealisedPnl(BigDecimal unrealisedPnl) {
+  public void setUnrealisedPnl(Long unrealisedPnl) {
     this.unrealisedPnl = unrealisedPnl;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getWalletBalance() {
+  public Long getWalletBalance() {
     return walletBalance;
   }
-  public void setWalletBalance(BigDecimal walletBalance) {
+  public void setWalletBalance(Long walletBalance) {
     this.walletBalance = walletBalance;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getMarginBalance() {
+  public Long getMarginBalance() {
     return marginBalance;
   }
-  public void setMarginBalance(BigDecimal marginBalance) {
+  public void setMarginBalance(Long marginBalance) {
     this.marginBalance = marginBalance;
   }
 
@@ -288,30 +287,30 @@ public class Margin {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getExcessMargin() {
+  public Long getExcessMargin() {
     return excessMargin;
   }
-  public void setExcessMargin(BigDecimal excessMargin) {
+  public void setExcessMargin(Long excessMargin) {
     this.excessMargin = excessMargin;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAvailableMargin() {
+  public Long getAvailableMargin() {
     return availableMargin;
   }
-  public void setAvailableMargin(BigDecimal availableMargin) {
+  public void setAvailableMargin(Long availableMargin) {
     this.availableMargin = availableMargin;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getWithdrawableMargin() {
+  public Long getWithdrawableMargin() {
     return withdrawableMargin;
   }
-  public void setWithdrawableMargin(BigDecimal withdrawableMargin) {
+  public void setWithdrawableMargin(Long withdrawableMargin) {
     this.withdrawableMargin = withdrawableMargin;
   }
 

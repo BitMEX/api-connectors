@@ -27,7 +27,7 @@ open class OrderAPI {
      - parameter text: (form) Optional amend annotation. e.g. &#39;Adjust skew&#39;. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func orderAmend(orderID: String? = nil, origClOrdID: String? = nil, clOrdID: String? = nil, simpleOrderQty: Double? = nil, orderQty: Double? = nil, simpleLeavesQty: Double? = nil, leavesQty: Double? = nil, price: Double? = nil, stopPx: Double? = nil, pegOffsetValue: Double? = nil, text: String? = nil, completion: @escaping ((_ data: Order?,_ error: Error?) -> Void)) {
+    open class func orderAmend(orderID: String? = nil, origClOrdID: String? = nil, clOrdID: String? = nil, simpleOrderQty: Double? = nil, orderQty: Int? = nil, simpleLeavesQty: Double? = nil, leavesQty: Int? = nil, price: Double? = nil, stopPx: Double? = nil, pegOffsetValue: Double? = nil, text: String? = nil, completion: @escaping ((_ data: Order?,_ error: Error?) -> Void)) {
         orderAmendWithRequestBuilder(orderID: orderID, origClOrdID: origClOrdID, clOrdID: clOrdID, simpleOrderQty: simpleOrderQty, orderQty: orderQty, simpleLeavesQty: simpleLeavesQty, leavesQty: leavesQty, price: price, stopPx: stopPx, pegOffsetValue: pegOffsetValue, text: text).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -63,7 +63,7 @@ open class OrderAPI {
 
      - returns: RequestBuilder<Order> 
      */
-    open class func orderAmendWithRequestBuilder(orderID: String? = nil, origClOrdID: String? = nil, clOrdID: String? = nil, simpleOrderQty: Double? = nil, orderQty: Double? = nil, simpleLeavesQty: Double? = nil, leavesQty: Double? = nil, price: Double? = nil, stopPx: Double? = nil, pegOffsetValue: Double? = nil, text: String? = nil) -> RequestBuilder<Order> {
+    open class func orderAmendWithRequestBuilder(orderID: String? = nil, origClOrdID: String? = nil, clOrdID: String? = nil, simpleOrderQty: Double? = nil, orderQty: Int? = nil, simpleLeavesQty: Double? = nil, leavesQty: Int? = nil, price: Double? = nil, stopPx: Double? = nil, pegOffsetValue: Double? = nil, text: String? = nil) -> RequestBuilder<Order> {
         let path = "/order"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
@@ -71,9 +71,9 @@ open class OrderAPI {
             "origClOrdID": origClOrdID,
             "clOrdID": clOrdID,
             "simpleOrderQty": simpleOrderQty,
-            "orderQty": orderQty,
+            "orderQty": orderQty?.encodeToJSON(),
             "simpleLeavesQty": simpleLeavesQty,
-            "leavesQty": leavesQty,
+            "leavesQty": leavesQty?.encodeToJSON(),
             "price": price,
             "stopPx": stopPx,
             "pegOffsetValue": pegOffsetValue,
@@ -323,7 +323,7 @@ open class OrderAPI {
      - parameter endTime: (query) Ending date filter for results. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func orderGetOrders(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [Order]?,_ error: Error?) -> Void)) {
+    open class func orderGetOrders(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [Order]?,_ error: Error?) -> Void)) {
         orderGetOrdersWithRequestBuilder(symbol: symbol, filter: filter, columns: columns, count: count, start: start, reverse: reverse, startTime: startTime, endTime: endTime).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -356,7 +356,7 @@ open class OrderAPI {
 
      - returns: RequestBuilder<[Order]> 
      */
-    open class func orderGetOrdersWithRequestBuilder(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[Order]> {
+    open class func orderGetOrdersWithRequestBuilder(symbol: String? = nil, filter: String? = nil, columns: String? = nil, count: Int? = nil, start: Int? = nil, reverse: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[Order]> {
         let path = "/order"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -366,8 +366,8 @@ open class OrderAPI {
             "symbol": symbol, 
             "filter": filter, 
             "columns": columns, 
-            "count": count, 
-            "start": start, 
+            "count": count?.encodeToJSON(), 
+            "start": start?.encodeToJSON(), 
             "reverse": reverse, 
             "startTime": startTime?.encodeToJSON(), 
             "endTime": endTime?.encodeToJSON()
@@ -399,7 +399,7 @@ open class OrderAPI {
      - parameter text: (form) Optional order annotation. e.g. &#39;Take profit&#39;. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func orderNew(symbol: String, side: String? = nil, simpleOrderQty: Double? = nil, orderQty: Double? = nil, price: Double? = nil, displayQty: Double? = nil, stopPx: Double? = nil, clOrdID: String? = nil, clOrdLinkID: String? = nil, pegOffsetValue: Double? = nil, pegPriceType: String? = nil, ordType: String? = nil, timeInForce: String? = nil, execInst: String? = nil, contingencyType: String? = nil, text: String? = nil, completion: @escaping ((_ data: Order?,_ error: Error?) -> Void)) {
+    open class func orderNew(symbol: String, side: String? = nil, simpleOrderQty: Double? = nil, orderQty: Int? = nil, price: Double? = nil, displayQty: Int? = nil, stopPx: Double? = nil, clOrdID: String? = nil, clOrdLinkID: String? = nil, pegOffsetValue: Double? = nil, pegPriceType: String? = nil, ordType: String? = nil, timeInForce: String? = nil, execInst: String? = nil, contingencyType: String? = nil, text: String? = nil, completion: @escaping ((_ data: Order?,_ error: Error?) -> Void)) {
         orderNewWithRequestBuilder(symbol: symbol, side: side, simpleOrderQty: simpleOrderQty, orderQty: orderQty, price: price, displayQty: displayQty, stopPx: stopPx, clOrdID: clOrdID, clOrdLinkID: clOrdLinkID, pegOffsetValue: pegOffsetValue, pegPriceType: pegPriceType, ordType: ordType, timeInForce: timeInForce, execInst: execInst, contingencyType: contingencyType, text: text).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -440,16 +440,16 @@ open class OrderAPI {
 
      - returns: RequestBuilder<Order> 
      */
-    open class func orderNewWithRequestBuilder(symbol: String, side: String? = nil, simpleOrderQty: Double? = nil, orderQty: Double? = nil, price: Double? = nil, displayQty: Double? = nil, stopPx: Double? = nil, clOrdID: String? = nil, clOrdLinkID: String? = nil, pegOffsetValue: Double? = nil, pegPriceType: String? = nil, ordType: String? = nil, timeInForce: String? = nil, execInst: String? = nil, contingencyType: String? = nil, text: String? = nil) -> RequestBuilder<Order> {
+    open class func orderNewWithRequestBuilder(symbol: String, side: String? = nil, simpleOrderQty: Double? = nil, orderQty: Int? = nil, price: Double? = nil, displayQty: Int? = nil, stopPx: Double? = nil, clOrdID: String? = nil, clOrdLinkID: String? = nil, pegOffsetValue: Double? = nil, pegPriceType: String? = nil, ordType: String? = nil, timeInForce: String? = nil, execInst: String? = nil, contingencyType: String? = nil, text: String? = nil) -> RequestBuilder<Order> {
         let path = "/order"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
             "symbol": symbol,
             "side": side,
             "simpleOrderQty": simpleOrderQty,
-            "orderQty": orderQty,
+            "orderQty": orderQty?.encodeToJSON(),
             "price": price,
-            "displayQty": displayQty,
+            "displayQty": displayQty?.encodeToJSON(),
             "stopPx": stopPx,
             "clOrdID": clOrdID,
             "clOrdLinkID": clOrdLinkID,

@@ -151,6 +151,7 @@ Class | Method | HTTP request | Description
 *StatsApi* | [**statsHistoryUSD**](docs/Api/StatsApi.md#statshistoryusd) | **GET** /stats/historyUSD | Get a summary of exchange statistics in USD.
 *TradeApi* | [**tradeGet**](docs/Api/TradeApi.md#tradeget) | **GET** /trade | Get Trades.
 *TradeApi* | [**tradeGetBucketed**](docs/Api/TradeApi.md#tradegetbucketed) | **GET** /trade/bucketed | Get previous trades in time buckets.
+*UserApi* | [**userCancelPendingWithdrawal**](docs/Api/UserApi.md#usercancelpendingwithdrawal) | **DELETE** /user/withdrawal | Cancel pending withdrawal
 *UserApi* | [**userCancelWithdrawal**](docs/Api/UserApi.md#usercancelwithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 *UserApi* | [**userCheckReferralCode**](docs/Api/UserApi.md#usercheckreferralcode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 *UserApi* | [**userCommunicationToken**](docs/Api/UserApi.md#usercommunicationtoken) | **POST** /user/communicationToken | Register your communication token for mobile clients
@@ -164,6 +165,7 @@ Class | Method | HTTP request | Description
 *UserApi* | [**userGetCSA**](docs/Api/UserApi.md#usergetcsa) | **GET** /user/csa | Get your account&#39;s CSA status.
 *UserApi* | [**userGetCommission**](docs/Api/UserApi.md#usergetcommission) | **GET** /user/commission | Get your account&#39;s commission status.
 *UserApi* | [**userGetDepositAddress**](docs/Api/UserApi.md#usergetdepositaddress) | **GET** /user/depositAddress | Get a deposit address.
+*UserApi* | [**userGetDepositAddressInformation**](docs/Api/UserApi.md#usergetdepositaddressinformation) | **GET** /user/depositAddressInformation | Get a deposit address.
 *UserApi* | [**userGetExecutionHistory**](docs/Api/UserApi.md#usergetexecutionhistory) | **GET** /user/executionHistory | Get the execution history by day.
 *UserApi* | [**userGetMargin**](docs/Api/UserApi.md#usergetmargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 *UserApi* | [**userGetQuoteFillRatio**](docs/Api/UserApi.md#usergetquotefillratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
@@ -202,6 +204,7 @@ Class | Method | HTTP request | Description
  - [CollateralSupportAgreement](docs/Model/CollateralSupportAgreement.md)
  - [CommunicationToken](docs/Model/CommunicationToken.md)
  - [ConnectedUsers](docs/Model/ConnectedUsers.md)
+ - [DepositAddress](docs/Model/DepositAddress.md)
  - [Error](docs/Model/Error.md)
  - [ErrorError](docs/Model/ErrorError.md)
  - [Execution](docs/Model/Execution.md)
@@ -240,6 +243,7 @@ Class | Method | HTTP request | Description
  - [UserEvent](docs/Model/UserEvent.md)
  - [UserPreferences](docs/Model/UserPreferences.md)
  - [Wallet](docs/Model/Wallet.md)
+ - [WalletSummaryRecord](docs/Model/WalletSummaryRecord.md)
  - [XAny](docs/Model/XAny.md)
 
 

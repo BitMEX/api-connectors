@@ -40,7 +40,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>List&lt;Quote&gt;</returns>
-        List<Quote> QuoteGet (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        List<Quote> QuoteGet (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
 
         /// <summary>
         /// Get Quotes.
@@ -58,7 +58,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>ApiResponse of List&lt;Quote&gt;</returns>
-        ApiResponse<List<Quote>> QuoteGetWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        ApiResponse<List<Quote>> QuoteGetWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
         /// <summary>
         /// Get previous quotes in time buckets.
         /// </summary>
@@ -77,7 +77,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>List&lt;Quote&gt;</returns>
-        List<Quote> QuoteGetBucketed (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        List<Quote> QuoteGetBucketed (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
 
         /// <summary>
         /// Get previous quotes in time buckets.
@@ -97,7 +97,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>ApiResponse of List&lt;Quote&gt;</returns>
-        ApiResponse<List<Quote>> QuoteGetBucketedWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        ApiResponse<List<Quote>> QuoteGetBucketedWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -116,7 +116,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of List&lt;Quote&gt;</returns>
-        System.Threading.Tasks.Task<List<Quote>> QuoteGetAsync (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        System.Threading.Tasks.Task<List<Quote>> QuoteGetAsync (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
 
         /// <summary>
         /// Get Quotes.
@@ -134,7 +134,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Quote&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Quote>>> QuoteGetAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Quote>>> QuoteGetAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
         /// <summary>
         /// Get previous quotes in time buckets.
         /// </summary>
@@ -153,7 +153,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of List&lt;Quote&gt;</returns>
-        System.Threading.Tasks.Task<List<Quote>> QuoteGetBucketedAsync (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        System.Threading.Tasks.Task<List<Quote>> QuoteGetBucketedAsync (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
 
         /// <summary>
         /// Get previous quotes in time buckets.
@@ -173,7 +173,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Quote&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Quote>>> QuoteGetBucketedAsyncWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Quote>>> QuoteGetBucketedAsyncWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
         #endregion Asynchronous Operations
     }
 
@@ -287,7 +287,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>List&lt;Quote&gt;</returns>
-        public List<Quote> QuoteGet (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public List<Quote> QuoteGet (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
              ApiResponse<List<Quote>> localVarResponse = QuoteGetWithHttpInfo(symbol, filter, columns, count, start, reverse, startTime, endTime);
              return localVarResponse.Data;
@@ -306,7 +306,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>ApiResponse of List&lt;Quote&gt;</returns>
-        public ApiResponse< List<Quote> > QuoteGetWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public ApiResponse< List<Quote> > QuoteGetWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
 
             var localVarPath = "/quote";
@@ -377,7 +377,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of List&lt;Quote&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Quote>> QuoteGetAsync (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public async System.Threading.Tasks.Task<List<Quote>> QuoteGetAsync (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
              ApiResponse<List<Quote>> localVarResponse = await QuoteGetAsyncWithHttpInfo(symbol, filter, columns, count, start, reverse, startTime, endTime);
              return localVarResponse.Data;
@@ -397,7 +397,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Quote&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Quote>>> QuoteGetAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Quote>>> QuoteGetAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
 
             var localVarPath = "/quote";
@@ -470,7 +470,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>List&lt;Quote&gt;</returns>
-        public List<Quote> QuoteGetBucketed (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public List<Quote> QuoteGetBucketed (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
              ApiResponse<List<Quote>> localVarResponse = QuoteGetBucketedWithHttpInfo(binSize, partial, symbol, filter, columns, count, start, reverse, startTime, endTime);
              return localVarResponse.Data;
@@ -491,7 +491,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>ApiResponse of List&lt;Quote&gt;</returns>
-        public ApiResponse< List<Quote> > QuoteGetBucketedWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public ApiResponse< List<Quote> > QuoteGetBucketedWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
 
             var localVarPath = "/quote/bucketed";
@@ -566,7 +566,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of List&lt;Quote&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Quote>> QuoteGetBucketedAsync (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public async System.Threading.Tasks.Task<List<Quote>> QuoteGetBucketedAsync (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
              ApiResponse<List<Quote>> localVarResponse = await QuoteGetBucketedAsyncWithHttpInfo(binSize, partial, symbol, filter, columns, count, start, reverse, startTime, endTime);
              return localVarResponse.Data;
@@ -588,7 +588,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Quote&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Quote>>> QuoteGetBucketedAsyncWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Quote>>> QuoteGetBucketedAsyncWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
 
             var localVarPath = "/quote/bucketed";

@@ -13,7 +13,6 @@
 
 package io.swagger.client.api;
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import org.threeten.bp.OffsetDateTime;
 import io.swagger.client.model.Settlement;
@@ -48,8 +47,8 @@ public class SettlementApiTest {
         String symbol = null;
         String filter = null;
         String columns = null;
-        BigDecimal count = null;
-        BigDecimal start = null;
+        Integer count = null;
+        Integer start = null;
         Boolean reverse = null;
         OffsetDateTime startTime = null;
         OffsetDateTime endTime = null;

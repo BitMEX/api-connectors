@@ -38,7 +38,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.UserEventApi(swagger_client.ApiClient(configuration))
-count = 150 # float | Number of results to fetch. (optional) (default to 150)
+count = 100 # float | Number of results to fetch. (optional) (default to 100)
 start_id = 1.2 # float | Cursor for pagination. (optional)
 
 try:
@@ -53,7 +53,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **float**| Number of results to fetch. | [optional] [default to 150]
+ **count** | **float**| Number of results to fetch. | [optional] [default to 100]
  **start_id** | **float**| Cursor for pagination. | [optional] 
 
 ### Return type

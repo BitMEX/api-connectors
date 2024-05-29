@@ -45,7 +45,7 @@ SWGLiquidation::init() {
     m_side_isSet = false;
     price = 0.0;
     m_price_isSet = false;
-    leaves_qty = 0.0;
+    leaves_qty = 0L;
     m_leaves_qty_isSet = false;
 }
 
@@ -61,9 +61,7 @@ SWGLiquidation::cleanup() {
         delete side;
     }
 
-    if(leaves_qty != nullptr) { 
-        delete leaves_qty;
-    }
+
 }
 
 SWGLiquidation*
@@ -85,7 +83,7 @@ SWGLiquidation::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&price, pJson["price"], "double", "");
     
-    ::Swagger::setValue(&leaves_qty, pJson["leavesQty"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&leaves_qty, pJson["leavesQty"], "qint64", "");
     
 }
 
@@ -113,8 +111,8 @@ SWGLiquidation::asJsonObject() {
     if(m_price_isSet){
         obj.insert("price", QJsonValue(price));
     }
-    if((leaves_qty != nullptr) && (leaves_qty->isSet())){
-        toJsonValue(QString("leavesQty"), leaves_qty, obj, QString("SWGNumber"));
+    if(m_leaves_qty_isSet){
+        obj.insert("leavesQty", QJsonValue(leaves_qty));
     }
 
     return obj;
@@ -160,12 +158,12 @@ SWGLiquidation::setPrice(double price) {
     this->m_price_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGLiquidation::getLeavesQty() {
     return leaves_qty;
 }
 void
-SWGLiquidation::setLeavesQty(SWGNumber* leaves_qty) {
+SWGLiquidation::setLeavesQty(qint64 leaves_qty) {
     this->leaves_qty = leaves_qty;
     this->m_leaves_qty_isSet = true;
 }
@@ -179,7 +177,7 @@ SWGLiquidation::isSet(){
         if(symbol != nullptr && *symbol != QString("")){ isObjectUpdated = true; break;}
         if(side != nullptr && *side != QString("")){ isObjectUpdated = true; break;}
         if(m_price_isSet){ isObjectUpdated = true; break;}
-        if(leaves_qty != nullptr && leaves_qty->isSet()){ isObjectUpdated = true; break;}
+        if(m_leaves_qty_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

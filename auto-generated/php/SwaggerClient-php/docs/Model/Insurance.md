@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **currency** | **string** |  | 
 **timestamp** | [**\DateTime**](\DateTime.md) |  | 
-**wallet_balance** | **float** |  | [optional] 
+**wallet_balance** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

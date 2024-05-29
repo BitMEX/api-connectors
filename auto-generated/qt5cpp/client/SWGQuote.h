@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -49,8 +48,8 @@ public:
     QString* getSymbol();
     void setSymbol(QString* symbol);
 
-    SWGNumber* getBidSize();
-    void setBidSize(SWGNumber* bid_size);
+    qint64 getBidSize();
+    void setBidSize(qint64 bid_size);
 
     double getBidPrice();
     void setBidPrice(double bid_price);
@@ -58,8 +57,8 @@ public:
     double getAskPrice();
     void setAskPrice(double ask_price);
 
-    SWGNumber* getAskSize();
-    void setAskSize(SWGNumber* ask_size);
+    qint64 getAskSize();
+    void setAskSize(qint64 ask_size);
 
 
     virtual bool isSet() override;
@@ -71,7 +70,7 @@ private:
     QString* symbol;
     bool m_symbol_isSet;
 
-    SWGNumber* bid_size;
+    qint64 bid_size;
     bool m_bid_size_isSet;
 
     double bid_price;
@@ -80,7 +79,7 @@ private:
     double ask_price;
     bool m_ask_price_isSet;
 
-    SWGNumber* ask_size;
+    qint64 ask_size;
     bool m_ask_size_isSet;
 
 };

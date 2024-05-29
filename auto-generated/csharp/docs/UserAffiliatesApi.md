@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="useraffiliatesget"></a>
 # **UserAffiliatesGet**
-> List<XAny> UserAffiliatesGet (double? depth = null)
+> List<XAny> UserAffiliatesGet (double? depth = null, double? targetAccountId = null, double? selectUserId = null)
 
 Get user's affiliates to a given depth
 
@@ -42,11 +42,13 @@ namespace Example
 
             var apiInstance = new UserAffiliatesApi();
             var depth = 1.2;  // double? | the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates (optional) 
+            var targetAccountId = 1.2;  // double? | AccountId of Sub-Affiliate Account (optional) 
+            var selectUserId = 1.2;  // double? | User id of result array to keep (optional) 
 
             try
             {
                 // Get user's affiliates to a given depth
-                List&lt;XAny&gt; result = apiInstance.UserAffiliatesGet(depth);
+                List&lt;XAny&gt; result = apiInstance.UserAffiliatesGet(depth, targetAccountId, selectUserId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -63,6 +65,8 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **depth** | **double?**| the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates | [optional] 
+ **targetAccountId** | **double?**| AccountId of Sub-Affiliate Account | [optional] 
+ **selectUserId** | **double?**| User id of result array to keep | [optional] 
 
 ### Return type
 

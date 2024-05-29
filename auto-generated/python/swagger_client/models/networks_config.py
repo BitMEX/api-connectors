@@ -39,7 +39,7 @@ class NetworksConfig(object):
         'network_symbol': 'str',
         'transaction_explorer': 'str',
         'token_explorer': 'str',
-        'deposit_confirmations': 'float',
+        'deposit_confirmations': 'int',
         'enabled': 'bool'
     }
 
@@ -220,7 +220,7 @@ class NetworksConfig(object):
 
 
         :return: The deposit_confirmations of this NetworksConfig.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._deposit_confirmations
 
@@ -230,7 +230,7 @@ class NetworksConfig(object):
 
 
         :param deposit_confirmations: The deposit_confirmations of this NetworksConfig.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._deposit_confirmations = deposit_confirmations

@@ -23,23 +23,22 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Pinned Messages
  */
 @ApiModel(description = "Pinned Messages")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class PinnedMessage {
   @SerializedName("id")
-  private BigDecimal id = null;
+  private Integer id = null;
 
   @SerializedName("channelID")
-  private BigDecimal channelID = null;
+  private Integer channelID = null;
 
   @SerializedName("messageId")
-  private BigDecimal messageId = null;
+  private Integer messageId = null;
 
   @SerializedName("created")
   private OffsetDateTime created = null;
@@ -53,7 +52,7 @@ public class PinnedMessage {
   @SerializedName("endedUserId")
   private Double endedUserId = null;
 
-  public PinnedMessage id(BigDecimal id) {
+  public PinnedMessage id(Integer id) {
     this.id = id;
     return this;
   }
@@ -63,15 +62,15 @@ public class PinnedMessage {
    * @return id
   **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(BigDecimal id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
-  public PinnedMessage channelID(BigDecimal channelID) {
+  public PinnedMessage channelID(Integer channelID) {
     this.channelID = channelID;
     return this;
   }
@@ -81,15 +80,15 @@ public class PinnedMessage {
    * @return channelID
   **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getChannelID() {
+  public Integer getChannelID() {
     return channelID;
   }
 
-  public void setChannelID(BigDecimal channelID) {
+  public void setChannelID(Integer channelID) {
     this.channelID = channelID;
   }
 
-  public PinnedMessage messageId(BigDecimal messageId) {
+  public PinnedMessage messageId(Integer messageId) {
     this.messageId = messageId;
     return this;
   }
@@ -99,11 +98,11 @@ public class PinnedMessage {
    * @return messageId
   **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getMessageId() {
+  public Integer getMessageId() {
     return messageId;
   }
 
-  public void setMessageId(BigDecimal messageId) {
+  public void setMessageId(Integer messageId) {
     this.messageId = messageId;
   }
 

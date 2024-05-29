@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **float** |  | 
-**channel_id** | **float** |  | 
-**message_id** | **float** |  | 
+**id** | **int** |  | 
+**channel_id** | **int** |  | 
+**message_id** | **int** |  | 
 **created** | **datetime** |  | [optional] 
 **ended** | **datetime** |  | [optional] 
 **created_user_id** | **float** |  | [optional] 

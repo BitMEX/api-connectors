@@ -4,9 +4,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **symbol** | **String** |  | 
-**id** | **Float** |  | 
+**id** | **Integer** |  | 
 **side** | **String** |  | 
-**size** | **Float** |  | [optional] 
+**size** | **Integer** |  | [optional] 
 **price** | **Float** |  | [optional] 
 **timestamp** | **DateTime** |  | [optional] 
 

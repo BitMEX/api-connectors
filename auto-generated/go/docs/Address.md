@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** |  | [optional] [default to null]
+**Id** | **int32** |  | [optional] [default to null]
 **Currency** | **string** |  | [optional] [default to null]
 **Created** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 **UserId** | **float64** |  | [optional] [default to null]
@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Skip2FA** | **bool** |  | [optional] [default to null]
 **Skip2FAVerified** | **bool** |  | [optional] [default to null]
 **Network** | **string** |  | [default to null]
+**Memo** | **string** |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

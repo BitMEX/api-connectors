@@ -22,7 +22,7 @@ case class NetworksConfig (
   networkSymbol: Option[String] = None,
   transactionExplorer: Option[String] = None,
   tokenExplorer: Option[String] = None,
-  depositConfirmations: Option[Double] = None,
+  depositConfirmations: Option[Int] = None,
   enabled: Option[Boolean] = None
 ) extends ApiModel
 

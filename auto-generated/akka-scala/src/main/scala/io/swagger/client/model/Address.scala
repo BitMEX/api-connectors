@@ -16,7 +16,7 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class Address (
-  id: Option[Double] = None,
+  id: Option[Int] = None,
   currency: Option[String] = None,
   created: Option[DateTime] = None,
   userId: Option[Double] = None,
@@ -27,7 +27,8 @@ case class Address (
   skipConfirmVerified: Option[Boolean] = None,
   skip2FA: Option[Boolean] = None,
   skip2FAVerified: Option[Boolean] = None,
-  network: String
+  network: String,
+  memo: Option[String] = None
 ) extends ApiModel
 
 

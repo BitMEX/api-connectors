@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**id** | **Integer** |  |  [optional]
 **firstname** | **String** |  |  [optional]
 **lastname** | **String** |  |  [optional]
 **username** | **String** |  | 
@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **geoipCountry** | **String** |  |  [optional]
 **geoipRegion** | **String** |  |  [optional]
 **firstTradeTimestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
+**firstDepositTimestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **typ** | **String** |  |  [optional]
 
 

@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -33,15 +32,15 @@ public class TradeBin {
   @SerializedName("close")
   private Double close = null;
   @SerializedName("trades")
-  private BigDecimal trades = null;
+  private Long trades = null;
   @SerializedName("volume")
-  private BigDecimal volume = null;
+  private Long volume = null;
   @SerializedName("vwap")
   private Double vwap = null;
   @SerializedName("lastSize")
-  private BigDecimal lastSize = null;
+  private Long lastSize = null;
   @SerializedName("turnover")
-  private BigDecimal turnover = null;
+  private Long turnover = null;
   @SerializedName("homeNotional")
   private Double homeNotional = null;
   @SerializedName("foreignNotional")
@@ -110,20 +109,20 @@ public class TradeBin {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTrades() {
+  public Long getTrades() {
     return trades;
   }
-  public void setTrades(BigDecimal trades) {
+  public void setTrades(Long trades) {
     this.trades = trades;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getVolume() {
+  public Long getVolume() {
     return volume;
   }
-  public void setVolume(BigDecimal volume) {
+  public void setVolume(Long volume) {
     this.volume = volume;
   }
 
@@ -140,20 +139,20 @@ public class TradeBin {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getLastSize() {
+  public Long getLastSize() {
     return lastSize;
   }
-  public void setLastSize(BigDecimal lastSize) {
+  public void setLastSize(Long lastSize) {
     this.lastSize = lastSize;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover() {
+  public Long getTurnover() {
     return turnover;
   }
-  public void setTurnover(BigDecimal turnover) {
+  public void setTurnover(Long turnover) {
     this.turnover = turnover;
   }
 

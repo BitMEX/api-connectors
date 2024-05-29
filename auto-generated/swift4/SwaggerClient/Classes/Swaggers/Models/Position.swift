@@ -12,7 +12,7 @@ import Foundation
 
 public struct Position: Codable {
 
-    public var account: Double
+    public var account: Int64
     public var symbol: String
     public var currency: String?
     public var underlying: String?
@@ -20,43 +20,43 @@ public struct Position: Codable {
     public var commission: Double?
     public var initMarginReq: Double?
     public var maintMarginReq: Double?
-    public var riskLimit: Double?
+    public var riskLimit: Int64?
     public var leverage: Double?
     public var crossMargin: Bool?
     public var deleveragePercentile: Double?
-    public var rebalancedPnl: Double?
-    public var prevRealisedPnl: Double?
-    public var prevUnrealisedPnl: Double?
-    public var openingQty: Double?
-    public var openOrderBuyQty: Double?
-    public var openOrderBuyCost: Double?
-    public var openOrderBuyPremium: Double?
-    public var openOrderSellQty: Double?
-    public var openOrderSellCost: Double?
-    public var openOrderSellPremium: Double?
-    public var currentQty: Double?
-    public var currentCost: Double?
-    public var currentComm: Double?
-    public var realisedCost: Double?
-    public var unrealisedCost: Double?
-    public var grossOpenPremium: Double?
+    public var rebalancedPnl: Int64?
+    public var prevRealisedPnl: Int64?
+    public var prevUnrealisedPnl: Int64?
+    public var openingQty: Int64?
+    public var openOrderBuyQty: Int64?
+    public var openOrderBuyCost: Int64?
+    public var openOrderBuyPremium: Int64?
+    public var openOrderSellQty: Int64?
+    public var openOrderSellCost: Int64?
+    public var openOrderSellPremium: Int64?
+    public var currentQty: Int64?
+    public var currentCost: Int64?
+    public var currentComm: Int64?
+    public var realisedCost: Int64?
+    public var unrealisedCost: Int64?
+    public var grossOpenPremium: Int64?
     public var isOpen: Bool?
     public var markPrice: Double?
-    public var markValue: Double?
-    public var riskValue: Double?
+    public var markValue: Int64?
+    public var riskValue: Int64?
     public var homeNotional: Double?
     public var foreignNotional: Double?
     public var posState: String?
-    public var posCost: Double?
-    public var posCross: Double?
-    public var posComm: Double?
-    public var posLoss: Double?
-    public var posMargin: Double?
-    public var posMaint: Double?
-    public var initMargin: Double?
-    public var maintMargin: Double?
-    public var realisedPnl: Double?
-    public var unrealisedPnl: Double?
+    public var posCost: Int64?
+    public var posCross: Int64?
+    public var posComm: Int64?
+    public var posLoss: Int64?
+    public var posMargin: Int64?
+    public var posMaint: Int64?
+    public var initMargin: Int64?
+    public var maintMargin: Int64?
+    public var realisedPnl: Int64?
+    public var unrealisedPnl: Int64?
     public var unrealisedPnlPcnt: Double?
     public var unrealisedRoePcnt: Double?
     public var avgCostPrice: Double?
@@ -67,7 +67,7 @@ public struct Position: Codable {
     public var bankruptPrice: Double?
     public var timestamp: Date?
 
-    public init(account: Double, symbol: String, currency: String?, underlying: String?, quoteCurrency: String?, commission: Double?, initMarginReq: Double?, maintMarginReq: Double?, riskLimit: Double?, leverage: Double?, crossMargin: Bool?, deleveragePercentile: Double?, rebalancedPnl: Double?, prevRealisedPnl: Double?, prevUnrealisedPnl: Double?, openingQty: Double?, openOrderBuyQty: Double?, openOrderBuyCost: Double?, openOrderBuyPremium: Double?, openOrderSellQty: Double?, openOrderSellCost: Double?, openOrderSellPremium: Double?, currentQty: Double?, currentCost: Double?, currentComm: Double?, realisedCost: Double?, unrealisedCost: Double?, grossOpenPremium: Double?, isOpen: Bool?, markPrice: Double?, markValue: Double?, riskValue: Double?, homeNotional: Double?, foreignNotional: Double?, posState: String?, posCost: Double?, posCross: Double?, posComm: Double?, posLoss: Double?, posMargin: Double?, posMaint: Double?, initMargin: Double?, maintMargin: Double?, realisedPnl: Double?, unrealisedPnl: Double?, unrealisedPnlPcnt: Double?, unrealisedRoePcnt: Double?, avgCostPrice: Double?, avgEntryPrice: Double?, breakEvenPrice: Double?, marginCallPrice: Double?, liquidationPrice: Double?, bankruptPrice: Double?, timestamp: Date?) {
+    public init(account: Int64, symbol: String, currency: String?, underlying: String?, quoteCurrency: String?, commission: Double?, initMarginReq: Double?, maintMarginReq: Double?, riskLimit: Int64?, leverage: Double?, crossMargin: Bool?, deleveragePercentile: Double?, rebalancedPnl: Int64?, prevRealisedPnl: Int64?, prevUnrealisedPnl: Int64?, openingQty: Int64?, openOrderBuyQty: Int64?, openOrderBuyCost: Int64?, openOrderBuyPremium: Int64?, openOrderSellQty: Int64?, openOrderSellCost: Int64?, openOrderSellPremium: Int64?, currentQty: Int64?, currentCost: Int64?, currentComm: Int64?, realisedCost: Int64?, unrealisedCost: Int64?, grossOpenPremium: Int64?, isOpen: Bool?, markPrice: Double?, markValue: Int64?, riskValue: Int64?, homeNotional: Double?, foreignNotional: Double?, posState: String?, posCost: Int64?, posCross: Int64?, posComm: Int64?, posLoss: Int64?, posMargin: Int64?, posMaint: Int64?, initMargin: Int64?, maintMargin: Int64?, realisedPnl: Int64?, unrealisedPnl: Int64?, unrealisedPnlPcnt: Double?, unrealisedRoePcnt: Double?, avgCostPrice: Double?, avgEntryPrice: Double?, breakEvenPrice: Double?, marginCallPrice: Double?, liquidationPrice: Double?, bankruptPrice: Double?, timestamp: Date?) {
         self.account = account
         self.symbol = symbol
         self.currency = currency

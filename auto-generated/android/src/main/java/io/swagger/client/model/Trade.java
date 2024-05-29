@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -30,7 +29,7 @@ public class Trade {
   @SerializedName("side")
   private String side = null;
   @SerializedName("size")
-  private BigDecimal size = null;
+  private Long size = null;
   @SerializedName("price")
   private Double price = null;
   @SerializedName("tickDirection")
@@ -38,7 +37,7 @@ public class Trade {
   @SerializedName("trdMatchID")
   private String trdMatchID = null;
   @SerializedName("grossValue")
-  private BigDecimal grossValue = null;
+  private Long grossValue = null;
   @SerializedName("homeNotional")
   private Double homeNotional = null;
   @SerializedName("foreignNotional")
@@ -79,10 +78,10 @@ public class Trade {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getSize() {
+  public Long getSize() {
     return size;
   }
-  public void setSize(BigDecimal size) {
+  public void setSize(Long size) {
     this.size = size;
   }
 
@@ -119,10 +118,10 @@ public class Trade {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getGrossValue() {
+  public Long getGrossValue() {
     return grossValue;
   }
-  public void setGrossValue(BigDecimal grossValue) {
+  public void setGrossValue(Long grossValue) {
     this.grossValue = grossValue;
   }
 

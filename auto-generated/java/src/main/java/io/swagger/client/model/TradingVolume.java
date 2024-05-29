@@ -28,7 +28,7 @@ import java.io.IOException;
  * 30 days USD average trading volume
  */
 @ApiModel(description = "30 days USD average trading volume")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class TradingVolume {
   @SerializedName("advUsd")
   private Double advUsd = null;

@@ -7,6 +7,6 @@ Name | Type | Description | Notes
 **symbol** | **String** |  | [optional] 
 **side** | **String** |  | [optional] 
 **price** | **Float** |  | [optional] 
-**leaves_qty** | **Float** |  | [optional] 
+**leaves_qty** | **Integer** |  | [optional] 
 
 

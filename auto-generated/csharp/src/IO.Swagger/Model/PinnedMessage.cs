@@ -45,7 +45,7 @@ namespace IO.Swagger.Model
         /// <param name="ended">ended.</param>
         /// <param name="createdUserId">createdUserId.</param>
         /// <param name="endedUserId">endedUserId.</param>
-        public PinnedMessage(decimal? id = default(decimal?), decimal? channelID = default(decimal?), decimal? messageId = default(decimal?), DateTime? created = default(DateTime?), DateTime? ended = default(DateTime?), double? createdUserId = default(double?), double? endedUserId = default(double?))
+        public PinnedMessage(int? id = default(int?), int? channelID = default(int?), int? messageId = default(int?), DateTime? created = default(DateTime?), DateTime? ended = default(DateTime?), double? createdUserId = default(double?), double? endedUserId = default(double?))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -84,19 +84,19 @@ namespace IO.Swagger.Model
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public decimal? Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Gets or Sets ChannelID
         /// </summary>
         [DataMember(Name="channelID", EmitDefaultValue=false)]
-        public decimal? ChannelID { get; set; }
+        public int? ChannelID { get; set; }
 
         /// <summary>
         /// Gets or Sets MessageId
         /// </summary>
         [DataMember(Name="messageId", EmitDefaultValue=false)]
-        public decimal? MessageId { get; set; }
+        public int? MessageId { get; set; }
 
         /// <summary>
         /// Gets or Sets Created

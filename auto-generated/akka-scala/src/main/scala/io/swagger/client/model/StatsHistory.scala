@@ -19,8 +19,8 @@ case class StatsHistory (
   date: DateTime,
   rootSymbol: String,
   currency: Option[String] = None,
-  volume: Option[Double] = None,
-  turnover: Option[Double] = None
+  volume: Option[Long] = None,
+  turnover: Option[Long] = None
 ) extends ApiModel
 
 

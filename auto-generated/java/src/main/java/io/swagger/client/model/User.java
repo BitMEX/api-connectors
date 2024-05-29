@@ -24,17 +24,16 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.client.model.UserPreferences;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Account Operations
  */
 @ApiModel(description = "Account Operations")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class User {
   @SerializedName("id")
-  private BigDecimal id = null;
+  private Integer id = null;
 
   @SerializedName("firstname")
   private String firstname = null;
@@ -87,10 +86,13 @@ public class User {
   @SerializedName("firstTradeTimestamp")
   private OffsetDateTime firstTradeTimestamp = null;
 
+  @SerializedName("firstDepositTimestamp")
+  private OffsetDateTime firstDepositTimestamp = null;
+
   @SerializedName("typ")
   private String typ = null;
 
-  public User id(BigDecimal id) {
+  public User id(Integer id) {
     this.id = id;
     return this;
   }
@@ -100,11 +102,11 @@ public class User {
    * @return id
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(BigDecimal id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -414,6 +416,24 @@ public class User {
     this.firstTradeTimestamp = firstTradeTimestamp;
   }
 
+  public User firstDepositTimestamp(OffsetDateTime firstDepositTimestamp) {
+    this.firstDepositTimestamp = firstDepositTimestamp;
+    return this;
+  }
+
+   /**
+   * Get firstDepositTimestamp
+   * @return firstDepositTimestamp
+  **/
+  @ApiModelProperty(value = "")
+  public OffsetDateTime getFirstDepositTimestamp() {
+    return firstDepositTimestamp;
+  }
+
+  public void setFirstDepositTimestamp(OffsetDateTime firstDepositTimestamp) {
+    this.firstDepositTimestamp = firstDepositTimestamp;
+  }
+
   public User typ(String typ) {
     this.typ = typ;
     return this;
@@ -460,12 +480,13 @@ public class User {
         Objects.equals(this.geoipCountry, user.geoipCountry) &&
         Objects.equals(this.geoipRegion, user.geoipRegion) &&
         Objects.equals(this.firstTradeTimestamp, user.firstTradeTimestamp) &&
+        Objects.equals(this.firstDepositTimestamp, user.firstDepositTimestamp) &&
         Objects.equals(this.typ, user.typ);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname, username, accountName, isUser, email, dateOfBirth, phone, created, lastUpdated, preferences, tfAEnabled, affiliateID, country, geoipCountry, geoipRegion, firstTradeTimestamp, typ);
+    return Objects.hash(id, firstname, lastname, username, accountName, isUser, email, dateOfBirth, phone, created, lastUpdated, preferences, tfAEnabled, affiliateID, country, geoipCountry, geoipRegion, firstTradeTimestamp, firstDepositTimestamp, typ);
   }
 
 
@@ -492,6 +513,7 @@ public class User {
     sb.append("    geoipCountry: ").append(toIndentedString(geoipCountry)).append("\n");
     sb.append("    geoipRegion: ").append(toIndentedString(geoipRegion)).append("\n");
     sb.append("    firstTradeTimestamp: ").append(toIndentedString(firstTradeTimestamp)).append("\n");
+    sb.append("    firstDepositTimestamp: ").append(toIndentedString(firstDepositTimestamp)).append("\n");
     sb.append("    typ: ").append(toIndentedString(typ)).append("\n");
     sb.append("}");
     return sb.toString();

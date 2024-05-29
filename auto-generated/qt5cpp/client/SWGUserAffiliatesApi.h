@@ -34,7 +34,7 @@ public:
     QString basePath;
     QMap<QString, QString> defaultHeaders;
 
-    void userAffiliates_get(double depth);
+    void userAffiliates_get(double depth, double target_account_id, double select_user_id);
     
 private:
     void userAffiliates_getCallback (SWGHttpRequestWorker * worker);

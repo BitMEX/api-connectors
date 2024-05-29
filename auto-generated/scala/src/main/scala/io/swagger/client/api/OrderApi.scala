@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat
 
 import java.util.Date
 import io.swagger.client.model.Error
-import io.swagger.client.model.Number
 import io.swagger.client.model.Order
 import io.swagger.client.{ApiInvoker, ApiException}
 
@@ -99,7 +98,7 @@ class OrderApi(
    * @param text Optional amend annotation. e.g. &#39;Adjust skew&#39;. (optional)
    * @return Order
    */
-  def orderAmend(orderID: Option[String] = None, origClOrdID: Option[String] = None, clOrdID: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Number] = None, simpleLeavesQty: Option[Double] = None, leavesQty: Option[Number] = None, price: Option[Double] = None, stopPx: Option[Double] = None, pegOffsetValue: Option[Double] = None, text: Option[String] = None): Option[Order] = {
+  def orderAmend(orderID: Option[String] = None, origClOrdID: Option[String] = None, clOrdID: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Integer] = None, simpleLeavesQty: Option[Double] = None, leavesQty: Option[Integer] = None, price: Option[Double] = None, stopPx: Option[Double] = None, pegOffsetValue: Option[Double] = None, text: Option[String] = None): Option[Order] = {
     val await = Try(Await.result(orderAmendAsync(orderID, origClOrdID, clOrdID, simpleOrderQty, orderQty, simpleLeavesQty, leavesQty, price, stopPx, pegOffsetValue, text), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -124,7 +123,7 @@ class OrderApi(
    * @param text Optional amend annotation. e.g. &#39;Adjust skew&#39;. (optional)
    * @return Future(Order)
    */
-  def orderAmendAsync(orderID: Option[String] = None, origClOrdID: Option[String] = None, clOrdID: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Number] = None, simpleLeavesQty: Option[Double] = None, leavesQty: Option[Number] = None, price: Option[Double] = None, stopPx: Option[Double] = None, pegOffsetValue: Option[Double] = None, text: Option[String] = None): Future[Order] = {
+  def orderAmendAsync(orderID: Option[String] = None, origClOrdID: Option[String] = None, clOrdID: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Integer] = None, simpleLeavesQty: Option[Double] = None, leavesQty: Option[Integer] = None, price: Option[Double] = None, stopPx: Option[Double] = None, pegOffsetValue: Option[Double] = None, text: Option[String] = None): Future[Order] = {
       helper.orderAmend(orderID, origClOrdID, clOrdID, simpleOrderQty, orderQty, simpleLeavesQty, leavesQty, price, stopPx, pegOffsetValue, text)
   }
 
@@ -258,7 +257,7 @@ class OrderApi(
    * @param endTime Ending date filter for results. (optional)
    * @return List[Order]
    */
-  def orderGetOrders(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Order]] = {
+  def orderGetOrders(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Order]] = {
     val await = Try(Await.result(orderGetOrdersAsync(symbol, filter, columns, count, start, reverse, startTime, endTime), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -280,7 +279,7 @@ class OrderApi(
    * @param endTime Ending date filter for results. (optional)
    * @return Future(List[Order])
    */
-  def orderGetOrdersAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Order]] = {
+  def orderGetOrdersAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Order]] = {
       helper.orderGetOrders(symbol, filter, columns, count, start, reverse, startTime, endTime)
   }
 
@@ -306,7 +305,7 @@ class OrderApi(
    * @param text Optional order annotation. e.g. &#39;Take profit&#39;. (optional)
    * @return Order
    */
-  def orderNew(symbol: String, side: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Number] = None, price: Option[Double] = None, displayQty: Option[Number] = None, stopPx: Option[Double] = None, clOrdID: Option[String] = None, clOrdLinkID: Option[String] = None, pegOffsetValue: Option[Double] = None, pegPriceType: Option[String] = None, ordType: Option[String] = Option("Limit"), timeInForce: Option[String] = None, execInst: Option[String] = None, contingencyType: Option[String] = None, text: Option[String] = None): Option[Order] = {
+  def orderNew(symbol: String, side: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Integer] = None, price: Option[Double] = None, displayQty: Option[Integer] = None, stopPx: Option[Double] = None, clOrdID: Option[String] = None, clOrdLinkID: Option[String] = None, pegOffsetValue: Option[Double] = None, pegPriceType: Option[String] = None, ordType: Option[String] = Option("Limit"), timeInForce: Option[String] = None, execInst: Option[String] = None, contingencyType: Option[String] = None, text: Option[String] = None): Option[Order] = {
     val await = Try(Await.result(orderNewAsync(symbol, side, simpleOrderQty, orderQty, price, displayQty, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, ordType, timeInForce, execInst, contingencyType, text), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -336,7 +335,7 @@ class OrderApi(
    * @param text Optional order annotation. e.g. &#39;Take profit&#39;. (optional)
    * @return Future(Order)
    */
-  def orderNewAsync(symbol: String, side: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Number] = None, price: Option[Double] = None, displayQty: Option[Number] = None, stopPx: Option[Double] = None, clOrdID: Option[String] = None, clOrdLinkID: Option[String] = None, pegOffsetValue: Option[Double] = None, pegPriceType: Option[String] = None, ordType: Option[String] = Option("Limit"), timeInForce: Option[String] = None, execInst: Option[String] = None, contingencyType: Option[String] = None, text: Option[String] = None): Future[Order] = {
+  def orderNewAsync(symbol: String, side: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Integer] = None, price: Option[Double] = None, displayQty: Option[Integer] = None, stopPx: Option[Double] = None, clOrdID: Option[String] = None, clOrdLinkID: Option[String] = None, pegOffsetValue: Option[Double] = None, pegPriceType: Option[String] = None, ordType: Option[String] = Option("Limit"), timeInForce: Option[String] = None, execInst: Option[String] = None, contingencyType: Option[String] = None, text: Option[String] = None): Future[Order] = {
       helper.orderNew(symbol, side, simpleOrderQty, orderQty, price, displayQty, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, ordType, timeInForce, execInst, contingencyType, text)
   }
 
@@ -348,9 +347,9 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     origClOrdID: Option[String] = None,
     clOrdID: Option[String] = None,
     simpleOrderQty: Option[Double] = None,
-    orderQty: Option[Number] = None,
+    orderQty: Option[Integer] = None,
     simpleLeavesQty: Option[Double] = None,
-    leavesQty: Option[Number] = None,
+    leavesQty: Option[Integer] = None,
     price: Option[Double] = None,
     stopPx: Option[Double] = None,
     pegOffsetValue: Option[Double] = None,
@@ -444,8 +443,8 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
   def orderGetOrders(symbol: Option[String] = None,
     filter: Option[String] = None,
     columns: Option[String] = None,
-    count: Option[Number] = Option(100),
-    start: Option[Number] = Option(0),
+    count: Option[Integer] = Option(100),
+    start: Option[Integer] = Option(0),
     reverse: Option[Boolean] = Option(false),
     startTime: Option[Date] = None,
     endTime: Option[Date] = None
@@ -499,9 +498,9 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
   def orderNew(symbol: String,
     side: Option[String] = None,
     simpleOrderQty: Option[Double] = None,
-    orderQty: Option[Number] = None,
+    orderQty: Option[Integer] = None,
     price: Option[Double] = None,
-    displayQty: Option[Number] = None,
+    displayQty: Option[Integer] = None,
     stopPx: Option[Double] = None,
     clOrdID: Option[String] = None,
     clOrdLinkID: Option[String] = None,

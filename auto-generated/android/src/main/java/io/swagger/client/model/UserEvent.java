@@ -25,7 +25,7 @@ public class UserEvent {
   @SerializedName("id")
   private Double id = null;
   public enum TypeEnum {
-     apiKeyCreated,  deleverageExecution,  depositConfirmed,  depositPending,  banZeroVolumeApiUser,  liquidationOrderPlaced,  login,  existingAccountRegistrationAttempt,  passwordChanged,  positionStateLiquidated,  positionStateWarning,  resetPasswordConfirmed,  resetPasswordRequest,  transferCanceled,  transferCompleted,  transferReceived,  transferRequested,  twoFactorDisabled,  twoFactorEnabled,  withdrawalCanceled,  withdrawalCompleted,  withdrawalConfirmed,  withdrawalRequested,  addressSkipConfirmRequested,  addressSkipConfirmVerified,  verify, 
+     apiKeyCreated,  deleverageExecution,  depositConfirmed,  depositPending,  banZeroVolumeApiUser,  liquidationOrderPlaced,  login,  existingAccountRegistrationAttempt,  passwordChanged,  positionStateLiquidated,  positionStateWarning,  resetPasswordConfirmed,  resetPasswordRequest,  transferCanceled,  transferCompleted,  transferReceived,  transferRequested,  twoFactorDisabled,  twoFactorEnabled,  withdrawalCanceled,  withdrawalCompleted,  withdrawalConfirmed,  withdrawalRequested,  addressSkipConfirmRequested,  addressSkipConfirmVerified,  verify,  restrictedAccount,  unrestrictedAccount,  disabledAccount,  enabledAccount,  role:roleMappingDestroy,  role:chatBanned,  role:withdrawalBanned,  role:orderBanned,  role:apiBanned,  role:restrictedJurisdictionPrivilege, 
   };
   @SerializedName("type")
   private TypeEnum type = null;

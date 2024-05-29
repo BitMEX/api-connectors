@@ -39,6 +39,16 @@ public struct UserEvent: Codable {
         case addressskipconfirmrequested = "addressSkipConfirmRequested"
         case addressskipconfirmverified = "addressSkipConfirmVerified"
         case verify = "verify"
+        case restrictedaccount = "restrictedAccount"
+        case unrestrictedaccount = "unrestrictedAccount"
+        case disabledaccount = "disabledAccount"
+        case enabledaccount = "enabledAccount"
+        case roleRolemappingdestroy = "role:roleMappingDestroy"
+        case roleChatbanned = "role:chatBanned"
+        case roleWithdrawalbanned = "role:withdrawalBanned"
+        case roleOrderbanned = "role:orderBanned"
+        case roleApibanned = "role:apiBanned"
+        case roleRestrictedjurisdictionprivilege = "role:restrictedJurisdictionPrivilege"
     }
     public enum Status: String, Codable { 
         case success = "success"

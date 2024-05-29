@@ -4,6 +4,7 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**userCancelPendingWithdrawal**](UserApi.md#userCancelPendingWithdrawal) | **DELETE** /user/withdrawal | Cancel pending withdrawal
 [**userCancelWithdrawal**](UserApi.md#userCancelWithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**userCheckReferralCode**](UserApi.md#userCheckReferralCode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 [**userCommunicationToken**](UserApi.md#userCommunicationToken) | **POST** /user/communicationToken | Register your communication token for mobile clients
@@ -17,6 +18,7 @@ Method | HTTP request | Description
 [**userGetCSA**](UserApi.md#userGetCSA) | **GET** /user/csa | Get your account&#39;s CSA status.
 [**userGetCommission**](UserApi.md#userGetCommission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**userGetDepositAddress**](UserApi.md#userGetDepositAddress) | **GET** /user/depositAddress | Get a deposit address.
+[**userGetDepositAddressInformation**](UserApi.md#userGetDepositAddressInformation) | **GET** /user/depositAddressInformation | Get a deposit address.
 [**userGetExecutionHistory**](UserApi.md#userGetExecutionHistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**userGetMargin**](UserApi.md#userGetMargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**userGetQuoteFillRatio**](UserApi.md#userGetQuoteFillRatio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
@@ -36,6 +38,67 @@ Method | HTTP request | Description
 [**userUpdateSubAccount**](UserApi.md#userUpdateSubAccount) | **POST** /user/updateSubaccount | Updates the sub-account name.
 [**userWalletTransfer**](UserApi.md#userWalletTransfer) | **POST** /user/walletTransfer | Execute a transfer to a paired account.
 
+
+# **userCancelPendingWithdrawal**
+> object userCancelPendingWithdrawal($transact_id)
+
+Cancel pending withdrawal
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: apiExpires
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-expires', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-expires', 'Bearer');
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$transact_id = "transact_id_example"; // string | 
+
+try {
+    $result = $apiInstance->userCancelPendingWithdrawal($transact_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UserApi->userCancelPendingWithdrawal: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transact_id** | **string**|  |
+
+### Return type
+
+**object**
+
+### Authorization
+
+[apiExpires](../../README.md#apiExpires), [apiKey](../../README.md#apiKey), [apiSignature](../../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **userCancelWithdrawal**
 > \Swagger\Client\Model\Transaction userCancelWithdrawal($token)
@@ -770,6 +833,69 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **userGetDepositAddressInformation**
+> \Swagger\Client\Model\DepositAddress userGetDepositAddressInformation($currency, $network)
+
+Get a deposit address.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: apiExpires
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-expires', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-expires', 'Bearer');
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$currency = "currency_example"; // string | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
+$network = "network_example"; // string | The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
+
+try {
+    $result = $apiInstance->userGetDepositAddressInformation($currency, $network);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UserApi->userGetDepositAddressInformation: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; |
+ **network** | **string**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. |
+
+### Return type
+
+[**\Swagger\Client\Model\DepositAddress**](../Model/DepositAddress.md)
+
+### Authorization
+
+[apiExpires](../../README.md#apiExpires), [apiKey](../../README.md#apiKey), [apiSignature](../../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **userGetExecutionHistory**
 > \Swagger\Client\Model\Execution[] userGetExecutionHistory($symbol, $timestamp)
 
@@ -1367,7 +1493,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **userGetWalletHistory**
-> \Swagger\Client\Model\Transaction[] userGetWalletHistory($currency, $count, $start, $target_account_id)
+> \Swagger\Client\Model\Transaction[] userGetWalletHistory($currency, $count, $start, $target_account_id, $reverse)
 
 Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 
@@ -1396,12 +1522,13 @@ $apiInstance = new Swagger\Client\Api\UserApi(
     $config
 );
 $currency = "XBt"; // string | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
-$count = 100; // double | Number of results to fetch.
-$start = 0; // double | Starting point for results.
+$count = 10000; // double | Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows.
+$start = 0; // double | Starting point for results, integer. Default 0.
 $target_account_id = 1.2; // double | AccountId to view the history of, must be a paired account with the authorised user requesting the history.
+$reverse = true; // bool | Start from the latest transaction record. Default true.
 
 try {
-    $result = $apiInstance->userGetWalletHistory($currency, $count, $start, $target_account_id);
+    $result = $apiInstance->userGetWalletHistory($currency, $count, $start, $target_account_id, $reverse);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userGetWalletHistory: ', $e->getMessage(), PHP_EOL;
@@ -1414,9 +1541,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **string**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
- **count** | **double**| Number of results to fetch. | [optional] [default to 100]
- **start** | **double**| Starting point for results. | [optional] [default to 0]
+ **count** | **double**| Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. | [optional] [default to 10000]
+ **start** | **double**| Starting point for results, integer. Default 0. | [optional] [default to 0]
  **target_account_id** | **double**| AccountId to view the history of, must be a paired account with the authorised user requesting the history. | [optional]
+ **reverse** | **bool**| Start from the latest transaction record. Default true. | [optional] [default to true]
 
 ### Return type
 
@@ -1434,9 +1562,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **userGetWalletSummary**
-> \Swagger\Client\Model\Transaction[] userGetWalletSummary($currency)
+> \Swagger\Client\Model\WalletSummaryRecord[] userGetWalletSummary($currency, $start_time, $end_time)
 
 Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+
+Provides an aggregated view of transactions, by transaction type, over a specific time period.
 
 ### Example
 ```php
@@ -1463,9 +1593,11 @@ $apiInstance = new Swagger\Client\Api\UserApi(
     $config
 );
 $currency = "XBt"; // string | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
+$start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Start time for the summary
+$end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | End time for the summary
 
 try {
-    $result = $apiInstance->userGetWalletSummary($currency);
+    $result = $apiInstance->userGetWalletSummary($currency, $start_time, $end_time);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userGetWalletSummary: ', $e->getMessage(), PHP_EOL;
@@ -1478,10 +1610,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **string**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
+ **start_time** | **\DateTime**| Start time for the summary | [optional]
+ **end_time** | **\DateTime**| End time for the summary | [optional]
 
 ### Return type
 
-[**\Swagger\Client\Model\Transaction[]**](../Model/Transaction.md)
+[**\Swagger\Client\Model\WalletSummaryRecord[]**](../Model/WalletSummaryRecord.md)
 
 ### Authorization
 
@@ -1594,7 +1728,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **userRequestWithdrawal**
-> \Swagger\Client\Model\Transaction userRequestWithdrawal($currency, $network, $amount, $otp_token, $address, $address_id, $target_user_id, $fee, $text)
+> \Swagger\Client\Model\Transaction userRequestWithdrawal($currency, $network, $amount, $otp_token, $address, $memo, $address_id, $target_user_id, $fee, $text)
 
 Request a withdrawal to an external wallet.
 
@@ -1626,16 +1760,17 @@ $apiInstance = new Swagger\Client\Api\UserApi(
 );
 $currency = "XBt"; // string | Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
 $network = "network_example"; // string | The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
-$amount = 8.14; // float | Amount of withdrawal currency.
+$amount = 789; // int | Amount of withdrawal currency.
 $otp_token = "otp_token_example"; // string | 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
 $address = "address_example"; // string | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
+$memo = "memo_example"; // string | Destination Memo. If `address`, is specified, Destination Memo can also be specified
 $address_id = 1.2; // double | ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
 $target_user_id = 1.2; // double | ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified.
 $fee = 1.2; // double | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
 $text = "text_example"; // string | Optional annotation, e.g. 'Transfer to home wallet'.
 
 try {
-    $result = $apiInstance->userRequestWithdrawal($currency, $network, $amount, $otp_token, $address, $address_id, $target_user_id, $fee, $text);
+    $result = $apiInstance->userRequestWithdrawal($currency, $network, $amount, $otp_token, $address, $memo, $address_id, $target_user_id, $fee, $text);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userRequestWithdrawal: ', $e->getMessage(), PHP_EOL;
@@ -1649,9 +1784,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **string**| Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | [default to XBt]
  **network** | **string**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. |
- **amount** | **float**| Amount of withdrawal currency. |
+ **amount** | **int**| Amount of withdrawal currency. |
  **otp_token** | **string**| 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. | [optional]
  **address** | **string**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional]
+ **memo** | **string**| Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified | [optional]
  **address_id** | **double**| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional]
  **target_user_id** | **double**| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional]
  **fee** | **double**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional]
@@ -1830,7 +1966,7 @@ $apiInstance = new Swagger\Client\Api\UserApi(
     $config
 );
 $currency = "currency_example"; // string | Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
-$amount = 8.14; // float | Amount of transfer.
+$amount = 789; // int | Amount of transfer.
 $target_account_id = 1.2; // double | AccountId to send the transfer to, must be a paired account with the user sending the transfer.
 $from_account_id = 1.2; // double | AccountID to send the transfer from. Must be paired account with the authenticated user.
 
@@ -1848,7 +1984,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **string**| Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; |
- **amount** | **float**| Amount of transfer. |
+ **amount** | **int**| Amount of transfer. |
  **target_account_id** | **double**| AccountId to send the transfer to, must be a paired account with the user sending the transfer. |
  **from_account_id** | **double**| AccountID to send the transfer from. Must be paired account with the authenticated user. | [optional]
 

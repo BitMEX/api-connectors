@@ -64,17 +64,18 @@ open class GuildAPI {
      - parameter name: (form) Name of the guild, must be unique, must be at least 5 characters 
      - parameter emoji: (form) Emoji name. 
      - parameter potDistributionPercent: (form) How much of the pot should be distributed to the guild members, must be between 0 and 100 
-     - parameter potDistributionType: (form) How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM 
+     - parameter potDistributionType: (form) How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM 
      - parameter potTraderId: (form) User ID of the guild member with order write permission for the pot (optional)
      - parameter _description: (form) Guild description, can be used to explain the guild to other users. (optional)
      - parameter twitter: (form) Guild twitter handle. (optional)
      - parameter discord: (form) Guild discord link. (optional)
+     - parameter telegram: (form) Guild telegram link. (optional)
      - parameter imgUrl: (form) URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
      - parameter isPrivate: (form) Guild privacy status (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func guildEdit(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, potTraderId: Double? = nil, _description: String? = nil, twitter: String? = nil, discord: String? = nil, imgUrl: String? = nil, isPrivate: Bool? = nil, completion: @escaping ((_ data: Guild?,_ error: Error?) -> Void)) {
-        guildEditWithRequestBuilder(name: name, emoji: emoji, potDistributionPercent: potDistributionPercent, potDistributionType: potDistributionType, potTraderId: potTraderId, _description: _description, twitter: twitter, discord: discord, imgUrl: imgUrl, isPrivate: isPrivate).execute { (response, error) -> Void in
+    open class func guildEdit(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, potTraderId: Double? = nil, _description: String? = nil, twitter: String? = nil, discord: String? = nil, telegram: String? = nil, imgUrl: String? = nil, isPrivate: Bool? = nil, completion: @escaping ((_ data: Guild?,_ error: Error?) -> Void)) {
+        guildEditWithRequestBuilder(name: name, emoji: emoji, potDistributionPercent: potDistributionPercent, potDistributionType: potDistributionType, potTraderId: potTraderId, _description: _description, twitter: twitter, discord: discord, telegram: telegram, imgUrl: imgUrl, isPrivate: isPrivate).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -97,17 +98,18 @@ open class GuildAPI {
      - parameter name: (form) Name of the guild, must be unique, must be at least 5 characters 
      - parameter emoji: (form) Emoji name. 
      - parameter potDistributionPercent: (form) How much of the pot should be distributed to the guild members, must be between 0 and 100 
-     - parameter potDistributionType: (form) How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM 
+     - parameter potDistributionType: (form) How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM 
      - parameter potTraderId: (form) User ID of the guild member with order write permission for the pot (optional)
      - parameter _description: (form) Guild description, can be used to explain the guild to other users. (optional)
      - parameter twitter: (form) Guild twitter handle. (optional)
      - parameter discord: (form) Guild discord link. (optional)
+     - parameter telegram: (form) Guild telegram link. (optional)
      - parameter imgUrl: (form) URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
      - parameter isPrivate: (form) Guild privacy status (optional)
 
      - returns: RequestBuilder<Guild> 
      */
-    open class func guildEditWithRequestBuilder(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, potTraderId: Double? = nil, _description: String? = nil, twitter: String? = nil, discord: String? = nil, imgUrl: String? = nil, isPrivate: Bool? = nil) -> RequestBuilder<Guild> {
+    open class func guildEditWithRequestBuilder(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, potTraderId: Double? = nil, _description: String? = nil, twitter: String? = nil, discord: String? = nil, telegram: String? = nil, imgUrl: String? = nil, isPrivate: Bool? = nil) -> RequestBuilder<Guild> {
         let path = "/guild"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
@@ -119,6 +121,7 @@ open class GuildAPI {
             "description": _description,
             "twitter": twitter,
             "discord": discord,
+            "telegram": telegram,
             "imgUrl": imgUrl,
             "isPrivate": isPrivate
         ]
@@ -327,16 +330,17 @@ open class GuildAPI {
      - parameter name: (form) Name of the guild, must be unique, must be at least 5 characters 
      - parameter emoji: (form) Emoji name. 
      - parameter potDistributionPercent: (form) How much of the pot should be distributed to the guild members, must be between 0 and 100 
-     - parameter potDistributionType: (form) How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM 
+     - parameter potDistributionType: (form) How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM 
      - parameter _description: (form) Guild description, can be used to explain the guild to other users. (optional)
      - parameter twitter: (form) Guild twitter handle. (optional)
      - parameter discord: (form) Guild discord link. (optional)
+     - parameter telegram: (form) Guild telegram link. (optional)
      - parameter imgUrl: (form) URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
      - parameter isPrivate: (form) Guild privacy status (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func guildNew(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, _description: String? = nil, twitter: String? = nil, discord: String? = nil, imgUrl: String? = nil, isPrivate: Bool? = nil, completion: @escaping ((_ data: Guild?,_ error: Error?) -> Void)) {
-        guildNewWithRequestBuilder(name: name, emoji: emoji, potDistributionPercent: potDistributionPercent, potDistributionType: potDistributionType, _description: _description, twitter: twitter, discord: discord, imgUrl: imgUrl, isPrivate: isPrivate).execute { (response, error) -> Void in
+    open class func guildNew(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, _description: String? = nil, twitter: String? = nil, discord: String? = nil, telegram: String? = nil, imgUrl: String? = nil, isPrivate: Bool? = nil, completion: @escaping ((_ data: Guild?,_ error: Error?) -> Void)) {
+        guildNewWithRequestBuilder(name: name, emoji: emoji, potDistributionPercent: potDistributionPercent, potDistributionType: potDistributionType, _description: _description, twitter: twitter, discord: discord, telegram: telegram, imgUrl: imgUrl, isPrivate: isPrivate).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -359,16 +363,17 @@ open class GuildAPI {
      - parameter name: (form) Name of the guild, must be unique, must be at least 5 characters 
      - parameter emoji: (form) Emoji name. 
      - parameter potDistributionPercent: (form) How much of the pot should be distributed to the guild members, must be between 0 and 100 
-     - parameter potDistributionType: (form) How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM 
+     - parameter potDistributionType: (form) How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM 
      - parameter _description: (form) Guild description, can be used to explain the guild to other users. (optional)
      - parameter twitter: (form) Guild twitter handle. (optional)
      - parameter discord: (form) Guild discord link. (optional)
+     - parameter telegram: (form) Guild telegram link. (optional)
      - parameter imgUrl: (form) URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used (optional)
      - parameter isPrivate: (form) Guild privacy status (optional)
 
      - returns: RequestBuilder<Guild> 
      */
-    open class func guildNewWithRequestBuilder(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, _description: String? = nil, twitter: String? = nil, discord: String? = nil, imgUrl: String? = nil, isPrivate: Bool? = nil) -> RequestBuilder<Guild> {
+    open class func guildNewWithRequestBuilder(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, _description: String? = nil, twitter: String? = nil, discord: String? = nil, telegram: String? = nil, imgUrl: String? = nil, isPrivate: Bool? = nil) -> RequestBuilder<Guild> {
         let path = "/guild"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
@@ -379,6 +384,7 @@ open class GuildAPI {
             "description": _description,
             "twitter": twitter,
             "discord": discord,
+            "telegram": telegram,
             "imgUrl": imgUrl,
             "isPrivate": isPrivate
         ]

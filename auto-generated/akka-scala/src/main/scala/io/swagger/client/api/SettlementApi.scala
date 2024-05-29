@@ -39,7 +39,7 @@ object SettlementApi {
    * @param startTime Starting date filter for results.
    * @param endTime Ending date filter for results.
    */
-  def settlement.get(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Double], start: Option[Double], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None): ApiRequest[Seq[Settlement]] =
+  def settlement.get(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Int], start: Option[Int], reverse: Option[Boolean], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None): ApiRequest[Seq[Settlement]] =
     ApiRequest[Seq[Settlement]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/settlement", "application/json")
       .withQueryParam("symbol", symbol)
       .withQueryParam("filter", filter)

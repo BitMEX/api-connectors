@@ -15,7 +15,7 @@ package io.swagger.client.model
 import java.util.Date
 
 case class Guild (
-  id: Option[Number] = None,
+  id: Option[Integer] = None,
   created: Date,
   updated: Date,
   archived: Option[Boolean] = None,

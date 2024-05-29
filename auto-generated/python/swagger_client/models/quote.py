@@ -35,10 +35,10 @@ class Quote(object):
     swagger_types = {
         'timestamp': 'datetime',
         'symbol': 'str',
-        'bid_size': 'float',
+        'bid_size': 'int',
         'bid_price': 'float',
         'ask_price': 'float',
-        'ask_size': 'float'
+        'ask_size': 'int'
     }
 
     attribute_map = {
@@ -127,7 +127,7 @@ class Quote(object):
 
 
         :return: The bid_size of this Quote.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._bid_size
 
@@ -137,7 +137,7 @@ class Quote(object):
 
 
         :param bid_size: The bid_size of this Quote.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._bid_size = bid_size
@@ -190,7 +190,7 @@ class Quote(object):
 
 
         :return: The ask_size of this Quote.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._ask_size
 
@@ -200,7 +200,7 @@ class Quote(object):
 
 
         :param ask_size: The ask_size of this Quote.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._ask_size = ask_size

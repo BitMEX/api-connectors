@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **float32** |  | [optional] [default to null]
+**Id** | **int32** |  | [optional] [default to null]
 **Date** | [**time.Time**](time.Time.md) |  | [default to null]
 **User** | **string** |  | [default to null]
 **UserColor** | **string** |  | [optional] [default to null]

@@ -67,7 +67,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **address_new**
-> Address address_new(currency, network, address, name, note=note, skip_confirm=skip_confirm, skip2_fa=skip2_fa)
+> Address address_new(currency, network, address, name, note=note, skip_confirm=skip_confirm, skip2_fa=skip2_fa, memo=memo)
 
 Creates a new saved address.
 
@@ -104,10 +104,11 @@ name = 'name_example' # str | Name of the entry, eg. 'Hardware wallet'.
 note = 'note_example' # str | Optional annotation. (optional)
 skip_confirm = false # bool | Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional) (default to false)
 skip2_fa = false # bool | Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional) (default to false)
+memo = 'memo_example' # str | Destination Memo. (optional)
 
 try:
     # Creates a new saved address.
-    api_response = api_instance.address_new(currency, network, address, name, note=note, skip_confirm=skip_confirm, skip2_fa=skip2_fa)
+    api_response = api_instance.address_new(currency, network, address, name, note=note, skip_confirm=skip_confirm, skip2_fa=skip2_fa, memo=memo)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AddressApi->address_new: %s\n" % e)
@@ -124,6 +125,7 @@ Name | Type | Description  | Notes
  **note** | **str**| Optional annotation. | [optional] 
  **skip_confirm** | **bool**| Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. | [optional] [default to false]
  **skip2_fa** | **bool**| Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. | [optional] [default to false]
+ **memo** | **str**| Destination Memo. | [optional] 
 
 ### Return type
 

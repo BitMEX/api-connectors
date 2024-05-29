@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
   **name** | **string**| Name of the guild, must be unique, must be at least 5 characters | 
   **emoji** | **string**| Emoji name. | 
   **potDistributionPercent** | **float64**| How much of the pot should be distributed to the guild members, must be between 0 and 100 | 
-  **potDistributionType** | **string**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM | 
+  **potDistributionType** | **string**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM | 
  **optional** | ***GuildApiGuildEditOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -64,6 +64,7 @@ Name | Type | Description  | Notes
  **description** | **optional.String**| Guild description, can be used to explain the guild to other users. | 
  **twitter** | **optional.String**| Guild twitter handle. | 
  **discord** | **optional.String**| Guild discord link. | 
+ **telegram** | **optional.String**| Guild telegram link. | 
  **imgUrl** | **optional.String**| URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used | 
  **isPrivate** | **optional.Bool**| Guild privacy status | 
 
@@ -190,7 +191,7 @@ Name | Type | Description  | Notes
   **name** | **string**| Name of the guild, must be unique, must be at least 5 characters | 
   **emoji** | **string**| Emoji name. | 
   **potDistributionPercent** | **float64**| How much of the pot should be distributed to the guild members, must be between 0 and 100 | 
-  **potDistributionType** | **string**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM | 
+  **potDistributionType** | **string**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM | 
  **optional** | ***GuildApiGuildNewOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -205,6 +206,7 @@ Name | Type | Description  | Notes
  **description** | **optional.String**| Guild description, can be used to explain the guild to other users. | 
  **twitter** | **optional.String**| Guild twitter handle. | 
  **discord** | **optional.String**| Guild discord link. | 
+ **telegram** | **optional.String**| Guild telegram link. | 
  **imgUrl** | **optional.String**| URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used | 
  **isPrivate** | **optional.Bool**| Guild privacy status | 
 

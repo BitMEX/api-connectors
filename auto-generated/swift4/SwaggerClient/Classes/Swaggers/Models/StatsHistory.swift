@@ -14,10 +14,10 @@ public struct StatsHistory: Codable {
     public var date: Date
     public var rootSymbol: String
     public var currency: String?
-    public var volume: Double?
-    public var turnover: Double?
+    public var volume: Int64?
+    public var turnover: Int64?
 
-    public init(date: Date, rootSymbol: String, currency: String?, volume: Double?, turnover: Double?) {
+    public init(date: Date, rootSymbol: String, currency: String?, volume: Int64?, turnover: Int64?) {
         self.date = date
         self.rootSymbol = rootSymbol
         self.currency = currency

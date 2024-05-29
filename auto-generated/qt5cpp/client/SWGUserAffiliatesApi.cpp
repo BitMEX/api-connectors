@@ -30,7 +30,7 @@ SWGUserAffiliatesApi::SWGUserAffiliatesApi(QString host, QString basePath) {
 }
 
 void
-SWGUserAffiliatesApi::userAffiliates_get(double depth) {
+SWGUserAffiliatesApi::userAffiliates_get(double depth, double target_account_id, double select_user_id) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/userAffiliates");
 
@@ -42,6 +42,22 @@ SWGUserAffiliatesApi::userAffiliates_get(double depth) {
     fullPath.append(QUrl::toPercentEncoding("depth"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(depth)));
+
+    if (fullPath.indexOf("?") > 0)
+      fullPath.append("&");
+    else
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("targetAccountId"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(target_account_id)));
+
+    if (fullPath.indexOf("?") > 0)
+      fullPath.append("&");
+    else
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("selectUserId"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(select_user_id)));
 
 
     SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();

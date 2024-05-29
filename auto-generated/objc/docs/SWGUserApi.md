@@ -4,6 +4,7 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**userCancelPendingWithdrawal**](SWGUserApi.md#usercancelpendingwithdrawal) | **DELETE** /user/withdrawal | Cancel pending withdrawal
 [**userCancelWithdrawal**](SWGUserApi.md#usercancelwithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**userCheckReferralCode**](SWGUserApi.md#usercheckreferralcode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 [**userCommunicationToken**](SWGUserApi.md#usercommunicationtoken) | **POST** /user/communicationToken | Register your communication token for mobile clients
@@ -17,6 +18,7 @@ Method | HTTP request | Description
 [**userGetCSA**](SWGUserApi.md#usergetcsa) | **GET** /user/csa | Get your account&#39;s CSA status.
 [**userGetCommission**](SWGUserApi.md#usergetcommission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**userGetDepositAddress**](SWGUserApi.md#usergetdepositaddress) | **GET** /user/depositAddress | Get a deposit address.
+[**userGetDepositAddressInformation**](SWGUserApi.md#usergetdepositaddressinformation) | **GET** /user/depositAddressInformation | Get a deposit address.
 [**userGetExecutionHistory**](SWGUserApi.md#usergetexecutionhistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**userGetMargin**](SWGUserApi.md#usergetmargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**userGetQuoteFillRatio**](SWGUserApi.md#usergetquotefillratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
@@ -36,6 +38,71 @@ Method | HTTP request | Description
 [**userUpdateSubAccount**](SWGUserApi.md#userupdatesubaccount) | **POST** /user/updateSubaccount | Updates the sub-account name.
 [**userWalletTransfer**](SWGUserApi.md#userwallettransfer) | **POST** /user/walletTransfer | Execute a transfer to a paired account.
 
+
+# **userCancelPendingWithdrawal**
+```objc
+-(NSURLSessionTask*) userCancelPendingWithdrawalWithTransactID: (NSString*) transactID
+        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+```
+
+Cancel pending withdrawal
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSString* transactID = @"transactID_example"; // 
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Cancel pending withdrawal
+[apiInstance userCancelPendingWithdrawalWithTransactID:transactID
+          completionHandler: ^(NSObject* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userCancelPendingWithdrawal: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transactID** | **NSString***|  | 
+
+### Return type
+
+**NSObject***
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **userCancelWithdrawal**
 ```objc
@@ -816,6 +883,75 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **userGetDepositAddressInformation**
+```objc
+-(NSURLSessionTask*) userGetDepositAddressInformationWithCurrency: (NSString*) currency
+    network: (NSString*) network
+        completionHandler: (void (^)(SWGDepositAddress* output, NSError* error)) handler;
+```
+
+Get a deposit address.
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSString* currency = @"currency_example"; // Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
+NSString* network = @"network_example"; // The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Get a deposit address.
+[apiInstance userGetDepositAddressInformationWithCurrency:currency
+              network:network
+          completionHandler: ^(SWGDepositAddress* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userGetDepositAddressInformation: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **NSString***| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
+ **network** | **NSString***| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
+
+### Return type
+
+[**SWGDepositAddress***](SWGDepositAddress.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **userGetExecutionHistory**
 ```objc
 -(NSURLSessionTask*) userGetExecutionHistoryWithSymbol: (NSString*) symbol
@@ -1459,6 +1595,7 @@ Name | Type | Description  | Notes
     count: (NSNumber*) count
     start: (NSNumber*) start
     targetAccountId: (NSNumber*) targetAccountId
+    reverse: (NSNumber*) reverse
         completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler;
 ```
 
@@ -1485,9 +1622,10 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 
 NSString* currency = @"XBt"; // Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional) (default to XBt)
-NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
-NSNumber* start = @0; // Starting point for results. (optional) (default to 0)
+NSNumber* count = @10000; // Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional) (default to 10000)
+NSNumber* start = @0; // Starting point for results, integer. Default 0. (optional) (default to 0)
 NSNumber* targetAccountId = @1.2; // AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)
+NSNumber* reverse = @true; // Start from the latest transaction record. Default true. (optional) (default to true)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
@@ -1496,6 +1634,7 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
               count:count
               start:start
               targetAccountId:targetAccountId
+              reverse:reverse
           completionHandler: ^(NSArray<SWGTransaction>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -1511,9 +1650,10 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **NSString***| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
- **count** | **NSNumber***| Number of results to fetch. | [optional] [default to 100]
- **start** | **NSNumber***| Starting point for results. | [optional] [default to 0]
+ **count** | **NSNumber***| Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. | [optional] [default to 10000]
+ **start** | **NSNumber***| Starting point for results, integer. Default 0. | [optional] [default to 0]
  **targetAccountId** | **NSNumber***| AccountId to view the history of, must be a paired account with the authorised user requesting the history. | [optional] 
+ **reverse** | **NSNumber***| Start from the latest transaction record. Default true. | [optional] [default to true]
 
 ### Return type
 
@@ -1533,10 +1673,14 @@ Name | Type | Description  | Notes
 # **userGetWalletSummary**
 ```objc
 -(NSURLSessionTask*) userGetWalletSummaryWithCurrency: (NSString*) currency
-        completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler;
+    startTime: (NSDate*) startTime
+    endTime: (NSDate*) endTime
+        completionHandler: (void (^)(NSArray<SWGWalletSummaryRecord>* output, NSError* error)) handler;
 ```
 
 Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+
+Provides an aggregated view of transactions, by transaction type, over a specific time period.
 
 ### Example 
 ```objc
@@ -1559,12 +1703,16 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 
 NSString* currency = @"XBt"; // Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional) (default to XBt)
+NSDate* startTime = @"2013-10-20T19:20:30+01:00"; // Start time for the summary (optional)
+NSDate* endTime = @"2013-10-20T19:20:30+01:00"; // End time for the summary (optional)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 // Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [apiInstance userGetWalletSummaryWithCurrency:currency
-          completionHandler: ^(NSArray<SWGTransaction>* output, NSError* error) {
+              startTime:startTime
+              endTime:endTime
+          completionHandler: ^(NSArray<SWGWalletSummaryRecord>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1579,10 +1727,12 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **NSString***| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
+ **startTime** | **NSDate***| Start time for the summary | [optional] 
+ **endTime** | **NSDate***| End time for the summary | [optional] 
 
 ### Return type
 
-[**NSArray<SWGTransaction>***](SWGTransaction.md)
+[**NSArray<SWGWalletSummaryRecord>***](SWGWalletSummaryRecord.md)
 
 ### Authorization
 
@@ -1704,6 +1854,7 @@ No authorization required
     amount: (NSNumber*) amount
     otpToken: (NSString*) otpToken
     address: (NSString*) address
+    memo: (NSString*) memo
     addressId: (NSNumber*) addressId
     targetUserId: (NSNumber*) targetUserId
     fee: (NSNumber*) fee
@@ -1737,9 +1888,10 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 NSString* currency = @"XBt"; // Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (default to XBt)
 NSString* network = @"network_example"; // The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
-NSNumber* amount = @8.14; // Amount of withdrawal currency.
+NSNumber* amount = @789; // Amount of withdrawal currency.
 NSString* otpToken = @"otpToken_example"; // 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
 NSString* address = @"address_example"; // Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
+NSString* memo = @"memo_example"; // Destination Memo. If `address`, is specified, Destination Memo can also be specified (optional)
 NSNumber* addressId = @1.2; // ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
 NSNumber* targetUserId = @1.2; // ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
 NSNumber* fee = @1.2; // Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
@@ -1753,6 +1905,7 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
               amount:amount
               otpToken:otpToken
               address:address
+              memo:memo
               addressId:addressId
               targetUserId:targetUserId
               fee:fee
@@ -1776,6 +1929,7 @@ Name | Type | Description  | Notes
  **amount** | **NSNumber***| Amount of withdrawal currency. | 
  **otpToken** | **NSString***| 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. | [optional] 
  **address** | **NSString***| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **memo** | **NSString***| Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified | [optional] 
  **addressId** | **NSNumber***| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
  **targetUserId** | **NSNumber***| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
  **fee** | **NSNumber***| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 
@@ -1968,7 +2122,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 
 NSString* currency = @"currency_example"; // Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
-NSNumber* amount = @8.14; // Amount of transfer.
+NSNumber* amount = @789; // Amount of transfer.
 NSNumber* targetAccountId = @1.2; // AccountId to send the transfer to, must be a paired account with the user sending the transfer.
 NSNumber* fromAccountId = @1.2; // AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
 

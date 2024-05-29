@@ -18,7 +18,6 @@ import io.swagger.client.model.Chat
 import io.swagger.client.model.ChatChannel
 import io.swagger.client.model.ConnectedUsers
 import io.swagger.client.model.Error
-import io.swagger.client.model.Number
 import io.swagger.client.model.PinnedMessage
 import io.swagger.client.{ApiInvoker, ApiException}
 
@@ -94,7 +93,7 @@ class ChatApi(
    * @param channelID Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)
    * @return List[Chat]
    */
-  def chatGet(count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(true), channelID: Option[Double] = Option(1)): Option[List[Chat]] = {
+  def chatGet(count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(true), channelID: Option[Double] = Option(1)): Option[List[Chat]] = {
     val await = Try(Await.result(chatGetAsync(count, start, reverse, channelID), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -112,7 +111,7 @@ class ChatApi(
    * @param channelID Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)
    * @return Future(List[Chat])
    */
-  def chatGetAsync(count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(true), channelID: Option[Double] = Option(1)): Future[List[Chat]] = {
+  def chatGetAsync(count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(true), channelID: Option[Double] = Option(1)): Future[List[Chat]] = {
       helper.chatGet(count, start, reverse, channelID)
   }
 
@@ -222,8 +221,8 @@ class ChatApi(
 
 class ChatApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def chatGet(count: Option[Number] = Option(100),
-    start: Option[Number] = Option(0),
+  def chatGet(count: Option[Integer] = Option(100),
+    start: Option[Integer] = Option(0),
     reverse: Option[Boolean] = Option(true),
     channelID: Option[Double] = Option(1)
     )(implicit reader: ClientResponseReader[List[Chat]]): Future[List[Chat]] = {

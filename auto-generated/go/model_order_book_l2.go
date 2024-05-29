@@ -16,9 +16,9 @@ import (
 
 type OrderBookL2 struct {
 	Symbol string `json:"symbol"`
-	Id float32 `json:"id"`
+	Id int64 `json:"id"`
 	Side string `json:"side"`
-	Size float32 `json:"size,omitempty"`
+	Size int64 `json:"size,omitempty"`
 	Price float64 `json:"price,omitempty"`
 	Timestamp time.Time `json:"timestamp,omitempty"`
 }

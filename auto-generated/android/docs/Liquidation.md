@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **symbol** | **String** |  |  [optional]
 **side** | **String** |  |  [optional]
 **price** | **Double** |  |  [optional]
-**leavesQty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**leavesQty** | **Long** |  |  [optional]
 
 
 

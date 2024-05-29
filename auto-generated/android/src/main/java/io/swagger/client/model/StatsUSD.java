@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
@@ -24,13 +23,13 @@ public class StatsUSD {
   @SerializedName("currency")
   private String currency = null;
   @SerializedName("turnover24h")
-  private BigDecimal turnover24h = null;
+  private Long turnover24h = null;
   @SerializedName("turnover30d")
-  private BigDecimal turnover30d = null;
+  private Long turnover30d = null;
   @SerializedName("turnover365d")
-  private BigDecimal turnover365d = null;
+  private Long turnover365d = null;
   @SerializedName("turnover")
-  private BigDecimal turnover = null;
+  private Long turnover = null;
 
   /**
    **/
@@ -55,40 +54,40 @@ public class StatsUSD {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover24h() {
+  public Long getTurnover24h() {
     return turnover24h;
   }
-  public void setTurnover24h(BigDecimal turnover24h) {
+  public void setTurnover24h(Long turnover24h) {
     this.turnover24h = turnover24h;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover30d() {
+  public Long getTurnover30d() {
     return turnover30d;
   }
-  public void setTurnover30d(BigDecimal turnover30d) {
+  public void setTurnover30d(Long turnover30d) {
     this.turnover30d = turnover30d;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover365d() {
+  public Long getTurnover365d() {
     return turnover365d;
   }
-  public void setTurnover365d(BigDecimal turnover365d) {
+  public void setTurnover365d(Long turnover365d) {
     this.turnover365d = turnover365d;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover() {
+  public Long getTurnover() {
     return turnover;
   }
-  public void setTurnover(BigDecimal turnover) {
+  public void setTurnover(Long turnover) {
     this.turnover = turnover;
   }
 

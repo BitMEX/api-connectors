@@ -23,20 +23,19 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * ConnectedUsers
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class ConnectedUsers {
   @SerializedName("users")
-  private BigDecimal users = null;
+  private Integer users = null;
 
   @SerializedName("bots")
-  private BigDecimal bots = null;
+  private Integer bots = null;
 
-  public ConnectedUsers users(BigDecimal users) {
+  public ConnectedUsers users(Integer users) {
     this.users = users;
     return this;
   }
@@ -46,15 +45,15 @@ public class ConnectedUsers {
    * @return users
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getUsers() {
+  public Integer getUsers() {
     return users;
   }
 
-  public void setUsers(BigDecimal users) {
+  public void setUsers(Integer users) {
     this.users = users;
   }
 
-  public ConnectedUsers bots(BigDecimal bots) {
+  public ConnectedUsers bots(Integer bots) {
     this.bots = bots;
     return this;
   }
@@ -64,11 +63,11 @@ public class ConnectedUsers {
    * @return bots
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getBots() {
+  public Integer getBots() {
     return bots;
   }
 
-  public void setBots(BigDecimal bots) {
+  public void setBots(Integer bots) {
     this.bots = bots;
   }
 

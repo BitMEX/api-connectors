@@ -14,7 +14,7 @@ package io.swagger.client.model
 
 
 case class ConnectedUsers (
-  users: Option[Number] = None,
-  bots: Option[Number] = None
+  users: Option[Integer] = None,
+  bots: Option[Integer] = None
 )
 

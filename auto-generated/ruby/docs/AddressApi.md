@@ -104,7 +104,8 @@ name = 'name_example' # String | Name of the entry, eg. 'Hardware wallet'.
 opts = { 
   note: 'note_example', # String | Optional annotation.
   skip_confirm: false, # BOOLEAN | Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation.
-  skip2_fa: false # BOOLEAN | Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.
+  skip2_fa: false, # BOOLEAN | Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.
+  memo: 'memo_example' # String | Destination Memo.
 }
 
 begin
@@ -127,6 +128,7 @@ Name | Type | Description  | Notes
  **note** | **String**| Optional annotation. | [optional] 
  **skip_confirm** | **BOOLEAN**| Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. | [optional] [default to false]
  **skip2_fa** | **BOOLEAN**| Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. | [optional] [default to false]
+ **memo** | **String**| Destination Memo. | [optional] 
 
 ### Return type
 

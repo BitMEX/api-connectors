@@ -15,12 +15,12 @@ public struct Order: Codable {
     public var orderID: String
     public var clOrdID: String?
     public var clOrdLinkID: String?
-    public var account: Double?
+    public var account: Int64?
     public var symbol: String?
     public var side: String?
-    public var orderQty: Double?
+    public var orderQty: Int64?
     public var price: Double?
-    public var displayQty: Double?
+    public var displayQty: Int64?
     public var stopPx: Double?
     public var pegOffsetValue: Double?
     public var pegPriceType: String?
@@ -34,14 +34,14 @@ public struct Order: Codable {
     public var triggered: String?
     public var workingIndicator: Bool?
     public var ordRejReason: String?
-    public var leavesQty: Double?
-    public var cumQty: Double?
+    public var leavesQty: Int64?
+    public var cumQty: Int64?
     public var avgPx: Double?
     public var text: String?
     public var transactTime: Date?
     public var timestamp: Date?
 
-    public init(orderID: String, clOrdID: String?, clOrdLinkID: String?, account: Double?, symbol: String?, side: String?, orderQty: Double?, price: Double?, displayQty: Double?, stopPx: Double?, pegOffsetValue: Double?, pegPriceType: String?, currency: String?, settlCurrency: String?, ordType: String?, timeInForce: String?, execInst: String?, contingencyType: String?, ordStatus: String?, triggered: String?, workingIndicator: Bool?, ordRejReason: String?, leavesQty: Double?, cumQty: Double?, avgPx: Double?, text: String?, transactTime: Date?, timestamp: Date?) {
+    public init(orderID: String, clOrdID: String?, clOrdLinkID: String?, account: Int64?, symbol: String?, side: String?, orderQty: Int64?, price: Double?, displayQty: Int64?, stopPx: Double?, pegOffsetValue: Double?, pegPriceType: String?, currency: String?, settlCurrency: String?, ordType: String?, timeInForce: String?, execInst: String?, contingencyType: String?, ordStatus: String?, triggered: String?, workingIndicator: Bool?, ordRejReason: String?, leavesQty: Int64?, cumQty: Int64?, avgPx: Double?, text: String?, transactTime: Date?, timestamp: Date?) {
         self.orderID = orderID
         self.clOrdID = clOrdID
         self.clOrdLinkID = clOrdLinkID

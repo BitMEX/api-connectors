@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -36,9 +35,9 @@ public class Settlement {
   @SerializedName("optionUnderlyingPrice")
   private Double optionUnderlyingPrice = null;
   @SerializedName("bankrupt")
-  private BigDecimal bankrupt = null;
+  private Long bankrupt = null;
   @SerializedName("taxBase")
-  private BigDecimal taxBase = null;
+  private Long taxBase = null;
   @SerializedName("taxRate")
   private Double taxRate = null;
 
@@ -105,20 +104,20 @@ public class Settlement {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getBankrupt() {
+  public Long getBankrupt() {
     return bankrupt;
   }
-  public void setBankrupt(BigDecimal bankrupt) {
+  public void setBankrupt(Long bankrupt) {
     this.bankrupt = bankrupt;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTaxBase() {
+  public Long getTaxBase() {
     return taxBase;
   }
-  public void setTaxBase(BigDecimal taxBase) {
+  public void setTaxBase(Long taxBase) {
     this.taxBase = taxBase;
   }
 

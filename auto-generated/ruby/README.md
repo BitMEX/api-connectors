@@ -152,6 +152,7 @@ Class | Method | HTTP request | Description
 *SwaggerClient::StatsApi* | [**stats_history_usd**](docs/StatsApi.md#stats_history_usd) | **GET** /stats/historyUSD | Get a summary of exchange statistics in USD.
 *SwaggerClient::TradeApi* | [**trade_get**](docs/TradeApi.md#trade_get) | **GET** /trade | Get Trades.
 *SwaggerClient::TradeApi* | [**trade_get_bucketed**](docs/TradeApi.md#trade_get_bucketed) | **GET** /trade/bucketed | Get previous trades in time buckets.
+*SwaggerClient::UserApi* | [**user_cancel_pending_withdrawal**](docs/UserApi.md#user_cancel_pending_withdrawal) | **DELETE** /user/withdrawal | Cancel pending withdrawal
 *SwaggerClient::UserApi* | [**user_cancel_withdrawal**](docs/UserApi.md#user_cancel_withdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 *SwaggerClient::UserApi* | [**user_check_referral_code**](docs/UserApi.md#user_check_referral_code) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 *SwaggerClient::UserApi* | [**user_communication_token**](docs/UserApi.md#user_communication_token) | **POST** /user/communicationToken | Register your communication token for mobile clients
@@ -165,6 +166,7 @@ Class | Method | HTTP request | Description
 *SwaggerClient::UserApi* | [**user_get_commission**](docs/UserApi.md#user_get_commission) | **GET** /user/commission | Get your account's commission status.
 *SwaggerClient::UserApi* | [**user_get_csa**](docs/UserApi.md#user_get_csa) | **GET** /user/csa | Get your account's CSA status.
 *SwaggerClient::UserApi* | [**user_get_deposit_address**](docs/UserApi.md#user_get_deposit_address) | **GET** /user/depositAddress | Get a deposit address.
+*SwaggerClient::UserApi* | [**user_get_deposit_address_information**](docs/UserApi.md#user_get_deposit_address_information) | **GET** /user/depositAddressInformation | Get a deposit address.
 *SwaggerClient::UserApi* | [**user_get_execution_history**](docs/UserApi.md#user_get_execution_history) | **GET** /user/executionHistory | Get the execution history by day.
 *SwaggerClient::UserApi* | [**user_get_margin**](docs/UserApi.md#user_get_margin) | **GET** /user/margin | Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
 *SwaggerClient::UserApi* | [**user_get_quote_fill_ratio**](docs/UserApi.md#user_get_quote_fill_ratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
@@ -203,6 +205,7 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::CollateralSupportAgreement](docs/CollateralSupportAgreement.md)
  - [SwaggerClient::CommunicationToken](docs/CommunicationToken.md)
  - [SwaggerClient::ConnectedUsers](docs/ConnectedUsers.md)
+ - [SwaggerClient::DepositAddress](docs/DepositAddress.md)
  - [SwaggerClient::Error](docs/Error.md)
  - [SwaggerClient::ErrorError](docs/ErrorError.md)
  - [SwaggerClient::Execution](docs/Execution.md)
@@ -241,6 +244,7 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::UserEvent](docs/UserEvent.md)
  - [SwaggerClient::UserPreferences](docs/UserPreferences.md)
  - [SwaggerClient::Wallet](docs/Wallet.md)
+ - [SwaggerClient::WalletSummaryRecord](docs/WalletSummaryRecord.md)
  - [SwaggerClient::XAny](docs/XAny.md)
 
 

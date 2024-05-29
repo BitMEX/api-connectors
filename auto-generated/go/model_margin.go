@@ -15,30 +15,30 @@ import (
 )
 
 type Margin struct {
-	Account float32 `json:"account"`
+	Account int64 `json:"account"`
 	Currency string `json:"currency"`
-	RiskLimit float32 `json:"riskLimit,omitempty"`
+	RiskLimit int64 `json:"riskLimit,omitempty"`
 	State string `json:"state,omitempty"`
-	Amount float32 `json:"amount,omitempty"`
-	PrevRealisedPnl float32 `json:"prevRealisedPnl,omitempty"`
-	GrossComm float32 `json:"grossComm,omitempty"`
-	GrossOpenCost float32 `json:"grossOpenCost,omitempty"`
-	GrossOpenPremium float32 `json:"grossOpenPremium,omitempty"`
-	GrossExecCost float32 `json:"grossExecCost,omitempty"`
-	GrossMarkValue float32 `json:"grossMarkValue,omitempty"`
-	RiskValue float32 `json:"riskValue,omitempty"`
-	InitMargin float32 `json:"initMargin,omitempty"`
-	MaintMargin float32 `json:"maintMargin,omitempty"`
-	TargetExcessMargin float32 `json:"targetExcessMargin,omitempty"`
-	RealisedPnl float32 `json:"realisedPnl,omitempty"`
-	UnrealisedPnl float32 `json:"unrealisedPnl,omitempty"`
-	WalletBalance float32 `json:"walletBalance,omitempty"`
-	MarginBalance float32 `json:"marginBalance,omitempty"`
+	Amount int64 `json:"amount,omitempty"`
+	PrevRealisedPnl int64 `json:"prevRealisedPnl,omitempty"`
+	GrossComm int64 `json:"grossComm,omitempty"`
+	GrossOpenCost int64 `json:"grossOpenCost,omitempty"`
+	GrossOpenPremium int64 `json:"grossOpenPremium,omitempty"`
+	GrossExecCost int64 `json:"grossExecCost,omitempty"`
+	GrossMarkValue int64 `json:"grossMarkValue,omitempty"`
+	RiskValue int64 `json:"riskValue,omitempty"`
+	InitMargin int64 `json:"initMargin,omitempty"`
+	MaintMargin int64 `json:"maintMargin,omitempty"`
+	TargetExcessMargin int64 `json:"targetExcessMargin,omitempty"`
+	RealisedPnl int64 `json:"realisedPnl,omitempty"`
+	UnrealisedPnl int64 `json:"unrealisedPnl,omitempty"`
+	WalletBalance int64 `json:"walletBalance,omitempty"`
+	MarginBalance int64 `json:"marginBalance,omitempty"`
 	MarginLeverage float64 `json:"marginLeverage,omitempty"`
 	MarginUsedPcnt float64 `json:"marginUsedPcnt,omitempty"`
-	ExcessMargin float32 `json:"excessMargin,omitempty"`
-	AvailableMargin float32 `json:"availableMargin,omitempty"`
-	WithdrawableMargin float32 `json:"withdrawableMargin,omitempty"`
+	ExcessMargin int64 `json:"excessMargin,omitempty"`
+	AvailableMargin int64 `json:"availableMargin,omitempty"`
+	WithdrawableMargin int64 `json:"withdrawableMargin,omitempty"`
 	MakerFeeDiscount float64 `json:"makerFeeDiscount,omitempty"`
 	TakerFeeDiscount float64 `json:"takerFeeDiscount,omitempty"`
 	Timestamp time.Time `json:"timestamp,omitempty"`

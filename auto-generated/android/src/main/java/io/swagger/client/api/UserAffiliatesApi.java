@@ -60,9 +60,11 @@ public class UserAffiliatesApi {
   * Get user&#39;s affiliates to a given depth
   * 
    * @param depth the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates
+   * @param targetAccountId AccountId of Sub-Affiliate Account
+   * @param selectUserId User id of result array to keep
    * @return List<XAny>
   */
-  public List<XAny> userAffiliatesGet (Double depth) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public List<XAny> userAffiliatesGet (Double depth, Double targetAccountId, Double selectUserId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -75,6 +77,8 @@ public class UserAffiliatesApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
     queryParams.addAll(ApiInvoker.parameterToPairs("", "depth", depth));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "targetAccountId", targetAccountId));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "selectUserId", selectUserId));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -119,9 +123,9 @@ public class UserAffiliatesApi {
       /**
    * Get user&#39;s affiliates to a given depth
    * 
-   * @param depth the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates
+   * @param depth the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates   * @param targetAccountId AccountId of Sub-Affiliate Account   * @param selectUserId User id of result array to keep
   */
-  public void userAffiliatesGet (Double depth, final Response.Listener<List<XAny>> responseListener, final Response.ErrorListener errorListener) {
+  public void userAffiliatesGet (Double depth, Double targetAccountId, Double selectUserId, final Response.Listener<List<XAny>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -136,6 +140,8 @@ public class UserAffiliatesApi {
     Map<String, String> formParams = new HashMap<String, String>();
 
     queryParams.addAll(ApiInvoker.parameterToPairs("", "depth", depth));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "targetAccountId", targetAccountId));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "selectUserId", selectUserId));
 
 
     String[] contentTypes = {

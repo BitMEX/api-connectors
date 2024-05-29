@@ -25,10 +25,10 @@ import com.android.volley.VolleyError;
 
 import io.swagger.client.model.AccessToken;
 import io.swagger.client.model.Affiliate;
-import java.math.BigDecimal;
 import io.swagger.client.model.CollateralSupportAgreement;
 import io.swagger.client.model.CommunicationToken;
 import java.util.Date;
+import io.swagger.client.model.DepositAddress;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.Execution;
 import io.swagger.client.model.Margin;
@@ -40,6 +40,7 @@ import io.swagger.client.model.Transaction;
 import io.swagger.client.model.User;
 import io.swagger.client.model.UserCommissionsBySymbol;
 import io.swagger.client.model.Wallet;
+import io.swagger.client.model.WalletSummaryRecord;
 import io.swagger.client.model.XAny;
 
 import org.apache.http.HttpEntity;
@@ -72,6 +73,144 @@ public class UserApi {
     return basePath;
   }
 
+  /**
+  * Cancel pending withdrawal
+  * 
+   * @param transactID 
+   * @return Object
+  */
+  public Object userCancelPendingWithdrawal (String transactID) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'transactID' is set
+    if (transactID == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'transactID' when calling userCancelPendingWithdrawal",
+        new ApiException(400, "Missing the required parameter 'transactID' when calling userCancelPendingWithdrawal"));
+    }
+
+    // create path and map variables
+    String path = "/user/withdrawal";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (transactID != null) {
+        localVarBuilder.addTextBody("transactID", ApiInvoker.parameterToString(transactID), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("transactID", ApiInvoker.parameterToString(transactID));
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Cancel pending withdrawal
+   * 
+   * @param transactID 
+  */
+  public void userCancelPendingWithdrawal (String transactID, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'transactID' is set
+    if (transactID == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'transactID' when calling userCancelPendingWithdrawal",
+        new ApiException(400, "Missing the required parameter 'transactID' when calling userCancelPendingWithdrawal"));
+    }
+
+    // create path and map variables
+    String path = "/user/withdrawal".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+      if (transactID != null) {
+        localVarBuilder.addTextBody("transactID", ApiInvoker.parameterToString(transactID), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("transactID", ApiInvoker.parameterToString(transactID));
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Object) ApiInvoker.deserialize(localVarResponse,  "", Object.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
   /**
   * Cancel a withdrawal.
   * 
@@ -1819,6 +1958,150 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
     }
   }
   /**
+  * Get a deposit address.
+  * 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+   * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.
+   * @return DepositAddress
+  */
+  public DepositAddress userGetDepositAddressInformation (String currency, String network) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'currency' is set
+    if (currency == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'currency' when calling userGetDepositAddressInformation",
+        new ApiException(400, "Missing the required parameter 'currency' when calling userGetDepositAddressInformation"));
+    }
+    // verify the required parameter 'network' is set
+    if (network == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'network' when calling userGetDepositAddressInformation",
+        new ApiException(400, "Missing the required parameter 'network' when calling userGetDepositAddressInformation"));
+    }
+
+    // create path and map variables
+    String path = "/user/depositAddressInformation";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "network", network));
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (DepositAddress) ApiInvoker.deserialize(localVarResponse, "", DepositAddress.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Get a deposit address.
+   * 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;   * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.
+  */
+  public void userGetDepositAddressInformation (String currency, String network, final Response.Listener<DepositAddress> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'currency' is set
+    if (currency == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'currency' when calling userGetDepositAddressInformation",
+        new ApiException(400, "Missing the required parameter 'currency' when calling userGetDepositAddressInformation"));
+    }
+    // verify the required parameter 'network' is set
+    if (network == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'network' when calling userGetDepositAddressInformation",
+        new ApiException(400, "Missing the required parameter 'network' when calling userGetDepositAddressInformation"));
+    }
+
+    // create path and map variables
+    String path = "/user/depositAddressInformation".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "network", network));
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((DepositAddress) ApiInvoker.deserialize(localVarResponse,  "", DepositAddress.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
   * Get the execution history by day.
   * 
    * @param symbol 
@@ -3075,12 +3358,13 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
   * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
   * 
    * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
-   * @param count Number of results to fetch.
-   * @param start Starting point for results.
+   * @param count Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows.
+   * @param start Starting point for results, integer. Default 0.
    * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history.
+   * @param reverse Start from the latest transaction record. Default true.
    * @return List<Transaction>
   */
-  public List<Transaction> userGetWalletHistory (String currency, Double count, Double start, Double targetAccountId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public List<Transaction> userGetWalletHistory (String currency, Double count, Double start, Double targetAccountId, Boolean reverse) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -3096,6 +3380,7 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "count", count));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "start", start));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "targetAccountId", targetAccountId));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "reverse", reverse));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -3140,9 +3425,9 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
       /**
    * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
    * 
-   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;   * @param count Number of results to fetch.   * @param start Starting point for results.   * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history.
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;   * @param count Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows.   * @param start Starting point for results, integer. Default 0.   * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history.   * @param reverse Start from the latest transaction record. Default true.
   */
-  public void userGetWalletHistory (String currency, Double count, Double start, Double targetAccountId, final Response.Listener<List<Transaction>> responseListener, final Response.ErrorListener errorListener) {
+  public void userGetWalletHistory (String currency, Double count, Double start, Double targetAccountId, Boolean reverse, final Response.Listener<List<Transaction>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -3160,6 +3445,7 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "count", count));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "start", start));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "targetAccountId", targetAccountId));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "reverse", reverse));
 
 
     String[] contentTypes = {
@@ -3203,11 +3489,13 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
   }
   /**
   * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
-  * 
+  * Provides an aggregated view of transactions, by transaction type, over a specific time period.
    * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
-   * @return List<Transaction>
+   * @param startTime Start time for the summary
+   * @param endTime End time for the summary
+   * @return List<WalletSummaryRecord>
   */
-  public List<Transaction> userGetWalletSummary (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public List<WalletSummaryRecord> userGetWalletSummary (String currency, Date startTime, Date endTime) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -3220,6 +3508,8 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
     queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "startTime", startTime));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "endTime", endTime));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -3240,7 +3530,7 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (List<Transaction>) ApiInvoker.deserialize(localVarResponse, "array", Transaction.class);
+         return (List<WalletSummaryRecord>) ApiInvoker.deserialize(localVarResponse, "array", WalletSummaryRecord.class);
       } else {
          return null;
       }
@@ -3263,10 +3553,10 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
 
       /**
    * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
-   * 
-   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
+   * Provides an aggregated view of transactions, by transaction type, over a specific time period.
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;   * @param startTime Start time for the summary   * @param endTime End time for the summary
   */
-  public void userGetWalletSummary (String currency, final Response.Listener<List<Transaction>> responseListener, final Response.ErrorListener errorListener) {
+  public void userGetWalletSummary (String currency, Date startTime, Date endTime, final Response.Listener<List<WalletSummaryRecord>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -3281,6 +3571,8 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
     Map<String, String> formParams = new HashMap<String, String>();
 
     queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "startTime", startTime));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "endTime", endTime));
 
 
     String[] contentTypes = {
@@ -3307,7 +3599,7 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((List<Transaction>) ApiInvoker.deserialize(localVarResponse,  "array", Transaction.class));
+              responseListener.onResponse((List<WalletSummaryRecord>) ApiInvoker.deserialize(localVarResponse,  "array", WalletSummaryRecord.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -3562,13 +3854,14 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
    * @param amount Amount of withdrawal currency.
    * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
    * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+   * @param memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified
    * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
    * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
    * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
    * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
    * @return Transaction
   */
-  public Transaction userRequestWithdrawal (String currency, String network, BigDecimal amount, String otpToken, String address, Double addressId, Double targetUserId, Double fee, String text) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Transaction userRequestWithdrawal (String currency, String network, Long amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'currency' is set
     if (currency == null) {
@@ -3619,6 +3912,9 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
       if (address != null) {
         localVarBuilder.addTextBody("address", ApiInvoker.parameterToString(address), ApiInvoker.TEXT_PLAIN_UTF8);
       }
+      if (memo != null) {
+        localVarBuilder.addTextBody("memo", ApiInvoker.parameterToString(memo), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       if (addressId != null) {
         localVarBuilder.addTextBody("addressId", ApiInvoker.parameterToString(addressId), ApiInvoker.TEXT_PLAIN_UTF8);
       }
@@ -3640,6 +3936,7 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
       formParams.put("network", ApiInvoker.parameterToString(network));
       formParams.put("amount", ApiInvoker.parameterToString(amount));
       formParams.put("address", ApiInvoker.parameterToString(address));
+      formParams.put("memo", ApiInvoker.parameterToString(memo));
       formParams.put("addressId", ApiInvoker.parameterToString(addressId));
       formParams.put("targetUserId", ApiInvoker.parameterToString(targetUserId));
       formParams.put("fee", ApiInvoker.parameterToString(fee));
@@ -3675,9 +3972,9 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
       /**
    * Request a withdrawal to an external wallet.
    * This will send a confirmation email to the email address on record.
-   * @param currency Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;   * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.   * @param amount Amount of withdrawal currency.   * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.   * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.   * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
+   * @param currency Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;   * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.   * @param amount Amount of withdrawal currency.   * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.   * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified   * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.   * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
   */
-  public void userRequestWithdrawal (String currency, String network, BigDecimal amount, String otpToken, String address, Double addressId, Double targetUserId, Double fee, String text, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
+  public void userRequestWithdrawal (String currency, String network, Long amount, String otpToken, String address, String memo, Double addressId, Double targetUserId, Double fee, String text, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'currency' is set
@@ -3737,6 +4034,10 @@ formParams.put("amount", ApiInvoker.parameterToString(amount));
         localVarBuilder.addTextBody("address", ApiInvoker.parameterToString(address), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       
+      if (memo != null) {
+        localVarBuilder.addTextBody("memo", ApiInvoker.parameterToString(memo), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
       if (addressId != null) {
         localVarBuilder.addTextBody("addressId", ApiInvoker.parameterToString(addressId), ApiInvoker.TEXT_PLAIN_UTF8);
       }
@@ -3763,6 +4064,7 @@ formParams.put("currency", ApiInvoker.parameterToString(currency));
 formParams.put("network", ApiInvoker.parameterToString(network));
 formParams.put("amount", ApiInvoker.parameterToString(amount));
 formParams.put("address", ApiInvoker.parameterToString(address));
+formParams.put("memo", ApiInvoker.parameterToString(memo));
 formParams.put("addressId", ApiInvoker.parameterToString(addressId));
 formParams.put("targetUserId", ApiInvoker.parameterToString(targetUserId));
 formParams.put("fee", ApiInvoker.parameterToString(fee));
@@ -4107,7 +4409,7 @@ formParams.put("accountName", ApiInvoker.parameterToString(accountName));
    * @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user.
    * @return Transaction
   */
-  public Transaction userWalletTransfer (String currency, BigDecimal amount, Double targetAccountId, Double fromAccountId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Transaction userWalletTransfer (String currency, Long amount, Double targetAccountId, Double fromAccountId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'currency' is set
     if (currency == null) {
@@ -4196,7 +4498,7 @@ formParams.put("accountName", ApiInvoker.parameterToString(accountName));
    * This will send a confirmation email to the email address on record.
    * @param currency Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;   * @param amount Amount of transfer.   * @param targetAccountId AccountId to send the transfer to, must be a paired account with the user sending the transfer.   * @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user.
   */
-  public void userWalletTransfer (String currency, BigDecimal amount, Double targetAccountId, Double fromAccountId, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
+  public void userWalletTransfer (String currency, Long amount, Double targetAccountId, Double fromAccountId, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'currency' is set

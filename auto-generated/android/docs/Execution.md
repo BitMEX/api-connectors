@@ -5,18 +5,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **execID** | **String** |  |  [optional]
-**orderID** | **String** |  | 
+**orderID** | **String** |  |  [optional]
 **clOrdID** | **String** |  |  [optional]
 **clOrdLinkID** | **String** |  |  [optional]
-**account** | **Double** |  |  [optional]
+**account** | **Long** |  |  [optional]
 **symbol** | **String** |  | 
 **side** | **String** |  |  [optional]
-**lastQty** | **Double** |  |  [optional]
+**lastQty** | **Long** |  |  [optional]
 **lastPx** | **Double** |  |  [optional]
 **lastLiquidityInd** | **String** |  |  [optional]
-**orderQty** | **Double** |  |  [optional]
+**orderQty** | **Long** |  |  [optional]
 **price** | **Double** |  |  [optional]
-**displayQty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**displayQty** | **Long** |  |  [optional]
 **stopPx** | **Double** |  |  [optional]
 **pegOffsetValue** | **Double** |  |  [optional]
 **pegPriceType** | **String** |  |  [optional]
@@ -31,24 +31,20 @@ Name | Type | Description | Notes
 **triggered** | **String** |  |  [optional]
 **workingIndicator** | **Boolean** |  |  [optional]
 **ordRejReason** | **String** |  |  [optional]
-**leavesQty** | **Double** |  |  [optional]
-**cumQty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**leavesQty** | **Long** |  |  [optional]
+**cumQty** | **Long** |  |  [optional]
 **avgPx** | **Double** |  |  [optional]
 **commission** | **Double** |  |  [optional]
+**feeType** | **String** |  |  [optional]
 **tradePublishIndicator** | **String** |  |  [optional]
 **text** | **String** |  |  [optional]
 **trdMatchID** | **String** |  |  [optional]
-**execCost** | **Double** |  |  [optional]
-**execComm** | **Double** |  |  [optional]
+**execCost** | **Long** |  |  [optional]
+**execComm** | **Long** |  |  [optional]
 **homeNotional** | **Double** |  |  [optional]
 **foreignNotional** | **Double** |  |  [optional]
 **transactTime** | [**Date**](Date.md) |  |  [optional]
 **timestamp** | [**Date**](Date.md) |  | 
-**execGrossPnl** | **Double** |  |  [optional]
-**currentQty** | **Double** |  |  [optional]
-**avgEntryPrice** | **Double** |  |  [optional]
-**realisedPnl** | **Double** |  |  [optional]
-**unrealisedPnl** | **Double** |  |  [optional]
 
 
 

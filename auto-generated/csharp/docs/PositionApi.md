@@ -13,11 +13,11 @@ Method | HTTP request | Description
 
 <a name="positionget"></a>
 # **PositionGet**
-> List<Position> PositionGet (string filter = null, string columns = null, decimal? count = null)
+> List<Position> PositionGet (string filter = null, string columns = null, int? count = null)
 
 Get your positions.
 
-This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols do not return any position data.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol's default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol's default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
+This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols returns a subset of the position fields, mainly the open order aggregates.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol's default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol's default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
 
 ### Example
 ```csharp
@@ -49,7 +49,7 @@ namespace Example
             var apiInstance = new PositionApi();
             var filter = filter_example;  // string | Table filter. For example, send {\"symbol\": \"XBTUSD\"}. (optional) 
             var columns = columns_example;  // string | Which columns to fetch. For example, send [\"columnName\"]. (optional) 
-            var count = 8.14;  // decimal? | Number of rows to fetch. (optional) 
+            var count = 56;  // int? | Number of rows to fetch. (optional) 
 
             try
             {
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter** | **string**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. | [optional] 
  **columns** | **string**| Which columns to fetch. For example, send [\&quot;columnName\&quot;]. | [optional] 
- **count** | **decimal?**| Number of rows to fetch. | [optional] 
+ **count** | **int?**| Number of rows to fetch. | [optional] 
 
 ### Return type
 
@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 
 <a name="positiontransferisolatedmargin"></a>
 # **PositionTransferIsolatedMargin**
-> Position PositionTransferIsolatedMargin (string symbol, decimal? amount, double? targetAccountId = null)
+> Position PositionTransferIsolatedMargin (string symbol, long? amount, double? targetAccountId = null)
 
 Transfer equity in or out of a position.
 
@@ -202,7 +202,7 @@ namespace Example
 
             var apiInstance = new PositionApi();
             var symbol = symbol_example;  // string | Symbol of position to isolate.
-            var amount = 8.14;  // decimal? | Amount to transfer, in Satoshis. May be negative.
+            var amount = 789;  // long? | Amount to transfer, in Satoshis. May be negative.
             var targetAccountId = 1.2;  // double? | AccountId for the position that the margin would be transfered to, must be a paired account with main user. (optional) 
 
             try
@@ -225,7 +225,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string**| Symbol of position to isolate. | 
- **amount** | **decimal?**| Amount to transfer, in Satoshis. May be negative. | 
+ **amount** | **long?**| Amount to transfer, in Satoshis. May be negative. | 
  **targetAccountId** | **double?**| AccountId for the position that the margin would be transfered to, must be a paired account with main user. | [optional] 
 
 ### Return type
@@ -323,7 +323,7 @@ Name | Type | Description  | Notes
 
 <a name="positionupdaterisklimit"></a>
 # **PositionUpdateRiskLimit**
-> Position PositionUpdateRiskLimit (string symbol, decimal? riskLimit, double? targetAccountId = null)
+> Position PositionUpdateRiskLimit (string symbol, long? riskLimit, double? targetAccountId = null)
 
 Update your risk limit.
 
@@ -358,7 +358,7 @@ namespace Example
 
             var apiInstance = new PositionApi();
             var symbol = symbol_example;  // string | Symbol of position to update risk limit on.
-            var riskLimit = 8.14;  // decimal? | New Risk Limit, in Satoshis.
+            var riskLimit = 789;  // long? | New Risk Limit, in Satoshis.
             var targetAccountId = 1.2;  // double? | AccountId for the position that the risk limit would be updated on, must be a paired account with main user. (optional) 
 
             try
@@ -381,7 +381,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string**| Symbol of position to update risk limit on. | 
- **riskLimit** | **decimal?**| New Risk Limit, in Satoshis. | 
+ **riskLimit** | **long?**| New Risk Limit, in Satoshis. | 
  **targetAccountId** | **double?**| AccountId for the position that the risk limit would be updated on, must be a paired account with main user. | [optional] 
 
 ### Return type

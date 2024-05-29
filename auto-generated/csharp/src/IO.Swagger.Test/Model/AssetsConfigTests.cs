@@ -131,6 +131,14 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'IsMarginCurrency'
         }
         /// <summary>
+        /// Test the property 'MemoRequired'
+        /// </summary>
+        [Test]
+        public void MemoRequiredTest()
+        {
+            // TODO unit test for the property 'MemoRequired'
+        }
+        /// <summary>
         /// Test the property 'Networks'
         /// </summary>
         [Test]

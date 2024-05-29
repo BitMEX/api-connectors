@@ -49,7 +49,7 @@ namespace IO.Swagger.Model
         /// <param name="pendingDebit">pendingDebit.</param>
         /// <param name="confirmedDebit">confirmedDebit.</param>
         /// <param name="timestamp">timestamp.</param>
-        public Wallet(decimal? account = default(decimal?), string currency = default(string), decimal? deposited = default(decimal?), decimal? withdrawn = default(decimal?), decimal? transferIn = default(decimal?), decimal? transferOut = default(decimal?), decimal? amount = default(decimal?), decimal? pendingCredit = default(decimal?), decimal? pendingDebit = default(decimal?), decimal? confirmedDebit = default(decimal?), DateTime? timestamp = default(DateTime?))
+        public Wallet(long? account = default(long?), string currency = default(string), long? deposited = default(long?), long? withdrawn = default(long?), long? transferIn = default(long?), long? transferOut = default(long?), long? amount = default(long?), long? pendingCredit = default(long?), long? pendingDebit = default(long?), long? confirmedDebit = default(long?), DateTime? timestamp = default(DateTime?))
         {
             // to ensure "account" is required (not null)
             if (account == null)
@@ -84,7 +84,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name="account", EmitDefaultValue=false)]
-        public decimal? Account { get; set; }
+        public long? Account { get; set; }
 
         /// <summary>
         /// Gets or Sets Currency
@@ -96,49 +96,49 @@ namespace IO.Swagger.Model
         /// Gets or Sets Deposited
         /// </summary>
         [DataMember(Name="deposited", EmitDefaultValue=false)]
-        public decimal? Deposited { get; set; }
+        public long? Deposited { get; set; }
 
         /// <summary>
         /// Gets or Sets Withdrawn
         /// </summary>
         [DataMember(Name="withdrawn", EmitDefaultValue=false)]
-        public decimal? Withdrawn { get; set; }
+        public long? Withdrawn { get; set; }
 
         /// <summary>
         /// Gets or Sets TransferIn
         /// </summary>
         [DataMember(Name="transferIn", EmitDefaultValue=false)]
-        public decimal? TransferIn { get; set; }
+        public long? TransferIn { get; set; }
 
         /// <summary>
         /// Gets or Sets TransferOut
         /// </summary>
         [DataMember(Name="transferOut", EmitDefaultValue=false)]
-        public decimal? TransferOut { get; set; }
+        public long? TransferOut { get; set; }
 
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
         [DataMember(Name="amount", EmitDefaultValue=false)]
-        public decimal? Amount { get; set; }
+        public long? Amount { get; set; }
 
         /// <summary>
         /// Gets or Sets PendingCredit
         /// </summary>
         [DataMember(Name="pendingCredit", EmitDefaultValue=false)]
-        public decimal? PendingCredit { get; set; }
+        public long? PendingCredit { get; set; }
 
         /// <summary>
         /// Gets or Sets PendingDebit
         /// </summary>
         [DataMember(Name="pendingDebit", EmitDefaultValue=false)]
-        public decimal? PendingDebit { get; set; }
+        public long? PendingDebit { get; set; }
 
         /// <summary>
         /// Gets or Sets ConfirmedDebit
         /// </summary>
         [DataMember(Name="confirmedDebit", EmitDefaultValue=false)]
-        public decimal? ConfirmedDebit { get; set; }
+        public long? ConfirmedDebit { get; set; }
 
         /// <summary>
         /// Gets or Sets Timestamp

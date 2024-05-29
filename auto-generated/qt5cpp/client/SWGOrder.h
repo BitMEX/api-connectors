@@ -51,8 +51,8 @@ public:
     QString* getClOrdLinkId();
     void setClOrdLinkId(QString* cl_ord_link_id);
 
-    double getAccount();
-    void setAccount(double account);
+    qint64 getAccount();
+    void setAccount(qint64 account);
 
     QString* getSymbol();
     void setSymbol(QString* symbol);
@@ -60,14 +60,14 @@ public:
     QString* getSide();
     void setSide(QString* side);
 
-    double getOrderQty();
-    void setOrderQty(double order_qty);
+    qint64 getOrderQty();
+    void setOrderQty(qint64 order_qty);
 
     double getPrice();
     void setPrice(double price);
 
-    double getDisplayQty();
-    void setDisplayQty(double display_qty);
+    qint64 getDisplayQty();
+    void setDisplayQty(qint64 display_qty);
 
     double getStopPx();
     void setStopPx(double stop_px);
@@ -108,11 +108,11 @@ public:
     QString* getOrdRejReason();
     void setOrdRejReason(QString* ord_rej_reason);
 
-    double getLeavesQty();
-    void setLeavesQty(double leaves_qty);
+    qint64 getLeavesQty();
+    void setLeavesQty(qint64 leaves_qty);
 
-    double getCumQty();
-    void setCumQty(double cum_qty);
+    qint64 getCumQty();
+    void setCumQty(qint64 cum_qty);
 
     double getAvgPx();
     void setAvgPx(double avg_px);
@@ -139,7 +139,7 @@ private:
     QString* cl_ord_link_id;
     bool m_cl_ord_link_id_isSet;
 
-    double account;
+    qint64 account;
     bool m_account_isSet;
 
     QString* symbol;
@@ -148,13 +148,13 @@ private:
     QString* side;
     bool m_side_isSet;
 
-    double order_qty;
+    qint64 order_qty;
     bool m_order_qty_isSet;
 
     double price;
     bool m_price_isSet;
 
-    double display_qty;
+    qint64 display_qty;
     bool m_display_qty_isSet;
 
     double stop_px;
@@ -196,10 +196,10 @@ private:
     QString* ord_rej_reason;
     bool m_ord_rej_reason_isSet;
 
-    double leaves_qty;
+    qint64 leaves_qty;
     bool m_leaves_qty_isSet;
 
-    double cum_qty;
+    qint64 cum_qty;
     bool m_cum_qty_isSet;
 
     double avg_px;

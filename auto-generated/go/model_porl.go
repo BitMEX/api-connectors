@@ -16,7 +16,7 @@ import (
 
 // Proof of Reserves/Liabilities
 type Porl struct {
-	Account float32 `json:"account"`
+	Account int32 `json:"account"`
 	Nonce string `json:"nonce,omitempty"`
 	AccountNonce string `json:"accountNonce"`
 	Total float64 `json:"total"`

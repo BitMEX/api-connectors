@@ -23,12 +23,11 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * NetworksConfig
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class NetworksConfig {
   @SerializedName("network")
   private String network = "eth";
@@ -49,7 +48,7 @@ public class NetworksConfig {
   private String tokenExplorer = "https://etherscan.io/token/";
 
   @SerializedName("depositConfirmations")
-  private BigDecimal depositConfirmations = null;
+  private Integer depositConfirmations = null;
 
   @SerializedName("enabled")
   private Boolean enabled = true;
@@ -162,7 +161,7 @@ public class NetworksConfig {
     this.tokenExplorer = tokenExplorer;
   }
 
-  public NetworksConfig depositConfirmations(BigDecimal depositConfirmations) {
+  public NetworksConfig depositConfirmations(Integer depositConfirmations) {
     this.depositConfirmations = depositConfirmations;
     return this;
   }
@@ -172,11 +171,11 @@ public class NetworksConfig {
    * @return depositConfirmations
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getDepositConfirmations() {
+  public Integer getDepositConfirmations() {
     return depositConfirmations;
   }
 
-  public void setDepositConfirmations(BigDecimal depositConfirmations) {
+  public void setDepositConfirmations(Integer depositConfirmations) {
     this.depositConfirmations = depositConfirmations;
   }
 

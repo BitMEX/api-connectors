@@ -34,13 +34,13 @@ class CollateralSupportAgreement(object):
     """
     swagger_types = {
         'csa_id': 'str',
-        'account': 'float',
+        'account': 'int',
         'currency': 'str',
-        'amount': 'float',
-        'min_amount': 'float',
-        'threshold': 'float',
-        'mm_ratio_margin_call': 'float',
-        'mm_ratio_liquidation': 'float',
+        'amount': 'int',
+        'min_amount': 'int',
+        'threshold': 'int',
+        'mm_ratio_margin_call': 'int',
+        'mm_ratio_liquidation': 'int',
         'start_time': 'str',
         'maturity_time': 'str',
         'maturity_instruction': 'str',
@@ -155,7 +155,7 @@ class CollateralSupportAgreement(object):
 
 
         :return: The account of this CollateralSupportAgreement.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._account
 
@@ -165,7 +165,7 @@ class CollateralSupportAgreement(object):
 
 
         :param account: The account of this CollateralSupportAgreement.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._account = account
@@ -197,7 +197,7 @@ class CollateralSupportAgreement(object):
 
 
         :return: The amount of this CollateralSupportAgreement.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._amount
 
@@ -207,7 +207,7 @@ class CollateralSupportAgreement(object):
 
 
         :param amount: The amount of this CollateralSupportAgreement.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._amount = amount
@@ -218,7 +218,7 @@ class CollateralSupportAgreement(object):
 
 
         :return: The min_amount of this CollateralSupportAgreement.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._min_amount
 
@@ -228,7 +228,7 @@ class CollateralSupportAgreement(object):
 
 
         :param min_amount: The min_amount of this CollateralSupportAgreement.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._min_amount = min_amount
@@ -239,7 +239,7 @@ class CollateralSupportAgreement(object):
 
 
         :return: The threshold of this CollateralSupportAgreement.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._threshold
 
@@ -249,7 +249,7 @@ class CollateralSupportAgreement(object):
 
 
         :param threshold: The threshold of this CollateralSupportAgreement.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._threshold = threshold
@@ -260,7 +260,7 @@ class CollateralSupportAgreement(object):
 
 
         :return: The mm_ratio_margin_call of this CollateralSupportAgreement.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._mm_ratio_margin_call
 
@@ -270,7 +270,7 @@ class CollateralSupportAgreement(object):
 
 
         :param mm_ratio_margin_call: The mm_ratio_margin_call of this CollateralSupportAgreement.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._mm_ratio_margin_call = mm_ratio_margin_call
@@ -281,7 +281,7 @@ class CollateralSupportAgreement(object):
 
 
         :return: The mm_ratio_liquidation of this CollateralSupportAgreement.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._mm_ratio_liquidation
 
@@ -291,7 +291,7 @@ class CollateralSupportAgreement(object):
 
 
         :param mm_ratio_liquidation: The mm_ratio_liquidation of this CollateralSupportAgreement.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._mm_ratio_liquidation = mm_ratio_liquidation

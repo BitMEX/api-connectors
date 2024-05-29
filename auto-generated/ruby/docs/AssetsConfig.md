@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **scale** | **Float** |  | [optional] [default to 8.0]
 **enabled** | **BOOLEAN** |  | [optional] [default to true]
 **is_margin_currency** | **BOOLEAN** |  | [optional] [default to true]
+**memo_required** | **BOOLEAN** |  | [optional] [default to false]
 **networks** | [**Array&lt;AssetsConfigNetworkItem&gt;**](AssetsConfigNetworkItem.md) |  | [optional] 
 
 

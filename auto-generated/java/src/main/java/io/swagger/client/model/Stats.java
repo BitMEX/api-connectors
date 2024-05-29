@@ -23,13 +23,12 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * Exchange Statistics
  */
 @ApiModel(description = "Exchange Statistics")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Stats {
   @SerializedName("rootSymbol")
   private String rootSymbol = null;
@@ -38,16 +37,16 @@ public class Stats {
   private String currency = null;
 
   @SerializedName("volume24h")
-  private BigDecimal volume24h = null;
+  private Long volume24h = null;
 
   @SerializedName("turnover24h")
-  private BigDecimal turnover24h = null;
+  private Long turnover24h = null;
 
   @SerializedName("openInterest")
-  private BigDecimal openInterest = null;
+  private Long openInterest = null;
 
   @SerializedName("openValue")
-  private BigDecimal openValue = null;
+  private Long openValue = null;
 
   public Stats rootSymbol(String rootSymbol) {
     this.rootSymbol = rootSymbol;
@@ -85,7 +84,7 @@ public class Stats {
     this.currency = currency;
   }
 
-  public Stats volume24h(BigDecimal volume24h) {
+  public Stats volume24h(Long volume24h) {
     this.volume24h = volume24h;
     return this;
   }
@@ -95,15 +94,15 @@ public class Stats {
    * @return volume24h
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getVolume24h() {
+  public Long getVolume24h() {
     return volume24h;
   }
 
-  public void setVolume24h(BigDecimal volume24h) {
+  public void setVolume24h(Long volume24h) {
     this.volume24h = volume24h;
   }
 
-  public Stats turnover24h(BigDecimal turnover24h) {
+  public Stats turnover24h(Long turnover24h) {
     this.turnover24h = turnover24h;
     return this;
   }
@@ -113,15 +112,15 @@ public class Stats {
    * @return turnover24h
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover24h() {
+  public Long getTurnover24h() {
     return turnover24h;
   }
 
-  public void setTurnover24h(BigDecimal turnover24h) {
+  public void setTurnover24h(Long turnover24h) {
     this.turnover24h = turnover24h;
   }
 
-  public Stats openInterest(BigDecimal openInterest) {
+  public Stats openInterest(Long openInterest) {
     this.openInterest = openInterest;
     return this;
   }
@@ -131,15 +130,15 @@ public class Stats {
    * @return openInterest
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOpenInterest() {
+  public Long getOpenInterest() {
     return openInterest;
   }
 
-  public void setOpenInterest(BigDecimal openInterest) {
+  public void setOpenInterest(Long openInterest) {
     this.openInterest = openInterest;
   }
 
-  public Stats openValue(BigDecimal openValue) {
+  public Stats openValue(Long openValue) {
     this.openValue = openValue;
     return this;
   }
@@ -149,11 +148,11 @@ public class Stats {
    * @return openValue
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOpenValue() {
+  public Long getOpenValue() {
     return openValue;
   }
 
-  public void setOpenValue(BigDecimal openValue) {
+  public void setOpenValue(Long openValue) {
     this.openValue = openValue;
   }
 

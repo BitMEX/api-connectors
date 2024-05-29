@@ -48,10 +48,14 @@ class UserPreferences(object):
         'favourites': 'list[str]',
         'favourites_assets': 'list[str]',
         'favourites_ordered': 'list[str]',
+        'favourite_bots': 'list[str]',
+        'has_set_trading_currencies': 'bool',
         'hide_confirm_dialogs': 'list[str]',
         'hide_connection_modal': 'bool',
         'hide_from_leaderboard': 'bool',
         'hide_name_from_leaderboard': 'bool',
+        'hide_pnl_in_guilds': 'bool',
+        'hide_roi_in_guilds': 'bool',
         'hide_notifications': 'list[str]',
         'hide_phone_confirm': 'bool',
         'is_sensitive_info_visible': 'bool',
@@ -60,8 +64,10 @@ class UserPreferences(object):
         'locale_set_time': 'float',
         'margin_pnl_row': 'str',
         'margin_pnl_row_kind': 'str',
+        'mobile_locale': 'str',
         'msgs_seen': 'list[str]',
         'notifications': 'object',
+        'options_beta': 'bool',
         'order_book_binning': 'object',
         'order_book_type': 'str',
         'order_clear_immediate': 'bool',
@@ -71,6 +77,7 @@ class UserPreferences(object):
         'show_chart_bottom_toolbar': 'bool',
         'show_locale_numbers': 'bool',
         'sounds': 'list[str]',
+        'spacing_preference': 'str',
         'strict_ip_check': 'bool',
         'strict_timeout': 'bool',
         'ticker_group': 'str',
@@ -95,10 +102,14 @@ class UserPreferences(object):
         'favourites': 'favourites',
         'favourites_assets': 'favouritesAssets',
         'favourites_ordered': 'favouritesOrdered',
+        'favourite_bots': 'favouriteBots',
+        'has_set_trading_currencies': 'hasSetTradingCurrencies',
         'hide_confirm_dialogs': 'hideConfirmDialogs',
         'hide_connection_modal': 'hideConnectionModal',
         'hide_from_leaderboard': 'hideFromLeaderboard',
         'hide_name_from_leaderboard': 'hideNameFromLeaderboard',
+        'hide_pnl_in_guilds': 'hidePnlInGuilds',
+        'hide_roi_in_guilds': 'hideRoiInGuilds',
         'hide_notifications': 'hideNotifications',
         'hide_phone_confirm': 'hidePhoneConfirm',
         'is_sensitive_info_visible': 'isSensitiveInfoVisible',
@@ -107,8 +118,10 @@ class UserPreferences(object):
         'locale_set_time': 'localeSetTime',
         'margin_pnl_row': 'marginPnlRow',
         'margin_pnl_row_kind': 'marginPnlRowKind',
+        'mobile_locale': 'mobileLocale',
         'msgs_seen': 'msgsSeen',
         'notifications': 'notifications',
+        'options_beta': 'optionsBeta',
         'order_book_binning': 'orderBookBinning',
         'order_book_type': 'orderBookType',
         'order_clear_immediate': 'orderClearImmediate',
@@ -118,6 +131,7 @@ class UserPreferences(object):
         'show_chart_bottom_toolbar': 'showChartBottomToolbar',
         'show_locale_numbers': 'showLocaleNumbers',
         'sounds': 'sounds',
+        'spacing_preference': 'spacingPreference',
         'strict_ip_check': 'strictIPCheck',
         'strict_timeout': 'strictTimeout',
         'ticker_group': 'tickerGroup',
@@ -126,7 +140,7 @@ class UserPreferences(object):
         'user_color': 'userColor'
     }
 
-    def __init__(self, alert_on_liquidations=None, animations_enabled=None, announcements_last_seen=None, chat_channel_id=None, color_theme=None, currency=None, debug=None, disable_emails=None, disable_push=None, display_corp_enroll_upsell=None, equivalent_currency=None, features=None, favourites=None, favourites_assets=None, favourites_ordered=None, hide_confirm_dialogs=None, hide_connection_modal=None, hide_from_leaderboard=False, hide_name_from_leaderboard=True, hide_notifications=None, hide_phone_confirm=False, is_sensitive_info_visible=None, is_wallet_zero_balance_hidden=None, locale='en-US', locale_set_time=None, margin_pnl_row=None, margin_pnl_row_kind=None, msgs_seen=None, notifications=None, order_book_binning=None, order_book_type=None, order_clear_immediate=False, order_controls_plus_minus=None, platform_layout=None, selected_fiat_currency=None, show_chart_bottom_toolbar=None, show_locale_numbers=True, sounds=None, strict_ip_check=False, strict_timeout=True, ticker_group=None, ticker_pinned=None, trade_layout=None, user_color=None, _configuration=None):  # noqa: E501
+    def __init__(self, alert_on_liquidations=None, animations_enabled=None, announcements_last_seen=None, chat_channel_id=None, color_theme=None, currency=None, debug=None, disable_emails=None, disable_push=None, display_corp_enroll_upsell=None, equivalent_currency=None, features=None, favourites=None, favourites_assets=None, favourites_ordered=None, favourite_bots=None, has_set_trading_currencies=None, hide_confirm_dialogs=None, hide_connection_modal=None, hide_from_leaderboard=False, hide_name_from_leaderboard=True, hide_pnl_in_guilds=False, hide_roi_in_guilds=False, hide_notifications=None, hide_phone_confirm=False, is_sensitive_info_visible=None, is_wallet_zero_balance_hidden=None, locale='en-US', locale_set_time=None, margin_pnl_row=None, margin_pnl_row_kind=None, mobile_locale=None, msgs_seen=None, notifications=None, options_beta=None, order_book_binning=None, order_book_type=None, order_clear_immediate=False, order_controls_plus_minus=None, platform_layout=None, selected_fiat_currency=None, show_chart_bottom_toolbar=None, show_locale_numbers=True, sounds=None, spacing_preference=None, strict_ip_check=False, strict_timeout=True, ticker_group=None, ticker_pinned=None, trade_layout=None, user_color=None, _configuration=None):  # noqa: E501
         """UserPreferences - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -147,10 +161,14 @@ class UserPreferences(object):
         self._favourites = None
         self._favourites_assets = None
         self._favourites_ordered = None
+        self._favourite_bots = None
+        self._has_set_trading_currencies = None
         self._hide_confirm_dialogs = None
         self._hide_connection_modal = None
         self._hide_from_leaderboard = None
         self._hide_name_from_leaderboard = None
+        self._hide_pnl_in_guilds = None
+        self._hide_roi_in_guilds = None
         self._hide_notifications = None
         self._hide_phone_confirm = None
         self._is_sensitive_info_visible = None
@@ -159,8 +177,10 @@ class UserPreferences(object):
         self._locale_set_time = None
         self._margin_pnl_row = None
         self._margin_pnl_row_kind = None
+        self._mobile_locale = None
         self._msgs_seen = None
         self._notifications = None
+        self._options_beta = None
         self._order_book_binning = None
         self._order_book_type = None
         self._order_clear_immediate = None
@@ -170,6 +190,7 @@ class UserPreferences(object):
         self._show_chart_bottom_toolbar = None
         self._show_locale_numbers = None
         self._sounds = None
+        self._spacing_preference = None
         self._strict_ip_check = None
         self._strict_timeout = None
         self._ticker_group = None
@@ -208,6 +229,10 @@ class UserPreferences(object):
             self.favourites_assets = favourites_assets
         if favourites_ordered is not None:
             self.favourites_ordered = favourites_ordered
+        if favourite_bots is not None:
+            self.favourite_bots = favourite_bots
+        if has_set_trading_currencies is not None:
+            self.has_set_trading_currencies = has_set_trading_currencies
         if hide_confirm_dialogs is not None:
             self.hide_confirm_dialogs = hide_confirm_dialogs
         if hide_connection_modal is not None:
@@ -216,6 +241,10 @@ class UserPreferences(object):
             self.hide_from_leaderboard = hide_from_leaderboard
         if hide_name_from_leaderboard is not None:
             self.hide_name_from_leaderboard = hide_name_from_leaderboard
+        if hide_pnl_in_guilds is not None:
+            self.hide_pnl_in_guilds = hide_pnl_in_guilds
+        if hide_roi_in_guilds is not None:
+            self.hide_roi_in_guilds = hide_roi_in_guilds
         if hide_notifications is not None:
             self.hide_notifications = hide_notifications
         if hide_phone_confirm is not None:
@@ -232,10 +261,14 @@ class UserPreferences(object):
             self.margin_pnl_row = margin_pnl_row
         if margin_pnl_row_kind is not None:
             self.margin_pnl_row_kind = margin_pnl_row_kind
+        if mobile_locale is not None:
+            self.mobile_locale = mobile_locale
         if msgs_seen is not None:
             self.msgs_seen = msgs_seen
         if notifications is not None:
             self.notifications = notifications
+        if options_beta is not None:
+            self.options_beta = options_beta
         if order_book_binning is not None:
             self.order_book_binning = order_book_binning
         if order_book_type is not None:
@@ -254,6 +287,8 @@ class UserPreferences(object):
             self.show_locale_numbers = show_locale_numbers
         if sounds is not None:
             self.sounds = sounds
+        if spacing_preference is not None:
+            self.spacing_preference = spacing_preference
         if strict_ip_check is not None:
             self.strict_ip_check = strict_ip_check
         if strict_timeout is not None:
@@ -583,6 +618,48 @@ class UserPreferences(object):
         self._favourites_ordered = favourites_ordered
 
     @property
+    def favourite_bots(self):
+        """Gets the favourite_bots of this UserPreferences.  # noqa: E501
+
+
+        :return: The favourite_bots of this UserPreferences.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._favourite_bots
+
+    @favourite_bots.setter
+    def favourite_bots(self, favourite_bots):
+        """Sets the favourite_bots of this UserPreferences.
+
+
+        :param favourite_bots: The favourite_bots of this UserPreferences.  # noqa: E501
+        :type: list[str]
+        """
+
+        self._favourite_bots = favourite_bots
+
+    @property
+    def has_set_trading_currencies(self):
+        """Gets the has_set_trading_currencies of this UserPreferences.  # noqa: E501
+
+
+        :return: The has_set_trading_currencies of this UserPreferences.  # noqa: E501
+        :rtype: bool
+        """
+        return self._has_set_trading_currencies
+
+    @has_set_trading_currencies.setter
+    def has_set_trading_currencies(self, has_set_trading_currencies):
+        """Sets the has_set_trading_currencies of this UserPreferences.
+
+
+        :param has_set_trading_currencies: The has_set_trading_currencies of this UserPreferences.  # noqa: E501
+        :type: bool
+        """
+
+        self._has_set_trading_currencies = has_set_trading_currencies
+
+    @property
     def hide_confirm_dialogs(self):
         """Gets the hide_confirm_dialogs of this UserPreferences.  # noqa: E501
 
@@ -665,6 +742,48 @@ class UserPreferences(object):
         """
 
         self._hide_name_from_leaderboard = hide_name_from_leaderboard
+
+    @property
+    def hide_pnl_in_guilds(self):
+        """Gets the hide_pnl_in_guilds of this UserPreferences.  # noqa: E501
+
+
+        :return: The hide_pnl_in_guilds of this UserPreferences.  # noqa: E501
+        :rtype: bool
+        """
+        return self._hide_pnl_in_guilds
+
+    @hide_pnl_in_guilds.setter
+    def hide_pnl_in_guilds(self, hide_pnl_in_guilds):
+        """Sets the hide_pnl_in_guilds of this UserPreferences.
+
+
+        :param hide_pnl_in_guilds: The hide_pnl_in_guilds of this UserPreferences.  # noqa: E501
+        :type: bool
+        """
+
+        self._hide_pnl_in_guilds = hide_pnl_in_guilds
+
+    @property
+    def hide_roi_in_guilds(self):
+        """Gets the hide_roi_in_guilds of this UserPreferences.  # noqa: E501
+
+
+        :return: The hide_roi_in_guilds of this UserPreferences.  # noqa: E501
+        :rtype: bool
+        """
+        return self._hide_roi_in_guilds
+
+    @hide_roi_in_guilds.setter
+    def hide_roi_in_guilds(self, hide_roi_in_guilds):
+        """Sets the hide_roi_in_guilds of this UserPreferences.
+
+
+        :param hide_roi_in_guilds: The hide_roi_in_guilds of this UserPreferences.  # noqa: E501
+        :type: bool
+        """
+
+        self._hide_roi_in_guilds = hide_roi_in_guilds
 
     @property
     def hide_notifications(self):
@@ -835,6 +954,27 @@ class UserPreferences(object):
         self._margin_pnl_row_kind = margin_pnl_row_kind
 
     @property
+    def mobile_locale(self):
+        """Gets the mobile_locale of this UserPreferences.  # noqa: E501
+
+
+        :return: The mobile_locale of this UserPreferences.  # noqa: E501
+        :rtype: str
+        """
+        return self._mobile_locale
+
+    @mobile_locale.setter
+    def mobile_locale(self, mobile_locale):
+        """Sets the mobile_locale of this UserPreferences.
+
+
+        :param mobile_locale: The mobile_locale of this UserPreferences.  # noqa: E501
+        :type: str
+        """
+
+        self._mobile_locale = mobile_locale
+
+    @property
     def msgs_seen(self):
         """Gets the msgs_seen of this UserPreferences.  # noqa: E501
 
@@ -875,6 +1015,27 @@ class UserPreferences(object):
         """
 
         self._notifications = notifications
+
+    @property
+    def options_beta(self):
+        """Gets the options_beta of this UserPreferences.  # noqa: E501
+
+
+        :return: The options_beta of this UserPreferences.  # noqa: E501
+        :rtype: bool
+        """
+        return self._options_beta
+
+    @options_beta.setter
+    def options_beta(self, options_beta):
+        """Sets the options_beta of this UserPreferences.
+
+
+        :param options_beta: The options_beta of this UserPreferences.  # noqa: E501
+        :type: bool
+        """
+
+        self._options_beta = options_beta
 
     @property
     def order_book_binning(self):
@@ -1064,6 +1225,27 @@ class UserPreferences(object):
         """
 
         self._sounds = sounds
+
+    @property
+    def spacing_preference(self):
+        """Gets the spacing_preference of this UserPreferences.  # noqa: E501
+
+
+        :return: The spacing_preference of this UserPreferences.  # noqa: E501
+        :rtype: str
+        """
+        return self._spacing_preference
+
+    @spacing_preference.setter
+    def spacing_preference(self, spacing_preference):
+        """Sets the spacing_preference of this UserPreferences.
+
+
+        :param spacing_preference: The spacing_preference of this UserPreferences.  # noqa: E501
+        :type: str
+        """
+
+        self._spacing_preference = spacing_preference
 
     @property
     def strict_ip_check(self):

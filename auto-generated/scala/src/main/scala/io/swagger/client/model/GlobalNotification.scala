@@ -15,11 +15,11 @@ package io.swagger.client.model
 import java.util.Date
 
 case class GlobalNotification (
-  id: Option[Number] = None,
+  id: Option[Integer] = None,
   date: Date,
   title: String,
   body: String,
-  ttl: Number,
+  ttl: Integer,
   `type`: Option[String] = None,
   closable: Option[Boolean] = None,
   persist: Option[Boolean] = None,

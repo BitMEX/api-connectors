@@ -17,9 +17,9 @@ import java.util.Date
 case class Quote (
   timestamp: Date,
   symbol: String,
-  bidSize: Option[Number] = None,
+  bidSize: Option[Long] = None,
   bidPrice: Option[Double] = None,
   askPrice: Option[Double] = None,
-  askSize: Option[Number] = None
+  askSize: Option[Long] = None
 )
 

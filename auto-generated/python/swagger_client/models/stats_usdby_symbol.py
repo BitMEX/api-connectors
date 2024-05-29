@@ -35,10 +35,10 @@ class StatsUSDBySymbol(object):
     swagger_types = {
         'symbol': 'str',
         'currency': 'str',
-        'turnover24h': 'float',
-        'turnover30d': 'float',
-        'turnover365d': 'float',
-        'turnover': 'float'
+        'turnover24h': 'int',
+        'turnover30d': 'int',
+        'turnover365d': 'int',
+        'turnover': 'int'
     }
 
     attribute_map = {
@@ -126,7 +126,7 @@ class StatsUSDBySymbol(object):
 
 
         :return: The turnover24h of this StatsUSDBySymbol.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._turnover24h
 
@@ -136,7 +136,7 @@ class StatsUSDBySymbol(object):
 
 
         :param turnover24h: The turnover24h of this StatsUSDBySymbol.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._turnover24h = turnover24h
@@ -147,7 +147,7 @@ class StatsUSDBySymbol(object):
 
 
         :return: The turnover30d of this StatsUSDBySymbol.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._turnover30d
 
@@ -157,7 +157,7 @@ class StatsUSDBySymbol(object):
 
 
         :param turnover30d: The turnover30d of this StatsUSDBySymbol.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._turnover30d = turnover30d
@@ -168,7 +168,7 @@ class StatsUSDBySymbol(object):
 
 
         :return: The turnover365d of this StatsUSDBySymbol.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._turnover365d
 
@@ -178,7 +178,7 @@ class StatsUSDBySymbol(object):
 
 
         :param turnover365d: The turnover365d of this StatsUSDBySymbol.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._turnover365d = turnover365d
@@ -189,7 +189,7 @@ class StatsUSDBySymbol(object):
 
 
         :return: The turnover of this StatsUSDBySymbol.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._turnover
 
@@ -199,7 +199,7 @@ class StatsUSDBySymbol(object):
 
 
         :param turnover: The turnover of this StatsUSDBySymbol.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._turnover = turnover

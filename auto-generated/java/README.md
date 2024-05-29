@@ -2,7 +2,7 @@
 
 BitMEX API
 - API version: 1.2.0
-  - Build date: 2023-11-29T15:37:13.208+08:00
+  - Build date: 2024-05-28T18:24:26.857+08:00
 
 ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
 
@@ -180,6 +180,7 @@ Class | Method | HTTP request | Description
 *StatsApi* | [**statsHistoryUSD**](docs/StatsApi.md#statsHistoryUSD) | **GET** /stats/historyUSD | Get a summary of exchange statistics in USD.
 *TradeApi* | [**tradeGet**](docs/TradeApi.md#tradeGet) | **GET** /trade | Get Trades.
 *TradeApi* | [**tradeGetBucketed**](docs/TradeApi.md#tradeGetBucketed) | **GET** /trade/bucketed | Get previous trades in time buckets.
+*UserApi* | [**userCancelPendingWithdrawal**](docs/UserApi.md#userCancelPendingWithdrawal) | **DELETE** /user/withdrawal | Cancel pending withdrawal
 *UserApi* | [**userCancelWithdrawal**](docs/UserApi.md#userCancelWithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 *UserApi* | [**userCheckReferralCode**](docs/UserApi.md#userCheckReferralCode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 *UserApi* | [**userCommunicationToken**](docs/UserApi.md#userCommunicationToken) | **POST** /user/communicationToken | Register your communication token for mobile clients
@@ -193,6 +194,7 @@ Class | Method | HTTP request | Description
 *UserApi* | [**userGetCSA**](docs/UserApi.md#userGetCSA) | **GET** /user/csa | Get your account&#39;s CSA status.
 *UserApi* | [**userGetCommission**](docs/UserApi.md#userGetCommission) | **GET** /user/commission | Get your account&#39;s commission status.
 *UserApi* | [**userGetDepositAddress**](docs/UserApi.md#userGetDepositAddress) | **GET** /user/depositAddress | Get a deposit address.
+*UserApi* | [**userGetDepositAddressInformation**](docs/UserApi.md#userGetDepositAddressInformation) | **GET** /user/depositAddressInformation | Get a deposit address.
 *UserApi* | [**userGetExecutionHistory**](docs/UserApi.md#userGetExecutionHistory) | **GET** /user/executionHistory | Get the execution history by day.
 *UserApi* | [**userGetMargin**](docs/UserApi.md#userGetMargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 *UserApi* | [**userGetQuoteFillRatio**](docs/UserApi.md#userGetQuoteFillRatio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
@@ -231,6 +233,7 @@ Class | Method | HTTP request | Description
  - [CollateralSupportAgreement](docs/CollateralSupportAgreement.md)
  - [CommunicationToken](docs/CommunicationToken.md)
  - [ConnectedUsers](docs/ConnectedUsers.md)
+ - [DepositAddress](docs/DepositAddress.md)
  - [Error](docs/Error.md)
  - [ErrorError](docs/ErrorError.md)
  - [Execution](docs/Execution.md)
@@ -269,6 +272,7 @@ Class | Method | HTTP request | Description
  - [UserEvent](docs/UserEvent.md)
  - [UserPreferences](docs/UserPreferences.md)
  - [Wallet](docs/Wallet.md)
+ - [WalletSummaryRecord](docs/WalletSummaryRecord.md)
  - [XAny](docs/XAny.md)
 
 

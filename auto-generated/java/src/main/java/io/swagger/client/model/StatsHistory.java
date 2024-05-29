@@ -23,13 +23,12 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * StatsHistory
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class StatsHistory {
   @SerializedName("date")
   private OffsetDateTime date = null;
@@ -41,10 +40,10 @@ public class StatsHistory {
   private String currency = null;
 
   @SerializedName("volume")
-  private BigDecimal volume = null;
+  private Long volume = null;
 
   @SerializedName("turnover")
-  private BigDecimal turnover = null;
+  private Long turnover = null;
 
   public StatsHistory date(OffsetDateTime date) {
     this.date = date;
@@ -100,7 +99,7 @@ public class StatsHistory {
     this.currency = currency;
   }
 
-  public StatsHistory volume(BigDecimal volume) {
+  public StatsHistory volume(Long volume) {
     this.volume = volume;
     return this;
   }
@@ -110,15 +109,15 @@ public class StatsHistory {
    * @return volume
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getVolume() {
+  public Long getVolume() {
     return volume;
   }
 
-  public void setVolume(BigDecimal volume) {
+  public void setVolume(Long volume) {
     this.volume = volume;
   }
 
-  public StatsHistory turnover(BigDecimal turnover) {
+  public StatsHistory turnover(Long turnover) {
     this.turnover = turnover;
     return this;
   }
@@ -128,11 +127,11 @@ public class StatsHistory {
    * @return turnover
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover() {
+  public Long getTurnover() {
     return turnover;
   }
 
-  public void setTurnover(BigDecimal turnover) {
+  public void setTurnover(Long turnover) {
     this.turnover = turnover;
   }
 

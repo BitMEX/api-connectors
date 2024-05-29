@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * Placement, Cancellation, Amending, and History
  */
 @ApiModel(description = "Placement, Cancellation, Amending, and History")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Order {
   @SerializedName("orderID")
   private String orderID = null;
@@ -41,7 +41,7 @@ public class Order {
   private String clOrdLinkID = null;
 
   @SerializedName("account")
-  private Double account = null;
+  private Long account = null;
 
   @SerializedName("symbol")
   private String symbol = null;
@@ -50,13 +50,13 @@ public class Order {
   private String side = null;
 
   @SerializedName("orderQty")
-  private Double orderQty = null;
+  private Long orderQty = null;
 
   @SerializedName("price")
   private Double price = null;
 
   @SerializedName("displayQty")
-  private Double displayQty = null;
+  private Long displayQty = null;
 
   @SerializedName("stopPx")
   private Double stopPx = null;
@@ -98,10 +98,10 @@ public class Order {
   private String ordRejReason = null;
 
   @SerializedName("leavesQty")
-  private Double leavesQty = null;
+  private Long leavesQty = null;
 
   @SerializedName("cumQty")
-  private Double cumQty = null;
+  private Long cumQty = null;
 
   @SerializedName("avgPx")
   private Double avgPx = null;
@@ -169,7 +169,7 @@ public class Order {
     this.clOrdLinkID = clOrdLinkID;
   }
 
-  public Order account(Double account) {
+  public Order account(Long account) {
     this.account = account;
     return this;
   }
@@ -179,11 +179,11 @@ public class Order {
    * @return account
   **/
   @ApiModelProperty(value = "")
-  public Double getAccount() {
+  public Long getAccount() {
     return account;
   }
 
-  public void setAccount(Double account) {
+  public void setAccount(Long account) {
     this.account = account;
   }
 
@@ -223,7 +223,7 @@ public class Order {
     this.side = side;
   }
 
-  public Order orderQty(Double orderQty) {
+  public Order orderQty(Long orderQty) {
     this.orderQty = orderQty;
     return this;
   }
@@ -233,11 +233,11 @@ public class Order {
    * @return orderQty
   **/
   @ApiModelProperty(value = "")
-  public Double getOrderQty() {
+  public Long getOrderQty() {
     return orderQty;
   }
 
-  public void setOrderQty(Double orderQty) {
+  public void setOrderQty(Long orderQty) {
     this.orderQty = orderQty;
   }
 
@@ -259,7 +259,7 @@ public class Order {
     this.price = price;
   }
 
-  public Order displayQty(Double displayQty) {
+  public Order displayQty(Long displayQty) {
     this.displayQty = displayQty;
     return this;
   }
@@ -269,11 +269,11 @@ public class Order {
    * @return displayQty
   **/
   @ApiModelProperty(value = "")
-  public Double getDisplayQty() {
+  public Long getDisplayQty() {
     return displayQty;
   }
 
-  public void setDisplayQty(Double displayQty) {
+  public void setDisplayQty(Long displayQty) {
     this.displayQty = displayQty;
   }
 
@@ -511,7 +511,7 @@ public class Order {
     this.ordRejReason = ordRejReason;
   }
 
-  public Order leavesQty(Double leavesQty) {
+  public Order leavesQty(Long leavesQty) {
     this.leavesQty = leavesQty;
     return this;
   }
@@ -521,15 +521,15 @@ public class Order {
    * @return leavesQty
   **/
   @ApiModelProperty(value = "")
-  public Double getLeavesQty() {
+  public Long getLeavesQty() {
     return leavesQty;
   }
 
-  public void setLeavesQty(Double leavesQty) {
+  public void setLeavesQty(Long leavesQty) {
     this.leavesQty = leavesQty;
   }
 
-  public Order cumQty(Double cumQty) {
+  public Order cumQty(Long cumQty) {
     this.cumQty = cumQty;
     return this;
   }
@@ -539,11 +539,11 @@ public class Order {
    * @return cumQty
   **/
   @ApiModelProperty(value = "")
-  public Double getCumQty() {
+  public Long getCumQty() {
     return cumQty;
   }
 
-  public void setCumQty(Double cumQty) {
+  public void setCumQty(Long cumQty) {
     this.cumQty = cumQty;
   }
 

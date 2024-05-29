@@ -187,6 +187,22 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'FavouritesOrdered'
         }
         /// <summary>
+        /// Test the property 'FavouriteBots'
+        /// </summary>
+        [Test]
+        public void FavouriteBotsTest()
+        {
+            // TODO unit test for the property 'FavouriteBots'
+        }
+        /// <summary>
+        /// Test the property 'HasSetTradingCurrencies'
+        /// </summary>
+        [Test]
+        public void HasSetTradingCurrenciesTest()
+        {
+            // TODO unit test for the property 'HasSetTradingCurrencies'
+        }
+        /// <summary>
         /// Test the property 'HideConfirmDialogs'
         /// </summary>
         [Test]
@@ -217,6 +233,22 @@ namespace IO.Swagger.Test
         public void HideNameFromLeaderboardTest()
         {
             // TODO unit test for the property 'HideNameFromLeaderboard'
+        }
+        /// <summary>
+        /// Test the property 'HidePnlInGuilds'
+        /// </summary>
+        [Test]
+        public void HidePnlInGuildsTest()
+        {
+            // TODO unit test for the property 'HidePnlInGuilds'
+        }
+        /// <summary>
+        /// Test the property 'HideRoiInGuilds'
+        /// </summary>
+        [Test]
+        public void HideRoiInGuildsTest()
+        {
+            // TODO unit test for the property 'HideRoiInGuilds'
         }
         /// <summary>
         /// Test the property 'HideNotifications'
@@ -283,6 +315,14 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'MarginPnlRowKind'
         }
         /// <summary>
+        /// Test the property 'MobileLocale'
+        /// </summary>
+        [Test]
+        public void MobileLocaleTest()
+        {
+            // TODO unit test for the property 'MobileLocale'
+        }
+        /// <summary>
         /// Test the property 'MsgsSeen'
         /// </summary>
         [Test]
@@ -297,6 +337,14 @@ namespace IO.Swagger.Test
         public void NotificationsTest()
         {
             // TODO unit test for the property 'Notifications'
+        }
+        /// <summary>
+        /// Test the property 'OptionsBeta'
+        /// </summary>
+        [Test]
+        public void OptionsBetaTest()
+        {
+            // TODO unit test for the property 'OptionsBeta'
         }
         /// <summary>
         /// Test the property 'OrderBookBinning'
@@ -369,6 +417,14 @@ namespace IO.Swagger.Test
         public void SoundsTest()
         {
             // TODO unit test for the property 'Sounds'
+        }
+        /// <summary>
+        /// Test the property 'SpacingPreference'
+        /// </summary>
+        [Test]
+        public void SpacingPreferenceTest()
+        {
+            // TODO unit test for the property 'SpacingPreference'
         }
         /// <summary>
         /// Test the property 'StrictIPCheck'

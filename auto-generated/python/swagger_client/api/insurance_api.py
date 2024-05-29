@@ -45,8 +45,8 @@ class InsuranceApi(object):
         :param str symbol: Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive.
         :param str filter: Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
         :param str columns: Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-        :param float count: Number of results to fetch. Must be a positive integer.
-        :param float start: Starting point for results.
+        :param int count: Number of results to fetch. Must be a positive integer.
+        :param int start: Starting point for results.
         :param bool reverse: If true, will sort results newest first.
         :param datetime start_time: Starting date filter for results.
         :param datetime end_time: Ending date filter for results.
@@ -73,8 +73,8 @@ class InsuranceApi(object):
         :param str symbol: Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive.
         :param str filter: Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
         :param str columns: Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-        :param float count: Number of results to fetch. Must be a positive integer.
-        :param float start: Starting point for results.
+        :param int count: Number of results to fetch. Must be a positive integer.
+        :param int start: Starting point for results.
         :param bool reverse: If true, will sort results newest first.
         :param datetime start_time: Starting date filter for results.
         :param datetime end_time: Ending date filter for results.

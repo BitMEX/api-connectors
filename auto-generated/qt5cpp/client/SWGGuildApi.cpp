@@ -83,7 +83,7 @@ SWGGuildApi::guild_archiveCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGGuildApi::guild_edit(QString* name, QString* emoji, double pot_distribution_percent, QString* pot_distribution_type, double pot_trader_id, QString* description, QString* twitter, QString* discord, QString* img_url, bool is_private) {
+SWGGuildApi::guild_edit(QString* name, QString* emoji, double pot_distribution_percent, QString* pot_distribution_type, double pot_trader_id, QString* description, QString* twitter, QString* discord, QString* telegram, QString* img_url, bool is_private) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/guild");
 
@@ -115,6 +115,9 @@ SWGGuildApi::guild_edit(QString* name, QString* emoji, double pot_distribution_p
     }
     if (discord != nullptr) {
         input.add_var("discord", *discord);
+    }
+    if (telegram != nullptr) {
+        input.add_var("telegram", *telegram);
     }
     if (img_url != nullptr) {
         input.add_var("imgUrl", *img_url);
@@ -396,7 +399,7 @@ SWGGuildApi::guild_leaveCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGGuildApi::guild_new(QString* name, QString* emoji, double pot_distribution_percent, QString* pot_distribution_type, QString* description, QString* twitter, QString* discord, QString* img_url, bool is_private) {
+SWGGuildApi::guild_new(QString* name, QString* emoji, double pot_distribution_percent, QString* pot_distribution_type, QString* description, QString* twitter, QString* discord, QString* telegram, QString* img_url, bool is_private) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/guild");
 
@@ -425,6 +428,9 @@ SWGGuildApi::guild_new(QString* name, QString* emoji, double pot_distribution_pe
     }
     if (discord != nullptr) {
         input.add_var("discord", *discord);
+    }
+    if (telegram != nullptr) {
+        input.add_var("telegram", *telegram);
     }
     if (img_url != nullptr) {
         input.add_var("imgUrl", *img_url);

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **network_symbol** | **string** |  | [optional] [default to 'ETH']
 **transaction_explorer** | **string** |  | [optional] [default to 'https://etherscan.io/tx/']
 **token_explorer** | **string** |  | [optional] [default to 'https://etherscan.io/token/']
-**deposit_confirmations** | **float** |  | [optional] 
+**deposit_confirmations** | **int** |  | [optional] 
 **enabled** | **bool** |  | [optional] [default to true]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

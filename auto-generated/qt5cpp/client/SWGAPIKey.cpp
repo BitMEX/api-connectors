@@ -43,19 +43,19 @@ SWGAPIKey::init() {
     m_secret_isSet = false;
     name = new QString("");
     m_name_isSet = false;
-    nonce = 0.0;
+    nonce = 0L;
     m_nonce_isSet = false;
     cidr = new QString("");
     m_cidr_isSet = false;
     cidrs = new QList<SWGX-any*>();
     m_cidrs_isSet = false;
-    target_account_id = 0.0;
+    target_account_id = 0;
     m_target_account_id_isSet = false;
     permissions = new QList<SWGX-any*>();
     m_permissions_isSet = false;
     enabled = false;
     m_enabled_isSet = false;
-    user_id = 0.0;
+    user_id = 0;
     m_user_id_isSet = false;
     created = NULL;
     m_created_isSet = false;
@@ -72,9 +72,7 @@ SWGAPIKey::cleanup() {
     if(name != nullptr) { 
         delete name;
     }
-    if(nonce != nullptr) { 
-        delete nonce;
-    }
+
     if(cidr != nullptr) { 
         delete cidr;
     }
@@ -85,9 +83,7 @@ SWGAPIKey::cleanup() {
         }
         delete cidrs;
     }
-    if(target_account_id != nullptr) { 
-        delete target_account_id;
-    }
+
     if(permissions != nullptr) { 
         auto arr = permissions;
         for(auto o: *arr) { 
@@ -96,9 +92,7 @@ SWGAPIKey::cleanup() {
         delete permissions;
     }
 
-    if(user_id != nullptr) { 
-        delete user_id;
-    }
+
     if(created != nullptr) { 
         delete created;
     }
@@ -121,19 +115,19 @@ SWGAPIKey::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&name, pJson["name"], "QString", "QString");
     
-    ::Swagger::setValue(&nonce, pJson["nonce"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&nonce, pJson["nonce"], "qint64", "");
     
     ::Swagger::setValue(&cidr, pJson["cidr"], "QString", "QString");
     
     
     ::Swagger::setValue(&cidrs, pJson["cidrs"], "QList", "SWGX-any");
-    ::Swagger::setValue(&target_account_id, pJson["targetAccountId"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&target_account_id, pJson["targetAccountId"], "qint32", "");
     
     
     ::Swagger::setValue(&permissions, pJson["permissions"], "QList", "SWGX-any");
     ::Swagger::setValue(&enabled, pJson["enabled"], "bool", "");
     
-    ::Swagger::setValue(&user_id, pJson["userId"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&user_id, pJson["userId"], "qint32", "");
     
     ::Swagger::setValue(&created, pJson["created"], "QDateTime", "QDateTime");
     
@@ -160,8 +154,8 @@ SWGAPIKey::asJsonObject() {
     if(name != nullptr && *name != QString("")){
         toJsonValue(QString("name"), name, obj, QString("QString"));
     }
-    if((nonce != nullptr) && (nonce->isSet())){
-        toJsonValue(QString("nonce"), nonce, obj, QString("SWGNumber"));
+    if(m_nonce_isSet){
+        obj.insert("nonce", QJsonValue(nonce));
     }
     if(cidr != nullptr && *cidr != QString("")){
         toJsonValue(QString("cidr"), cidr, obj, QString("QString"));
@@ -169,8 +163,8 @@ SWGAPIKey::asJsonObject() {
     if(cidrs->size() > 0){
         toJsonArray((QList<void*>*)cidrs, obj, "cidrs", "SWGX-any");
     }
-    if((target_account_id != nullptr) && (target_account_id->isSet())){
-        toJsonValue(QString("targetAccountId"), target_account_id, obj, QString("SWGNumber"));
+    if(m_target_account_id_isSet){
+        obj.insert("targetAccountId", QJsonValue(target_account_id));
     }
     if(permissions->size() > 0){
         toJsonArray((QList<void*>*)permissions, obj, "permissions", "SWGX-any");
@@ -178,8 +172,8 @@ SWGAPIKey::asJsonObject() {
     if(m_enabled_isSet){
         obj.insert("enabled", QJsonValue(enabled));
     }
-    if((user_id != nullptr) && (user_id->isSet())){
-        toJsonValue(QString("userId"), user_id, obj, QString("SWGNumber"));
+    if(m_user_id_isSet){
+        obj.insert("userId", QJsonValue(user_id));
     }
     if(created != nullptr) { 
         toJsonValue(QString("created"), created, obj, QString("QDateTime"));
@@ -218,12 +212,12 @@ SWGAPIKey::setName(QString* name) {
     this->m_name_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGAPIKey::getNonce() {
     return nonce;
 }
 void
-SWGAPIKey::setNonce(SWGNumber* nonce) {
+SWGAPIKey::setNonce(qint64 nonce) {
     this->nonce = nonce;
     this->m_nonce_isSet = true;
 }
@@ -248,12 +242,12 @@ SWGAPIKey::setCidrs(QList<SWGX-any*>* cidrs) {
     this->m_cidrs_isSet = true;
 }
 
-SWGNumber*
+qint32
 SWGAPIKey::getTargetAccountId() {
     return target_account_id;
 }
 void
-SWGAPIKey::setTargetAccountId(SWGNumber* target_account_id) {
+SWGAPIKey::setTargetAccountId(qint32 target_account_id) {
     this->target_account_id = target_account_id;
     this->m_target_account_id_isSet = true;
 }
@@ -278,12 +272,12 @@ SWGAPIKey::setEnabled(bool enabled) {
     this->m_enabled_isSet = true;
 }
 
-SWGNumber*
+qint32
 SWGAPIKey::getUserId() {
     return user_id;
 }
 void
-SWGAPIKey::setUserId(SWGNumber* user_id) {
+SWGAPIKey::setUserId(qint32 user_id) {
     this->user_id = user_id;
     this->m_user_id_isSet = true;
 }
@@ -306,13 +300,13 @@ SWGAPIKey::isSet(){
         if(id != nullptr && *id != QString("")){ isObjectUpdated = true; break;}
         if(secret != nullptr && *secret != QString("")){ isObjectUpdated = true; break;}
         if(name != nullptr && *name != QString("")){ isObjectUpdated = true; break;}
-        if(nonce != nullptr && nonce->isSet()){ isObjectUpdated = true; break;}
+        if(m_nonce_isSet){ isObjectUpdated = true; break;}
         if(cidr != nullptr && *cidr != QString("")){ isObjectUpdated = true; break;}
         if(cidrs->size() > 0){ isObjectUpdated = true; break;}
-        if(target_account_id != nullptr && target_account_id->isSet()){ isObjectUpdated = true; break;}
+        if(m_target_account_id_isSet){ isObjectUpdated = true; break;}
         if(permissions->size() > 0){ isObjectUpdated = true; break;}
         if(m_enabled_isSet){ isObjectUpdated = true; break;}
-        if(user_id != nullptr && user_id->isSet()){ isObjectUpdated = true; break;}
+        if(m_user_id_isSet){ isObjectUpdated = true; break;}
         
     }while(false);
     return isObjectUpdated;

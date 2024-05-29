@@ -18,7 +18,7 @@ case class StatsHistory (
   date: Date,
   rootSymbol: String,
   currency: Option[String] = None,
-  volume: Option[Number] = None,
-  turnover: Option[Number] = None
+  volume: Option[Long] = None,
+  turnover: Option[Long] = None
 )
 

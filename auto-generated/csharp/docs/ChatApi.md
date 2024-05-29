@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 <a name="chatget"></a>
 # **ChatGet**
-> List<Chat> ChatGet (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null)
+> List<Chat> ChatGet (int? count = null, int? start = null, bool? reverse = null, double? channelID = null)
 
 Get chat messages.
 
@@ -32,8 +32,8 @@ namespace Example
         public void main()
         {
             var apiInstance = new ChatApi();
-            var count = 8.14;  // decimal? | Number of results to fetch. (optional)  (default to 100)
-            var start = 8.14;  // decimal? | Starting ID for results. (optional)  (default to 0)
+            var count = 56;  // int? | Number of results to fetch. (optional)  (default to 100)
+            var start = 56;  // int? | Starting ID for results. (optional)  (default to 0)
             var reverse = true;  // bool? | If true, will sort results newest first. (optional)  (default to true)
             var channelID = 1.2;  // double? | Channel id. GET /chat/channels for ids. Global English by default (optional)  (default to 1)
 
@@ -56,8 +56,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **decimal?**| Number of results to fetch. | [optional] [default to 100]
- **start** | **decimal?**| Starting ID for results. | [optional] [default to 0]
+ **count** | **int?**| Number of results to fetch. | [optional] [default to 100]
+ **start** | **int?**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **bool?**| If true, will sort results newest first. | [optional] [default to true]
  **channelID** | **double?**| Channel id. GET /chat/channels for ids. Global English by default | [optional] [default to 1]
 

@@ -44,7 +44,9 @@ public class UserAffiliatesApiTest {
     @Test
     public void userAffiliatesGetTest() throws Exception {
         Double depth = null;
-        List<XAny> response = api.userAffiliatesGet(depth);
+        Double targetAccountId = null;
+        Double selectUserId = null;
+        List<XAny> response = api.userAffiliatesGet(depth, targetAccountId, selectUserId);
 
         // TODO: test validations
     }

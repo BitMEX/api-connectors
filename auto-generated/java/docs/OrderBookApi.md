@@ -22,7 +22,7 @@ Get current orderbook in vertical format.
 
 OrderBookApi apiInstance = new OrderBookApi();
 String symbol = "symbol_example"; // String | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-BigDecimal depth = new BigDecimal(); // BigDecimal | Orderbook depth per side. Send 0 for full depth.
+Integer depth = 25; // Integer | Orderbook depth per side. Send 0 for full depth.
 try {
     List<OrderBookL2> result = apiInstance.orderBookGetL2(symbol, depth);
     System.out.println(result);
@@ -37,7 +37,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **String**| Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. |
- **depth** | **BigDecimal**| Orderbook depth per side. Send 0 for full depth. | [optional] [default to 25]
+ **depth** | **Integer**| Orderbook depth per side. Send 0 for full depth. | [optional] [default to 25]
 
 ### Return type
 

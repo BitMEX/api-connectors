@@ -72,7 +72,7 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string symbol = null;
-            //decimal? depth = null;
+            //int? depth = null;
             //var response = instance.OrderBookGetL2(symbol, depth);
             //Assert.IsInstanceOf<List<OrderBookL2>> (response, "response is List<OrderBookL2>");
         }

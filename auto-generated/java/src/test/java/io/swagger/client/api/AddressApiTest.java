@@ -65,7 +65,8 @@ public class AddressApiTest {
         String note = null;
         Boolean skipConfirm = null;
         Boolean skip2FA = null;
-        Address response = api.addressNew(currency, network, address, name, note, skipConfirm, skip2FA);
+        String memo = null;
+        Address response = api.addressNew(currency, network, address, name, note, skipConfirm, skip2FA, memo);
 
         // TODO: test validations
     }

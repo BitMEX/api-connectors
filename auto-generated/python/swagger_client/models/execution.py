@@ -37,15 +37,15 @@ class Execution(object):
         'order_id': 'str',
         'cl_ord_id': 'str',
         'cl_ord_link_id': 'str',
-        'account': 'float',
+        'account': 'int',
         'symbol': 'str',
         'side': 'str',
-        'last_qty': 'float',
+        'last_qty': 'int',
         'last_px': 'float',
         'last_liquidity_ind': 'str',
-        'order_qty': 'float',
+        'order_qty': 'int',
         'price': 'float',
-        'display_qty': 'float',
+        'display_qty': 'int',
         'stop_px': 'float',
         'peg_offset_value': 'float',
         'peg_price_type': 'str',
@@ -60,24 +60,20 @@ class Execution(object):
         'triggered': 'str',
         'working_indicator': 'bool',
         'ord_rej_reason': 'str',
-        'leaves_qty': 'float',
-        'cum_qty': 'float',
+        'leaves_qty': 'int',
+        'cum_qty': 'int',
         'avg_px': 'float',
         'commission': 'float',
+        'fee_type': 'str',
         'trade_publish_indicator': 'str',
         'text': 'str',
         'trd_match_id': 'str',
-        'exec_cost': 'float',
-        'exec_comm': 'float',
+        'exec_cost': 'int',
+        'exec_comm': 'int',
         'home_notional': 'float',
         'foreign_notional': 'float',
         'transact_time': 'datetime',
-        'timestamp': 'datetime',
-        'exec_gross_pnl': 'float',
-        'current_qty': 'float',
-        'avg_entry_price': 'float',
-        'realised_pnl': 'float',
-        'unrealised_pnl': 'float'
+        'timestamp': 'datetime'
     }
 
     attribute_map = {
@@ -112,6 +108,7 @@ class Execution(object):
         'cum_qty': 'cumQty',
         'avg_px': 'avgPx',
         'commission': 'commission',
+        'fee_type': 'feeType',
         'trade_publish_indicator': 'tradePublishIndicator',
         'text': 'text',
         'trd_match_id': 'trdMatchID',
@@ -120,15 +117,10 @@ class Execution(object):
         'home_notional': 'homeNotional',
         'foreign_notional': 'foreignNotional',
         'transact_time': 'transactTime',
-        'timestamp': 'timestamp',
-        'exec_gross_pnl': 'execGrossPnl',
-        'current_qty': 'currentQty',
-        'avg_entry_price': 'avgEntryPrice',
-        'realised_pnl': 'realisedPnl',
-        'unrealised_pnl': 'unrealisedPnl'
+        'timestamp': 'timestamp'
     }
 
-    def __init__(self, exec_id=None, order_id=None, cl_ord_id=None, cl_ord_link_id=None, account=None, symbol=None, side=None, last_qty=None, last_px=None, last_liquidity_ind=None, order_qty=None, price=None, display_qty=None, stop_px=None, peg_offset_value=None, peg_price_type=None, currency=None, settl_currency=None, exec_type=None, ord_type=None, time_in_force=None, exec_inst=None, contingency_type=None, ord_status=None, triggered=None, working_indicator=None, ord_rej_reason=None, leaves_qty=None, cum_qty=None, avg_px=None, commission=None, trade_publish_indicator=None, text=None, trd_match_id=None, exec_cost=None, exec_comm=None, home_notional=None, foreign_notional=None, transact_time=None, timestamp=None, exec_gross_pnl=None, current_qty=None, avg_entry_price=None, realised_pnl=None, unrealised_pnl=None, _configuration=None):  # noqa: E501
+    def __init__(self, exec_id=None, order_id=None, cl_ord_id=None, cl_ord_link_id=None, account=None, symbol=None, side=None, last_qty=None, last_px=None, last_liquidity_ind=None, order_qty=None, price=None, display_qty=None, stop_px=None, peg_offset_value=None, peg_price_type=None, currency=None, settl_currency=None, exec_type=None, ord_type=None, time_in_force=None, exec_inst=None, contingency_type=None, ord_status=None, triggered=None, working_indicator=None, ord_rej_reason=None, leaves_qty=None, cum_qty=None, avg_px=None, commission=None, fee_type=None, trade_publish_indicator=None, text=None, trd_match_id=None, exec_cost=None, exec_comm=None, home_notional=None, foreign_notional=None, transact_time=None, timestamp=None, _configuration=None):  # noqa: E501
         """Execution - a model defined in Swagger"""  # noqa: E501
         if _configuration is None:
             _configuration = Configuration()
@@ -165,6 +157,7 @@ class Execution(object):
         self._cum_qty = None
         self._avg_px = None
         self._commission = None
+        self._fee_type = None
         self._trade_publish_indicator = None
         self._text = None
         self._trd_match_id = None
@@ -174,16 +167,12 @@ class Execution(object):
         self._foreign_notional = None
         self._transact_time = None
         self._timestamp = None
-        self._exec_gross_pnl = None
-        self._current_qty = None
-        self._avg_entry_price = None
-        self._realised_pnl = None
-        self._unrealised_pnl = None
         self.discriminator = None
 
         if exec_id is not None:
             self.exec_id = exec_id
-        self.order_id = order_id
+        if order_id is not None:
+            self.order_id = order_id
         if cl_ord_id is not None:
             self.cl_ord_id = cl_ord_id
         if cl_ord_link_id is not None:
@@ -241,6 +230,8 @@ class Execution(object):
             self.avg_px = avg_px
         if commission is not None:
             self.commission = commission
+        if fee_type is not None:
+            self.fee_type = fee_type
         if trade_publish_indicator is not None:
             self.trade_publish_indicator = trade_publish_indicator
         if text is not None:
@@ -258,16 +249,6 @@ class Execution(object):
         if transact_time is not None:
             self.transact_time = transact_time
         self.timestamp = timestamp
-        if exec_gross_pnl is not None:
-            self.exec_gross_pnl = exec_gross_pnl
-        if current_qty is not None:
-            self.current_qty = current_qty
-        if avg_entry_price is not None:
-            self.avg_entry_price = avg_entry_price
-        if realised_pnl is not None:
-            self.realised_pnl = realised_pnl
-        if unrealised_pnl is not None:
-            self.unrealised_pnl = unrealised_pnl
 
     @property
     def exec_id(self):
@@ -308,8 +289,6 @@ class Execution(object):
         :param order_id: The order_id of this Execution.  # noqa: E501
         :type: str
         """
-        if self._configuration.client_side_validation and order_id is None:
-            raise ValueError("Invalid value for `order_id`, must not be `None`")  # noqa: E501
 
         self._order_id = order_id
 
@@ -361,7 +340,7 @@ class Execution(object):
 
 
         :return: The account of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._account
 
@@ -371,7 +350,7 @@ class Execution(object):
 
 
         :param account: The account of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._account = account
@@ -426,7 +405,7 @@ class Execution(object):
 
 
         :return: The last_qty of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._last_qty
 
@@ -436,7 +415,7 @@ class Execution(object):
 
 
         :param last_qty: The last_qty of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._last_qty = last_qty
@@ -489,7 +468,7 @@ class Execution(object):
 
 
         :return: The order_qty of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._order_qty
 
@@ -499,7 +478,7 @@ class Execution(object):
 
 
         :param order_qty: The order_qty of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._order_qty = order_qty
@@ -531,7 +510,7 @@ class Execution(object):
 
 
         :return: The display_qty of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._display_qty
 
@@ -541,7 +520,7 @@ class Execution(object):
 
 
         :param display_qty: The display_qty of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._display_qty = display_qty
@@ -846,7 +825,7 @@ class Execution(object):
 
 
         :return: The leaves_qty of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._leaves_qty
 
@@ -856,7 +835,7 @@ class Execution(object):
 
 
         :param leaves_qty: The leaves_qty of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._leaves_qty = leaves_qty
@@ -867,7 +846,7 @@ class Execution(object):
 
 
         :return: The cum_qty of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._cum_qty
 
@@ -877,7 +856,7 @@ class Execution(object):
 
 
         :param cum_qty: The cum_qty of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._cum_qty = cum_qty
@@ -923,6 +902,27 @@ class Execution(object):
         """
 
         self._commission = commission
+
+    @property
+    def fee_type(self):
+        """Gets the fee_type of this Execution.  # noqa: E501
+
+
+        :return: The fee_type of this Execution.  # noqa: E501
+        :rtype: str
+        """
+        return self._fee_type
+
+    @fee_type.setter
+    def fee_type(self, fee_type):
+        """Sets the fee_type of this Execution.
+
+
+        :param fee_type: The fee_type of this Execution.  # noqa: E501
+        :type: str
+        """
+
+        self._fee_type = fee_type
 
     @property
     def trade_publish_indicator(self):
@@ -993,7 +993,7 @@ class Execution(object):
 
 
         :return: The exec_cost of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._exec_cost
 
@@ -1003,7 +1003,7 @@ class Execution(object):
 
 
         :param exec_cost: The exec_cost of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._exec_cost = exec_cost
@@ -1014,7 +1014,7 @@ class Execution(object):
 
 
         :return: The exec_comm of this Execution.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._exec_comm
 
@@ -1024,7 +1024,7 @@ class Execution(object):
 
 
         :param exec_comm: The exec_comm of this Execution.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._exec_comm = exec_comm
@@ -1114,111 +1114,6 @@ class Execution(object):
             raise ValueError("Invalid value for `timestamp`, must not be `None`")  # noqa: E501
 
         self._timestamp = timestamp
-
-    @property
-    def exec_gross_pnl(self):
-        """Gets the exec_gross_pnl of this Execution.  # noqa: E501
-
-
-        :return: The exec_gross_pnl of this Execution.  # noqa: E501
-        :rtype: float
-        """
-        return self._exec_gross_pnl
-
-    @exec_gross_pnl.setter
-    def exec_gross_pnl(self, exec_gross_pnl):
-        """Sets the exec_gross_pnl of this Execution.
-
-
-        :param exec_gross_pnl: The exec_gross_pnl of this Execution.  # noqa: E501
-        :type: float
-        """
-
-        self._exec_gross_pnl = exec_gross_pnl
-
-    @property
-    def current_qty(self):
-        """Gets the current_qty of this Execution.  # noqa: E501
-
-
-        :return: The current_qty of this Execution.  # noqa: E501
-        :rtype: float
-        """
-        return self._current_qty
-
-    @current_qty.setter
-    def current_qty(self, current_qty):
-        """Sets the current_qty of this Execution.
-
-
-        :param current_qty: The current_qty of this Execution.  # noqa: E501
-        :type: float
-        """
-
-        self._current_qty = current_qty
-
-    @property
-    def avg_entry_price(self):
-        """Gets the avg_entry_price of this Execution.  # noqa: E501
-
-
-        :return: The avg_entry_price of this Execution.  # noqa: E501
-        :rtype: float
-        """
-        return self._avg_entry_price
-
-    @avg_entry_price.setter
-    def avg_entry_price(self, avg_entry_price):
-        """Sets the avg_entry_price of this Execution.
-
-
-        :param avg_entry_price: The avg_entry_price of this Execution.  # noqa: E501
-        :type: float
-        """
-
-        self._avg_entry_price = avg_entry_price
-
-    @property
-    def realised_pnl(self):
-        """Gets the realised_pnl of this Execution.  # noqa: E501
-
-
-        :return: The realised_pnl of this Execution.  # noqa: E501
-        :rtype: float
-        """
-        return self._realised_pnl
-
-    @realised_pnl.setter
-    def realised_pnl(self, realised_pnl):
-        """Sets the realised_pnl of this Execution.
-
-
-        :param realised_pnl: The realised_pnl of this Execution.  # noqa: E501
-        :type: float
-        """
-
-        self._realised_pnl = realised_pnl
-
-    @property
-    def unrealised_pnl(self):
-        """Gets the unrealised_pnl of this Execution.  # noqa: E501
-
-
-        :return: The unrealised_pnl of this Execution.  # noqa: E501
-        :rtype: float
-        """
-        return self._unrealised_pnl
-
-    @unrealised_pnl.setter
-    def unrealised_pnl(self, unrealised_pnl):
-        """Sets the unrealised_pnl of this Execution.
-
-
-        :param unrealised_pnl: The unrealised_pnl of this Execution.  # noqa: E501
-        :type: float
-        """
-
-        self._unrealised_pnl = unrealised_pnl
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -4,9 +4,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **symbol** | **str** |  | 
-**id** | **float** |  | 
+**id** | **int** |  | 
 **side** | **str** |  | 
-**size** | **float** |  | [optional] 
+**size** | **int** |  | [optional] 
 **price** | **float** |  | [optional] 
 **timestamp** | **datetime** |  | [optional] 
 

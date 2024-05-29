@@ -40,7 +40,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>List&lt;Trade&gt;</returns>
-        List<Trade> TradeGet (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        List<Trade> TradeGet (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
 
         /// <summary>
         /// Get Trades.
@@ -58,7 +58,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>ApiResponse of List&lt;Trade&gt;</returns>
-        ApiResponse<List<Trade>> TradeGetWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        ApiResponse<List<Trade>> TradeGetWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
         /// <summary>
         /// Get previous trades in time buckets.
         /// </summary>
@@ -77,7 +77,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>List&lt;TradeBin&gt;</returns>
-        List<TradeBin> TradeGetBucketed (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        List<TradeBin> TradeGetBucketed (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
 
         /// <summary>
         /// Get previous trades in time buckets.
@@ -97,7 +97,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>ApiResponse of List&lt;TradeBin&gt;</returns>
-        ApiResponse<List<TradeBin>> TradeGetBucketedWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        ApiResponse<List<TradeBin>> TradeGetBucketedWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -116,7 +116,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of List&lt;Trade&gt;</returns>
-        System.Threading.Tasks.Task<List<Trade>> TradeGetAsync (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        System.Threading.Tasks.Task<List<Trade>> TradeGetAsync (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
 
         /// <summary>
         /// Get Trades.
@@ -134,7 +134,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Trade&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Trade>>> TradeGetAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Trade>>> TradeGetAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
         /// <summary>
         /// Get previous trades in time buckets.
         /// </summary>
@@ -153,7 +153,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of List&lt;TradeBin&gt;</returns>
-        System.Threading.Tasks.Task<List<TradeBin>> TradeGetBucketedAsync (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        System.Threading.Tasks.Task<List<TradeBin>> TradeGetBucketedAsync (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
 
         /// <summary>
         /// Get previous trades in time buckets.
@@ -173,7 +173,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;TradeBin&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<TradeBin>>> TradeGetBucketedAsyncWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
+        System.Threading.Tasks.Task<ApiResponse<List<TradeBin>>> TradeGetBucketedAsyncWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null);
         #endregion Asynchronous Operations
     }
 
@@ -287,7 +287,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>List&lt;Trade&gt;</returns>
-        public List<Trade> TradeGet (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public List<Trade> TradeGet (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
              ApiResponse<List<Trade>> localVarResponse = TradeGetWithHttpInfo(symbol, filter, columns, count, start, reverse, startTime, endTime);
              return localVarResponse.Data;
@@ -306,7 +306,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>ApiResponse of List&lt;Trade&gt;</returns>
-        public ApiResponse< List<Trade> > TradeGetWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public ApiResponse< List<Trade> > TradeGetWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
 
             var localVarPath = "/trade";
@@ -377,7 +377,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of List&lt;Trade&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Trade>> TradeGetAsync (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public async System.Threading.Tasks.Task<List<Trade>> TradeGetAsync (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
              ApiResponse<List<Trade>> localVarResponse = await TradeGetAsyncWithHttpInfo(symbol, filter, columns, count, start, reverse, startTime, endTime);
              return localVarResponse.Data;
@@ -397,7 +397,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Trade&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Trade>>> TradeGetAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Trade>>> TradeGetAsyncWithHttpInfo (string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
 
             var localVarPath = "/trade";
@@ -470,7 +470,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>List&lt;TradeBin&gt;</returns>
-        public List<TradeBin> TradeGetBucketed (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public List<TradeBin> TradeGetBucketed (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
              ApiResponse<List<TradeBin>> localVarResponse = TradeGetBucketedWithHttpInfo(binSize, partial, symbol, filter, columns, count, start, reverse, startTime, endTime);
              return localVarResponse.Data;
@@ -491,7 +491,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>ApiResponse of List&lt;TradeBin&gt;</returns>
-        public ApiResponse< List<TradeBin> > TradeGetBucketedWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public ApiResponse< List<TradeBin> > TradeGetBucketedWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
 
             var localVarPath = "/trade/bucketed";
@@ -566,7 +566,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of List&lt;TradeBin&gt;</returns>
-        public async System.Threading.Tasks.Task<List<TradeBin>> TradeGetBucketedAsync (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public async System.Threading.Tasks.Task<List<TradeBin>> TradeGetBucketedAsync (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
              ApiResponse<List<TradeBin>> localVarResponse = await TradeGetBucketedAsyncWithHttpInfo(binSize, partial, symbol, filter, columns, count, start, reverse, startTime, endTime);
              return localVarResponse.Data;
@@ -588,7 +588,7 @@ namespace IO.Swagger.Api
         /// <param name="startTime">Starting date filter for results. (optional)</param>
         /// <param name="endTime">Ending date filter for results. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;TradeBin&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<TradeBin>>> TradeGetBucketedAsyncWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<TradeBin>>> TradeGetBucketedAsyncWithHttpInfo (string binSize = null, bool? partial = null, string symbol = null, string filter = null, string columns = null, int? count = null, int? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
         {
 
             var localVarPath = "/trade/bucketed";

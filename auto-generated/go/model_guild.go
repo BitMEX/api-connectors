@@ -15,7 +15,7 @@ import (
 )
 
 type Guild struct {
-	Id float32 `json:"id,omitempty"`
+	Id int32 `json:"id,omitempty"`
 	Created time.Time `json:"created"`
 	Updated time.Time `json:"updated"`
 	Archived bool `json:"archived,omitempty"`

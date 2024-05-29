@@ -23,14 +23,13 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Best Bid/Offer Snapshots &amp; Historical Bins
  */
 @ApiModel(description = "Best Bid/Offer Snapshots & Historical Bins")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Quote {
   @SerializedName("timestamp")
   private OffsetDateTime timestamp = null;
@@ -39,7 +38,7 @@ public class Quote {
   private String symbol = null;
 
   @SerializedName("bidSize")
-  private BigDecimal bidSize = null;
+  private Long bidSize = null;
 
   @SerializedName("bidPrice")
   private Double bidPrice = null;
@@ -48,7 +47,7 @@ public class Quote {
   private Double askPrice = null;
 
   @SerializedName("askSize")
-  private BigDecimal askSize = null;
+  private Long askSize = null;
 
   public Quote timestamp(OffsetDateTime timestamp) {
     this.timestamp = timestamp;
@@ -86,7 +85,7 @@ public class Quote {
     this.symbol = symbol;
   }
 
-  public Quote bidSize(BigDecimal bidSize) {
+  public Quote bidSize(Long bidSize) {
     this.bidSize = bidSize;
     return this;
   }
@@ -96,11 +95,11 @@ public class Quote {
    * @return bidSize
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getBidSize() {
+  public Long getBidSize() {
     return bidSize;
   }
 
-  public void setBidSize(BigDecimal bidSize) {
+  public void setBidSize(Long bidSize) {
     this.bidSize = bidSize;
   }
 
@@ -140,7 +139,7 @@ public class Quote {
     this.askPrice = askPrice;
   }
 
-  public Quote askSize(BigDecimal askSize) {
+  public Quote askSize(Long askSize) {
     this.askSize = askSize;
     return this;
   }
@@ -150,11 +149,11 @@ public class Quote {
    * @return askSize
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAskSize() {
+  public Long getAskSize() {
     return askSize;
   }
 
-  public void setAskSize(BigDecimal askSize) {
+  public void setAskSize(Long askSize) {
     this.askSize = askSize;
   }
 

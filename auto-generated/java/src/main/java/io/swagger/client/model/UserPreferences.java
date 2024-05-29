@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * UserPreferences
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class UserPreferences {
   @SerializedName("alertOnLiquidations")
   private Boolean alertOnLiquidations = null;
@@ -77,6 +77,12 @@ public class UserPreferences {
   @SerializedName("favouritesOrdered")
   private List<String> favouritesOrdered = null;
 
+  @SerializedName("favouriteBots")
+  private List<String> favouriteBots = null;
+
+  @SerializedName("hasSetTradingCurrencies")
+  private Boolean hasSetTradingCurrencies = null;
+
   @SerializedName("hideConfirmDialogs")
   private List<String> hideConfirmDialogs = null;
 
@@ -88,6 +94,12 @@ public class UserPreferences {
 
   @SerializedName("hideNameFromLeaderboard")
   private Boolean hideNameFromLeaderboard = true;
+
+  @SerializedName("hidePnlInGuilds")
+  private Boolean hidePnlInGuilds = false;
+
+  @SerializedName("hideRoiInGuilds")
+  private Boolean hideRoiInGuilds = false;
 
   @SerializedName("hideNotifications")
   private List<String> hideNotifications = null;
@@ -113,11 +125,17 @@ public class UserPreferences {
   @SerializedName("marginPnlRowKind")
   private String marginPnlRowKind = null;
 
+  @SerializedName("mobileLocale")
+  private String mobileLocale = null;
+
   @SerializedName("msgsSeen")
   private List<String> msgsSeen = null;
 
   @SerializedName("notifications")
   private Object notifications = null;
+
+  @SerializedName("optionsBeta")
+  private Boolean optionsBeta = null;
 
   @SerializedName("orderBookBinning")
   private Object orderBookBinning = null;
@@ -145,6 +163,9 @@ public class UserPreferences {
 
   @SerializedName("sounds")
   private List<String> sounds = null;
+
+  @SerializedName("spacingPreference")
+  private String spacingPreference = null;
 
   @SerializedName("strictIPCheck")
   private Boolean strictIPCheck = false;
@@ -482,6 +503,50 @@ public class UserPreferences {
     this.favouritesOrdered = favouritesOrdered;
   }
 
+  public UserPreferences favouriteBots(List<String> favouriteBots) {
+    this.favouriteBots = favouriteBots;
+    return this;
+  }
+
+  public UserPreferences addFavouriteBotsItem(String favouriteBotsItem) {
+    if (this.favouriteBots == null) {
+      this.favouriteBots = new ArrayList<String>();
+    }
+    this.favouriteBots.add(favouriteBotsItem);
+    return this;
+  }
+
+   /**
+   * Get favouriteBots
+   * @return favouriteBots
+  **/
+  @ApiModelProperty(value = "")
+  public List<String> getFavouriteBots() {
+    return favouriteBots;
+  }
+
+  public void setFavouriteBots(List<String> favouriteBots) {
+    this.favouriteBots = favouriteBots;
+  }
+
+  public UserPreferences hasSetTradingCurrencies(Boolean hasSetTradingCurrencies) {
+    this.hasSetTradingCurrencies = hasSetTradingCurrencies;
+    return this;
+  }
+
+   /**
+   * Get hasSetTradingCurrencies
+   * @return hasSetTradingCurrencies
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isHasSetTradingCurrencies() {
+    return hasSetTradingCurrencies;
+  }
+
+  public void setHasSetTradingCurrencies(Boolean hasSetTradingCurrencies) {
+    this.hasSetTradingCurrencies = hasSetTradingCurrencies;
+  }
+
   public UserPreferences hideConfirmDialogs(List<String> hideConfirmDialogs) {
     this.hideConfirmDialogs = hideConfirmDialogs;
     return this;
@@ -560,6 +625,42 @@ public class UserPreferences {
 
   public void setHideNameFromLeaderboard(Boolean hideNameFromLeaderboard) {
     this.hideNameFromLeaderboard = hideNameFromLeaderboard;
+  }
+
+  public UserPreferences hidePnlInGuilds(Boolean hidePnlInGuilds) {
+    this.hidePnlInGuilds = hidePnlInGuilds;
+    return this;
+  }
+
+   /**
+   * Get hidePnlInGuilds
+   * @return hidePnlInGuilds
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isHidePnlInGuilds() {
+    return hidePnlInGuilds;
+  }
+
+  public void setHidePnlInGuilds(Boolean hidePnlInGuilds) {
+    this.hidePnlInGuilds = hidePnlInGuilds;
+  }
+
+  public UserPreferences hideRoiInGuilds(Boolean hideRoiInGuilds) {
+    this.hideRoiInGuilds = hideRoiInGuilds;
+    return this;
+  }
+
+   /**
+   * Get hideRoiInGuilds
+   * @return hideRoiInGuilds
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isHideRoiInGuilds() {
+    return hideRoiInGuilds;
+  }
+
+  public void setHideRoiInGuilds(Boolean hideRoiInGuilds) {
+    this.hideRoiInGuilds = hideRoiInGuilds;
   }
 
   public UserPreferences hideNotifications(List<String> hideNotifications) {
@@ -714,6 +815,24 @@ public class UserPreferences {
     this.marginPnlRowKind = marginPnlRowKind;
   }
 
+  public UserPreferences mobileLocale(String mobileLocale) {
+    this.mobileLocale = mobileLocale;
+    return this;
+  }
+
+   /**
+   * Get mobileLocale
+   * @return mobileLocale
+  **/
+  @ApiModelProperty(value = "")
+  public String getMobileLocale() {
+    return mobileLocale;
+  }
+
+  public void setMobileLocale(String mobileLocale) {
+    this.mobileLocale = mobileLocale;
+  }
+
   public UserPreferences msgsSeen(List<String> msgsSeen) {
     this.msgsSeen = msgsSeen;
     return this;
@@ -756,6 +875,24 @@ public class UserPreferences {
 
   public void setNotifications(Object notifications) {
     this.notifications = notifications;
+  }
+
+  public UserPreferences optionsBeta(Boolean optionsBeta) {
+    this.optionsBeta = optionsBeta;
+    return this;
+  }
+
+   /**
+   * Get optionsBeta
+   * @return optionsBeta
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isOptionsBeta() {
+    return optionsBeta;
+  }
+
+  public void setOptionsBeta(Boolean optionsBeta) {
+    this.optionsBeta = optionsBeta;
   }
 
   public UserPreferences orderBookBinning(Object orderBookBinning) {
@@ -928,6 +1065,24 @@ public class UserPreferences {
     this.sounds = sounds;
   }
 
+  public UserPreferences spacingPreference(String spacingPreference) {
+    this.spacingPreference = spacingPreference;
+    return this;
+  }
+
+   /**
+   * Get spacingPreference
+   * @return spacingPreference
+  **/
+  @ApiModelProperty(value = "")
+  public String getSpacingPreference() {
+    return spacingPreference;
+  }
+
+  public void setSpacingPreference(String spacingPreference) {
+    this.spacingPreference = spacingPreference;
+  }
+
   public UserPreferences strictIPCheck(Boolean strictIPCheck) {
     this.strictIPCheck = strictIPCheck;
     return this;
@@ -1061,10 +1216,14 @@ public class UserPreferences {
         Objects.equals(this.favourites, userPreferences.favourites) &&
         Objects.equals(this.favouritesAssets, userPreferences.favouritesAssets) &&
         Objects.equals(this.favouritesOrdered, userPreferences.favouritesOrdered) &&
+        Objects.equals(this.favouriteBots, userPreferences.favouriteBots) &&
+        Objects.equals(this.hasSetTradingCurrencies, userPreferences.hasSetTradingCurrencies) &&
         Objects.equals(this.hideConfirmDialogs, userPreferences.hideConfirmDialogs) &&
         Objects.equals(this.hideConnectionModal, userPreferences.hideConnectionModal) &&
         Objects.equals(this.hideFromLeaderboard, userPreferences.hideFromLeaderboard) &&
         Objects.equals(this.hideNameFromLeaderboard, userPreferences.hideNameFromLeaderboard) &&
+        Objects.equals(this.hidePnlInGuilds, userPreferences.hidePnlInGuilds) &&
+        Objects.equals(this.hideRoiInGuilds, userPreferences.hideRoiInGuilds) &&
         Objects.equals(this.hideNotifications, userPreferences.hideNotifications) &&
         Objects.equals(this.hidePhoneConfirm, userPreferences.hidePhoneConfirm) &&
         Objects.equals(this.isSensitiveInfoVisible, userPreferences.isSensitiveInfoVisible) &&
@@ -1073,8 +1232,10 @@ public class UserPreferences {
         Objects.equals(this.localeSetTime, userPreferences.localeSetTime) &&
         Objects.equals(this.marginPnlRow, userPreferences.marginPnlRow) &&
         Objects.equals(this.marginPnlRowKind, userPreferences.marginPnlRowKind) &&
+        Objects.equals(this.mobileLocale, userPreferences.mobileLocale) &&
         Objects.equals(this.msgsSeen, userPreferences.msgsSeen) &&
         Objects.equals(this.notifications, userPreferences.notifications) &&
+        Objects.equals(this.optionsBeta, userPreferences.optionsBeta) &&
         Objects.equals(this.orderBookBinning, userPreferences.orderBookBinning) &&
         Objects.equals(this.orderBookType, userPreferences.orderBookType) &&
         Objects.equals(this.orderClearImmediate, userPreferences.orderClearImmediate) &&
@@ -1084,6 +1245,7 @@ public class UserPreferences {
         Objects.equals(this.showChartBottomToolbar, userPreferences.showChartBottomToolbar) &&
         Objects.equals(this.showLocaleNumbers, userPreferences.showLocaleNumbers) &&
         Objects.equals(this.sounds, userPreferences.sounds) &&
+        Objects.equals(this.spacingPreference, userPreferences.spacingPreference) &&
         Objects.equals(this.strictIPCheck, userPreferences.strictIPCheck) &&
         Objects.equals(this.strictTimeout, userPreferences.strictTimeout) &&
         Objects.equals(this.tickerGroup, userPreferences.tickerGroup) &&
@@ -1094,7 +1256,7 @@ public class UserPreferences {
 
   @Override
   public int hashCode() {
-    return Objects.hash(alertOnLiquidations, animationsEnabled, announcementsLastSeen, chatChannelID, colorTheme, currency, debug, disableEmails, disablePush, displayCorpEnrollUpsell, equivalentCurrency, features, favourites, favouritesAssets, favouritesOrdered, hideConfirmDialogs, hideConnectionModal, hideFromLeaderboard, hideNameFromLeaderboard, hideNotifications, hidePhoneConfirm, isSensitiveInfoVisible, isWalletZeroBalanceHidden, locale, localeSetTime, marginPnlRow, marginPnlRowKind, msgsSeen, notifications, orderBookBinning, orderBookType, orderClearImmediate, orderControlsPlusMinus, platformLayout, selectedFiatCurrency, showChartBottomToolbar, showLocaleNumbers, sounds, strictIPCheck, strictTimeout, tickerGroup, tickerPinned, tradeLayout, userColor);
+    return Objects.hash(alertOnLiquidations, animationsEnabled, announcementsLastSeen, chatChannelID, colorTheme, currency, debug, disableEmails, disablePush, displayCorpEnrollUpsell, equivalentCurrency, features, favourites, favouritesAssets, favouritesOrdered, favouriteBots, hasSetTradingCurrencies, hideConfirmDialogs, hideConnectionModal, hideFromLeaderboard, hideNameFromLeaderboard, hidePnlInGuilds, hideRoiInGuilds, hideNotifications, hidePhoneConfirm, isSensitiveInfoVisible, isWalletZeroBalanceHidden, locale, localeSetTime, marginPnlRow, marginPnlRowKind, mobileLocale, msgsSeen, notifications, optionsBeta, orderBookBinning, orderBookType, orderClearImmediate, orderControlsPlusMinus, platformLayout, selectedFiatCurrency, showChartBottomToolbar, showLocaleNumbers, sounds, spacingPreference, strictIPCheck, strictTimeout, tickerGroup, tickerPinned, tradeLayout, userColor);
   }
 
 
@@ -1118,10 +1280,14 @@ public class UserPreferences {
     sb.append("    favourites: ").append(toIndentedString(favourites)).append("\n");
     sb.append("    favouritesAssets: ").append(toIndentedString(favouritesAssets)).append("\n");
     sb.append("    favouritesOrdered: ").append(toIndentedString(favouritesOrdered)).append("\n");
+    sb.append("    favouriteBots: ").append(toIndentedString(favouriteBots)).append("\n");
+    sb.append("    hasSetTradingCurrencies: ").append(toIndentedString(hasSetTradingCurrencies)).append("\n");
     sb.append("    hideConfirmDialogs: ").append(toIndentedString(hideConfirmDialogs)).append("\n");
     sb.append("    hideConnectionModal: ").append(toIndentedString(hideConnectionModal)).append("\n");
     sb.append("    hideFromLeaderboard: ").append(toIndentedString(hideFromLeaderboard)).append("\n");
     sb.append("    hideNameFromLeaderboard: ").append(toIndentedString(hideNameFromLeaderboard)).append("\n");
+    sb.append("    hidePnlInGuilds: ").append(toIndentedString(hidePnlInGuilds)).append("\n");
+    sb.append("    hideRoiInGuilds: ").append(toIndentedString(hideRoiInGuilds)).append("\n");
     sb.append("    hideNotifications: ").append(toIndentedString(hideNotifications)).append("\n");
     sb.append("    hidePhoneConfirm: ").append(toIndentedString(hidePhoneConfirm)).append("\n");
     sb.append("    isSensitiveInfoVisible: ").append(toIndentedString(isSensitiveInfoVisible)).append("\n");
@@ -1130,8 +1296,10 @@ public class UserPreferences {
     sb.append("    localeSetTime: ").append(toIndentedString(localeSetTime)).append("\n");
     sb.append("    marginPnlRow: ").append(toIndentedString(marginPnlRow)).append("\n");
     sb.append("    marginPnlRowKind: ").append(toIndentedString(marginPnlRowKind)).append("\n");
+    sb.append("    mobileLocale: ").append(toIndentedString(mobileLocale)).append("\n");
     sb.append("    msgsSeen: ").append(toIndentedString(msgsSeen)).append("\n");
     sb.append("    notifications: ").append(toIndentedString(notifications)).append("\n");
+    sb.append("    optionsBeta: ").append(toIndentedString(optionsBeta)).append("\n");
     sb.append("    orderBookBinning: ").append(toIndentedString(orderBookBinning)).append("\n");
     sb.append("    orderBookType: ").append(toIndentedString(orderBookType)).append("\n");
     sb.append("    orderClearImmediate: ").append(toIndentedString(orderClearImmediate)).append("\n");
@@ -1141,6 +1309,7 @@ public class UserPreferences {
     sb.append("    showChartBottomToolbar: ").append(toIndentedString(showChartBottomToolbar)).append("\n");
     sb.append("    showLocaleNumbers: ").append(toIndentedString(showLocaleNumbers)).append("\n");
     sb.append("    sounds: ").append(toIndentedString(sounds)).append("\n");
+    sb.append("    spacingPreference: ").append(toIndentedString(spacingPreference)).append("\n");
     sb.append("    strictIPCheck: ").append(toIndentedString(strictIPCheck)).append("\n");
     sb.append("    strictTimeout: ").append(toIndentedString(strictTimeout)).append("\n");
     sb.append("    tickerGroup: ").append(toIndentedString(tickerGroup)).append("\n");

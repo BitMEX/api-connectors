@@ -53,7 +53,7 @@ This endpoint does not need any parameter.
 
 <a name="guildEdit"></a>
 # **guildEdit**
-> Guild guildEdit(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, imgUrl, isPrivate)
+> Guild guildEdit(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, telegram, imgUrl, isPrivate)
 
 Edit guild new guild
 
@@ -66,15 +66,16 @@ GuildApi apiInstance = new GuildApi();
 String name = "name_example"; // String | Name of the guild, must be unique, must be at least 5 characters
 String emoji = "emoji_example"; // String | Emoji name.
 Double potDistributionPercent = 3.4D; // Double | How much of the pot should be distributed to the guild members, must be between 0 and 100
-String potDistributionType = "potDistributionType_example"; // String | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+String potDistributionType = "potDistributionType_example"; // String | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
 Double potTraderId = 3.4D; // Double | User ID of the guild member with order write permission for the pot
 String description = "description_example"; // String | Guild description, can be used to explain the guild to other users.
 String twitter = "twitter_example"; // String | Guild twitter handle.
 String discord = "discord_example"; // String | Guild discord link.
+String telegram = "telegram_example"; // String | Guild telegram link.
 String imgUrl = "imgUrl_example"; // String | URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
 Boolean isPrivate = true; // Boolean | Guild privacy status
 try {
-    Guild result = apiInstance.guildEdit(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, imgUrl, isPrivate);
+    Guild result = apiInstance.guildEdit(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, telegram, imgUrl, isPrivate);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling GuildApi#guildEdit");
@@ -89,11 +90,12 @@ Name | Type | Description  | Notes
  **name** | **String**| Name of the guild, must be unique, must be at least 5 characters |
  **emoji** | **String**| Emoji name. |
  **potDistributionPercent** | **Double**| How much of the pot should be distributed to the guild members, must be between 0 and 100 |
- **potDistributionType** | **String**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM |
+ **potDistributionType** | **String**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM |
  **potTraderId** | **Double**| User ID of the guild member with order write permission for the pot | [optional]
  **description** | **String**| Guild description, can be used to explain the guild to other users. | [optional]
  **twitter** | **String**| Guild twitter handle. | [optional]
  **discord** | **String**| Guild discord link. | [optional]
+ **telegram** | **String**| Guild telegram link. | [optional]
  **imgUrl** | **String**| URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used | [optional]
  **isPrivate** | **Boolean**| Guild privacy status | [optional]
 
@@ -268,7 +270,7 @@ This endpoint does not need any parameter.
 
 <a name="guildNew"></a>
 # **guildNew**
-> Guild guildNew(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, imgUrl, isPrivate)
+> Guild guildNew(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, telegram, imgUrl, isPrivate)
 
 Creates a new guild
 
@@ -281,14 +283,15 @@ GuildApi apiInstance = new GuildApi();
 String name = "name_example"; // String | Name of the guild, must be unique, must be at least 5 characters
 String emoji = "emoji_example"; // String | Emoji name.
 Double potDistributionPercent = 3.4D; // Double | How much of the pot should be distributed to the guild members, must be between 0 and 100
-String potDistributionType = "potDistributionType_example"; // String | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+String potDistributionType = "potDistributionType_example"; // String | How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
 String description = "description_example"; // String | Guild description, can be used to explain the guild to other users.
 String twitter = "twitter_example"; // String | Guild twitter handle.
 String discord = "discord_example"; // String | Guild discord link.
+String telegram = "telegram_example"; // String | Guild telegram link.
 String imgUrl = "imgUrl_example"; // String | URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
 Boolean isPrivate = true; // Boolean | Guild privacy status
 try {
-    Guild result = apiInstance.guildNew(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, imgUrl, isPrivate);
+    Guild result = apiInstance.guildNew(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, telegram, imgUrl, isPrivate);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling GuildApi#guildNew");
@@ -303,10 +306,11 @@ Name | Type | Description  | Notes
  **name** | **String**| Name of the guild, must be unique, must be at least 5 characters |
  **emoji** | **String**| Emoji name. |
  **potDistributionPercent** | **Double**| How much of the pot should be distributed to the guild members, must be between 0 and 100 |
- **potDistributionType** | **String**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM |
+ **potDistributionType** | **String**| How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM |
  **description** | **String**| Guild description, can be used to explain the guild to other users. | [optional]
  **twitter** | **String**| Guild twitter handle. | [optional]
  **discord** | **String**| Guild discord link. | [optional]
+ **telegram** | **String**| Guild telegram link. | [optional]
  **imgUrl** | **String**| URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used | [optional]
  **isPrivate** | **Boolean**| Guild privacy status | [optional]
 

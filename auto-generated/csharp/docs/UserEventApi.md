@@ -41,7 +41,7 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserEventApi();
-            var count = 1.2;  // double? | Number of results to fetch. (optional)  (default to 150)
+            var count = 1.2;  // double? | Number of results to fetch. (optional)  (default to 100)
             var startId = 1.2;  // double? | Cursor for pagination. (optional) 
 
             try
@@ -63,7 +63,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **double?**| Number of results to fetch. | [optional] [default to 150]
+ **count** | **double?**| Number of results to fetch. | [optional] [default to 100]
  **startId** | **double?**| Cursor for pagination. | [optional] 
 
 ### Return type

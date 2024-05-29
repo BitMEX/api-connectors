@@ -184,9 +184,10 @@ public class AddressApi {
    * @param note Optional annotation.
    * @param skipConfirm Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation.
    * @param skip2FA Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.
+   * @param memo Destination Memo.
    * @return Address
   */
-  public Address addressNew (String currency, String network, String address, String name, String note, Boolean skipConfirm, Boolean skip2FA) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Address addressNew (String currency, String network, String address, String name, String note, Boolean skipConfirm, Boolean skip2FA, String memo) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'currency' is set
     if (currency == null) {
@@ -248,6 +249,9 @@ public class AddressApi {
       if (skip2FA != null) {
         localVarBuilder.addTextBody("skip2FA", ApiInvoker.parameterToString(skip2FA), ApiInvoker.TEXT_PLAIN_UTF8);
       }
+      if (memo != null) {
+        localVarBuilder.addTextBody("memo", ApiInvoker.parameterToString(memo), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
@@ -259,6 +263,7 @@ public class AddressApi {
       formParams.put("note", ApiInvoker.parameterToString(note));
       formParams.put("skipConfirm", ApiInvoker.parameterToString(skipConfirm));
       formParams.put("skip2FA", ApiInvoker.parameterToString(skip2FA));
+      formParams.put("memo", ApiInvoker.parameterToString(memo));
     }
 
     String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
@@ -290,9 +295,9 @@ public class AddressApi {
       /**
    * Creates a new saved address.
    * 
-   * @param currency Currency of the address. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;   * @param network Selected network.   * @param address Destination Address.   * @param name Name of the entry, eg. &#39;Hardware wallet&#39;.   * @param note Optional annotation.   * @param skipConfirm Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation.   * @param skip2FA Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.
+   * @param currency Currency of the address. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;   * @param network Selected network.   * @param address Destination Address.   * @param name Name of the entry, eg. &#39;Hardware wallet&#39;.   * @param note Optional annotation.   * @param skipConfirm Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation.   * @param skip2FA Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.   * @param memo Destination Memo.
   */
-  public void addressNew (String currency, String network, String address, String name, String note, Boolean skipConfirm, Boolean skip2FA, final Response.Listener<Address> responseListener, final Response.ErrorListener errorListener) {
+  public void addressNew (String currency, String network, String address, String name, String note, Boolean skipConfirm, Boolean skip2FA, String memo, final Response.Listener<Address> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'currency' is set
@@ -365,6 +370,10 @@ public class AddressApi {
         localVarBuilder.addTextBody("skip2FA", ApiInvoker.parameterToString(skip2FA), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       
+      if (memo != null) {
+        localVarBuilder.addTextBody("memo", ApiInvoker.parameterToString(memo), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
 
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
@@ -377,6 +386,7 @@ formParams.put("name", ApiInvoker.parameterToString(name));
 formParams.put("note", ApiInvoker.parameterToString(note));
 formParams.put("skipConfirm", ApiInvoker.parameterToString(skipConfirm));
 formParams.put("skip2FA", ApiInvoker.parameterToString(skip2FA));
+formParams.put("memo", ApiInvoker.parameterToString(memo));
     }
 
     String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };

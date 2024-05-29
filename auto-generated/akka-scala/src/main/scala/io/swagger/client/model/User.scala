@@ -16,7 +16,7 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class User (
-  id: Option[Double] = None,
+  id: Option[Int] = None,
   firstname: Option[String] = None,
   lastname: Option[String] = None,
   username: String,
@@ -34,6 +34,7 @@ case class User (
   geoipCountry: Option[String] = None,
   geoipRegion: Option[String] = None,
   firstTradeTimestamp: Option[DateTime] = None,
+  firstDepositTimestamp: Option[DateTime] = None,
   typ: Option[String] = None
 ) extends ApiModel
 

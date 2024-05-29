@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -43,62 +42,62 @@ public:
     void fromJsonObject(QJsonObject json) override;
     SWGMargin* fromJson(QString jsonString) override;
 
-    SWGNumber* getAccount();
-    void setAccount(SWGNumber* account);
+    qint64 getAccount();
+    void setAccount(qint64 account);
 
     QString* getCurrency();
     void setCurrency(QString* currency);
 
-    SWGNumber* getRiskLimit();
-    void setRiskLimit(SWGNumber* risk_limit);
+    qint64 getRiskLimit();
+    void setRiskLimit(qint64 risk_limit);
 
     QString* getState();
     void setState(QString* state);
 
-    SWGNumber* getAmount();
-    void setAmount(SWGNumber* amount);
+    qint64 getAmount();
+    void setAmount(qint64 amount);
 
-    SWGNumber* getPrevRealisedPnl();
-    void setPrevRealisedPnl(SWGNumber* prev_realised_pnl);
+    qint64 getPrevRealisedPnl();
+    void setPrevRealisedPnl(qint64 prev_realised_pnl);
 
-    SWGNumber* getGrossComm();
-    void setGrossComm(SWGNumber* gross_comm);
+    qint64 getGrossComm();
+    void setGrossComm(qint64 gross_comm);
 
-    SWGNumber* getGrossOpenCost();
-    void setGrossOpenCost(SWGNumber* gross_open_cost);
+    qint64 getGrossOpenCost();
+    void setGrossOpenCost(qint64 gross_open_cost);
 
-    SWGNumber* getGrossOpenPremium();
-    void setGrossOpenPremium(SWGNumber* gross_open_premium);
+    qint64 getGrossOpenPremium();
+    void setGrossOpenPremium(qint64 gross_open_premium);
 
-    SWGNumber* getGrossExecCost();
-    void setGrossExecCost(SWGNumber* gross_exec_cost);
+    qint64 getGrossExecCost();
+    void setGrossExecCost(qint64 gross_exec_cost);
 
-    SWGNumber* getGrossMarkValue();
-    void setGrossMarkValue(SWGNumber* gross_mark_value);
+    qint64 getGrossMarkValue();
+    void setGrossMarkValue(qint64 gross_mark_value);
 
-    SWGNumber* getRiskValue();
-    void setRiskValue(SWGNumber* risk_value);
+    qint64 getRiskValue();
+    void setRiskValue(qint64 risk_value);
 
-    SWGNumber* getInitMargin();
-    void setInitMargin(SWGNumber* init_margin);
+    qint64 getInitMargin();
+    void setInitMargin(qint64 init_margin);
 
-    SWGNumber* getMaintMargin();
-    void setMaintMargin(SWGNumber* maint_margin);
+    qint64 getMaintMargin();
+    void setMaintMargin(qint64 maint_margin);
 
-    SWGNumber* getTargetExcessMargin();
-    void setTargetExcessMargin(SWGNumber* target_excess_margin);
+    qint64 getTargetExcessMargin();
+    void setTargetExcessMargin(qint64 target_excess_margin);
 
-    SWGNumber* getRealisedPnl();
-    void setRealisedPnl(SWGNumber* realised_pnl);
+    qint64 getRealisedPnl();
+    void setRealisedPnl(qint64 realised_pnl);
 
-    SWGNumber* getUnrealisedPnl();
-    void setUnrealisedPnl(SWGNumber* unrealised_pnl);
+    qint64 getUnrealisedPnl();
+    void setUnrealisedPnl(qint64 unrealised_pnl);
 
-    SWGNumber* getWalletBalance();
-    void setWalletBalance(SWGNumber* wallet_balance);
+    qint64 getWalletBalance();
+    void setWalletBalance(qint64 wallet_balance);
 
-    SWGNumber* getMarginBalance();
-    void setMarginBalance(SWGNumber* margin_balance);
+    qint64 getMarginBalance();
+    void setMarginBalance(qint64 margin_balance);
 
     double getMarginLeverage();
     void setMarginLeverage(double margin_leverage);
@@ -106,14 +105,14 @@ public:
     double getMarginUsedPcnt();
     void setMarginUsedPcnt(double margin_used_pcnt);
 
-    SWGNumber* getExcessMargin();
-    void setExcessMargin(SWGNumber* excess_margin);
+    qint64 getExcessMargin();
+    void setExcessMargin(qint64 excess_margin);
 
-    SWGNumber* getAvailableMargin();
-    void setAvailableMargin(SWGNumber* available_margin);
+    qint64 getAvailableMargin();
+    void setAvailableMargin(qint64 available_margin);
 
-    SWGNumber* getWithdrawableMargin();
-    void setWithdrawableMargin(SWGNumber* withdrawable_margin);
+    qint64 getWithdrawableMargin();
+    void setWithdrawableMargin(qint64 withdrawable_margin);
 
     double getMakerFeeDiscount();
     void setMakerFeeDiscount(double maker_fee_discount);
@@ -128,61 +127,61 @@ public:
     virtual bool isSet() override;
 
 private:
-    SWGNumber* account;
+    qint64 account;
     bool m_account_isSet;
 
     QString* currency;
     bool m_currency_isSet;
 
-    SWGNumber* risk_limit;
+    qint64 risk_limit;
     bool m_risk_limit_isSet;
 
     QString* state;
     bool m_state_isSet;
 
-    SWGNumber* amount;
+    qint64 amount;
     bool m_amount_isSet;
 
-    SWGNumber* prev_realised_pnl;
+    qint64 prev_realised_pnl;
     bool m_prev_realised_pnl_isSet;
 
-    SWGNumber* gross_comm;
+    qint64 gross_comm;
     bool m_gross_comm_isSet;
 
-    SWGNumber* gross_open_cost;
+    qint64 gross_open_cost;
     bool m_gross_open_cost_isSet;
 
-    SWGNumber* gross_open_premium;
+    qint64 gross_open_premium;
     bool m_gross_open_premium_isSet;
 
-    SWGNumber* gross_exec_cost;
+    qint64 gross_exec_cost;
     bool m_gross_exec_cost_isSet;
 
-    SWGNumber* gross_mark_value;
+    qint64 gross_mark_value;
     bool m_gross_mark_value_isSet;
 
-    SWGNumber* risk_value;
+    qint64 risk_value;
     bool m_risk_value_isSet;
 
-    SWGNumber* init_margin;
+    qint64 init_margin;
     bool m_init_margin_isSet;
 
-    SWGNumber* maint_margin;
+    qint64 maint_margin;
     bool m_maint_margin_isSet;
 
-    SWGNumber* target_excess_margin;
+    qint64 target_excess_margin;
     bool m_target_excess_margin_isSet;
 
-    SWGNumber* realised_pnl;
+    qint64 realised_pnl;
     bool m_realised_pnl_isSet;
 
-    SWGNumber* unrealised_pnl;
+    qint64 unrealised_pnl;
     bool m_unrealised_pnl_isSet;
 
-    SWGNumber* wallet_balance;
+    qint64 wallet_balance;
     bool m_wallet_balance_isSet;
 
-    SWGNumber* margin_balance;
+    qint64 margin_balance;
     bool m_margin_balance_isSet;
 
     double margin_leverage;
@@ -191,13 +190,13 @@ private:
     double margin_used_pcnt;
     bool m_margin_used_pcnt_isSet;
 
-    SWGNumber* excess_margin;
+    qint64 excess_margin;
     bool m_excess_margin_isSet;
 
-    SWGNumber* available_margin;
+    qint64 available_margin;
     bool m_available_margin_isSet;
 
-    SWGNumber* withdrawable_margin;
+    qint64 withdrawable_margin;
     bool m_withdrawable_margin_isSet;
 
     double maker_fee_discount;

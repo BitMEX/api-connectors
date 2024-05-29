@@ -123,6 +123,7 @@ Class | Method | HTTP request | Description
 *StatsApi* | **stats.historyUSD** | **GET** /stats/historyUSD | Get a summary of exchange statistics in USD.
 *TradeApi* | **trade.get** | **GET** /trade | Get Trades.
 *TradeApi* | **trade.getBucketed** | **GET** /trade/bucketed | Get previous trades in time buckets.
+*UserApi* | **user.cancelPendingWithdrawal** | **DELETE** /user/withdrawal | Cancel pending withdrawal
 *UserApi* | **user.cancelWithdrawal** | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 *UserApi* | **user.checkReferralCode** | **GET** /user/checkReferralCode | Check if a referral code is valid.
 *UserApi* | **user.communicationToken** | **POST** /user/communicationToken | Register your communication token for mobile clients
@@ -136,6 +137,7 @@ Class | Method | HTTP request | Description
 *UserApi* | **user.getCSA** | **GET** /user/csa | Get your account&#39;s CSA status.
 *UserApi* | **user.getCommission** | **GET** /user/commission | Get your account&#39;s commission status.
 *UserApi* | **user.getDepositAddress** | **GET** /user/depositAddress | Get a deposit address.
+*UserApi* | **user.getDepositAddressInformation** | **GET** /user/depositAddressInformation | Get a deposit address.
 *UserApi* | **user.getExecutionHistory** | **GET** /user/executionHistory | Get the execution history by day.
 *UserApi* | **user.getMargin** | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 *UserApi* | **user.getQuoteFillRatio** | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
@@ -174,6 +176,7 @@ Class | Method | HTTP request | Description
  - [CollateralSupportAgreement](CollateralSupportAgreement.md)
  - [CommunicationToken](CommunicationToken.md)
  - [ConnectedUsers](ConnectedUsers.md)
+ - [DepositAddress](DepositAddress.md)
  - [Error](Error.md)
  - [ErrorError](ErrorError.md)
  - [Execution](Execution.md)
@@ -212,6 +215,7 @@ Class | Method | HTTP request | Description
  - [UserEvent](UserEvent.md)
  - [UserPreferences](UserPreferences.md)
  - [Wallet](Wallet.md)
+ - [WalletSummaryRecord](WalletSummaryRecord.md)
  - [XAny](XAny.md)
 
 

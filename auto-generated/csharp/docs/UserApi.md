@@ -4,6 +4,7 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**UserCancelPendingWithdrawal**](UserApi.md#usercancelpendingwithdrawal) | **DELETE** /user/withdrawal | Cancel pending withdrawal
 [**UserCancelWithdrawal**](UserApi.md#usercancelwithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**UserCheckReferralCode**](UserApi.md#usercheckreferralcode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 [**UserCommunicationToken**](UserApi.md#usercommunicationtoken) | **POST** /user/communicationToken | Register your communication token for mobile clients
@@ -17,6 +18,7 @@ Method | HTTP request | Description
 [**UserGetCSA**](UserApi.md#usergetcsa) | **GET** /user/csa | Get your account&#39;s CSA status.
 [**UserGetCommission**](UserApi.md#usergetcommission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**UserGetDepositAddress**](UserApi.md#usergetdepositaddress) | **GET** /user/depositAddress | Get a deposit address.
+[**UserGetDepositAddressInformation**](UserApi.md#usergetdepositaddressinformation) | **GET** /user/depositAddressInformation | Get a deposit address.
 [**UserGetExecutionHistory**](UserApi.md#usergetexecutionhistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**UserGetMargin**](UserApi.md#usergetmargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**UserGetQuoteFillRatio**](UserApi.md#usergetquotefillratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
@@ -36,6 +38,78 @@ Method | HTTP request | Description
 [**UserUpdateSubAccount**](UserApi.md#userupdatesubaccount) | **POST** /user/updateSubaccount | Updates the sub-account name.
 [**UserWalletTransfer**](UserApi.md#userwallettransfer) | **POST** /user/walletTransfer | Execute a transfer to a paired account.
 
+
+<a name="usercancelpendingwithdrawal"></a>
+# **UserCancelPendingWithdrawal**
+> Object UserCancelPendingWithdrawal (string transactID)
+
+Cancel pending withdrawal
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserCancelPendingWithdrawalExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+            var transactID = transactID_example;  // string | 
+
+            try
+            {
+                // Cancel pending withdrawal
+                Object result = apiInstance.UserCancelPendingWithdrawal(transactID);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserCancelPendingWithdrawal: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transactID** | **string**|  | 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="usercancelwithdrawal"></a>
 # **UserCancelWithdrawal**
@@ -917,6 +991,80 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="usergetdepositaddressinformation"></a>
+# **UserGetDepositAddressInformation**
+> DepositAddress UserGetDepositAddressInformation (string currency, string network)
+
+Get a deposit address.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserGetDepositAddressInformationExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+            var currency = currency_example;  // string | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
+            var network = network_example;  // string | The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
+
+            try
+            {
+                // Get a deposit address.
+                DepositAddress result = apiInstance.UserGetDepositAddressInformation(currency, network);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserGetDepositAddressInformation: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
+ **network** | **string**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
+
+### Return type
+
+[**DepositAddress**](DepositAddress.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="usergetexecutionhistory"></a>
 # **UserGetExecutionHistory**
 > List<Execution> UserGetExecutionHistory (string symbol, DateTime? timestamp)
@@ -1626,7 +1774,7 @@ Name | Type | Description  | Notes
 
 <a name="usergetwallethistory"></a>
 # **UserGetWalletHistory**
-> List<Transaction> UserGetWalletHistory (string currency = null, double? count = null, double? start = null, double? targetAccountId = null)
+> List<Transaction> UserGetWalletHistory (string currency = null, double? count = null, double? start = null, double? targetAccountId = null, bool? reverse = null)
 
 Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 
@@ -1659,14 +1807,15 @@ namespace Example
 
             var apiInstance = new UserApi();
             var currency = currency_example;  // string | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional)  (default to XBt)
-            var count = 1.2;  // double? | Number of results to fetch. (optional)  (default to 100)
-            var start = 1.2;  // double? | Starting point for results. (optional)  (default to 0)
+            var count = 1.2;  // double? | Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional)  (default to 10000)
+            var start = 1.2;  // double? | Starting point for results, integer. Default 0. (optional)  (default to 0)
             var targetAccountId = 1.2;  // double? | AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional) 
+            var reverse = true;  // bool? | Start from the latest transaction record. Default true. (optional)  (default to true)
 
             try
             {
                 // Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
-                List&lt;Transaction&gt; result = apiInstance.UserGetWalletHistory(currency, count, start, targetAccountId);
+                List&lt;Transaction&gt; result = apiInstance.UserGetWalletHistory(currency, count, start, targetAccountId, reverse);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1683,9 +1832,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **string**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
- **count** | **double?**| Number of results to fetch. | [optional] [default to 100]
- **start** | **double?**| Starting point for results. | [optional] [default to 0]
+ **count** | **double?**| Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. | [optional] [default to 10000]
+ **start** | **double?**| Starting point for results, integer. Default 0. | [optional] [default to 0]
  **targetAccountId** | **double?**| AccountId to view the history of, must be a paired account with the authorised user requesting the history. | [optional] 
+ **reverse** | **bool?**| Start from the latest transaction record. Default true. | [optional] [default to true]
 
 ### Return type
 
@@ -1704,9 +1854,11 @@ Name | Type | Description  | Notes
 
 <a name="usergetwalletsummary"></a>
 # **UserGetWalletSummary**
-> List<Transaction> UserGetWalletSummary (string currency = null)
+> List<WalletSummaryRecord> UserGetWalletSummary (string currency = null, DateTime? startTime = null, DateTime? endTime = null)
 
 Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+
+Provides an aggregated view of transactions, by transaction type, over a specific time period.
 
 ### Example
 ```csharp
@@ -1737,11 +1889,13 @@ namespace Example
 
             var apiInstance = new UserApi();
             var currency = currency_example;  // string | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional)  (default to XBt)
+            var startTime = 2013-10-20T19:20:30+01:00;  // DateTime? | Start time for the summary (optional) 
+            var endTime = 2013-10-20T19:20:30+01:00;  // DateTime? | End time for the summary (optional) 
 
             try
             {
                 // Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
-                List&lt;Transaction&gt; result = apiInstance.UserGetWalletSummary(currency);
+                List&lt;WalletSummaryRecord&gt; result = apiInstance.UserGetWalletSummary(currency, startTime, endTime);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1758,10 +1912,12 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **string**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
+ **startTime** | **DateTime?**| Start time for the summary | [optional] 
+ **endTime** | **DateTime?**| End time for the summary | [optional] 
 
 ### Return type
 
-[**List<Transaction>**](Transaction.md)
+[**List<WalletSummaryRecord>**](WalletSummaryRecord.md)
 
 ### Authorization
 
@@ -1898,7 +2054,7 @@ No authorization required
 
 <a name="userrequestwithdrawal"></a>
 # **UserRequestWithdrawal**
-> Transaction UserRequestWithdrawal (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
+> Transaction UserRequestWithdrawal (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
 
 Request a withdrawal to an external wallet.
 
@@ -1934,9 +2090,10 @@ namespace Example
             var apiInstance = new UserApi();
             var currency = currency_example;  // string | Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (default to XBt)
             var network = network_example;  // string | The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
-            var amount = 8.14;  // decimal? | Amount of withdrawal currency.
+            var amount = 789;  // long? | Amount of withdrawal currency.
             var otpToken = otpToken_example;  // string | 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional) 
             var address = address_example;  // string | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional) 
+            var memo = memo_example;  // string | Destination Memo. If `address`, is specified, Destination Memo can also be specified (optional) 
             var addressId = 1.2;  // double? | ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional) 
             var targetUserId = 1.2;  // double? | ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified. (optional) 
             var fee = 1.2;  // double? | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional) 
@@ -1945,7 +2102,7 @@ namespace Example
             try
             {
                 // Request a withdrawal to an external wallet.
-                Transaction result = apiInstance.UserRequestWithdrawal(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text);
+                Transaction result = apiInstance.UserRequestWithdrawal(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1963,9 +2120,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **string**| Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | [default to XBt]
  **network** | **string**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
- **amount** | **decimal?**| Amount of withdrawal currency. | 
+ **amount** | **long?**| Amount of withdrawal currency. | 
  **otpToken** | **string**| 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. | [optional] 
  **address** | **string**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **memo** | **string**| Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified | [optional] 
  **addressId** | **double?**| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
  **targetUserId** | **double?**| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
  **fee** | **double?**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 
@@ -2136,7 +2294,7 @@ Name | Type | Description  | Notes
 
 <a name="userwallettransfer"></a>
 # **UserWalletTransfer**
-> Transaction UserWalletTransfer (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+> Transaction UserWalletTransfer (string currency, long? amount, double? targetAccountId, double? fromAccountId = null)
 
 Execute a transfer to a paired account.
 
@@ -2171,7 +2329,7 @@ namespace Example
 
             var apiInstance = new UserApi();
             var currency = currency_example;  // string | Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
-            var amount = 8.14;  // decimal? | Amount of transfer.
+            var amount = 789;  // long? | Amount of transfer.
             var targetAccountId = 1.2;  // double? | AccountId to send the transfer to, must be a paired account with the user sending the transfer.
             var fromAccountId = 1.2;  // double? | AccountID to send the transfer from. Must be paired account with the authenticated user. (optional) 
 
@@ -2195,7 +2353,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **string**| Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
- **amount** | **decimal?**| Amount of transfer. | 
+ **amount** | **long?**| Amount of transfer. | 
  **targetAccountId** | **double?**| AccountId to send the transfer to, must be a paired account with the user sending the transfer. | 
  **fromAccountId** | **double?**| AccountID to send the transfer from. Must be paired account with the authenticated user. | [optional] 
 

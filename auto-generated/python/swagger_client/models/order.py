@@ -36,12 +36,12 @@ class Order(object):
         'order_id': 'str',
         'cl_ord_id': 'str',
         'cl_ord_link_id': 'str',
-        'account': 'float',
+        'account': 'int',
         'symbol': 'str',
         'side': 'str',
-        'order_qty': 'float',
+        'order_qty': 'int',
         'price': 'float',
-        'display_qty': 'float',
+        'display_qty': 'int',
         'stop_px': 'float',
         'peg_offset_value': 'float',
         'peg_price_type': 'str',
@@ -55,8 +55,8 @@ class Order(object):
         'triggered': 'str',
         'working_indicator': 'bool',
         'ord_rej_reason': 'str',
-        'leaves_qty': 'float',
-        'cum_qty': 'float',
+        'leaves_qty': 'int',
+        'cum_qty': 'int',
         'avg_px': 'float',
         'text': 'str',
         'transact_time': 'datetime',
@@ -257,7 +257,7 @@ class Order(object):
 
 
         :return: The account of this Order.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._account
 
@@ -267,7 +267,7 @@ class Order(object):
 
 
         :param account: The account of this Order.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._account = account
@@ -320,7 +320,7 @@ class Order(object):
 
 
         :return: The order_qty of this Order.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._order_qty
 
@@ -330,7 +330,7 @@ class Order(object):
 
 
         :param order_qty: The order_qty of this Order.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._order_qty = order_qty
@@ -362,7 +362,7 @@ class Order(object):
 
 
         :return: The display_qty of this Order.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._display_qty
 
@@ -372,7 +372,7 @@ class Order(object):
 
 
         :param display_qty: The display_qty of this Order.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._display_qty = display_qty
@@ -656,7 +656,7 @@ class Order(object):
 
 
         :return: The leaves_qty of this Order.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._leaves_qty
 
@@ -666,7 +666,7 @@ class Order(object):
 
 
         :param leaves_qty: The leaves_qty of this Order.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._leaves_qty = leaves_qty
@@ -677,7 +677,7 @@ class Order(object):
 
 
         :return: The cum_qty of this Order.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._cum_qty
 
@@ -687,7 +687,7 @@ class Order(object):
 
 
         :param cum_qty: The cum_qty of this Order.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._cum_qty = cum_qty

@@ -14,9 +14,9 @@ public struct Insurance: Codable {
 
     public var currency: String
     public var timestamp: Date
-    public var walletBalance: Double?
+    public var walletBalance: Int64?
 
-    public init(currency: String, timestamp: Date, walletBalance: Double?) {
+    public init(currency: String, timestamp: Date, walletBalance: Int64?) {
         self.currency = currency
         self.timestamp = timestamp
         self.walletBalance = walletBalance

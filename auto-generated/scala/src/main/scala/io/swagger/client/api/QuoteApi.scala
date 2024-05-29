@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat
 
 import java.util.Date
 import io.swagger.client.model.Error
-import io.swagger.client.model.Number
 import io.swagger.client.model.Quote
 import io.swagger.client.{ApiInvoker, ApiException}
 
@@ -96,7 +95,7 @@ class QuoteApi(
    * @param endTime Ending date filter for results. (optional)
    * @return List[Quote]
    */
-  def quoteGet(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Quote]] = {
+  def quoteGet(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Quote]] = {
     val await = Try(Await.result(quoteGetAsync(symbol, filter, columns, count, start, reverse, startTime, endTime), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -118,7 +117,7 @@ class QuoteApi(
    * @param endTime Ending date filter for results. (optional)
    * @return Future(List[Quote])
    */
-  def quoteGetAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Quote]] = {
+  def quoteGetAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Quote]] = {
       helper.quoteGet(symbol, filter, columns, count, start, reverse, startTime, endTime)
   }
 
@@ -138,7 +137,7 @@ class QuoteApi(
    * @param endTime Ending date filter for results. (optional)
    * @return List[Quote]
    */
-  def quoteGetBucketed(binSize: Option[String] = Option("1m"), partial: Option[Boolean] = Option(false), symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Quote]] = {
+  def quoteGetBucketed(binSize: Option[String] = Option("1m"), partial: Option[Boolean] = Option(false), symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Quote]] = {
     val await = Try(Await.result(quoteGetBucketedAsync(binSize, partial, symbol, filter, columns, count, start, reverse, startTime, endTime), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -162,7 +161,7 @@ class QuoteApi(
    * @param endTime Ending date filter for results. (optional)
    * @return Future(List[Quote])
    */
-  def quoteGetBucketedAsync(binSize: Option[String] = Option("1m"), partial: Option[Boolean] = Option(false), symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Quote]] = {
+  def quoteGetBucketedAsync(binSize: Option[String] = Option("1m"), partial: Option[Boolean] = Option(false), symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Integer] = Option(100), start: Option[Integer] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Quote]] = {
       helper.quoteGetBucketed(binSize, partial, symbol, filter, columns, count, start, reverse, startTime, endTime)
   }
 
@@ -173,8 +172,8 @@ class QuoteApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
   def quoteGet(symbol: Option[String] = None,
     filter: Option[String] = None,
     columns: Option[String] = None,
-    count: Option[Number] = Option(100),
-    start: Option[Number] = Option(0),
+    count: Option[Integer] = Option(100),
+    start: Option[Integer] = Option(0),
     reverse: Option[Boolean] = Option(false),
     startTime: Option[Date] = None,
     endTime: Option[Date] = None
@@ -230,8 +229,8 @@ class QuoteApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     symbol: Option[String] = None,
     filter: Option[String] = None,
     columns: Option[String] = None,
-    count: Option[Number] = Option(100),
-    start: Option[Number] = Option(0),
+    count: Option[Integer] = Option(100),
+    start: Option[Integer] = Option(0),
     reverse: Option[Boolean] = Option(false),
     startTime: Option[Date] = None,
     endTime: Option[Date] = None

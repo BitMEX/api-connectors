@@ -63,15 +63,16 @@ object GuildApi {
    * @param name Name of the guild, must be unique, must be at least 5 characters
    * @param emoji Emoji name.
    * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100
-   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
    * @param potTraderId User ID of the guild member with order write permission for the pot
    * @param description Guild description, can be used to explain the guild to other users.
    * @param twitter Guild twitter handle.
    * @param discord Guild discord link.
+   * @param telegram Guild telegram link.
    * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
    * @param isPrivate Guild privacy status
    */
-  def guild.edit(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, potTraderId: Option[Double] = None, description: Option[String] = None, twitter: Option[String] = None, discord: Option[String] = None, imgUrl: Option[String] = None, isPrivate: Option[Boolean] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Guild] =
+  def guild.edit(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, potTraderId: Option[Double] = None, description: Option[String] = None, twitter: Option[String] = None, discord: Option[String] = None, telegram: Option[String] = None, imgUrl: Option[String] = None, isPrivate: Option[Boolean] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Guild] =
     ApiRequest[Guild](ApiMethods.PUT, "https://www.bitmex.com/api/v1", "/guild", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
@@ -84,6 +85,7 @@ object GuildApi {
       .withFormParam("description", description)
       .withFormParam("twitter", twitter)
       .withFormParam("discord", discord)
+      .withFormParam("telegram", telegram)
       .withFormParam("imgUrl", imgUrl)
       .withFormParam("isPrivate", isPrivate)
       .withSuccessResponse[Guild](200)
@@ -207,14 +209,15 @@ object GuildApi {
    * @param name Name of the guild, must be unique, must be at least 5 characters
    * @param emoji Emoji name.
    * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100
-   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
    * @param description Guild description, can be used to explain the guild to other users.
    * @param twitter Guild twitter handle.
    * @param discord Guild discord link.
+   * @param telegram Guild telegram link.
    * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
    * @param isPrivate Guild privacy status
    */
-  def guild.new(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, description: Option[String] = None, twitter: Option[String] = None, discord: Option[String] = None, imgUrl: Option[String] = None, isPrivate: Option[Boolean] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Guild] =
+  def guild.new(name: String, emoji: String, potDistributionPercent: Double, potDistributionType: String, description: Option[String] = None, twitter: Option[String] = None, discord: Option[String] = None, telegram: Option[String] = None, imgUrl: Option[String] = None, isPrivate: Option[Boolean] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Guild] =
     ApiRequest[Guild](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/guild", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
@@ -226,6 +229,7 @@ object GuildApi {
       .withFormParam("description", description)
       .withFormParam("twitter", twitter)
       .withFormParam("discord", discord)
+      .withFormParam("telegram", telegram)
       .withFormParam("imgUrl", imgUrl)
       .withFormParam("isPrivate", isPrivate)
       .withSuccessResponse[Guild](200)

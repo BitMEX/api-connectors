@@ -16,7 +16,7 @@ import (
 
 // Trollbox Data
 type Chat struct {
-	Id float32 `json:"id,omitempty"`
+	Id int32 `json:"id,omitempty"`
 	Date time.Time `json:"date"`
 	User string `json:"user"`
 	UserColor string `json:"userColor,omitempty"`

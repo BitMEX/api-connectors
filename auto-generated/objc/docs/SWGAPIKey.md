@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **_id** | **NSString*** |  | 
 **secret** | **NSString*** |  | 
 **name** | **NSString*** |  | 
-**nonce** | **NSNumber*** |  | 
+**nonce** | **NSNumber*** |  | [default to @0]
 **cidr** | **NSString*** |  | [optional] 
 **cidrs** | [**NSArray&lt;SWGXAny&gt;***](SWGXAny.md) |  | [optional] 
 **targetAccountId** | **NSNumber*** |  | [optional] 

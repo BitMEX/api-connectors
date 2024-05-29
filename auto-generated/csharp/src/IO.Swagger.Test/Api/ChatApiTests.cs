@@ -71,8 +71,8 @@ namespace IO.Swagger.Test
         public void ChatGetTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //decimal? count = null;
-            //decimal? start = null;
+            //int? count = null;
+            //int? start = null;
             //bool? reverse = null;
             //double? channelID = null;
             //var response = instance.ChatGet(count, start, reverse, channelID);

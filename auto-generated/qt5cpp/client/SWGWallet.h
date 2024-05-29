@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -43,35 +42,35 @@ public:
     void fromJsonObject(QJsonObject json) override;
     SWGWallet* fromJson(QString jsonString) override;
 
-    SWGNumber* getAccount();
-    void setAccount(SWGNumber* account);
+    qint64 getAccount();
+    void setAccount(qint64 account);
 
     QString* getCurrency();
     void setCurrency(QString* currency);
 
-    SWGNumber* getDeposited();
-    void setDeposited(SWGNumber* deposited);
+    qint64 getDeposited();
+    void setDeposited(qint64 deposited);
 
-    SWGNumber* getWithdrawn();
-    void setWithdrawn(SWGNumber* withdrawn);
+    qint64 getWithdrawn();
+    void setWithdrawn(qint64 withdrawn);
 
-    SWGNumber* getTransferIn();
-    void setTransferIn(SWGNumber* transfer_in);
+    qint64 getTransferIn();
+    void setTransferIn(qint64 transfer_in);
 
-    SWGNumber* getTransferOut();
-    void setTransferOut(SWGNumber* transfer_out);
+    qint64 getTransferOut();
+    void setTransferOut(qint64 transfer_out);
 
-    SWGNumber* getAmount();
-    void setAmount(SWGNumber* amount);
+    qint64 getAmount();
+    void setAmount(qint64 amount);
 
-    SWGNumber* getPendingCredit();
-    void setPendingCredit(SWGNumber* pending_credit);
+    qint64 getPendingCredit();
+    void setPendingCredit(qint64 pending_credit);
 
-    SWGNumber* getPendingDebit();
-    void setPendingDebit(SWGNumber* pending_debit);
+    qint64 getPendingDebit();
+    void setPendingDebit(qint64 pending_debit);
 
-    SWGNumber* getConfirmedDebit();
-    void setConfirmedDebit(SWGNumber* confirmed_debit);
+    qint64 getConfirmedDebit();
+    void setConfirmedDebit(qint64 confirmed_debit);
 
     QDateTime* getTimestamp();
     void setTimestamp(QDateTime* timestamp);
@@ -80,34 +79,34 @@ public:
     virtual bool isSet() override;
 
 private:
-    SWGNumber* account;
+    qint64 account;
     bool m_account_isSet;
 
     QString* currency;
     bool m_currency_isSet;
 
-    SWGNumber* deposited;
+    qint64 deposited;
     bool m_deposited_isSet;
 
-    SWGNumber* withdrawn;
+    qint64 withdrawn;
     bool m_withdrawn_isSet;
 
-    SWGNumber* transfer_in;
+    qint64 transfer_in;
     bool m_transfer_in_isSet;
 
-    SWGNumber* transfer_out;
+    qint64 transfer_out;
     bool m_transfer_out_isSet;
 
-    SWGNumber* amount;
+    qint64 amount;
     bool m_amount_isSet;
 
-    SWGNumber* pending_credit;
+    qint64 pending_credit;
     bool m_pending_credit_isSet;
 
-    SWGNumber* pending_debit;
+    qint64 pending_debit;
     bool m_pending_debit_isSet;
 
-    SWGNumber* confirmed_debit;
+    qint64 confirmed_debit;
     bool m_confirmed_debit_isSet;
 
     QDateTime* timestamp;

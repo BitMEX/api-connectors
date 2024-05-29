@@ -3,6 +3,7 @@
 #import "SWGAffiliate.h"
 #import "SWGCollateralSupportAgreement.h"
 #import "SWGCommunicationToken.h"
+#import "SWGDepositAddress.h"
 #import "SWGError.h"
 #import "SWGExecution.h"
 #import "SWGMargin.h"
@@ -14,6 +15,7 @@
 #import "SWGUser.h"
 #import "SWGUserCommissionsBySymbol.h"
 #import "SWGWallet.h"
+#import "SWGWalletSummaryRecord.h"
 #import "SWGXAny.h"
 #import "SWGApi.h"
 
@@ -37,6 +39,22 @@ extern NSString* kSWGUserApiErrorDomain;
 extern NSInteger kSWGUserApiMissingParamErrorCode;
 
 -(instancetype) initWithApiClient:(SWGApiClient *)apiClient NS_DESIGNATED_INITIALIZER;
+
+/// Cancel pending withdrawal
+/// 
+///
+/// @param transactID 
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) userCancelPendingWithdrawalWithTransactID: (NSString*) transactID
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
 
 /// Cancel a withdrawal.
 /// 
@@ -249,6 +267,24 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
     completionHandler: (void (^)(NSString* output, NSError* error)) handler;
 
 
+/// Get a deposit address.
+/// 
+///
+/// @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+/// @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return SWGDepositAddress*
+-(NSURLSessionTask*) userGetDepositAddressInformationWithCurrency: (NSString*) currency
+    network: (NSString*) network
+    completionHandler: (void (^)(SWGDepositAddress* output, NSError* error)) handler;
+
+
 /// Get the execution history by day.
 /// 
 ///
@@ -416,9 +452,10 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 /// 
 ///
 /// @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional) (default to XBt)
-/// @param count Number of results to fetch. (optional) (default to 100)
-/// @param start Starting point for results. (optional) (default to 0)
+/// @param count Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional) (default to 10000)
+/// @param start Starting point for results, integer. Default 0. (optional) (default to 0)
 /// @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)
+/// @param reverse Start from the latest transaction record. Default true. (optional) (default to true)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -431,13 +468,16 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
     count: (NSNumber*) count
     start: (NSNumber*) start
     targetAccountId: (NSNumber*) targetAccountId
+    reverse: (NSNumber*) reverse
     completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler;
 
 
 /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
-/// 
+/// Provides an aggregated view of transactions, by transaction type, over a specific time period.
 ///
 /// @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional) (default to XBt)
+/// @param startTime Start time for the summary (optional)
+/// @param endTime End time for the summary (optional)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -445,9 +485,11 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 ///  code:403 message:"Access Denied",
 ///  code:404 message:"Not Found"
 ///
-/// @return NSArray<SWGTransaction>*
+/// @return NSArray<SWGWalletSummaryRecord>*
 -(NSURLSessionTask*) userGetWalletSummaryWithCurrency: (NSString*) currency
-    completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler;
+    startTime: (NSDate*) startTime
+    endTime: (NSDate*) endTime
+    completionHandler: (void (^)(NSArray<SWGWalletSummaryRecord>* output, NSError* error)) handler;
 
 
 /// Get the list of accounts you can transfer funds between.
@@ -488,6 +530,7 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 /// @param amount Amount of withdrawal currency.
 /// @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
 /// @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
+/// @param memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)
 /// @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
 /// @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
 /// @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
@@ -505,6 +548,7 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
     amount: (NSNumber*) amount
     otpToken: (NSString*) otpToken
     address: (NSString*) address
+    memo: (NSString*) memo
     addressId: (NSNumber*) addressId
     targetUserId: (NSNumber*) targetUserId
     fee: (NSNumber*) fee

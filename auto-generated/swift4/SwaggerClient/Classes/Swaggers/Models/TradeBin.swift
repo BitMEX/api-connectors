@@ -17,15 +17,15 @@ public struct TradeBin: Codable {
     public var high: Double?
     public var low: Double?
     public var close: Double?
-    public var trades: Double?
-    public var volume: Double?
+    public var trades: Int64?
+    public var volume: Int64?
     public var vwap: Double?
-    public var lastSize: Double?
-    public var turnover: Double?
+    public var lastSize: Int64?
+    public var turnover: Int64?
     public var homeNotional: Double?
     public var foreignNotional: Double?
 
-    public init(timestamp: Date, symbol: String, _open: Double?, high: Double?, low: Double?, close: Double?, trades: Double?, volume: Double?, vwap: Double?, lastSize: Double?, turnover: Double?, homeNotional: Double?, foreignNotional: Double?) {
+    public init(timestamp: Date, symbol: String, _open: Double?, high: Double?, low: Double?, close: Double?, trades: Int64?, volume: Int64?, vwap: Double?, lastSize: Int64?, turnover: Int64?, homeNotional: Double?, foreignNotional: Double?) {
         self.timestamp = timestamp
         self.symbol = symbol
         self._open = _open

@@ -21,10 +21,10 @@
 #include "SWGAffiliate.h"
 #include "SWGCollateralSupportAgreement.h"
 #include "SWGCommunicationToken.h"
+#include "SWGDepositAddress.h"
 #include "SWGError.h"
 #include "SWGExecution.h"
 #include "SWGMargin.h"
-#include "SWGNumber.h"
 #include "SWGObject.h"
 #include "SWGQuoteFillRatio.h"
 #include "SWGQuoteValueRatio.h"
@@ -34,6 +34,7 @@
 #include "SWGUser.h"
 #include "SWGUserCommissionsBySymbol.h"
 #include "SWGWallet.h"
+#include "SWGWalletSummaryRecord.h"
 #include "SWGX-any.h"
 
 #include <QObject>
@@ -52,6 +53,7 @@ public:
     QString basePath;
     QMap<QString, QString> defaultHeaders;
 
+    void user_cancelPendingWithdrawal(QString* transact_id);
     void user_cancelWithdrawal(QString* token);
     void user_checkReferralCode(QString* referral_code);
     void user_communicationToken(QString* token, QString* platform_agent);
@@ -65,6 +67,7 @@ public:
     void user_getCSA();
     void user_getCommission();
     void user_getDepositAddress(QString* currency, QString* network);
+    void user_getDepositAddressInformation(QString* currency, QString* network);
     void user_getExecutionHistory(QString* symbol, QDateTime* timestamp);
     void user_getMargin(QString* currency);
     void user_getQuoteFillRatio(double target_account_id);
@@ -75,16 +78,17 @@ public:
     void user_getTradingVolume();
     void user_getUnstakingRequests(QString* status);
     void user_getWallet(QString* currency);
-    void user_getWalletHistory(QString* currency, double count, double start, double target_account_id);
-    void user_getWalletSummary(QString* currency);
+    void user_getWalletHistory(QString* currency, double count, double start, double target_account_id, bool reverse);
+    void user_getWalletSummary(QString* currency, QDateTime* start_time, QDateTime* end_time);
     void user_getWalletTransferAccounts();
     void user_logout();
-    void user_requestWithdrawal(QString* currency, QString* network, SWGNumber* amount, QString* otp_token, QString* address, double address_id, double target_user_id, double fee, QString* text);
+    void user_requestWithdrawal(QString* currency, QString* network, qint64 amount, QString* otp_token, QString* address, QString* memo, double address_id, double target_user_id, double fee, QString* text);
     void user_savePreferences(QString* prefs, bool overwrite);
     void user_updateSubAccount(double target_account_id, QString* account_name);
-    void user_walletTransfer(QString* currency, SWGNumber* amount, double target_account_id, double from_account_id);
+    void user_walletTransfer(QString* currency, qint64 amount, double target_account_id, double from_account_id);
     
 private:
+    void user_cancelPendingWithdrawalCallback (SWGHttpRequestWorker * worker);
     void user_cancelWithdrawalCallback (SWGHttpRequestWorker * worker);
     void user_checkReferralCodeCallback (SWGHttpRequestWorker * worker);
     void user_communicationTokenCallback (SWGHttpRequestWorker * worker);
@@ -98,6 +102,7 @@ private:
     void user_getCSACallback (SWGHttpRequestWorker * worker);
     void user_getCommissionCallback (SWGHttpRequestWorker * worker);
     void user_getDepositAddressCallback (SWGHttpRequestWorker * worker);
+    void user_getDepositAddressInformationCallback (SWGHttpRequestWorker * worker);
     void user_getExecutionHistoryCallback (SWGHttpRequestWorker * worker);
     void user_getMarginCallback (SWGHttpRequestWorker * worker);
     void user_getQuoteFillRatioCallback (SWGHttpRequestWorker * worker);
@@ -118,6 +123,7 @@ private:
     void user_walletTransferCallback (SWGHttpRequestWorker * worker);
     
 signals:
+    void user_cancelPendingWithdrawalSignal(SWGObject* summary);
     void user_cancelWithdrawalSignal(SWGTransaction* summary);
     void user_checkReferralCodeSignal(SWGObject* summary);
     void user_communicationTokenSignal(QList<SWGCommunicationToken*>* summary);
@@ -131,6 +137,7 @@ signals:
     void user_getCSASignal(SWGCollateralSupportAgreement* summary);
     void user_getCommissionSignal(SWGUserCommissionsBySymbol* summary);
     void user_getDepositAddressSignal(QString* summary);
+    void user_getDepositAddressInformationSignal(SWGDepositAddress* summary);
     void user_getExecutionHistorySignal(QList<SWGExecution*>* summary);
     void user_getMarginSignal(SWGMargin* summary);
     void user_getQuoteFillRatioSignal(SWGQuoteFillRatio* summary);
@@ -142,7 +149,7 @@ signals:
     void user_getUnstakingRequestsSignal(QList<SWGStakingRecord*>* summary);
     void user_getWalletSignal(SWGWallet* summary);
     void user_getWalletHistorySignal(QList<SWGTransaction*>* summary);
-    void user_getWalletSummarySignal(QList<SWGTransaction*>* summary);
+    void user_getWalletSummarySignal(QList<SWGWalletSummaryRecord*>* summary);
     void user_getWalletTransferAccountsSignal(QList<SWGX-any*>* summary);
     void user_logoutSignal();
     void user_requestWithdrawalSignal(SWGTransaction* summary);
@@ -150,6 +157,7 @@ signals:
     void user_updateSubAccountSignal(SWGObject* summary);
     void user_walletTransferSignal(SWGTransaction* summary);
     
+    void user_cancelPendingWithdrawalSignalE(SWGObject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_cancelWithdrawalSignalE(SWGTransaction* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_checkReferralCodeSignalE(SWGObject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_communicationTokenSignalE(QList<SWGCommunicationToken*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
@@ -163,6 +171,7 @@ signals:
     void user_getCSASignalE(SWGCollateralSupportAgreement* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getCommissionSignalE(SWGUserCommissionsBySymbol* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getDepositAddressSignalE(QString* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getDepositAddressInformationSignalE(SWGDepositAddress* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getExecutionHistorySignalE(QList<SWGExecution*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getMarginSignalE(SWGMargin* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getQuoteFillRatioSignalE(SWGQuoteFillRatio* summary, QNetworkReply::NetworkError error_type, QString& error_str);
@@ -174,7 +183,7 @@ signals:
     void user_getUnstakingRequestsSignalE(QList<SWGStakingRecord*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletSignalE(SWGWallet* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletHistorySignalE(QList<SWGTransaction*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void user_getWalletSummarySignalE(QList<SWGTransaction*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getWalletSummarySignalE(QList<SWGWalletSummaryRecord*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletTransferAccountsSignalE(QList<SWGX-any*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_logoutSignalE(QNetworkReply::NetworkError error_type, QString& error_str);
     void user_requestWithdrawalSignalE(SWGTransaction* summary, QNetworkReply::NetworkError error_type, QString& error_str);
@@ -182,6 +191,7 @@ signals:
     void user_updateSubAccountSignalE(SWGObject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_walletTransferSignalE(SWGTransaction* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     
+    void user_cancelPendingWithdrawalSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_cancelWithdrawalSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_checkReferralCodeSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_communicationTokenSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
@@ -195,6 +205,7 @@ signals:
     void user_getCSASignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getCommissionSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getDepositAddressSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getDepositAddressInformationSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getExecutionHistorySignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getMarginSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getQuoteFillRatioSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);

@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -23,11 +22,11 @@ public class OrderBookL2 {
   @SerializedName("symbol")
   private String symbol = null;
   @SerializedName("id")
-  private BigDecimal id = null;
+  private Long id = null;
   @SerializedName("side")
   private String side = null;
   @SerializedName("size")
-  private BigDecimal size = null;
+  private Long size = null;
   @SerializedName("price")
   private Double price = null;
   @SerializedName("timestamp")
@@ -46,10 +45,10 @@ public class OrderBookL2 {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getId() {
+  public Long getId() {
     return id;
   }
-  public void setId(BigDecimal id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -66,10 +65,10 @@ public class OrderBookL2 {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getSize() {
+  public Long getSize() {
     return size;
   }
-  public void setSize(BigDecimal size) {
+  public void setSize(Long size) {
     this.size = size;
   }
 

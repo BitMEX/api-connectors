@@ -23,7 +23,6 @@ import java.util.*;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Chat;
 import io.swagger.client.model.ChatChannel;
 import io.swagger.client.model.ConnectedUsers;
@@ -69,7 +68,7 @@ public class ChatApi {
    * @param channelID Channel id. GET /chat/channels for ids. Global English by default
    * @return List<Chat>
   */
-  public List<Chat> chatGet (BigDecimal count, BigDecimal start, Boolean reverse, Double channelID) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public List<Chat> chatGet (Integer count, Integer start, Boolean reverse, Double channelID) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -131,7 +130,7 @@ public class ChatApi {
    * 
    * @param count Number of results to fetch.   * @param start Starting ID for results.   * @param reverse If true, will sort results newest first.   * @param channelID Channel id. GET /chat/channels for ids. Global English by default
   */
-  public void chatGet (BigDecimal count, BigDecimal start, Boolean reverse, Double channelID, final Response.Listener<List<Chat>> responseListener, final Response.ErrorListener errorListener) {
+  public void chatGet (Integer count, Integer start, Boolean reverse, Double channelID, final Response.Listener<List<Chat>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 

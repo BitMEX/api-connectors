@@ -15,7 +15,7 @@ package io.swagger.client.model
 
 case class CommunicationToken (
   id: String,
-  userId: Number,
+  userId: Integer,
   deviceToken: String,
   channel: String
 )

@@ -19,10 +19,10 @@ import io.swagger.client.model.Affiliate
 import io.swagger.client.model.CollateralSupportAgreement
 import io.swagger.client.model.CommunicationToken
 import java.util.Date
+import io.swagger.client.model.DepositAddress
 import io.swagger.client.model.Error
 import io.swagger.client.model.Execution
 import io.swagger.client.model.Margin
-import io.swagger.client.model.Number
 import io.swagger.client.model.QuoteFillRatio
 import io.swagger.client.model.QuoteValueRatio
 import io.swagger.client.model.StakingRecord
@@ -31,6 +31,7 @@ import io.swagger.client.model.Transaction
 import io.swagger.client.model.User
 import io.swagger.client.model.UserCommissionsBySymbol
 import io.swagger.client.model.Wallet
+import io.swagger.client.model.WalletSummaryRecord
 import io.swagger.client.model.XAny
 import io.swagger.client.{ApiInvoker, ApiException}
 
@@ -95,6 +96,32 @@ class UserApi(
   val config: SwaggerConfig = SwaggerConfig.forUrl(new URI(defBasePath))
   val client = new RestClient(config)
   val helper = new UserApiAsyncHelper(client, config)
+
+  /**
+   * Cancel pending withdrawal
+   * 
+   *
+   * @param transactID  
+   * @return Any
+   */
+  def userCancelPendingWithdrawal(transactID: String): Option[Any] = {
+    val await = Try(Await.result(userCancelPendingWithdrawalAsync(transactID), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * Cancel pending withdrawal asynchronously
+   * 
+   *
+   * @param transactID  
+   * @return Future(Any)
+   */
+  def userCancelPendingWithdrawalAsync(transactID: String): Future[Any] = {
+      helper.userCancelPendingWithdrawal(transactID)
+  }
 
   /**
    * Cancel a withdrawal.
@@ -435,6 +462,34 @@ class UserApi(
   }
 
   /**
+   * Get a deposit address.
+   * 
+   *
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; 
+   * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. 
+   * @return DepositAddress
+   */
+  def userGetDepositAddressInformation(currency: String, network: String): Option[DepositAddress] = {
+    val await = Try(Await.result(userGetDepositAddressInformationAsync(currency, network), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * Get a deposit address. asynchronously
+   * 
+   *
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; 
+   * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. 
+   * @return Future(DepositAddress)
+   */
+  def userGetDepositAddressInformationAsync(currency: String, network: String): Future[DepositAddress] = {
+      helper.userGetDepositAddressInformation(currency, network)
+  }
+
+  /**
    * Get the execution history by day.
    * 
    *
@@ -701,13 +756,14 @@ class UserApi(
    * 
    *
    * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
-   * @param count Number of results to fetch. (optional, default to 100)
-   * @param start Starting point for results. (optional, default to 0)
+   * @param count Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)
+   * @param start Starting point for results, integer. Default 0. (optional, default to 0)
    * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)
+   * @param reverse Start from the latest transaction record. Default true. (optional, default to true)
    * @return List[Transaction]
    */
-  def userGetWalletHistory(currency: Option[String] = Option("XBt"), count: Option[Double] = Option(100), start: Option[Double] = Option(0), targetAccountId: Option[Double] = None): Option[List[Transaction]] = {
-    val await = Try(Await.result(userGetWalletHistoryAsync(currency, count, start, targetAccountId), Duration.Inf))
+  def userGetWalletHistory(currency: Option[String] = Option("XBt"), count: Option[Double] = Option(10000), start: Option[Double] = Option(0), targetAccountId: Option[Double] = None, reverse: Option[Boolean] = Option(true)): Option[List[Transaction]] = {
+    val await = Try(Await.result(userGetWalletHistoryAsync(currency, count, start, targetAccountId, reverse), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -719,24 +775,27 @@ class UserApi(
    * 
    *
    * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
-   * @param count Number of results to fetch. (optional, default to 100)
-   * @param start Starting point for results. (optional, default to 0)
+   * @param count Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)
+   * @param start Starting point for results, integer. Default 0. (optional, default to 0)
    * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)
+   * @param reverse Start from the latest transaction record. Default true. (optional, default to true)
    * @return Future(List[Transaction])
    */
-  def userGetWalletHistoryAsync(currency: Option[String] = Option("XBt"), count: Option[Double] = Option(100), start: Option[Double] = Option(0), targetAccountId: Option[Double] = None): Future[List[Transaction]] = {
-      helper.userGetWalletHistory(currency, count, start, targetAccountId)
+  def userGetWalletHistoryAsync(currency: Option[String] = Option("XBt"), count: Option[Double] = Option(10000), start: Option[Double] = Option(0), targetAccountId: Option[Double] = None, reverse: Option[Boolean] = Option(true)): Future[List[Transaction]] = {
+      helper.userGetWalletHistory(currency, count, start, targetAccountId, reverse)
   }
 
   /**
    * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
-   * 
+   * Provides an aggregated view of transactions, by transaction type, over a specific time period.
    *
    * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
-   * @return List[Transaction]
+   * @param startTime Start time for the summary (optional)
+   * @param endTime End time for the summary (optional)
+   * @return List[WalletSummaryRecord]
    */
-  def userGetWalletSummary(currency: Option[String] = Option("XBt")): Option[List[Transaction]] = {
-    val await = Try(Await.result(userGetWalletSummaryAsync(currency), Duration.Inf))
+  def userGetWalletSummary(currency: Option[String] = Option("XBt"), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[WalletSummaryRecord]] = {
+    val await = Try(Await.result(userGetWalletSummaryAsync(currency, startTime, endTime), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -745,13 +804,15 @@ class UserApi(
 
   /**
    * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). asynchronously
-   * 
+   * Provides an aggregated view of transactions, by transaction type, over a specific time period.
    *
    * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
-   * @return Future(List[Transaction])
+   * @param startTime Start time for the summary (optional)
+   * @param endTime End time for the summary (optional)
+   * @return Future(List[WalletSummaryRecord])
    */
-  def userGetWalletSummaryAsync(currency: Option[String] = Option("XBt")): Future[List[Transaction]] = {
-      helper.userGetWalletSummary(currency)
+  def userGetWalletSummaryAsync(currency: Option[String] = Option("XBt"), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[WalletSummaryRecord]] = {
+      helper.userGetWalletSummary(currency, startTime, endTime)
   }
 
   /**
@@ -811,14 +872,15 @@ class UserApi(
    * @param amount Amount of withdrawal currency. 
    * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
    * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
+   * @param memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)
    * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
    * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
    * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
    * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)
    * @return Transaction
    */
-  def userRequestWithdrawal(currency: String = "XBt", network: String, amount: Number, otpToken: Option[String] = None, address: Option[String] = None, addressId: Option[Double] = None, targetUserId: Option[Double] = None, fee: Option[Double] = None, text: Option[String] = None): Option[Transaction] = {
-    val await = Try(Await.result(userRequestWithdrawalAsync(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text), Duration.Inf))
+  def userRequestWithdrawal(currency: String = "XBt", network: String, amount: Long, otpToken: Option[String] = None, address: Option[String] = None, memo: Option[String] = None, addressId: Option[Double] = None, targetUserId: Option[Double] = None, fee: Option[Double] = None, text: Option[String] = None): Option[Transaction] = {
+    val await = Try(Await.result(userRequestWithdrawalAsync(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -834,14 +896,15 @@ class UserApi(
    * @param amount Amount of withdrawal currency. 
    * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
    * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
+   * @param memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)
    * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
    * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
    * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
    * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)
    * @return Future(Transaction)
    */
-  def userRequestWithdrawalAsync(currency: String = "XBt", network: String, amount: Number, otpToken: Option[String] = None, address: Option[String] = None, addressId: Option[Double] = None, targetUserId: Option[Double] = None, fee: Option[Double] = None, text: Option[String] = None): Future[Transaction] = {
-      helper.userRequestWithdrawal(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text)
+  def userRequestWithdrawalAsync(currency: String = "XBt", network: String, amount: Long, otpToken: Option[String] = None, address: Option[String] = None, memo: Option[String] = None, addressId: Option[Double] = None, targetUserId: Option[Double] = None, fee: Option[Double] = None, text: Option[String] = None): Future[Transaction] = {
+      helper.userRequestWithdrawal(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text)
   }
 
   /**
@@ -910,7 +973,7 @@ class UserApi(
    * @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
    * @return Transaction
    */
-  def userWalletTransfer(currency: String, amount: Number, targetAccountId: Double, fromAccountId: Option[Double] = None): Option[Transaction] = {
+  def userWalletTransfer(currency: String, amount: Long, targetAccountId: Double, fromAccountId: Option[Double] = None): Option[Transaction] = {
     val await = Try(Await.result(userWalletTransferAsync(currency, amount, targetAccountId, fromAccountId), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -928,13 +991,30 @@ class UserApi(
    * @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
    * @return Future(Transaction)
    */
-  def userWalletTransferAsync(currency: String, amount: Number, targetAccountId: Double, fromAccountId: Option[Double] = None): Future[Transaction] = {
+  def userWalletTransferAsync(currency: String, amount: Long, targetAccountId: Double, fromAccountId: Option[Double] = None): Future[Transaction] = {
       helper.userWalletTransfer(currency, amount, targetAccountId, fromAccountId)
   }
 
 }
 
 class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
+
+  def userCancelPendingWithdrawal(transactID: String)(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+    // create path and map variables
+    val path = (addFmt("/user/withdrawal"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (transactID == null) throw new Exception("Missing required parameter 'transactID' when calling UserApi->userCancelPendingWithdrawal")
+
+
+    val resFuture = client.submit("DELETE", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
 
   def userCancelWithdrawal(token: String)(implicit reader: ClientResponseReader[Transaction]): Future[Transaction] = {
     // create path and map variables
@@ -1166,6 +1246,28 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
     }
   }
 
+  def userGetDepositAddressInformation(currency: String,
+    network: String)(implicit reader: ClientResponseReader[DepositAddress]): Future[DepositAddress] = {
+    // create path and map variables
+    val path = (addFmt("/user/depositAddressInformation"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (currency == null) throw new Exception("Missing required parameter 'currency' when calling UserApi->userGetDepositAddressInformation")
+
+    if (network == null) throw new Exception("Missing required parameter 'network' when calling UserApi->userGetDepositAddressInformation")
+
+    queryParams += "currency" -> currency.toString
+    queryParams += "network" -> network.toString
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
   def userGetExecutionHistory(symbol: String = "XBTUSD",
     timestamp: Date = dateTimeFormatter.parse("2017-02-13T12:00:00.000Z"))(implicit reader: ClientResponseReader[List[Execution]]): Future[List[Execution]] = {
     // create path and map variables
@@ -1363,9 +1465,10 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
   }
 
   def userGetWalletHistory(currency: Option[String] = Option("XBt"),
-    count: Option[Double] = Option(100),
+    count: Option[Double] = Option(10000),
     start: Option[Double] = Option(0),
-    targetAccountId: Option[Double] = None
+    targetAccountId: Option[Double] = None,
+    reverse: Option[Boolean] = Option(true)
     )(implicit reader: ClientResponseReader[List[Transaction]]): Future[List[Transaction]] = {
     // create path and map variables
     val path = (addFmt("/user/walletHistory"))
@@ -1390,6 +1493,10 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
       case Some(param) => queryParams += "targetAccountId" -> param.toString
       case _ => queryParams
     }
+    reverse match {
+      case Some(param) => queryParams += "reverse" -> param.toString
+      case _ => queryParams
+    }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
@@ -1397,8 +1504,10 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
     }
   }
 
-  def userGetWalletSummary(currency: Option[String] = Option("XBt")
-    )(implicit reader: ClientResponseReader[List[Transaction]]): Future[List[Transaction]] = {
+  def userGetWalletSummary(currency: Option[String] = Option("XBt"),
+    startTime: Option[Date] = None,
+    endTime: Option[Date] = None
+    )(implicit reader: ClientResponseReader[List[WalletSummaryRecord]]): Future[List[WalletSummaryRecord]] = {
     // create path and map variables
     val path = (addFmt("/user/walletSummary"))
 
@@ -1408,6 +1517,14 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
 
     currency match {
       case Some(param) => queryParams += "currency" -> param.toString
+      case _ => queryParams
+    }
+    startTime match {
+      case Some(param) => queryParams += "startTime" -> param.toString
+      case _ => queryParams
+    }
+    endTime match {
+      case Some(param) => queryParams += "endTime" -> param.toString
       case _ => queryParams
     }
 
@@ -1449,9 +1566,10 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
 
   def userRequestWithdrawal(currency: String = "XBt",
     network: String,
-    amount: Number,
+    amount: Long,
     otpToken: Option[String] = None,
     address: Option[String] = None,
+    memo: Option[String] = None,
     addressId: Option[Double] = None,
     targetUserId: Option[Double] = None,
     fee: Option[Double] = None,
@@ -1513,7 +1631,7 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
   }
 
   def userWalletTransfer(currency: String,
-    amount: Number,
+    amount: Long,
     targetAccountId: Double,
     fromAccountId: Option[Double] = None
     )(implicit reader: ClientResponseReader[Transaction]): Future[Transaction] = {

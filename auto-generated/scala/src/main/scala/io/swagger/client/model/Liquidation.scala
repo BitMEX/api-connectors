@@ -18,6 +18,6 @@ case class Liquidation (
   symbol: Option[String] = None,
   side: Option[String] = None,
   price: Option[Double] = None,
-  leavesQty: Option[Number] = None
+  leavesQty: Option[Long] = None
 )
 

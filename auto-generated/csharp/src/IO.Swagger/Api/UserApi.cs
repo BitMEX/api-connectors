@@ -25,6 +25,27 @@ namespace IO.Swagger.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Cancel pending withdrawal
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactID"></param>
+        /// <returns>Object</returns>
+        Object UserCancelPendingWithdrawal (string transactID);
+
+        /// <summary>
+        /// Cancel pending withdrawal
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactID"></param>
+        /// <returns>ApiResponse of Object</returns>
+        ApiResponse<Object> UserCancelPendingWithdrawalWithHttpInfo (string transactID);
+        /// <summary>
         /// Cancel a withdrawal.
         /// </summary>
         /// <remarks>
@@ -298,6 +319,29 @@ namespace IO.Swagger.Api
         /// <returns>ApiResponse of string</returns>
         ApiResponse<string> UserGetDepositAddressWithHttpInfo (string currency, string network);
         /// <summary>
+        /// Get a deposit address.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
+        /// <returns>DepositAddress</returns>
+        DepositAddress UserGetDepositAddressInformation (string currency, string network);
+
+        /// <summary>
+        /// Get a deposit address.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
+        /// <returns>ApiResponse of DepositAddress</returns>
+        ApiResponse<DepositAddress> UserGetDepositAddressInformationWithHttpInfo (string currency, string network);
+        /// <summary>
         /// Get the execution history by day.
         /// </summary>
         /// <remarks>
@@ -517,11 +561,12 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
-        /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="count">Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)</param>
+        /// <param name="start">Starting point for results, integer. Default 0. (optional, default to 0)</param>
         /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
+        /// <param name="reverse">Start from the latest transaction record. Default true. (optional, default to true)</param>
         /// <returns>List&lt;Transaction&gt;</returns>
-        List<Transaction> UserGetWalletHistory (string currency = null, double? count = null, double? start = null, double? targetAccountId = null);
+        List<Transaction> UserGetWalletHistory (string currency = null, double? count = null, double? start = null, double? targetAccountId = null, bool? reverse = null);
 
         /// <summary>
         /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
@@ -531,32 +576,37 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
-        /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="count">Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)</param>
+        /// <param name="start">Starting point for results, integer. Default 0. (optional, default to 0)</param>
         /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
+        /// <param name="reverse">Start from the latest transaction record. Default true. (optional, default to true)</param>
         /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
-        ApiResponse<List<Transaction>> UserGetWalletHistoryWithHttpInfo (string currency = null, double? count = null, double? start = null, double? targetAccountId = null);
+        ApiResponse<List<Transaction>> UserGetWalletHistoryWithHttpInfo (string currency = null, double? count = null, double? start = null, double? targetAccountId = null, bool? reverse = null);
         /// <summary>
         /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
         /// </summary>
         /// <remarks>
-        /// 
+        /// Provides an aggregated view of transactions, by transaction type, over a specific time period.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <returns>List&lt;Transaction&gt;</returns>
-        List<Transaction> UserGetWalletSummary (string currency = null);
+        /// <param name="startTime">Start time for the summary (optional)</param>
+        /// <param name="endTime">End time for the summary (optional)</param>
+        /// <returns>List&lt;WalletSummaryRecord&gt;</returns>
+        List<WalletSummaryRecord> UserGetWalletSummary (string currency = null, DateTime? startTime = null, DateTime? endTime = null);
 
         /// <summary>
         /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
         /// </summary>
         /// <remarks>
-        /// 
+        /// Provides an aggregated view of transactions, by transaction type, over a specific time period.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
-        ApiResponse<List<Transaction>> UserGetWalletSummaryWithHttpInfo (string currency = null);
+        /// <param name="startTime">Start time for the summary (optional)</param>
+        /// <param name="endTime">End time for the summary (optional)</param>
+        /// <returns>ApiResponse of List&lt;WalletSummaryRecord&gt;</returns>
+        ApiResponse<List<WalletSummaryRecord>> UserGetWalletSummaryWithHttpInfo (string currency = null, DateTime? startTime = null, DateTime? endTime = null);
         /// <summary>
         /// Get the list of accounts you can transfer funds between.
         /// </summary>
@@ -607,12 +657,13 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount of withdrawal currency.</param>
         /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
         /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="memo">Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)</param>
         /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Transaction</returns>
-        Transaction UserRequestWithdrawal (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
+        Transaction UserRequestWithdrawal (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
 
         /// <summary>
         /// Request a withdrawal to an external wallet.
@@ -626,12 +677,13 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount of withdrawal currency.</param>
         /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
         /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="memo">Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)</param>
         /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>ApiResponse of Transaction</returns>
-        ApiResponse<Transaction> UserRequestWithdrawalWithHttpInfo (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
+        ApiResponse<Transaction> UserRequestWithdrawalWithHttpInfo (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
         /// <summary>
         /// Save user preferences.
         /// </summary>
@@ -690,7 +742,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>Transaction</returns>
-        Transaction UserWalletTransfer (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null);
+        Transaction UserWalletTransfer (string currency, long? amount, double? targetAccountId, double? fromAccountId = null);
 
         /// <summary>
         /// Execute a transfer to a paired account.
@@ -704,9 +756,30 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>ApiResponse of Transaction</returns>
-        ApiResponse<Transaction> UserWalletTransferWithHttpInfo (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null);
+        ApiResponse<Transaction> UserWalletTransferWithHttpInfo (string currency, long? amount, double? targetAccountId, double? fromAccountId = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
+        /// <summary>
+        /// Cancel pending withdrawal
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactID"></param>
+        /// <returns>Task of Object</returns>
+        System.Threading.Tasks.Task<Object> UserCancelPendingWithdrawalAsync (string transactID);
+
+        /// <summary>
+        /// Cancel pending withdrawal
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactID"></param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> UserCancelPendingWithdrawalAsyncWithHttpInfo (string transactID);
         /// <summary>
         /// Cancel a withdrawal.
         /// </summary>
@@ -981,6 +1054,29 @@ namespace IO.Swagger.Api
         /// <returns>Task of ApiResponse (string)</returns>
         System.Threading.Tasks.Task<ApiResponse<string>> UserGetDepositAddressAsyncWithHttpInfo (string currency, string network);
         /// <summary>
+        /// Get a deposit address.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
+        /// <returns>Task of DepositAddress</returns>
+        System.Threading.Tasks.Task<DepositAddress> UserGetDepositAddressInformationAsync (string currency, string network);
+
+        /// <summary>
+        /// Get a deposit address.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
+        /// <returns>Task of ApiResponse (DepositAddress)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DepositAddress>> UserGetDepositAddressInformationAsyncWithHttpInfo (string currency, string network);
+        /// <summary>
         /// Get the execution history by day.
         /// </summary>
         /// <remarks>
@@ -1200,11 +1296,12 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
-        /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="count">Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)</param>
+        /// <param name="start">Starting point for results, integer. Default 0. (optional, default to 0)</param>
         /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
+        /// <param name="reverse">Start from the latest transaction record. Default true. (optional, default to true)</param>
         /// <returns>Task of List&lt;Transaction&gt;</returns>
-        System.Threading.Tasks.Task<List<Transaction>> UserGetWalletHistoryAsync (string currency = null, double? count = null, double? start = null, double? targetAccountId = null);
+        System.Threading.Tasks.Task<List<Transaction>> UserGetWalletHistoryAsync (string currency = null, double? count = null, double? start = null, double? targetAccountId = null, bool? reverse = null);
 
         /// <summary>
         /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
@@ -1214,32 +1311,37 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
-        /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="count">Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)</param>
+        /// <param name="start">Starting point for results, integer. Default 0. (optional, default to 0)</param>
         /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
+        /// <param name="reverse">Start from the latest transaction record. Default true. (optional, default to true)</param>
         /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletHistoryAsyncWithHttpInfo (string currency = null, double? count = null, double? start = null, double? targetAccountId = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletHistoryAsyncWithHttpInfo (string currency = null, double? count = null, double? start = null, double? targetAccountId = null, bool? reverse = null);
         /// <summary>
         /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
         /// </summary>
         /// <remarks>
-        /// 
+        /// Provides an aggregated view of transactions, by transaction type, over a specific time period.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <returns>Task of List&lt;Transaction&gt;</returns>
-        System.Threading.Tasks.Task<List<Transaction>> UserGetWalletSummaryAsync (string currency = null);
+        /// <param name="startTime">Start time for the summary (optional)</param>
+        /// <param name="endTime">End time for the summary (optional)</param>
+        /// <returns>Task of List&lt;WalletSummaryRecord&gt;</returns>
+        System.Threading.Tasks.Task<List<WalletSummaryRecord>> UserGetWalletSummaryAsync (string currency = null, DateTime? startTime = null, DateTime? endTime = null);
 
         /// <summary>
         /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
         /// </summary>
         /// <remarks>
-        /// 
+        /// Provides an aggregated view of transactions, by transaction type, over a specific time period.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletSummaryAsyncWithHttpInfo (string currency = null);
+        /// <param name="startTime">Start time for the summary (optional)</param>
+        /// <param name="endTime">End time for the summary (optional)</param>
+        /// <returns>Task of ApiResponse (List&lt;WalletSummaryRecord&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<WalletSummaryRecord>>> UserGetWalletSummaryAsyncWithHttpInfo (string currency = null, DateTime? startTime = null, DateTime? endTime = null);
         /// <summary>
         /// Get the list of accounts you can transfer funds between.
         /// </summary>
@@ -1290,12 +1392,13 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount of withdrawal currency.</param>
         /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
         /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="memo">Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)</param>
         /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of Transaction</returns>
-        System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
+        System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
 
         /// <summary>
         /// Request a withdrawal to an external wallet.
@@ -1309,12 +1412,13 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount of withdrawal currency.</param>
         /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
         /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="memo">Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)</param>
         /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of ApiResponse (Transaction)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
+        System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
         /// <summary>
         /// Save user preferences.
         /// </summary>
@@ -1373,7 +1477,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>Task of Transaction</returns>
-        System.Threading.Tasks.Task<Transaction> UserWalletTransferAsync (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null);
+        System.Threading.Tasks.Task<Transaction> UserWalletTransferAsync (string currency, long? amount, double? targetAccountId, double? fromAccountId = null);
 
         /// <summary>
         /// Execute a transfer to a paired account.
@@ -1387,7 +1491,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>Task of ApiResponse (Transaction)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Transaction>> UserWalletTransferAsyncWithHttpInfo (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null);
+        System.Threading.Tasks.Task<ApiResponse<Transaction>> UserWalletTransferAsyncWithHttpInfo (string currency, long? amount, double? targetAccountId, double? fromAccountId = null);
         #endregion Asynchronous Operations
     }
 
@@ -1486,6 +1590,181 @@ namespace IO.Swagger.Api
         public void AddDefaultHeader(string key, string value)
         {
             this.Configuration.AddDefaultHeader(key, value);
+        }
+
+        /// <summary>
+        /// Cancel pending withdrawal 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactID"></param>
+        /// <returns>Object</returns>
+        public Object UserCancelPendingWithdrawal (string transactID)
+        {
+             ApiResponse<Object> localVarResponse = UserCancelPendingWithdrawalWithHttpInfo(transactID);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Cancel pending withdrawal 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactID"></param>
+        /// <returns>ApiResponse of Object</returns>
+        public ApiResponse< Object > UserCancelPendingWithdrawalWithHttpInfo (string transactID)
+        {
+            // verify the required parameter 'transactID' is set
+            if (transactID == null)
+                throw new ApiException(400, "Missing required parameter 'transactID' when calling UserApi->UserCancelPendingWithdrawal");
+
+            var localVarPath = "/user/withdrawal";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (transactID != null) localVarFormParams.Add("transactID", this.Configuration.ApiClient.ParameterToString(transactID)); // form parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserCancelPendingWithdrawal", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Cancel pending withdrawal 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactID"></param>
+        /// <returns>Task of Object</returns>
+        public async System.Threading.Tasks.Task<Object> UserCancelPendingWithdrawalAsync (string transactID)
+        {
+             ApiResponse<Object> localVarResponse = await UserCancelPendingWithdrawalAsyncWithHttpInfo(transactID);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Cancel pending withdrawal 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactID"></param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UserCancelPendingWithdrawalAsyncWithHttpInfo (string transactID)
+        {
+            // verify the required parameter 'transactID' is set
+            if (transactID == null)
+                throw new ApiException(400, "Missing required parameter 'transactID' when calling UserApi->UserCancelPendingWithdrawal");
+
+            var localVarPath = "/user/withdrawal";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (transactID != null) localVarFormParams.Add("transactID", this.Configuration.ApiClient.ParameterToString(transactID)); // form parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserCancelPendingWithdrawal", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
         }
 
         /// <summary>
@@ -3632,6 +3911,193 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
+        /// Get a deposit address. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
+        /// <returns>DepositAddress</returns>
+        public DepositAddress UserGetDepositAddressInformation (string currency, string network)
+        {
+             ApiResponse<DepositAddress> localVarResponse = UserGetDepositAddressInformationWithHttpInfo(currency, network);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a deposit address. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
+        /// <returns>ApiResponse of DepositAddress</returns>
+        public ApiResponse< DepositAddress > UserGetDepositAddressInformationWithHttpInfo (string currency, string network)
+        {
+            // verify the required parameter 'currency' is set
+            if (currency == null)
+                throw new ApiException(400, "Missing required parameter 'currency' when calling UserApi->UserGetDepositAddressInformation");
+            // verify the required parameter 'network' is set
+            if (network == null)
+                throw new ApiException(400, "Missing required parameter 'network' when calling UserApi->UserGetDepositAddressInformation");
+
+            var localVarPath = "/user/depositAddressInformation";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+            if (network != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "network", network)); // query parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetDepositAddressInformation", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<DepositAddress>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (DepositAddress) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(DepositAddress)));
+        }
+
+        /// <summary>
+        /// Get a deposit address. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
+        /// <returns>Task of DepositAddress</returns>
+        public async System.Threading.Tasks.Task<DepositAddress> UserGetDepositAddressInformationAsync (string currency, string network)
+        {
+             ApiResponse<DepositAddress> localVarResponse = await UserGetDepositAddressInformationAsyncWithHttpInfo(currency, network);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get a deposit address. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;</param>
+        /// <param name="network">The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.</param>
+        /// <returns>Task of ApiResponse (DepositAddress)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<DepositAddress>> UserGetDepositAddressInformationAsyncWithHttpInfo (string currency, string network)
+        {
+            // verify the required parameter 'currency' is set
+            if (currency == null)
+                throw new ApiException(400, "Missing required parameter 'currency' when calling UserApi->UserGetDepositAddressInformation");
+            // verify the required parameter 'network' is set
+            if (network == null)
+                throw new ApiException(400, "Missing required parameter 'network' when calling UserApi->UserGetDepositAddressInformation");
+
+            var localVarPath = "/user/depositAddressInformation";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+            if (network != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "network", network)); // query parameter
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetDepositAddressInformation", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<DepositAddress>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (DepositAddress) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(DepositAddress)));
+        }
+
+        /// <summary>
         /// Get the execution history by day. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5326,13 +5792,14 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
-        /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="count">Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)</param>
+        /// <param name="start">Starting point for results, integer. Default 0. (optional, default to 0)</param>
         /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
+        /// <param name="reverse">Start from the latest transaction record. Default true. (optional, default to true)</param>
         /// <returns>List&lt;Transaction&gt;</returns>
-        public List<Transaction> UserGetWalletHistory (string currency = null, double? count = null, double? start = null, double? targetAccountId = null)
+        public List<Transaction> UserGetWalletHistory (string currency = null, double? count = null, double? start = null, double? targetAccountId = null, bool? reverse = null)
         {
-             ApiResponse<List<Transaction>> localVarResponse = UserGetWalletHistoryWithHttpInfo(currency, count, start, targetAccountId);
+             ApiResponse<List<Transaction>> localVarResponse = UserGetWalletHistoryWithHttpInfo(currency, count, start, targetAccountId, reverse);
              return localVarResponse.Data;
         }
 
@@ -5341,11 +5808,12 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
-        /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="count">Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)</param>
+        /// <param name="start">Starting point for results, integer. Default 0. (optional, default to 0)</param>
         /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
+        /// <param name="reverse">Start from the latest transaction record. Default true. (optional, default to true)</param>
         /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
-        public ApiResponse< List<Transaction> > UserGetWalletHistoryWithHttpInfo (string currency = null, double? count = null, double? start = null, double? targetAccountId = null)
+        public ApiResponse< List<Transaction> > UserGetWalletHistoryWithHttpInfo (string currency = null, double? count = null, double? start = null, double? targetAccountId = null, bool? reverse = null)
         {
 
             var localVarPath = "/user/walletHistory";
@@ -5379,6 +5847,7 @@ namespace IO.Swagger.Api
             if (count != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "count", count)); // query parameter
             if (start != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "start", start)); // query parameter
             if (targetAccountId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "targetAccountId", targetAccountId)); // query parameter
+            if (reverse != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "reverse", reverse)); // query parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -5419,13 +5888,14 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
-        /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="count">Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)</param>
+        /// <param name="start">Starting point for results, integer. Default 0. (optional, default to 0)</param>
         /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
+        /// <param name="reverse">Start from the latest transaction record. Default true. (optional, default to true)</param>
         /// <returns>Task of List&lt;Transaction&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Transaction>> UserGetWalletHistoryAsync (string currency = null, double? count = null, double? start = null, double? targetAccountId = null)
+        public async System.Threading.Tasks.Task<List<Transaction>> UserGetWalletHistoryAsync (string currency = null, double? count = null, double? start = null, double? targetAccountId = null, bool? reverse = null)
         {
-             ApiResponse<List<Transaction>> localVarResponse = await UserGetWalletHistoryAsyncWithHttpInfo(currency, count, start, targetAccountId);
+             ApiResponse<List<Transaction>> localVarResponse = await UserGetWalletHistoryAsyncWithHttpInfo(currency, count, start, targetAccountId, reverse);
              return localVarResponse.Data;
 
         }
@@ -5435,11 +5905,12 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
-        /// <param name="start">Starting point for results. (optional, default to 0)</param>
+        /// <param name="count">Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)</param>
+        /// <param name="start">Starting point for results, integer. Default 0. (optional, default to 0)</param>
         /// <param name="targetAccountId">AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)</param>
+        /// <param name="reverse">Start from the latest transaction record. Default true. (optional, default to true)</param>
         /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletHistoryAsyncWithHttpInfo (string currency = null, double? count = null, double? start = null, double? targetAccountId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletHistoryAsyncWithHttpInfo (string currency = null, double? count = null, double? start = null, double? targetAccountId = null, bool? reverse = null)
         {
 
             var localVarPath = "/user/walletHistory";
@@ -5473,6 +5944,7 @@ namespace IO.Swagger.Api
             if (count != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "count", count)); // query parameter
             if (start != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "start", start)); // query parameter
             if (targetAccountId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "targetAccountId", targetAccountId)); // query parameter
+            if (reverse != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "reverse", reverse)); // query parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -5509,24 +5981,28 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
+        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). Provides an aggregated view of transactions, by transaction type, over a specific time period.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <returns>List&lt;Transaction&gt;</returns>
-        public List<Transaction> UserGetWalletSummary (string currency = null)
+        /// <param name="startTime">Start time for the summary (optional)</param>
+        /// <param name="endTime">End time for the summary (optional)</param>
+        /// <returns>List&lt;WalletSummaryRecord&gt;</returns>
+        public List<WalletSummaryRecord> UserGetWalletSummary (string currency = null, DateTime? startTime = null, DateTime? endTime = null)
         {
-             ApiResponse<List<Transaction>> localVarResponse = UserGetWalletSummaryWithHttpInfo(currency);
+             ApiResponse<List<WalletSummaryRecord>> localVarResponse = UserGetWalletSummaryWithHttpInfo(currency, startTime, endTime);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
+        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). Provides an aggregated view of transactions, by transaction type, over a specific time period.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
-        public ApiResponse< List<Transaction> > UserGetWalletSummaryWithHttpInfo (string currency = null)
+        /// <param name="startTime">Start time for the summary (optional)</param>
+        /// <param name="endTime">End time for the summary (optional)</param>
+        /// <returns>ApiResponse of List&lt;WalletSummaryRecord&gt;</returns>
+        public ApiResponse< List<WalletSummaryRecord> > UserGetWalletSummaryWithHttpInfo (string currency = null, DateTime? startTime = null, DateTime? endTime = null)
         {
 
             var localVarPath = "/user/walletSummary";
@@ -5557,6 +6033,8 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+            if (startTime != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "startTime", startTime)); // query parameter
+            if (endTime != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "endTime", endTime)); // query parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -5587,31 +6065,35 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<Transaction>>(localVarStatusCode,
+            return new ApiResponse<List<WalletSummaryRecord>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<Transaction>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Transaction>)));
+                (List<WalletSummaryRecord>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<WalletSummaryRecord>)));
         }
 
         /// <summary>
-        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
+        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). Provides an aggregated view of transactions, by transaction type, over a specific time period.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <returns>Task of List&lt;Transaction&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Transaction>> UserGetWalletSummaryAsync (string currency = null)
+        /// <param name="startTime">Start time for the summary (optional)</param>
+        /// <param name="endTime">End time for the summary (optional)</param>
+        /// <returns>Task of List&lt;WalletSummaryRecord&gt;</returns>
+        public async System.Threading.Tasks.Task<List<WalletSummaryRecord>> UserGetWalletSummaryAsync (string currency = null, DateTime? startTime = null, DateTime? endTime = null)
         {
-             ApiResponse<List<Transaction>> localVarResponse = await UserGetWalletSummaryAsyncWithHttpInfo(currency);
+             ApiResponse<List<WalletSummaryRecord>> localVarResponse = await UserGetWalletSummaryAsyncWithHttpInfo(currency, startTime, endTime);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
+        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). Provides an aggregated view of transactions, by transaction type, over a specific time period.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency">Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)</param>
-        /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletSummaryAsyncWithHttpInfo (string currency = null)
+        /// <param name="startTime">Start time for the summary (optional)</param>
+        /// <param name="endTime">End time for the summary (optional)</param>
+        /// <returns>Task of ApiResponse (List&lt;WalletSummaryRecord&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<WalletSummaryRecord>>> UserGetWalletSummaryAsyncWithHttpInfo (string currency = null, DateTime? startTime = null, DateTime? endTime = null)
         {
 
             var localVarPath = "/user/walletSummary";
@@ -5642,6 +6124,8 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+            if (startTime != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "startTime", startTime)); // query parameter
+            if (endTime != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "endTime", endTime)); // query parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -5672,9 +6156,9 @@ namespace IO.Swagger.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<Transaction>>(localVarStatusCode,
+            return new ApiResponse<List<WalletSummaryRecord>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<Transaction>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Transaction>)));
+                (List<WalletSummaryRecord>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<WalletSummaryRecord>)));
         }
 
         /// <summary>
@@ -5980,14 +6464,15 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount of withdrawal currency.</param>
         /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
         /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="memo">Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)</param>
         /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Transaction</returns>
-        public Transaction UserRequestWithdrawal (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
+        public Transaction UserRequestWithdrawal (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
-             ApiResponse<Transaction> localVarResponse = UserRequestWithdrawalWithHttpInfo(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text);
+             ApiResponse<Transaction> localVarResponse = UserRequestWithdrawalWithHttpInfo(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text);
              return localVarResponse.Data;
         }
 
@@ -6000,12 +6485,13 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount of withdrawal currency.</param>
         /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
         /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="memo">Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)</param>
         /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>ApiResponse of Transaction</returns>
-        public ApiResponse< Transaction > UserRequestWithdrawalWithHttpInfo (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
+        public ApiResponse< Transaction > UserRequestWithdrawalWithHttpInfo (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
             // verify the required parameter 'currency' is set
             if (currency == null)
@@ -6049,6 +6535,7 @@ namespace IO.Swagger.Api
             if (network != null) localVarFormParams.Add("network", this.Configuration.ApiClient.ParameterToString(network)); // form parameter
             if (amount != null) localVarFormParams.Add("amount", this.Configuration.ApiClient.ParameterToString(amount)); // form parameter
             if (address != null) localVarFormParams.Add("address", this.Configuration.ApiClient.ParameterToString(address)); // form parameter
+            if (memo != null) localVarFormParams.Add("memo", this.Configuration.ApiClient.ParameterToString(memo)); // form parameter
             if (addressId != null) localVarFormParams.Add("addressId", this.Configuration.ApiClient.ParameterToString(addressId)); // form parameter
             if (targetUserId != null) localVarFormParams.Add("targetUserId", this.Configuration.ApiClient.ParameterToString(targetUserId)); // form parameter
             if (fee != null) localVarFormParams.Add("fee", this.Configuration.ApiClient.ParameterToString(fee)); // form parameter
@@ -6097,14 +6584,15 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount of withdrawal currency.</param>
         /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
         /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="memo">Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)</param>
         /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of Transaction</returns>
-        public async System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
+        public async System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
-             ApiResponse<Transaction> localVarResponse = await UserRequestWithdrawalAsyncWithHttpInfo(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text);
+             ApiResponse<Transaction> localVarResponse = await UserRequestWithdrawalAsyncWithHttpInfo(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text);
              return localVarResponse.Data;
 
         }
@@ -6118,12 +6606,13 @@ namespace IO.Swagger.Api
         /// <param name="amount">Amount of withdrawal currency.</param>
         /// <param name="otpToken">2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)</param>
         /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="memo">Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)</param>
         /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of ApiResponse (Transaction)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, string network, long? amount, string otpToken = null, string address = null, string memo = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
             // verify the required parameter 'currency' is set
             if (currency == null)
@@ -6167,6 +6656,7 @@ namespace IO.Swagger.Api
             if (network != null) localVarFormParams.Add("network", this.Configuration.ApiClient.ParameterToString(network)); // form parameter
             if (amount != null) localVarFormParams.Add("amount", this.Configuration.ApiClient.ParameterToString(amount)); // form parameter
             if (address != null) localVarFormParams.Add("address", this.Configuration.ApiClient.ParameterToString(address)); // form parameter
+            if (memo != null) localVarFormParams.Add("memo", this.Configuration.ApiClient.ParameterToString(memo)); // form parameter
             if (addressId != null) localVarFormParams.Add("addressId", this.Configuration.ApiClient.ParameterToString(addressId)); // form parameter
             if (targetUserId != null) localVarFormParams.Add("targetUserId", this.Configuration.ApiClient.ParameterToString(targetUserId)); // form parameter
             if (fee != null) localVarFormParams.Add("fee", this.Configuration.ApiClient.ParameterToString(fee)); // form parameter
@@ -6583,7 +7073,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>Transaction</returns>
-        public Transaction UserWalletTransfer (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+        public Transaction UserWalletTransfer (string currency, long? amount, double? targetAccountId, double? fromAccountId = null)
         {
              ApiResponse<Transaction> localVarResponse = UserWalletTransferWithHttpInfo(currency, amount, targetAccountId, fromAccountId);
              return localVarResponse.Data;
@@ -6598,7 +7088,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>ApiResponse of Transaction</returns>
-        public ApiResponse< Transaction > UserWalletTransferWithHttpInfo (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+        public ApiResponse< Transaction > UserWalletTransferWithHttpInfo (string currency, long? amount, double? targetAccountId, double? fromAccountId = null)
         {
             // verify the required parameter 'currency' is set
             if (currency == null)
@@ -6685,7 +7175,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>Task of Transaction</returns>
-        public async System.Threading.Tasks.Task<Transaction> UserWalletTransferAsync (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+        public async System.Threading.Tasks.Task<Transaction> UserWalletTransferAsync (string currency, long? amount, double? targetAccountId, double? fromAccountId = null)
         {
              ApiResponse<Transaction> localVarResponse = await UserWalletTransferAsyncWithHttpInfo(currency, amount, targetAccountId, fromAccountId);
              return localVarResponse.Data;
@@ -6701,7 +7191,7 @@ namespace IO.Swagger.Api
         /// <param name="targetAccountId">AccountId to send the transfer to, must be a paired account with the user sending the transfer.</param>
         /// <param name="fromAccountId">AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)</param>
         /// <returns>Task of ApiResponse (Transaction)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Transaction>> UserWalletTransferAsyncWithHttpInfo (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Transaction>> UserWalletTransferAsyncWithHttpInfo (string currency, long? amount, double? targetAccountId, double? fromAccountId = null)
         {
             // verify the required parameter 'currency' is set
             if (currency == null)

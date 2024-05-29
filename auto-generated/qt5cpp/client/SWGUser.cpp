@@ -37,7 +37,7 @@ SWGUser::~SWGUser() {
 
 void
 SWGUser::init() {
-    id = 0.0;
+    id = 0;
     m_id_isSet = false;
     firstname = new QString("");
     m_firstname_isSet = false;
@@ -73,15 +73,15 @@ SWGUser::init() {
     m_geoip_region_isSet = false;
     first_trade_timestamp = NULL;
     m_first_trade_timestamp_isSet = false;
+    first_deposit_timestamp = NULL;
+    m_first_deposit_timestamp_isSet = false;
     typ = new QString("");
     m_typ_isSet = false;
 }
 
 void
 SWGUser::cleanup() {
-    if(id != nullptr) { 
-        delete id;
-    }
+
     if(firstname != nullptr) { 
         delete firstname;
     }
@@ -131,6 +131,9 @@ SWGUser::cleanup() {
     if(first_trade_timestamp != nullptr) { 
         delete first_trade_timestamp;
     }
+    if(first_deposit_timestamp != nullptr) { 
+        delete first_deposit_timestamp;
+    }
     if(typ != nullptr) { 
         delete typ;
     }
@@ -147,7 +150,7 @@ SWGUser::fromJson(QString json) {
 
 void
 SWGUser::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&id, pJson["id"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&id, pJson["id"], "qint32", "");
     
     ::Swagger::setValue(&firstname, pJson["firstname"], "QString", "QString");
     
@@ -183,6 +186,8 @@ SWGUser::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&first_trade_timestamp, pJson["firstTradeTimestamp"], "QDateTime", "QDateTime");
     
+    ::Swagger::setValue(&first_deposit_timestamp, pJson["firstDepositTimestamp"], "QDateTime", "QDateTime");
+    
     ::Swagger::setValue(&typ, pJson["typ"], "QString", "QString");
     
 }
@@ -199,8 +204,8 @@ SWGUser::asJson ()
 QJsonObject
 SWGUser::asJsonObject() {
     QJsonObject obj;
-    if((id != nullptr) && (id->isSet())){
-        toJsonValue(QString("id"), id, obj, QString("SWGNumber"));
+    if(m_id_isSet){
+        obj.insert("id", QJsonValue(id));
     }
     if(firstname != nullptr && *firstname != QString("")){
         toJsonValue(QString("firstname"), firstname, obj, QString("QString"));
@@ -253,6 +258,9 @@ SWGUser::asJsonObject() {
     if(first_trade_timestamp != nullptr) { 
         toJsonValue(QString("firstTradeTimestamp"), first_trade_timestamp, obj, QString("QDateTime"));
     }
+    if(first_deposit_timestamp != nullptr) { 
+        toJsonValue(QString("firstDepositTimestamp"), first_deposit_timestamp, obj, QString("QDateTime"));
+    }
     if(typ != nullptr && *typ != QString("")){
         toJsonValue(QString("typ"), typ, obj, QString("QString"));
     }
@@ -260,12 +268,12 @@ SWGUser::asJsonObject() {
     return obj;
 }
 
-SWGNumber*
+qint32
 SWGUser::getId() {
     return id;
 }
 void
-SWGUser::setId(SWGNumber* id) {
+SWGUser::setId(qint32 id) {
     this->id = id;
     this->m_id_isSet = true;
 }
@@ -440,6 +448,16 @@ SWGUser::setFirstTradeTimestamp(QDateTime* first_trade_timestamp) {
     this->m_first_trade_timestamp_isSet = true;
 }
 
+QDateTime*
+SWGUser::getFirstDepositTimestamp() {
+    return first_deposit_timestamp;
+}
+void
+SWGUser::setFirstDepositTimestamp(QDateTime* first_deposit_timestamp) {
+    this->first_deposit_timestamp = first_deposit_timestamp;
+    this->m_first_deposit_timestamp_isSet = true;
+}
+
 QString*
 SWGUser::getTyp() {
     return typ;
@@ -455,7 +473,7 @@ bool
 SWGUser::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(id != nullptr && id->isSet()){ isObjectUpdated = true; break;}
+        if(m_id_isSet){ isObjectUpdated = true; break;}
         if(firstname != nullptr && *firstname != QString("")){ isObjectUpdated = true; break;}
         if(lastname != nullptr && *lastname != QString("")){ isObjectUpdated = true; break;}
         if(username != nullptr && *username != QString("")){ isObjectUpdated = true; break;}
@@ -472,6 +490,7 @@ SWGUser::isSet(){
         if(country != nullptr && *country != QString("")){ isObjectUpdated = true; break;}
         if(geoip_country != nullptr && *geoip_country != QString("")){ isObjectUpdated = true; break;}
         if(geoip_region != nullptr && *geoip_region != QString("")){ isObjectUpdated = true; break;}
+        
         
         if(typ != nullptr && *typ != QString("")){ isObjectUpdated = true; break;}
     }while(false);

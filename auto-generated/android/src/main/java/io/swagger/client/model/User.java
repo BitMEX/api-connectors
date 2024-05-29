@@ -13,7 +13,6 @@
 package io.swagger.client.model;
 
 import io.swagger.client.model.UserPreferences;
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -25,7 +24,7 @@ import com.google.gson.annotations.SerializedName;
 public class User {
   
   @SerializedName("id")
-  private BigDecimal id = null;
+  private Integer id = null;
   @SerializedName("firstname")
   private String firstname = null;
   @SerializedName("lastname")
@@ -60,16 +59,18 @@ public class User {
   private String geoipRegion = null;
   @SerializedName("firstTradeTimestamp")
   private Date firstTradeTimestamp = null;
+  @SerializedName("firstDepositTimestamp")
+  private Date firstDepositTimestamp = null;
   @SerializedName("typ")
   private String typ = null;
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getId() {
+  public Integer getId() {
     return id;
   }
-  public void setId(BigDecimal id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -246,6 +247,16 @@ public class User {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Date getFirstDepositTimestamp() {
+    return firstDepositTimestamp;
+  }
+  public void setFirstDepositTimestamp(Date firstDepositTimestamp) {
+    this.firstDepositTimestamp = firstDepositTimestamp;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public String getTyp() {
     return typ;
   }
@@ -281,6 +292,7 @@ public class User {
         (this.geoipCountry == null ? user.geoipCountry == null : this.geoipCountry.equals(user.geoipCountry)) &&
         (this.geoipRegion == null ? user.geoipRegion == null : this.geoipRegion.equals(user.geoipRegion)) &&
         (this.firstTradeTimestamp == null ? user.firstTradeTimestamp == null : this.firstTradeTimestamp.equals(user.firstTradeTimestamp)) &&
+        (this.firstDepositTimestamp == null ? user.firstDepositTimestamp == null : this.firstDepositTimestamp.equals(user.firstDepositTimestamp)) &&
         (this.typ == null ? user.typ == null : this.typ.equals(user.typ));
   }
 
@@ -305,6 +317,7 @@ public class User {
     result = 31 * result + (this.geoipCountry == null ? 0: this.geoipCountry.hashCode());
     result = 31 * result + (this.geoipRegion == null ? 0: this.geoipRegion.hashCode());
     result = 31 * result + (this.firstTradeTimestamp == null ? 0: this.firstTradeTimestamp.hashCode());
+    result = 31 * result + (this.firstDepositTimestamp == null ? 0: this.firstDepositTimestamp.hashCode());
     result = 31 * result + (this.typ == null ? 0: this.typ.hashCode());
     return result;
   }
@@ -332,6 +345,7 @@ public class User {
     sb.append("  geoipCountry: ").append(geoipCountry).append("\n");
     sb.append("  geoipRegion: ").append(geoipRegion).append("\n");
     sb.append("  firstTradeTimestamp: ").append(firstTradeTimestamp).append("\n");
+    sb.append("  firstDepositTimestamp: ").append(firstDepositTimestamp).append("\n");
     sb.append("  typ: ").append(typ).append("\n");
     sb.append("}\n");
     return sb.toString();

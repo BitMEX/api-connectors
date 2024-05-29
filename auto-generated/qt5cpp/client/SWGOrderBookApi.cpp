@@ -30,7 +30,7 @@ SWGOrderBookApi::SWGOrderBookApi(QString host, QString basePath) {
 }
 
 void
-SWGOrderBookApi::orderBook_getL2(QString* symbol, SWGNumber* depth) {
+SWGOrderBookApi::orderBook_getL2(QString* symbol, qint32 depth) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/orderBook/L2");
 

@@ -181,16 +181,17 @@ public class GuildApi {
    * @param name Name of the guild, must be unique, must be at least 5 characters
    * @param emoji Emoji name.
    * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100
-   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
    * @param potTraderId User ID of the guild member with order write permission for the pot
    * @param description Guild description, can be used to explain the guild to other users.
    * @param twitter Guild twitter handle.
    * @param discord Guild discord link.
+   * @param telegram Guild telegram link.
    * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
    * @param isPrivate Guild privacy status
    * @return Guild
   */
-  public Guild guildEdit (String name, String emoji, Double potDistributionPercent, String potDistributionType, Double potTraderId, String description, String twitter, String discord, String imgUrl, Boolean isPrivate) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Guild guildEdit (String name, String emoji, Double potDistributionPercent, String potDistributionType, Double potTraderId, String description, String twitter, String discord, String telegram, String imgUrl, Boolean isPrivate) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'name' is set
     if (name == null) {
@@ -255,6 +256,9 @@ public class GuildApi {
       if (discord != null) {
         localVarBuilder.addTextBody("discord", ApiInvoker.parameterToString(discord), ApiInvoker.TEXT_PLAIN_UTF8);
       }
+      if (telegram != null) {
+        localVarBuilder.addTextBody("telegram", ApiInvoker.parameterToString(telegram), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       if (imgUrl != null) {
         localVarBuilder.addTextBody("imgUrl", ApiInvoker.parameterToString(imgUrl), ApiInvoker.TEXT_PLAIN_UTF8);
       }
@@ -273,6 +277,7 @@ public class GuildApi {
       formParams.put("description", ApiInvoker.parameterToString(description));
       formParams.put("twitter", ApiInvoker.parameterToString(twitter));
       formParams.put("discord", ApiInvoker.parameterToString(discord));
+      formParams.put("telegram", ApiInvoker.parameterToString(telegram));
       formParams.put("imgUrl", ApiInvoker.parameterToString(imgUrl));
       formParams.put("isPrivate", ApiInvoker.parameterToString(isPrivate));
     }
@@ -306,9 +311,9 @@ public class GuildApi {
       /**
    * Edit guild new guild
    * 
-   * @param name Name of the guild, must be unique, must be at least 5 characters   * @param emoji Emoji name.   * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM   * @param potTraderId User ID of the guild member with order write permission for the pot   * @param description Guild description, can be used to explain the guild to other users.   * @param twitter Guild twitter handle.   * @param discord Guild discord link.   * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used   * @param isPrivate Guild privacy status
+   * @param name Name of the guild, must be unique, must be at least 5 characters   * @param emoji Emoji name.   * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM   * @param potTraderId User ID of the guild member with order write permission for the pot   * @param description Guild description, can be used to explain the guild to other users.   * @param twitter Guild twitter handle.   * @param discord Guild discord link.   * @param telegram Guild telegram link.   * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used   * @param isPrivate Guild privacy status
   */
-  public void guildEdit (String name, String emoji, Double potDistributionPercent, String potDistributionType, Double potTraderId, String description, String twitter, String discord, String imgUrl, Boolean isPrivate, final Response.Listener<Guild> responseListener, final Response.ErrorListener errorListener) {
+  public void guildEdit (String name, String emoji, Double potDistributionPercent, String potDistributionType, Double potTraderId, String description, String twitter, String discord, String telegram, String imgUrl, Boolean isPrivate, final Response.Listener<Guild> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'name' is set
@@ -385,6 +390,10 @@ public class GuildApi {
         localVarBuilder.addTextBody("discord", ApiInvoker.parameterToString(discord), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       
+      if (telegram != null) {
+        localVarBuilder.addTextBody("telegram", ApiInvoker.parameterToString(telegram), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
       if (imgUrl != null) {
         localVarBuilder.addTextBody("imgUrl", ApiInvoker.parameterToString(imgUrl), ApiInvoker.TEXT_PLAIN_UTF8);
       }
@@ -406,6 +415,7 @@ formParams.put("potTraderId", ApiInvoker.parameterToString(potTraderId));
 formParams.put("description", ApiInvoker.parameterToString(description));
 formParams.put("twitter", ApiInvoker.parameterToString(twitter));
 formParams.put("discord", ApiInvoker.parameterToString(discord));
+formParams.put("telegram", ApiInvoker.parameterToString(telegram));
 formParams.put("imgUrl", ApiInvoker.parameterToString(imgUrl));
 formParams.put("isPrivate", ApiInvoker.parameterToString(isPrivate));
     }
@@ -951,15 +961,16 @@ formParams.put("isPrivate", ApiInvoker.parameterToString(isPrivate));
    * @param name Name of the guild, must be unique, must be at least 5 characters
    * @param emoji Emoji name.
    * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100
-   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
    * @param description Guild description, can be used to explain the guild to other users.
    * @param twitter Guild twitter handle.
    * @param discord Guild discord link.
+   * @param telegram Guild telegram link.
    * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
    * @param isPrivate Guild privacy status
    * @return Guild
   */
-  public Guild guildNew (String name, String emoji, Double potDistributionPercent, String potDistributionType, String description, String twitter, String discord, String imgUrl, Boolean isPrivate) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Guild guildNew (String name, String emoji, Double potDistributionPercent, String potDistributionType, String description, String twitter, String discord, String telegram, String imgUrl, Boolean isPrivate) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'name' is set
     if (name == null) {
@@ -1021,6 +1032,9 @@ formParams.put("isPrivate", ApiInvoker.parameterToString(isPrivate));
       if (discord != null) {
         localVarBuilder.addTextBody("discord", ApiInvoker.parameterToString(discord), ApiInvoker.TEXT_PLAIN_UTF8);
       }
+      if (telegram != null) {
+        localVarBuilder.addTextBody("telegram", ApiInvoker.parameterToString(telegram), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       if (imgUrl != null) {
         localVarBuilder.addTextBody("imgUrl", ApiInvoker.parameterToString(imgUrl), ApiInvoker.TEXT_PLAIN_UTF8);
       }
@@ -1038,6 +1052,7 @@ formParams.put("isPrivate", ApiInvoker.parameterToString(isPrivate));
       formParams.put("description", ApiInvoker.parameterToString(description));
       formParams.put("twitter", ApiInvoker.parameterToString(twitter));
       formParams.put("discord", ApiInvoker.parameterToString(discord));
+      formParams.put("telegram", ApiInvoker.parameterToString(telegram));
       formParams.put("imgUrl", ApiInvoker.parameterToString(imgUrl));
       formParams.put("isPrivate", ApiInvoker.parameterToString(isPrivate));
     }
@@ -1071,9 +1086,9 @@ formParams.put("isPrivate", ApiInvoker.parameterToString(isPrivate));
       /**
    * Creates a new guild
    * 
-   * @param name Name of the guild, must be unique, must be at least 5 characters   * @param emoji Emoji name.   * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM   * @param description Guild description, can be used to explain the guild to other users.   * @param twitter Guild twitter handle.   * @param discord Guild discord link.   * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used   * @param isPrivate Guild privacy status
+   * @param name Name of the guild, must be unique, must be at least 5 characters   * @param emoji Emoji name.   * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100   * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM   * @param description Guild description, can be used to explain the guild to other users.   * @param twitter Guild twitter handle.   * @param discord Guild discord link.   * @param telegram Guild telegram link.   * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used   * @param isPrivate Guild privacy status
   */
-  public void guildNew (String name, String emoji, Double potDistributionPercent, String potDistributionType, String description, String twitter, String discord, String imgUrl, Boolean isPrivate, final Response.Listener<Guild> responseListener, final Response.ErrorListener errorListener) {
+  public void guildNew (String name, String emoji, Double potDistributionPercent, String potDistributionType, String description, String twitter, String discord, String telegram, String imgUrl, Boolean isPrivate, final Response.Listener<Guild> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'name' is set
@@ -1146,6 +1161,10 @@ formParams.put("isPrivate", ApiInvoker.parameterToString(isPrivate));
         localVarBuilder.addTextBody("discord", ApiInvoker.parameterToString(discord), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       
+      if (telegram != null) {
+        localVarBuilder.addTextBody("telegram", ApiInvoker.parameterToString(telegram), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
       if (imgUrl != null) {
         localVarBuilder.addTextBody("imgUrl", ApiInvoker.parameterToString(imgUrl), ApiInvoker.TEXT_PLAIN_UTF8);
       }
@@ -1166,6 +1185,7 @@ formParams.put("potDistributionType", ApiInvoker.parameterToString(potDistributi
 formParams.put("description", ApiInvoker.parameterToString(description));
 formParams.put("twitter", ApiInvoker.parameterToString(twitter));
 formParams.put("discord", ApiInvoker.parameterToString(discord));
+formParams.put("telegram", ApiInvoker.parameterToString(telegram));
 formParams.put("imgUrl", ApiInvoker.parameterToString(imgUrl));
 formParams.put("isPrivate", ApiInvoker.parameterToString(isPrivate));
     }

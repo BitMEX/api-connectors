@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="orderbookgetl2"></a>
 # **OrderBookGetL2**
-> List<OrderBookL2> OrderBookGetL2 (string symbol, decimal? depth = null)
+> List<OrderBookL2> OrderBookGetL2 (string symbol, int? depth = null)
 
 Get current orderbook in vertical format.
 
@@ -29,7 +29,7 @@ namespace Example
         {
             var apiInstance = new OrderBookApi();
             var symbol = symbol_example;  // string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-            var depth = 8.14;  // decimal? | Orderbook depth per side. Send 0 for full depth. (optional)  (default to 25)
+            var depth = 56;  // int? | Orderbook depth per side. Send 0 for full depth. (optional)  (default to 25)
 
             try
             {
@@ -51,7 +51,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string**| Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. | 
- **depth** | **decimal?**| Orderbook depth per side. Send 0 for full depth. | [optional] [default to 25]
+ **depth** | **int?**| Orderbook depth per side. Send 0 for full depth. | [optional] [default to 25]
 
 ### Return type
 

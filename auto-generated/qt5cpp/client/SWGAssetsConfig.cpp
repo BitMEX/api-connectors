@@ -53,6 +53,8 @@ SWGAssetsConfig::init() {
     m_enabled_isSet = false;
     is_margin_currency = false;
     m_is_margin_currency_isSet = false;
+    memo_required = false;
+    m_memo_required_isSet = false;
     networks = new QList<SWGAssetsConfigNetworkItem*>();
     m_networks_isSet = false;
 }
@@ -74,6 +76,7 @@ SWGAssetsConfig::cleanup() {
     if(currency_type != nullptr) { 
         delete currency_type;
     }
+
 
 
 
@@ -112,6 +115,8 @@ SWGAssetsConfig::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&enabled, pJson["enabled"], "bool", "");
     
     ::Swagger::setValue(&is_margin_currency, pJson["isMarginCurrency"], "bool", "");
+    
+    ::Swagger::setValue(&memo_required, pJson["memoRequired"], "bool", "");
     
     
     ::Swagger::setValue(&networks, pJson["networks"], "QList", "SWGAssetsConfigNetworkItem");
@@ -152,6 +157,9 @@ SWGAssetsConfig::asJsonObject() {
     }
     if(m_is_margin_currency_isSet){
         obj.insert("isMarginCurrency", QJsonValue(is_margin_currency));
+    }
+    if(m_memo_required_isSet){
+        obj.insert("memoRequired", QJsonValue(memo_required));
     }
     if(networks->size() > 0){
         toJsonArray((QList<void*>*)networks, obj, "networks", "SWGAssetsConfigNetworkItem");
@@ -240,6 +248,16 @@ SWGAssetsConfig::setIsMarginCurrency(bool is_margin_currency) {
     this->m_is_margin_currency_isSet = true;
 }
 
+bool
+SWGAssetsConfig::isMemoRequired() {
+    return memo_required;
+}
+void
+SWGAssetsConfig::setMemoRequired(bool memo_required) {
+    this->memo_required = memo_required;
+    this->m_memo_required_isSet = true;
+}
+
 QList<SWGAssetsConfigNetworkItem*>*
 SWGAssetsConfig::getNetworks() {
     return networks;
@@ -263,6 +281,7 @@ SWGAssetsConfig::isSet(){
         if(m_scale_isSet){ isObjectUpdated = true; break;}
         if(m_enabled_isSet){ isObjectUpdated = true; break;}
         if(m_is_margin_currency_isSet){ isObjectUpdated = true; break;}
+        if(m_memo_required_isSet){ isObjectUpdated = true; break;}
         if(networks->size() > 0){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;

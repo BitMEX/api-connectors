@@ -297,16 +297,16 @@
           "in" : "query",
           "description" : "Number of results to fetch.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting ID for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -534,16 +534,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -649,16 +649,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -750,16 +750,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -853,16 +853,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -1135,16 +1135,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -1295,16 +1295,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -1490,16 +1490,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -1638,16 +1638,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -1737,7 +1737,7 @@
           "in" : "formData",
           "description" : "Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)).",
           "required" : false,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         }, {
           "name" : "price",
@@ -1751,7 +1751,7 @@
           "in" : "formData",
           "description" : "Optional quantity to display in the book. Use 0 for a fully hidden order.",
           "required" : false,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         }, {
           "name" : "stopPx",
@@ -1886,7 +1886,7 @@
           "in" : "formData",
           "description" : "Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)).",
           "required" : false,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         }, {
           "name" : "simpleLeavesQty",
@@ -1900,7 +1900,7 @@
           "in" : "formData",
           "description" : "Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders.",
           "required" : false,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         }, {
           "name" : "price",
@@ -2218,8 +2218,8 @@
           "in" : "query",
           "description" : "Orderbook depth per side. Send 0 for full depth.",
           "required" : false,
-          "type" : "number",
-          "default" : 25.0,
+          "type" : "integer",
+          "default" : 25,
           "minimum" : 0,
           "format" : "int32"
         } ],
@@ -2266,7 +2266,7 @@
       "get" : {
         "tags" : [ "Position" ],
         "summary" : "Get your positions.",
-        "description" : "This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.\n\nThe fields _account_, _symbol_, _currency_ are unique to each position and form its key.\n\nSpot trading symbols do not return any position data.\n\n- **account**: Your unique account ID.\n- **symbol**: The contract for this position.\n- **currency**: The margin currency for this position.\n- **underlying**: Meta data of the _symbol_.\n- **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_\n- **commission**: The maximum of the maker, taker, and settlement fee.\n- **initMarginReq**: The initial margin requirement. This will be at least the symbol's default initial maintenance margin, but can be higher if you choose lower leverage.\n- **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol's default maintenance maintenance margin, but can be higher if you choose a higher risk limit.\n- **riskLimit**: This is a function of your _maintMarginReq_.\n- **leverage**: 1 / initMarginReq.\n- **crossMargin**: True/false depending on whether you set cross margin on this position.\n- **deleveragePercentile**: Indicates where your position is in the ADL queue.\n- **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position.\n- **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed.\n- **currentQty**: The current position amount in contracts.\n- **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_).\n- **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_).\n- **realisedCost**: The realised cost of this position calculated with regard to average cost accounting.\n- **unrealisedCost**: _currentCost_ - _realisedCost_.\n- **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_).\n- **markPrice**: The mark price of the symbol in _quoteCurrency_.\n- **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_).\n- **homeNotional**: Value of position in units of _underlying_.\n- **foreignNotional**: Value of position in units of _quoteCurrency_.\n- **realisedPnl**: The negative of _realisedCost_.\n- **unrealisedPnl**: _unrealisedGrossPnl_.\n- **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated.\n- **bankruptPrice**: Once markPrice reaches this price, this position will have no equity.\n",
+        "description" : "This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.\n\nThe fields _account_, _symbol_, _currency_ are unique to each position and form its key.\n\nSpot trading symbols returns a subset of the position fields, mainly the open order aggregates.\n\n- **account**: Your unique account ID.\n- **symbol**: The contract for this position.\n- **currency**: The margin currency for this position.\n- **underlying**: Meta data of the _symbol_.\n- **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_\n- **commission**: The maximum of the maker, taker, and settlement fee.\n- **initMarginReq**: The initial margin requirement. This will be at least the symbol's default initial maintenance margin, but can be higher if you choose lower leverage.\n- **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol's default maintenance maintenance margin, but can be higher if you choose a higher risk limit.\n- **riskLimit**: This is a function of your _maintMarginReq_.\n- **leverage**: 1 / initMarginReq.\n- **crossMargin**: True/false depending on whether you set cross margin on this position.\n- **deleveragePercentile**: Indicates where your position is in the ADL queue.\n- **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position.\n- **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed.\n- **currentQty**: The current position amount in contracts.\n- **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_).\n- **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_).\n- **realisedCost**: The realised cost of this position calculated with regard to average cost accounting.\n- **unrealisedCost**: _currentCost_ - _realisedCost_.\n- **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_).\n- **markPrice**: The mark price of the symbol in _quoteCurrency_.\n- **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_).\n- **homeNotional**: Value of position in units of _underlying_.\n- **foreignNotional**: Value of position in units of _quoteCurrency_.\n- **realisedPnl**: The negative of _realisedCost_.\n- **unrealisedPnl**: _unrealisedGrossPnl_.\n- **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated.\n- **bankruptPrice**: Once markPrice reaches this price, this position will have no equity.\n",
         "operationId" : "Position.get",
         "parameters" : [ {
           "name" : "filter",
@@ -2287,7 +2287,7 @@
           "in" : "query",
           "description" : "Number of rows to fetch.",
           "required" : false,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         } ],
         "deprecated" : false,
@@ -2400,7 +2400,7 @@
           "in" : "formData",
           "description" : "New Risk Limit, in Satoshis.",
           "required" : true,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }, {
           "name" : "targetAccountId",
@@ -2462,7 +2462,7 @@
           "in" : "formData",
           "description" : "Amount to transfer, in Satoshis. May be negative.",
           "required" : true,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }, {
           "name" : "targetAccountId",
@@ -2599,16 +2599,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -2716,16 +2716,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -2908,16 +2908,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -3146,16 +3146,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -3263,16 +3263,16 @@
           "in" : "query",
           "description" : "Number of results to fetch. Must be a positive integer.",
           "required" : false,
-          "type" : "number",
-          "default" : 100.0,
+          "type" : "integer",
+          "default" : 100,
           "format" : "int32"
         }, {
           "name" : "start",
           "in" : "query",
           "description" : "Starting point for results.",
           "required" : false,
-          "type" : "number",
-          "default" : 0.0,
+          "type" : "integer",
+          "default" : 0,
           "format" : "int32"
         }, {
           "name" : "reverse",
@@ -3388,6 +3388,59 @@
         }
       }
     },
+    "/user/depositAddressInformation" : {
+      "get" : {
+        "tags" : [ "User" ],
+        "summary" : "Get a deposit address.",
+        "operationId" : "User.getDepositAddressInformation",
+        "parameters" : [ {
+          "name" : "currency",
+          "in" : "query",
+          "description" : "Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "network",
+          "in" : "query",
+          "description" : "The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "deprecated" : false,
+        "responses" : {
+          "200" : {
+            "description" : "Request was successful",
+            "schema" : {
+              "$ref" : "#/definitions/DepositAddress"
+            }
+          },
+          "400" : {
+            "description" : "Parameter Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Access Denied",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
     "/user/wallet" : {
       "get" : {
         "tags" : [ "User" ],
@@ -3451,15 +3504,15 @@
         }, {
           "name" : "count",
           "in" : "query",
-          "description" : "Number of results to fetch.",
+          "description" : "Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows.",
           "required" : false,
           "type" : "number",
-          "default" : 100.0,
+          "default" : 10000.0,
           "format" : "double"
         }, {
           "name" : "start",
           "in" : "query",
-          "description" : "Starting point for results.",
+          "description" : "Starting point for results, integer. Default 0.",
           "required" : false,
           "type" : "number",
           "default" : 0.0,
@@ -3471,6 +3524,13 @@
           "required" : false,
           "type" : "number",
           "format" : "double"
+        }, {
+          "name" : "reverse",
+          "in" : "query",
+          "description" : "Start from the latest transaction record. Default true.",
+          "required" : false,
+          "type" : "boolean",
+          "default" : true
         } ],
         "deprecated" : false,
         "responses" : {
@@ -3514,6 +3574,7 @@
       "get" : {
         "tags" : [ "User" ],
         "summary" : "Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).",
+        "description" : "Provides an aggregated view of transactions, by transaction type, over a specific time period.",
         "operationId" : "User.getWalletSummary",
         "parameters" : [ {
           "name" : "currency",
@@ -3522,6 +3583,20 @@
           "required" : false,
           "type" : "string",
           "default" : "XBt"
+        }, {
+          "name" : "startTime",
+          "in" : "query",
+          "description" : "Start time for the summary",
+          "required" : false,
+          "type" : "string",
+          "format" : "date-time"
+        }, {
+          "name" : "endTime",
+          "in" : "query",
+          "description" : "End time for the summary",
+          "required" : false,
+          "type" : "string",
+          "format" : "date-time"
         } ],
         "deprecated" : false,
         "responses" : {
@@ -3530,7 +3605,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Transaction"
+                "$ref" : "#/definitions/WalletSummaryRecord"
               }
             }
           },
@@ -3931,7 +4006,7 @@
           "in" : "formData",
           "description" : "Amount of transfer.",
           "required" : true,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }, {
           "name" : "fromAccountId",
@@ -4013,12 +4088,18 @@
           "in" : "formData",
           "description" : "Amount of withdrawal currency.",
           "required" : true,
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }, {
           "name" : "address",
           "in" : "formData",
           "description" : "Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "memo",
+          "in" : "formData",
+          "description" : "Destination Memo. If `address`, is specified, Destination Memo can also be specified",
           "required" : false,
           "type" : "string"
         }, {
@@ -4055,6 +4136,52 @@
             "description" : "Request was successful",
             "schema" : {
               "$ref" : "#/definitions/Transaction"
+            }
+          },
+          "400" : {
+            "description" : "Parameter Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "403" : {
+            "description" : "Access Denied",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/user/withdrawal" : {
+      "delete" : {
+        "tags" : [ "User" ],
+        "summary" : "Cancel pending withdrawal",
+        "operationId" : "User.cancelPendingWithdrawal",
+        "parameters" : [ {
+          "name" : "transactID",
+          "in" : "formData",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "deprecated" : false,
+        "responses" : {
+          "200" : {
+            "description" : "Request was successful",
+            "schema" : {
+              "type" : "object"
             }
           },
           "400" : {
@@ -4935,7 +5062,7 @@
           "description" : "Number of results to fetch.",
           "required" : false,
           "type" : "number",
-          "default" : 150.0,
+          "default" : 100.0,
           "format" : "double"
         }, {
           "name" : "startId",
@@ -5164,6 +5291,12 @@
           "required" : false,
           "type" : "boolean",
           "default" : false
+        }, {
+          "name" : "memo",
+          "in" : "formData",
+          "description" : "Destination Memo.",
+          "required" : false,
+          "type" : "string"
         } ],
         "deprecated" : false,
         "responses" : {
@@ -5209,6 +5342,20 @@
           "name" : "depth",
           "in" : "query",
           "description" : "the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates",
+          "required" : false,
+          "type" : "number",
+          "format" : "double"
+        }, {
+          "name" : "targetAccountId",
+          "in" : "query",
+          "description" : "AccountId of Sub-Affiliate Account",
+          "required" : false,
+          "type" : "number",
+          "format" : "double"
+        }, {
+          "name" : "selectUserId",
+          "in" : "query",
+          "description" : "User id of result array to keep",
           "required" : false,
           "type" : "number",
           "format" : "double"
@@ -5321,7 +5468,7 @@
         }, {
           "name" : "potDistributionType",
           "in" : "formData",
-          "description" : "How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM",
+          "description" : "How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM",
           "required" : true,
           "type" : "string"
         }, {
@@ -5340,6 +5487,12 @@
           "name" : "discord",
           "in" : "formData",
           "description" : "Guild discord link.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "telegram",
+          "in" : "formData",
+          "description" : "Guild telegram link.",
           "required" : false,
           "type" : "string"
         }, {
@@ -5415,7 +5568,7 @@
         }, {
           "name" : "potDistributionType",
           "in" : "formData",
-          "description" : "How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM",
+          "description" : "How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM",
           "required" : true,
           "type" : "string"
         }, {
@@ -5441,6 +5594,12 @@
           "name" : "discord",
           "in" : "formData",
           "description" : "Guild discord link.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "telegram",
+          "in" : "formData",
+          "description" : "Guild telegram link.",
           "required" : false,
           "type" : "string"
         }, {
@@ -5823,7 +5982,7 @@
       "required" : [ "id" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "link" : {
@@ -5868,8 +6027,9 @@
           "maxLength" : 64
         },
         "nonce" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "cidr" : {
           "type" : "string",
@@ -5882,7 +6042,7 @@
           }
         },
         "targetAccountId" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "permissions" : {
@@ -5896,7 +6056,7 @@
           "default" : false
         },
         "userId" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "created" : {
@@ -5911,15 +6071,15 @@
       "required" : [ "channelID", "id", "messageId" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "channelID" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "messageId" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "created" : {
@@ -5946,7 +6106,7 @@
       "required" : [ "date", "html", "message", "user" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "date" : {
@@ -5977,7 +6137,7 @@
       "required" : [ "isPrivate", "name" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "name" : {
@@ -5992,24 +6152,26 @@
       "type" : "object",
       "properties" : {
         "users" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "bots" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         }
       }
     },
     "Execution" : {
       "type" : "object",
-      "required" : [ "orderID", "symbol", "timestamp" ],
+      "required" : [ "symbol", "timestamp" ],
       "properties" : {
         "execID" : {
-          "type" : "string"
+          "type" : "string",
+          "format" : "guid"
         },
         "orderID" : {
-          "type" : "string"
+          "type" : "string",
+          "format" : "guid"
         },
         "clOrdID" : {
           "type" : "string"
@@ -6018,8 +6180,8 @@
           "type" : "string"
         },
         "account" : {
-          "type" : "number",
-          "format" : "double"
+          "type" : "integer",
+          "format" : "int64"
         },
         "symbol" : {
           "type" : "string"
@@ -6028,8 +6190,8 @@
           "type" : "string"
         },
         "lastQty" : {
-          "type" : "number",
-          "format" : "double"
+          "type" : "integer",
+          "format" : "int64"
         },
         "lastPx" : {
           "type" : "number",
@@ -6039,15 +6201,15 @@
           "type" : "string"
         },
         "orderQty" : {
-          "type" : "number",
-          "format" : "double"
+          "type" : "integer",
+          "format" : "int64"
         },
         "price" : {
           "type" : "number",
           "format" : "double"
         },
         "displayQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "stopPx" : {
@@ -6095,11 +6257,11 @@
           "type" : "string"
         },
         "leavesQty" : {
-          "type" : "number",
-          "format" : "double"
+          "type" : "integer",
+          "format" : "int64"
         },
         "cumQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "avgPx" : {
@@ -6110,6 +6272,9 @@
           "type" : "number",
           "format" : "double"
         },
+        "feeType" : {
+          "type" : "string"
+        },
         "tradePublishIndicator" : {
           "type" : "string"
         },
@@ -6117,15 +6282,16 @@
           "type" : "string"
         },
         "trdMatchID" : {
-          "type" : "string"
+          "type" : "string",
+          "format" : "guid"
         },
         "execCost" : {
-          "type" : "number",
-          "format" : "double"
+          "type" : "integer",
+          "format" : "int64"
         },
         "execComm" : {
-          "type" : "number",
-          "format" : "double"
+          "type" : "integer",
+          "format" : "int64"
         },
         "homeNotional" : {
           "type" : "number",
@@ -6142,26 +6308,6 @@
         "timestamp" : {
           "type" : "string",
           "format" : "date-time"
-        },
-        "execGrossPnl" : {
-          "type" : "number",
-          "format" : "double"
-        },
-        "currentQty" : {
-          "type" : "number",
-          "format" : "double"
-        },
-        "avgEntryPrice" : {
-          "type" : "number",
-          "format" : "double"
-        },
-        "realisedPnl" : {
-          "type" : "number",
-          "format" : "double"
-        },
-        "unrealisedPnl" : {
-          "type" : "number",
-          "format" : "double"
         }
       },
       "description" : "Raw Order and Balance Data"
@@ -6262,7 +6408,7 @@
           "format" : "date-time"
         },
         "maxOrderQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "maxPrice" : {
@@ -6270,7 +6416,7 @@
           "format" : "double"
         },
         "lotSize" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "tickSize" : {
@@ -6278,22 +6424,22 @@
           "format" : "double"
         },
         "multiplier" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "settlCurrency" : {
           "type" : "string"
         },
         "underlyingToPositionMultiplier" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "underlyingToSettleMultiplier" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "quoteToSettleMultiplier" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "isQuanto" : {
@@ -6311,11 +6457,11 @@
           "format" : "double"
         },
         "riskLimit" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "riskStep" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "limit" : {
@@ -6386,31 +6532,31 @@
           "format" : "double"
         },
         "totalVolume" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "volume" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "volume24h" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "prevTotalTurnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "totalTurnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover24h" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "homeNotional24h" : {
@@ -6480,11 +6626,11 @@
           "type" : "boolean"
         },
         "openInterest" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "openValue" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "fairMethod" : {
@@ -6523,6 +6669,10 @@
         },
         "instantPnl" : {
           "type" : "boolean"
+        },
+        "minTick" : {
+          "type" : "number",
+          "format" : "double"
         },
         "timestamp" : {
           "type" : "string",
@@ -6606,19 +6756,19 @@
           "type" : "string"
         },
         "turnover24h" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover30d" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover365d" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       }
@@ -6635,7 +6785,7 @@
           "format" : "date-time"
         },
         "walletBalance" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       },
@@ -6677,7 +6827,7 @@
           "format" : "double"
         },
         "leavesQty" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       },
@@ -6688,7 +6838,7 @@
       "required" : [ "body", "date", "title", "ttl" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "date" : {
@@ -6702,7 +6852,7 @@
           "type" : "string"
         },
         "ttl" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "type" : {
@@ -6732,7 +6882,8 @@
       "required" : [ "orderID" ],
       "properties" : {
         "orderID" : {
-          "type" : "string"
+          "type" : "string",
+          "format" : "guid"
         },
         "clOrdID" : {
           "type" : "string"
@@ -6741,8 +6892,8 @@
           "type" : "string"
         },
         "account" : {
-          "type" : "number",
-          "format" : "double"
+          "type" : "integer",
+          "format" : "int64"
         },
         "symbol" : {
           "type" : "string"
@@ -6751,16 +6902,16 @@
           "type" : "string"
         },
         "orderQty" : {
-          "type" : "number",
-          "format" : "double"
+          "type" : "integer",
+          "format" : "int64"
         },
         "price" : {
           "type" : "number",
           "format" : "double"
         },
         "displayQty" : {
-          "type" : "number",
-          "format" : "double"
+          "type" : "integer",
+          "format" : "int64"
         },
         "stopPx" : {
           "type" : "number",
@@ -6804,12 +6955,12 @@
           "type" : "string"
         },
         "leavesQty" : {
-          "type" : "number",
-          "format" : "double"
+          "type" : "integer",
+          "format" : "int64"
         },
         "cumQty" : {
-          "type" : "number",
-          "format" : "double"
+          "type" : "integer",
+          "format" : "int64"
         },
         "avgPx" : {
           "type" : "number",
@@ -6837,14 +6988,14 @@
           "type" : "string"
         },
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "side" : {
           "type" : "string"
         },
         "size" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "price" : {
@@ -6862,8 +7013,9 @@
       "required" : [ "account", "symbol" ],
       "properties" : {
         "account" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "symbol" : {
           "type" : "string"
@@ -6893,8 +7045,9 @@
           "default" : 0.0
         },
         "riskLimit" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "leverage" : {
           "type" : "number",
@@ -6910,68 +7063,84 @@
           "default" : 0.0
         },
         "rebalancedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "prevRealisedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "prevUnrealisedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "openingQty" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "openOrderBuyQty" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "openOrderBuyCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "openOrderBuyPremium" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "openOrderSellQty" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "openOrderSellCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "openOrderSellPremium" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "currentQty" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "currentCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "currentComm" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "realisedCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "unrealisedCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "grossOpenPremium" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "isOpen" : {
           "type" : "boolean"
@@ -6982,12 +7151,14 @@
           "default" : 0.0
         },
         "markValue" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "riskValue" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "homeNotional" : {
           "type" : "number",
@@ -7003,44 +7174,54 @@
           "type" : "string"
         },
         "posCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "posCross" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "posComm" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "posLoss" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "posMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "posMaint" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "initMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "maintMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "realisedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "unrealisedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "unrealisedPnlPcnt" : {
           "type" : "number",
@@ -7101,7 +7282,7 @@
           "type" : "string"
         },
         "bidSize" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "bidPrice" : {
@@ -7113,7 +7294,7 @@
           "format" : "double"
         },
         "askSize" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       },
@@ -7146,11 +7327,11 @@
           "format" : "double"
         },
         "bankrupt" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "taxBase" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "taxRate" : {
@@ -7171,19 +7352,19 @@
           "type" : "string"
         },
         "volume24h" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover24h" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "openInterest" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "openValue" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       },
@@ -7204,11 +7385,11 @@
           "type" : "string"
         },
         "volume" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       }
@@ -7224,19 +7405,19 @@
           "type" : "string"
         },
         "turnover24h" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover30d" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover365d" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         }
       }
@@ -7256,7 +7437,7 @@
           "type" : "string"
         },
         "size" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "price" : {
@@ -7271,7 +7452,7 @@
           "format" : "guid"
         },
         "grossValue" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "homeNotional" : {
@@ -7316,11 +7497,11 @@
           "format" : "double"
         },
         "trades" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "volume" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "vwap" : {
@@ -7328,11 +7509,11 @@
           "format" : "double"
         },
         "lastSize" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "turnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "homeNotional" : {
@@ -7345,47 +7526,60 @@
         }
       }
     },
+    "DepositAddress" : {
+      "type" : "object",
+      "required" : [ "address" ],
+      "properties" : {
+        "address" : {
+          "type" : "string"
+        },
+        "memo" : {
+          "type" : "string"
+        }
+      },
+      "description" : "Deposit Address"
+    },
     "Wallet" : {
       "type" : "object",
       "required" : [ "account", "currency" ],
       "properties" : {
         "account" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "currency" : {
           "type" : "string"
         },
         "deposited" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "withdrawn" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "transferIn" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "transferOut" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "amount" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "pendingCredit" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "pendingDebit" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "confirmedDebit" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "timestamp" : {
@@ -7404,7 +7598,7 @@
           "format" : "guid"
         },
         "account" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "currency" : {
@@ -7417,11 +7611,11 @@
           "type" : "string"
         },
         "amount" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "fee" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "transactStatus" : {
@@ -7445,8 +7639,59 @@
           "format" : "date-time"
         },
         "walletBalance" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
+        }
+      }
+    },
+    "WalletSummaryRecord" : {
+      "type" : "object",
+      "required" : [ "account" ],
+      "properties" : {
+        "account" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "currency" : {
+          "type" : "string",
+          "default" : "XBt"
+        },
+        "transactType" : {
+          "type" : "string"
+        },
+        "symbol" : {
+          "type" : "string",
+          "default" : "XBTUSD"
+        },
+        "amount" : {
+          "type" : "number",
+          "format" : "double",
+          "default" : 0.0
+        },
+        "pendingDebit" : {
+          "type" : "number",
+          "format" : "double",
+          "default" : 0.0
+        },
+        "realisedPnl" : {
+          "type" : "number",
+          "format" : "double",
+          "default" : 0.0
+        },
+        "walletBalance" : {
+          "type" : "number",
+          "format" : "double",
+          "default" : 0.0
+        },
+        "unrealisedPnl" : {
+          "type" : "number",
+          "format" : "double",
+          "default" : 0.0
+        },
+        "marginBalance" : {
+          "type" : "number",
+          "format" : "double",
+          "default" : 0.0
         }
       }
     },
@@ -7505,22 +7750,22 @@
       "required" : [ "account", "currency" ],
       "properties" : {
         "account" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "currency" : {
           "type" : "string"
         },
         "prevPayout" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "prevTurnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "prevComm" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "prevTimestamp" : {
@@ -7528,23 +7773,23 @@
           "format" : "date-time"
         },
         "execTurnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "execComm" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "totalReferrals" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "totalTurnover" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "totalComm" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "payoutPcnt" : {
@@ -7552,7 +7797,7 @@
           "format" : "double"
         },
         "pendingPayout" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "timestamp" : {
@@ -7665,7 +7910,7 @@
       "required" : [ "isUser", "username" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "firstname" : {
@@ -7727,6 +7972,10 @@
           "type" : "string",
           "format" : "date-time"
         },
+        "firstDepositTimestamp" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
         "typ" : {
           "type" : "string"
         }
@@ -7741,78 +7990,95 @@
       "required" : [ "account", "currency" ],
       "properties" : {
         "account" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "currency" : {
           "type" : "string"
         },
         "riskLimit" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "state" : {
           "type" : "string"
         },
         "amount" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "prevRealisedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "grossComm" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "grossOpenCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "grossOpenPremium" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "grossExecCost" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "grossMarkValue" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "riskValue" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "initMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "maintMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "targetExcessMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "realisedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "unrealisedPnl" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "walletBalance" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "marginBalance" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "marginLeverage" : {
           "type" : "number",
@@ -7825,16 +8091,19 @@
           "default" : 0.0
         },
         "excessMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "availableMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "withdrawableMargin" : {
-          "type" : "number",
-          "format" : "int64"
+          "type" : "integer",
+          "format" : "int64",
+          "default" : 0
         },
         "makerFeeDiscount" : {
           "type" : "number",
@@ -7860,30 +8129,30 @@
           "type" : "string"
         },
         "account" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "currency" : {
           "type" : "string"
         },
         "amount" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "minAmount" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "threshold" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "mmRatioMarginCall" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "mmRatioLiquidation" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int64"
         },
         "startTime" : {
@@ -7920,7 +8189,7 @@
           "type" : "string"
         },
         "userId" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "deviceToken" : {
@@ -7942,7 +8211,7 @@
         },
         "type" : {
           "type" : "string",
-          "enum" : [ "apiKeyCreated", "deleverageExecution", "depositConfirmed", "depositPending", "banZeroVolumeApiUser", "liquidationOrderPlaced", "login", "existingAccountRegistrationAttempt", "passwordChanged", "positionStateLiquidated", "positionStateWarning", "resetPasswordConfirmed", "resetPasswordRequest", "transferCanceled", "transferCompleted", "transferReceived", "transferRequested", "twoFactorDisabled", "twoFactorEnabled", "withdrawalCanceled", "withdrawalCompleted", "withdrawalConfirmed", "withdrawalRequested", "addressSkipConfirmRequested", "addressSkipConfirmVerified", "verify" ]
+          "enum" : [ "apiKeyCreated", "deleverageExecution", "depositConfirmed", "depositPending", "banZeroVolumeApiUser", "liquidationOrderPlaced", "login", "existingAccountRegistrationAttempt", "passwordChanged", "positionStateLiquidated", "positionStateWarning", "resetPasswordConfirmed", "resetPasswordRequest", "transferCanceled", "transferCompleted", "transferReceived", "transferRequested", "twoFactorDisabled", "twoFactorEnabled", "withdrawalCanceled", "withdrawalCompleted", "withdrawalConfirmed", "withdrawalRequested", "addressSkipConfirmRequested", "addressSkipConfirmVerified", "verify", "restrictedAccount", "unrestrictedAccount", "disabledAccount", "enabledAccount", "role:roleMappingDestroy", "role:chatBanned", "role:withdrawalBanned", "role:orderBanned", "role:apiBanned", "role:restrictedJurisdictionPrivilege" ]
         },
         "status" : {
           "type" : "string",
@@ -8019,6 +8288,10 @@
           "type" : "boolean",
           "default" : true
         },
+        "memoRequired" : {
+          "type" : "boolean",
+          "default" : false
+        },
         "networks" : {
           "type" : "array",
           "items" : {
@@ -8056,7 +8329,7 @@
           "default" : "https://etherscan.io/token/"
         },
         "depositConfirmations" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "enabled" : {
@@ -8070,7 +8343,7 @@
       "required" : [ "address", "name", "network" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "currency" : {
@@ -8107,6 +8380,9 @@
         },
         "network" : {
           "type" : "string"
+        },
+        "memo" : {
+          "type" : "string"
         }
       }
     },
@@ -8115,7 +8391,7 @@
       "required" : [ "chatChannelId", "created", "isPrivate", "name", "updated" ],
       "properties" : {
         "id" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "created" : {
@@ -8175,7 +8451,7 @@
       "required" : [ "account", "accountNonce", "balance", "created", "height", "total" ],
       "properties" : {
         "account" : {
-          "type" : "number",
+          "type" : "integer",
           "format" : "int32"
         },
         "nonce" : {
@@ -8274,6 +8550,15 @@
             "type" : "string"
           }
         },
+        "favouriteBots" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "hasSetTradingCurrencies" : {
+          "type" : "boolean"
+        },
         "hideConfirmDialogs" : {
           "type" : "array",
           "items" : {
@@ -8290,6 +8575,14 @@
         "hideNameFromLeaderboard" : {
           "type" : "boolean",
           "default" : true
+        },
+        "hidePnlInGuilds" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "hideRoiInGuilds" : {
+          "type" : "boolean",
+          "default" : false
         },
         "hideNotifications" : {
           "type" : "array",
@@ -8321,6 +8614,9 @@
         "marginPnlRowKind" : {
           "type" : "string"
         },
+        "mobileLocale" : {
+          "type" : "string"
+        },
         "msgsSeen" : {
           "type" : "array",
           "items" : {
@@ -8330,6 +8626,9 @@
         "notifications" : {
           "type" : "object",
           "properties" : { }
+        },
+        "optionsBeta" : {
+          "type" : "boolean"
         },
         "orderBookBinning" : {
           "type" : "object",
@@ -8363,6 +8662,9 @@
           "items" : {
             "type" : "string"
           }
+        },
+        "spacingPreference" : {
+          "type" : "string"
         },
         "strictIPCheck" : {
           "type" : "boolean",

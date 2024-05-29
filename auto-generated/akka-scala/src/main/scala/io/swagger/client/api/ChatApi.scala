@@ -37,7 +37,7 @@ object ChatApi {
    * @param reverse If true, will sort results newest first.
    * @param channelID Channel id. GET /chat/channels for ids. Global English by default
    */
-  def chat.get(count: Option[Double], start: Option[Double], reverse: Option[Boolean], channelID: Option[Double]): ApiRequest[Seq[Chat]] =
+  def chat.get(count: Option[Int], start: Option[Int], reverse: Option[Boolean], channelID: Option[Double]): ApiRequest[Seq[Chat]] =
     ApiRequest[Seq[Chat]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/chat", "application/json")
       .withQueryParam("count", count)
       .withQueryParam("start", start)

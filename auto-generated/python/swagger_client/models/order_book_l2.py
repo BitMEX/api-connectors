@@ -34,9 +34,9 @@ class OrderBookL2(object):
     """
     swagger_types = {
         'symbol': 'str',
-        'id': 'float',
+        'id': 'int',
         'side': 'str',
-        'size': 'float',
+        'size': 'int',
         'price': 'float',
         'timestamp': 'datetime'
     }
@@ -103,7 +103,7 @@ class OrderBookL2(object):
 
 
         :return: The id of this OrderBookL2.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._id
 
@@ -113,7 +113,7 @@ class OrderBookL2(object):
 
 
         :param id: The id of this OrderBookL2.  # noqa: E501
-        :type: float
+        :type: int
         """
         if self._configuration.client_side_validation and id is None:
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
@@ -149,7 +149,7 @@ class OrderBookL2(object):
 
 
         :return: The size of this OrderBookL2.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._size
 
@@ -159,7 +159,7 @@ class OrderBookL2(object):
 
 
         :param size: The size of this OrderBookL2.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._size = size

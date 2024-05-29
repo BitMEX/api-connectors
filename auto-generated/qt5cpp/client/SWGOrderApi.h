@@ -18,7 +18,6 @@
 #include <QDateTime>
 #include <QString>
 #include "SWGError.h"
-#include "SWGNumber.h"
 #include "SWGObject.h"
 #include "SWGOrder.h"
 
@@ -38,13 +37,13 @@ public:
     QString basePath;
     QMap<QString, QString> defaultHeaders;
 
-    void order_amend(QString* order_id, QString* orig_cl_ord_id, QString* cl_ord_id, double simple_order_qty, SWGNumber* order_qty, double simple_leaves_qty, SWGNumber* leaves_qty, double price, double stop_px, double peg_offset_value, QString* text);
+    void order_amend(QString* order_id, QString* orig_cl_ord_id, QString* cl_ord_id, double simple_order_qty, qint32 order_qty, double simple_leaves_qty, qint32 leaves_qty, double price, double stop_px, double peg_offset_value, QString* text);
     void order_cancel(QString* order_id, QString* cl_ord_id, QString* text);
     void order_cancelAll(QString* target_account_ids, QString* symbol, QString* filter, QString* text);
     void order_cancelAllAfter(double timeout);
     void order_closePosition(QString* symbol, double price);
-    void order_getOrders(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time);
-    void order_new(QString* symbol, QString* side, double simple_order_qty, SWGNumber* order_qty, double price, SWGNumber* display_qty, double stop_px, QString* cl_ord_id, QString* cl_ord_link_id, double peg_offset_value, QString* peg_price_type, QString* ord_type, QString* time_in_force, QString* exec_inst, QString* contingency_type, QString* text);
+    void order_getOrders(QString* symbol, QString* filter, QString* columns, qint32 count, qint32 start, bool reverse, QDateTime* start_time, QDateTime* end_time);
+    void order_new(QString* symbol, QString* side, double simple_order_qty, qint32 order_qty, double price, qint32 display_qty, double stop_px, QString* cl_ord_id, QString* cl_ord_link_id, double peg_offset_value, QString* peg_price_type, QString* ord_type, QString* time_in_force, QString* exec_inst, QString* contingency_type, QString* text);
     
 private:
     void order_amendCallback (SWGHttpRequestWorker * worker);

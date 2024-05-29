@@ -57,8 +57,9 @@ namespace IO.Swagger.Api
         /// <param name="note">Optional annotation. (optional)</param>
         /// <param name="skipConfirm">Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
         /// <param name="skip2FA">Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
+        /// <param name="memo">Destination Memo. (optional)</param>
         /// <returns>Address</returns>
-        Address AddressNew (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null);
+        Address AddressNew (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null, string memo = null);
 
         /// <summary>
         /// Creates a new saved address.
@@ -74,8 +75,9 @@ namespace IO.Swagger.Api
         /// <param name="note">Optional annotation. (optional)</param>
         /// <param name="skipConfirm">Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
         /// <param name="skip2FA">Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
+        /// <param name="memo">Destination Memo. (optional)</param>
         /// <returns>ApiResponse of Address</returns>
-        ApiResponse<Address> AddressNewWithHttpInfo (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null);
+        ApiResponse<Address> AddressNewWithHttpInfo (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null, string memo = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -111,8 +113,9 @@ namespace IO.Swagger.Api
         /// <param name="note">Optional annotation. (optional)</param>
         /// <param name="skipConfirm">Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
         /// <param name="skip2FA">Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
+        /// <param name="memo">Destination Memo. (optional)</param>
         /// <returns>Task of Address</returns>
-        System.Threading.Tasks.Task<Address> AddressNewAsync (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null);
+        System.Threading.Tasks.Task<Address> AddressNewAsync (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null, string memo = null);
 
         /// <summary>
         /// Creates a new saved address.
@@ -128,8 +131,9 @@ namespace IO.Swagger.Api
         /// <param name="note">Optional annotation. (optional)</param>
         /// <param name="skipConfirm">Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
         /// <param name="skip2FA">Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
+        /// <param name="memo">Destination Memo. (optional)</param>
         /// <returns>Task of ApiResponse (Address)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Address>> AddressNewAsyncWithHttpInfo (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null);
+        System.Threading.Tasks.Task<ApiResponse<Address>> AddressNewAsyncWithHttpInfo (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null, string memo = null);
         #endregion Asynchronous Operations
     }
 
@@ -404,10 +408,11 @@ namespace IO.Swagger.Api
         /// <param name="note">Optional annotation. (optional)</param>
         /// <param name="skipConfirm">Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
         /// <param name="skip2FA">Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
+        /// <param name="memo">Destination Memo. (optional)</param>
         /// <returns>Address</returns>
-        public Address AddressNew (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null)
+        public Address AddressNew (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null, string memo = null)
         {
-             ApiResponse<Address> localVarResponse = AddressNewWithHttpInfo(currency, network, address, name, note, skipConfirm, skip2FA);
+             ApiResponse<Address> localVarResponse = AddressNewWithHttpInfo(currency, network, address, name, note, skipConfirm, skip2FA, memo);
              return localVarResponse.Data;
         }
 
@@ -422,8 +427,9 @@ namespace IO.Swagger.Api
         /// <param name="note">Optional annotation. (optional)</param>
         /// <param name="skipConfirm">Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
         /// <param name="skip2FA">Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
+        /// <param name="memo">Destination Memo. (optional)</param>
         /// <returns>ApiResponse of Address</returns>
-        public ApiResponse< Address > AddressNewWithHttpInfo (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null)
+        public ApiResponse< Address > AddressNewWithHttpInfo (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null, string memo = null)
         {
             // verify the required parameter 'currency' is set
             if (currency == null)
@@ -472,6 +478,7 @@ namespace IO.Swagger.Api
             if (note != null) localVarFormParams.Add("note", this.Configuration.ApiClient.ParameterToString(note)); // form parameter
             if (skipConfirm != null) localVarFormParams.Add("skipConfirm", this.Configuration.ApiClient.ParameterToString(skipConfirm)); // form parameter
             if (skip2FA != null) localVarFormParams.Add("skip2FA", this.Configuration.ApiClient.ParameterToString(skip2FA)); // form parameter
+            if (memo != null) localVarFormParams.Add("memo", this.Configuration.ApiClient.ParameterToString(memo)); // form parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -518,10 +525,11 @@ namespace IO.Swagger.Api
         /// <param name="note">Optional annotation. (optional)</param>
         /// <param name="skipConfirm">Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
         /// <param name="skip2FA">Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
+        /// <param name="memo">Destination Memo. (optional)</param>
         /// <returns>Task of Address</returns>
-        public async System.Threading.Tasks.Task<Address> AddressNewAsync (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null)
+        public async System.Threading.Tasks.Task<Address> AddressNewAsync (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null, string memo = null)
         {
-             ApiResponse<Address> localVarResponse = await AddressNewAsyncWithHttpInfo(currency, network, address, name, note, skipConfirm, skip2FA);
+             ApiResponse<Address> localVarResponse = await AddressNewAsyncWithHttpInfo(currency, network, address, name, note, skipConfirm, skip2FA, memo);
              return localVarResponse.Data;
 
         }
@@ -537,8 +545,9 @@ namespace IO.Swagger.Api
         /// <param name="note">Optional annotation. (optional)</param>
         /// <param name="skipConfirm">Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
         /// <param name="skip2FA">Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. (optional, default to false)</param>
+        /// <param name="memo">Destination Memo. (optional)</param>
         /// <returns>Task of ApiResponse (Address)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Address>> AddressNewAsyncWithHttpInfo (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Address>> AddressNewAsyncWithHttpInfo (string currency, string network, string address, string name, string note = null, bool? skipConfirm = null, bool? skip2FA = null, string memo = null)
         {
             // verify the required parameter 'currency' is set
             if (currency == null)
@@ -587,6 +596,7 @@ namespace IO.Swagger.Api
             if (note != null) localVarFormParams.Add("note", this.Configuration.ApiClient.ParameterToString(note)); // form parameter
             if (skipConfirm != null) localVarFormParams.Add("skipConfirm", this.Configuration.ApiClient.ParameterToString(skipConfirm)); // form parameter
             if (skip2FA != null) localVarFormParams.Add("skip2FA", this.Configuration.ApiClient.ParameterToString(skip2FA)); // form parameter
+            if (memo != null) localVarFormParams.Add("memo", this.Configuration.ApiClient.ParameterToString(memo)); // form parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))

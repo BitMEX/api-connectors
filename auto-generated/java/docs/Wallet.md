@@ -4,16 +4,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**account** | [**BigDecimal**](BigDecimal.md) |  | 
+**account** | **Long** |  | 
 **currency** | **String** |  | 
-**deposited** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**withdrawn** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**transferIn** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**transferOut** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**amount** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**pendingCredit** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**pendingDebit** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**confirmedDebit** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**deposited** | **Long** |  |  [optional]
+**withdrawn** | **Long** |  |  [optional]
+**transferIn** | **Long** |  |  [optional]
+**transferOut** | **Long** |  |  [optional]
+**amount** | **Long** |  |  [optional]
+**pendingCredit** | **Long** |  |  [optional]
+**pendingDebit** | **Long** |  |  [optional]
+**confirmedDebit** | **Long** |  |  [optional]
 **timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 
 

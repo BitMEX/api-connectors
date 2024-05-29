@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **secret** | **String** |  | 
 **name** | **String** |  | 
-**nonce** | [**BigDecimal**](BigDecimal.md) |  | 
+**nonce** | **Long** |  | 
 **cidr** | **String** |  |  [optional]
 **cidrs** | [**List&lt;XAny&gt;**](XAny.md) |  |  [optional]
-**targetAccountId** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**targetAccountId** | **Integer** |  |  [optional]
 **permissions** | [**List&lt;XAny&gt;**](XAny.md) |  |  [optional]
 **enabled** | **Boolean** |  |  [optional]
-**userId** | [**BigDecimal**](BigDecimal.md) |  | 
+**userId** | **Integer** |  | 
 **created** | [**Date**](Date.md) |  |  [optional]
 
 

@@ -16,6 +16,7 @@ import io.swagger.client.model.Affiliate
 import io.swagger.client.model.CollateralSupportAgreement
 import io.swagger.client.model.CommunicationToken
 import org.joda.time.DateTime
+import io.swagger.client.model.DepositAddress
 import io.swagger.client.model.Error
 import io.swagger.client.model.Execution
 import io.swagger.client.model.Margin
@@ -27,6 +28,7 @@ import io.swagger.client.model.Transaction
 import io.swagger.client.model.User
 import io.swagger.client.model.UserCommissionsBySymbol
 import io.swagger.client.model.Wallet
+import io.swagger.client.model.WalletSummaryRecord
 import io.swagger.client.model.XAny
 import io.swagger.client.core._
 import io.swagger.client.core.CollectionFormats._
@@ -35,6 +37,34 @@ import io.swagger.client.core.ApiKeyLocations._
 object UserApi {
 
   /**
+   * 
+   * 
+   * Expected answers:
+   *   code 200 : Any (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   * 
+   * @param transactID 
+   */
+  def user.cancelPendingWithdrawal(transactID: String)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Any] =
+    ApiRequest[Any](ApiMethods.DELETE, "https://www.bitmex.com/api/v1", "/user/withdrawal", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withFormParam("transactID", transactID)
+      .withSuccessResponse[Any](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
    * 
    * 
    * Expected answers:
@@ -367,6 +397,36 @@ object UserApi {
    * 
    * 
    * Expected answers:
+   *   code 200 : DepositAddress (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   * 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+   * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.
+   */
+  def user.getDepositAddressInformation(currency: String, network: String)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[DepositAddress] =
+    ApiRequest[DepositAddress](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/depositAddressInformation", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withQueryParam("currency", currency)
+      .withQueryParam("network", network)
+      .withSuccessResponse[DepositAddress](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
    *   code 200 : Seq[Execution] (Request was successful)
    *   code 400 : Error (Parameter Error)
    *   code 401 : Error (Unauthorized)
@@ -652,11 +712,12 @@ object UserApi {
    *   apiSignature (apiKey)
    * 
    * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
-   * @param count Number of results to fetch.
-   * @param start Starting point for results.
+   * @param count Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows.
+   * @param start Starting point for results, integer. Default 0.
    * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history.
+   * @param reverse Start from the latest transaction record. Default true.
    */
-  def user.getWalletHistory(currency: Option[String], count: Option[Double], start: Option[Double], targetAccountId: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Transaction]] =
+  def user.getWalletHistory(currency: Option[String], count: Option[Double], start: Option[Double], targetAccountId: Option[Double] = None, reverse: Option[Boolean])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Transaction]] =
     ApiRequest[Seq[Transaction]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/walletHistory", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
@@ -665,16 +726,17 @@ object UserApi {
       .withQueryParam("count", count)
       .withQueryParam("start", start)
       .withQueryParam("targetAccountId", targetAccountId)
+      .withQueryParam("reverse", reverse)
       .withSuccessResponse[Seq[Transaction]](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
       .withErrorResponse[Error](403)
       .withErrorResponse[Error](404)
         /**
-   * 
+   * Provides an aggregated view of transactions, by transaction type, over a specific time period.
    * 
    * Expected answers:
-   *   code 200 : Seq[Transaction] (Request was successful)
+   *   code 200 : Seq[WalletSummaryRecord] (Request was successful)
    *   code 400 : Error (Parameter Error)
    *   code 401 : Error (Unauthorized)
    *   code 403 : Error (Access Denied)
@@ -686,14 +748,18 @@ object UserApi {
    *   apiSignature (apiKey)
    * 
    * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
+   * @param startTime Start time for the summary
+   * @param endTime End time for the summary
    */
-  def user.getWalletSummary(currency: Option[String])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Transaction]] =
-    ApiRequest[Seq[Transaction]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/walletSummary", "application/json")
+  def user.getWalletSummary(currency: Option[String], startTime: Option[DateTime] = None, endTime: Option[DateTime] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[WalletSummaryRecord]] =
+    ApiRequest[Seq[WalletSummaryRecord]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/walletSummary", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
       .withApiKey(apiKey, "api-signature", HEADER)
       .withQueryParam("currency", currency)
-      .withSuccessResponse[Seq[Transaction]](200)
+      .withQueryParam("startTime", startTime)
+      .withQueryParam("endTime", endTime)
+      .withSuccessResponse[Seq[WalletSummaryRecord]](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
       .withErrorResponse[Error](403)
@@ -760,12 +826,13 @@ object UserApi {
    * @param amount Amount of withdrawal currency.
    * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
    * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+   * @param memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified
    * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
    * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
    * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
    * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
    */
-  def user.requestWithdrawal(currency: String, network: String, amount: Double, otpToken: Option[String] = None, address: Option[String] = None, addressId: Option[Double] = None, targetUserId: Option[Double] = None, fee: Option[Double] = None, text: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Transaction] =
+  def user.requestWithdrawal(currency: String, network: String, amount: Long, otpToken: Option[String] = None, address: Option[String] = None, memo: Option[String] = None, addressId: Option[Double] = None, targetUserId: Option[Double] = None, fee: Option[Double] = None, text: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Transaction] =
     ApiRequest[Transaction](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/user/requestWithdrawal", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
@@ -775,6 +842,7 @@ object UserApi {
       .withFormParam("network", network)
       .withFormParam("amount", amount)
       .withFormParam("address", address)
+      .withFormParam("memo", memo)
       .withFormParam("addressId", addressId)
       .withFormParam("targetUserId", targetUserId)
       .withFormParam("fee", fee)
@@ -864,7 +932,7 @@ object UserApi {
    * @param targetAccountId AccountId to send the transfer to, must be a paired account with the user sending the transfer.
    * @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user.
    */
-  def user.walletTransfer(currency: String, amount: Double, targetAccountId: Double, fromAccountId: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Transaction] =
+  def user.walletTransfer(currency: String, amount: Long, targetAccountId: Double, fromAccountId: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Transaction] =
     ApiRequest[Transaction](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/user/walletTransfer", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)

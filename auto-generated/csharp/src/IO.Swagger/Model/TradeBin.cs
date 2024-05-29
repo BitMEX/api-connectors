@@ -51,7 +51,7 @@ namespace IO.Swagger.Model
         /// <param name="turnover">turnover.</param>
         /// <param name="homeNotional">homeNotional.</param>
         /// <param name="foreignNotional">foreignNotional.</param>
-        public TradeBin(DateTime? timestamp = default(DateTime?), string symbol = default(string), double? open = default(double?), double? high = default(double?), double? low = default(double?), double? close = default(double?), decimal? trades = default(decimal?), decimal? volume = default(decimal?), double? vwap = default(double?), decimal? lastSize = default(decimal?), decimal? turnover = default(decimal?), double? homeNotional = default(double?), double? foreignNotional = default(double?))
+        public TradeBin(DateTime? timestamp = default(DateTime?), string symbol = default(string), double? open = default(double?), double? high = default(double?), double? low = default(double?), double? close = default(double?), long? trades = default(long?), long? volume = default(long?), double? vwap = default(double?), long? lastSize = default(long?), long? turnover = default(long?), double? homeNotional = default(double?), double? foreignNotional = default(double?))
         {
             // to ensure "timestamp" is required (not null)
             if (timestamp == null)
@@ -124,13 +124,13 @@ namespace IO.Swagger.Model
         /// Gets or Sets Trades
         /// </summary>
         [DataMember(Name="trades", EmitDefaultValue=false)]
-        public decimal? Trades { get; set; }
+        public long? Trades { get; set; }
 
         /// <summary>
         /// Gets or Sets Volume
         /// </summary>
         [DataMember(Name="volume", EmitDefaultValue=false)]
-        public decimal? Volume { get; set; }
+        public long? Volume { get; set; }
 
         /// <summary>
         /// Gets or Sets Vwap
@@ -142,13 +142,13 @@ namespace IO.Swagger.Model
         /// Gets or Sets LastSize
         /// </summary>
         [DataMember(Name="lastSize", EmitDefaultValue=false)]
-        public decimal? LastSize { get; set; }
+        public long? LastSize { get; set; }
 
         /// <summary>
         /// Gets or Sets Turnover
         /// </summary>
         [DataMember(Name="turnover", EmitDefaultValue=false)]
-        public decimal? Turnover { get; set; }
+        public long? Turnover { get; set; }
 
         /// <summary>
         /// Gets or Sets HomeNotional

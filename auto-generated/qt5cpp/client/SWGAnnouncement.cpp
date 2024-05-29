@@ -37,7 +37,7 @@ SWGAnnouncement::~SWGAnnouncement() {
 
 void
 SWGAnnouncement::init() {
-    id = 0.0;
+    id = 0;
     m_id_isSet = false;
     link = new QString("");
     m_link_isSet = false;
@@ -51,9 +51,7 @@ SWGAnnouncement::init() {
 
 void
 SWGAnnouncement::cleanup() {
-    if(id != nullptr) { 
-        delete id;
-    }
+
     if(link != nullptr) { 
         delete link;
     }
@@ -79,7 +77,7 @@ SWGAnnouncement::fromJson(QString json) {
 
 void
 SWGAnnouncement::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&id, pJson["id"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&id, pJson["id"], "qint32", "");
     
     ::Swagger::setValue(&link, pJson["link"], "QString", "QString");
     
@@ -103,8 +101,8 @@ SWGAnnouncement::asJson ()
 QJsonObject
 SWGAnnouncement::asJsonObject() {
     QJsonObject obj;
-    if((id != nullptr) && (id->isSet())){
-        toJsonValue(QString("id"), id, obj, QString("SWGNumber"));
+    if(m_id_isSet){
+        obj.insert("id", QJsonValue(id));
     }
     if(link != nullptr && *link != QString("")){
         toJsonValue(QString("link"), link, obj, QString("QString"));
@@ -122,12 +120,12 @@ SWGAnnouncement::asJsonObject() {
     return obj;
 }
 
-SWGNumber*
+qint32
 SWGAnnouncement::getId() {
     return id;
 }
 void
-SWGAnnouncement::setId(SWGNumber* id) {
+SWGAnnouncement::setId(qint32 id) {
     this->id = id;
     this->m_id_isSet = true;
 }
@@ -177,7 +175,7 @@ bool
 SWGAnnouncement::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(id != nullptr && id->isSet()){ isObjectUpdated = true; break;}
+        if(m_id_isSet){ isObjectUpdated = true; break;}
         if(link != nullptr && *link != QString("")){ isObjectUpdated = true; break;}
         if(title != nullptr && *title != QString("")){ isObjectUpdated = true; break;}
         if(content != nullptr && *content != QString("")){ isObjectUpdated = true; break;}

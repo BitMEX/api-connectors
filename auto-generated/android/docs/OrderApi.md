@@ -31,9 +31,9 @@ String orderID = "orderID_example"; // String | Order ID
 String origClOrdID = "origClOrdID_example"; // String | Client Order ID. See POST /order.
 String clOrdID = "clOrdID_example"; // String | Optional new Client Order ID, requires `origClOrdID`.
 Double simpleOrderQty = 3.4D; // Double | Deprecated: simple orders are not supported after 2018/10/26
-BigDecimal orderQty = new BigDecimal(); // BigDecimal | Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)).
+Integer orderQty = 56; // Integer | Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)).
 Double simpleLeavesQty = 3.4D; // Double | Deprecated: simple orders are not supported after 2018/10/26
-BigDecimal leavesQty = new BigDecimal(); // BigDecimal | Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders.
+Integer leavesQty = 56; // Integer | Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders.
 Double price = 3.4D; // Double | Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.
 Double stopPx = 3.4D; // Double | Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders.
 Double pegOffsetValue = 3.4D; // Double | Optional trailing offset from the current price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for 'Pegged' orders.
@@ -55,9 +55,9 @@ Name | Type | Description  | Notes
  **origClOrdID** | **String**| Client Order ID. See POST /order. | [optional]
  **clOrdID** | **String**| Optional new Client Order ID, requires &#x60;origClOrdID&#x60;. | [optional]
  **simpleOrderQty** | **Double**| Deprecated: simple orders are not supported after 2018/10/26 | [optional]
- **orderQty** | **BigDecimal**| Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). | [optional]
+ **orderQty** | **Integer**| Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). | [optional]
  **simpleLeavesQty** | **Double**| Deprecated: simple orders are not supported after 2018/10/26 | [optional]
- **leavesQty** | **BigDecimal**| Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders. | [optional]
+ **leavesQty** | **Integer**| Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders. | [optional]
  **price** | **Double**| Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders. | [optional]
  **stopPx** | **Double**| Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. | [optional]
  **pegOffsetValue** | **Double**| Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. | [optional]
@@ -275,8 +275,8 @@ OrderApi apiInstance = new OrderApi();
 String symbol = "symbol_example"; // String | Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive.
 String filter = "filter_example"; // String | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
 String columns = "columns_example"; // String | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-BigDecimal count = new BigDecimal(); // BigDecimal | Number of results to fetch. Must be a positive integer.
-BigDecimal start = new BigDecimal(); // BigDecimal | Starting point for results.
+Integer count = 100; // Integer | Number of results to fetch. Must be a positive integer.
+Integer start = 0; // Integer | Starting point for results.
 Boolean reverse = false; // Boolean | If true, will sort results newest first.
 Date startTime = new Date(); // Date | Starting date filter for results.
 Date endTime = new Date(); // Date | Ending date filter for results.
@@ -296,8 +296,8 @@ Name | Type | Description  | Notes
  **symbol** | **String**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. | [optional]
  **filter** | **String**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional]
  **columns** | **String**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional]
- **count** | **BigDecimal**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
- **start** | **BigDecimal**| Starting point for results. | [optional] [default to 0]
+ **count** | **Integer**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
+ **start** | **Integer**| Starting point for results. | [optional] [default to 0]
  **reverse** | **Boolean**| If true, will sort results newest first. | [optional] [default to false]
  **startTime** | **Date**| Starting date filter for results. | [optional]
  **endTime** | **Date**| Ending date filter for results. | [optional]
@@ -332,9 +332,9 @@ OrderApi apiInstance = new OrderApi();
 String symbol = "symbol_example"; // String | Instrument symbol. e.g. 'XBTUSD'.
 String side = "side_example"; // String | Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless `orderQty` is negative.
 Double simpleOrderQty = 3.4D; // Double | Deprecated: simple orders are not supported after 2018/10/26
-BigDecimal orderQty = new BigDecimal(); // BigDecimal | Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)).
+Integer orderQty = 56; // Integer | Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)).
 Double price = 3.4D; // Double | Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.
-BigDecimal displayQty = new BigDecimal(); // BigDecimal | Optional quantity to display in the book. Use 0 for a fully hidden order.
+Integer displayQty = 56; // Integer | Optional quantity to display in the book. Use 0 for a fully hidden order.
 Double stopPx = 3.4D; // Double | Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use `execInst` of 'MarkPrice' or 'LastPrice' to define the current price used for triggering.
 String clOrdID = "clOrdID_example"; // String | Optional Client Order ID. This clOrdID will come back on the order and any related executions.
 String clOrdLinkID = "clOrdLinkID_example"; // String | Optional Client Order Link ID for contingent orders
@@ -361,9 +361,9 @@ Name | Type | Description  | Notes
  **symbol** | **String**| Instrument symbol. e.g. &#39;XBTUSD&#39;. |
  **side** | **String**| Order side. Valid options: Buy, Sell. Defaults to &#39;Buy&#39; unless &#x60;orderQty&#x60; is negative. | [optional]
  **simpleOrderQty** | **Double**| Deprecated: simple orders are not supported after 2018/10/26 | [optional]
- **orderQty** | **BigDecimal**| Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)). | [optional]
+ **orderQty** | **Integer**| Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)). | [optional]
  **price** | **Double**| Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders. | [optional]
- **displayQty** | **BigDecimal**| Optional quantity to display in the book. Use 0 for a fully hidden order. | [optional]
+ **displayQty** | **Integer**| Optional quantity to display in the book. Use 0 for a fully hidden order. | [optional]
  **stopPx** | **Double**| Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use &#x60;execInst&#x60; of &#39;MarkPrice&#39; or &#39;LastPrice&#39; to define the current price used for triggering. | [optional]
  **clOrdID** | **String**| Optional Client Order ID. This clOrdID will come back on the order and any related executions. | [optional]
  **clOrdLinkID** | **String**| Optional Client Order Link ID for contingent orders | [optional]

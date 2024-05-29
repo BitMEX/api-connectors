@@ -22,7 +22,7 @@ type Settlement struct {
 	SettledPrice float64 `json:"settledPrice,omitempty"`
 	OptionStrikePrice float64 `json:"optionStrikePrice,omitempty"`
 	OptionUnderlyingPrice float64 `json:"optionUnderlyingPrice,omitempty"`
-	Bankrupt float32 `json:"bankrupt,omitempty"`
-	TaxBase float32 `json:"taxBase,omitempty"`
+	Bankrupt int64 `json:"bankrupt,omitempty"`
+	TaxBase int64 `json:"taxBase,omitempty"`
 	TaxRate float64 `json:"taxRate,omitempty"`
 }

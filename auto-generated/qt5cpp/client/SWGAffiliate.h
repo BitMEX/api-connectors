@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -43,44 +42,44 @@ public:
     void fromJsonObject(QJsonObject json) override;
     SWGAffiliate* fromJson(QString jsonString) override;
 
-    SWGNumber* getAccount();
-    void setAccount(SWGNumber* account);
+    qint64 getAccount();
+    void setAccount(qint64 account);
 
     QString* getCurrency();
     void setCurrency(QString* currency);
 
-    SWGNumber* getPrevPayout();
-    void setPrevPayout(SWGNumber* prev_payout);
+    qint64 getPrevPayout();
+    void setPrevPayout(qint64 prev_payout);
 
-    SWGNumber* getPrevTurnover();
-    void setPrevTurnover(SWGNumber* prev_turnover);
+    qint64 getPrevTurnover();
+    void setPrevTurnover(qint64 prev_turnover);
 
-    SWGNumber* getPrevComm();
-    void setPrevComm(SWGNumber* prev_comm);
+    qint64 getPrevComm();
+    void setPrevComm(qint64 prev_comm);
 
     QDateTime* getPrevTimestamp();
     void setPrevTimestamp(QDateTime* prev_timestamp);
 
-    SWGNumber* getExecTurnover();
-    void setExecTurnover(SWGNumber* exec_turnover);
+    qint64 getExecTurnover();
+    void setExecTurnover(qint64 exec_turnover);
 
-    SWGNumber* getExecComm();
-    void setExecComm(SWGNumber* exec_comm);
+    qint64 getExecComm();
+    void setExecComm(qint64 exec_comm);
 
-    SWGNumber* getTotalReferrals();
-    void setTotalReferrals(SWGNumber* total_referrals);
+    qint64 getTotalReferrals();
+    void setTotalReferrals(qint64 total_referrals);
 
-    SWGNumber* getTotalTurnover();
-    void setTotalTurnover(SWGNumber* total_turnover);
+    qint64 getTotalTurnover();
+    void setTotalTurnover(qint64 total_turnover);
 
-    SWGNumber* getTotalComm();
-    void setTotalComm(SWGNumber* total_comm);
+    qint64 getTotalComm();
+    void setTotalComm(qint64 total_comm);
 
     double getPayoutPcnt();
     void setPayoutPcnt(double payout_pcnt);
 
-    SWGNumber* getPendingPayout();
-    void setPendingPayout(SWGNumber* pending_payout);
+    qint64 getPendingPayout();
+    void setPendingPayout(qint64 pending_payout);
 
     QDateTime* getTimestamp();
     void setTimestamp(QDateTime* timestamp);
@@ -98,43 +97,43 @@ public:
     virtual bool isSet() override;
 
 private:
-    SWGNumber* account;
+    qint64 account;
     bool m_account_isSet;
 
     QString* currency;
     bool m_currency_isSet;
 
-    SWGNumber* prev_payout;
+    qint64 prev_payout;
     bool m_prev_payout_isSet;
 
-    SWGNumber* prev_turnover;
+    qint64 prev_turnover;
     bool m_prev_turnover_isSet;
 
-    SWGNumber* prev_comm;
+    qint64 prev_comm;
     bool m_prev_comm_isSet;
 
     QDateTime* prev_timestamp;
     bool m_prev_timestamp_isSet;
 
-    SWGNumber* exec_turnover;
+    qint64 exec_turnover;
     bool m_exec_turnover_isSet;
 
-    SWGNumber* exec_comm;
+    qint64 exec_comm;
     bool m_exec_comm_isSet;
 
-    SWGNumber* total_referrals;
+    qint64 total_referrals;
     bool m_total_referrals_isSet;
 
-    SWGNumber* total_turnover;
+    qint64 total_turnover;
     bool m_total_turnover_isSet;
 
-    SWGNumber* total_comm;
+    qint64 total_comm;
     bool m_total_comm_isSet;
 
     double payout_pcnt;
     bool m_payout_pcnt_isSet;
 
-    SWGNumber* pending_payout;
+    qint64 pending_payout;
     bool m_pending_payout_isSet;
 
     QDateTime* timestamp;

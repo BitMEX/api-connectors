@@ -4,6 +4,7 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**userCancelPendingWithdrawal**](UserApi.md#userCancelPendingWithdrawal) | **DELETE** /user/withdrawal | Cancel pending withdrawal
 [**userCancelWithdrawal**](UserApi.md#userCancelWithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**userCheckReferralCode**](UserApi.md#userCheckReferralCode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 [**userCommunicationToken**](UserApi.md#userCommunicationToken) | **POST** /user/communicationToken | Register your communication token for mobile clients
@@ -17,6 +18,7 @@ Method | HTTP request | Description
 [**userGetCSA**](UserApi.md#userGetCSA) | **GET** /user/csa | Get your account&#39;s CSA status.
 [**userGetCommission**](UserApi.md#userGetCommission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**userGetDepositAddress**](UserApi.md#userGetDepositAddress) | **GET** /user/depositAddress | Get a deposit address.
+[**userGetDepositAddressInformation**](UserApi.md#userGetDepositAddressInformation) | **GET** /user/depositAddressInformation | Get a deposit address.
 [**userGetExecutionHistory**](UserApi.md#userGetExecutionHistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**userGetMargin**](UserApi.md#userGetMargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**userGetQuoteFillRatio**](UserApi.md#userGetQuoteFillRatio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
@@ -36,6 +38,71 @@ Method | HTTP request | Description
 [**userUpdateSubAccount**](UserApi.md#userUpdateSubAccount) | **POST** /user/updateSubaccount | Updates the sub-account name.
 [**userWalletTransfer**](UserApi.md#userWalletTransfer) | **POST** /user/walletTransfer | Execute a transfer to a paired account.
 
+
+<a name="userCancelPendingWithdrawal"></a>
+# **userCancelPendingWithdrawal**
+> Object userCancelPendingWithdrawal(transactID)
+
+Cancel pending withdrawal
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiClient;
+//import io.swagger.client.ApiException;
+//import io.swagger.client.Configuration;
+//import io.swagger.client.auth.*;
+//import io.swagger.client.api.UserApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: apiExpires
+ApiKeyAuth apiExpires = (ApiKeyAuth) defaultClient.getAuthentication("apiExpires");
+apiExpires.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiExpires.setApiKeyPrefix("Token");
+
+// Configure API key authorization: apiKey
+ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("apiKey");
+apiKey.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.setApiKeyPrefix("Token");
+
+// Configure API key authorization: apiSignature
+ApiKeyAuth apiSignature = (ApiKeyAuth) defaultClient.getAuthentication("apiSignature");
+apiSignature.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.setApiKeyPrefix("Token");
+
+UserApi apiInstance = new UserApi();
+String transactID = "transactID_example"; // String | 
+try {
+    Object result = apiInstance.userCancelPendingWithdrawal(transactID);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UserApi#userCancelPendingWithdrawal");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transactID** | **String**|  |
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
 <a name="userCancelWithdrawal"></a>
 # **userCancelWithdrawal**
@@ -790,6 +857,73 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
+<a name="userGetDepositAddressInformation"></a>
+# **userGetDepositAddressInformation**
+> DepositAddress userGetDepositAddressInformation(currency, network)
+
+Get a deposit address.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiClient;
+//import io.swagger.client.ApiException;
+//import io.swagger.client.Configuration;
+//import io.swagger.client.auth.*;
+//import io.swagger.client.api.UserApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: apiExpires
+ApiKeyAuth apiExpires = (ApiKeyAuth) defaultClient.getAuthentication("apiExpires");
+apiExpires.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiExpires.setApiKeyPrefix("Token");
+
+// Configure API key authorization: apiKey
+ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("apiKey");
+apiKey.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.setApiKeyPrefix("Token");
+
+// Configure API key authorization: apiSignature
+ApiKeyAuth apiSignature = (ApiKeyAuth) defaultClient.getAuthentication("apiSignature");
+apiSignature.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.setApiKeyPrefix("Token");
+
+UserApi apiInstance = new UserApi();
+String currency = "currency_example"; // String | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
+String network = "network_example"; // String | The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
+try {
+    DepositAddress result = apiInstance.userGetDepositAddressInformation(currency, network);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UserApi#userGetDepositAddressInformation");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **String**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; |
+ **network** | **String**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. |
+
+### Return type
+
+[**DepositAddress**](DepositAddress.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
 <a name="userGetExecutionHistory"></a>
 # **userGetExecutionHistory**
 > List&lt;Execution&gt; userGetExecutionHistory(symbol, timestamp)
@@ -1420,7 +1554,7 @@ Name | Type | Description  | Notes
 
 <a name="userGetWalletHistory"></a>
 # **userGetWalletHistory**
-> List&lt;Transaction&gt; userGetWalletHistory(currency, count, start, targetAccountId)
+> List&lt;Transaction&gt; userGetWalletHistory(currency, count, start, targetAccountId, reverse)
 
 Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 
@@ -1455,11 +1589,12 @@ apiSignature.setApiKey("YOUR API KEY");
 
 UserApi apiInstance = new UserApi();
 String currency = "XBt"; // String | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
-Double count = 3.4D; // Double | Number of results to fetch.
-Double start = 3.4D; // Double | Starting point for results.
+Double count = 3.4D; // Double | Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows.
+Double start = 3.4D; // Double | Starting point for results, integer. Default 0.
 Double targetAccountId = 3.4D; // Double | AccountId to view the history of, must be a paired account with the authorised user requesting the history.
+Boolean reverse = true; // Boolean | Start from the latest transaction record. Default true.
 try {
-    List<Transaction> result = apiInstance.userGetWalletHistory(currency, count, start, targetAccountId);
+    List<Transaction> result = apiInstance.userGetWalletHistory(currency, count, start, targetAccountId, reverse);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userGetWalletHistory");
@@ -1472,9 +1607,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **String**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
- **count** | **Double**| Number of results to fetch. | [optional] [default to 100]
- **start** | **Double**| Starting point for results. | [optional] [default to 0]
+ **count** | **Double**| Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. | [optional] [default to 10000]
+ **start** | **Double**| Starting point for results, integer. Default 0. | [optional] [default to 0]
  **targetAccountId** | **Double**| AccountId to view the history of, must be a paired account with the authorised user requesting the history. | [optional]
+ **reverse** | **Boolean**| Start from the latest transaction record. Default true. | [optional] [default to true]
 
 ### Return type
 
@@ -1491,9 +1627,11 @@ Name | Type | Description  | Notes
 
 <a name="userGetWalletSummary"></a>
 # **userGetWalletSummary**
-> List&lt;Transaction&gt; userGetWalletSummary(currency)
+> List&lt;WalletSummaryRecord&gt; userGetWalletSummary(currency, startTime, endTime)
 
 Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+
+Provides an aggregated view of transactions, by transaction type, over a specific time period.
 
 ### Example
 ```java
@@ -1526,8 +1664,10 @@ apiSignature.setApiKey("YOUR API KEY");
 
 UserApi apiInstance = new UserApi();
 String currency = "XBt"; // String | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\"
+OffsetDateTime startTime = OffsetDateTime.now(); // OffsetDateTime | Start time for the summary
+OffsetDateTime endTime = OffsetDateTime.now(); // OffsetDateTime | End time for the summary
 try {
-    List<Transaction> result = apiInstance.userGetWalletSummary(currency);
+    List<WalletSummaryRecord> result = apiInstance.userGetWalletSummary(currency, startTime, endTime);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userGetWalletSummary");
@@ -1540,10 +1680,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **String**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
+ **startTime** | **OffsetDateTime**| Start time for the summary | [optional]
+ **endTime** | **OffsetDateTime**| End time for the summary | [optional]
 
 ### Return type
 
-[**List&lt;Transaction&gt;**](Transaction.md)
+[**List&lt;WalletSummaryRecord&gt;**](WalletSummaryRecord.md)
 
 ### Authorization
 
@@ -1655,7 +1797,7 @@ No authorization required
 
 <a name="userRequestWithdrawal"></a>
 # **userRequestWithdrawal**
-> Transaction userRequestWithdrawal(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text)
+> Transaction userRequestWithdrawal(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text)
 
 Request a withdrawal to an external wallet.
 
@@ -1693,15 +1835,16 @@ apiSignature.setApiKey("YOUR API KEY");
 UserApi apiInstance = new UserApi();
 String currency = "XBt"; // String | Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
 String network = "network_example"; // String | The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
-BigDecimal amount = new BigDecimal(); // BigDecimal | Amount of withdrawal currency.
+Long amount = 789L; // Long | Amount of withdrawal currency.
 String otpToken = "otpToken_example"; // String | 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
 String address = "address_example"; // String | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
+String memo = "memo_example"; // String | Destination Memo. If `address`, is specified, Destination Memo can also be specified
 Double addressId = 3.4D; // Double | ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
 Double targetUserId = 3.4D; // Double | ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified.
 Double fee = 3.4D; // Double | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
 String text = "text_example"; // String | Optional annotation, e.g. 'Transfer to home wallet'.
 try {
-    Transaction result = apiInstance.userRequestWithdrawal(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text);
+    Transaction result = apiInstance.userRequestWithdrawal(currency, network, amount, otpToken, address, memo, addressId, targetUserId, fee, text);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userRequestWithdrawal");
@@ -1715,9 +1858,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **String**| Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | [default to XBt]
  **network** | **String**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. |
- **amount** | **BigDecimal**| Amount of withdrawal currency. |
+ **amount** | **Long**| Amount of withdrawal currency. |
  **otpToken** | **String**| 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. | [optional]
  **address** | **String**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional]
+ **memo** | **String**| Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified | [optional]
  **addressId** | **Double**| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional]
  **targetUserId** | **Double**| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional]
  **fee** | **Double**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional]
@@ -1909,7 +2053,7 @@ apiSignature.setApiKey("YOUR API KEY");
 
 UserApi apiInstance = new UserApi();
 String currency = "currency_example"; // String | Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
-BigDecimal amount = new BigDecimal(); // BigDecimal | Amount of transfer.
+Long amount = 789L; // Long | Amount of transfer.
 Double targetAccountId = 3.4D; // Double | AccountId to send the transfer to, must be a paired account with the user sending the transfer.
 Double fromAccountId = 3.4D; // Double | AccountID to send the transfer from. Must be paired account with the authenticated user.
 try {
@@ -1926,7 +2070,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **String**| Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; |
- **amount** | **BigDecimal**| Amount of transfer. |
+ **amount** | **Long**| Amount of transfer. |
  **targetAccountId** | **Double**| AccountId to send the transfer to, must be a paired account with the user sending the transfer. |
  **fromAccountId** | **Double**| AccountID to send the transfer from. Must be paired account with the authenticated user. | [optional]
 

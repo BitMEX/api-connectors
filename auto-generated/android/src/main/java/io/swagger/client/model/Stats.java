@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
@@ -27,13 +26,13 @@ public class Stats {
   @SerializedName("currency")
   private String currency = null;
   @SerializedName("volume24h")
-  private BigDecimal volume24h = null;
+  private Long volume24h = null;
   @SerializedName("turnover24h")
-  private BigDecimal turnover24h = null;
+  private Long turnover24h = null;
   @SerializedName("openInterest")
-  private BigDecimal openInterest = null;
+  private Long openInterest = null;
   @SerializedName("openValue")
-  private BigDecimal openValue = null;
+  private Long openValue = null;
 
   /**
    **/
@@ -58,40 +57,40 @@ public class Stats {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getVolume24h() {
+  public Long getVolume24h() {
     return volume24h;
   }
-  public void setVolume24h(BigDecimal volume24h) {
+  public void setVolume24h(Long volume24h) {
     this.volume24h = volume24h;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover24h() {
+  public Long getTurnover24h() {
     return turnover24h;
   }
-  public void setTurnover24h(BigDecimal turnover24h) {
+  public void setTurnover24h(Long turnover24h) {
     this.turnover24h = turnover24h;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOpenInterest() {
+  public Long getOpenInterest() {
     return openInterest;
   }
-  public void setOpenInterest(BigDecimal openInterest) {
+  public void setOpenInterest(Long openInterest) {
     this.openInterest = openInterest;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOpenValue() {
+  public Long getOpenValue() {
     return openValue;
   }
-  public void setOpenValue(BigDecimal openValue) {
+  public void setOpenValue(Long openValue) {
     this.openValue = openValue;
   }
 

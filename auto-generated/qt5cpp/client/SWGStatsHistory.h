@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -52,11 +51,11 @@ public:
     QString* getCurrency();
     void setCurrency(QString* currency);
 
-    SWGNumber* getVolume();
-    void setVolume(SWGNumber* volume);
+    qint64 getVolume();
+    void setVolume(qint64 volume);
 
-    SWGNumber* getTurnover();
-    void setTurnover(SWGNumber* turnover);
+    qint64 getTurnover();
+    void setTurnover(qint64 turnover);
 
 
     virtual bool isSet() override;
@@ -71,10 +70,10 @@ private:
     QString* currency;
     bool m_currency_isSet;
 
-    SWGNumber* volume;
+    qint64 volume;
     bool m_volume_isSet;
 
-    SWGNumber* turnover;
+    qint64 turnover;
     bool m_turnover_isSet;
 
 };

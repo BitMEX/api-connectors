@@ -34,19 +34,19 @@ class Transaction(object):
     """
     swagger_types = {
         'transact_id': 'str',
-        'account': 'float',
+        'account': 'int',
         'currency': 'str',
         'network': 'str',
         'transact_type': 'str',
-        'amount': 'float',
-        'fee': 'float',
+        'amount': 'int',
+        'fee': 'int',
         'transact_status': 'str',
         'address': 'str',
         'tx': 'str',
         'text': 'str',
         'transact_time': 'datetime',
         'timestamp': 'datetime',
-        'wallet_balance': 'float'
+        'wallet_balance': 'int'
     }
 
     attribute_map = {
@@ -145,7 +145,7 @@ class Transaction(object):
 
 
         :return: The account of this Transaction.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._account
 
@@ -155,7 +155,7 @@ class Transaction(object):
 
 
         :param account: The account of this Transaction.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._account = account
@@ -229,7 +229,7 @@ class Transaction(object):
 
 
         :return: The amount of this Transaction.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._amount
 
@@ -239,7 +239,7 @@ class Transaction(object):
 
 
         :param amount: The amount of this Transaction.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._amount = amount
@@ -250,7 +250,7 @@ class Transaction(object):
 
 
         :return: The fee of this Transaction.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._fee
 
@@ -260,7 +260,7 @@ class Transaction(object):
 
 
         :param fee: The fee of this Transaction.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._fee = fee
@@ -397,7 +397,7 @@ class Transaction(object):
 
 
         :return: The wallet_balance of this Transaction.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._wallet_balance
 
@@ -407,7 +407,7 @@ class Transaction(object):
 
 
         :param wallet_balance: The wallet_balance of this Transaction.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._wallet_balance = wallet_balance

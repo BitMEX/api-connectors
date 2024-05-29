@@ -16,8 +16,8 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class ConnectedUsers (
-  users: Option[Double] = None,
-  bots: Option[Double] = None
+  users: Option[Int] = None,
+  bots: Option[Int] = None
 ) extends ApiModel
 
 

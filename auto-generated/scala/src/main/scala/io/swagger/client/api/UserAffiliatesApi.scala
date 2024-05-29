@@ -85,10 +85,12 @@ class UserAffiliatesApi(
    * 
    *
    * @param depth the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)
+   * @param targetAccountId AccountId of Sub-Affiliate Account (optional)
+   * @param selectUserId User id of result array to keep (optional)
    * @return List[XAny]
    */
-  def userAffiliatesGet(depth: Option[Double] = None): Option[List[XAny]] = {
-    val await = Try(Await.result(userAffiliatesGetAsync(depth), Duration.Inf))
+  def userAffiliatesGet(depth: Option[Double] = None, targetAccountId: Option[Double] = None, selectUserId: Option[Double] = None): Option[List[XAny]] = {
+    val await = Try(Await.result(userAffiliatesGetAsync(depth, targetAccountId, selectUserId), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -100,17 +102,21 @@ class UserAffiliatesApi(
    * 
    *
    * @param depth the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates (optional)
+   * @param targetAccountId AccountId of Sub-Affiliate Account (optional)
+   * @param selectUserId User id of result array to keep (optional)
    * @return Future(List[XAny])
    */
-  def userAffiliatesGetAsync(depth: Option[Double] = None): Future[List[XAny]] = {
-      helper.userAffiliatesGet(depth)
+  def userAffiliatesGetAsync(depth: Option[Double] = None, targetAccountId: Option[Double] = None, selectUserId: Option[Double] = None): Future[List[XAny]] = {
+      helper.userAffiliatesGet(depth, targetAccountId, selectUserId)
   }
 
 }
 
 class UserAffiliatesApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def userAffiliatesGet(depth: Option[Double] = None
+  def userAffiliatesGet(depth: Option[Double] = None,
+    targetAccountId: Option[Double] = None,
+    selectUserId: Option[Double] = None
     )(implicit reader: ClientResponseReader[List[XAny]]): Future[List[XAny]] = {
     // create path and map variables
     val path = (addFmt("/userAffiliates"))
@@ -121,6 +127,14 @@ class UserAffiliatesApiAsyncHelper(client: TransportClient, config: SwaggerConfi
 
     depth match {
       case Some(param) => queryParams += "depth" -> param.toString
+      case _ => queryParams
+    }
+    targetAccountId match {
+      case Some(param) => queryParams += "targetAccountId" -> param.toString
+      case _ => queryParams
+    }
+    selectUserId match {
+      case Some(param) => queryParams += "selectUserId" -> param.toString
       case _ => queryParams
     }
 

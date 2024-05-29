@@ -90,6 +90,7 @@ Name | Type | Description | Notes
 **settledPriceAdjustmentRate** | **Number** |  | [optional] 
 **settledPrice** | **Number** |  | [optional] 
 **instantPnl** | **Boolean** |  | [optional] 
+**minTick** | **Number** |  | [optional] 
 **timestamp** | **Date** |  | [optional] 
 
 

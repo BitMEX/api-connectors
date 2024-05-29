@@ -13,7 +13,6 @@
 
 package io.swagger.client.api;
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Chat;
 import io.swagger.client.model.ChatChannel;
 import io.swagger.client.model.ConnectedUsers;
@@ -47,8 +46,8 @@ public class ChatApiTest {
      */
     @Test
     public void chatGetTest() throws Exception {
-        BigDecimal count = null;
-        BigDecimal start = null;
+        Integer count = null;
+        Integer start = null;
         Boolean reverse = null;
         Double channelID = null;
         List<Chat> response = api.chatGet(count, start, reverse, channelID);

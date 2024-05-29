@@ -58,7 +58,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **Double**| Number of results to fetch. | [optional] [default to 150]
+ **count** | **Double**| Number of results to fetch. | [optional] [default to 100]
  **startId** | **Double**| Cursor for pagination. | [optional]
 
 ### Return type

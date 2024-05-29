@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -43,8 +42,8 @@ public:
     void fromJsonObject(QJsonObject json) override;
     SWGPorl* fromJson(QString jsonString) override;
 
-    SWGNumber* getAccount();
-    void setAccount(SWGNumber* account);
+    qint32 getAccount();
+    void setAccount(qint32 account);
 
     QString* getNonce();
     void setNonce(QString* nonce);
@@ -71,7 +70,7 @@ public:
     virtual bool isSet() override;
 
 private:
-    SWGNumber* account;
+    qint32 account;
     bool m_account_isSet;
 
     QString* nonce;

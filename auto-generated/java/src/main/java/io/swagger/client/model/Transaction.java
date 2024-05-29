@@ -23,19 +23,18 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Transaction
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Transaction {
   @SerializedName("transactID")
   private String transactID = null;
 
   @SerializedName("account")
-  private BigDecimal account = null;
+  private Long account = null;
 
   @SerializedName("currency")
   private String currency = null;
@@ -47,10 +46,10 @@ public class Transaction {
   private String transactType = null;
 
   @SerializedName("amount")
-  private BigDecimal amount = null;
+  private Long amount = null;
 
   @SerializedName("fee")
-  private BigDecimal fee = null;
+  private Long fee = null;
 
   @SerializedName("transactStatus")
   private String transactStatus = null;
@@ -71,7 +70,7 @@ public class Transaction {
   private OffsetDateTime timestamp = null;
 
   @SerializedName("walletBalance")
-  private BigDecimal walletBalance = null;
+  private Long walletBalance = null;
 
   public Transaction transactID(String transactID) {
     this.transactID = transactID;
@@ -91,7 +90,7 @@ public class Transaction {
     this.transactID = transactID;
   }
 
-  public Transaction account(BigDecimal account) {
+  public Transaction account(Long account) {
     this.account = account;
     return this;
   }
@@ -101,11 +100,11 @@ public class Transaction {
    * @return account
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAccount() {
+  public Long getAccount() {
     return account;
   }
 
-  public void setAccount(BigDecimal account) {
+  public void setAccount(Long account) {
     this.account = account;
   }
 
@@ -163,7 +162,7 @@ public class Transaction {
     this.transactType = transactType;
   }
 
-  public Transaction amount(BigDecimal amount) {
+  public Transaction amount(Long amount) {
     this.amount = amount;
     return this;
   }
@@ -173,15 +172,15 @@ public class Transaction {
    * @return amount
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAmount() {
+  public Long getAmount() {
     return amount;
   }
 
-  public void setAmount(BigDecimal amount) {
+  public void setAmount(Long amount) {
     this.amount = amount;
   }
 
-  public Transaction fee(BigDecimal fee) {
+  public Transaction fee(Long fee) {
     this.fee = fee;
     return this;
   }
@@ -191,11 +190,11 @@ public class Transaction {
    * @return fee
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getFee() {
+  public Long getFee() {
     return fee;
   }
 
-  public void setFee(BigDecimal fee) {
+  public void setFee(Long fee) {
     this.fee = fee;
   }
 
@@ -307,7 +306,7 @@ public class Transaction {
     this.timestamp = timestamp;
   }
 
-  public Transaction walletBalance(BigDecimal walletBalance) {
+  public Transaction walletBalance(Long walletBalance) {
     this.walletBalance = walletBalance;
     return this;
   }
@@ -317,11 +316,11 @@ public class Transaction {
    * @return walletBalance
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getWalletBalance() {
+  public Long getWalletBalance() {
     return walletBalance;
   }
 
-  public void setWalletBalance(BigDecimal walletBalance) {
+  public void setWalletBalance(Long walletBalance) {
     this.walletBalance = walletBalance;
   }
 

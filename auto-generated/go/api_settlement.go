@@ -34,8 +34,8 @@ SettlementApiService Get settlement history.
      * @param "Symbol" (optional.String) -  Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param "Filter" (optional.String) -  Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param "Columns" (optional.String) -  Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param "Count" (optional.Float32) -  Number of results to fetch. Must be a positive integer.
-     * @param "Start" (optional.Float32) -  Starting point for results.
+     * @param "Count" (optional.Int32) -  Number of results to fetch. Must be a positive integer.
+     * @param "Start" (optional.Int32) -  Starting point for results.
      * @param "Reverse" (optional.Bool) -  If true, will sort results newest first.
      * @param "StartTime" (optional.Time) -  Starting date filter for results.
      * @param "EndTime" (optional.Time) -  Ending date filter for results.
@@ -47,8 +47,8 @@ type SettlementApiSettlementGetOpts struct {
 	Symbol optional.String
 	Filter optional.String
 	Columns optional.String
-	Count optional.Float32
-	Start optional.Float32
+	Count optional.Int32
+	Start optional.Int32
 	Reverse optional.Bool
 	StartTime optional.Time
 	EndTime optional.Time

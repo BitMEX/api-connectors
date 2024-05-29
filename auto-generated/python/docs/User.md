@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **float** |  | [optional] 
+**id** | **int** |  | [optional] 
 **firstname** | **str** |  | [optional] 
 **lastname** | **str** |  | [optional] 
 **username** | **str** |  | 
@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **geoip_country** | **str** |  | [optional] 
 **geoip_region** | **str** |  | [optional] 
 **first_trade_timestamp** | **datetime** |  | [optional] 
+**first_deposit_timestamp** | **datetime** |  | [optional] 
 **typ** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

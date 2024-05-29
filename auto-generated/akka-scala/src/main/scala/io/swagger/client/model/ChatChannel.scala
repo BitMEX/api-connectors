@@ -16,7 +16,7 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class ChatChannel (
-  id: Option[Double] = None,
+  id: Option[Int] = None,
   name: String,
   isPrivate: Boolean
 ) extends ApiModel

@@ -39,8 +39,8 @@ class Settlement(object):
         'settled_price': 'float',
         'option_strike_price': 'float',
         'option_underlying_price': 'float',
-        'bankrupt': 'float',
-        'tax_base': 'float',
+        'bankrupt': 'int',
+        'tax_base': 'int',
         'tax_rate': 'float'
     }
 
@@ -226,7 +226,7 @@ class Settlement(object):
 
 
         :return: The bankrupt of this Settlement.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._bankrupt
 
@@ -236,7 +236,7 @@ class Settlement(object):
 
 
         :param bankrupt: The bankrupt of this Settlement.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._bankrupt = bankrupt
@@ -247,7 +247,7 @@ class Settlement(object):
 
 
         :return: The tax_base of this Settlement.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._tax_base
 
@@ -257,7 +257,7 @@ class Settlement(object):
 
 
         :param tax_base: The tax_base of this Settlement.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._tax_base = tax_base

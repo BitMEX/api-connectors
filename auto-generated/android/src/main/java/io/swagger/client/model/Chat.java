@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -24,7 +23,7 @@ import com.google.gson.annotations.SerializedName;
 public class Chat {
   
   @SerializedName("id")
-  private BigDecimal id = null;
+  private Integer id = null;
   @SerializedName("date")
   private Date date = null;
   @SerializedName("user")
@@ -41,10 +40,10 @@ public class Chat {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getId() {
+  public Integer getId() {
     return id;
   }
-  public void setId(BigDecimal id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

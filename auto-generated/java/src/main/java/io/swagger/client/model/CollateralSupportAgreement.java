@@ -23,36 +23,35 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * CollateralSupportAgreement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class CollateralSupportAgreement {
   @SerializedName("csaID")
   private String csaID = null;
 
   @SerializedName("account")
-  private BigDecimal account = null;
+  private Long account = null;
 
   @SerializedName("currency")
   private String currency = null;
 
   @SerializedName("amount")
-  private BigDecimal amount = null;
+  private Long amount = null;
 
   @SerializedName("minAmount")
-  private BigDecimal minAmount = null;
+  private Long minAmount = null;
 
   @SerializedName("threshold")
-  private BigDecimal threshold = null;
+  private Long threshold = null;
 
   @SerializedName("mmRatioMarginCall")
-  private BigDecimal mmRatioMarginCall = null;
+  private Long mmRatioMarginCall = null;
 
   @SerializedName("mmRatioLiquidation")
-  private BigDecimal mmRatioLiquidation = null;
+  private Long mmRatioLiquidation = null;
 
   @SerializedName("startTime")
   private String startTime = null;
@@ -96,7 +95,7 @@ public class CollateralSupportAgreement {
     this.csaID = csaID;
   }
 
-  public CollateralSupportAgreement account(BigDecimal account) {
+  public CollateralSupportAgreement account(Long account) {
     this.account = account;
     return this;
   }
@@ -106,11 +105,11 @@ public class CollateralSupportAgreement {
    * @return account
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAccount() {
+  public Long getAccount() {
     return account;
   }
 
-  public void setAccount(BigDecimal account) {
+  public void setAccount(Long account) {
     this.account = account;
   }
 
@@ -132,7 +131,7 @@ public class CollateralSupportAgreement {
     this.currency = currency;
   }
 
-  public CollateralSupportAgreement amount(BigDecimal amount) {
+  public CollateralSupportAgreement amount(Long amount) {
     this.amount = amount;
     return this;
   }
@@ -142,15 +141,15 @@ public class CollateralSupportAgreement {
    * @return amount
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAmount() {
+  public Long getAmount() {
     return amount;
   }
 
-  public void setAmount(BigDecimal amount) {
+  public void setAmount(Long amount) {
     this.amount = amount;
   }
 
-  public CollateralSupportAgreement minAmount(BigDecimal minAmount) {
+  public CollateralSupportAgreement minAmount(Long minAmount) {
     this.minAmount = minAmount;
     return this;
   }
@@ -160,15 +159,15 @@ public class CollateralSupportAgreement {
    * @return minAmount
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getMinAmount() {
+  public Long getMinAmount() {
     return minAmount;
   }
 
-  public void setMinAmount(BigDecimal minAmount) {
+  public void setMinAmount(Long minAmount) {
     this.minAmount = minAmount;
   }
 
-  public CollateralSupportAgreement threshold(BigDecimal threshold) {
+  public CollateralSupportAgreement threshold(Long threshold) {
     this.threshold = threshold;
     return this;
   }
@@ -178,15 +177,15 @@ public class CollateralSupportAgreement {
    * @return threshold
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getThreshold() {
+  public Long getThreshold() {
     return threshold;
   }
 
-  public void setThreshold(BigDecimal threshold) {
+  public void setThreshold(Long threshold) {
     this.threshold = threshold;
   }
 
-  public CollateralSupportAgreement mmRatioMarginCall(BigDecimal mmRatioMarginCall) {
+  public CollateralSupportAgreement mmRatioMarginCall(Long mmRatioMarginCall) {
     this.mmRatioMarginCall = mmRatioMarginCall;
     return this;
   }
@@ -196,15 +195,15 @@ public class CollateralSupportAgreement {
    * @return mmRatioMarginCall
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getMmRatioMarginCall() {
+  public Long getMmRatioMarginCall() {
     return mmRatioMarginCall;
   }
 
-  public void setMmRatioMarginCall(BigDecimal mmRatioMarginCall) {
+  public void setMmRatioMarginCall(Long mmRatioMarginCall) {
     this.mmRatioMarginCall = mmRatioMarginCall;
   }
 
-  public CollateralSupportAgreement mmRatioLiquidation(BigDecimal mmRatioLiquidation) {
+  public CollateralSupportAgreement mmRatioLiquidation(Long mmRatioLiquidation) {
     this.mmRatioLiquidation = mmRatioLiquidation;
     return this;
   }
@@ -214,11 +213,11 @@ public class CollateralSupportAgreement {
    * @return mmRatioLiquidation
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getMmRatioLiquidation() {
+  public Long getMmRatioLiquidation() {
     return mmRatioLiquidation;
   }
 
-  public void setMmRatioLiquidation(BigDecimal mmRatioLiquidation) {
+  public void setMmRatioLiquidation(Long mmRatioLiquidation) {
     this.mmRatioLiquidation = mmRatioLiquidation;
   }
 

@@ -16,9 +16,9 @@ package io.swagger.client.model
 case class Stats (
   rootSymbol: String,
   currency: Option[String] = None,
-  volume24h: Option[Number] = None,
-  turnover24h: Option[Number] = None,
-  openInterest: Option[Number] = None,
-  openValue: Option[Number] = None
+  volume24h: Option[Long] = None,
+  turnover24h: Option[Long] = None,
+  openInterest: Option[Long] = None,
+  openValue: Option[Long] = None
 )
 

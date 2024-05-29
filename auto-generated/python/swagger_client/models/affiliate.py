@@ -33,19 +33,19 @@ class Affiliate(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'account': 'float',
+        'account': 'int',
         'currency': 'str',
-        'prev_payout': 'float',
-        'prev_turnover': 'float',
-        'prev_comm': 'float',
+        'prev_payout': 'int',
+        'prev_turnover': 'int',
+        'prev_comm': 'int',
         'prev_timestamp': 'datetime',
-        'exec_turnover': 'float',
-        'exec_comm': 'float',
-        'total_referrals': 'float',
-        'total_turnover': 'float',
-        'total_comm': 'float',
+        'exec_turnover': 'int',
+        'exec_comm': 'int',
+        'total_referrals': 'int',
+        'total_turnover': 'int',
+        'total_comm': 'int',
         'payout_pcnt': 'float',
-        'pending_payout': 'float',
+        'pending_payout': 'int',
         'timestamp': 'datetime',
         'referrer_account': 'float',
         'referral_discount': 'float',
@@ -136,7 +136,7 @@ class Affiliate(object):
 
 
         :return: The account of this Affiliate.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._account
 
@@ -146,7 +146,7 @@ class Affiliate(object):
 
 
         :param account: The account of this Affiliate.  # noqa: E501
-        :type: float
+        :type: int
         """
         if self._configuration.client_side_validation and account is None:
             raise ValueError("Invalid value for `account`, must not be `None`")  # noqa: E501
@@ -182,7 +182,7 @@ class Affiliate(object):
 
 
         :return: The prev_payout of this Affiliate.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._prev_payout
 
@@ -192,7 +192,7 @@ class Affiliate(object):
 
 
         :param prev_payout: The prev_payout of this Affiliate.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._prev_payout = prev_payout
@@ -203,7 +203,7 @@ class Affiliate(object):
 
 
         :return: The prev_turnover of this Affiliate.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._prev_turnover
 
@@ -213,7 +213,7 @@ class Affiliate(object):
 
 
         :param prev_turnover: The prev_turnover of this Affiliate.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._prev_turnover = prev_turnover
@@ -224,7 +224,7 @@ class Affiliate(object):
 
 
         :return: The prev_comm of this Affiliate.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._prev_comm
 
@@ -234,7 +234,7 @@ class Affiliate(object):
 
 
         :param prev_comm: The prev_comm of this Affiliate.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._prev_comm = prev_comm
@@ -266,7 +266,7 @@ class Affiliate(object):
 
 
         :return: The exec_turnover of this Affiliate.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._exec_turnover
 
@@ -276,7 +276,7 @@ class Affiliate(object):
 
 
         :param exec_turnover: The exec_turnover of this Affiliate.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._exec_turnover = exec_turnover
@@ -287,7 +287,7 @@ class Affiliate(object):
 
 
         :return: The exec_comm of this Affiliate.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._exec_comm
 
@@ -297,7 +297,7 @@ class Affiliate(object):
 
 
         :param exec_comm: The exec_comm of this Affiliate.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._exec_comm = exec_comm
@@ -308,7 +308,7 @@ class Affiliate(object):
 
 
         :return: The total_referrals of this Affiliate.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._total_referrals
 
@@ -318,7 +318,7 @@ class Affiliate(object):
 
 
         :param total_referrals: The total_referrals of this Affiliate.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._total_referrals = total_referrals
@@ -329,7 +329,7 @@ class Affiliate(object):
 
 
         :return: The total_turnover of this Affiliate.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._total_turnover
 
@@ -339,7 +339,7 @@ class Affiliate(object):
 
 
         :param total_turnover: The total_turnover of this Affiliate.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._total_turnover = total_turnover
@@ -350,7 +350,7 @@ class Affiliate(object):
 
 
         :return: The total_comm of this Affiliate.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._total_comm
 
@@ -360,7 +360,7 @@ class Affiliate(object):
 
 
         :param total_comm: The total_comm of this Affiliate.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._total_comm = total_comm
@@ -392,7 +392,7 @@ class Affiliate(object):
 
 
         :return: The pending_payout of this Affiliate.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._pending_payout
 
@@ -402,7 +402,7 @@ class Affiliate(object):
 
 
         :param pending_payout: The pending_payout of this Affiliate.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._pending_payout = pending_payout

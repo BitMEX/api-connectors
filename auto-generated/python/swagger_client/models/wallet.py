@@ -33,16 +33,16 @@ class Wallet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'account': 'float',
+        'account': 'int',
         'currency': 'str',
-        'deposited': 'float',
-        'withdrawn': 'float',
-        'transfer_in': 'float',
-        'transfer_out': 'float',
-        'amount': 'float',
-        'pending_credit': 'float',
-        'pending_debit': 'float',
-        'confirmed_debit': 'float',
+        'deposited': 'int',
+        'withdrawn': 'int',
+        'transfer_in': 'int',
+        'transfer_out': 'int',
+        'amount': 'int',
+        'pending_credit': 'int',
+        'pending_debit': 'int',
+        'confirmed_debit': 'int',
         'timestamp': 'datetime'
     }
 
@@ -106,7 +106,7 @@ class Wallet(object):
 
 
         :return: The account of this Wallet.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._account
 
@@ -116,7 +116,7 @@ class Wallet(object):
 
 
         :param account: The account of this Wallet.  # noqa: E501
-        :type: float
+        :type: int
         """
         if self._configuration.client_side_validation and account is None:
             raise ValueError("Invalid value for `account`, must not be `None`")  # noqa: E501
@@ -152,7 +152,7 @@ class Wallet(object):
 
 
         :return: The deposited of this Wallet.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._deposited
 
@@ -162,7 +162,7 @@ class Wallet(object):
 
 
         :param deposited: The deposited of this Wallet.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._deposited = deposited
@@ -173,7 +173,7 @@ class Wallet(object):
 
 
         :return: The withdrawn of this Wallet.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._withdrawn
 
@@ -183,7 +183,7 @@ class Wallet(object):
 
 
         :param withdrawn: The withdrawn of this Wallet.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._withdrawn = withdrawn
@@ -194,7 +194,7 @@ class Wallet(object):
 
 
         :return: The transfer_in of this Wallet.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._transfer_in
 
@@ -204,7 +204,7 @@ class Wallet(object):
 
 
         :param transfer_in: The transfer_in of this Wallet.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._transfer_in = transfer_in
@@ -215,7 +215,7 @@ class Wallet(object):
 
 
         :return: The transfer_out of this Wallet.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._transfer_out
 
@@ -225,7 +225,7 @@ class Wallet(object):
 
 
         :param transfer_out: The transfer_out of this Wallet.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._transfer_out = transfer_out
@@ -236,7 +236,7 @@ class Wallet(object):
 
 
         :return: The amount of this Wallet.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._amount
 
@@ -246,7 +246,7 @@ class Wallet(object):
 
 
         :param amount: The amount of this Wallet.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._amount = amount
@@ -257,7 +257,7 @@ class Wallet(object):
 
 
         :return: The pending_credit of this Wallet.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._pending_credit
 
@@ -267,7 +267,7 @@ class Wallet(object):
 
 
         :param pending_credit: The pending_credit of this Wallet.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._pending_credit = pending_credit
@@ -278,7 +278,7 @@ class Wallet(object):
 
 
         :return: The pending_debit of this Wallet.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._pending_debit
 
@@ -288,7 +288,7 @@ class Wallet(object):
 
 
         :param pending_debit: The pending_debit of this Wallet.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._pending_debit = pending_debit
@@ -299,7 +299,7 @@ class Wallet(object):
 
 
         :return: The confirmed_debit of this Wallet.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._confirmed_debit
 
@@ -309,7 +309,7 @@ class Wallet(object):
 
 
         :param confirmed_debit: The confirmed_debit of this Wallet.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._confirmed_debit = confirmed_debit

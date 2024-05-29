@@ -11,10 +11,10 @@ import Foundation
 
 public struct ConnectedUsers: Codable {
 
-    public var users: Double?
-    public var bots: Double?
+    public var users: Int?
+    public var bots: Int?
 
-    public init(users: Double?, bots: Double?) {
+    public init(users: Int?, bots: Int?) {
         self.users = users
         self.bots = bots
     }

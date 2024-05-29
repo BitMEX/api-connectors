@@ -49,7 +49,7 @@ namespace IO.Swagger.Model
         /// <param name="homeNotional">homeNotional.</param>
         /// <param name="foreignNotional">foreignNotional.</param>
         /// <param name="trdType">trdType.</param>
-        public Trade(DateTime? timestamp = default(DateTime?), string symbol = default(string), string side = default(string), decimal? size = default(decimal?), double? price = default(double?), string tickDirection = default(string), string trdMatchID = default(string), decimal? grossValue = default(decimal?), double? homeNotional = default(double?), double? foreignNotional = default(double?), string trdType = default(string))
+        public Trade(DateTime? timestamp = default(DateTime?), string symbol = default(string), string side = default(string), long? size = default(long?), double? price = default(double?), string tickDirection = default(string), string trdMatchID = default(string), long? grossValue = default(long?), double? homeNotional = default(double?), double? foreignNotional = default(double?), string trdType = default(string))
         {
             // to ensure "timestamp" is required (not null)
             if (timestamp == null)
@@ -102,7 +102,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Size
         /// </summary>
         [DataMember(Name="size", EmitDefaultValue=false)]
-        public decimal? Size { get; set; }
+        public long? Size { get; set; }
 
         /// <summary>
         /// Gets or Sets Price
@@ -126,7 +126,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets GrossValue
         /// </summary>
         [DataMember(Name="grossValue", EmitDefaultValue=false)]
-        public decimal? GrossValue { get; set; }
+        public long? GrossValue { get; set; }
 
         /// <summary>
         /// Gets or Sets HomeNotional

@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **settledPrice** | **Double** |  |  [optional]
 **optionStrikePrice** | **Double** |  |  [optional]
 **optionUnderlyingPrice** | **Double** |  |  [optional]
-**bankrupt** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**taxBase** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**bankrupt** | **Long** |  |  [optional]
+**taxBase** | **Long** |  |  [optional]
 **taxRate** | **Double** |  |  [optional]
 
 

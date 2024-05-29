@@ -54,7 +54,7 @@ namespace IO.Swagger.Model
         /// <param name="potDistributionPreferences">potDistributionPreferences.</param>
         /// <param name="socials">socials.</param>
         /// <param name="deleted">deleted.</param>
-        public Guild(decimal? id = default(decimal?), DateTime? created = default(DateTime?), DateTime? updated = default(DateTime?), bool? archived = default(bool?), string name = default(string), string imgUrl = default(string), string mobileHeroImgUrl = default(string), string emoji = default(string), string logoUrl = default(string), string description = default(string), double? chatChannelId = default(double?), bool? isPrivate = default(bool?), string affiliateId = default(string), Object potDistributionPreferences = default(Object), Object socials = default(Object), bool? deleted = default(bool?))
+        public Guild(int? id = default(int?), DateTime? created = default(DateTime?), DateTime? updated = default(DateTime?), bool? archived = default(bool?), string name = default(string), string imgUrl = default(string), string mobileHeroImgUrl = default(string), string emoji = default(string), string logoUrl = default(string), string description = default(string), double? chatChannelId = default(double?), bool? isPrivate = default(bool?), string affiliateId = default(string), Object potDistributionPreferences = default(Object), Object socials = default(Object), bool? deleted = default(bool?))
         {
             // to ensure "created" is required (not null)
             if (created == null)
@@ -118,7 +118,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Id
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public decimal? Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Created

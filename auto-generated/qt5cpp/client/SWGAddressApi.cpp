@@ -95,7 +95,7 @@ SWGAddressApi::address_getCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGAddressApi::address_new(QString* currency, QString* network, QString* address, QString* name, QString* note, bool skip_confirm, bool skip2_fa) {
+SWGAddressApi::address_new(QString* currency, QString* network, QString* address, QString* name, QString* note, bool skip_confirm, bool skip2_fa, QString* memo) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/address");
 
@@ -124,6 +124,9 @@ SWGAddressApi::address_new(QString* currency, QString* network, QString* address
     }
     if (skip2_fa != nullptr) {
         input.add_var("skip2FA", *skip2_fa);
+    }
+    if (memo != nullptr) {
+        input.add_var("memo", *memo);
     }
 
 

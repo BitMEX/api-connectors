@@ -12,6 +12,61 @@ import Alamofire
 
 open class UserAPI {
     /**
+     Cancel pending withdrawal
+     
+     - parameter transactID: (form)  
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func userCancelPendingWithdrawal(transactID: String, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        userCancelPendingWithdrawalWithRequestBuilder(transactID: transactID).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Cancel pending withdrawal
+     - DELETE /user/withdrawal
+     - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
+     - examples: [{contentType=application/json, example={
+  "blank": false,
+  "bytes": [
+    123,
+    125
+  ],
+  "empty": false
+}}]
+     
+     - parameter transactID: (form)  
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func userCancelPendingWithdrawalWithRequestBuilder(transactID: String) -> RequestBuilder<Any> {
+        let path = "/user/withdrawal"
+        let URLString = SwaggerClientAPI.basePath + path
+        let formParams: [String:Any?] = [
+            "transactID": transactID
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
      Cancel a withdrawal.
      
      - parameter token: (form)  
@@ -612,6 +667,55 @@ open class UserAPI {
     }
 
     /**
+     Get a deposit address.
+     
+     - parameter currency: (query) Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; 
+     - parameter network: (query) The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func userGetDepositAddressInformation(currency: String, network: String, completion: @escaping ((_ data: DepositAddress?,_ error: Error?) -> Void)) {
+        userGetDepositAddressInformationWithRequestBuilder(currency: currency, network: network).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get a deposit address.
+     - GET /user/depositAddressInformation
+     - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
+     - examples: [{contentType=application/json, example={"empty": false}}]
+     
+     - parameter currency: (query) Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; 
+     - parameter network: (query) The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. 
+
+     - returns: RequestBuilder<DepositAddress> 
+     */
+    open class func userGetDepositAddressInformationWithRequestBuilder(currency: String, network: String) -> RequestBuilder<DepositAddress> {
+        let path = "/user/depositAddressInformation"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "currency": currency, 
+            "network": network
+        ])
+
+        let requestBuilder: RequestBuilder<DepositAddress>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
      Get the execution history by day.
      
      - parameter symbol: (query)  
@@ -1066,13 +1170,14 @@ open class UserAPI {
      Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
      
      - parameter currency: (query) Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
-     - parameter count: (query) Number of results to fetch. (optional, default to 100)
-     - parameter start: (query) Starting point for results. (optional, default to 0)
+     - parameter count: (query) Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)
+     - parameter start: (query) Starting point for results, integer. Default 0. (optional, default to 0)
      - parameter targetAccountId: (query) AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)
+     - parameter reverse: (query) Start from the latest transaction record. Default true. (optional, default to true)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func userGetWalletHistory(currency: String? = nil, count: Double? = nil, start: Double? = nil, targetAccountId: Double? = nil, completion: @escaping ((_ data: [Transaction]?,_ error: Error?) -> Void)) {
-        userGetWalletHistoryWithRequestBuilder(currency: currency, count: count, start: start, targetAccountId: targetAccountId).execute { (response, error) -> Void in
+    open class func userGetWalletHistory(currency: String? = nil, count: Double? = nil, start: Double? = nil, targetAccountId: Double? = nil, reverse: Bool? = nil, completion: @escaping ((_ data: [Transaction]?,_ error: Error?) -> Void)) {
+        userGetWalletHistoryWithRequestBuilder(currency: currency, count: count, start: start, targetAccountId: targetAccountId, reverse: reverse).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -1093,13 +1198,14 @@ open class UserAPI {
      - examples: [{contentType=application/json, example={}}]
      
      - parameter currency: (query) Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
-     - parameter count: (query) Number of results to fetch. (optional, default to 100)
-     - parameter start: (query) Starting point for results. (optional, default to 0)
+     - parameter count: (query) Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows. (optional, default to 10000)
+     - parameter start: (query) Starting point for results, integer. Default 0. (optional, default to 0)
      - parameter targetAccountId: (query) AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)
+     - parameter reverse: (query) Start from the latest transaction record. Default true. (optional, default to true)
 
      - returns: RequestBuilder<[Transaction]> 
      */
-    open class func userGetWalletHistoryWithRequestBuilder(currency: String? = nil, count: Double? = nil, start: Double? = nil, targetAccountId: Double? = nil) -> RequestBuilder<[Transaction]> {
+    open class func userGetWalletHistoryWithRequestBuilder(currency: String? = nil, count: Double? = nil, start: Double? = nil, targetAccountId: Double? = nil, reverse: Bool? = nil) -> RequestBuilder<[Transaction]> {
         let path = "/user/walletHistory"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -1109,7 +1215,8 @@ open class UserAPI {
             "currency": currency, 
             "count": count, 
             "start": start, 
-            "targetAccountId": targetAccountId
+            "targetAccountId": targetAccountId, 
+            "reverse": reverse
         ])
 
         let requestBuilder: RequestBuilder<[Transaction]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
@@ -1121,10 +1228,12 @@ open class UserAPI {
      Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
      
      - parameter currency: (query) Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
+     - parameter startTime: (query) Start time for the summary (optional)
+     - parameter endTime: (query) End time for the summary (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func userGetWalletSummary(currency: String? = nil, completion: @escaping ((_ data: [Transaction]?,_ error: Error?) -> Void)) {
-        userGetWalletSummaryWithRequestBuilder(currency: currency).execute { (response, error) -> Void in
+    open class func userGetWalletSummary(currency: String? = nil, startTime: Date? = nil, endTime: Date? = nil, completion: @escaping ((_ data: [WalletSummaryRecord]?,_ error: Error?) -> Void)) {
+        userGetWalletSummaryWithRequestBuilder(currency: currency, startTime: startTime, endTime: endTime).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -1133,6 +1242,7 @@ open class UserAPI {
     /**
      Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
      - GET /user/walletSummary
+     - Provides an aggregated view of transactions, by transaction type, over a specific time period.
      - API Key:
        - type: apiKey api-expires 
        - name: apiExpires
@@ -1145,20 +1255,24 @@ open class UserAPI {
      - examples: [{contentType=application/json, example={}}]
      
      - parameter currency: (query) Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; (optional, default to XBt)
+     - parameter startTime: (query) Start time for the summary (optional)
+     - parameter endTime: (query) End time for the summary (optional)
 
-     - returns: RequestBuilder<[Transaction]> 
+     - returns: RequestBuilder<[WalletSummaryRecord]> 
      */
-    open class func userGetWalletSummaryWithRequestBuilder(currency: String? = nil) -> RequestBuilder<[Transaction]> {
+    open class func userGetWalletSummaryWithRequestBuilder(currency: String? = nil, startTime: Date? = nil, endTime: Date? = nil) -> RequestBuilder<[WalletSummaryRecord]> {
         let path = "/user/walletSummary"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "currency": currency
+            "currency": currency, 
+            "startTime": startTime?.encodeToJSON(), 
+            "endTime": endTime?.encodeToJSON()
         ])
 
-        let requestBuilder: RequestBuilder<[Transaction]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<[WalletSummaryRecord]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -1245,14 +1359,15 @@ open class UserAPI {
      - parameter amount: (form) Amount of withdrawal currency. 
      - parameter otpToken: (form) 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
      - parameter address: (form) Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
+     - parameter memo: (form) Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)
      - parameter addressId: (form) ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      - parameter targetUserId: (form) ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      - parameter fee: (form) Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
      - parameter text: (form) Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func userRequestWithdrawal(currency: String, network: String, amount: Double, otpToken: String? = nil, address: String? = nil, addressId: Double? = nil, targetUserId: Double? = nil, fee: Double? = nil, text: String? = nil, completion: @escaping ((_ data: Transaction?,_ error: Error?) -> Void)) {
-        userRequestWithdrawalWithRequestBuilder(currency: currency, network: network, amount: amount, otpToken: otpToken, address: address, addressId: addressId, targetUserId: targetUserId, fee: fee, text: text).execute { (response, error) -> Void in
+    open class func userRequestWithdrawal(currency: String, network: String, amount: Int64, otpToken: String? = nil, address: String? = nil, memo: String? = nil, addressId: Double? = nil, targetUserId: Double? = nil, fee: Double? = nil, text: String? = nil, completion: @escaping ((_ data: Transaction?,_ error: Error?) -> Void)) {
+        userRequestWithdrawalWithRequestBuilder(currency: currency, network: network, amount: amount, otpToken: otpToken, address: address, memo: memo, addressId: addressId, targetUserId: targetUserId, fee: fee, text: text).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -1278,6 +1393,7 @@ open class UserAPI {
      - parameter amount: (form) Amount of withdrawal currency. 
      - parameter otpToken: (form) 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
      - parameter address: (form) Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
+     - parameter memo: (form) Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified (optional)
      - parameter addressId: (form) ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      - parameter targetUserId: (form) ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
      - parameter fee: (form) Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
@@ -1285,15 +1401,16 @@ open class UserAPI {
 
      - returns: RequestBuilder<Transaction> 
      */
-    open class func userRequestWithdrawalWithRequestBuilder(currency: String, network: String, amount: Double, otpToken: String? = nil, address: String? = nil, addressId: Double? = nil, targetUserId: Double? = nil, fee: Double? = nil, text: String? = nil) -> RequestBuilder<Transaction> {
+    open class func userRequestWithdrawalWithRequestBuilder(currency: String, network: String, amount: Int64, otpToken: String? = nil, address: String? = nil, memo: String? = nil, addressId: Double? = nil, targetUserId: Double? = nil, fee: Double? = nil, text: String? = nil) -> RequestBuilder<Transaction> {
         let path = "/user/requestWithdrawal"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
             "otpToken": otpToken,
             "currency": currency,
             "network": network,
-            "amount": amount,
+            "amount": amount.encodeToJSON(),
             "address": address,
+            "memo": memo,
             "addressId": addressId,
             "targetUserId": targetUserId,
             "fee": fee,
@@ -1428,7 +1545,7 @@ open class UserAPI {
      - parameter fromAccountId: (form) AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func userWalletTransfer(currency: String, amount: Double, targetAccountId: Double, fromAccountId: Double? = nil, completion: @escaping ((_ data: Transaction?,_ error: Error?) -> Void)) {
+    open class func userWalletTransfer(currency: String, amount: Int64, targetAccountId: Double, fromAccountId: Double? = nil, completion: @escaping ((_ data: Transaction?,_ error: Error?) -> Void)) {
         userWalletTransferWithRequestBuilder(currency: currency, amount: amount, targetAccountId: targetAccountId, fromAccountId: fromAccountId).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -1457,12 +1574,12 @@ open class UserAPI {
 
      - returns: RequestBuilder<Transaction> 
      */
-    open class func userWalletTransferWithRequestBuilder(currency: String, amount: Double, targetAccountId: Double, fromAccountId: Double? = nil) -> RequestBuilder<Transaction> {
+    open class func userWalletTransferWithRequestBuilder(currency: String, amount: Int64, targetAccountId: Double, fromAccountId: Double? = nil) -> RequestBuilder<Transaction> {
         let path = "/user/walletTransfer"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
             "currency": currency,
-            "amount": amount,
+            "amount": amount.encodeToJSON(),
             "fromAccountId": fromAccountId,
             "targetAccountId": targetAccountId
         ]

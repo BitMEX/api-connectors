@@ -30,6 +30,62 @@ SWGUserApi::SWGUserApi(QString host, QString basePath) {
 }
 
 void
+SWGUserApi::user_cancelPendingWithdrawal(QString* transact_id) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/user/withdrawal");
+
+
+
+    SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
+    SWGHttpRequestInput input(fullPath, "DELETE");
+
+    if (transact_id != nullptr) {
+        input.add_var("transactID", *transact_id);
+    }
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &SWGHttpRequestWorker::on_execution_finished,
+            this,
+            &SWGUserApi::user_cancelPendingWithdrawalCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGUserApi::user_cancelPendingWithdrawalCallback(SWGHttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+    QString json(worker->response);
+    SWGObject* output = static_cast<SWGObject*>(create(json, QString("SWGObject")));
+    auto wrapper = new SWGQObjectWrapper<SWGObject*> (output);
+    wrapper->deleteLater();
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit user_cancelPendingWithdrawalSignal(output);
+    } else {
+        emit user_cancelPendingWithdrawalSignalE(output, error_type, error_str);
+        emit user_cancelPendingWithdrawalSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void
 SWGUserApi::user_cancelWithdrawal(QString* token) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/cancelWithdrawal");
@@ -790,6 +846,75 @@ SWGUserApi::user_getDepositAddressCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
+SWGUserApi::user_getDepositAddressInformation(QString* currency, QString* network) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/user/depositAddressInformation");
+
+
+    if (fullPath.indexOf("?") > 0)
+      fullPath.append("&");
+    else
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("currency"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(currency)));
+
+    if (fullPath.indexOf("?") > 0)
+      fullPath.append("&");
+    else
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("network"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(network)));
+
+
+    SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
+    SWGHttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &SWGHttpRequestWorker::on_execution_finished,
+            this,
+            &SWGUserApi::user_getDepositAddressInformationCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGUserApi::user_getDepositAddressInformationCallback(SWGHttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+    QString json(worker->response);
+    SWGDepositAddress* output = static_cast<SWGDepositAddress*>(create(json, QString("SWGDepositAddress")));
+    auto wrapper = new SWGQObjectWrapper<SWGDepositAddress*> (output);
+    wrapper->deleteLater();
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit user_getDepositAddressInformationSignal(output);
+    } else {
+        emit user_getDepositAddressInformationSignalE(output, error_type, error_str);
+        emit user_getDepositAddressInformationSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void
 SWGUserApi::user_getExecutionHistory(QString* symbol, QDateTime* timestamp) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/executionHistory");
@@ -1480,7 +1605,7 @@ SWGUserApi::user_getWalletCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGUserApi::user_getWalletHistory(QString* currency, double count, double start, double target_account_id) {
+SWGUserApi::user_getWalletHistory(QString* currency, double count, double start, double target_account_id, bool reverse) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/walletHistory");
 
@@ -1516,6 +1641,14 @@ SWGUserApi::user_getWalletHistory(QString* currency, double count, double start,
     fullPath.append(QUrl::toPercentEncoding("targetAccountId"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(target_account_id)));
+
+    if (fullPath.indexOf("?") > 0)
+      fullPath.append("&");
+    else
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("reverse"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(reverse)));
 
 
     SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
@@ -1577,7 +1710,7 @@ SWGUserApi::user_getWalletHistoryCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGUserApi::user_getWalletSummary(QString* currency) {
+SWGUserApi::user_getWalletSummary(QString* currency, QDateTime* start_time, QDateTime* end_time) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/walletSummary");
 
@@ -1589,6 +1722,22 @@ SWGUserApi::user_getWalletSummary(QString* currency) {
     fullPath.append(QUrl::toPercentEncoding("currency"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(currency)));
+
+    if (fullPath.indexOf("?") > 0)
+      fullPath.append("&");
+    else
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("startTime"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(start_time)));
+
+    if (fullPath.indexOf("?") > 0)
+      fullPath.append("&");
+    else
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("endTime"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(end_time)));
 
 
     SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
@@ -1623,19 +1772,19 @@ SWGUserApi::user_getWalletSummaryCallback(SWGHttpRequestWorker * worker) {
         msg = "Error: " + worker->error_str;
     }
 
-    QList<SWGTransaction*>* output = new QList<SWGTransaction*>();
+    QList<SWGWalletSummaryRecord*>* output = new QList<SWGWalletSummaryRecord*>();
     QString json(worker->response);
     QByteArray array (json.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonArray jsonArray = doc.array();
-    auto wrapper = new SWGQObjectWrapper<QList<SWGTransaction*>*> (output);
+    auto wrapper = new SWGQObjectWrapper<QList<SWGWalletSummaryRecord*>*> (output);
     wrapper->deleteLater();
     foreach(QJsonValue obj, jsonArray) {
-        SWGTransaction* o = new SWGTransaction();
+        SWGWalletSummaryRecord* o = new SWGWalletSummaryRecord();
         QJsonObject jv = obj.toObject();
         QJsonObject * ptr = (QJsonObject*)&jv;
         o->fromJsonObject(*ptr);
-        auto objwrapper = new SWGQObjectWrapper<SWGTransaction*> (o);
+        auto objwrapper = new SWGQObjectWrapper<SWGWalletSummaryRecord*> (o);
         objwrapper->deleteLater();
         output->append(o);
     }
@@ -1764,7 +1913,7 @@ SWGUserApi::user_logoutCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGUserApi::user_requestWithdrawal(QString* currency, QString* network, SWGNumber* amount, QString* otp_token, QString* address, double address_id, double target_user_id, double fee, QString* text) {
+SWGUserApi::user_requestWithdrawal(QString* currency, QString* network, qint64 amount, QString* otp_token, QString* address, QString* memo, double address_id, double target_user_id, double fee, QString* text) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/requestWithdrawal");
 
@@ -1787,6 +1936,9 @@ SWGUserApi::user_requestWithdrawal(QString* currency, QString* network, SWGNumbe
     }
     if (address != nullptr) {
         input.add_var("address", *address);
+    }
+    if (memo != nullptr) {
+        input.add_var("memo", *memo);
     }
     if (address_id != nullptr) {
         input.add_var("addressId", *address_id);
@@ -1962,7 +2114,7 @@ SWGUserApi::user_updateSubAccountCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGUserApi::user_walletTransfer(QString* currency, SWGNumber* amount, double target_account_id, double from_account_id) {
+SWGUserApi::user_walletTransfer(QString* currency, qint64 amount, double target_account_id, double from_account_id) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/walletTransfer");
 

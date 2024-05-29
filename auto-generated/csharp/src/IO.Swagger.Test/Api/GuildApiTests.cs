@@ -90,9 +90,10 @@ namespace IO.Swagger.Test
             //string description = null;
             //string twitter = null;
             //string discord = null;
+            //string telegram = null;
             //string imgUrl = null;
             //bool? isPrivate = null;
-            //var response = instance.GuildEdit(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, imgUrl, isPrivate);
+            //var response = instance.GuildEdit(name, emoji, potDistributionPercent, potDistributionType, potTraderId, description, twitter, discord, telegram, imgUrl, isPrivate);
             //Assert.IsInstanceOf<Guild> (response, "response is Guild");
         }
         
@@ -156,9 +157,10 @@ namespace IO.Swagger.Test
             //string description = null;
             //string twitter = null;
             //string discord = null;
+            //string telegram = null;
             //string imgUrl = null;
             //bool? isPrivate = null;
-            //var response = instance.GuildNew(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, imgUrl, isPrivate);
+            //var response = instance.GuildNew(name, emoji, potDistributionPercent, potDistributionType, description, twitter, discord, telegram, imgUrl, isPrivate);
             //Assert.IsInstanceOf<Guild> (response, "response is Guild");
         }
         

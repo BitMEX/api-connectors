@@ -13,7 +13,6 @@
 
 package io.swagger.client.api;
 
-import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import org.threeten.bp.OffsetDateTime;
 import io.swagger.client.model.Order;
@@ -49,9 +48,9 @@ public class OrderApiTest {
         String origClOrdID = null;
         String clOrdID = null;
         Double simpleOrderQty = null;
-        BigDecimal orderQty = null;
+        Integer orderQty = null;
         Double simpleLeavesQty = null;
-        BigDecimal leavesQty = null;
+        Integer leavesQty = null;
         Double price = null;
         Double stopPx = null;
         Double pegOffsetValue = null;
@@ -144,8 +143,8 @@ public class OrderApiTest {
         String symbol = null;
         String filter = null;
         String columns = null;
-        BigDecimal count = null;
-        BigDecimal start = null;
+        Integer count = null;
+        Integer start = null;
         Boolean reverse = null;
         OffsetDateTime startTime = null;
         OffsetDateTime endTime = null;
@@ -167,9 +166,9 @@ public class OrderApiTest {
         String symbol = null;
         String side = null;
         Double simpleOrderQty = null;
-        BigDecimal orderQty = null;
+        Integer orderQty = null;
         Double price = null;
-        BigDecimal displayQty = null;
+        Integer displayQty = null;
         Double stopPx = null;
         String clOrdID = null;
         String clOrdLinkID = null;

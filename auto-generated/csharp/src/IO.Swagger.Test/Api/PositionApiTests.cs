@@ -73,7 +73,7 @@ namespace IO.Swagger.Test
             // TODO uncomment below to test the method and replace null with proper value
             //string filter = null;
             //string columns = null;
-            //decimal? count = null;
+            //int? count = null;
             //var response = instance.PositionGet(filter, columns, count);
             //Assert.IsInstanceOf<List<Position>> (response, "response is List<Position>");
         }
@@ -99,7 +99,7 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string symbol = null;
-            //decimal? amount = null;
+            //long? amount = null;
             //double? targetAccountId = null;
             //var response = instance.PositionTransferIsolatedMargin(symbol, amount, targetAccountId);
             //Assert.IsInstanceOf<Position> (response, "response is Position");
@@ -127,7 +127,7 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string symbol = null;
-            //decimal? riskLimit = null;
+            //long? riskLimit = null;
             //double? targetAccountId = null;
             //var response = instance.PositionUpdateRiskLimit(symbol, riskLimit, targetAccountId);
             //Assert.IsInstanceOf<Position> (response, "response is Position");

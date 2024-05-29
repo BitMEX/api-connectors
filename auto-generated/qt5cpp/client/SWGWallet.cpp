@@ -37,25 +37,25 @@ SWGWallet::~SWGWallet() {
 
 void
 SWGWallet::init() {
-    account = 0.0;
+    account = 0L;
     m_account_isSet = false;
     currency = new QString("");
     m_currency_isSet = false;
-    deposited = 0.0;
+    deposited = 0L;
     m_deposited_isSet = false;
-    withdrawn = 0.0;
+    withdrawn = 0L;
     m_withdrawn_isSet = false;
-    transfer_in = 0.0;
+    transfer_in = 0L;
     m_transfer_in_isSet = false;
-    transfer_out = 0.0;
+    transfer_out = 0L;
     m_transfer_out_isSet = false;
-    amount = 0.0;
+    amount = 0L;
     m_amount_isSet = false;
-    pending_credit = 0.0;
+    pending_credit = 0L;
     m_pending_credit_isSet = false;
-    pending_debit = 0.0;
+    pending_debit = 0L;
     m_pending_debit_isSet = false;
-    confirmed_debit = 0.0;
+    confirmed_debit = 0L;
     m_confirmed_debit_isSet = false;
     timestamp = NULL;
     m_timestamp_isSet = false;
@@ -63,36 +63,18 @@ SWGWallet::init() {
 
 void
 SWGWallet::cleanup() {
-    if(account != nullptr) { 
-        delete account;
-    }
+
     if(currency != nullptr) { 
         delete currency;
     }
-    if(deposited != nullptr) { 
-        delete deposited;
-    }
-    if(withdrawn != nullptr) { 
-        delete withdrawn;
-    }
-    if(transfer_in != nullptr) { 
-        delete transfer_in;
-    }
-    if(transfer_out != nullptr) { 
-        delete transfer_out;
-    }
-    if(amount != nullptr) { 
-        delete amount;
-    }
-    if(pending_credit != nullptr) { 
-        delete pending_credit;
-    }
-    if(pending_debit != nullptr) { 
-        delete pending_debit;
-    }
-    if(confirmed_debit != nullptr) { 
-        delete confirmed_debit;
-    }
+
+
+
+
+
+
+
+
     if(timestamp != nullptr) { 
         delete timestamp;
     }
@@ -109,25 +91,25 @@ SWGWallet::fromJson(QString json) {
 
 void
 SWGWallet::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&account, pJson["account"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&account, pJson["account"], "qint64", "");
     
     ::Swagger::setValue(&currency, pJson["currency"], "QString", "QString");
     
-    ::Swagger::setValue(&deposited, pJson["deposited"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&deposited, pJson["deposited"], "qint64", "");
     
-    ::Swagger::setValue(&withdrawn, pJson["withdrawn"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&withdrawn, pJson["withdrawn"], "qint64", "");
     
-    ::Swagger::setValue(&transfer_in, pJson["transferIn"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&transfer_in, pJson["transferIn"], "qint64", "");
     
-    ::Swagger::setValue(&transfer_out, pJson["transferOut"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&transfer_out, pJson["transferOut"], "qint64", "");
     
-    ::Swagger::setValue(&amount, pJson["amount"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&amount, pJson["amount"], "qint64", "");
     
-    ::Swagger::setValue(&pending_credit, pJson["pendingCredit"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&pending_credit, pJson["pendingCredit"], "qint64", "");
     
-    ::Swagger::setValue(&pending_debit, pJson["pendingDebit"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&pending_debit, pJson["pendingDebit"], "qint64", "");
     
-    ::Swagger::setValue(&confirmed_debit, pJson["confirmedDebit"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&confirmed_debit, pJson["confirmedDebit"], "qint64", "");
     
     ::Swagger::setValue(&timestamp, pJson["timestamp"], "QDateTime", "QDateTime");
     
@@ -145,35 +127,35 @@ SWGWallet::asJson ()
 QJsonObject
 SWGWallet::asJsonObject() {
     QJsonObject obj;
-    if((account != nullptr) && (account->isSet())){
-        toJsonValue(QString("account"), account, obj, QString("SWGNumber"));
+    if(m_account_isSet){
+        obj.insert("account", QJsonValue(account));
     }
     if(currency != nullptr && *currency != QString("")){
         toJsonValue(QString("currency"), currency, obj, QString("QString"));
     }
-    if((deposited != nullptr) && (deposited->isSet())){
-        toJsonValue(QString("deposited"), deposited, obj, QString("SWGNumber"));
+    if(m_deposited_isSet){
+        obj.insert("deposited", QJsonValue(deposited));
     }
-    if((withdrawn != nullptr) && (withdrawn->isSet())){
-        toJsonValue(QString("withdrawn"), withdrawn, obj, QString("SWGNumber"));
+    if(m_withdrawn_isSet){
+        obj.insert("withdrawn", QJsonValue(withdrawn));
     }
-    if((transfer_in != nullptr) && (transfer_in->isSet())){
-        toJsonValue(QString("transferIn"), transfer_in, obj, QString("SWGNumber"));
+    if(m_transfer_in_isSet){
+        obj.insert("transferIn", QJsonValue(transfer_in));
     }
-    if((transfer_out != nullptr) && (transfer_out->isSet())){
-        toJsonValue(QString("transferOut"), transfer_out, obj, QString("SWGNumber"));
+    if(m_transfer_out_isSet){
+        obj.insert("transferOut", QJsonValue(transfer_out));
     }
-    if((amount != nullptr) && (amount->isSet())){
-        toJsonValue(QString("amount"), amount, obj, QString("SWGNumber"));
+    if(m_amount_isSet){
+        obj.insert("amount", QJsonValue(amount));
     }
-    if((pending_credit != nullptr) && (pending_credit->isSet())){
-        toJsonValue(QString("pendingCredit"), pending_credit, obj, QString("SWGNumber"));
+    if(m_pending_credit_isSet){
+        obj.insert("pendingCredit", QJsonValue(pending_credit));
     }
-    if((pending_debit != nullptr) && (pending_debit->isSet())){
-        toJsonValue(QString("pendingDebit"), pending_debit, obj, QString("SWGNumber"));
+    if(m_pending_debit_isSet){
+        obj.insert("pendingDebit", QJsonValue(pending_debit));
     }
-    if((confirmed_debit != nullptr) && (confirmed_debit->isSet())){
-        toJsonValue(QString("confirmedDebit"), confirmed_debit, obj, QString("SWGNumber"));
+    if(m_confirmed_debit_isSet){
+        obj.insert("confirmedDebit", QJsonValue(confirmed_debit));
     }
     if(timestamp != nullptr) { 
         toJsonValue(QString("timestamp"), timestamp, obj, QString("QDateTime"));
@@ -182,12 +164,12 @@ SWGWallet::asJsonObject() {
     return obj;
 }
 
-SWGNumber*
+qint64
 SWGWallet::getAccount() {
     return account;
 }
 void
-SWGWallet::setAccount(SWGNumber* account) {
+SWGWallet::setAccount(qint64 account) {
     this->account = account;
     this->m_account_isSet = true;
 }
@@ -202,82 +184,82 @@ SWGWallet::setCurrency(QString* currency) {
     this->m_currency_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGWallet::getDeposited() {
     return deposited;
 }
 void
-SWGWallet::setDeposited(SWGNumber* deposited) {
+SWGWallet::setDeposited(qint64 deposited) {
     this->deposited = deposited;
     this->m_deposited_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGWallet::getWithdrawn() {
     return withdrawn;
 }
 void
-SWGWallet::setWithdrawn(SWGNumber* withdrawn) {
+SWGWallet::setWithdrawn(qint64 withdrawn) {
     this->withdrawn = withdrawn;
     this->m_withdrawn_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGWallet::getTransferIn() {
     return transfer_in;
 }
 void
-SWGWallet::setTransferIn(SWGNumber* transfer_in) {
+SWGWallet::setTransferIn(qint64 transfer_in) {
     this->transfer_in = transfer_in;
     this->m_transfer_in_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGWallet::getTransferOut() {
     return transfer_out;
 }
 void
-SWGWallet::setTransferOut(SWGNumber* transfer_out) {
+SWGWallet::setTransferOut(qint64 transfer_out) {
     this->transfer_out = transfer_out;
     this->m_transfer_out_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGWallet::getAmount() {
     return amount;
 }
 void
-SWGWallet::setAmount(SWGNumber* amount) {
+SWGWallet::setAmount(qint64 amount) {
     this->amount = amount;
     this->m_amount_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGWallet::getPendingCredit() {
     return pending_credit;
 }
 void
-SWGWallet::setPendingCredit(SWGNumber* pending_credit) {
+SWGWallet::setPendingCredit(qint64 pending_credit) {
     this->pending_credit = pending_credit;
     this->m_pending_credit_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGWallet::getPendingDebit() {
     return pending_debit;
 }
 void
-SWGWallet::setPendingDebit(SWGNumber* pending_debit) {
+SWGWallet::setPendingDebit(qint64 pending_debit) {
     this->pending_debit = pending_debit;
     this->m_pending_debit_isSet = true;
 }
 
-SWGNumber*
+qint64
 SWGWallet::getConfirmedDebit() {
     return confirmed_debit;
 }
 void
-SWGWallet::setConfirmedDebit(SWGNumber* confirmed_debit) {
+SWGWallet::setConfirmedDebit(qint64 confirmed_debit) {
     this->confirmed_debit = confirmed_debit;
     this->m_confirmed_debit_isSet = true;
 }
@@ -297,16 +279,16 @@ bool
 SWGWallet::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(account != nullptr && account->isSet()){ isObjectUpdated = true; break;}
+        if(m_account_isSet){ isObjectUpdated = true; break;}
         if(currency != nullptr && *currency != QString("")){ isObjectUpdated = true; break;}
-        if(deposited != nullptr && deposited->isSet()){ isObjectUpdated = true; break;}
-        if(withdrawn != nullptr && withdrawn->isSet()){ isObjectUpdated = true; break;}
-        if(transfer_in != nullptr && transfer_in->isSet()){ isObjectUpdated = true; break;}
-        if(transfer_out != nullptr && transfer_out->isSet()){ isObjectUpdated = true; break;}
-        if(amount != nullptr && amount->isSet()){ isObjectUpdated = true; break;}
-        if(pending_credit != nullptr && pending_credit->isSet()){ isObjectUpdated = true; break;}
-        if(pending_debit != nullptr && pending_debit->isSet()){ isObjectUpdated = true; break;}
-        if(confirmed_debit != nullptr && confirmed_debit->isSet()){ isObjectUpdated = true; break;}
+        if(m_deposited_isSet){ isObjectUpdated = true; break;}
+        if(m_withdrawn_isSet){ isObjectUpdated = true; break;}
+        if(m_transfer_in_isSet){ isObjectUpdated = true; break;}
+        if(m_transfer_out_isSet){ isObjectUpdated = true; break;}
+        if(m_amount_isSet){ isObjectUpdated = true; break;}
+        if(m_pending_credit_isSet){ isObjectUpdated = true; break;}
+        if(m_pending_debit_isSet){ isObjectUpdated = true; break;}
+        if(m_confirmed_debit_isSet){ isObjectUpdated = true; break;}
         
     }while(false);
     return isObjectUpdated;

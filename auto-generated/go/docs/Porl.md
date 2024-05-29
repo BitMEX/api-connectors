@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Account** | **float32** |  | [default to null]
+**Account** | **int32** |  | [default to null]
 **Nonce** | **string** |  | [optional] [default to null]
 **AccountNonce** | **string** |  | [default to null]
 **Total** | **float64** |  | [default to null]

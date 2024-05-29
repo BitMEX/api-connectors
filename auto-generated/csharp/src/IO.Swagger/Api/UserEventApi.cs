@@ -31,7 +31,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="count">Number of results to fetch. (optional, default to 150)</param>
+        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="startId">Cursor for pagination. (optional)</param>
         /// <returns>List&lt;UserEvent&gt;</returns>
         List<UserEvent> UserEventGet (double? count = null, double? startId = null);
@@ -43,7 +43,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="count">Number of results to fetch. (optional, default to 150)</param>
+        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="startId">Cursor for pagination. (optional)</param>
         /// <returns>ApiResponse of List&lt;UserEvent&gt;</returns>
         ApiResponse<List<UserEvent>> UserEventGetWithHttpInfo (double? count = null, double? startId = null);
@@ -56,7 +56,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="count">Number of results to fetch. (optional, default to 150)</param>
+        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="startId">Cursor for pagination. (optional)</param>
         /// <returns>Task of List&lt;UserEvent&gt;</returns>
         System.Threading.Tasks.Task<List<UserEvent>> UserEventGetAsync (double? count = null, double? startId = null);
@@ -68,7 +68,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="count">Number of results to fetch. (optional, default to 150)</param>
+        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="startId">Cursor for pagination. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;UserEvent&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<UserEvent>>> UserEventGetAsyncWithHttpInfo (double? count = null, double? startId = null);
@@ -176,7 +176,7 @@ namespace IO.Swagger.Api
         /// Get your user events 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="count">Number of results to fetch. (optional, default to 150)</param>
+        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="startId">Cursor for pagination. (optional)</param>
         /// <returns>List&lt;UserEvent&gt;</returns>
         public List<UserEvent> UserEventGet (double? count = null, double? startId = null)
@@ -189,7 +189,7 @@ namespace IO.Swagger.Api
         /// Get your user events 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="count">Number of results to fetch. (optional, default to 150)</param>
+        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="startId">Cursor for pagination. (optional)</param>
         /// <returns>ApiResponse of List&lt;UserEvent&gt;</returns>
         public ApiResponse< List<UserEvent> > UserEventGetWithHttpInfo (double? count = null, double? startId = null)
@@ -263,7 +263,7 @@ namespace IO.Swagger.Api
         /// Get your user events 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="count">Number of results to fetch. (optional, default to 150)</param>
+        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="startId">Cursor for pagination. (optional)</param>
         /// <returns>Task of List&lt;UserEvent&gt;</returns>
         public async System.Threading.Tasks.Task<List<UserEvent>> UserEventGetAsync (double? count = null, double? startId = null)
@@ -277,7 +277,7 @@ namespace IO.Swagger.Api
         /// Get your user events 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="count">Number of results to fetch. (optional, default to 150)</param>
+        /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="startId">Cursor for pagination. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;UserEvent&gt;)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<List<UserEvent>>> UserEventGetAsyncWithHttpInfo (double? count = null, double? startId = null)

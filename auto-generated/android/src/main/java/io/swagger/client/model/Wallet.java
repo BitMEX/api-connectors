@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -24,35 +23,35 @@ import com.google.gson.annotations.SerializedName;
 public class Wallet {
   
   @SerializedName("account")
-  private BigDecimal account = null;
+  private Long account = null;
   @SerializedName("currency")
   private String currency = null;
   @SerializedName("deposited")
-  private BigDecimal deposited = null;
+  private Long deposited = null;
   @SerializedName("withdrawn")
-  private BigDecimal withdrawn = null;
+  private Long withdrawn = null;
   @SerializedName("transferIn")
-  private BigDecimal transferIn = null;
+  private Long transferIn = null;
   @SerializedName("transferOut")
-  private BigDecimal transferOut = null;
+  private Long transferOut = null;
   @SerializedName("amount")
-  private BigDecimal amount = null;
+  private Long amount = null;
   @SerializedName("pendingCredit")
-  private BigDecimal pendingCredit = null;
+  private Long pendingCredit = null;
   @SerializedName("pendingDebit")
-  private BigDecimal pendingDebit = null;
+  private Long pendingDebit = null;
   @SerializedName("confirmedDebit")
-  private BigDecimal confirmedDebit = null;
+  private Long confirmedDebit = null;
   @SerializedName("timestamp")
   private Date timestamp = null;
 
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getAccount() {
+  public Long getAccount() {
     return account;
   }
-  public void setAccount(BigDecimal account) {
+  public void setAccount(Long account) {
     this.account = account;
   }
 
@@ -69,80 +68,80 @@ public class Wallet {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getDeposited() {
+  public Long getDeposited() {
     return deposited;
   }
-  public void setDeposited(BigDecimal deposited) {
+  public void setDeposited(Long deposited) {
     this.deposited = deposited;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getWithdrawn() {
+  public Long getWithdrawn() {
     return withdrawn;
   }
-  public void setWithdrawn(BigDecimal withdrawn) {
+  public void setWithdrawn(Long withdrawn) {
     this.withdrawn = withdrawn;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTransferIn() {
+  public Long getTransferIn() {
     return transferIn;
   }
-  public void setTransferIn(BigDecimal transferIn) {
+  public void setTransferIn(Long transferIn) {
     this.transferIn = transferIn;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTransferOut() {
+  public Long getTransferOut() {
     return transferOut;
   }
-  public void setTransferOut(BigDecimal transferOut) {
+  public void setTransferOut(Long transferOut) {
     this.transferOut = transferOut;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAmount() {
+  public Long getAmount() {
     return amount;
   }
-  public void setAmount(BigDecimal amount) {
+  public void setAmount(Long amount) {
     this.amount = amount;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPendingCredit() {
+  public Long getPendingCredit() {
     return pendingCredit;
   }
-  public void setPendingCredit(BigDecimal pendingCredit) {
+  public void setPendingCredit(Long pendingCredit) {
     this.pendingCredit = pendingCredit;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPendingDebit() {
+  public Long getPendingDebit() {
     return pendingDebit;
   }
-  public void setPendingDebit(BigDecimal pendingDebit) {
+  public void setPendingDebit(Long pendingDebit) {
     this.pendingDebit = pendingDebit;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getConfirmedDebit() {
+  public Long getConfirmedDebit() {
     return confirmedDebit;
   }
-  public void setConfirmedDebit(BigDecimal confirmedDebit) {
+  public void setConfirmedDebit(Long confirmedDebit) {
     this.confirmedDebit = confirmedDebit;
   }
 

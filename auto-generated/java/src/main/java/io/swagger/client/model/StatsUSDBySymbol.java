@@ -23,12 +23,11 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * StatsUSDBySymbol
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class StatsUSDBySymbol {
   @SerializedName("symbol")
   private String symbol = null;
@@ -37,16 +36,16 @@ public class StatsUSDBySymbol {
   private String currency = null;
 
   @SerializedName("turnover24h")
-  private BigDecimal turnover24h = null;
+  private Long turnover24h = null;
 
   @SerializedName("turnover30d")
-  private BigDecimal turnover30d = null;
+  private Long turnover30d = null;
 
   @SerializedName("turnover365d")
-  private BigDecimal turnover365d = null;
+  private Long turnover365d = null;
 
   @SerializedName("turnover")
-  private BigDecimal turnover = null;
+  private Long turnover = null;
 
   public StatsUSDBySymbol symbol(String symbol) {
     this.symbol = symbol;
@@ -84,7 +83,7 @@ public class StatsUSDBySymbol {
     this.currency = currency;
   }
 
-  public StatsUSDBySymbol turnover24h(BigDecimal turnover24h) {
+  public StatsUSDBySymbol turnover24h(Long turnover24h) {
     this.turnover24h = turnover24h;
     return this;
   }
@@ -94,15 +93,15 @@ public class StatsUSDBySymbol {
    * @return turnover24h
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover24h() {
+  public Long getTurnover24h() {
     return turnover24h;
   }
 
-  public void setTurnover24h(BigDecimal turnover24h) {
+  public void setTurnover24h(Long turnover24h) {
     this.turnover24h = turnover24h;
   }
 
-  public StatsUSDBySymbol turnover30d(BigDecimal turnover30d) {
+  public StatsUSDBySymbol turnover30d(Long turnover30d) {
     this.turnover30d = turnover30d;
     return this;
   }
@@ -112,15 +111,15 @@ public class StatsUSDBySymbol {
    * @return turnover30d
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover30d() {
+  public Long getTurnover30d() {
     return turnover30d;
   }
 
-  public void setTurnover30d(BigDecimal turnover30d) {
+  public void setTurnover30d(Long turnover30d) {
     this.turnover30d = turnover30d;
   }
 
-  public StatsUSDBySymbol turnover365d(BigDecimal turnover365d) {
+  public StatsUSDBySymbol turnover365d(Long turnover365d) {
     this.turnover365d = turnover365d;
     return this;
   }
@@ -130,15 +129,15 @@ public class StatsUSDBySymbol {
    * @return turnover365d
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover365d() {
+  public Long getTurnover365d() {
     return turnover365d;
   }
 
-  public void setTurnover365d(BigDecimal turnover365d) {
+  public void setTurnover365d(Long turnover365d) {
     this.turnover365d = turnover365d;
   }
 
-  public StatsUSDBySymbol turnover(BigDecimal turnover) {
+  public StatsUSDBySymbol turnover(Long turnover) {
     this.turnover = turnover;
     return this;
   }
@@ -148,11 +147,11 @@ public class StatsUSDBySymbol {
    * @return turnover
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTurnover() {
+  public Long getTurnover() {
     return turnover;
   }
 
-  public void setTurnover(BigDecimal turnover) {
+  public void setTurnover(Long turnover) {
     this.turnover = turnover;
   }
 

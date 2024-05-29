@@ -35,7 +35,7 @@ class Insurance(object):
     swagger_types = {
         'currency': 'str',
         'timestamp': 'datetime',
-        'wallet_balance': 'float'
+        'wallet_balance': 'int'
     }
 
     attribute_map = {
@@ -112,7 +112,7 @@ class Insurance(object):
 
 
         :return: The wallet_balance of this Insurance.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._wallet_balance
 
@@ -122,7 +122,7 @@ class Insurance(object):
 
 
         :param wallet_balance: The wallet_balance of this Insurance.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._wallet_balance = wallet_balance

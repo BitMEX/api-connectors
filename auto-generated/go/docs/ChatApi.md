@@ -27,8 +27,8 @@ Optional parameters are passed through a pointer to a ChatApiChatGetOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **optional.Float32**| Number of results to fetch. | [default to 100]
- **start** | **optional.Float32**| Starting ID for results. | [default to 0]
+ **count** | **optional.Int32**| Number of results to fetch. | [default to 100]
+ **start** | **optional.Int32**| Starting ID for results. | [default to 0]
  **reverse** | **optional.Bool**| If true, will sort results newest first. | [default to true]
  **channelID** | **optional.Float64**| Channel id. GET /chat/channels for ids. Global English by default | [default to 1]
 

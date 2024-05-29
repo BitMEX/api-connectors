@@ -47,4 +47,6 @@
 
 @property(nonatomic) NSString* network;
 
+@property(nonatomic) NSString* memo;
+
 @end

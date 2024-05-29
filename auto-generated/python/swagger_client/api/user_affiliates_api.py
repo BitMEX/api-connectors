@@ -43,6 +43,8 @@ class UserAffiliatesApi(object):
 
         :param async_req bool
         :param float depth: the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates
+        :param float target_account_id: AccountId of Sub-Affiliate Account
+        :param float select_user_id: User id of result array to keep
         :return: list[XAny]
                  If the method is called asynchronously,
                  returns the request thread.
@@ -64,12 +66,14 @@ class UserAffiliatesApi(object):
 
         :param async_req bool
         :param float depth: the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates
+        :param float target_account_id: AccountId of Sub-Affiliate Account
+        :param float select_user_id: User id of result array to keep
         :return: list[XAny]
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['depth']  # noqa: E501
+        all_params = ['depth', 'target_account_id', 'select_user_id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -92,6 +96,10 @@ class UserAffiliatesApi(object):
         query_params = []
         if 'depth' in params:
             query_params.append(('depth', params['depth']))  # noqa: E501
+        if 'target_account_id' in params:
+            query_params.append(('targetAccountId', params['target_account_id']))  # noqa: E501
+        if 'select_user_id' in params:
+            query_params.append(('selectUserId', params['select_user_id']))  # noqa: E501
 
         header_params = {}
 

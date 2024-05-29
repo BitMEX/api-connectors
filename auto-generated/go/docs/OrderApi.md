@@ -35,9 +35,9 @@ Name | Type | Description  | Notes
  **origClOrdID** | **optional.String**| Client Order ID. See POST /order. | 
  **clOrdID** | **optional.String**| Optional new Client Order ID, requires &#x60;origClOrdID&#x60;. | 
  **simpleOrderQty** | **optional.Float64**| Deprecated: simple orders are not supported after 2018/10/26 | 
- **orderQty** | **optional.Float32**| Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). | 
+ **orderQty** | **optional.Int32**| Optional order quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). | 
  **simpleLeavesQty** | **optional.Float64**| Deprecated: simple orders are not supported after 2018/10/26 | 
- **leavesQty** | **optional.Float32**| Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders. | 
+ **leavesQty** | **optional.Int32**| Optional leaves quantity in units of the instrument (i.e. contracts, for spot it is the base currency in minor currency (e.g. XBt quantity for XBT)). Useful for amending partially filled orders. | 
  **price** | **optional.Float64**| Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders. | 
  **stopPx** | **optional.Float64**| Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. | 
  **pegOffsetValue** | **optional.Float64**| Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. | 
@@ -217,8 +217,8 @@ Name | Type | Description  | Notes
  **symbol** | **optional.String**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. | 
  **filter** | **optional.String**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | 
  **columns** | **optional.String**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | 
- **count** | **optional.Float32**| Number of results to fetch. Must be a positive integer. | [default to 100]
- **start** | **optional.Float32**| Starting point for results. | [default to 0]
+ **count** | **optional.Int32**| Number of results to fetch. Must be a positive integer. | [default to 100]
+ **start** | **optional.Int32**| Starting point for results. | [default to 0]
  **reverse** | **optional.Bool**| If true, will sort results newest first. | [default to false]
  **startTime** | **optional.Time**| Starting date filter for results. | 
  **endTime** | **optional.Time**| Ending date filter for results. | 
@@ -260,9 +260,9 @@ Name | Type | Description  | Notes
 
  **side** | **optional.String**| Order side. Valid options: Buy, Sell. Defaults to &#39;Buy&#39; unless &#x60;orderQty&#x60; is negative. | 
  **simpleOrderQty** | **optional.Float64**| Deprecated: simple orders are not supported after 2018/10/26 | 
- **orderQty** | **optional.Float32**| Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)). | 
+ **orderQty** | **optional.Int32**| Order quantity in units of the instrument (i.e. contracts, for spot it is base currency in minor currency for spot (e.g. XBt quantity for XBT)). | 
  **price** | **optional.Float64**| Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders. | 
- **displayQty** | **optional.Float32**| Optional quantity to display in the book. Use 0 for a fully hidden order. | 
+ **displayQty** | **optional.Int32**| Optional quantity to display in the book. Use 0 for a fully hidden order. | 
  **stopPx** | **optional.Float64**| Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use &#x60;execInst&#x60; of &#39;MarkPrice&#39; or &#39;LastPrice&#39; to define the current price used for triggering. | 
  **clOrdID** | **optional.String**| Optional Client Order ID. This clOrdID will come back on the order and any related executions. | 
  **clOrdLinkID** | **optional.String**| Optional Client Order Link ID for contingent orders | 

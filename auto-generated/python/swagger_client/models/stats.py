@@ -35,10 +35,10 @@ class Stats(object):
     swagger_types = {
         'root_symbol': 'str',
         'currency': 'str',
-        'volume24h': 'float',
-        'turnover24h': 'float',
-        'open_interest': 'float',
-        'open_value': 'float'
+        'volume24h': 'int',
+        'turnover24h': 'int',
+        'open_interest': 'int',
+        'open_value': 'int'
     }
 
     attribute_map = {
@@ -126,7 +126,7 @@ class Stats(object):
 
 
         :return: The volume24h of this Stats.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._volume24h
 
@@ -136,7 +136,7 @@ class Stats(object):
 
 
         :param volume24h: The volume24h of this Stats.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._volume24h = volume24h
@@ -147,7 +147,7 @@ class Stats(object):
 
 
         :return: The turnover24h of this Stats.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._turnover24h
 
@@ -157,7 +157,7 @@ class Stats(object):
 
 
         :param turnover24h: The turnover24h of this Stats.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._turnover24h = turnover24h
@@ -168,7 +168,7 @@ class Stats(object):
 
 
         :return: The open_interest of this Stats.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._open_interest
 
@@ -178,7 +178,7 @@ class Stats(object):
 
 
         :param open_interest: The open_interest of this Stats.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._open_interest = open_interest
@@ -189,7 +189,7 @@ class Stats(object):
 
 
         :return: The open_value of this Stats.  # noqa: E501
-        :rtype: float
+        :rtype: int
         """
         return self._open_value
 
@@ -199,7 +199,7 @@ class Stats(object):
 
 
         :param open_value: The open_value of this Stats.  # noqa: E501
-        :type: float
+        :type: int
         """
 
         self._open_value = open_value

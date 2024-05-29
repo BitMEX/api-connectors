@@ -3,11 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **float** |  | [optional] 
+**id** | **int** |  | [optional] 
 **_date** | **datetime** |  | 
 **title** | **str** |  | 
 **body** | **str** |  | 
-**ttl** | **float** |  | 
+**ttl** | **int** |  | 
 **type** | **str** |  | [optional] 
 **closable** | **bool** |  | [optional] [default to True]
 **persist** | **bool** |  | [optional] [default to True]

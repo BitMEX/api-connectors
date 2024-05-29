@@ -10,6 +10,8 @@ Method | HTTP request | Description
 # **userAffiliatesGet**
 ```objc
 -(NSURLSessionTask*) userAffiliatesGetWithDepth: (NSNumber*) depth
+    targetAccountId: (NSNumber*) targetAccountId
+    selectUserId: (NSNumber*) selectUserId
         completionHandler: (void (^)(NSArray<SWGXAny>* output, NSError* error)) handler;
 ```
 
@@ -36,11 +38,15 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 
 NSNumber* depth = @1.2; // the depth of affiliates to return. Eg depth = 2 would return direct affiliates and their affiliates (optional)
+NSNumber* targetAccountId = @1.2; // AccountId of Sub-Affiliate Account (optional)
+NSNumber* selectUserId = @1.2; // User id of result array to keep (optional)
 
 SWGUserAffiliatesApi*apiInstance = [[SWGUserAffiliatesApi alloc] init];
 
 // Get user's affiliates to a given depth
 [apiInstance userAffiliatesGetWithDepth:depth
+              targetAccountId:targetAccountId
+              selectUserId:selectUserId
           completionHandler: ^(NSArray<SWGXAny>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -56,6 +62,8 @@ SWGUserAffiliatesApi*apiInstance = [[SWGUserAffiliatesApi alloc] init];
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **depth** | **NSNumber***| the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates | [optional] 
+ **targetAccountId** | **NSNumber***| AccountId of Sub-Affiliate Account | [optional] 
+ **selectUserId** | **NSNumber***| User id of result array to keep | [optional] 
 
 ### Return type
 

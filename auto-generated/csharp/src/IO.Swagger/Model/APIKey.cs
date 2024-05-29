@@ -41,7 +41,7 @@ namespace IO.Swagger.Model
         /// <param name="id">id (required).</param>
         /// <param name="secret">secret (required).</param>
         /// <param name="name">name (required).</param>
-        /// <param name="nonce">nonce (required).</param>
+        /// <param name="nonce">nonce (required) (default to 0).</param>
         /// <param name="cidr">cidr.</param>
         /// <param name="cidrs">cidrs.</param>
         /// <param name="targetAccountId">targetAccountId.</param>
@@ -49,7 +49,7 @@ namespace IO.Swagger.Model
         /// <param name="enabled">enabled (default to false).</param>
         /// <param name="userId">userId (required).</param>
         /// <param name="created">created.</param>
-        public APIKey(string id = default(string), string secret = default(string), string name = default(string), decimal? nonce = default(decimal?), string cidr = default(string), List<XAny> cidrs = default(List<XAny>), decimal? targetAccountId = default(decimal?), List<XAny> permissions = default(List<XAny>), bool? enabled = false, decimal? userId = default(decimal?), DateTime? created = default(DateTime?))
+        public APIKey(string id = default(string), string secret = default(string), string name = default(string), long? nonce = 0, string cidr = default(string), List<XAny> cidrs = default(List<XAny>), int? targetAccountId = default(int?), List<XAny> permissions = default(List<XAny>), bool? enabled = false, int? userId = default(int?), DateTime? created = default(DateTime?))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -134,7 +134,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Nonce
         /// </summary>
         [DataMember(Name="nonce", EmitDefaultValue=false)]
-        public decimal? Nonce { get; set; }
+        public long? Nonce { get; set; }
 
         /// <summary>
         /// Gets or Sets Cidr
@@ -152,7 +152,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets TargetAccountId
         /// </summary>
         [DataMember(Name="targetAccountId", EmitDefaultValue=false)]
-        public decimal? TargetAccountId { get; set; }
+        public int? TargetAccountId { get; set; }
 
         /// <summary>
         /// Gets or Sets Permissions
@@ -170,7 +170,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets UserId
         /// </summary>
         [DataMember(Name="userId", EmitDefaultValue=false)]
-        public decimal? UserId { get; set; }
+        public int? UserId { get; set; }
 
         /// <summary>
         /// Gets or Sets Created

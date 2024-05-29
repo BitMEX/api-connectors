@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -28,13 +27,13 @@ public class Quote {
   @SerializedName("symbol")
   private String symbol = null;
   @SerializedName("bidSize")
-  private BigDecimal bidSize = null;
+  private Long bidSize = null;
   @SerializedName("bidPrice")
   private Double bidPrice = null;
   @SerializedName("askPrice")
   private Double askPrice = null;
   @SerializedName("askSize")
-  private BigDecimal askSize = null;
+  private Long askSize = null;
 
   /**
    **/
@@ -59,10 +58,10 @@ public class Quote {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getBidSize() {
+  public Long getBidSize() {
     return bidSize;
   }
-  public void setBidSize(BigDecimal bidSize) {
+  public void setBidSize(Long bidSize) {
     this.bidSize = bidSize;
   }
 
@@ -89,10 +88,10 @@ public class Quote {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAskSize() {
+  public Long getAskSize() {
     return askSize;
   }
-  public void setAskSize(BigDecimal askSize) {
+  public void setAskSize(Long askSize) {
     this.askSize = askSize;
   }
 

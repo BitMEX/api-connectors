@@ -26,8 +26,8 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.ChatApi()
-count = 100 # float | Number of results to fetch. (optional) (default to 100)
-start = 0 # float | Starting ID for results. (optional) (default to 0)
+count = 100 # int | Number of results to fetch. (optional) (default to 100)
+start = 0 # int | Starting ID for results. (optional) (default to 0)
 reverse = true # bool | If true, will sort results newest first. (optional) (default to true)
 channel_id = 1 # float | Channel id. GET /chat/channels for ids. Global English by default (optional) (default to 1)
 
@@ -43,8 +43,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **float**| Number of results to fetch. | [optional] [default to 100]
- **start** | **float**| Starting ID for results. | [optional] [default to 0]
+ **count** | **int**| Number of results to fetch. | [optional] [default to 100]
+ **start** | **int**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to true]
  **channel_id** | **float**| Channel id. GET /chat/channels for ids. Global English by default | [optional] [default to 1]
 

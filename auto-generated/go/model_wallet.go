@@ -16,15 +16,15 @@ import (
 
 // Assets and Networks Data
 type Wallet struct {
-	Account float32 `json:"account"`
+	Account int64 `json:"account"`
 	Currency string `json:"currency"`
-	Deposited float32 `json:"deposited,omitempty"`
-	Withdrawn float32 `json:"withdrawn,omitempty"`
-	TransferIn float32 `json:"transferIn,omitempty"`
-	TransferOut float32 `json:"transferOut,omitempty"`
-	Amount float32 `json:"amount,omitempty"`
-	PendingCredit float32 `json:"pendingCredit,omitempty"`
-	PendingDebit float32 `json:"pendingDebit,omitempty"`
-	ConfirmedDebit float32 `json:"confirmedDebit,omitempty"`
+	Deposited int64 `json:"deposited,omitempty"`
+	Withdrawn int64 `json:"withdrawn,omitempty"`
+	TransferIn int64 `json:"transferIn,omitempty"`
+	TransferOut int64 `json:"transferOut,omitempty"`
+	Amount int64 `json:"amount,omitempty"`
+	PendingCredit int64 `json:"pendingCredit,omitempty"`
+	PendingDebit int64 `json:"pendingDebit,omitempty"`
+	ConfirmedDebit int64 `json:"confirmedDebit,omitempty"`
 	Timestamp time.Time `json:"timestamp,omitempty"`
 }

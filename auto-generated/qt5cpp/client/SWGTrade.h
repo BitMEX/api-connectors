@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -52,8 +51,8 @@ public:
     QString* getSide();
     void setSide(QString* side);
 
-    SWGNumber* getSize();
-    void setSize(SWGNumber* size);
+    qint64 getSize();
+    void setSize(qint64 size);
 
     double getPrice();
     void setPrice(double price);
@@ -64,8 +63,8 @@ public:
     QString* getTrdMatchId();
     void setTrdMatchId(QString* trd_match_id);
 
-    SWGNumber* getGrossValue();
-    void setGrossValue(SWGNumber* gross_value);
+    qint64 getGrossValue();
+    void setGrossValue(qint64 gross_value);
 
     double getHomeNotional();
     void setHomeNotional(double home_notional);
@@ -89,7 +88,7 @@ private:
     QString* side;
     bool m_side_isSet;
 
-    SWGNumber* size;
+    qint64 size;
     bool m_size_isSet;
 
     double price;
@@ -101,7 +100,7 @@ private:
     QString* trd_match_id;
     bool m_trd_match_id_isSet;
 
-    SWGNumber* gross_value;
+    qint64 gross_value;
     bool m_gross_value_isSet;
 
     double home_notional;

@@ -26,8 +26,8 @@ $apiInstance = new Swagger\Client\Api\ChatApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$count = 100; // float | Number of results to fetch.
-$start = 0; // float | Starting ID for results.
+$count = 100; // int | Number of results to fetch.
+$start = 0; // int | Starting ID for results.
 $reverse = true; // bool | If true, will sort results newest first.
 $channel_id = 1; // double | Channel id. GET /chat/channels for ids. Global English by default
 
@@ -44,8 +44,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **float**| Number of results to fetch. | [optional] [default to 100]
- **start** | **float**| Starting ID for results. | [optional] [default to 0]
+ **count** | **int**| Number of results to fetch. | [optional] [default to 100]
+ **start** | **int**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to true]
  **channel_id** | **double**| Channel id. GET /chat/channels for ids. Global English by default | [optional] [default to 1]
 

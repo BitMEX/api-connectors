@@ -24,7 +24,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.client.model.XAny;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import org.threeten.bp.OffsetDateTime;
@@ -33,7 +32,7 @@ import org.threeten.bp.OffsetDateTime;
  * Persistent API Keys for Developers
  */
 @ApiModel(description = "Persistent API Keys for Developers")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class APIKey {
   @SerializedName("id")
   private String id = null;
@@ -45,7 +44,7 @@ public class APIKey {
   private String name = null;
 
   @SerializedName("nonce")
-  private BigDecimal nonce = null;
+  private Long nonce = 0l;
 
   @SerializedName("cidr")
   private String cidr = null;
@@ -54,7 +53,7 @@ public class APIKey {
   private List<XAny> cidrs = null;
 
   @SerializedName("targetAccountId")
-  private BigDecimal targetAccountId = null;
+  private Integer targetAccountId = null;
 
   @SerializedName("permissions")
   private List<XAny> permissions = null;
@@ -63,7 +62,7 @@ public class APIKey {
   private Boolean enabled = false;
 
   @SerializedName("userId")
-  private BigDecimal userId = null;
+  private Integer userId = null;
 
   @SerializedName("created")
   private OffsetDateTime created = null;
@@ -122,7 +121,7 @@ public class APIKey {
     this.name = name;
   }
 
-  public APIKey nonce(BigDecimal nonce) {
+  public APIKey nonce(Long nonce) {
     this.nonce = nonce;
     return this;
   }
@@ -132,11 +131,11 @@ public class APIKey {
    * @return nonce
   **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getNonce() {
+  public Long getNonce() {
     return nonce;
   }
 
-  public void setNonce(BigDecimal nonce) {
+  public void setNonce(Long nonce) {
     this.nonce = nonce;
   }
 
@@ -184,7 +183,7 @@ public class APIKey {
     this.cidrs = cidrs;
   }
 
-  public APIKey targetAccountId(BigDecimal targetAccountId) {
+  public APIKey targetAccountId(Integer targetAccountId) {
     this.targetAccountId = targetAccountId;
     return this;
   }
@@ -194,11 +193,11 @@ public class APIKey {
    * @return targetAccountId
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTargetAccountId() {
+  public Integer getTargetAccountId() {
     return targetAccountId;
   }
 
-  public void setTargetAccountId(BigDecimal targetAccountId) {
+  public void setTargetAccountId(Integer targetAccountId) {
     this.targetAccountId = targetAccountId;
   }
 
@@ -246,7 +245,7 @@ public class APIKey {
     this.enabled = enabled;
   }
 
-  public APIKey userId(BigDecimal userId) {
+  public APIKey userId(Integer userId) {
     this.userId = userId;
     return this;
   }
@@ -256,11 +255,11 @@ public class APIKey {
    * @return userId
   **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getUserId() {
+  public Integer getUserId() {
     return userId;
   }
 
-  public void setUserId(BigDecimal userId) {
+  public void setUserId(Integer userId) {
     this.userId = userId;
   }
 

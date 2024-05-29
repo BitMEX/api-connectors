@@ -23,14 +23,13 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Insurance Fund Data
  */
 @ApiModel(description = "Insurance Fund Data")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Insurance {
   @SerializedName("currency")
   private String currency = null;
@@ -39,7 +38,7 @@ public class Insurance {
   private OffsetDateTime timestamp = null;
 
   @SerializedName("walletBalance")
-  private BigDecimal walletBalance = null;
+  private Long walletBalance = null;
 
   public Insurance currency(String currency) {
     this.currency = currency;
@@ -77,7 +76,7 @@ public class Insurance {
     this.timestamp = timestamp;
   }
 
-  public Insurance walletBalance(BigDecimal walletBalance) {
+  public Insurance walletBalance(Long walletBalance) {
     this.walletBalance = walletBalance;
     return this;
   }
@@ -87,11 +86,11 @@ public class Insurance {
    * @return walletBalance
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getWalletBalance() {
+  public Long getWalletBalance() {
     return walletBalance;
   }
 
-  public void setWalletBalance(BigDecimal walletBalance) {
+  public void setWalletBalance(Long walletBalance) {
     this.walletBalance = walletBalance;
   }
 

@@ -17,7 +17,6 @@
 
 #include <QString>
 #include "SWGError.h"
-#include "SWGNumber.h"
 #include "SWGPosition.h"
 
 #include <QObject>
@@ -36,11 +35,11 @@ public:
     QString basePath;
     QMap<QString, QString> defaultHeaders;
 
-    void position_get(QString* filter, QString* columns, SWGNumber* count);
+    void position_get(QString* filter, QString* columns, qint32 count);
     void position_isolateMargin(QString* symbol, bool enabled);
-    void position_transferIsolatedMargin(QString* symbol, SWGNumber* amount, double target_account_id);
+    void position_transferIsolatedMargin(QString* symbol, qint64 amount, double target_account_id);
     void position_updateLeverage(QString* symbol, double leverage, double target_account_id);
-    void position_updateRiskLimit(QString* symbol, SWGNumber* risk_limit, double target_account_id);
+    void position_updateRiskLimit(QString* symbol, qint64 risk_limit, double target_account_id);
     
 private:
     void position_getCallback (SWGHttpRequestWorker * worker);

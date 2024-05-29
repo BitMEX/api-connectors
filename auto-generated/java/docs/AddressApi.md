@@ -71,7 +71,7 @@ This endpoint does not need any parameter.
 
 <a name="addressNew"></a>
 # **addressNew**
-> Address addressNew(currency, network, address, name, note, skipConfirm, skip2FA)
+> Address addressNew(currency, network, address, name, note, skipConfirm, skip2FA, memo)
 
 Creates a new saved address.
 
@@ -112,8 +112,9 @@ String name = "name_example"; // String | Name of the entry, eg. 'Hardware walle
 String note = "note_example"; // String | Optional annotation.
 Boolean skipConfirm = false; // Boolean | Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation.
 Boolean skip2FA = false; // Boolean | Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.
+String memo = "memo_example"; // String | Destination Memo.
 try {
-    Address result = apiInstance.addressNew(currency, network, address, name, note, skipConfirm, skip2FA);
+    Address result = apiInstance.addressNew(currency, network, address, name, note, skipConfirm, skip2FA, memo);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling AddressApi#addressNew");
@@ -132,6 +133,7 @@ Name | Type | Description  | Notes
  **note** | **String**| Optional annotation. | [optional]
  **skipConfirm** | **Boolean**| Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation. | [optional] [default to false]
  **skip2FA** | **Boolean**| Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation. | [optional] [default to false]
+ **memo** | **String**| Destination Memo. | [optional]
 
 ### Return type
 

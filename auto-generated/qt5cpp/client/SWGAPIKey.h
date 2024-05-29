@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include "SWGX-any.h"
 #include <QDateTime>
 #include <QList>
@@ -54,8 +53,8 @@ public:
     QString* getName();
     void setName(QString* name);
 
-    SWGNumber* getNonce();
-    void setNonce(SWGNumber* nonce);
+    qint64 getNonce();
+    void setNonce(qint64 nonce);
 
     QString* getCidr();
     void setCidr(QString* cidr);
@@ -63,8 +62,8 @@ public:
     QList<SWGX-any*>* getCidrs();
     void setCidrs(QList<SWGX-any*>* cidrs);
 
-    SWGNumber* getTargetAccountId();
-    void setTargetAccountId(SWGNumber* target_account_id);
+    qint32 getTargetAccountId();
+    void setTargetAccountId(qint32 target_account_id);
 
     QList<SWGX-any*>* getPermissions();
     void setPermissions(QList<SWGX-any*>* permissions);
@@ -72,8 +71,8 @@ public:
     bool isEnabled();
     void setEnabled(bool enabled);
 
-    SWGNumber* getUserId();
-    void setUserId(SWGNumber* user_id);
+    qint32 getUserId();
+    void setUserId(qint32 user_id);
 
     QDateTime* getCreated();
     void setCreated(QDateTime* created);
@@ -91,7 +90,7 @@ private:
     QString* name;
     bool m_name_isSet;
 
-    SWGNumber* nonce;
+    qint64 nonce;
     bool m_nonce_isSet;
 
     QString* cidr;
@@ -100,7 +99,7 @@ private:
     QList<SWGX-any*>* cidrs;
     bool m_cidrs_isSet;
 
-    SWGNumber* target_account_id;
+    qint32 target_account_id;
     bool m_target_account_id_isSet;
 
     QList<SWGX-any*>* permissions;
@@ -109,7 +108,7 @@ private:
     bool enabled;
     bool m_enabled_isSet;
 
-    SWGNumber* user_id;
+    qint32 user_id;
     bool m_user_id_isSet;
 
     QDateTime* created;

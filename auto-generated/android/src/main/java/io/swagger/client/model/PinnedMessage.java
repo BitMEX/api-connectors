@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -24,11 +23,11 @@ import com.google.gson.annotations.SerializedName;
 public class PinnedMessage {
   
   @SerializedName("id")
-  private BigDecimal id = null;
+  private Integer id = null;
   @SerializedName("channelID")
-  private BigDecimal channelID = null;
+  private Integer channelID = null;
   @SerializedName("messageId")
-  private BigDecimal messageId = null;
+  private Integer messageId = null;
   @SerializedName("created")
   private Date created = null;
   @SerializedName("ended")
@@ -41,30 +40,30 @@ public class PinnedMessage {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getId() {
+  public Integer getId() {
     return id;
   }
-  public void setId(BigDecimal id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getChannelID() {
+  public Integer getChannelID() {
     return channelID;
   }
-  public void setChannelID(BigDecimal channelID) {
+  public void setChannelID(Integer channelID) {
     this.channelID = channelID;
   }
 
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getMessageId() {
+  public Integer getMessageId() {
     return messageId;
   }
-  public void setMessageId(BigDecimal messageId) {
+  public void setMessageId(Integer messageId) {
     this.messageId = messageId;
   }
 

@@ -18,11 +18,11 @@ case class Trade (
   timestamp: Date,
   symbol: String,
   side: Option[String] = None,
-  size: Option[Number] = None,
+  size: Option[Long] = None,
   price: Option[Double] = None,
   tickDirection: Option[String] = None,
   trdMatchID: Option[String] = None,
-  grossValue: Option[Number] = None,
+  grossValue: Option[Long] = None,
   homeNotional: Option[Double] = None,
   foreignNotional: Option[Double] = None,
   trdType: Option[String] = None

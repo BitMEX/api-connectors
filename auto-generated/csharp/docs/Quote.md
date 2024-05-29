@@ -5,10 +5,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Timestamp** | **DateTime?** |  | 
 **Symbol** | **string** |  | 
-**BidSize** | **decimal?** |  | [optional] 
+**BidSize** | **long?** |  | [optional] 
 **BidPrice** | **double?** |  | [optional] 
 **AskPrice** | **double?** |  | [optional] 
-**AskSize** | **decimal?** |  | [optional] 
+**AskSize** | **long?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

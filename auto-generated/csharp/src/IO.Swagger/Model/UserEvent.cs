@@ -191,7 +191,67 @@ namespace IO.Swagger.Model
             /// Enum Verify for value: verify
             /// </summary>
             [EnumMember(Value = "verify")]
-            Verify = 26
+            Verify = 26,
+            
+            /// <summary>
+            /// Enum RestrictedAccount for value: restrictedAccount
+            /// </summary>
+            [EnumMember(Value = "restrictedAccount")]
+            RestrictedAccount = 27,
+            
+            /// <summary>
+            /// Enum UnrestrictedAccount for value: unrestrictedAccount
+            /// </summary>
+            [EnumMember(Value = "unrestrictedAccount")]
+            UnrestrictedAccount = 28,
+            
+            /// <summary>
+            /// Enum DisabledAccount for value: disabledAccount
+            /// </summary>
+            [EnumMember(Value = "disabledAccount")]
+            DisabledAccount = 29,
+            
+            /// <summary>
+            /// Enum EnabledAccount for value: enabledAccount
+            /// </summary>
+            [EnumMember(Value = "enabledAccount")]
+            EnabledAccount = 30,
+            
+            /// <summary>
+            /// Enum RoleroleMappingDestroy for value: role:roleMappingDestroy
+            /// </summary>
+            [EnumMember(Value = "role:roleMappingDestroy")]
+            RoleroleMappingDestroy = 31,
+            
+            /// <summary>
+            /// Enum RolechatBanned for value: role:chatBanned
+            /// </summary>
+            [EnumMember(Value = "role:chatBanned")]
+            RolechatBanned = 32,
+            
+            /// <summary>
+            /// Enum RolewithdrawalBanned for value: role:withdrawalBanned
+            /// </summary>
+            [EnumMember(Value = "role:withdrawalBanned")]
+            RolewithdrawalBanned = 33,
+            
+            /// <summary>
+            /// Enum RoleorderBanned for value: role:orderBanned
+            /// </summary>
+            [EnumMember(Value = "role:orderBanned")]
+            RoleorderBanned = 34,
+            
+            /// <summary>
+            /// Enum RoleapiBanned for value: role:apiBanned
+            /// </summary>
+            [EnumMember(Value = "role:apiBanned")]
+            RoleapiBanned = 35,
+            
+            /// <summary>
+            /// Enum RolerestrictedJurisdictionPrivilege for value: role:restrictedJurisdictionPrivilege
+            /// </summary>
+            [EnumMember(Value = "role:restrictedJurisdictionPrivilege")]
+            RolerestrictedJurisdictionPrivilege = 36
         }
 
         /// <summary>

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
-**userId** | [**BigDecimal**](BigDecimal.md) |  | 
+**userId** | **Integer** |  | 
 **deviceToken** | **String** |  | 
 **channel** | **String** |  | 
 

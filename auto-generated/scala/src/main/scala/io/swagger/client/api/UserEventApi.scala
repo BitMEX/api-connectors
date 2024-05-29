@@ -84,11 +84,11 @@ class UserEventApi(
    * Get your user events
    * 
    *
-   * @param count Number of results to fetch. (optional, default to 150)
+   * @param count Number of results to fetch. (optional, default to 100)
    * @param startId Cursor for pagination. (optional)
    * @return List[UserEvent]
    */
-  def userEventGet(count: Option[Double] = Option(150), startId: Option[Double] = None): Option[List[UserEvent]] = {
+  def userEventGet(count: Option[Double] = Option(100), startId: Option[Double] = None): Option[List[UserEvent]] = {
     val await = Try(Await.result(userEventGetAsync(count, startId), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -100,11 +100,11 @@ class UserEventApi(
    * Get your user events asynchronously
    * 
    *
-   * @param count Number of results to fetch. (optional, default to 150)
+   * @param count Number of results to fetch. (optional, default to 100)
    * @param startId Cursor for pagination. (optional)
    * @return Future(List[UserEvent])
    */
-  def userEventGetAsync(count: Option[Double] = Option(150), startId: Option[Double] = None): Future[List[UserEvent]] = {
+  def userEventGetAsync(count: Option[Double] = Option(100), startId: Option[Double] = None): Future[List[UserEvent]] = {
       helper.userEventGet(count, startId)
   }
 
@@ -112,7 +112,7 @@ class UserEventApi(
 
 class UserEventApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def userEventGet(count: Option[Double] = Option(150),
+  def userEventGet(count: Option[Double] = Option(100),
     startId: Option[Double] = None
     )(implicit reader: ClientResponseReader[List[UserEvent]]): Future[List[UserEvent]] = {
     // create path and map variables

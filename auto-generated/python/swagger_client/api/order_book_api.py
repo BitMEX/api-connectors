@@ -43,7 +43,7 @@ class OrderBookApi(object):
 
         :param async_req bool
         :param str symbol: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (required)
-        :param float depth: Orderbook depth per side. Send 0 for full depth.
+        :param int depth: Orderbook depth per side. Send 0 for full depth.
         :return: list[OrderBookL2]
                  If the method is called asynchronously,
                  returns the request thread.
@@ -65,7 +65,7 @@ class OrderBookApi(object):
 
         :param async_req bool
         :param str symbol: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (required)
-        :param float depth: Orderbook depth per side. Send 0 for full depth.
+        :param int depth: Orderbook depth per side. Send 0 for full depth.
         :return: list[OrderBookL2]
                  If the method is called asynchronously,
                  returns the request thread.

@@ -279,6 +279,7 @@ export class Address {
     'skip2FA'?: boolean;
     'skip2FAVerified'?: boolean;
     'network': string;
+    'memo'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -341,6 +342,11 @@ export class Address {
         {
             "name": "network",
             "baseName": "network",
+            "type": "string"
+        },
+        {
+            "name": "memo",
+            "baseName": "memo",
             "type": "string"
         }    ];
 
@@ -515,6 +521,7 @@ export class AssetsConfig {
     'scale'?: number;
     'enabled'?: boolean;
     'isMarginCurrency'?: boolean;
+    'memoRequired'?: boolean;
     'networks'?: Array<AssetsConfigNetworkItem>;
 
     static discriminator: string | undefined = undefined;
@@ -558,6 +565,11 @@ export class AssetsConfig {
         {
             "name": "isMarginCurrency",
             "baseName": "isMarginCurrency",
+            "type": "boolean"
+        },
+        {
+            "name": "memoRequired",
+            "baseName": "memoRequired",
             "type": "boolean"
         },
         {
@@ -877,6 +889,32 @@ export class ConnectedUsers {
     }
 }
 
+/**
+* Deposit Address
+*/
+export class DepositAddress {
+    'address': string;
+    'memo'?: string;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "address",
+            "baseName": "address",
+            "type": "string"
+        },
+        {
+            "name": "memo",
+            "baseName": "memo",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return DepositAddress.attributeTypeMap;
+    }
+}
+
 export class ErrorError {
     'message'?: string;
     'name'?: string;
@@ -905,7 +943,7 @@ export class ErrorError {
 */
 export class Execution {
     'execID'?: string;
-    'orderID': string;
+    'orderID'?: string;
     'clOrdID'?: string;
     'clOrdLinkID'?: string;
     'account'?: number;
@@ -935,6 +973,7 @@ export class Execution {
     'cumQty'?: number;
     'avgPx'?: number;
     'commission'?: number;
+    'feeType'?: string;
     'tradePublishIndicator'?: string;
     'text'?: string;
     'trdMatchID'?: string;
@@ -944,11 +983,6 @@ export class Execution {
     'foreignNotional'?: number;
     'transactTime'?: Date;
     'timestamp': Date;
-    'execGrossPnl'?: number;
-    'currentQty'?: number;
-    'avgEntryPrice'?: number;
-    'realisedPnl'?: number;
-    'unrealisedPnl'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -1109,6 +1143,11 @@ export class Execution {
             "type": "number"
         },
         {
+            "name": "feeType",
+            "baseName": "feeType",
+            "type": "string"
+        },
+        {
             "name": "tradePublishIndicator",
             "baseName": "tradePublishIndicator",
             "type": "string"
@@ -1152,31 +1191,6 @@ export class Execution {
             "name": "timestamp",
             "baseName": "timestamp",
             "type": "Date"
-        },
-        {
-            "name": "execGrossPnl",
-            "baseName": "execGrossPnl",
-            "type": "number"
-        },
-        {
-            "name": "currentQty",
-            "baseName": "currentQty",
-            "type": "number"
-        },
-        {
-            "name": "avgEntryPrice",
-            "baseName": "avgEntryPrice",
-            "type": "number"
-        },
-        {
-            "name": "realisedPnl",
-            "baseName": "realisedPnl",
-            "type": "number"
-        },
-        {
-            "name": "unrealisedPnl",
-            "baseName": "unrealisedPnl",
-            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -1601,6 +1615,7 @@ export class Instrument {
     'settledPriceAdjustmentRate'?: number;
     'settledPrice'?: number;
     'instantPnl'?: boolean;
+    'minTick'?: number;
     'timestamp'?: Date;
 
     static discriminator: string | undefined = undefined;
@@ -2040,6 +2055,11 @@ export class Instrument {
             "name": "instantPnl",
             "baseName": "instantPnl",
             "type": "boolean"
+        },
+        {
+            "name": "minTick",
+            "baseName": "minTick",
+            "type": "number"
         },
         {
             "name": "timestamp",
@@ -3882,6 +3902,7 @@ export class User {
     'geoipCountry'?: string;
     'geoipRegion'?: string;
     'firstTradeTimestamp'?: Date;
+    'firstDepositTimestamp'?: Date;
     'typ'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -3975,6 +3996,11 @@ export class User {
         {
             "name": "firstTradeTimestamp",
             "baseName": "firstTradeTimestamp",
+            "type": "Date"
+        },
+        {
+            "name": "firstDepositTimestamp",
+            "baseName": "firstDepositTimestamp",
             "type": "Date"
         },
         {
@@ -4107,7 +4133,17 @@ export namespace UserEvent {
         WithdrawalRequested = <any> 'withdrawalRequested',
         AddressSkipConfirmRequested = <any> 'addressSkipConfirmRequested',
         AddressSkipConfirmVerified = <any> 'addressSkipConfirmVerified',
-        Verify = <any> 'verify'
+        Verify = <any> 'verify',
+        RestrictedAccount = <any> 'restrictedAccount',
+        UnrestrictedAccount = <any> 'unrestrictedAccount',
+        DisabledAccount = <any> 'disabledAccount',
+        EnabledAccount = <any> 'enabledAccount',
+        RoleroleMappingDestroy = <any> 'role:roleMappingDestroy',
+        RolechatBanned = <any> 'role:chatBanned',
+        RolewithdrawalBanned = <any> 'role:withdrawalBanned',
+        RoleorderBanned = <any> 'role:orderBanned',
+        RoleapiBanned = <any> 'role:apiBanned',
+        RolerestrictedJurisdictionPrivilege = <any> 'role:restrictedJurisdictionPrivilege'
     }
     export enum StatusEnum {
         Success = <any> 'success',
@@ -4130,10 +4166,14 @@ export class UserPreferences {
     'favourites'?: Array<string>;
     'favouritesAssets'?: Array<string>;
     'favouritesOrdered'?: Array<string>;
+    'favouriteBots'?: Array<string>;
+    'hasSetTradingCurrencies'?: boolean;
     'hideConfirmDialogs'?: Array<string>;
     'hideConnectionModal'?: boolean;
     'hideFromLeaderboard'?: boolean;
     'hideNameFromLeaderboard'?: boolean;
+    'hidePnlInGuilds'?: boolean;
+    'hideRoiInGuilds'?: boolean;
     'hideNotifications'?: Array<string>;
     'hidePhoneConfirm'?: boolean;
     'isSensitiveInfoVisible'?: boolean;
@@ -4142,8 +4182,10 @@ export class UserPreferences {
     'localeSetTime'?: number;
     'marginPnlRow'?: string;
     'marginPnlRowKind'?: string;
+    'mobileLocale'?: string;
     'msgsSeen'?: Array<string>;
     'notifications'?: any;
+    'optionsBeta'?: boolean;
     'orderBookBinning'?: any;
     'orderBookType'?: string;
     'orderClearImmediate'?: boolean;
@@ -4153,6 +4195,7 @@ export class UserPreferences {
     'showChartBottomToolbar'?: boolean;
     'showLocaleNumbers'?: boolean;
     'sounds'?: Array<string>;
+    'spacingPreference'?: string;
     'strictIPCheck'?: boolean;
     'strictTimeout'?: boolean;
     'tickerGroup'?: string;
@@ -4239,6 +4282,16 @@ export class UserPreferences {
             "type": "Array<string>"
         },
         {
+            "name": "favouriteBots",
+            "baseName": "favouriteBots",
+            "type": "Array<string>"
+        },
+        {
+            "name": "hasSetTradingCurrencies",
+            "baseName": "hasSetTradingCurrencies",
+            "type": "boolean"
+        },
+        {
             "name": "hideConfirmDialogs",
             "baseName": "hideConfirmDialogs",
             "type": "Array<string>"
@@ -4256,6 +4309,16 @@ export class UserPreferences {
         {
             "name": "hideNameFromLeaderboard",
             "baseName": "hideNameFromLeaderboard",
+            "type": "boolean"
+        },
+        {
+            "name": "hidePnlInGuilds",
+            "baseName": "hidePnlInGuilds",
+            "type": "boolean"
+        },
+        {
+            "name": "hideRoiInGuilds",
+            "baseName": "hideRoiInGuilds",
             "type": "boolean"
         },
         {
@@ -4299,6 +4362,11 @@ export class UserPreferences {
             "type": "string"
         },
         {
+            "name": "mobileLocale",
+            "baseName": "mobileLocale",
+            "type": "string"
+        },
+        {
             "name": "msgsSeen",
             "baseName": "msgsSeen",
             "type": "Array<string>"
@@ -4307,6 +4375,11 @@ export class UserPreferences {
             "name": "notifications",
             "baseName": "notifications",
             "type": "any"
+        },
+        {
+            "name": "optionsBeta",
+            "baseName": "optionsBeta",
+            "type": "boolean"
         },
         {
             "name": "orderBookBinning",
@@ -4352,6 +4425,11 @@ export class UserPreferences {
             "name": "sounds",
             "baseName": "sounds",
             "type": "Array<string>"
+        },
+        {
+            "name": "spacingPreference",
+            "baseName": "spacingPreference",
+            "type": "string"
         },
         {
             "name": "strictIPCheck",
@@ -4469,6 +4547,77 @@ export class Wallet {
     }
 }
 
+export class WalletSummaryRecord {
+    'account': number;
+    'currency'?: string;
+    'transactType'?: string;
+    'symbol'?: string;
+    'amount'?: number;
+    'pendingDebit'?: number;
+    'realisedPnl'?: number;
+    'walletBalance'?: number;
+    'unrealisedPnl'?: number;
+    'marginBalance'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "account",
+            "baseName": "account",
+            "type": "number"
+        },
+        {
+            "name": "currency",
+            "baseName": "currency",
+            "type": "string"
+        },
+        {
+            "name": "transactType",
+            "baseName": "transactType",
+            "type": "string"
+        },
+        {
+            "name": "symbol",
+            "baseName": "symbol",
+            "type": "string"
+        },
+        {
+            "name": "amount",
+            "baseName": "amount",
+            "type": "number"
+        },
+        {
+            "name": "pendingDebit",
+            "baseName": "pendingDebit",
+            "type": "number"
+        },
+        {
+            "name": "realisedPnl",
+            "baseName": "realisedPnl",
+            "type": "number"
+        },
+        {
+            "name": "walletBalance",
+            "baseName": "walletBalance",
+            "type": "number"
+        },
+        {
+            "name": "unrealisedPnl",
+            "baseName": "unrealisedPnl",
+            "type": "number"
+        },
+        {
+            "name": "marginBalance",
+            "baseName": "marginBalance",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return WalletSummaryRecord.attributeTypeMap;
+    }
+}
+
 export class XAny {
 
     static discriminator: string | undefined = undefined;
@@ -4501,6 +4650,7 @@ let typeMap: {[index: string]: any} = {
     "CollateralSupportAgreement": CollateralSupportAgreement,
     "CommunicationToken": CommunicationToken,
     "ConnectedUsers": ConnectedUsers,
+    "DepositAddress": DepositAddress,
     "ErrorError": ErrorError,
     "Execution": Execution,
     "Funding": Funding,
@@ -4539,6 +4689,7 @@ let typeMap: {[index: string]: any} = {
     "UserEvent": UserEvent,
     "UserPreferences": UserPreferences,
     "Wallet": Wallet,
+    "WalletSummaryRecord": WalletSummaryRecord,
     "XAny": XAny,
 }
 
@@ -4818,9 +4969,10 @@ export class AddressApi {
      * @param note Optional annotation.
      * @param skipConfirm Skip e-mail confirmations for transfers to this address. Will require an email confirmation after creation.
      * @param skip2FA Skip 2FA confirmations for transfers to this address. Will require an email confirmation after creation.
+     * @param memo Destination Memo.
      * @param {*} [options] Override http request options.
      */
-    public addressNew (currency: string, network: string, address: string, name: string, note?: string, skipConfirm?: boolean, skip2FA?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: Address;  }> {
+    public addressNew (currency: string, network: string, address: string, name: string, note?: string, skipConfirm?: boolean, skip2FA?: boolean, memo?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Address;  }> {
         const localVarPath = this.basePath + '/address';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4876,6 +5028,10 @@ export class AddressApi {
 
         if (skip2FA !== undefined) {
             localVarFormParams['skip2FA'] = ObjectSerializer.serialize(skip2FA, "boolean");
+        }
+
+        if (memo !== undefined) {
+            localVarFormParams['memo'] = ObjectSerializer.serialize(memo, "string");
         }
 
         let localVarRequestOptions: localVarRequest.Options = {
@@ -6021,16 +6177,17 @@ export class GuildApi {
      * @param name Name of the guild, must be unique, must be at least 5 characters
      * @param emoji Emoji name.
      * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100
-     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
      * @param potTraderId User ID of the guild member with order write permission for the pot
      * @param description Guild description, can be used to explain the guild to other users.
      * @param twitter Guild twitter handle.
      * @param discord Guild discord link.
+     * @param telegram Guild telegram link.
      * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
      * @param isPrivate Guild privacy status
      * @param {*} [options] Override http request options.
      */
-    public guildEdit (name: string, emoji: string, potDistributionPercent: number, potDistributionType: string, potTraderId?: number, description?: string, twitter?: string, discord?: string, imgUrl?: string, isPrivate?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: Guild;  }> {
+    public guildEdit (name: string, emoji: string, potDistributionPercent: number, potDistributionType: string, potTraderId?: number, description?: string, twitter?: string, discord?: string, telegram?: string, imgUrl?: string, isPrivate?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: Guild;  }> {
         const localVarPath = this.basePath + '/guild';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -6090,6 +6247,10 @@ export class GuildApi {
 
         if (discord !== undefined) {
             localVarFormParams['discord'] = ObjectSerializer.serialize(discord, "string");
+        }
+
+        if (telegram !== undefined) {
+            localVarFormParams['telegram'] = ObjectSerializer.serialize(telegram, "string");
         }
 
         if (imgUrl !== undefined) {
@@ -6375,15 +6536,16 @@ export class GuildApi {
      * @param name Name of the guild, must be unique, must be at least 5 characters
      * @param emoji Emoji name.
      * @param potDistributionPercent How much of the pot should be distributed to the guild members, must be between 0 and 100
-     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV,TOP_5_BY_ADV,TOP_10_BY_ADV, RANDOM
+     * @param potDistributionType How the pot should be distributed to the guild members, must be one of the following: ROLL_OVER, TOP_3, TOP_5, TOP_10, VOLUME_PERCENTAGE, TOP_3_BY_ADV, TOP_5_BY_ADV, TOP_10_BY_ADV, TOP_3_BY_ROI, TOP_5_BY_ROI, TOP_10_BY_ROI, RANDOM
      * @param description Guild description, can be used to explain the guild to other users.
      * @param twitter Guild twitter handle.
      * @param discord Guild discord link.
+     * @param telegram Guild telegram link.
      * @param imgUrl URL for the profile image of the guild, is used by clients to add some color to the guild, if no image is provided, a default image is used
      * @param isPrivate Guild privacy status
      * @param {*} [options] Override http request options.
      */
-    public guildNew (name: string, emoji: string, potDistributionPercent: number, potDistributionType: string, description?: string, twitter?: string, discord?: string, imgUrl?: string, isPrivate?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: Guild;  }> {
+    public guildNew (name: string, emoji: string, potDistributionPercent: number, potDistributionType: string, description?: string, twitter?: string, discord?: string, telegram?: string, imgUrl?: string, isPrivate?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: Guild;  }> {
         const localVarPath = this.basePath + '/guild';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -6439,6 +6601,10 @@ export class GuildApi {
 
         if (discord !== undefined) {
             localVarFormParams['discord'] = ObjectSerializer.serialize(discord, "string");
+        }
+
+        if (telegram !== undefined) {
+            localVarFormParams['telegram'] = ObjectSerializer.serialize(telegram, "string");
         }
 
         if (imgUrl !== undefined) {
@@ -8453,7 +8619,7 @@ export class PositionApi {
         (this.authentications as any)[PositionApiApiKeys[key]].apiKey = value;
     }
     /**
-     * This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols do not return any position data.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol's default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol's default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
+     * This endpoint is used for retrieving position information. The fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html) definitions. Some selected fields are explained in more detail below.  The fields _account_, _symbol_, _currency_ are unique to each position and form its key.  Spot trading symbols returns a subset of the position fields, mainly the open order aggregates.  - **account**: Your unique account ID. - **symbol**: The contract for this position. - **currency**: The margin currency for this position. - **underlying**: Meta data of the _symbol_. - **quoteCurrency**: Meta data of the _symbol_, All prices are in the _quoteCurrency_ - **commission**: The maximum of the maker, taker, and settlement fee. - **initMarginReq**: The initial margin requirement. This will be at least the symbol's default initial maintenance margin, but can be higher if you choose lower leverage. - **maintMarginReq**: The maintenance margin requirement. This will be at least the symbol's default maintenance maintenance margin, but can be higher if you choose a higher risk limit. - **riskLimit**: This is a function of your _maintMarginReq_. - **leverage**: 1 / initMarginReq. - **crossMargin**: True/false depending on whether you set cross margin on this position. - **deleveragePercentile**: Indicates where your position is in the ADL queue. - **rebalancedPnl**: The value of realised PNL that has transferred to your wallet for this position. - **prevRealisedPnl**: The value of realised PNL that has transferred to your wallet for this position since the position was closed. - **currentQty**: The current position amount in contracts. - **currentCost**: The current cost of the position in the settlement currency of the symbol (_currency_). - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_). - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting. - **unrealisedCost**: _currentCost_ - _realisedCost_. - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_). - **markPrice**: The mark price of the symbol in _quoteCurrency_. - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_). - **homeNotional**: Value of position in units of _underlying_. - **foreignNotional**: Value of position in units of _quoteCurrency_. - **realisedPnl**: The negative of _realisedCost_. - **unrealisedPnl**: _unrealisedGrossPnl_. - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated. - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity. 
      * @summary Get your positions.
      * @param filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}.
      * @param columns Which columns to fetch. For example, send [\&quot;columnName\&quot;].
@@ -9840,6 +10006,70 @@ export class UserApi {
     }
     /**
      * 
+     * @summary Cancel pending withdrawal
+     * @param transactID 
+     * @param {*} [options] Override http request options.
+     */
+    public userCancelPendingWithdrawal (transactID: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
+        const localVarPath = this.basePath + '/user/withdrawal';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'transactID' is not null or undefined
+        if (transactID === null || transactID === undefined) {
+            throw new Error('Required parameter transactID was null or undefined when calling userCancelPendingWithdrawal.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        if (transactID !== undefined) {
+            localVarFormParams['transactID'] = ObjectSerializer.serialize(transactID, "string");
+        }
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: any;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "any");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Cancel a withdrawal.
      * @param token 
      * @param {*} [options] Override http request options.
@@ -10638,6 +10868,80 @@ export class UserApi {
     }
     /**
      * 
+     * @summary Get a deposit address.
+     * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+     * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.
+     * @param {*} [options] Override http request options.
+     */
+    public userGetDepositAddressInformation (currency: string, network: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: DepositAddress;  }> {
+        const localVarPath = this.basePath + '/user/depositAddressInformation';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'currency' is not null or undefined
+        if (currency === null || currency === undefined) {
+            throw new Error('Required parameter currency was null or undefined when calling userGetDepositAddressInformation.');
+        }
+
+        // verify required parameter 'network' is not null or undefined
+        if (network === null || network === undefined) {
+            throw new Error('Required parameter network was null or undefined when calling userGetDepositAddressInformation.');
+        }
+
+        if (currency !== undefined) {
+            localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "string");
+        }
+
+        if (network !== undefined) {
+            localVarQueryParameters['network'] = ObjectSerializer.serialize(network, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: DepositAddress;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "DepositAddress");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Get the execution history by day.
      * @param symbol 
      * @param timestamp 
@@ -11249,12 +11553,13 @@ export class UserApi {
      * 
      * @summary Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
      * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
-     * @param count Number of results to fetch.
-     * @param start Starting point for results.
+     * @param count Number of results to fetch. Fetch results from start to start + count. Max: 10,000 rows.
+     * @param start Starting point for results, integer. Default 0.
      * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history.
+     * @param reverse Start from the latest transaction record. Default true.
      * @param {*} [options] Override http request options.
      */
-    public userGetWalletHistory (currency?: string, count?: number, start?: number, targetAccountId?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Transaction>;  }> {
+    public userGetWalletHistory (currency?: string, count?: number, start?: number, targetAccountId?: number, reverse?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Transaction>;  }> {
         const localVarPath = this.basePath + '/user/walletHistory';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -11274,6 +11579,10 @@ export class UserApi {
 
         if (targetAccountId !== undefined) {
             localVarQueryParameters['targetAccountId'] = ObjectSerializer.serialize(targetAccountId, "number");
+        }
+
+        if (reverse !== undefined) {
+            localVarQueryParameters['reverse'] = ObjectSerializer.serialize(reverse, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -11320,12 +11629,14 @@ export class UserApi {
         });
     }
     /**
-     * 
+     * Provides an aggregated view of transactions, by transaction type, over a specific time period.
      * @summary Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
      * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
+     * @param startTime Start time for the summary
+     * @param endTime End time for the summary
      * @param {*} [options] Override http request options.
      */
-    public userGetWalletSummary (currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Transaction>;  }> {
+    public userGetWalletSummary (currency?: string, startTime?: Date, endTime?: Date, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<WalletSummaryRecord>;  }> {
         const localVarPath = this.basePath + '/user/walletSummary';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -11333,6 +11644,14 @@ export class UserApi {
 
         if (currency !== undefined) {
             localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "string");
+        }
+
+        if (startTime !== undefined) {
+            localVarQueryParameters['startTime'] = ObjectSerializer.serialize(startTime, "Date");
+        }
+
+        if (endTime !== undefined) {
+            localVarQueryParameters['endTime'] = ObjectSerializer.serialize(endTime, "Date");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -11363,12 +11682,12 @@ export class UserApi {
                 localVarRequestOptions.form = localVarFormParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: Array<Transaction>;  }>((resolve, reject) => {
+        return new Promise<{ response: http.ClientResponse; body: Array<WalletSummaryRecord>;  }>((resolve, reject) => {
             localVarRequest(localVarRequestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, "Array<Transaction>");
+                    body = ObjectSerializer.deserialize(body, "Array<WalletSummaryRecord>");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -11487,13 +11806,14 @@ export class UserApi {
      * @param amount Amount of withdrawal currency.
      * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
      * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+     * @param memo Destination Memo. If &#x60;address&#x60;, is specified, Destination Memo can also be specified
      * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
      * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
      * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
      * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
      * @param {*} [options] Override http request options.
      */
-    public userRequestWithdrawal (currency: string, network: string, amount: number, otpToken?: string, address?: string, addressId?: number, targetUserId?: number, fee?: number, text?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Transaction;  }> {
+    public userRequestWithdrawal (currency: string, network: string, amount: number, otpToken?: string, address?: string, memo?: string, addressId?: number, targetUserId?: number, fee?: number, text?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Transaction;  }> {
         const localVarPath = this.basePath + '/user/requestWithdrawal';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -11536,6 +11856,10 @@ export class UserApi {
 
         if (address !== undefined) {
             localVarFormParams['address'] = ObjectSerializer.serialize(address, "string");
+        }
+
+        if (memo !== undefined) {
+            localVarFormParams['memo'] = ObjectSerializer.serialize(memo, "string");
         }
 
         if (addressId !== undefined) {
@@ -11880,9 +12204,11 @@ export class UserAffiliatesApi {
      * 
      * @summary Get user's affiliates to a given depth
      * @param depth the depth of affiliates to return. Eg depth &#x3D; 2 would return direct affiliates and their affiliates
+     * @param targetAccountId AccountId of Sub-Affiliate Account
+     * @param selectUserId User id of result array to keep
      * @param {*} [options] Override http request options.
      */
-    public userAffiliatesGet (depth?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<XAny>;  }> {
+    public userAffiliatesGet (depth?: number, targetAccountId?: number, selectUserId?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<XAny>;  }> {
         const localVarPath = this.basePath + '/userAffiliates';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -11890,6 +12216,14 @@ export class UserAffiliatesApi {
 
         if (depth !== undefined) {
             localVarQueryParameters['depth'] = ObjectSerializer.serialize(depth, "number");
+        }
+
+        if (targetAccountId !== undefined) {
+            localVarQueryParameters['targetAccountId'] = ObjectSerializer.serialize(targetAccountId, "number");
+        }
+
+        if (selectUserId !== undefined) {
+            localVarQueryParameters['selectUserId'] = ObjectSerializer.serialize(selectUserId, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);

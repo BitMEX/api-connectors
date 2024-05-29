@@ -15,7 +15,7 @@ package io.swagger.client.model
 import java.util.Date
 
 case class Porl (
-  account: Number,
+  account: Integer,
   nonce: Option[String] = None,
   accountNonce: String,
   total: Double,

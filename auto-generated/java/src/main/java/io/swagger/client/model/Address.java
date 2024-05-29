@@ -23,16 +23,15 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Address
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-05-28T18:24:26.857+08:00")
 public class Address {
   @SerializedName("id")
-  private BigDecimal id = null;
+  private Integer id = null;
 
   @SerializedName("currency")
   private String currency = null;
@@ -67,7 +66,10 @@ public class Address {
   @SerializedName("network")
   private String network = null;
 
-  public Address id(BigDecimal id) {
+  @SerializedName("memo")
+  private String memo = null;
+
+  public Address id(Integer id) {
     this.id = id;
     return this;
   }
@@ -77,11 +79,11 @@ public class Address {
    * @return id
   **/
   @ApiModelProperty(value = "")
-  public BigDecimal getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(BigDecimal id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -283,6 +285,24 @@ public class Address {
     this.network = network;
   }
 
+  public Address memo(String memo) {
+    this.memo = memo;
+    return this;
+  }
+
+   /**
+   * Get memo
+   * @return memo
+  **/
+  @ApiModelProperty(value = "")
+  public String getMemo() {
+    return memo;
+  }
+
+  public void setMemo(String memo) {
+    this.memo = memo;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -304,12 +324,13 @@ public class Address {
         Objects.equals(this.skipConfirmVerified, address.skipConfirmVerified) &&
         Objects.equals(this.skip2FA, address.skip2FA) &&
         Objects.equals(this.skip2FAVerified, address.skip2FAVerified) &&
-        Objects.equals(this.network, address.network);
+        Objects.equals(this.network, address.network) &&
+        Objects.equals(this.memo, address.memo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, currency, created, userId, address, name, note, skipConfirm, skipConfirmVerified, skip2FA, skip2FAVerified, network);
+    return Objects.hash(id, currency, created, userId, address, name, note, skipConfirm, skipConfirmVerified, skip2FA, skip2FAVerified, network, memo);
   }
 
 
@@ -330,6 +351,7 @@ public class Address {
     sb.append("    skip2FA: ").append(toIndentedString(skip2FA)).append("\n");
     sb.append("    skip2FAVerified: ").append(toIndentedString(skip2FAVerified)).append("\n");
     sb.append("    network: ").append(toIndentedString(network)).append("\n");
+    sb.append("    memo: ").append(toIndentedString(memo)).append("\n");
     sb.append("}");
     return sb.toString();
   }

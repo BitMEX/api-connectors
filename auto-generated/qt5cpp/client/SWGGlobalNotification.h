@@ -22,7 +22,6 @@
 #include <QJsonObject>
 
 
-#include "SWGNumber.h"
 #include <QDateTime>
 #include <QString>
 
@@ -43,8 +42,8 @@ public:
     void fromJsonObject(QJsonObject json) override;
     SWGGlobalNotification* fromJson(QString jsonString) override;
 
-    SWGNumber* getId();
-    void setId(SWGNumber* id);
+    qint32 getId();
+    void setId(qint32 id);
 
     QDateTime* getDate();
     void setDate(QDateTime* date);
@@ -55,8 +54,8 @@ public:
     QString* getBody();
     void setBody(QString* body);
 
-    SWGNumber* getTtl();
-    void setTtl(SWGNumber* ttl);
+    qint32 getTtl();
+    void setTtl(qint32 ttl);
 
     QString* getType();
     void setType(QString* type);
@@ -77,7 +76,7 @@ public:
     virtual bool isSet() override;
 
 private:
-    SWGNumber* id;
+    qint32 id;
     bool m_id_isSet;
 
     QDateTime* date;
@@ -89,7 +88,7 @@ private:
     QString* body;
     bool m_body_isSet;
 
-    SWGNumber* ttl;
+    qint32 ttl;
     bool m_ttl_isSet;
 
     QString* type;
